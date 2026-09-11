@@ -77,13 +77,36 @@ with the claim; a pile of weak support never produces it.
 ```bash
 npm install
 npm run dev        # http://localhost:3000/evidence
-npm test           # 126 tests
+npm test           # 168 tests
 npm run typecheck
 npm run build
 ```
 
-No API key is needed. The default reasoning provider is corpus-backed and
-deterministic.
+No API key is needed locally. The default reasoning provider is corpus-backed
+and deterministic, and storage falls back to a local file.
+
+### Deploying
+
+Storage must be Supabase in any deployed environment. A serverless host has a
+read-only bundle filesystem and wipes `/tmp` between cold starts, so the file
+store throws on its first write and every page 500s.
+
+```bash
+# 1. Apply the migration to your Supabase project
+supabase/migrations/20260911000000_evidence_intelligence.sql
+
+# 2. Set server-side environment variables
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...   # never NEXT_PUBLIC_; bypasses RLS
+```
+
+The store auto-selects Supabase once both are present. `EVIDENCE_STORE=supabase`
+forces it and raises if unconfigured, rather than degrading to a store that
+cannot persist — a deployment that looks healthy until the first restart loses
+everything written since the last one.
+
+Reads are public by RLS policy; writes are `service_role` only. An assessment
+nobody can inspect is not checkable, and checkable is the whole proposition.
 
 ### Routes
 
@@ -127,7 +150,7 @@ src/lib/evidence/
   prompts.ts       Versioned prompts (persisted with every analysis)
   corpus/          Curated source records and the dependency graph
   providers/       EvidenceReasoningProvider: corpus (default), anthropic
-  store/           EvidenceStore: JSON-backed, swappable for a database
+  store/           EvidenceStore: Supabase (deployed) or JSON file (local)
   seed/            Curated demonstrations, run through the real pipeline
 ```
 
@@ -207,8 +230,8 @@ instructions changed.
   Records carry honest verification states, and `VERIFIED` is reserved for
   entries reconciled against an external catalogue. No live catalogue check
   runs yet.
-- **Storage is a JSON file.** Adequate for persistence and audit; swap
-  `EvidenceStore` for a database before real traffic.
+- **Storage** is Supabase when configured, otherwise a local JSON file. The
+  file store is for development only — see Deploying above.
 - **The curated provider's Challenge Assessment is a re-weighting**, not an
   adversarial review, and says so in its own output. A live provider is needed
   for a real one.
@@ -217,11 +240,11 @@ instructions changed.
 
 ## Tests
 
-146 tests covering claim extraction, score calculation, confidence-label
+168 tests covering claim extraction, score calculation, confidence-label
 mapping, calibration rules, citation validation, structured-output rejection,
 challenge revisions, source independence, claim types, evidence dimensions and
-absence-of-evidence reasoning, the prophetic framework and the metaphysical
-boundary — plus the four prompts the methodology must refuse to answer on their
+absence-of-evidence reasoning, the prophetic framework, the metaphysical
+boundary, store selection and Supabase round-tripping — plus the four prompts the methodology must refuse to answer on their
 own terms:
 
 ```
