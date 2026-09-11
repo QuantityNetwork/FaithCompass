@@ -12,7 +12,12 @@
  * rather than a display path.
  */
 
-import { seededByQuery, seededBySlug, type SeededSubject } from '../seed';
+import {
+  seededByClaimStatement,
+  seededByQuery,
+  seededBySlug,
+  type SeededSubject,
+} from '../seed';
 import { ANALYSIS_VERSION } from '../prompts';
 import {
   NoAnalysisAvailableError,
@@ -35,11 +40,20 @@ function resolve(req: { reference: { slug: string } | null; query: string }): Se
 }
 
 /**
- * An assessment request carries no free-text query, so the claim statement
- * stands in for one when resolving the subject.
+ * An assessment request carries a claim statement rather than a query, so the
+ * statement is looked up exactly rather than matched against subject aliases.
+ * Alias matching would resolve a claim to whichever subject its wording happens
+ * to mention — a resurrection claim naming Pontius Pilate would be assessed
+ * against the Pilate material.
  */
 function resolveForAssessment(req: AssessmentRequest): SeededSubject {
-  return resolve({ reference: req.reference, query: req.claimStatement });
+  const byStatement = seededByClaimStatement(req.claimStatement);
+  if (byStatement) return byStatement;
+  if (req.reference) {
+    const bySlug = seededBySlug(req.reference.slug);
+    if (bySlug) return bySlug;
+  }
+  throw new NoAnalysisAvailableError(req.claimStatement);
 }
 
 export class CorpusReasoningProvider implements EvidenceReasoningProvider {

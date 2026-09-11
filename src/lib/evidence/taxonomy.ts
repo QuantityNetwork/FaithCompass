@@ -104,6 +104,11 @@ export const ADMISSIBLE_DIMENSIONS: Record<ClaimType, readonly EvidenceDimension
     'source_dependence',
     'chronological_fit',
     'dating_confidence',
+    // How well the reporting sources are transmitted bears on a historical
+    // claim: an event known only from a passage absent in the best manuscripts
+    // is less well evidenced than one that is not.
+    'manuscript_attestation',
+    'transmission_stability',
     'archaeological_correspondence',
     'geographic_accuracy',
     'cultural_fit',
@@ -148,6 +153,12 @@ export const ADMISSIBLE_DIMENSIONS: Record<ClaimType, readonly EvidenceDimension
     'source_dependence',
     'scholarly_consensus',
     'modern_scholarly_dispute',
+    // Dating a text is done largely by its language and by when it is first
+    // quoted. Excluding these would rule out the two standard arguments.
+    'linguistic_fit',
+    'ancient_reception',
+    'authorship_confidence',
+    'manuscript_attestation',
   ],
   BIOGRAPHICAL: [
     'external_historical_corroboration',
@@ -157,6 +168,9 @@ export const ADMISSIBLE_DIMENSIONS: Record<ClaimType, readonly EvidenceDimension
     'archaeological_correspondence',
     'provenance',
     'scholarly_consensus',
+    'cultural_fit',
+    'dating_confidence',
+    'modern_scholarly_dispute',
   ],
   INTERPRETIVE: [
     'linguistic_fit',
@@ -207,6 +221,10 @@ export const ADMISSIBLE_DIMENSIONS: Record<ClaimType, readonly EvidenceDimension
     'interpretive_consensus',
     'ancient_reception',
     'modern_scholarly_dispute',
+    // Whether a prediction is specific enough to identify a fulfilment is
+    // largely a question about what its words can bear.
+    'linguistic_fit',
+    'source_dependence',
   ],
 };
 
@@ -258,6 +276,7 @@ export const PRIMARY_DIMENSION_META: Record<
       'chronological_fit',
       'cultural_fit',
       'material_culture',
+      'provenance',
     ],
   },
   interpretive: {

@@ -9,7 +9,14 @@ import { ConfidenceFigure } from './primitives';
  * historically uncorroborated at once, and collapsing that into one figure
  * would hide the only thing worth knowing about it.
  */
-export function EvidenceProfileGrid({ profile }: { profile: PrimaryProfile[] }) {
+export function EvidenceProfileGrid({
+  profile,
+  scope = 'claim',
+}: {
+  profile: PrimaryProfile[];
+  /** Whether this profile describes one claim or a whole analysis. */
+  scope?: 'claim' | 'analysis';
+}) {
   return (
     <div className="profile">
       {profile.map((p) => {
@@ -18,7 +25,9 @@ export function EvidenceProfileGrid({ profile }: { profile: PrimaryProfile[] }) 
           <div className="profile__cell" key={p.dimension}>
             <ConfidenceFigure
               score={p.applicable ? p.score : null}
-              label={p.applicable && p.score !== null ? p.confidenceLabel : notApplicableLabel(p)}
+              label={
+                p.applicable && p.score !== null ? p.confidenceLabel : notApplicableLabel(p, scope)
+              }
               caption={meta.label}
             />
             <p className="profile__note">{p.reasoningSummary}</p>
@@ -29,7 +38,9 @@ export function EvidenceProfileGrid({ profile }: { profile: PrimaryProfile[] }) 
   );
 }
 
-function notApplicableLabel(p: PrimaryProfile): string {
-  if (!p.applicable) return 'Not applicable to this claim';
+function notApplicableLabel(p: PrimaryProfile, scope: 'claim' | 'analysis'): string {
+  if (!p.applicable) {
+    return scope === 'analysis' ? 'Not applicable to this analysis' : 'Not applicable to this claim';
+  }
   return 'Not separately assessed';
 }

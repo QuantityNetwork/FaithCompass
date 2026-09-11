@@ -52,7 +52,7 @@ export default async function PassageView({
 
       <div style={{ marginTop: 52 }}>
         <SectionTitle>Evidence Profile</SectionTitle>
-        <EvidenceProfileGrid profile={profile} />
+        <EvidenceProfileGrid profile={profile} scope="analysis" />
         <p className="small faint" style={{ marginTop: 14, maxWidth: '68ch' }}>
           Each figure is the strongest evidenced assessment across the claims below. They are shown
           separately and never combined: a passage can be textually secure and historically

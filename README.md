@@ -28,6 +28,20 @@ scoring from 26 to 92: the wording is close to settled, the christological
 reading is weakly supported, and averaging them would destroy the only
 information worth having.
 
+**Prophecy is shown, not asserted.** A fulfilment claim runs through a dedicated
+framework — composition date, earliest attestation, specificity, ambiguity,
+retrospective-composition risk, the number of interpretive assumptions the
+identification requires, and the competing candidates. Daniel 9:26 scores 25:
+the passage names no one, the count has no agreed starting point, and a
+competing candidate fits the passage's own historical horizon without a gap.
+
+**Miracle claims keep their boundary.** In the resurrection analysis the
+crucifixion under Pilate scores 96 and the early conviction of the first
+followers scores 91 — both claims historical method genuinely reaches. The
+empty tomb, disputed among scholars who agree about both, scores 55. That God
+raised Jesus receives no number at all, and the analysis states explicitly that
+the strength of the first three does not transfer to the fourth.
+
 **Three dimensions, never combined.** Textual confidence, historical
 corroboration and interpretive confidence are computed and displayed
 separately. A text can be securely transmitted and historically uncorroborated
@@ -77,6 +91,8 @@ deterministic.
 |---|---|
 | `/evidence` | Index, guardrail-aware query panel |
 | `/evidence/daniel/12/1` | Flagship passage analysis |
+| `/evidence/daniel/9/24` | Prophecy: the seventy weeks, assessed through the prophetic framework |
+| `/evidence/topic/resurrection-of-jesus` | Miracle claims: where historical method reaches and stops |
 | `/evidence/topic/pontius-pilate` | Historical / archaeological demonstration |
 | `/evidence/book-of-mormon/near-eastern-migration` | Cross-tradition demonstration |
 | `/evidence/claim/[id]` | Full claim analysis, evidence map, Challenge Assessment |
@@ -173,7 +189,16 @@ instructions changed.
 
 ## Known limits
 
-- **The corpus is small and hand-curated** (27 records). Growing it is a
+- **No Evidence Mode toggle** (§38 of the brief). The toggle switches between
+  "normal AbrahamMoses deep analysis" and Evidence Mode — but there is no rest
+  of the application to switch back to, so a toggle would be a control that
+  does nothing. It belongs with the surrounding product, not ahead of it.
+- **Four claim types have no curated analysis** exercising them —
+  `ARCHAEOLOGICAL`, `LINGUISTIC`, `GEOGRAPHICAL`, `TRADITIONAL`. They are
+  covered by unit tests over the admissibility matrix, not by seed data. Every
+  evidence dimension is exercised by a curated analysis, and a test enforces
+  that it stays so.
+- **The corpus is small and hand-curated** (35 records). Growing it is a
   curation task, not a generation task: entries are added when a real record
   has been checked. The `corpus/` abstraction is shaped for Septuagint, Dead
   Sea Scrolls, patristics, rabbinic literature, Josephus, Quran, Hadith and
@@ -192,11 +217,12 @@ instructions changed.
 
 ## Tests
 
-126 tests covering claim extraction, score calculation, confidence-label
+146 tests covering claim extraction, score calculation, confidence-label
 mapping, calibration rules, citation validation, structured-output rejection,
 challenge revisions, source independence, claim types, evidence dimensions and
-absence-of-evidence reasoning — plus the four prompts the methodology must
-refuse to answer on their own terms:
+absence-of-evidence reasoning, the prophetic framework and the metaphysical
+boundary — plus the four prompts the methodology must refuse to answer on their
+own terms:
 
 ```
 "Prove Christianity is true."      → redirected, not reasoned to a fixed conclusion
