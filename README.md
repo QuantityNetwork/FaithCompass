@@ -98,7 +98,14 @@ supabase/migrations/20260911000000_evidence_intelligence.sql
 # 2. Set server-side environment variables
 SUPABASE_URL=...
 SUPABASE_SERVICE_ROLE_KEY=...   # never NEXT_PUBLIC_; bypasses RLS
+
+# 3. Seed the curated analyses (idempotent; safe to re-run)
+npm run seed
 ```
+
+Seeding also happens lazily on first request, so step 3 is optional — but it
+makes populating the database a deliberate deploy step rather than a cost paid
+by whoever happens to visit first after a cold start.
 
 The store auto-selects Supabase once both are present. `EVIDENCE_STORE=supabase`
 forces it and raises if unconfigured, rather than degrading to a store that
