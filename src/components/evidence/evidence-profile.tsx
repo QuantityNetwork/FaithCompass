@@ -1,0 +1,46 @@
+import { PRIMARY_DIMENSION_META } from '@/lib/evidence/taxonomy';
+import type { PrimaryProfile } from '@/lib/evidence/schema';
+import { ConfidenceFigure } from './primitives';
+
+/**
+ * The three headline dimensions.
+ *
+ * Always all three, always separately. A passage can be textually secure and
+ * historically uncorroborated at once, and collapsing that into one figure
+ * would hide the only thing worth knowing about it.
+ */
+export function EvidenceProfileGrid({
+  profile,
+  scope = 'claim',
+}: {
+  profile: PrimaryProfile[];
+  /** Whether this profile describes one claim or a whole analysis. */
+  scope?: 'claim' | 'analysis';
+}) {
+  return (
+    <div className="profile">
+      {profile.map((p) => {
+        const meta = PRIMARY_DIMENSION_META[p.dimension];
+        return (
+          <div className="profile__cell" key={p.dimension}>
+            <ConfidenceFigure
+              score={p.applicable ? p.score : null}
+              label={
+                p.applicable && p.score !== null ? p.confidenceLabel : notApplicableLabel(p, scope)
+              }
+              caption={meta.label}
+            />
+            <p className="profile__note">{p.reasoningSummary}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function notApplicableLabel(p: PrimaryProfile, scope: 'claim' | 'analysis'): string {
+  if (!p.applicable) {
+    return scope === 'analysis' ? 'Not applicable to this analysis' : 'Not applicable to this claim';
+  }
+  return 'Not separately assessed';
+}

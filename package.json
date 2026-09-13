@@ -1,0 +1,34 @@
+{
+  "name": "abrahammoses",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AbrahamMoses — Structured Theological Intelligence",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "seed": "tsx scripts/seed.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
+    "next": "^15.5.25",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "tsx": "^4.23.13",
+    "typescript": "5.8.3",
+    "vitest": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}
