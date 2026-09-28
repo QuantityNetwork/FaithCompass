@@ -24,6 +24,11 @@ export function serverConfig(): ServerConfig {
   const serviceRoleKey = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
   const supabase = url && anonKey && serviceRoleKey ? { url, anonKey, serviceRoleKey } : null;
   const forced = clean(process.env.SAGOLIK_MODE);
+  if (forced && forced !== "demo" && forced !== "live") throw new Error(`SAGOLIK_MODE must be "demo" or "live", not "${forced}".`);
+  // Fail closed: a deployment declared live never falls back to the in-memory demo store.
+  if (forced === "live" && !supabase) {
+    throw new Error("SAGOLIK_MODE=live requires NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY and SUPABASE_SERVICE_ROLE_KEY.");
+  }
   const mode: RuntimeMode = forced === "demo" || !supabase ? "demo" : "live";
   const plaidId = clean(process.env.PLAID_CLIENT_ID);
   const plaidSecret = clean(process.env.PLAID_SECRET);

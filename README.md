@@ -157,7 +157,7 @@ Copy `.env.example` to `.env.local`.
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Live | Browser-safe anon key (sign-in and session refresh only; the browser never writes data). |
 | `SUPABASE_SERVICE_ROLE_KEY` | Live | **Server only.** Used by the gateway after policy evaluation; every query is tenant-scoped. |
 | `SAGOLIK_ENCRYPTION_KEY` | Live | 32 random bytes, base64 (`openssl rand -base64 32`). AES-256-GCM for webhook secrets and provider credentials. Startup fails without it in live mode. |
-| `SAGOLIK_MODE` | No | `demo` forces demo mode even when Supabase is configured. |
+| `SAGOLIK_MODE` | Production | `live` requires Supabase and fails at startup without it — set it in production so a deployment never silently falls back to the in-memory demo. `demo` forces demo mode. |
 | `CRON_SECRET` | Live | Bearer secret for `/api/cron/maintenance` (webhook retries, expiry purges). |
 | `PLAID_CLIENT_ID`, `PLAID_SECRET`, `PLAID_ENV` | No | Enables the Plaid provider (`sandbox` or `production`). Absent means disabled — never simulated. |
 
@@ -183,7 +183,7 @@ npm run db:verify   # migrations, RLS, composite FKs, audit immutability, RPCs
 1. Import the repository; the framework preset is detected (Next.js).
 2. Add the environment variables for **Production** (and Preview if used). Keep `SUPABASE_SERVICE_ROLE_KEY`, `SAGOLIK_ENCRYPTION_KEY` and `CRON_SECRET` server-only — never with a `NEXT_PUBLIC_` prefix.
 3. Point `mcp.sagolik.com` at the project and set `SAGOLIK_PUBLIC_URL=https://mcp.sagolik.com`.
-4. `vercel.json` schedules `/api/cron/maintenance` every five minutes. Vercel sends `CRON_SECRET` as a bearer token. Sub-daily cron schedules require a plan that supports them; on plans limited to daily jobs, webhook retries run less often.
+4. `vercel.json` schedules `/api/cron/maintenance` once a day (the Hobby plan's limit); Vercel sends `CRON_SECRET` as a bearer token. On a plan that allows sub-daily jobs, change the schedule to `*/5 * * * *` so webhook retries follow their backoff schedule closely.
 
 Demo mode keeps state in process memory, so it is intended for local use and single-instance previews, not for serverless production.
 
