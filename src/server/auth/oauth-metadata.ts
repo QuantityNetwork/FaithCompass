@@ -29,5 +29,6 @@ export function authorizationServerMetadata(publicUrl: string) {
     token_endpoint_auth_methods_supported: ["none", "client_secret_post", "client_secret_basic"],
     revocation_endpoint_auth_methods_supported: ["none", "client_secret_post", "client_secret_basic"],
     service_documentation: `${publicUrl}/docs/authentication`,
+    authorization_response_iss_parameter_supported: true,
   };
 }

@@ -139,6 +139,7 @@ export async function approveAuthorization(
   clock: Clock,
   request: AuthorizationRequest,
   grant: { organizationId: string; userId: string; environment: Environment; scopes: Scope[]; expiresAt: string | null; transactionLimitCents: number | null },
+  issuer: string,
 ): Promise<{ redirectTo: string; connection: McpConnectionRow }> {
   if (grant.scopes.length === 0) throw new OAuthError("invalid_scope", "At least one permission must be granted.");
   const connection = await createConnection(store, clock, {
@@ -170,7 +171,8 @@ export async function approveAuthorization(
   const url = new URL(request.redirectUri);
   url.searchParams.set("code", code);
   if (request.state) url.searchParams.set("state", request.state);
-  url.searchParams.set("iss", "sagolik-mcp");
+  // RFC 9207: identify the issuer so clients can detect mix-up attacks.
+  url.searchParams.set("iss", issuer);
   return { redirectTo: url.toString(), connection };
 }
 

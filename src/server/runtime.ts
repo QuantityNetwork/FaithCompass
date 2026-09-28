@@ -92,8 +92,11 @@ const globalRuntime = globalThis as unknown as { __sagolikRuntime?: Runtime };
 /** Process-wide runtime, reused across requests (and across hot reloads in development). */
 export function getRuntime(): Runtime {
   const current = globalRuntime.__sagolikRuntime;
-  // In development, a hot-reloaded store module yields a new class; rebuild so new methods exist.
-  const stale = current && current.mode === "demo" && !(current.store instanceof MemoryStore);
+  // Route handlers and pages may be bundled separately, so class identity is not shared between them.
+  // Rebuild only when a hot reload added store methods the live instance lacks (development only).
+  const stale =
+    current?.mode === "demo" &&
+    Object.getOwnPropertyNames(MemoryStore.prototype).some((m) => typeof (current.store as unknown as Record<string, unknown>)[m] !== "function");
   if (!current || stale) globalRuntime.__sagolikRuntime = createRuntime();
   return globalRuntime.__sagolikRuntime!;
 }

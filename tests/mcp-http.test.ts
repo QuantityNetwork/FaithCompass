@@ -128,8 +128,9 @@ describe("OAuth 2.1 authorization for MCP clients", () => {
       scopes: ["property.read", "closing.read"],
       expiresAt: null,
       transactionLimitCents: null,
-    });
+    }, "https://mcp.test");
     const code = new URL(redirectTo).searchParams.get("code")!;
+    expect(new URL(redirectTo).searchParams.get("iss")).toBe("https://mcp.test");
     expect(new URL(redirectTo).searchParams.get("state")).toBe("xyz");
     return { registration, code, connection };
   }
