@@ -1,3 +1,4 @@
+import type { McpConnectionRow } from "@/domain/entities";
 import type { Environment } from "@/domain/environments";
 import type { Caller } from "@/server/gateway/caller";
 import type { Store } from "@/server/store/types";
@@ -39,29 +40,42 @@ export async function authenticateBearer(
   const connection = await store.getConnection(session.connection_id);
   if (!connection || connection.status !== "active" || connection.revoked_at) return fail("invalid_token", "The connection has been revoked.");
   if (connection.expires_at && connection.expires_at <= iso) return fail("invalid_token", "The connection has expired.");
-  const [membership, organization] = await Promise.all([
+  const expiries = [credential.expires_at, connection.expires_at].filter((v): v is string => !!v).sort();
+  const caller = await callerForConnection(store, connection, { sessionId: session.id, sessionExpiresAt: expiries[0] ?? null, ...meta });
+  return caller ? { ok: true, caller } : fail("invalid_token", "The granting user is no longer a member of the organization.");
+}
+
+/**
+ * Build the caller for a connection. Role and organization are re-read on
+ * every request, so removing a member or downgrading a role takes effect
+ * immediately for their agents.
+ */
+export async function callerForConnection(
+  store: Store,
+  connection: McpConnectionRow,
+  meta: { sessionId: string | null; sessionExpiresAt: string | null; ip: string | null; userAgent: string | null },
+): Promise<Caller | null> {
+  const [membership, organization, permissions] = await Promise.all([
     store.getMembership(connection.organization_id, connection.user_id),
     store.getOrganization(connection.organization_id),
+    store.listToolPermissions(connection.id),
   ]);
-  if (!membership || !organization) return fail("invalid_token", "The granting user is no longer a member of the organization.");
-  const expiries = [credential.expires_at, connection.expires_at].filter((v): v is string => !!v).sort();
+  if (!membership || !organization) return null;
   return {
-    ok: true,
-    caller: {
-      source: "mcp",
-      organizationId: organization.id,
-      organization: { name: organization.name, kind: organization.kind },
-      environment: connection.environment,
-      userId: connection.user_id,
-      role: membership.role,
-      client: { name: connection.name, type: connection.client_type, connectionId: connection.id, clientId: connection.client_id },
-      sessionId: session.id,
-      scopes: connection.scopes,
-      maxExecutionClass: connection.max_execution_class,
-      transactionLimitCents: connection.transaction_limit_cents,
-      sessionExpiresAt: expiries[0] ?? null,
-      ip: meta.ip,
-      userAgent: meta.userAgent?.slice(0, 256) ?? null,
-    },
+    source: "mcp",
+    organizationId: organization.id,
+    organization: { name: organization.name, kind: organization.kind },
+    environment: connection.environment,
+    userId: connection.user_id,
+    role: membership.role,
+    client: { name: connection.name, type: connection.client_type, connectionId: connection.id, clientId: connection.client_id },
+    sessionId: meta.sessionId,
+    scopes: connection.scopes,
+    deniedTools: permissions.filter((p) => p.effect === "deny").map((p) => p.tool_name),
+    maxExecutionClass: connection.max_execution_class,
+    transactionLimitCents: connection.transaction_limit_cents,
+    sessionExpiresAt: meta.sessionExpiresAt,
+    ip: meta.ip,
+    userAgent: meta.userAgent?.slice(0, 256) ?? null,
   };
 }

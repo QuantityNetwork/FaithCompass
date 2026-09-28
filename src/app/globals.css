@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/*
+ * Sagolik MCP design tokens.
+ * Institutional, calm, precise: white foundation, navy ink from the Sagolik
+ * mark, hairline structure, and colour reserved for meaning.
+ */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --color-brand: #011d3e;
+  --color-brand-hover: #0b2c55;
+  --color-brand-soft: #eef2f7;
+
+  --color-fg: #0a1628;
+  --color-body: #2b3544;
+  --color-muted: #5f6b7a;
+  --color-subtle: #8b95a3;
+
+  --color-canvas: #ffffff;
+  --color-surface: #fafbfc;
+  --color-surface-2: #f4f6f8;
+  --color-surface-3: #eceff3;
+  --color-line: #e6e9ee;
+  --color-line-strong: #d4d9e1;
+
+  --color-link: #1f5fad;
+  --color-focus: #3b7bd4;
+
+  /* Execution classes */
+  --color-read: #44505f;
+  --color-read-soft: #f1f3f6;
+  --color-simulate: #1f5fad;
+  --color-simulate-soft: #edf3fb;
+  --color-prepare: #8a5a00;
+  --color-prepare-soft: #fbf4e6;
+  --color-execute: #a8231a;
+  --color-execute-soft: #fbeeec;
+
+  /* Status */
+  --color-success: #13744a;
+  --color-success-soft: #ebf6f0;
+  --color-warning: #945a00;
+  --color-warning-soft: #fdf5e7;
+  --color-danger: #b42318;
+  --color-danger-soft: #fdeeec;
+  --color-info: #1f5fad;
+  --color-info-soft: #edf3fb;
+
+  /* Environments */
+  --color-sandbox: #8a5a00;
+  --color-sandbox-soft: #fdf6e8;
+  --color-production: #011d3e;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --shadow-hairline: 0 0 0 1px rgb(10 22 40 / 0.06);
+  --shadow-soft: 0 1px 2px rgb(10 22 40 / 0.04), 0 4px 16px rgb(10 22 40 / 0.04);
+  --shadow-pop: 0 2px 6px rgb(10 22 40 / 0.06), 0 16px 40px rgb(10 22 40 / 0.1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background: var(--color-canvas);
+    color: var(--color-body);
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    font-feature-settings: "kern", "tnum" 0;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-fg);
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  h1, h2 {
+    line-height: 1.15;
+  }
+  ::selection {
+    background: #d6e4f7;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .hairline {
+    border-color: var(--color-line);
+  }
+  .prose-sgk {
+    color: var(--color-body);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .prose-sgk h2 {
+    font-size: 22px;
+    margin-top: 44px;
+    margin-bottom: 12px;
+    scroll-margin-top: 80px;
+  }
+  .prose-sgk h3 {
+    font-size: 16px;
+    margin-top: 28px;
+    margin-bottom: 8px;
+    scroll-margin-top: 80px;
+  }
+  .prose-sgk p {
+    margin: 12px 0;
+  }
+  .prose-sgk ul {
+    margin: 12px 0;
+    padding-left: 20px;
+    list-style: disc;
+  }
+  .prose-sgk ol {
+    margin: 12px 0;
+    padding-left: 20px;
+    list-style: decimal;
+  }
+  .prose-sgk li {
+    margin: 4px 0;
+  }
+  .prose-sgk a {
+    color: var(--color-link);
+  }
+  .prose-sgk a:hover {
+    text-decoration: underline;
+  }
+  .prose-sgk :not(pre) > code {
+    font-size: 0.86em;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: var(--color-fg);
+  }
+  .prose-sgk strong {
+    color: var(--color-fg);
+    font-weight: 600;
+  }
+}

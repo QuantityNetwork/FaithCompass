@@ -566,6 +566,55 @@ export interface McpAuditLogRow {
   created_at: ISODateTime;
 }
 
+/** Per-connection tool restriction. Scopes grant capability; a deny entry removes one tool from a connection. */
+export interface McpPermissionRow {
+  id: string;
+  organization_id: string;
+  environment: Environment;
+  connection_id: string;
+  tool_name: string;
+  effect: "deny";
+  created_by: string | null;
+  created_at: ISODateTime;
+}
+
+/** Protocol-level request log (every JSON-RPC message, including discovery and authentication failures). */
+export interface McpRequestRow {
+  id: string;
+  organization_id: string | null;
+  environment: Environment;
+  session_id: string | null;
+  connection_id: string | null;
+  method: string;
+  tool_name: string | null;
+  http_status: number;
+  rpc_error_code: number | null;
+  duration_ms: number;
+  ip_address: string | null;
+  user_agent: string | null;
+  created_at: ISODateTime;
+}
+
+/** Ledger of PREPARE and EXECUTE handler runs: what was actually carried out. */
+export interface McpExecutionRow {
+  id: string;
+  organization_id: string;
+  environment: Environment;
+  audit_id: string;
+  approval_id: string | null;
+  connection_id: string | null;
+  user_id: string;
+  tool_name: string;
+  tool_version: number;
+  execution_class: ExecutionClass;
+  status: ResponseStatus;
+  state_changed: boolean;
+  providers_touched: string[];
+  duration_ms: number;
+  summary: string;
+  created_at: ISODateTime;
+}
+
 export interface IdempotencyRecordRow {
   id: string;
   organization_id: string;

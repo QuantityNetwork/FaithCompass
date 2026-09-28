@@ -80,6 +80,7 @@ export function createHarness(options: { now?: Date } = {}) {
       client: { name: input.connectionId ? "Claude" : "Sagolik Console", type: input.connectionId ? "claude" : "console", connectionId: input.connectionId ?? null, clientId: null },
       sessionId: null,
       scopes: input.scopes ?? [...SCOPES],
+      deniedTools: [],
       maxExecutionClass: input.maxClass ?? "execute",
       transactionLimitCents: input.transactionLimitCents ?? null,
       sessionExpiresAt: null,

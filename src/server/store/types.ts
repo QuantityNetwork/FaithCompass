@@ -18,6 +18,9 @@ import type {
   McpClientRow,
   McpConnectionRow,
   McpCredentialRow,
+  McpExecutionRow,
+  McpPermissionRow,
+  McpRequestRow,
   McpSessionRow,
   OAuthAuthorizationCodeRow,
   ObligationRow,
@@ -78,6 +81,7 @@ export interface DomainStore {
   insertDocumentRequest(row: DocumentRequestRow): Promise<DocumentRequestRow>;
   getDocumentRequest(scope: TenantScope, id: string): Promise<DocumentRequestRow | null>;
   updateDocumentRequest(scope: TenantScope, id: string, patch: Patch<DocumentRequestRow>): Promise<DocumentRequestRow | null>;
+  listDocumentRequests(scope: TenantScope, filter: { transactionId?: string; status?: DocumentRequestRow["status"] }): Promise<DocumentRequestRow[]>;
 
   insertChecklist(row: ClosingChecklistRow): Promise<ClosingChecklistRow>;
   supersedeChecklists(scope: TenantScope, transactionId: string, exceptId: string): Promise<void>;
@@ -99,6 +103,11 @@ export interface DomainStore {
   listAccounts(scope: TenantScope): Promise<AccountRow[]>;
   listAccountTransactions(scope: TenantScope, filter: { accountIds?: string[]; since?: string }): Promise<AccountTransactionRow[]>;
   listIntegrationConnections(scope: TenantScope): Promise<IntegrationConnectionRow[]>;
+  insertIntegrationConnection(row: IntegrationConnectionRow): Promise<IntegrationConnectionRow>;
+  insertFinancialConnection(row: FinancialConnectionRow): Promise<FinancialConnectionRow>;
+  /** Encrypted provider credentials (server-only). */
+  getIntegrationCredential(integrationConnectionId: string): Promise<string | null>;
+  putIntegrationCredential(integrationConnectionId: string, encrypted: string): Promise<void>;
 }
 
 /* ───────────────────────── Organizations ───────────────────────── */
@@ -149,6 +158,15 @@ export interface GatewayStore {
   insertClient(row: McpClientRow): Promise<McpClientRow>;
   listClientsForOrganization(organizationId: string): Promise<McpClientRow[]>;
 
+  listToolPermissions(connectionId: string): Promise<McpPermissionRow[]>;
+  /** Add (effect "deny") or remove (effect null) a per-tool restriction on a connection. */
+  setToolPermission(input: { connection: McpConnectionRow; toolName: string; effect: "deny" | null; createdBy: string | null; now: string; id: string }): Promise<void>;
+
+  insertRequestLog(row: McpRequestRow): Promise<void>;
+  listRequestLogs(organizationId: string, filter?: { environment?: Environment; limit?: number }): Promise<McpRequestRow[]>;
+  insertExecution(row: McpExecutionRow): Promise<void>;
+  listExecutions(organizationId: string, filter?: { environment?: Environment; limit?: number }): Promise<McpExecutionRow[]>;
+
   insertConnection(row: McpConnectionRow): Promise<McpConnectionRow>;
   getConnection(id: string): Promise<McpConnectionRow | null>;
   listConnections(organizationId: string, filter?: { environment?: Environment; status?: McpConnectionRow["status"] }): Promise<McpConnectionRow[]>;
@@ -185,10 +203,15 @@ export interface GatewayStore {
   listAudit(organizationId: string, filter?: AuditFilter): Promise<McpAuditLogRow[]>;
   getAudit(organizationId: string, id: string): Promise<McpAuditLogRow | null>;
   activityStats(organizationId: string, environment: Environment, since: string): Promise<ActivityStats>;
+  /** Recompute the organization's audit hash chain. Returns the first broken sequence, or null if intact. */
+  verifyAuditChain(organizationId: string): Promise<{ records: number; brokenAt: number | null }>;
 
   getIdempotencyRecord(scope: TenantScope, key: string, requester: string): Promise<IdempotencyRecordRow | null>;
   /** Insert unless a record with the same key/requester exists; returns the stored record. */
   putIdempotencyRecord(row: IdempotencyRecordRow): Promise<IdempotencyRecordRow>;
+
+  /** Maintenance: remove expired idempotency records, rate counters, authorization codes and old request logs. */
+  purgeExpired(now: string): Promise<void>;
 
   /** Atomically increment fixed-window counters. Returns the counts after increment, in key order. */
   incrementRateCounters(keys: string[], windowStart: string, windowSeconds: number): Promise<number[]>;

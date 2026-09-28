@@ -82,6 +82,13 @@ const RULES: Rule[] = [
     },
   },
   {
+    id: "tool_permission",
+    evaluate: ({ tool, caller }) =>
+      caller.deniedTools.includes(tool.name)
+        ? { effect: "deny", code: "tool_disabled_for_connection", message: `${tool.name} has been disabled for this connection.` }
+        : null,
+  },
+  {
     id: "connection_class_ceiling",
     evaluate: ({ tool, caller }) =>
       classRank(tool.executionClass) > classRank(caller.maxExecutionClass)

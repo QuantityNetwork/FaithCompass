@@ -160,6 +160,7 @@ export async function callTool(deps: GatewayDeps, caller: Caller, request: ToolC
   let stateChanged = false;
   let idempotencyKey: string | undefined;
   let events: EmittedEvent[] = [];
+  let executed = false;
 
   type EnvelopeParts = Omit<ToolEnvelope, "tool" | "version" | "environment" | "request_id" | "audit_id" | "meta" | "warnings" | "requires_approval"> & {
     warnings?: ToolWarning[];
@@ -168,13 +169,15 @@ export async function callTool(deps: GatewayDeps, caller: Caller, request: ToolC
 
   const finish = async (partial: EnvelopeParts, errorCode: string | null = null): Promise<ToolCallResult> => {
     const durationMs = Math.round(performance.now() - t0);
+    const { status, ...rest } = partial;
     const envelope: ToolEnvelope = {
+      status,
       tool: toolName,
       version: tool ? envelopeVersion(tool) : null,
       environment: caller.environment,
       request_id: requestId,
       audit_id: auditId,
-      ...partial,
+      ...rest,
       warnings: partial.warnings ?? [],
       requires_approval: partial.requires_approval ?? partial.status === "approval_required",
       meta: {
@@ -220,6 +223,26 @@ export async function callTool(deps: GatewayDeps, caller: Caller, request: ToolC
       user_agent: caller.userAgent,
       created_at: deps.clock().toISOString(),
     });
+    if (tool && executed && (tool.executionClass === "prepare" || tool.executionClass === "execute")) {
+      await deps.store.insertExecution({
+        id: deps.newId(),
+        organization_id: caller.organizationId,
+        environment: caller.environment,
+        audit_id: auditId,
+        approval_id: approval?.id ?? null,
+        connection_id: caller.client.connectionId,
+        user_id: caller.userId,
+        tool_name: tool.name,
+        tool_version: majorVersion(tool),
+        execution_class: tool.executionClass,
+        status: envelope.status,
+        state_changed: stateChanged,
+        providers_touched: [...providersTouched],
+        duration_ms: durationMs,
+        summary: envelope.summary ?? envelope.message ?? "",
+        created_at: deps.clock().toISOString(),
+      });
+    }
     const scope = { organizationId: caller.organizationId, environment: caller.environment };
     const pending = [...events];
     const connectionId = caller.client.connectionId;
@@ -386,6 +409,7 @@ export async function callTool(deps: GatewayDeps, caller: Caller, request: ToolC
   // 7. Execute.
   const ctx = buildToolContext(deps, caller, settings, approval, providersTouched, requestId);
   let outcome: ToolOutcome<unknown>;
+  executed = true;
   try {
     outcome = await withTimeout(tool.handler(ctx, input), tool.timeoutMs);
   } catch (error) {

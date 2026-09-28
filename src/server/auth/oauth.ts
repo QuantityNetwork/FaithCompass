@@ -59,7 +59,7 @@ export interface RegistrationRequest {
   response_types?: unknown;
 }
 
-export async function registerClient(store: Store, clock: Clock, body: RegistrationRequest) {
+export async function registerClient(store: Store, clock: Clock, body: RegistrationRequest, organizationId: string | null = null) {
   const redirectUris = Array.isArray(body.redirect_uris) ? body.redirect_uris.filter((u): u is string => typeof u === "string") : [];
   if (redirectUris.length === 0 || redirectUris.length > 10 || !redirectUris.every(validRedirectUri)) {
     throw new OAuthError("invalid_redirect_uri", "redirect_uris must contain 1–10 https URLs (or http loopback URLs).");
@@ -76,13 +76,13 @@ export async function registerClient(store: Store, clock: Clock, body: Registrat
   const secret = method === "none" ? null : `sgk_cs_${randomBase62(40)}`;
   const client: McpClientRow = {
     id: `sgk_client_${randomBase62(24)}`,
-    organization_id: null,
+    organization_id: organizationId,
     client_name: name,
     client_type: inferClientType(name, redirectUris),
     redirect_uris: redirectUris,
     token_endpoint_auth_method: method,
     client_secret_hash: secret ? sha256Hex(secret) : null,
-    registration_source: "dynamic",
+    registration_source: organizationId ? "console" : "dynamic",
     created_at: clock.now().toISOString(),
   };
   await store.insertClient(client);

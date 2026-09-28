@@ -18,6 +18,9 @@ import type {
   McpClientRow,
   McpConnectionRow,
   McpCredentialRow,
+  McpExecutionRow,
+  McpPermissionRow,
+  McpRequestRow,
   McpSessionRow,
   OAuthAuthorizationCodeRow,
   ObligationRow,
@@ -127,8 +130,12 @@ export class MemoryStore implements Store {
   readonly accounts = new Table<AccountRow>();
   readonly accountTransactions = new Table<AccountTransactionRow>();
   readonly integrationConnections = new Table<IntegrationConnectionRow>();
+  readonly integrationCredentials = new Map<string, string>();
 
   readonly clients = new Table<McpClientRow>();
+  readonly permissions = new Table<McpPermissionRow>();
+  readonly requestLogs: McpRequestRow[] = [];
+  readonly executions: McpExecutionRow[] = [];
   readonly connections = new Table<McpConnectionRow>();
   readonly sessions = new Table<McpSessionRow>();
   readonly credentials = new Table<McpCredentialRow>();
@@ -236,6 +243,11 @@ export class MemoryStore implements Store {
   async updateDocumentRequest(scope: TenantScope, id: string, patch: Patch<DocumentRequestRow>) {
     return this.documentRequests.update(id, patch, inScope(scope));
   }
+  async listDocumentRequests(scope: TenantScope, filter: { transactionId?: string; status?: DocumentRequestRow["status"] }) {
+    return this.documentRequests
+      .find((r) => inScope(scope)(r) && (!filter.transactionId || r.transaction_id === filter.transactionId) && (!filter.status || r.status === filter.status))
+      .sort((a, b) => b.created_at.localeCompare(a.created_at));
+  }
   async insertChecklist(row: ClosingChecklistRow) {
     return this.checklists.insert(row);
   }
@@ -289,6 +301,18 @@ export class MemoryStore implements Store {
   async listIntegrationConnections(scope: TenantScope) {
     return this.integrationConnections.find(inScope(scope));
   }
+  async insertIntegrationConnection(row: IntegrationConnectionRow) {
+    return this.integrationConnections.insert(row);
+  }
+  async insertFinancialConnection(row: FinancialConnectionRow) {
+    return this.financialConnections.insert(row);
+  }
+  async getIntegrationCredential(integrationConnectionId: string) {
+    return this.integrationCredentials.get(integrationConnectionId) ?? null;
+  }
+  async putIntegrationCredential(integrationConnectionId: string, encrypted: string) {
+    this.integrationCredentials.set(integrationConnectionId, encrypted);
+  }
 
   /* ───────────── Gateway ───────────── */
 
@@ -301,6 +325,45 @@ export class MemoryStore implements Store {
   async listClientsForOrganization(organizationId: string) {
     const ids = new Set(this.connections.find((c) => c.organization_id === organizationId).map((c) => c.client_id));
     return this.clients.find((c) => c.organization_id === organizationId || ids.has(c.id));
+  }
+  async listToolPermissions(connectionId: string) {
+    return this.permissions.find((p) => p.connection_id === connectionId);
+  }
+  async setToolPermission(input: { connection: McpConnectionRow; toolName: string; effect: "deny" | null; createdBy: string | null; now: string; id: string }) {
+    this.permissions.delete((p) => p.connection_id === input.connection.id && p.tool_name === input.toolName);
+    if (input.effect) {
+      this.permissions.insert({
+        id: input.id,
+        organization_id: input.connection.organization_id,
+        environment: input.connection.environment,
+        connection_id: input.connection.id,
+        tool_name: input.toolName,
+        effect: input.effect,
+        created_by: input.createdBy,
+        created_at: input.now,
+      });
+    }
+  }
+  async insertRequestLog(row: McpRequestRow) {
+    this.requestLogs.push(clone(row));
+    if (this.requestLogs.length > 5_000) this.requestLogs.splice(0, this.requestLogs.length - 5_000);
+  }
+  async listRequestLogs(organizationId: string, filter: { environment?: Environment; limit?: number } = {}) {
+    return this.requestLogs
+      .filter((r) => r.organization_id === organizationId && (!filter.environment || r.environment === filter.environment))
+      .sort((a, b) => b.created_at.localeCompare(a.created_at))
+      .slice(0, filter.limit ?? 50)
+      .map(clone);
+  }
+  async insertExecution(row: McpExecutionRow) {
+    this.executions.push(clone(row));
+  }
+  async listExecutions(organizationId: string, filter: { environment?: Environment; limit?: number } = {}) {
+    return this.executions
+      .filter((r) => r.organization_id === organizationId && (!filter.environment || r.environment === filter.environment))
+      .sort((a, b) => b.created_at.localeCompare(a.created_at))
+      .slice(0, filter.limit ?? 50)
+      .map(clone);
   }
   async insertConnection(row: McpConnectionRow) {
     return this.connections.insert(row);
@@ -394,6 +457,16 @@ export class MemoryStore implements Store {
     const row = this.audit.find((a) => a.id === id && a.organization_id === organizationId);
     return row ? clone(row) : null;
   }
+  async verifyAuditChain(organizationId: string) {
+    const rows = this.audit.filter((a) => a.organization_id === organizationId).sort((a, b) => a.sequence - b.sequence);
+    let prev = AUDIT_GENESIS_HASH;
+    for (const r of rows) {
+      const { record_hash, ...rest } = r;
+      if (r.prev_hash !== prev || sha256Hex(auditHashInput(rest)) !== record_hash) return { records: rows.length, brokenAt: r.sequence };
+      prev = record_hash;
+    }
+    return { records: rows.length, brokenAt: null };
+  }
   async activityStats(organizationId: string, environment: Environment, since: string): Promise<ActivityStats> {
     const rows = this.audit.filter((a) => a.organization_id === organizationId && a.environment === environment && a.created_at >= since);
     return computeActivityStats(rows);
@@ -408,6 +481,12 @@ export class MemoryStore implements Store {
     if (existing && existing.expires_at > row.created_at) return existing;
     if (existing) this.idempotency.delete((r) => r.id === existing.id);
     return this.idempotency.insert(row);
+  }
+  async purgeExpired(now: string) {
+    this.idempotency.delete((r) => r.expires_at <= now);
+    this.authCodes.delete((c) => c.expires_at <= now);
+    const cutoff = Date.parse(now);
+    for (const [k, v] of this.counters) if (v.expiresAt < cutoff) this.counters.delete(k);
   }
   async incrementRateCounters(keys: string[], _windowStart: string, windowSeconds: number) {
     const now = Date.now();

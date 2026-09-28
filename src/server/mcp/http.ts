@@ -52,11 +52,31 @@ export async function handleMcpHttp(request: Request, environment: Environment, 
     return json({ jsonrpc: "2.0", id: null, error: { code: JSONRPC_ERRORS.invalidRequest, message: "Content-Type must be application/json" } }, 415);
   }
 
-  const auth = await authenticateBearer(deps.store, request.headers.get("authorization"), environment, deps.clock(), {
-    ip: clientIp(request),
-    userAgent: request.headers.get("user-agent"),
-  });
+  const started = performance.now();
+  const ip = clientIp(request);
+  const userAgent = request.headers.get("user-agent")?.slice(0, 256) ?? null;
+  const logRequest = (entry: { organizationId: string | null; sessionId: string | null; connectionId: string | null; method: string; toolName: string | null; httpStatus: number; rpcErrorCode: number | null }) =>
+    deps.defer(() =>
+      deps.store.insertRequestLog({
+        id: deps.newId(),
+        organization_id: entry.organizationId,
+        environment,
+        session_id: entry.sessionId,
+        connection_id: entry.connectionId,
+        method: entry.method.slice(0, 64),
+        tool_name: entry.toolName?.slice(0, 64) ?? null,
+        http_status: entry.httpStatus,
+        rpc_error_code: entry.rpcErrorCode,
+        duration_ms: Math.round(performance.now() - started),
+        ip_address: ip,
+        user_agent: userAgent,
+        created_at: deps.clock().toISOString(),
+      }),
+    );
+
+  const auth = await authenticateBearer(deps.store, request.headers.get("authorization"), environment, deps.clock(), { ip, userAgent });
   if (!auth.ok) {
+    logRequest({ organizationId: null, sessionId: null, connectionId: null, method: "authenticate", toolName: null, httpStatus: 401, rpcErrorCode: -32001 });
     const challenge = `Bearer resource_metadata="${protectedResourceMetadataUrl(deps.publicUrl, environment)}"${auth.error === "invalid_token" ? `, error="invalid_token", error_description="${auth.description.replace(/"/g, "'")}"` : ""}`;
     return json({ jsonrpc: "2.0", id: null, error: { code: -32001, message: auth.description } }, 401, { "WWW-Authenticate": challenge });
   }
@@ -79,14 +99,24 @@ export async function handleMcpHttp(request: Request, environment: Environment, 
   }
   const responses: JsonRpcResponse[] = [];
   for (const message of messages) {
+    const m = (message && typeof message === "object" ? message : {}) as { id?: string | number | null; method?: unknown; params?: { name?: unknown } };
+    let response: JsonRpcResponse | null;
     try {
-      const response = await handleMessage(deps, auth.caller, message);
-      if (response) responses.push(response);
+      response = await handleMessage(deps, auth.caller, message);
     } catch (error) {
       deps.logger.error("mcp message failed", { error });
-      const id = message && typeof message === "object" && "id" in message ? ((message as { id: string | number | null }).id ?? null) : null;
-      responses.push({ jsonrpc: "2.0", id, error: { code: JSONRPC_ERRORS.internal, message: "Internal error" } });
+      response = { jsonrpc: "2.0", id: m.id ?? null, error: { code: JSONRPC_ERRORS.internal, message: "Internal error" } };
     }
+    if (response) responses.push(response);
+    logRequest({
+      organizationId: auth.caller.organizationId,
+      sessionId: auth.caller.sessionId,
+      connectionId: auth.caller.client.connectionId,
+      method: typeof m.method === "string" ? m.method : "invalid",
+      toolName: m.method === "tools/call" && typeof m.params?.name === "string" ? m.params.name : null,
+      httpStatus: 200,
+      rpcErrorCode: response && "error" in response ? response.error.code : null,
+    });
   }
   if (responses.length === 0) return new Response(null, { status: 202, headers: CORS_HEADERS });
   return json(Array.isArray(body) ? responses : responses[0], 200, { "Mcp-Protocol-Version": version ?? SUPPORTED_PROTOCOL_VERSIONS[0] });

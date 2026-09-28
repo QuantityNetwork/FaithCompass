@@ -19,6 +19,8 @@ export interface Caller {
   client: { name: string; type: ClientType | "console"; connectionId: string | null; clientId: string | null };
   sessionId: string | null;
   scopes: Scope[];
+  /** Tools explicitly removed from this connection (per-tool permissions). */
+  deniedTools: string[];
   maxExecutionClass: ExecutionClass;
   transactionLimitCents: number | null;
   sessionExpiresAt: string | null;

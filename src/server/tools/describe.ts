@@ -42,14 +42,17 @@ export function envelopeVersion(tool: Pick<AnyTool, "version">): string {
   return `${major}.${minor}`;
 }
 
+/** Plain-JSON copy (no prototypes), safe to serialize anywhere. */
+function plain(schema: unknown): Record<string, unknown> {
+  const copy = JSON.parse(JSON.stringify(schema)) as Record<string, unknown>;
+  delete copy.$schema;
+  return copy;
+}
+
 export function inputJsonSchema(tool: AnyTool): Record<string, unknown> {
-  const schema = z.toJSONSchema(tool.input, { io: "input", target: "draft-2020-12" }) as Record<string, unknown>;
-  delete schema.$schema;
-  return schema;
+  return plain(z.toJSONSchema(tool.input, { io: "input", target: "draft-2020-12" }));
 }
 
 export function outputJsonSchema(tool: AnyTool): Record<string, unknown> {
-  const schema = z.toJSONSchema(tool.output, { io: "output", target: "draft-2020-12" }) as Record<string, unknown>;
-  delete schema.$schema;
-  return schema;
+  return plain(z.toJSONSchema(tool.output, { io: "output", target: "draft-2020-12" }));
 }
