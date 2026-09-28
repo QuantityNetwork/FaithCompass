@@ -356,8 +356,11 @@ function Audit() {
       />
       <h2>Immutability</h2>
       <p>
-        Records are append-only: database triggers reject <Code>UPDATE</Code>, <Code>DELETE</Code> and <Code>TRUNCATE</Code> for every role. Each record’s hash covers its content and the previous record’s hash, so any alteration is detectable with{" "}
+        Records are append-only: database triggers reject <Code>UPDATE</Code>, <Code>DELETE</Code> and <Code>TRUNCATE</Code> for every application role, including the service role the gateway uses. Each record’s hash covers its content and the previous record’s hash, so any alteration is detectable with{" "}
         <Code>sgk_verify_audit_chain(organization_id)</Code>. The console shows chain status on the Audit page.
+      </p>
+      <p>
+        A database administrator could still disable triggers and recompute the chain. To make that evident too, keep the latest <Code>record_hash</Code> outside Sagolik at regular intervals — a periodic CSV export is enough — and confirm later exports still contain it unchanged.
       </p>
       <h2>Verifying an export independently</h2>
       <p>
