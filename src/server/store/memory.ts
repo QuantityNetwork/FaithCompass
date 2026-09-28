@@ -19,6 +19,7 @@ import type {
   McpConnectionRow,
   McpCredentialRow,
   McpExecutionRow,
+  McpToolRow,
   McpPermissionRow,
   McpRequestRow,
   McpSessionRow,
@@ -37,7 +38,7 @@ import type {
 } from "@/domain/entities";
 import type { Environment } from "@/domain/environments";
 import { isFailureStatus } from "@/domain/statuses";
-import { canonicalJson, sha256Hex } from "@/server/crypto/hash";
+import { sha256Hex } from "@/server/crypto/hash";
 import type { ActivityStats, AuditFilter, Patch, PropertyFilter, SandboxDataset, Store, TenantScope, WebhookSecretRecord } from "./types";
 
 type Scoped = { organization_id: string; environment: Environment };
@@ -56,22 +57,32 @@ export const DEFAULT_SETTINGS: Omit<OrganizationSettingsRow, "organization_id" |
 
 export const AUDIT_GENESIS_HASH = "0".repeat(64);
 
-/** Canonical content hashed into the audit chain. */
+/** A timestamp as the database renders it for hashing: UTC with exactly six fractional digits. */
+export function utcMicros(timestamp: string): string {
+  const fraction = /\.(\d+)/.exec(timestamp)?.[1] ?? "";
+  const base = new Date(timestamp).toISOString().slice(0, 19);
+  return `${base}.${fraction.padEnd(6, "0").slice(0, 6)}Z`;
+}
+
+/**
+ * Content hashed into the audit chain: record_hash = sha256_hex(input). Identical to
+ * public.sgk_audit_hash in SQL, so exported records can be verified independently.
+ */
 export function auditHashInput(row: Omit<McpAuditLogRow, "record_hash">): string {
-  return canonicalJson({
-    prev: row.prev_hash,
-    seq: row.sequence,
-    id: row.id,
-    org: row.organization_id,
-    env: row.environment,
-    at: row.created_at,
-    tool: row.tool_name,
-    status: row.status,
-    args: row.arguments_hash,
-    decision: row.policy_decision,
-    approval: row.approval_id,
-    changed: row.state_changed,
-  });
+  return [
+    row.prev_hash,
+    String(row.sequence),
+    row.id,
+    row.organization_id,
+    row.environment,
+    utcMicros(row.created_at),
+    row.tool_name,
+    row.status,
+    row.arguments_hash ?? "",
+    row.policy_decision ?? "",
+    row.approval_id ?? "",
+    String(row.state_changed),
+  ].join("|");
 }
 
 class Table<T extends { id: string }> {
@@ -136,6 +147,7 @@ export class MemoryStore implements Store {
   readonly permissions = new Table<McpPermissionRow>();
   readonly requestLogs: McpRequestRow[] = [];
   readonly executions: McpExecutionRow[] = [];
+  readonly toolCatalog = new Map<string, McpToolRow>();
   readonly connections = new Table<McpConnectionRow>();
   readonly sessions = new Table<McpSessionRow>();
   readonly credentials = new Table<McpCredentialRow>();
@@ -357,6 +369,12 @@ export class MemoryStore implements Store {
   }
   async insertExecution(row: McpExecutionRow) {
     this.executions.push(clone(row));
+  }
+  async syncToolCatalog(rows: McpToolRow[]) {
+    for (const r of rows) this.toolCatalog.set(r.tool_id, clone(r));
+  }
+  async listToolCatalog() {
+    return [...this.toolCatalog.values()].sort((a, b) => a.tool_id.localeCompare(b.tool_id)).map(clone);
   }
   async listExecutions(organizationId: string, filter: { environment?: Environment; limit?: number } = {}) {
     return this.executions

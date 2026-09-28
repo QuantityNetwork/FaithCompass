@@ -11,6 +11,7 @@ import { createFinancialProviders, paymentProviderFor } from "@/server/integrati
 import { logger } from "@/server/observability/logger";
 import { seedDemoWorkspace } from "@/server/sandbox/demo";
 import { MemoryStore } from "@/server/store/memory";
+import { toolCatalogRows } from "@/server/tools/registry";
 import type { Database } from "@/server/store/supabase/database.types";
 import { SupabaseStore } from "@/server/store/supabase/store";
 import type { Store } from "@/server/store/types";
@@ -76,12 +77,12 @@ function createRuntime(): Runtime {
     logger,
   });
 
-  const ready =
-    store instanceof MemoryStore
-      ? seedDemoWorkspace(store, { ...gateway(config.publicUrl ?? "http://localhost:3000"), defer: (t) => void t() }).catch((error) => {
-          logger.error("demo seeding failed", { error });
-        })
-      : Promise.resolve();
+  const ready = (async () => {
+    await store.syncToolCatalog(toolCatalogRows());
+    if (store instanceof MemoryStore) await seedDemoWorkspace(store, { ...gateway(config.publicUrl ?? "http://localhost:3000"), defer: (t) => void t() });
+  })().catch((error) => {
+    logger.error("runtime initialization failed", { error });
+  });
 
   if (config.mode === "demo") logger.info("Sagolik MCP running in demo mode (in-memory, sandbox only)");
   return { mode: config.mode, config, store, secrets, clock, webhooks, plaid, gateway, ready };

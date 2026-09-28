@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { TOOLS, toolRecords } from "@/server/tools/registry";
+import { TOOLS, toolCatalogRows, toolRecords } from "@/server/tools/registry";
 import { createHarness } from "./support/harness";
 
 type Data = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -26,6 +26,20 @@ describe("tool registry", () => {
       expect(t.describeApproval).toBeTypeOf("function");
       expect(t.idempotency).toBe("approval");
     }
+  });
+});
+
+describe("tool catalog persistence", () => {
+  it("mirrors the registry into storage idempotently", async () => {
+    const h = createHarness();
+    await h.store.syncToolCatalog(toolCatalogRows());
+    await h.store.syncToolCatalog(toolCatalogRows());
+    const catalog = await h.store.listToolCatalog();
+    expect(catalog).toHaveLength(TOOLS.length);
+    const activate = catalog.find((t) => t.name === "activate_property_autopilot")!;
+    expect(activate.execution_class).toBe("execute");
+    expect(activate.approval_required).toBe(true);
+    expect(activate.input_schema).toEqual(toolRecords().find((r) => r.name === "activate_property_autopilot")!.input_schema);
   });
 });
 

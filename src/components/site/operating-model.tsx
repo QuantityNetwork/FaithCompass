@@ -10,12 +10,15 @@ const STEPS = [
 
 export function OperatingModel() {
   return (
-    <ol className="grid grid-cols-2 overflow-hidden rounded-xl border border-line sm:grid-cols-4 lg:grid-cols-7">
+    <ol className="grid overflow-hidden rounded-xl border border-line md:grid-cols-7">
       {STEPS.map((step, i) => (
-        <li key={step.label} className={`relative border-line bg-canvas px-4 py-5 ${i > 0 ? "lg:border-l" : ""} border-b lg:border-b-0`}>
+        <li
+          key={step.label}
+          className={`flex items-baseline gap-3 border-line bg-canvas px-4 py-3.5 md:block md:py-5 ${i > 0 ? "border-t md:border-l md:border-t-0" : ""}`}
+        >
           <span className="tnum font-mono text-[11px] text-subtle">{String(i + 1).padStart(2, "0")}</span>
-          <p className={`mt-2 text-[15px] font-semibold tracking-tight ${step.label === "Approve" ? "text-prepare" : "text-fg"}`}>{step.label}</p>
-          <p className="mt-0.5 text-[12.5px] text-muted">{step.note}</p>
+          <p className={`text-[15px] font-semibold tracking-tight md:mt-2 ${step.label === "Approve" ? "text-prepare" : "text-fg"}`}>{step.label}</p>
+          <p className="ml-auto text-[12.5px] text-muted md:ml-0 md:mt-0.5">{step.note}</p>
         </li>
       ))}
     </ol>

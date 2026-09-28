@@ -211,7 +211,8 @@ describe("safety controls", () => {
     const second = await h.call(c, "prepare_closing_checklist", { property_id: "SGK-1042", idempotency_key: "checklist-0001" });
     expect(second.replayed).toBe(true);
     expect((second.data as Data).checklist_id).toBe((first.data as Data).checklist_id);
-    expect(h.store.checklists.find(() => true)).toHaveLength(1);
+    const executions = await h.store.listExecutions(ORG_A);
+    expect(executions.filter((e) => e.tool_name === "prepare_closing_checklist")).toHaveLength(1);
     const conflict = await h.call(c, "prepare_closing_checklist", { transaction_id: "TX-2026-0419", idempotency_key: "checklist-0001" });
     expect(conflict.error?.code).toBe("idempotency_conflict");
     // Without a key, identical calls are deduplicated automatically.

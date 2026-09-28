@@ -25,7 +25,7 @@ export function SessionTrace() {
           <span className="h-2 w-2 rounded-full bg-sandbox" aria-hidden />
           <span className="text-[12px] font-medium text-muted">Session trace · Sandbox · synthetic data</span>
         </div>
-        <span className="font-mono text-[11.5px] text-subtle">POST /sandbox/mcp</span>
+        <span className="hidden font-mono text-[11.5px] text-subtle sm:inline">POST /sandbox/mcp</span>
       </div>
       <div className="grid md:grid-cols-[1fr_1.05fr]">
         <ol className="space-y-4 border-b border-line px-5 py-5 md:border-b-0 md:border-r">

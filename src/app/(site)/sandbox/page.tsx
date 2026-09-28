@@ -18,7 +18,7 @@ export default function SandboxPage() {
   return (
     <>
       <section className="border-b border-sandbox/20 bg-sandbox-soft">
-        <div className="mx-auto max-w-[1200px] px-6 py-20">
+        <div className="mx-auto max-w-[1200px] px-4 py-14 sm:px-6 sm:py-20">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-sandbox">Sandbox environment</p>
           <h1 className="mt-4 max-w-3xl text-[44px] font-semibold leading-[1.05] tracking-[-0.03em]">Build against Sagolik without touching a real record.</h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-body">
@@ -33,7 +33,7 @@ export default function SandboxPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1200px] px-6 py-16">
+      <section className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-[24px] font-semibold tracking-[-0.02em]">Endpoint</h2>

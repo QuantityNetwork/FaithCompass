@@ -1,6 +1,9 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import type { PGlite } from "@electric-sql/pglite";
+import type { McpAuditLogRow } from "@/domain/entities";
+import { sha256Hex } from "@/server/crypto/hash";
 import { buildSandboxDataset } from "@/server/sandbox/fixtures";
+import { auditHashInput } from "@/server/store/memory";
 import { asUser, createDatabase } from "../support/pglite";
 
 const USER_A = "11111111-1111-4111-8111-111111111111";
@@ -169,6 +172,19 @@ describe("audit log", () => {
     expect(verify.rows[0]!.broken).toBeNull();
   });
 
+  it("hashes exactly like the application, so exports verify independently", async () => {
+    const org = await createOrg(USER_B, "Hash Check LLC");
+    const insert = `insert into mcp_audit_logs (id, organization_id, environment, client_name, client_type, request_id, source, tool_name, status, duration_ms, state_changed, summary, arguments_hash, policy_decision, prev_hash, record_hash, created_at)
+       values (gen_random_uuid(), $1, 'sandbox', 'Claude', 'claude', 'req', 'mcp', 'compare_financing_scenarios', 'success', 9, true, 's', $2, 'allowed', '', '', coalesce($3::timestamptz, now()))`;
+    await db.query(insert, [org, "ab".repeat(32), "2026-09-28T15:00:00.123Z"]);
+    await db.query(insert, [org, null, null]); // database-assigned timestamp with microseconds
+    // Rows as PostgREST serializes them: ISO timestamps with microseconds and an offset.
+    const rows = await db.query<{ j: string }>(`select row_to_json(l)::text as j from mcp_audit_logs l where organization_id = $1 order by sequence`, [org]);
+    const records = rows.rows.map((r) => JSON.parse(r.j) as McpAuditLogRow);
+    expect(records).toHaveLength(2);
+    for (const { record_hash, ...rest } of records) expect(sha256Hex(auditHashInput(rest))).toBe(record_hash);
+  });
+
   it("is append-only, even for privileged roles", async () => {
     await expect(db.query(`update mcp_audit_logs set summary = 'edited'`)).rejects.toThrow(/append-only/);
     await expect(db.query(`delete from mcp_audit_logs`)).rejects.toThrow(/append-only/);
@@ -185,7 +201,9 @@ describe("audit log", () => {
 
   it("members can read their organization's audit trail only", async () => {
     const rows = await asUser(db, USER_B, () => db.query<{ organization_id: string }>(`select organization_id from mcp_audit_logs`));
-    expect(rows.rows.every((r) => r.organization_id === orgB)).toBe(true);
+    const visible = new Set(rows.rows.map((r) => r.organization_id));
+    expect(visible.has(orgB)).toBe(true);
+    expect(visible.has(orgA)).toBe(false);
   });
 });
 

@@ -10,6 +10,7 @@ import { createFinancialProviders, paymentProviderFor } from "@/server/integrati
 import { logger } from "@/server/observability/logger";
 import { buildSandboxDataset } from "@/server/sandbox/fixtures";
 import { MemoryStore, seedOrganization } from "@/server/store/memory";
+import type { Store } from "@/server/store/types";
 
 export const ORG_A = "0b5c7e1a-1111-4a11-8a11-111111111111";
 export const ORG_B = "0b5c7e1a-2222-4a22-8a22-222222222222";
@@ -17,15 +18,62 @@ export const USER_A = "5e1f0a2b-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
 export const USER_B = "5e1f0a2b-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
 export const VIEWER_A = "5e1f0a2b-cccc-4ccc-8ccc-cccccccccccc";
 
+export type HarnessSeed = Parameters<typeof seedOrganization>[1];
+
+/** Alternative persistence for the whole suite (e.g. PostgREST over PGlite). Defaults to the in-memory store. */
+export interface HarnessBackend {
+  /** Start from an empty database, apply the seeds and return a store bound to it. */
+  prepare(seeds: HarnessSeed[]): Promise<Store>;
+}
+
+let backend: HarnessBackend | null = null;
+const outstanding = new Set<Promise<unknown>>();
+
+export function setHarnessBackend(next: HarnessBackend | null): void {
+  backend = next;
+}
+
+/** Work a later harness must wait for before resetting a shared database. */
+function track<T>(work: Promise<T>): Promise<T> {
+  outstanding.add(work);
+  void work.finally(() => outstanding.delete(work)).catch(() => undefined);
+  return work;
+}
+
+/** A store whose calls wait for the backend to finish resetting. */
+function deferredStore(pending: Promise<Store>): Store {
+  return new Proxy({} as Store, {
+    get(_, prop) {
+      if (prop === "then" || typeof prop === "symbol") return undefined;
+      return async (...args: unknown[]) => {
+        const real = await pending;
+        const method = Reflect.get(real, prop) as (...a: unknown[]) => unknown;
+        return method.apply(real, args);
+      };
+    },
+  });
+}
+
 export function createHarness(options: { now?: Date } = {}) {
   let now = options.now ?? new Date("2026-09-28T15:00:00.000Z");
-  const store = new MemoryStore();
+  const seeds: HarnessSeed[] = [
+    { organizationId: ORG_A, name: "Lindqvist Household", kind: "family", userId: USER_A, email: "owner@a.invalid", fullName: "Owner A", role: "owner", now },
+    { organizationId: ORG_A, name: "Lindqvist Household", kind: "family", userId: VIEWER_A, email: "viewer@a.invalid", fullName: "Viewer A", role: "viewer", now },
+    { organizationId: ORG_B, name: "Harbor Holdings", kind: "business", userId: USER_B, email: "owner@b.invalid", fullName: "Owner B", role: "owner", now },
+  ];
+  let store: Store;
+  if (backend) {
+    // Let work deferred by earlier harnesses settle before the database is reset underneath it.
+    const settled = Promise.allSettled([...outstanding]);
+    const active = backend;
+    store = deferredStore(settled.then(() => active.prepare(seeds)));
+  } else {
+    const memory = new MemoryStore();
+    for (const seed of seeds) seedOrganization(memory, seed);
+    store = memory;
+  }
   const published: { organizationId: string; environment: Environment; type: WebhookEventType; payload: Record<string, unknown> }[] = [];
   const deferred: Promise<void>[] = [];
-
-  seedOrganization(store, { organizationId: ORG_A, name: "Lindqvist Household", kind: "family", userId: USER_A, email: "owner@a.invalid", fullName: "Owner A", role: "owner", now });
-  seedOrganization(store, { organizationId: ORG_A, name: "Lindqvist Household", kind: "family", userId: VIEWER_A, email: "viewer@a.invalid", fullName: "Viewer A", role: "viewer", now });
-  seedOrganization(store, { organizationId: ORG_B, name: "Harbor Holdings", kind: "business", userId: USER_B, email: "owner@b.invalid", fullName: "Owner B", role: "owner", now });
 
   const deps: GatewayDeps = {
     store,
@@ -39,7 +87,7 @@ export function createHarness(options: { now?: Date } = {}) {
       },
     },
     defer: (task) => {
-      deferred.push(task());
+      deferred.push(track(task()));
     },
     publicUrl: "https://mcp.test",
     logger,
@@ -49,6 +97,7 @@ export function createHarness(options: { now?: Date } = {}) {
     await store.replaceSandboxData(ORG_A, buildSandboxDataset({ organizationId: ORG_A, seedDate: now }));
     await store.replaceSandboxData(ORG_B, buildSandboxDataset({ organizationId: ORG_B, seedDate: now }));
   })();
+  track(ready);
 
   const clock = { now: () => now, newId: () => crypto.randomUUID() };
 

@@ -53,7 +53,7 @@ export default async function ConnectionPage(props: PageProps<"/connections/[id]
         </div>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1.4fr_1fr]">
+      <div className="grid gap-6 xl:grid-cols-[1.4fr_1fr] [&>*]:min-w-0">
         <div className="space-y-6">
           <Card>
             <CardHeader title="Tools" description="Scopes decide which tools are reachable. You can also disable individual tools for this connection." />

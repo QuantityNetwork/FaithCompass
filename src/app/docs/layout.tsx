@@ -6,7 +6,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <SiteHeader />
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-12 lg:grid-cols-[220px_1fr]">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[220px_1fr] [&>*]:min-w-0">
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-8">
             <DocsNav />

@@ -595,6 +595,29 @@ export interface McpRequestRow {
   created_at: ISODateTime;
 }
 
+/** Mirror of the code-defined tool registry, kept in mcp_tools for reporting and SQL-side joins. */
+export interface McpToolRow {
+  tool_id: string;
+  name: string;
+  display_name: string;
+  description: string;
+  category: string;
+  execution_class: ExecutionClass;
+  version: string;
+  status: "active" | "deprecated" | "retired";
+  input_schema: Record<string, unknown>;
+  output_schema: Record<string, unknown>;
+  required_scopes: Scope[];
+  approval_required: boolean;
+  environments: Environment[];
+  rate_limit_per_minute: number;
+  timeout_ms: number;
+  idempotency_required: boolean;
+  owner: string;
+  created_at: ISODateTime;
+  updated_at: ISODateTime;
+}
+
 /** Ledger of PREPARE and EXECUTE handler runs: what was actually carried out. */
 export interface McpExecutionRow {
   id: string;

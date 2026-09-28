@@ -1,3 +1,6 @@
+import { twMerge } from "tailwind-merge";
+
+/** Join class names; later Tailwind utilities override conflicting earlier ones. */
 export function cn(...classes: (string | false | null | undefined)[]): string {
-  return classes.filter(Boolean).join(" ");
+  return twMerge(classes.filter(Boolean).join(" "));
 }

@@ -38,3 +38,24 @@ export function formatMs(ms: number | null | undefined): string {
   if (ms == null) return "—";
   return ms < 1000 ? `${ms} ms` : `${(ms / 1000).toFixed(1)} s`;
 }
+
+/** Where an approval stands in its lifecycle, in words (e.g. "expires in 3 hours", "executed Sep 28, 4:02 PM UTC"). */
+export function approvalLifecycle(
+  approval: { status: string; expires_at: string; decided_at: string | null; consumed_at: string | null },
+  now: Date = new Date(),
+): string {
+  switch (approval.status) {
+    case "pending":
+      return `expires ${relativeTime(approval.expires_at, now)} (${formatDateTime(approval.expires_at)})`;
+    case "approved":
+      return new Date(approval.expires_at) > now ? `approved · usable once until ${formatDateTime(approval.expires_at)}` : `approved · expired unused ${formatDateTime(approval.expires_at)}`;
+    case "denied":
+      return `rejected ${formatDateTime(approval.decided_at)}`;
+    case "completed":
+      return `executed ${formatDateTime(approval.consumed_at)}`;
+    case "failed":
+      return `execution failed ${formatDateTime(approval.consumed_at ?? approval.decided_at)}`;
+    default:
+      return `expired ${formatDateTime(approval.expires_at)}`;
+  }
+}

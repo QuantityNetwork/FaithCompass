@@ -359,6 +359,23 @@ function Audit() {
         Records are append-only: database triggers reject <Code>UPDATE</Code>, <Code>DELETE</Code> and <Code>TRUNCATE</Code> for every role. Each record’s hash covers its content and the previous record’s hash, so any alteration is detectable with{" "}
         <Code>sgk_verify_audit_chain(organization_id)</Code>. The console shows chain status on the Audit page.
       </p>
+      <h2>Verifying an export independently</h2>
+      <p>
+        The CSV export contains every hashed field, so an auditor can check the chain without access to Sagolik. Records are chained per organization in <Code>sequence</Code> order; the first record’s{" "}
+        <Code>prev_hash</Code> is 64 zeros, and each later one equals the previous <Code>record_hash</Code>.
+      </p>
+      <CodeBlock
+        title="record_hash"
+        code={`record_hash = hex(sha256(utf8(join("|", [
+  prev_hash, sequence, id, organization_id, environment,
+  created_at,        // UTC, six fractional digits: 2026-09-28T15:00:00.123000Z
+  tool_name, status,
+  arguments_hash,    // "" when absent
+  policy_decision,   // "" when absent
+  approval_id,       // "" when absent
+  state_changed      // "true" or "false"
+]))))`}
+      />
       <h2>Reading the log</h2>
       <p>Each entry reads plainly, for example:</p>
       <Callout>

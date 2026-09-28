@@ -46,9 +46,10 @@ export const SCHEMA_PARITY: [
   Parity<E.McpAuditLogRow, "mcp_audit_logs">,
   Parity<E.McpRequestRow, "mcp_requests">,
   Parity<E.McpExecutionRow, "mcp_executions">,
+  Parity<E.McpToolRow, "mcp_tools">,
   Parity<E.IdempotencyRecordRow, "idempotency_records">,
   Parity<E.WebhookEndpointRow, "webhook_endpoints">,
   Parity<WebhookSecretRecord, "webhook_endpoint_secrets">,
   Parity<E.WebhookEventRow, "webhook_events">,
   Parity<E.WebhookDeliveryRow, "webhook_deliveries">,
-] = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];
+] = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true];

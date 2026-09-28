@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "db:types": "tsx scripts/generate-db-types.ts",
     "db:verify": "vitest run tests/db",
-    "check": "npm run typecheck && npm run lint && npm run test"
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "test:postgrest": "vitest run --config vitest.postgrest.config.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -26,10 +27,12 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "server-only": "^0.0.1",
+    "tailwind-merge": "^3.7.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",
+    "@electric-sql/pglite-socket": "^0.2.11",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.6.3",
     "@types/react": "^19.3.0",

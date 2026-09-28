@@ -60,7 +60,7 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#f7f9fb,transparent_70%)]" aria-hidden />
-        <div className="relative mx-auto max-w-[1200px] px-6 pb-20 pt-24 text-center md:pt-28">
+        <div className="relative mx-auto max-w-[1200px] px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24 md:pt-28">
           <p className="eyebrow">Sagolik MCP</p>
           <h1 className="mx-auto mt-5 max-w-3xl text-[44px] font-semibold leading-[1.04] tracking-[-0.035em] text-fg md:text-[64px]">
             The agent interface to Sagolik.
@@ -86,7 +86,7 @@ export default function LandingPage() {
       </section>
 
       {/* Execution classes */}
-      <section className="mx-auto max-w-[1200px] px-6 py-24">
+      <section className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-24">
         <div className="max-w-2xl">
           <p className="eyebrow">Authority model</p>
           <h2 className="mt-3 text-[32px] font-semibold leading-tight tracking-[-0.025em]">An agent may understand more than it is allowed to do.</h2>
@@ -115,7 +115,7 @@ export default function LandingPage() {
 
       {/* Operating model */}
       <section className="border-y border-line bg-surface">
-        <div className="mx-auto max-w-[1200px] px-6 py-20">
+        <div className="mx-auto max-w-[1200px] px-4 py-14 sm:px-6 sm:py-20">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="eyebrow">Operating model</p>
@@ -130,7 +130,7 @@ export default function LandingPage() {
       </section>
 
       {/* Architecture */}
-      <section className="mx-auto max-w-[1200px] px-6 py-24">
+      <section className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Architecture</p>
           <h2 className="mt-3 text-[32px] font-semibold tracking-[-0.025em]">A controlled gateway, not an open API.</h2>
@@ -145,7 +145,7 @@ export default function LandingPage() {
 
       {/* Workflows */}
       <section className="border-t border-line bg-surface">
-        <div className="mx-auto max-w-[1200px] px-6 py-24">
+        <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-24">
           <div className="max-w-2xl">
             <p className="eyebrow">Workflows</p>
             <h2 className="mt-3 text-[32px] font-semibold tracking-[-0.025em]">The difference between preparing and executing is fundamental.</h2>
@@ -184,7 +184,7 @@ export default function LandingPage() {
       </section>
 
       {/* Tool library */}
-      <section className="mx-auto max-w-[1200px] px-6 py-24">
+      <section className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-24">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="eyebrow">Tool library</p>
@@ -220,7 +220,7 @@ export default function LandingPage() {
 
       {/* Trust */}
       <section className="border-y border-line bg-brand text-white">
-        <div className="mx-auto max-w-[1200px] px-6 py-24">
+        <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-24">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/55">Institutional trust</p>
             <h2 className="mt-3 text-[32px] font-semibold tracking-[-0.025em] text-white">AI agents never receive uncontrolled access to Sagolik.</h2>
@@ -240,8 +240,8 @@ export default function LandingPage() {
       </section>
 
       {/* Connect */}
-      <section className="mx-auto max-w-[1200px] px-6 py-24">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+      <section className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-24">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center [&>*]:min-w-0">
           <div>
             <p className="eyebrow">Connect in a minute</p>
             <h2 className="mt-3 text-[32px] font-semibold tracking-[-0.025em]">Start in the sandbox. Move to production deliberately.</h2>
@@ -250,12 +250,12 @@ export default function LandingPage() {
             </p>
             <dl className="mt-8 space-y-3 text-[13.5px]">
               <div className="flex gap-4">
-                <dt className="w-24 shrink-0 text-muted">Sandbox</dt>
-                <dd className="font-mono text-fg">{PUBLIC_URL}/sandbox/mcp</dd>
+                <dt className="w-20 shrink-0 text-muted sm:w-24">Sandbox</dt>
+                <dd className="min-w-0 break-all font-mono text-fg">{PUBLIC_URL}/sandbox/mcp</dd>
               </div>
               <div className="flex gap-4">
-                <dt className="w-24 shrink-0 text-muted">Production</dt>
-                <dd className="font-mono text-fg">{PUBLIC_URL}/mcp</dd>
+                <dt className="w-20 shrink-0 text-muted sm:w-24">Production</dt>
+                <dd className="min-w-0 break-all font-mono text-fg">{PUBLIC_URL}/mcp</dd>
               </div>
             </dl>
             <div className="mt-8 flex gap-3">

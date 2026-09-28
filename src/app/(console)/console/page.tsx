@@ -49,14 +49,14 @@ export default async function OverviewPage() {
         }
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
         <Stat label="Connected agents" value={data.connections.length} detail={`Active in ${session.environment}`} />
         <Stat label="Available tools" value={data.toolsAvailable} detail="Registered for this environment" />
         <Stat label="Executions today" value={formatNumber(data.today.total)} detail={data.today.total ? `${data.today.stateChanging} changed records` : "No calls yet today"} />
         <Stat label="Pending approvals" value={data.pending.length} detail={data.pending.length ? "Awaiting a human decision" : "Nothing awaiting review"} />
       </div>
 
-      <div className="mt-6 grid gap-6 xl:grid-cols-[1.65fr_1fr]">
+      <div className="mt-6 grid gap-6 xl:grid-cols-[1.65fr_1fr] [&>*]:min-w-0">
         <Card>
           <CardHeader title="Recent agent activity" description="Every call is authorized, policy-checked and audited." action={<Link href="/audit" className="text-[13px] text-link hover:underline">View audit</Link>} />
           {data.recent.length ? (

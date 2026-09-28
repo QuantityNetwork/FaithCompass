@@ -51,7 +51,7 @@ export default async function ToolPage(props: PageProps<"/tools/[name]">) {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="flex flex-wrap items-center gap-2.5">
-            <h1 className="font-mono text-[24px] font-semibold tracking-[-0.01em]">{record.name}</h1>
+            <h1 className="font-mono text-[20px] font-semibold tracking-[-0.01em] [overflow-wrap:anywhere] sm:text-[24px]">{record.name}</h1>
             <Badge>v{record.version}</Badge>
             <ExecutionClassBadge value={record.execution_class} />
             {record.status !== "active" && <Badge tone="warning">{record.status}</Badge>}
@@ -61,7 +61,7 @@ export default async function ToolPage(props: PageProps<"/tools/[name]">) {
         <ButtonLink href={`/tools/explorer?tool=${record.name}`}>Run in Explorer</ButtonLink>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+      <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr] [&>*]:min-w-0">
         <div className="space-y-6">
           <Card>
             <CardHeader title="Model-facing description" description="Exactly what agents read in tools/list." />

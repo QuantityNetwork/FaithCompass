@@ -5,7 +5,7 @@ import { getRuntime } from "@/server/runtime";
 export const dynamic = "force-dynamic";
 
 const COLUMNS = [
-  "sequence", "created_at", "environment", "client_name", "client_type", "connection_id", "user_id", "tool_name", "tool_version", "execution_class",
+  "sequence", "id", "organization_id", "created_at", "environment", "client_name", "client_type", "connection_id", "user_id", "tool_name", "tool_version", "execution_class",
   "status", "error_code", "policy_decision", "approval_id", "approval_status", "state_changed", "duration_ms", "providers_touched", "scopes_used",
   "arguments_hash", "request_id", "record_hash", "prev_hash",
 ] as const;

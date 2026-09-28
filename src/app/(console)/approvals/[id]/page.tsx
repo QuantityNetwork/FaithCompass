@@ -6,7 +6,7 @@ import { ApprovalStatusBadge, EnvironmentBadge, ExecutionClassBadge } from "@/co
 import { Card, CardBody, CardHeader } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
 import { KeyValue } from "@/components/ui/key-value";
-import { formatDateTime, relativeTime } from "@/lib/format";
+import { approvalLifecycle, formatDateTime } from "@/lib/format";
 import { requireConsoleSession } from "@/server/auth/console";
 import { canDecideApproval, refreshExpiry } from "@/server/gateway/approvals";
 import { getRuntime } from "@/server/runtime";
@@ -42,11 +42,11 @@ export default async function ApprovalPage(props: PageProps<"/approvals/[id]">) 
         </div>
         <h1 className="mt-4 max-w-4xl text-[22px] font-semibold leading-snug tracking-[-0.015em]">{approval.summary}</h1>
         <p className="mt-2 text-[13px] text-muted">
-          Requested {formatDateTime(approval.created_at)} · {approval.status === "pending" ? `expires ${relativeTime(approval.expires_at, now)} (${formatDateTime(approval.expires_at)})` : `expired ${formatDateTime(approval.expires_at)}`}
+          Requested {formatDateTime(approval.created_at)} · {approvalLifecycle(approval, now)}
         </p>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+      <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr] [&>*]:min-w-0">
         <div className="space-y-6">
           <Card>
             <CardHeader title="What you are approving" />
@@ -120,7 +120,7 @@ export default async function ApprovalPage(props: PageProps<"/approvals/[id]">) 
                     { label: "Decided by", value: decider?.full_name ?? decider?.email ?? (approval.status === "expired" ? "Not decided before expiry" : "—") },
                     { label: "Decided at", value: formatDateTime(approval.decided_at) },
                     { label: "Note", value: approval.decision_note ?? "—" },
-                    { label: "Executed", value: approval.consumed_at ? formatDateTime(approval.consumed_at) : "Not executed" },
+                    { label: "Executed", value: approval.consumed_at ? formatDateTime(approval.consumed_at) : approval.status === "approved" ? `Not yet — ${approval.client_name} must call ${approval.tool_name} again with this approval_id` : "Not executed" },
                   ]}
                 />
               )}

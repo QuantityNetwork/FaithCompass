@@ -19,14 +19,27 @@ function check(error: PostgrestError | null, context: string): void {
   if (error) throw new StoreError(context, error.code);
 }
 
+const TIMESTAMP = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
+
+/**
+ * PostgREST renders timestamptz as "2026-09-28T15:00:00+00:00"; the application writes and compares
+ * "2026-09-28T15:00:00.000Z". Normalize column values so ISO strings compare correctly everywhere.
+ */
+function normalize<T>(value: unknown): T {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value as T;
+  const out: Record<string, unknown> = {};
+  for (const [key, v] of Object.entries(value)) out[key] = typeof v === "string" && TIMESTAMP.test(v) ? new Date(v).toISOString() : v;
+  return out as T;
+}
+
 function rows<T>(res: { data: unknown; error: PostgrestError | null }, context: string): T[] {
   check(res.error, context);
-  return (res.data ?? []) as T[];
+  return ((res.data ?? []) as unknown[]).map((r) => normalize<T>(r));
 }
 
 function row<T>(res: { data: unknown; error: PostgrestError | null }, context: string): T | null {
   check(res.error, context);
-  return (res.data ?? null) as T | null;
+  return res.data ? normalize<T>(res.data) : null;
 }
 
 const json = (value: unknown) => value as Json;
@@ -287,6 +300,13 @@ export class SupabaseStore implements Store {
   async insertExecution(r: E.McpExecutionRow) {
     check((await this.db.from("mcp_executions").insert(r)).error, "insertExecution");
   }
+  async syncToolCatalog(catalog: E.McpToolRow[]) {
+    const payload = catalog.map((t) => ({ ...t, input_schema: json(t.input_schema), output_schema: json(t.output_schema) }));
+    check((await this.db.from("mcp_tools").upsert(payload, { onConflict: "tool_id" })).error, "syncToolCatalog");
+  }
+  async listToolCatalog() {
+    return rows<E.McpToolRow>(await this.db.from("mcp_tools").select("*").order("tool_id"), "listToolCatalog");
+  }
   async listExecutions(organizationId: string, filter: { environment?: Environment; limit?: number } = {}) {
     let q = this.db.from("mcp_executions").select("*").eq("organization_id", organizationId);
     if (filter.environment) q = q.eq("environment", filter.environment);
@@ -419,7 +439,7 @@ export class SupabaseStore implements Store {
   }
   async putIdempotencyRecord(r: E.IdempotencyRecordRow) {
     const insert = await this.db.from("idempotency_records").insert({ ...r, response: json(r.response) }).select("*").single();
-    if (!insert.error) return insert.data as unknown as E.IdempotencyRecordRow;
+    if (!insert.error) return normalize<E.IdempotencyRecordRow>(insert.data);
     if (insert.error.code !== "23505") throw new StoreError("putIdempotencyRecord", insert.error.code);
     const scope = { organizationId: r.organization_id, environment: r.environment };
     const existing = await this.getIdempotencyRecord(scope, r.idempotency_key, r.requester);

@@ -3,7 +3,7 @@ import { ApprovalStatusBadge, ClientMonogram, ExecutionClassBadge } from "@/comp
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
 import { cn } from "@/lib/cn";
-import { formatDateTime, relativeTime } from "@/lib/format";
+import { approvalLifecycle, relativeTime } from "@/lib/format";
 import { requireConsoleSession } from "@/server/auth/console";
 import { refreshExpiry } from "@/server/gateway/approvals";
 import { getRuntime } from "@/server/runtime";
@@ -63,7 +63,7 @@ export default async function ApprovalsPage(props: PageProps<"/approvals">) {
                   </div>
                   <p className="mt-2 text-[14px] leading-relaxed text-fg">{a.summary}</p>
                   <p className="mt-1.5 text-[12.5px] text-subtle">
-                    Requested {relativeTime(a.created_at, now)} · {a.status === "pending" ? `expires ${relativeTime(a.expires_at, now)}` : a.decided_at ? `decided ${formatDateTime(a.decided_at)}` : `expired ${formatDateTime(a.expires_at)}`}
+                    Requested {relativeTime(a.created_at, now)} · {approvalLifecycle(a, now)}
                   </p>
                 </div>
               </Link>

@@ -4,7 +4,7 @@ import { CopyButton } from "./copy-button";
 export function CodeBlock({ code, language, title, className, copy = true, tone = "light" }: { code: string; language?: string; title?: string; className?: string; copy?: boolean; tone?: "light" | "dark" }) {
   const dark = tone === "dark";
   return (
-    <div className={cn("overflow-hidden rounded-lg border", dark ? "border-[#0f2a4d] bg-[#071427]" : "border-line bg-surface", className)}>
+    <div className={cn("min-w-0 overflow-hidden rounded-lg border", dark ? "border-[#0f2a4d] bg-[#071427]" : "border-line bg-surface", className)}>
       {(title || copy) && (
         <div className={cn("flex items-center justify-between gap-3 border-b px-4 py-2", dark ? "border-white/10" : "border-line")}>
           <span className={cn("font-mono text-[11.5px]", dark ? "text-white/55" : "text-muted")}>{title ?? language ?? ""}</span>

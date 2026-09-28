@@ -10,7 +10,7 @@ const COLUMNS: { title: string; links: [label: string, href: string][] }[] = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-surface">
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div>
           <SagolikLockup className="h-5 text-brand" />
           <p className="mt-4 max-w-xs text-[13px] leading-relaxed text-muted">From Decision to Ownership. The secure execution layer between human intent, AI agents and property and financial infrastructure.</p>
@@ -31,7 +31,7 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="border-t border-line">
-        <div className="mx-auto flex max-w-[1200px] flex-col gap-2 px-6 py-5 text-[12px] text-subtle sm:flex-row sm:justify-between">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-2 px-4 py-5 sm:px-6 text-[12px] text-subtle sm:flex-row sm:justify-between">
           <span>© {new Date().getUTCFullYear()} Sagolik. All rights reserved.</span>
           <span>Sagolik does not hold or move funds. Payment execution is performed only by connected, regulated providers.</span>
         </div>

@@ -32,7 +32,7 @@ function Row({ label, items }: { label: string; items: string[] }) {
 /** The request path from agent to infrastructure, drawn with hairlines. */
 export function ArchitectureDiagram() {
   return (
-    <div className="mx-auto max-w-4xl rounded-xl border border-line bg-surface px-6 py-10">
+    <div className="mx-auto max-w-4xl rounded-xl border border-line bg-surface px-4 py-8 sm:px-6 sm:py-10">
       <Row label="AI clients" items={["Claude", "ChatGPT", "Cursor", "Enterprise agent"]} />
       <Connector />
       <div className="grid items-center gap-4 md:grid-cols-[160px_1fr]">

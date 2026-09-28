@@ -11,3 +11,6 @@ next-env.d.ts
 .vercel
 .DS_Store
 npm-debug.log*
+
+# Local tool downloads (PostgREST for the integration suite)
+.cache/

@@ -1,4 +1,5 @@
 import type { ToolCategory } from "@/domain/categories";
+import type { McpToolRow } from "@/domain/entities";
 import type { Environment } from "@/domain/environments";
 import type { ExecutionClass } from "@/domain/execution-classes";
 import type { Scope } from "@/domain/scopes";
@@ -147,4 +148,29 @@ let recordsCache: ToolRecord[] | null = null;
 export function toolRecords(): ToolRecord[] {
   recordsCache ??= TOOLS.map(toToolRecord);
   return recordsCache;
+}
+
+/** Registry rows for the mcp_tools table. */
+export function toolCatalogRows(): McpToolRow[] {
+  return toolRecords().map((r) => ({
+    tool_id: r.tool_id,
+    name: r.name,
+    display_name: r.display_name,
+    description: r.description,
+    category: r.category,
+    execution_class: r.execution_class,
+    version: r.version,
+    status: r.status,
+    input_schema: r.input_schema,
+    output_schema: r.output_schema,
+    required_scopes: r.required_scopes,
+    approval_required: r.approval_required,
+    environments: r.environments,
+    rate_limit_per_minute: r.rate_limit_per_minute,
+    timeout_ms: r.timeout_ms,
+    idempotency_required: r.idempotency_required,
+    owner: r.owner,
+    created_at: r.created_at,
+    updated_at: r.updated_at,
+  }));
 }

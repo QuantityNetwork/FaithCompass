@@ -52,7 +52,7 @@ export default async function ToolsPage(props: PageProps<"/tools">) {
             );
           })}
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="flex gap-1">
             {EXECUTION_CLASSES.map((c) => (
               <Link key={c} href={href({ class: cls === c ? undefined : c })} className={cn("rounded-md border px-1 py-0.5", cls === c ? "border-fg" : "border-transparent opacity-80 hover:opacity-100")} title={EXECUTION_CLASS_META[c].summary}>
@@ -60,37 +60,41 @@ export default async function ToolsPage(props: PageProps<"/tools">) {
               </Link>
             ))}
           </div>
-          <form action="/tools" className="flex">
+          <form action="/tools" className="flex flex-1 sm:flex-none">
             {category && <input type="hidden" name="category" value={category} />}
             {cls && <input type="hidden" name="class" value={cls} />}
-            <input name="q" defaultValue={q} placeholder="Search tools" className="h-8 w-52 rounded-md border border-line-strong px-3 text-[13px] focus:border-focus focus:outline-none" />
+            <input name="q" defaultValue={q} placeholder="Search tools" className="h-8 w-full rounded-md border border-line-strong px-3 text-[13px] focus:border-focus focus:outline-none sm:w-52" />
           </form>
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-lg border border-line">
+      <div className="overflow-x-auto rounded-lg border border-line">
         <table className="w-full text-left text-[13px]">
           <thead className="border-b border-line bg-surface text-[12px] text-muted">
             <tr>
-              <th className="px-5 py-2.5 font-medium">Tool</th>
+              <th className="px-4 py-2.5 font-medium sm:px-5">Tool</th>
               <th className="hidden px-4 py-2.5 font-medium md:table-cell">Category</th>
-              <th className="px-4 py-2.5 font-medium">Class</th>
+              <th className="hidden px-4 py-2.5 font-medium sm:table-cell">Class</th>
               <th className="hidden px-4 py-2.5 font-medium xl:table-cell">Required scopes</th>
               <th className="hidden px-4 py-2.5 font-medium lg:table-cell">Version</th>
-              <th className="px-5 py-2.5 text-right font-medium">Approval</th>
+              <th className="hidden px-5 py-2.5 text-right font-medium sm:table-cell">Approval</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line">
             {tools.map((t) => (
               <tr key={t.tool_id} className="group hover:bg-surface">
-                <td className="px-5 py-3.5">
+                <td className="px-4 py-3.5 sm:px-5">
                   <Link href={`/tools/${t.name}`} className="block">
-                    <span className="font-mono text-[13px] text-fg group-hover:underline">{t.name}</span>
-                    <span className="mt-0.5 block max-w-xl truncate text-[12.5px] text-muted">{t.structured_description.summary}</span>
+                    <span className="font-mono text-[13px] text-fg [overflow-wrap:anywhere] group-hover:underline">{t.name}</span>
+                    <span className="mt-0.5 line-clamp-2 block max-w-xl text-[12.5px] text-muted sm:truncate">{t.structured_description.summary}</span>
+                    <span className="mt-2 flex items-center gap-2 sm:hidden">
+                      <ExecutionClassBadge value={t.execution_class} />
+                      {t.approval_required && <span className="text-[12px] font-medium text-execute">Approval required</span>}
+                    </span>
                   </Link>
                 </td>
                 <td className="hidden px-4 py-3.5 text-body md:table-cell">{CATEGORY_META[t.category].label}</td>
-                <td className="px-4 py-3.5">
+                <td className="hidden px-4 py-3.5 sm:table-cell">
                   <ExecutionClassBadge value={t.execution_class} />
                 </td>
                 <td className="hidden px-4 py-3.5 xl:table-cell">
@@ -100,7 +104,7 @@ export default async function ToolsPage(props: PageProps<"/tools">) {
                   <span className="font-mono text-[12px] text-body">v{t.version}</span>
                   {t.status !== "active" && <Badge tone="warning" className="ml-2">{t.status}</Badge>}
                 </td>
-                <td className="px-5 py-3.5 text-right text-[12.5px]">{t.approval_required ? <span className="font-medium text-execute">Required</span> : <span className="text-subtle">—</span>}</td>
+                <td className="hidden px-5 py-3.5 text-right text-[12.5px] sm:table-cell">{t.approval_required ? <span className="font-medium text-execute">Required</span> : <span className="text-subtle">—</span>}</td>
               </tr>
             ))}
             {tools.length === 0 && (

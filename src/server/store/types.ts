@@ -19,6 +19,7 @@ import type {
   McpConnectionRow,
   McpCredentialRow,
   McpExecutionRow,
+  McpToolRow,
   McpPermissionRow,
   McpRequestRow,
   McpSessionRow,
@@ -166,6 +167,10 @@ export interface GatewayStore {
   listRequestLogs(organizationId: string, filter?: { environment?: Environment; limit?: number }): Promise<McpRequestRow[]>;
   insertExecution(row: McpExecutionRow): Promise<void>;
   listExecutions(organizationId: string, filter?: { environment?: Environment; limit?: number }): Promise<McpExecutionRow[]>;
+
+  /** Mirror the code-defined tool registry into persistent storage (idempotent). */
+  syncToolCatalog(rows: McpToolRow[]): Promise<void>;
+  listToolCatalog(): Promise<McpToolRow[]>;
 
   insertConnection(row: McpConnectionRow): Promise<McpConnectionRow>;
   getConnection(id: string): Promise<McpConnectionRow | null>;

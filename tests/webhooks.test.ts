@@ -4,7 +4,7 @@ import { logger } from "@/server/observability/logger";
 import { SIGNATURE_HEADER, signPayload, verifySignature } from "@/server/webhooks/signing";
 import { WebhookService } from "@/server/webhooks/service";
 import { isPrivateAddress, validateWebhookUrl } from "@/server/webhooks/url-guard";
-import { createHarness, ORG_A } from "./support/harness";
+import { createHarness, ORG_A, USER_A } from "./support/harness";
 
 describe("webhook signing", () => {
   it("verifies signatures within the tolerance window only", () => {
@@ -58,7 +58,7 @@ describe("webhook delivery", () => {
   it("delivers signed events to subscribed endpoints in the same environment", async () => {
     const h = createHarness();
     const { svc, requests } = service(h, () => new Response("ok"));
-    const { endpoint, secret } = await svc.createEndpoint({ organizationId: ORG_A, environment: "sandbox" }, { url: "https://hooks.example.com/sagolik", events: ["approval.requested"] }, "u");
+    const { endpoint, secret } = await svc.createEndpoint({ organizationId: ORG_A, environment: "sandbox" }, { url: "https://hooks.example.com/sagolik", events: ["approval.requested"] }, USER_A);
     expect(endpoint.secret_prefix).toBe(secret.slice(0, 12));
     await svc.publish({ organizationId: ORG_A, environment: "production" }, "approval.requested", { approval_id: "x" });
     expect(requests).toHaveLength(0);
@@ -76,7 +76,7 @@ describe("webhook delivery", () => {
     const h = createHarness();
     let fail = true;
     const { svc } = service(h, () => new Response("nope", { status: fail ? 500 : 200 }));
-    const { endpoint } = await svc.createEndpoint({ organizationId: ORG_A, environment: "sandbox" }, { url: "https://hooks.example.com/x", events: ["autopilot.failure"] }, "u");
+    const { endpoint } = await svc.createEndpoint({ organizationId: ORG_A, environment: "sandbox" }, { url: "https://hooks.example.com/x", events: ["autopilot.failure"] }, USER_A);
     await svc.publish({ organizationId: ORG_A, environment: "sandbox" }, "autopilot.failure", {});
     const [delivery] = await h.store.listDeliveries(ORG_A, { endpointId: endpoint.id });
     expect(delivery?.status).toBe("retrying");
@@ -91,7 +91,7 @@ describe("webhook delivery", () => {
   it("encrypts secrets at rest", async () => {
     const h = createHarness();
     const { svc } = service(h, () => new Response("ok"));
-    const { endpoint, secret } = await svc.createEndpoint({ organizationId: ORG_A, environment: "sandbox" }, { url: "https://hooks.example.com/x", events: ["ownership.created"] }, "u");
+    const { endpoint, secret } = await svc.createEndpoint({ organizationId: ORG_A, environment: "sandbox" }, { url: "https://hooks.example.com/x", events: ["ownership.created"] }, USER_A);
     const stored = await h.store.getWebhookSecret(endpoint.id);
     expect(stored?.encrypted_secret).not.toContain(secret);
     expect(stored?.encrypted_secret.startsWith("v1.")).toBe(true);

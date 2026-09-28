@@ -103,7 +103,7 @@ export default function SecurityPage() {
   return (
     <>
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-[1200px] px-6 py-20">
+        <div className="mx-auto max-w-[1200px] px-4 py-14 sm:px-6 sm:py-20">
           <p className="eyebrow">Security</p>
           <h1 className="mt-4 max-w-3xl text-[44px] font-semibold leading-[1.05] tracking-[-0.03em]">An AI agent may understand more than it is allowed to do.</h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-muted">
@@ -111,7 +111,7 @@ export default function SecurityPage() {
           </p>
         </div>
       </section>
-      <section className="mx-auto max-w-[1200px] px-6 py-16">
+      <section className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
           {SECTIONS.map((s) => (
             <div key={s.title} className="bg-canvas p-8">
