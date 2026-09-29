@@ -4,12 +4,15 @@ export function EnvironmentBand({ environment, demo }: { environment: Environmen
   if (environment === "production" && !demo) return null;
   return (
     <div className={environment === "sandbox" ? "border-b border-sandbox/20 bg-sandbox-soft" : "border-b border-line bg-surface-2"}>
-      <div className="flex h-8 items-center justify-center gap-2 px-4 text-[12px]">
+      <div className="flex min-h-8 flex-wrap items-center justify-center gap-x-2 px-4 py-1.5 text-center text-[12px]">
         {environment === "sandbox" ? (
           <>
             <span className="h-1.5 w-1.5 rounded-full bg-sandbox" aria-hidden />
             <span className="font-semibold text-sandbox">Sandbox</span>
-            <span className="text-sandbox/80">Synthetic data and simulated providers. No production records are affected.</span>
+            <span className="text-sandbox/80">
+              Synthetic data and simulated providers. No production records are affected.
+              {demo && " Demo mode: data is kept in memory and resets when the server restarts."}
+            </span>
           </>
         ) : (
           <>
