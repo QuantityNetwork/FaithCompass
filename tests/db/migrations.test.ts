@@ -132,6 +132,27 @@ describe("row level security", () => {
     expect(visible.rows).toEqual([]);
   });
 
+  it("every table has RLS and no browser role holds a write privilege", async () => {
+    const noRls = await db.query<{ t: string }>(
+      `select c.relname as t from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'public' and c.relkind = 'r' and not c.relrowsecurity`,
+    );
+    expect(noRls.rows).toEqual([]);
+    const writes = await db.query<{ grantee: string; table_name: string }>(
+      `select grantee, table_name from information_schema.role_table_grants
+       where table_schema = 'public' and grantee in ('anon', 'authenticated') and privilege_type in ('INSERT', 'UPDATE', 'DELETE', 'TRUNCATE')`,
+    );
+    expect(writes.rows).toEqual([]);
+  });
+
+  it("anonymous callers can execute no database function", async () => {
+    const callable = await db.query<{ f: string }>(
+      `select p.proname as f from pg_proc p join pg_namespace n on n.oid = p.pronamespace
+       where n.nspname = 'public' and has_function_privilege('anon', p.oid, 'execute')`,
+    );
+    expect(callable.rows).toEqual([]);
+    await expect(asUser(db, null, () => db.query(`select public.sgk_verify_audit_chain($1)`, [orgA]))).rejects.toThrow(/permission denied/);
+  });
+
   it("connections reject wildcard or unknown scopes", async () => {
     await db.query(`insert into mcp_clients (id, client_name, client_type, token_endpoint_auth_method, registration_source) values ('c1', 'Claude', 'claude', 'none', 'dynamic')`);
     const insert = (scopes: string[]) =>
