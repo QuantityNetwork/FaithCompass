@@ -264,12 +264,12 @@ export default async function Home({ searchParams }: Props) {
           <div className="card">
             <h3 className="card__title">MCP server</h3>
             <p className="small muted">For AI agents and research tools. Streamable HTTP; tools, resources and prompts; read-only.</p>
-            <pre className="code">{absoluteUrl('/mcp')}</pre>
+            <pre className="code" tabIndex={0} aria-label="MCP endpoint">{absoluteUrl('/mcp')}</pre>
           </div>
           <div className="card">
             <h3 className="card__title">REST API v1</h3>
             <p className="small muted">For applications. JSON with published schemas, an OpenAPI document and stable error codes.</p>
-            <pre className="code">{absoluteUrl('/api/v1')}</pre>
+            <pre className="code" tabIndex={0} aria-label="REST API base URL">{absoluteUrl('/api/v1')}</pre>
           </div>
         </div>
         <div className="button-row">

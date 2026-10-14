@@ -20,7 +20,9 @@ function Code({ children, label }: { children: string; label?: string }) {
   return (
     <>
       {label ? <div className="code-label">{label}</div> : null}
-      <pre className="code">{children}</pre>
+      <pre className="code" tabIndex={0} aria-label={label ?? 'Code example'}>
+        {children}
+      </pre>
     </>
   );
 }

@@ -197,6 +197,13 @@ svg {
   color: var(--ink-muted);
 }
 
+/* WCAG 2.2 target size: every footer link is at least 24px tall. */
+.site-footer li a {
+  display: inline-block;
+  min-height: 24px;
+  padding: 3px 0;
+}
+
 .site-footer a:hover {
   color: var(--gold-bright);
 }

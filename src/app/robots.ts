@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { absoluteUrl } from '@/lib/site/config';
 
+// Rendered per request so URLs always use the configured canonical origin.
+export const dynamic = 'force-dynamic';
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

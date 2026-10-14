@@ -2,6 +2,9 @@ import type { MetadataRoute } from 'next';
 import { getRecord } from '@/lib/record/record';
 import { absoluteUrl } from '@/lib/site/config';
 
+// Rendered per request so URLs always use the configured canonical origin.
+export const dynamic = 'force-dynamic';
+
 /** Every public research record has a stable, indexable URL. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const record = getRecord();

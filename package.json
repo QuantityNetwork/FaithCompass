@@ -7,11 +7,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "test:e2e": "vitest run --config vitest.e2e.config.mts",
+    "record:lock": "tsx scripts/record-lock.ts",
+    "record:check": "tsx scripts/record-lock.ts --check",
+    "check": "npm run typecheck && npm run record:check && npm test"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
@@ -21,10 +25,13 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
     "@modelcontextprotocol/sdk": "1.32.1",
     "@types/node": "22.15.3",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
+    "playwright": "1.56.1",
+    "playwright-core": "1.56.1",
     "tsx": "^4.23.13",
     "typescript": "5.8.3",
     "vitest": "^5.0.0"
