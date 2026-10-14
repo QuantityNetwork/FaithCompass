@@ -12,7 +12,7 @@
   --ink: #f4efe4;
   --ink-strong: #fdfaf3;
   --ink-muted: #a49b88;
-  --ink-faint: #6f6857;
+  --ink-faint: #958c78;
 
   --ground: #0b1020;
   --ground-raised: #101728;
@@ -753,6 +753,11 @@ h4 {
 .field:focus {
   outline: none;
   border-color: var(--gold-dim);
+}
+
+.field:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 .chips {

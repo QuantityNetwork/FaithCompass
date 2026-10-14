@@ -14,6 +14,7 @@ import type { AbrahamMosesRecord } from '@/lib/record/record';
 import type { Claim, Reference } from '@/lib/record/schema';
 import type { Reason, SimulationResult } from '@/lib/record/engine';
 import { STATUS_DESCRIPTIONS, STATUS_LABELS, CLAIM_STATUSES } from '@/lib/record/engine';
+import { explain, lookupFor } from '@/lib/record/explain';
 import {
   ACCEPTANCE_STANCES,
   AXIS_META,
@@ -654,51 +655,12 @@ export const SIMULATION_NOTICE =
   'Simulation only. Nothing in the record has been changed: every source, claim and revision is exactly as published. The result shows what would follow if the named claims or reading principles were rejected; rival readings are reported on both sides.';
 
 export function explainReason(record: R, reason: Reason): z.infer<typeof ReasonV1> {
-  const statement = (code: string) => `${code}`;
-  const axiomLabel = (code: string) => `${code} (${record.axiom(code)?.label ?? code})`;
-  switch (reason.kind) {
-    case 'rejected':
-      return { kind: reason.kind, explanation: 'Rejected directly in this simulation.' };
-    case 'not_established_at_baseline':
-      return { kind: reason.kind, explanation: 'This claim is not established even when nothing is rejected — a record defect.' };
-    case 'witness_stands':
-      return { kind: reason.kind, explanation: 'The cited text still says this; its standing as a report is unaffected.' };
-    case 'derivation_holds':
-      return { kind: reason.kind, derivation: reason.derivation, explanation: `${reason.derivation} “${reason.label}” still holds.` };
-    case 'derivation_failed': {
-      const why = reason.failures
-        .map((f) =>
-          f.kind === 'axiom_rejected'
-            ? `it requires ${axiomLabel(f.axiom)}, which is rejected`
-            : f.kind === 'premise_unwarranted'
-              ? `it needs ${statement(f.premise)} to hold as a conclusion, and that claim has lost its warrant`
-              : `its necessary premise ${statement(f.premise)} no longer holds`,
-        )
-        .join('; ');
-      return { kind: reason.kind, derivation: reason.derivation, explanation: `${reason.derivation} “${reason.label}” fails: ${why}.` };
-    }
-    case 'supporting_premise_affected':
-      return {
-        kind: reason.kind,
-        derivation: reason.derivation,
-        premise: reason.premise,
-        explanation: `Supporting premise ${reason.premise} is ${STATUS_LABELS[reason.premiseStatus].toLowerCase()}.`,
-      };
-    case 'necessary_premise_weakened':
-      return {
-        kind: reason.kind,
-        derivation: reason.derivation,
-        premise: reason.premise,
-        explanation: `Necessary premise ${reason.premise} still holds but is ${STATUS_LABELS[reason.premiseStatus].toLowerCase()}.`,
-      };
-    case 'strengthening_axiom_rejected':
-      return {
-        kind: reason.kind,
-        derivation: reason.derivation,
-        axiom: reason.axiom,
-        explanation: `${axiomLabel(reason.axiom)} strengthened ${reason.derivation} and is rejected.`,
-      };
-  }
+  const lookup = lookupFor(record.graph());
+  const extra: { derivation?: string; premise?: string; axiom?: string } = {};
+  if ('derivation' in reason) extra.derivation = reason.derivation;
+  if ('premise' in reason) extra.premise = reason.premise;
+  if ('axiom' in reason) extra.axiom = reason.axiom;
+  return { kind: reason.kind, explanation: explain(reason, lookup), ...extra };
 }
 
 export function simulationView(record: R, result: SimulationResult): z.infer<typeof SimulationV1> {
