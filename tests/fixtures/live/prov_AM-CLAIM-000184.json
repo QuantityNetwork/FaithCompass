@@ -1,0 +1,49 @@
+{
+  "object": "provenance_chain",
+  "claim": {
+    "code": "AM-CLAIM-000184",
+    "statement": "Hebrews identifies Jesus as High Priest according to the order of Melchizedek."
+  },
+  "steps": [
+    {
+      "position": 1,
+      "label": "Finding",
+      "detail": "Hebrews explicitly connects Jesus' priesthood with a changed covenantal order."
+    },
+    {
+      "position": 2,
+      "label": "Claims used",
+      "detail": "Psalm 110 priesthood declaration; Hebrews Melchizedek identification."
+    },
+    {
+      "position": 3,
+      "label": "Supporting evidence",
+      "detail": "Hebrews 7:11-19 argument on perfection through the Levitical priesthood."
+    },
+    {
+      "position": 4,
+      "label": "Primary source",
+      "detail": "Hebrews 5:6; 6:20; 7:17 in the Greek text and early manuscript witnesses."
+    },
+    {
+      "position": 5,
+      "label": "Covenant relationships",
+      "detail": "Sinai → priesthood → prophetic promise → New Covenant."
+    },
+    {
+      "position": 6,
+      "label": "Doctrine connections",
+      "detail": "Priesthood → Melchizedek → Jesus → sacrifice → covenant → atonement."
+    },
+    {
+      "position": 7,
+      "label": "Interpretations",
+      "detail": "Attributed readings from rabbinic, patristic, Reformed and Latter-day Saint sources."
+    },
+    {
+      "position": 8,
+      "label": "Counterviews",
+      "detail": "Readings that restrict the Melchizedek motif to a literary typology."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "object": "claim",
+  "data": {
+    "code": "AM-CLAIM-000186",
+    "statement": "Psalm 110 addresses a figure who is declared a priest forever after the order of Melchizedek.",
+    "claim_type": "Explicit textual proposition",
+    "topic": "Priesthood",
+    "sources": [
+      "Psalm 110:1",
+      "Psalm 110:4"
+    ],
+    "textual_confidence": "Very high",
+    "disputed": "No — regarding the text itself",
+    "interpretive_divergence": "Identification of the addressed figure is contested between traditions.",
+    "updated_at": "2026-09-10T01:31:57.189756+00:00",
+    "provenance": [
+      {
+        "position": 1,
+        "label": "Finding",
+        "detail": "The psalm ascribes a perpetual, non-Levitical priesthood to its addressee."
+      },
+      {
+        "position": 2,
+        "label": "Claims used",
+        "detail": "Melchizedek priesthood order; royal enthronement language."
+      },
+      {
+        "position": 3,
+        "label": "Supporting evidence",
+        "detail": "Second Temple reception of Psalm 110 in Qumran and later literature."
+      },
+      {
+        "position": 4,
+        "label": "Primary source",
+        "detail": "Psalm 110:1, 4."
+      },
+      {
+        "position": 5,
+        "label": "Covenant relationships",
+        "detail": "David → priesthood → prophetic promise."
+      },
+      {
+        "position": 6,
+        "label": "Doctrine connections",
+        "detail": "Messiah → David → priesthood → Melchizedek."
+      },
+      {
+        "position": 7,
+        "label": "Interpretations",
+        "detail": "Royal, messianic and christological readings are attributed separately."
+      },
+      {
+        "position": 8,
+        "label": "Counterviews",
+        "detail": "Purely royal-court readings of the psalm."
+      }
+    ]
+  }
+}

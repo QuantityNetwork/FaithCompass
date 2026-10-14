@@ -1,0 +1,5 @@
+{
+  "object": "identity_registry",
+  "access": "public, read-only",
+  "agents": []
+}

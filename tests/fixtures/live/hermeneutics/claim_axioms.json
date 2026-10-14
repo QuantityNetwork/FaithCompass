@@ -1,0 +1,6 @@
+[{"role":"strengthened_by","note":"Descriptive claim about Hebrews; holds as a report of the text, but its theological force relies on apostolic authority.","c":{"code": "AM-CLAIM-000184"},"x":{"code": "AM-AX-001"}}, 
+ {"role":"requires","note":"Treating Genesis' silence as meaningful is a typological move.","c":{"code": "AM-CLAIM-000189"},"x":{"code": "AM-AX-002"}}, 
+ {"role":"requires","note":"The inference treats Hebrews' argument as normative.","c":{"code": "AM-CLAIM-000191"},"x":{"code": "AM-AX-001"}}, 
+ {"role":"requires","note":"Supersession reads the Levitical order as a shadow (Hebrews 8:5, 10:1).","c":{"code": "AM-CLAIM-000191"},"x":{"code": "AM-AX-002"}}, 
+ {"role":"strengthened_by","note":"Covenant theology frames supersession as fulfilment within one covenant of grace.","c":{"code": "AM-CLAIM-000191"},"x":{"code": "AM-AX-003"}}, 
+ {"role":"strengthened_by","note":"The psalm's royal-priestly figure is identified first in its Davidic setting.","c":{"code": "AM-CLAIM-000186"},"x":{"code": "AM-AX-006"}}]

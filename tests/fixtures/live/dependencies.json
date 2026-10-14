@@ -1,0 +1,75 @@
+{
+  "object": "proof_graph",
+  "edges": [
+    {
+      "claim": "AM-CLAIM-000184",
+      "depends_on": "AM-CLAIM-000186",
+      "dependency_type": "premise",
+      "necessity": "necessary",
+      "rationale": "Hebrews 5:6 and 7:17 quote Psalm 110:4 directly; the Melchizedekian title rests on the psalm."
+    },
+    {
+      "claim": "AM-CLAIM-000184",
+      "depends_on": "AM-CLAIM-000188",
+      "dependency_type": "contrast",
+      "necessity": "necessary",
+      "rationale": "Hebrews 7:11–16 argues by contrast with the hereditary Levitical order."
+    },
+    {
+      "claim": "AM-CLAIM-000184",
+      "depends_on": "AM-CLAIM-000185",
+      "dependency_type": "premise",
+      "necessity": "supporting",
+      "rationale": "Hebrews 8:8–12 cites Jeremiah 31 to ground a change of covenant alongside the change of priesthood."
+    },
+    {
+      "claim": "AM-CLAIM-000185",
+      "depends_on": "AM-CLAIM-000188",
+      "dependency_type": "contrast",
+      "necessity": "necessary",
+      "rationale": "Jeremiah 31:32 defines the new covenant against the covenant made at Sinai."
+    },
+    {
+      "claim": "AM-CLAIM-000186",
+      "depends_on": "AM-CLAIM-000187",
+      "dependency_type": "interpretive_step",
+      "necessity": "supporting",
+      "rationale": "Psalm 110 draws on Genesis 14, where Melchizedek blesses Abraham; reading the link as typology is interpretive."
+    },
+    {
+      "claim": "AM-CLAIM-000184",
+      "depends_on": "AM-CLAIM-000189",
+      "dependency_type": "lemma",
+      "necessity": "supporting",
+      "rationale": "The likeness of Melchizedek to \"the Son of God\" (7:3) is the bridge Hebrews uses to apply the order to Jesus."
+    },
+    {
+      "claim": "AM-CLAIM-000190",
+      "depends_on": "AM-CLAIM-000188",
+      "dependency_type": "contrast",
+      "necessity": "necessary",
+      "rationale": "The lemma presupposes that the Mosaic law is bound to the Levitical priesthood (7:11)."
+    },
+    {
+      "claim": "AM-CLAIM-000191",
+      "depends_on": "AM-CLAIM-000184",
+      "dependency_type": "premise",
+      "necessity": "necessary",
+      "rationale": "The supersession thesis requires that Jesus actually holds the Melchizedekian priesthood."
+    },
+    {
+      "claim": "AM-CLAIM-000191",
+      "depends_on": "AM-CLAIM-000190",
+      "dependency_type": "lemma",
+      "necessity": "necessary",
+      "rationale": "Without the priesthood-law linkage, a new priesthood would not displace the Levitical order."
+    },
+    {
+      "claim": "AM-CLAIM-000191",
+      "depends_on": "AM-CLAIM-000185",
+      "dependency_type": "premise",
+      "necessity": "supporting",
+      "rationale": "Jeremiah's \"not like the covenant\" (31:32) supplies the covenantal frame Hebrews 8 builds on."
+    }
+  ]
+}

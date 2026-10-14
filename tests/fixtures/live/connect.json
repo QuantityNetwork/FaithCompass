@@ -1,0 +1,25 @@
+{
+  "object": "connection_profile",
+  "name": "abrahammoses",
+  "label": "AbrahamMoses — Structured Theological Intelligence",
+  "manifest": "https://am.sagolik.com/api/public/mcp",
+  "auth": "none",
+  "access": "public, read-only",
+  "approved_clients": [
+    "sandbox.sagolik.com",
+    "doctrinelab.org"
+  ],
+  "resources": {
+    "claims": "https://am.sagolik.com/api/public/claims",
+    "claim": "https://am.sagolik.com/api/public/claims/{code}",
+    "covenants": "https://am.sagolik.com/api/public/covenants",
+    "doctrine": "https://am.sagolik.com/api/public/doctrine",
+    "provenance": "https://am.sagolik.com/api/public/provenance?claim={code}"
+  },
+  "client_config": {
+    "abrahammoses": {
+      "type": "http",
+      "url": "https://am.sagolik.com/api/public/mcp"
+    }
+  }
+}

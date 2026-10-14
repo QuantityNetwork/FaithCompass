@@ -1,0 +1,19 @@
+{
+  "object": "claim",
+  "data": {
+    "code": "AM-CLAIM-000191",
+    "statement": "The Melchizedekian priesthood of Christ supersedes the Levitical priesthood and its sacrificial order.",
+    "claim_type": "Doctrinal inference",
+    "topic": "Priesthood",
+    "sources": [
+      "Hebrews 7–10",
+      "Psalm 110:4",
+      "Jeremiah 31:31–34"
+    ],
+    "textual_confidence": "Moderate",
+    "disputed": "Yes",
+    "interpretive_divergence": "Accepted in most Christian traditions; framed as fulfilment rather than replacement by some; rejected by Rabbinic Judaism; qualified by dispensational and post-supersessionist readings.",
+    "updated_at": "2026-10-02T08:15:50.999443+00:00",
+    "provenance": []
+  }
+}
