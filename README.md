@@ -88,7 +88,7 @@ claude mcp add --transport http abrahammoses http://localhost:3000/mcp
 
 | Variable | Needed | Purpose |
 | --- | --- | --- |
-| `ABRAHAMMOSES_PUBLIC_ORIGIN` | Production, **at build and run time** | Canonical origin, e.g. `https://am.sagolik.com`. Every URL in pages, API responses, the MCP manifest, canonical links and the sitemap uses it. Falls back to Vercel’s production URL, then `http://localhost:3000`. |
+| `ABRAHAMMOSES_PUBLIC_ORIGIN` | Production, **at build and run time** | Canonical origin, e.g. `https://am.sagolik.com`. Every URL in pages, API responses, the MCP manifest, canonical links and the sitemap uses it. Unset, a Vercel preview names its own branch URL, a Vercel production build names the project’s production domain, and anything else names `http://localhost:3000`. Set it for Production only, so previews keep their own URL. |
 | `ABRAHAMMOSES_PRIVACY_CONTACT` | Before promoting the site | Address named in the Privacy Policy. The status page warns while it is unset. |
 | `ABRAHAMMOSES_CONTACT` | Recommended | Corrections and enquiries address on About and Terms. |
 | `API_RATE_LIMIT_PER_MINUTE` | No | Per-client limit for REST and MCP (default 120). |

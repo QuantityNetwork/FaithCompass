@@ -26,15 +26,28 @@ function trim(origin: string): string {
   return origin.replace(/\/+$/, '');
 }
 
+/**
+ * A Vercel preview names itself: its branch URL, which is stable across pushes, or failing that
+ * its deployment URL. Otherwise a preview would print the project's production domain, which
+ * serves a different build and possibly a different app.
+ */
+function vercelPreviewHost(): string | null {
+  if (process.env.VERCEL_ENV !== 'preview') return null;
+  return process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL || null;
+}
+
 /** Where the configured canonical origin came from, for the status page. */
-export function canonicalOriginSource(): 'configured' | 'vercel-production' | 'fallback' {
+export function canonicalOriginSource(): 'configured' | 'vercel-preview' | 'vercel-production' | 'fallback' {
   if (process.env.ABRAHAMMOSES_PUBLIC_ORIGIN) return 'configured';
+  if (vercelPreviewHost()) return 'vercel-preview';
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return 'vercel-production';
   return 'fallback';
 }
 
 export function canonicalOrigin(): string {
   if (process.env.ABRAHAMMOSES_PUBLIC_ORIGIN) return trim(process.env.ABRAHAMMOSES_PUBLIC_ORIGIN);
+  const preview = vercelPreviewHost();
+  if (preview) return `https://${trim(preview)}`;
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${trim(process.env.VERCEL_PROJECT_PRODUCTION_URL)}`;
   return 'http://localhost:3000';
 }

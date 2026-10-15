@@ -6,6 +6,7 @@ import { dispatchLegacy } from '@/lib/api/legacy';
 import { ENDPOINTS_V1, dispatchV1, openApiDocument } from '@/lib/api/v1';
 import { ErrorV1 } from '@/lib/api/views';
 import { getRecord } from '@/lib/record/record';
+import { canonicalOrigin, canonicalOriginSource } from '@/lib/site/config';
 
 const ORIGIN = 'https://am.example.test';
 const fixture = (name: string) => JSON.parse(readFileSync(join(__dirname, 'fixtures/live', name), 'utf8'));
@@ -156,6 +157,32 @@ describe('REST v1 — errors, headers and limits', () => {
     const text = JSON.stringify(body) + JSON.stringify((await legacy('mcp')).body) + JSON.stringify((await legacy('connect')).body);
     expect(text).toContain(ORIGIN);
     expect(text).not.toContain('abrahammoses.org');
+  });
+
+  it('names a Vercel preview by its own URL, never the production domain', () => {
+    const saved = { ...process.env };
+    try {
+      delete process.env.ABRAHAMMOSES_PUBLIC_ORIGIN;
+      Object.assign(process.env, {
+        VERCEL_PROJECT_PRODUCTION_URL: 'production.example.test',
+        VERCEL_URL: 'app-abc123.vercel.app',
+        VERCEL_BRANCH_URL: 'app-git-feature.vercel.app',
+      });
+      process.env.VERCEL_ENV = 'preview';
+      expect([canonicalOrigin(), canonicalOriginSource()]).toEqual(['https://app-git-feature.vercel.app', 'vercel-preview']);
+      delete process.env.VERCEL_BRANCH_URL;
+      expect(canonicalOrigin()).toBe('https://app-abc123.vercel.app');
+      process.env.VERCEL_ENV = 'production';
+      expect([canonicalOrigin(), canonicalOriginSource()]).toEqual(['https://production.example.test', 'vercel-production']);
+      process.env.VERCEL_ENV = 'preview';
+      process.env.ABRAHAMMOSES_PUBLIC_ORIGIN = ORIGIN;
+      expect([canonicalOrigin(), canonicalOriginSource()]).toEqual([ORIGIN, 'configured']);
+    } finally {
+      for (const key of ['VERCEL_ENV', 'VERCEL_URL', 'VERCEL_BRANCH_URL', 'VERCEL_PROJECT_PRODUCTION_URL']) {
+        if (saved[key] === undefined) delete process.env[key];
+        else process.env[key] = saved[key];
+      }
+    }
   });
 });
 
