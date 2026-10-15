@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { EmblemIntro, type EmblemNode, type EmblemPosition } from '@/components/brand/emblem-intro';
 import { CodeLink, Refs, StatusPill } from '@/components/record/ui';
 import { claimSummary } from '@/lib/api/views';
 import { STATUS_LABELS, simulate } from '@/lib/record/engine';
@@ -18,6 +19,16 @@ const FIELD_LABEL: Record<string, string> = {
   'islamic-studies': 'Islamic studies',
   'latter-day-saint-studies': 'Latter-day Saint studies',
 };
+
+const SHORT_LABEL: Record<string, string> = {
+  'jewish-studies': 'Jewish',
+  'christian-studies': 'Christian',
+  'islamic-studies': 'Islamic',
+  'latter-day-saint-studies': 'Latter-day Saint',
+};
+
+/** Clockwise from the top, in the order the cases are listed: the historical order of their traditions. */
+const POSITIONS: EmblemPosition[] = ['top', 'right', 'bottom', 'left'];
 
 const LAYERS = [
   ['01', 'Corpus', 'The sources, cited by edition and classified by provenance.'],
@@ -54,29 +65,59 @@ export default async function Home({ searchParams }: Props) {
     works: record.data.works.length,
   };
 
+  const emblemNodes: EmblemNode[] = cases.slice(0, POSITIONS.length).map((c, i) => ({
+    slug: c.slug,
+    position: POSITIONS[i],
+    short: SHORT_LABEL[c.field] ?? FIELD_LABEL[c.field],
+    field: FIELD_LABEL[c.field],
+    question: c.question,
+    href: `/?case=${c.slug}#worked`,
+  }));
+
   return (
     <main id="main">
       <section className="shell hero" aria-labelledby="hero-title">
-        <p className="eyebrow">Structured theological research</p>
-        <h1 className="hero__title" id="hero-title">
-          Begin with a <em>question.</em>
-        </h1>
-        <p className="lede">
-          AbrahamMoses keeps what a text says apart from how each tradition reads it, records what every conclusion rests on,
-          and lets you reject an assumption to see what follows — without altering a single source.
-        </p>
-        <form className="ask" action="/research" method="get" role="search">
-          <label htmlFor="home-q" className="visually-hidden">
-            Research question
-          </label>
-          <input id="home-q" name="q" className="field" placeholder="Ask a question, or cite a passage (e.g. Hebrews 7, Q 3:67)" maxLength={500} />
-          <button className="button button--solid" type="submit">
-            Research
-          </button>
-        </form>
+        <div className="hero__grid">
+          <div>
+            <p className="eyebrow">Structured theological research</p>
+            <h1 className="hero__title" id="hero-title">
+              Begin with a <em>question.</em>
+            </h1>
+            <p className="lede">
+              AbrahamMoses keeps what a text says apart from how each tradition reads it, records what every conclusion rests
+              on, and lets you reject an assumption to see what follows — without altering a single source.
+            </p>
+            <form className="ask" action="/research" method="get" role="search">
+              <label htmlFor="home-q" className="visually-hidden">
+                Research question
+              </label>
+              <input id="home-q" name="q" className="field" placeholder="Ask a question, or cite a passage (e.g. Hebrews 7, Q 3:67)" maxLength={500} />
+              <button className="button button--solid" type="submit">
+                Research
+              </button>
+            </form>
+          </div>
+          <EmblemIntro
+            nodes={emblemNodes}
+            selected={selectedSlug ? rc.slug : undefined}
+            intro="Four traditions, one set of sources that is never altered. Choose a question and trace it to them."
+            centre={{
+              href: '/research',
+              title: 'The shared record',
+              detail: `${counts.claims} claims on ${counts.works} cited works, every revision pinned. Search it.`,
+            }}
+          />
+        </div>
         <nav className="examples" aria-label="Example research questions">
           {cases.map((c) => (
-            <Link key={c.slug} href={`/?case=${c.slug}#worked`} className="example" aria-current={c.slug === rc.slug ? 'true' : undefined} scroll={false}>
+            <Link
+              key={c.slug}
+              href={`/?case=${c.slug}#worked`}
+              className="example"
+              data-case={c.slug}
+              aria-current={c.slug === rc.slug ? 'true' : undefined}
+              scroll={false}
+            >
               <span className="example__field">{FIELD_LABEL[c.field]}</span>
               <span className="example__q">{c.question}</span>
             </Link>

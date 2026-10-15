@@ -2,7 +2,7 @@
   "name": "abrahammoses",
   "version": "0.1.0",
   "private": true,
-  "description": "AbrahamMoses — Structured Theological Intelligence",
+  "description": "AbrahamMoses \u2014 Structured Theological Intelligence",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -15,7 +15,8 @@
     "test:e2e": "vitest run --config vitest.e2e.config.mts",
     "record:lock": "tsx scripts/record-lock.ts",
     "record:check": "tsx scripts/record-lock.ts --check",
-    "check": "npm run typecheck && npm run record:check && npm test"
+    "check": "npm run typecheck && npm run record:check && npm test",
+    "brand:build": "node scripts/brand/build-brand.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",

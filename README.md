@@ -49,7 +49,7 @@ checks it.
 | **P1 · No working research query** | `/research`: ask without signing in; retrieval over published records (reference parsing, transliteration-aware), guardrails for tradition-ranking requests, results grouped as sources · claims · traditions · provenance. No text is generated. | `tests/api.test.ts` (search contract), e2e "research workspace" |
 | **P1 · Coverage and editorial authority** | `/corpus` (every work, edition, citation count, stated gaps), `/methodology` (every criterion published), `/about` (status, relationships, editorial responsibility), `/changelog`, per-revision editorial and machine-involvement disclosure, `/status` with outstanding editorial work. | `tests/record.test.ts` |
 | **P1 · Christian-centred** | Four flagship cases developed to the same minimum depth — Jewish (Torah permanence), Christian (priesthood), Islamic (Ibrāhīm, lineage, revelation), Latter-day Saint (Restoration and authority) — each asked in its own tradition’s categories, with responses marked *addresses*, *asks a different question* or *not comparable*. Doctrine Graph opens on Abraham; Covenant Map shows four readings; no default tradition lens; lists ordered by historical emergence. “Contemporary witness” renamed. | `tests/record.test.ts` ("same minimum depth", "explicit non-comparability", "renames Contemporary witness") |
-| **P2 · Branding** | Text wordmark only; partner identities named in text; organisational status stated without implying accreditation or independence. The mislabelled `doctrine-lab-logo.jpeg` lives in the Lovable project and must be fixed there. | — |
+| **P2 · Branding** | The AbrahamMoses logo, traced from the supplied master to vectors (see [Brand](#brand)), in the header, footer, icons and social preview — never the “Institute” lockup. The homepage introduction is built on its emblem. Partner identities named in text; organisational status stated without implying accreditation or independence. The mislabelled `doctrine-lab-logo.jpeg` lives in the Lovable project and must be fixed there. | `tests/brand.test.ts`; `tests/e2e/site.e2e.ts` ("brand and emblem introduction") |
 | **P2 · SEO, performance, accessibility** | Per-route metadata in `<head>` for every client, canonical links, JSON-LD, sitemap with every claim, robots rules; WCAG 2.2 AA fixes (contrast, target size, focusable regions, skip link, keyboard-operable graph). | e2e: axe scan of 25 pages (0 violations), no overflow at 360px, no console errors. Lighthouse (mobile, throttled) below. |
 | **§5A · Reproducible claims** | Stable code and revision, primary witness, edition, translation and licence, classification, evidence, variants, confidence, attribution, counterviews, editorial history, machine involvement — on every claim, in the UI, API and MCP. | `tests/api.test.ts` ("full §5A metadata") |
 | **§5B · Confidence taxonomy** | Textual, philological, historical and inferential axes, each with five written criteria and “not applicable”; traditional acceptance as a per-tradition matrix. Never combined. | `/methodology`; schema |
@@ -211,8 +211,35 @@ reference at `/developers`.
 | `tests/api.test.ts` | Every v1 endpoint against its published schema, OpenAPI coverage, error contract, CORS, ETag/304, rate limiting, canonical host, legacy shapes against live fixtures |
 | `tests/mcp.test.ts` | JSON-RPC protocol, every tool against its output schema, transport (batches, notifications, parse errors, version header, GET), official SDK client end to end |
 | `tests/site-links.test.ts` | Every navigation link resolves to a route |
-| `tests/e2e/site.e2e.ts` | Production build in Chromium: server-rendered content, no-JS simulations, sitemap/canonical/robots, 360px layout, console errors, keyboard explorer, lens, local traces, axe WCAG 2.2 AA |
+| `tests/brand.test.ts` | Every brand asset derives from the traced logo; emblem geometry |
+| `tests/e2e/site.e2e.ts` | Production build in Chromium: server-rendered content, no-JS simulations, sitemap/canonical/robots, 360px layout, console errors, keyboard explorer, lens, local traces, logo, social preview and icons, the emblem introduction (no-JS links, hover and keyboard, reduced motion), axe WCAG 2.2 AA |
 | Evidence Intelligence suites | 168 tests ([below](#tests)) |
+
+## Brand
+
+The logo is the supplied master, `design/brand/abrahammoses-logo-master.png`,
+traced once to vector paths (`scripts/brand/trace_logo.py`, using potracer) and
+stored in `design/brand/logo-paths.json`. Rendered back over the master the
+trace overlaps it with an intersection-over-union of 0.988; the remaining
+differences are single anti-aliased edge pixels. `npm run brand:build` derives
+everything else from those paths:
+
+| Output | Use |
+| --- | --- |
+| `public/brand/abrahammoses-logo.svg`, `-ivory.svg` | The logo in black (for light backgrounds and press) and in the site's ivory (header and footer) |
+| `public/brand/abrahammoses-emblem.svg`, `-ivory.svg` | The emblem alone |
+| `src/app/icon.svg`, `src/app/apple-icon.png` | Browser and touch icons: the gold emblem on midnight |
+| `src/app/opengraph-image.png` | The 1200×630 social preview |
+| `src/components/brand/paths.ts` | Path data and ring geometry for components |
+
+**The emblem introduction** (`src/components/brand/emblem-intro.tsx`) opens the
+homepage. Its four rings are the four research cases, clockwise from the top
+in the historical order of their traditions — the same order as the example
+questions — and the star they lead into is the shared record. On arrival each
+ring lights in turn and traces to the centre. Hovering or focusing a ring, or
+the matching question, traces that question and names it; each ring links to
+its worked answer, so the figure works without JavaScript. It does not animate
+for visitors who prefer reduced motion.
 
 ## What still needs a person
 

@@ -1,11 +1,18 @@
 import Link from 'next/link';
 import { FOOTER_NAV } from '@/lib/site/nav';
-import { OPERATOR, SITE_NAME } from '@/lib/site/config';
+import { OPERATOR, SITE_NAME, SITE_TAGLINE } from '@/lib/site/config';
+import { Logo } from '@/components/brand/logo';
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="shell">
+        <div className="site-footer__brand">
+          <Link href="/" aria-label={`${SITE_NAME} — home`}>
+            <Logo height={34} />
+          </Link>
+          <p>{SITE_TAGLINE}</p>
+        </div>
         <div className="site-footer__grid">
           {FOOTER_NAV.map((group) => (
             <nav key={group.title} aria-label={group.title}>

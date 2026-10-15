@@ -191,6 +191,65 @@ describe('Dependency Explorer', () => {
   });
 });
 
+describe('brand and emblem introduction', () => {
+  it('shows the real logo, a social preview and icons', async () => {
+    const html = await (await fetch(`${base}/`)).text();
+    expect(html).toMatch(/<img[^>]+src="\/brand\/abrahammoses-logo-ivory\.svg"[^>]+alt="AbrahamMoses"|<img[^>]+alt="AbrahamMoses"[^>]+src="\/brand\/abrahammoses-logo-ivory\.svg"/);
+    expect(html).toMatch(new RegExp(`<meta property="og:image" content="${base}/opengraph-image\\.png`));
+    expect(html).toContain('<meta name="twitter:card" content="summary_large_image"/>');
+    expect(html).toMatch(/<link rel="icon" href="\/icon\.svg/);
+    expect(html).toMatch(/<link rel="apple-touch-icon" href="\/apple-icon\.png/);
+    for (const asset of ['/brand/abrahammoses-logo-ivory.svg', '/brand/abrahammoses-logo.svg', '/icon.svg']) {
+      const res = await fetch(`${base}${asset}`);
+      expect(res.status, asset).toBe(200);
+      expect(res.headers.get('content-type'), asset).toContain('image/svg+xml');
+    }
+  });
+
+  it('works without JavaScript: each ring is a link to its worked answer', async () => {
+    const { context, page: p } = await page({ javaScriptEnabled: false });
+    await p.goto(`${base}/`);
+    const rings = p.locator('a.emblem-node:not(.emblem-node--centre)');
+    await expect(rings.count()).resolves.toBe(4);
+    const labels = await rings.evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')));
+    // Clockwise from the top, in the historical order the cases are listed in.
+    expect(labels.map((l) => l?.split(':')[0])).toEqual(['Jewish studies', 'Christian studies', 'Islamic studies', 'Latter-day Saint studies']);
+    await rings.nth(2).click();
+    await p.waitForURL(/case=ibrahim-heirs-and-revelation/);
+    await expect(p.locator('#worked-title').locator('..').textContent()).resolves.toContain('Ibrāhīm');
+    await context.close();
+  });
+
+  it('traces a question by hover or keyboard, in step with the example questions', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/`);
+    const caption = p.locator('#emblem-intro-caption');
+
+    await p.hover('a.emblem-node[aria-label^="Christian studies"]');
+    await expect.poll(() => caption.textContent()).toContain('What changed concerning priesthood');
+    await expect(p.locator('.example[data-case="priesthood-new-covenant"]').getAttribute('class')).resolves.toContain('is-lit');
+
+    await p.mouse.move(0, 0);
+    await p.hover('.example[data-case="restoration-priesthood-authority"]');
+    await expect.poll(() => p.locator('a.emblem-node[aria-label^="Latter-day Saint"]').getAttribute('class')).toContain('is-active');
+
+    await p.mouse.move(0, 0);
+    await p.locator('a.emblem-node--centre').focus();
+    await expect.poll(() => caption.textContent()).toContain('The shared record');
+    await context.close();
+  });
+
+  it('does not animate for visitors who ask for reduced motion', async () => {
+    const { context, page: p } = await page({ reducedMotion: 'reduce' });
+    await p.goto(`${base}/`);
+    const names = await p.evaluate(() =>
+      ['.emblem-mark', '.emblem-play-fill', '.emblem-play-sparkle'].map((s) => getComputedStyle(document.querySelector(s)!).animationName),
+    );
+    expect(names).toEqual(['none', 'none', 'none']);
+    await context.close();
+  });
+});
+
 describe('research workspace', () => {
   it('answers a question without sign-in and keeps saved traces on the device', async () => {
     const { context, page: p } = await page();

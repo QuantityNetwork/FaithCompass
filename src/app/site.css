@@ -84,6 +84,23 @@ svg {
   padding-block: 14px;
 }
 
+.brand {
+  display: block;
+  line-height: 0;
+}
+
+.brand__logo {
+  display: block;
+  height: 30px;
+  width: auto;
+}
+
+@media (max-width: 640px) {
+  .brand__logo {
+    height: 24px;
+  }
+}
+
 .site-nav {
   display: flex;
   gap: 22px;
@@ -169,6 +186,31 @@ svg {
   font-size: 12.5px;
   line-height: 1.8;
   color: var(--ink-faint);
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 28px;
+  padding-bottom: 36px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-footer__brand img {
+  display: block;
+  height: 34px;
+  width: auto;
+  opacity: 0.92;
+}
+
+.site-footer__brand p {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 .site-footer__grid {
@@ -475,6 +517,273 @@ svg {
   padding: 72px 0 24px;
 }
 
+.hero__grid {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+    gap: 64px;
+  }
+}
+
+/* ---------------------------------------------------------------- *
+ * The emblem introduction
+ * ---------------------------------------------------------------- */
+
+.emblem-intro {
+  margin: 0 auto;
+  width: min(100%, 380px);
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+@media (max-width: 959px) {
+  .emblem-intro {
+    width: min(100%, 320px);
+  }
+}
+
+.emblem-intro__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.emblem-mark {
+  fill: var(--ink);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.emblem-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.emblem-hit {
+  fill: transparent;
+}
+
+.emblem-fill,
+.emblem-play-fill {
+  fill: var(--gold-bright);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.emblem-arm,
+.emblem-play-arm {
+  stroke: var(--gold-bright);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+.emblem-sparkle,
+.emblem-play-sparkle {
+  fill: var(--gold-bright);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.emblem-focus {
+  fill: none;
+  stroke: var(--gold-bright);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 4;
+  opacity: 0;
+}
+
+.emblem-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  fill: var(--ink-muted);
+}
+
+/* The case whose worked answer is shown below. */
+.emblem-node.is-selected .emblem-fill {
+  opacity: 0.4;
+  transform: scale(0.55);
+}
+
+.emblem-node.is-selected .emblem-label {
+  fill: var(--gold);
+}
+
+/* Hover or focus: the ring lights, its arm traces to the centre, the centre answers. */
+.emblem-node.is-active .emblem-fill {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.emblem-node.is-active .emblem-arm {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+.emblem-node.is-active .emblem-label {
+  fill: var(--gold-bright);
+}
+
+.emblem-intro.has-active .emblem-sparkle {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+/* The ring's own dashed halo replaces the page-wide rectangular outline, which would box ring and label together. */
+.emblem-node:focus-visible {
+  outline: none;
+}
+
+.emblem-node:focus-visible .emblem-focus {
+  opacity: 1;
+}
+
+.emblem-intro__caption {
+  display: grid;
+  gap: 6px;
+  text-align: center;
+  max-width: 34ch;
+  /* Room for the longest question, so the caption never shifts the layout. */
+  min-height: 6.2em;
+}
+
+.emblem-intro__eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.emblem-intro__text {
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-strong);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .emblem-fill,
+  .emblem-sparkle,
+  .emblem-label {
+    transition: opacity 260ms ease, transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), fill 200ms ease;
+  }
+
+  .emblem-arm {
+    transition: stroke-dashoffset 520ms cubic-bezier(0.4, 0, 0.2, 1), opacity 120ms ease;
+  }
+
+  /* Once, on arrival: the emblem settles, each ring lights in historical order and traces to the
+     centre, then the centre takes the light and keeps a slow pulse. */
+  .emblem-mark {
+    animation: emblem-settle 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .emblem-play-fill {
+    animation: emblem-ring 1500ms ease calc(700ms + var(--i) * 220ms) both;
+  }
+
+  .emblem-play-arm {
+    animation: emblem-trace 1500ms cubic-bezier(0.4, 0, 0.2, 1) calc(800ms + var(--i) * 220ms) both;
+  }
+
+  .emblem-play-sparkle {
+    animation:
+      emblem-arrive 1200ms ease 1900ms both,
+      emblem-breathe 5200ms ease-in-out 3100ms infinite alternate;
+  }
+
+  .emblem-label {
+    animation: emblem-fade 700ms ease 1500ms both;
+  }
+}
+
+@keyframes emblem-settle {
+  from {
+    opacity: 0;
+    transform: scale(0.94) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes emblem-ring {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes emblem-trace {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+  45% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes emblem-arrive {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+}
+
+@keyframes emblem-breathe {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 0.12;
+  }
+}
+
+@keyframes emblem-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .hero__title {
   font-size: clamp(40px, 7vw, 76px);
   line-height: 1.04;
@@ -521,8 +830,13 @@ svg {
 }
 
 .example:hover,
+.example.is-lit,
 .example[aria-current='true'] {
   border-color: var(--gold-dim);
+}
+
+.example.is-lit {
+  background: var(--ground-hover);
 }
 
 .example__field {

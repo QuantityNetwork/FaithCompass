@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import { PRIMARY_NAV } from '@/lib/site/nav';
-import { SITE_NAME, SITE_TAGLINE } from '@/lib/site/config';
+import { SITE_NAME } from '@/lib/site/config';
+import { Logo } from '@/components/brand/logo';
 import { NavLinks } from './nav-links';
 
 export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="shell site-header__inner">
-        <Link href="/" aria-label={`${SITE_NAME} — home`}>
-          <span className="wordmark">{SITE_NAME}</span>
-          <span className="wordmark__rule">{SITE_TAGLINE}</span>
+        <Link href="/" className="brand" aria-label={`${SITE_NAME} — home`}>
+          <Logo height={30} className="brand__logo" />
         </Link>
         <nav className="site-nav" aria-label="Primary">
           <NavLinks links={PRIMARY_NAV} />
