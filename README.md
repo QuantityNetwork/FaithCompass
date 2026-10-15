@@ -97,17 +97,40 @@ claude mcp add --transport http abrahammoses http://localhost:3000/mcp
 
 ## Deploying
 
-The app is a standard Next.js 15 application (Vercel detects it).
+The app is a standard Next.js 15 application. It is deployed on Vercel as its
+own project, **`abrahammoses`**, at <https://abrahammoses.vercel.app>.
 
-1. Set `ABRAHAMMOSES_PUBLIC_ORIGIN` for Production **before building** — static
-   pages bake it into canonical links.
-2. Set the contact variables.
-3. Point the domain at the deployment. The live `am.sagolik.com` is currently
-   served by a separate Lovable project; switching it to this app makes the
-   corrected engine, MCP server and legal pages live at the addresses the
-   review tested. `abrahammoses.org` does not resolve in DNS today; either
-   configure it as an alias that redirects to the canonical origin or stop
-   publishing it — this app never prints it.
+- **Separate from Sagolik MCP.** The repository's `main` branch holds a
+  different app (Sagolik MCP, Vercel project `sagolik-mcp`). The `abrahammoses`
+  project's Ignored Build Step, `[ ! -f src/lib/record/record.ts ]`, builds only
+  commits that contain this app, so a push to `main` can never replace it.
+- **Production is promoted deliberately.** Vercel's production branch for a
+  Git-linked project is the repository default (`main`), which this project
+  skips. Pushes to this app's branches build previews. To release, deploy a
+  commit to production (Vercel dashboard → Deployments → Promote, or
+  `vercel deploy --prod` from a checkout). Alternatively, set the project's
+  production branch to this app's branch in Settings → Environments.
+- **Environment.** `EVIDENCE_PROVIDER=corpus` and `EVIDENCE_STORE=memory`
+  (production and preview). With no database, Evidence Intelligence shows its
+  curated demonstrations read-only and refuses to save new analyses or
+  challenges. To let visitors save them, apply
+  `supabase/migrations/20260911000000_evidence_intelligence.sql` to a Supabase
+  project, then set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and
+  `EVIDENCE_STORE=supabase`.
+
+Steps that remain:
+
+1. Set the contact variables (`ABRAHAMMOSES_PRIVACY_CONTACT`,
+   `ABRAHAMMOSES_CONTACT`); `/status` warns until the privacy contact is set.
+2. Point the domain at the project. The live `am.sagolik.com` is currently
+   served by a separate Lovable project; adding it to `abrahammoses` and
+   changing its DNS makes the corrected engine, MCP server and legal pages live
+   at the addresses the review tested. `abrahammoses.org` does not resolve in
+   DNS today; either configure it as an alias that redirects to the canonical
+   origin or stop publishing it — this app never prints it.
+3. Set `ABRAHAMMOSES_PUBLIC_ORIGIN` for Production to the chosen domain and
+   redeploy — static pages bake it into canonical links. Until then the
+   project's production domain is used, and previews name their own URL.
 4. Open `/status`: every self-test should pass, and the canonical-origin check
    confirms the documented host is the one serving requests.
 
@@ -326,6 +349,12 @@ The store auto-selects Supabase once both are present. `EVIDENCE_STORE=supabase`
 forces it and raises if unconfigured, rather than degrading to a store that
 cannot persist — a deployment that looks healthy until the first restart loses
 everything written since the last one.
+
+A deployment without a database sets `EVIDENCE_STORE=memory` instead. The
+curated demonstrations are rebuilt in memory on each instance's first request,
+and the routes that would save a visitor's work (`POST /api/evidence/analyze`,
+`POST /api/evidence/claims/:id/challenge`) return 503 with the reason, instead
+of accepting work that the next cold start would lose.
 
 Reads are public by RLS policy; writes are `service_role` only. An assessment
 nobody can inspect is not checkable, and checkable is the whole proposition.
