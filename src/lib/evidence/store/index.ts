@@ -1,4 +1,5 @@
 import { JsonEvidenceStore } from './json-store';
+import { MemoryEvidenceStore } from './memory-store';
 import { SupabaseEvidenceStore } from './supabase-store';
 import type { EvidenceStore } from './types';
 
@@ -17,7 +18,9 @@ let instance: EvidenceStore | null = null;
  * deployment that looks healthy until the first restart quietly loses every
  * challenge recorded since the last one.
  *
- * EVIDENCE_STORE forces the choice either way.
+ * EVIDENCE_STORE forces the choice either way. EVIDENCE_STORE=memory is the
+ * deliberate choice for a deployment without a database: the curated
+ * demonstrations are served, and anything a visitor would create is refused.
  */
 export function getStore(): EvidenceStore {
   if (instance) return instance;
@@ -33,6 +36,11 @@ export function getStore(): EvidenceStore {
     return instance;
   }
 
+  if (configured === 'memory') {
+    instance = new MemoryEvidenceStore();
+    return instance;
+  }
+
   // An explicit request for Supabase raises if it is not configured, rather
   // than quietly degrading to a store that cannot persist anything.
   if (configured === 'supabase' || supabaseConfigured) {
@@ -43,6 +51,14 @@ export function getStore(): EvidenceStore {
   instance = new JsonEvidenceStore();
   return instance;
 }
+
+/** False while the store keeps nothing past the current instance. */
+export function canPersist(): boolean {
+  return !(getStore() instanceof MemoryEvidenceStore);
+}
+
+export const NOT_PERSISTED_MESSAGE =
+  'This deployment has no database, so it shows the curated demonstrations read-only. New analyses and challenges cannot be saved here.';
 
 /** Test seam. */
 export function setStore(store: EvidenceStore | null): void {

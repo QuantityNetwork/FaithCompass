@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { runAnalysis } from '@/lib/evidence/pipeline';
+import { canPersist, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { PassageReferenceSchema } from '@/lib/evidence/schema';
 import { NoAnalysisAvailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
@@ -23,6 +24,10 @@ const BodySchema = z.object({
 });
 
 export async function POST(request: Request) {
+  if (!canPersist()) {
+    return NextResponse.json({ error: NOT_PERSISTED_MESSAGE }, { status: 503 });
+  }
+
   let body: unknown;
   try {
     body = await request.json();
