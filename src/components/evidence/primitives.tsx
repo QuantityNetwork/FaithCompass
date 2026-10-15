@@ -1,37 +1,33 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export function Masthead() {
+/** Section navigation for the Evidence Intelligence pages. The site header and footer come from the root layout. */
+export function EvidenceNav() {
   return (
-    <header className="masthead">
-      <div className="shell masthead__inner">
-        <Link href="/evidence" aria-label="AbrahamMoses — Evidence Intelligence">
-          <span className="wordmark">AbrahamMoses</span>
-          <span className="wordmark__rule">Structured Theological Intelligence</span>
-        </Link>
-        <nav className="masthead__nav">
-          <Link href="/evidence">Evidence Intelligence</Link>
-          <Link href="/evidence/daniel/12/1">Daniel 12:1</Link>
-          <Link href="/evidence/method">Method</Link>
-        </nav>
-      </div>
-    </header>
+    <nav className="lane-legend" aria-label="Evidence Intelligence">
+      <Link className="filter-link" href="/evidence">
+        Evidence assessments
+      </Link>
+      <Link className="filter-link" href="/evidence/daniel/12/1">
+        Daniel 12:1
+      </Link>
+      <Link className="filter-link" href="/evidence/method">
+        How the figures work
+      </Link>
+    </nav>
   );
 }
 
-export function Colophon() {
+export function EvidenceNote() {
   return (
-    <footer className="colophon">
-      <div className="shell">
-        <p style={{ maxWidth: '68ch', margin: 0 }}>
-          Every figure shown is an <strong>evidence confidence</strong> — an assessment of how
-          strongly the available evidence supports a specific claim. It is not a probability that
-          the claim is true, and AbrahamMoses does not score religious traditions. Assessments
-          record the model, prompt version and sources they were produced from, and can be
-          challenged.
-        </p>
-      </div>
-    </footer>
+    <aside className="notice" style={{ marginTop: 72 }}>
+      <p className="small" style={{ maxWidth: '68ch', margin: 0 }}>
+        Every figure shown is an <strong>evidence confidence</strong> — an assessment of how strongly the available
+        evidence supports a specific claim. It is not a probability that the claim is true, and AbrahamMoses does not
+        score religious traditions. Assessments record the model, prompt version and sources they were produced from,
+        and can be challenged.
+      </p>
+    </aside>
   );
 }
 
@@ -43,13 +39,11 @@ export function Page({
   narrow?: boolean;
 }) {
   return (
-    <>
-      <Masthead />
-      <main className={narrow ? 'shell shell--narrow' : 'shell'} style={{ paddingTop: 48 }}>
-        {children}
-      </main>
-      <Colophon />
-    </>
+    <main id="main" className={narrow ? 'shell shell--narrow page' : 'shell page'}>
+      <EvidenceNav />
+      {children}
+      <EvidenceNote />
+    </main>
   );
 }
 

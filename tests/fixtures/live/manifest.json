@@ -1,0 +1,95 @@
+{
+  "object": "service_manifest",
+  "name": "AbrahamMoses",
+  "description": "Structured theological intelligence: published claims, covenant relationships and provenance chains.",
+  "version": "1.0",
+  "access": "public, read-only",
+  "license": "Attribution required. Inclusion of a source does not constitute endorsement.",
+  "resources": [
+    {
+      "name": "claims.list",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/claims",
+      "parameters": {
+        "topic": "optional string filter",
+        "claim_type": "optional string filter",
+        "limit": "1-200, default 50",
+        "offset": "default 0"
+      }
+    },
+    {
+      "name": "claims.get",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/claims/{code}",
+      "parameters": {
+        "code": "claim code, e.g. AM-CLAIM-000184"
+      }
+    },
+    {
+      "name": "covenants.list",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/covenants",
+      "parameters": {
+        "covenant": "optional covenant name filter"
+      }
+    },
+    {
+      "name": "doctrine.list",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/doctrine",
+      "parameters": {
+        "topic": "optional topic filter",
+        "node": "optional node filter (source or target)"
+      }
+    },
+    {
+      "name": "provenance.get",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/provenance?claim={code}",
+      "parameters": {
+        "claim": "claim code"
+      }
+    },
+    {
+      "name": "dependencies.get",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/dependencies?claim={code}",
+      "parameters": {
+        "claim": "optional claim code; omit for the full proof graph. Returns rests_on, supports and blast_radius"
+      }
+    },
+    {
+      "name": "hermeneutics.graph",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/hermeneutics",
+      "parameters": {
+        "reject": "optional claim code (AM-CLAIM-…) or axiom code (AM-AX-…); returns affected claims, Covenant/Doctrine map edges and vindicated counter-models"
+      }
+    },
+    {
+      "name": "agents.verify",
+      "method": "GET",
+      "url": "https://am.sagolik.com/api/public/agents?am_id={id}",
+      "parameters": {
+        "am_id": "optional AbrahamMoses identity (AM-AG-…); omit to list all active identities. Verifies an agent or digital twin.",
+        "audit": "set to any value to read the public agent action audit log"
+      }
+    },
+    {
+      "name": "agents.act",
+      "method": "POST",
+      "url": "https://am.sagolik.com/api/public/agent/act",
+      "parameters": {
+        "headers": "x-am-agent: AM-AG-…, x-am-key: action key issued by a lead editor",
+        "action": "propose_claim | propose_counter_model | flag_claim",
+        "payload": "propose_claim: {statement, claim_type?, sources?, topic?}; propose_counter_model: {claim_code, title, held_by?, thesis, alternative_reading, evidence?, strength?}; flag_claim: {claim_code, note}",
+        "note": "Agents propose; editors publish. Every attempt is written to the public audit log."
+      }
+    }
+  ],
+  "connect": "https://am.sagolik.com/api/public/connect",
+  "approved_clients": [
+    "sandbox.sagolik.com",
+    "doctrinelab.org"
+  ]
+}

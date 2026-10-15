@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { getStore, setStore, SupabaseConfigError } from '@/lib/evidence/store';
+import { canPersist, getStore, setStore, SupabaseConfigError } from '@/lib/evidence/store';
+import { MemoryEvidenceStore } from '@/lib/evidence/store/memory-store';
 import { SupabaseEvidenceStore } from '@/lib/evidence/store/supabase-store';
 import { JsonEvidenceStore } from '@/lib/evidence/store/json-store';
 
@@ -48,6 +49,29 @@ describe('store selection', () => {
     process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-key';
     process.env.EVIDENCE_STORE = 'json';
     expect(getStore()).toBeInstanceOf(JsonEvidenceStore);
+  });
+
+  it('serves demonstrations from memory when asked, and reports that nothing persists', async () => {
+    process.env.SUPABASE_URL = 'https://example.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-key';
+    process.env.EVIDENCE_STORE = 'memory';
+    expect(getStore()).toBeInstanceOf(MemoryEvidenceStore);
+    expect(canPersist()).toBe(false);
+
+    const { POST: challenge } = await import('@/app/api/evidence/claims/[id]/challenge/route');
+    const res = await challenge(new Request('http://localhost/api/evidence/claims/x/challenge', { method: 'POST' }), {
+      params: Promise.resolve({ id: 'x' }),
+    });
+    expect(res.status).toBe(503);
+    expect((await res.json()).error).toMatch(/no database/);
+
+    const { POST: analyze } = await import('@/app/api/evidence/analyze/route');
+    const res2 = await analyze(new Request('http://localhost/api/evidence/analyze', { method: 'POST', body: '{"query":"Daniel 12:1"}' }));
+    expect(res2.status).toBe(503);
+  });
+
+  it('persists with every other store', () => {
+    expect(canPersist()).toBe(true);
   });
 
   it('raises rather than silently degrading when Supabase is asked for but unconfigured', () => {

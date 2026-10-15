@@ -1,0 +1,243 @@
+{
+  "object": "doctrine_relationship_list",
+  "total": 14,
+  "data": [
+    {
+      "code": "AM-DOC-0001",
+      "source_node": "Jesus Christ",
+      "target_node": "Messiah",
+      "relationship_type": "Identification",
+      "description": "New Testament writings identify Jesus as the promised Messiah of Israel.",
+      "evidence": [
+        "Matthew 16:16",
+        "John 4:25-26",
+        "Acts 2:36"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Affirmed across Christian traditions; not affirmed in Rabbinic Judaism or Islam.",
+      "confidence": "Very high",
+      "topic": "Christology",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0002",
+      "source_node": "Jesus Christ",
+      "target_node": "Son of God",
+      "relationship_type": "Identification",
+      "description": "The title Son of God is applied to Jesus in the Gospels and epistles.",
+      "evidence": [
+        "Mark 1:1",
+        "Romans 1:4",
+        "Hebrews 1:2-5"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Affirmed in Christian traditions; rejected in Islamic and Rabbinic readings.",
+      "confidence": "Very high",
+      "topic": "Christology",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0003",
+      "source_node": "Jesus Christ",
+      "target_node": "High Priest",
+      "relationship_type": "Identification",
+      "description": "Hebrews presents Jesus as High Priest who intercedes on behalf of his people.",
+      "evidence": [
+        "Hebrews 4:14",
+        "Hebrews 5:5-6",
+        "Hebrews 7:26"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Affirmed broadly; ecclesiological implications disputed.",
+      "confidence": "Very high",
+      "topic": "Priesthood",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0004",
+      "source_node": "High Priest",
+      "target_node": "Melchizedek",
+      "relationship_type": "Ordering",
+      "description": "Jesus' priesthood is described as according to the order of Melchizedek rather than Levi.",
+      "evidence": [
+        "Psalm 110:4",
+        "Hebrews 5:6",
+        "Hebrews 7:17"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Textual claim undisputed; typological reading varies.",
+      "confidence": "Very high",
+      "topic": "Priesthood",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0005",
+      "source_node": "Melchizedek",
+      "target_node": "Abraham",
+      "relationship_type": "Narrative precedent",
+      "description": "Melchizedek blesses Abram and receives a tithe, grounding the later priestly argument.",
+      "evidence": [
+        "Genesis 14:18-20",
+        "Hebrews 7:1-10"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Shared textual basis; significance weighted differently.",
+      "confidence": "High",
+      "topic": "Priesthood",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0006",
+      "source_node": "Priesthood",
+      "target_node": "Covenant",
+      "relationship_type": "Structural dependency",
+      "description": "Priestly service is defined by the covenant under which it operates.",
+      "evidence": [
+        "Exodus 28-29",
+        "Numbers 18",
+        "Hebrews 7:11-12"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Broad agreement on dependency; consequences disputed.",
+      "confidence": "High",
+      "topic": "Covenant",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0007",
+      "source_node": "Covenant",
+      "target_node": "Sacrifice",
+      "relationship_type": "Instituting sign",
+      "description": "Covenants in the biblical record are inaugurated and maintained through sacrifice.",
+      "evidence": [
+        "Genesis 15:9-18",
+        "Exodus 24:5-8",
+        "Hebrews 9:18-22"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Widely affirmed; sacramental application varies.",
+      "confidence": "High",
+      "topic": "Covenant",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0008",
+      "source_node": "Sacrifice",
+      "target_node": "Atonement",
+      "relationship_type": "Purpose relation",
+      "description": "Sacrificial offering is presented as the means of atonement for sin.",
+      "evidence": [
+        "Leviticus 16",
+        "Isaiah 53:10",
+        "Hebrews 9:26"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Mechanism of atonement is a major interpretive divergence.",
+      "confidence": "High",
+      "topic": "Atonement",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0009",
+      "source_node": "Jesus Christ",
+      "target_node": "Sacrifice",
+      "relationship_type": "Identification",
+      "description": "The death of Jesus is presented as a single definitive sacrificial offering.",
+      "evidence": [
+        "Hebrews 9:26",
+        "Hebrews 10:10",
+        "1 Peter 3:18"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Affirmed in Christian traditions; theories of application differ.",
+      "confidence": "Very high",
+      "topic": "Atonement",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0010",
+      "source_node": "Jesus Christ",
+      "target_node": "Resurrection",
+      "relationship_type": "Event attribution",
+      "description": "The resurrection of Jesus is presented as the vindication of his identity and office.",
+      "evidence": [
+        "Romans 1:4",
+        "1 Corinthians 15:3-8",
+        "Acts 2:24"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Affirmed in Christian traditions; historical assessment disputed in modern scholarship.",
+      "confidence": "Very high",
+      "topic": "Christology",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0011",
+      "source_node": "Resurrection",
+      "target_node": "Kingdom",
+      "relationship_type": "Inauguration",
+      "description": "Resurrection and exaltation are linked to the present reign and the coming kingdom.",
+      "evidence": [
+        "Acts 2:30-36",
+        "1 Corinthians 15:24-25",
+        "Revelation 11:15"
+      ],
+      "classification": "Interpretive connection",
+      "tradition_status": "Eschatological timing is substantially disputed.",
+      "confidence": "Medium",
+      "topic": "Eschatology",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0012",
+      "source_node": "Kingdom",
+      "target_node": "David",
+      "relationship_type": "Promise lineage",
+      "description": "The kingdom promise is anchored in the dynastic covenant made with David.",
+      "evidence": [
+        "2 Samuel 7:12-16",
+        "Psalm 89:3-4",
+        "Luke 1:32-33"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Fulfilment claims diverge between traditions.",
+      "confidence": "High",
+      "topic": "Covenant",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0013",
+      "source_node": "Jesus Christ",
+      "target_node": "Mediator",
+      "relationship_type": "Office attribution",
+      "description": "Jesus is named mediator of a new covenant between God and humanity.",
+      "evidence": [
+        "1 Timothy 2:5",
+        "Hebrews 8:6",
+        "Hebrews 12:24"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Affirmed broadly; mediatorial structures of the church differ.",
+      "confidence": "Very high",
+      "topic": "Covenant",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    },
+    {
+      "code": "AM-DOC-0014",
+      "source_node": "Moses",
+      "target_node": "Mediator",
+      "relationship_type": "Office precedent",
+      "description": "Moses functions as covenant mediator at Sinai, the pattern Hebrews compares with.",
+      "evidence": [
+        "Exodus 24:1-8",
+        "Deuteronomy 5:5",
+        "Hebrews 3:1-6"
+      ],
+      "classification": "Explicit connection",
+      "tradition_status": "Comparison accepted; evaluative weighting differs.",
+      "confidence": "High",
+      "topic": "Covenant",
+      "updated_at": "2026-09-14T01:46:42.255599+00:00"
+    }
+  ]
+}

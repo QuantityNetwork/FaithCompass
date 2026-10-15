@@ -1,0 +1,49 @@
+{
+  "object": "provenance_chain",
+  "claim": {
+    "code": "AM-CLAIM-000185",
+    "statement": "Jeremiah announces a new covenant that is not like the covenant made at Sinai."
+  },
+  "steps": [
+    {
+      "position": 1,
+      "label": "Finding",
+      "detail": "A future covenant is announced in explicitly contrastive terms with Sinai."
+    },
+    {
+      "position": 2,
+      "label": "Claims used",
+      "detail": "Sinai covenant obligations; prophetic promise of internalised law."
+    },
+    {
+      "position": 3,
+      "label": "Supporting evidence",
+      "detail": "Jeremiah 31:32 \"not like the covenant I made with their fathers\"."
+    },
+    {
+      "position": 4,
+      "label": "Primary source",
+      "detail": "Jeremiah 31:31-34 (MT and LXX witnesses)."
+    },
+    {
+      "position": 5,
+      "label": "Covenant relationships",
+      "detail": "Sinai → prophetic promise → New Covenant."
+    },
+    {
+      "position": 6,
+      "label": "Doctrine connections",
+      "detail": "Covenant → law → forgiveness → mediator."
+    },
+    {
+      "position": 7,
+      "label": "Interpretations",
+      "detail": "Renewal, replacement and fulfilment readings remain separately attributed."
+    },
+    {
+      "position": 8,
+      "label": "Counterviews",
+      "detail": "Readings that treat the passage as restoration language only."
+    }
+  ]
+}

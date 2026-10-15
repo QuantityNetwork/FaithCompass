@@ -1,0 +1,49 @@
+{
+  "object": "provenance_chain",
+  "claim": {
+    "code": "AM-CLAIM-000188",
+    "statement": "The Sinai covenant establishes a hereditary Levitical priesthood tied to sacrificial service."
+  },
+  "steps": [
+    {
+      "position": 1,
+      "label": "Finding",
+      "detail": "Priestly service under Sinai is hereditary and sacrificial."
+    },
+    {
+      "position": 2,
+      "label": "Claims used",
+      "detail": "Aaronic appointment; Levitical duties; sacrificial calendar."
+    },
+    {
+      "position": 3,
+      "label": "Supporting evidence",
+      "detail": "Priestly legislation across Exodus, Leviticus and Numbers."
+    },
+    {
+      "position": 4,
+      "label": "Primary source",
+      "detail": "Exodus 28:1; Leviticus 8; Numbers 18:1-7."
+    },
+    {
+      "position": 5,
+      "label": "Covenant relationships",
+      "detail": "Sinai → priesthood → sacrifice."
+    },
+    {
+      "position": 6,
+      "label": "Doctrine connections",
+      "detail": "Priesthood → sacrifice → atonement → mediator."
+    },
+    {
+      "position": 7,
+      "label": "Interpretations",
+      "detail": "Continuity and cessation readings remain attributed."
+    },
+    {
+      "position": 8,
+      "label": "Counterviews",
+      "detail": "Readings emphasising prophetic critique of sacrificial practice."
+    }
+  ]
+}

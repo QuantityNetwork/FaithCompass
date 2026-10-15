@@ -1,0 +1,18 @@
+{
+  "object": "claim",
+  "data": {
+    "code": "AM-CLAIM-000189",
+    "statement": "Hebrews reads the silence of Genesis 14 about Melchizedek's genealogy as significant: \"without father or mother… resembling the Son of God.\"",
+    "claim_type": "Exegetical lemma",
+    "topic": "Priesthood",
+    "sources": [
+      "Hebrews 7:3",
+      "Genesis 14:18–20"
+    ],
+    "textual_confidence": "High",
+    "disputed": "Partly",
+    "interpretive_divergence": "Whether the argument from silence is a rhetorical device, a Second Temple exegetical convention, or a claim about Melchizedek's nature is contested.",
+    "updated_at": "2026-10-02T08:15:50.999443+00:00",
+    "provenance": []
+  }
+}

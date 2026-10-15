@@ -1,0 +1,106 @@
+{
+  "object": "covenant_relationship_list",
+  "total": 7,
+  "data": [
+    {
+      "code": "AM-COV-0001",
+      "covenant_name": "Noah",
+      "relationship_type": "preserves",
+      "source_node": "Creation",
+      "target_node": "Noah",
+      "description": "The Noahic covenant preserves the created order and establishes a universal sign.",
+      "evidence": [
+        "Genesis 8:20-22",
+        "Genesis 9:1-17"
+      ],
+      "confidence": "High",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    },
+    {
+      "code": "AM-COV-0002",
+      "covenant_name": "Abraham",
+      "relationship_type": "narrows through promise",
+      "source_node": "Noah",
+      "target_node": "Abraham",
+      "description": "The universal human horizon narrows to a promised family through whom the nations will be blessed.",
+      "evidence": [
+        "Genesis 12:1-3",
+        "Genesis 15:1-21",
+        "Genesis 17:1-14"
+      ],
+      "confidence": "High",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    },
+    {
+      "code": "AM-COV-0003",
+      "covenant_name": "Sinai / Moses",
+      "relationship_type": "administers",
+      "source_node": "Abraham",
+      "target_node": "Sinai / Moses",
+      "description": "The descendants of Abraham are constituted as a covenant people with law, priesthood, sacrifice and land obligations.",
+      "evidence": [
+        "Exodus 19:3-8",
+        "Exodus 24:3-8"
+      ],
+      "confidence": "High",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    },
+    {
+      "code": "AM-COV-0004",
+      "covenant_name": "David",
+      "relationship_type": "royalizes",
+      "source_node": "Sinai / Moses",
+      "target_node": "David",
+      "description": "The Davidic covenant locates enduring royal promise within Israel’s covenantal history.",
+      "evidence": [
+        "2 Samuel 7:8-16",
+        "Psalm 89:3-4"
+      ],
+      "confidence": "High",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    },
+    {
+      "code": "AM-COV-0005",
+      "covenant_name": "Prophetic promise",
+      "relationship_type": "anticipates renewal",
+      "source_node": "Sinai / Moses",
+      "target_node": "Prophetic promise",
+      "description": "The prophets anticipate covenant renewal, internalized instruction and restored relationship.",
+      "evidence": [
+        "Jeremiah 31:31-34",
+        "Ezekiel 36:24-28"
+      ],
+      "confidence": "High",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    },
+    {
+      "code": "AM-COV-0006",
+      "covenant_name": "New Covenant",
+      "relationship_type": "claims fulfillment",
+      "source_node": "Prophetic promise",
+      "target_node": "New Covenant",
+      "description": "New Testament texts identify the death and priestly ministry of Jesus with the promised new covenant.",
+      "evidence": [
+        "Luke 22:20",
+        "Hebrews 8:6-13",
+        "Hebrews 9:15"
+      ],
+      "confidence": "High",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    },
+    {
+      "code": "AM-COV-0007",
+      "covenant_name": "Kingdom / Consummation",
+      "relationship_type": "extends toward consummation",
+      "source_node": "New Covenant",
+      "target_node": "Kingdom / Consummation",
+      "description": "The covenantal sequence is presented as moving toward final kingdom, renewal and divine presence.",
+      "evidence": [
+        "1 Corinthians 15:24-28",
+        "Revelation 21:1-5"
+      ],
+      "confidence": "Interpretive",
+      "updated_at": "2026-09-11T01:14:34.419366+00:00"
+    }
+  ]
+}

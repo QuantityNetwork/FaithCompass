@@ -1,0 +1,285 @@
+/**
+ * Counter-models — serious rival readings, credited to those who hold them.
+ *
+ * AM-CM-001 to 004 are the published record. Each counter-model now records
+ * both the axioms it relies on and the axioms it denies, so the dependency
+ * engine can show when a reader's rejection agrees with a rival reading and
+ * when it undermines one. Disagreement is never resolved by the engine; it is
+ * shown on both sides.
+ */
+
+import type { CounterModel } from '../schema';
+import { refs } from './corpus';
+
+const PUBLISHED = '2026-10-02';
+const MIGRATED = '2026-10-14T12:00:00Z';
+
+type Input = Omit<CounterModel, 'evidence' | 'status' | 'firstPublished'> & {
+  evidence: string[];
+  published?: boolean;
+};
+
+function cm(input: Input): CounterModel {
+  const { evidence, published, ...rest } = input;
+  return {
+    ...rest,
+    evidence: refs(...evidence),
+    status: published ? 'published' : 'provisional',
+    firstPublished: published ? PUBLISHED : MIGRATED,
+  };
+}
+
+export const COUNTER_MODELS: CounterModel[] = [
+  cm({
+    code: 'AM-CM-001',
+    title: 'Torah permanence',
+    heldBy: 'Rabbinic Judaism',
+    traditions: ['rabbinic-judaism'],
+    thesis: 'No priesthood change abrogates the Torah; the Levitical order is suspended by the Temple\'s loss, not superseded.',
+    alternativeReading:
+      'Psalm 110 addresses a Davidic king (or Abraham, in b. Nedarim 32b), whose priestly honour is not transferred to a later figure.',
+    evidence: ['Deuteronomy 4:2', 'Numbers 25:13', 'b. Nedarim 32b'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000191',
+    reliesOn: ['AM-AX-005'],
+    rejects: ['AM-AX-001'],
+    position: 'AM-CLAIM-000197',
+    published: true,
+  }),
+  cm({
+    code: 'AM-CM-002',
+    title: 'Israel-specific new covenant',
+    heldBy: 'Dispensational and post-supersessionist readings',
+    traditions: ['dispensational'],
+    thesis: 'The new covenant is addressed to Israel and Judah and its fulfilment for them is not exhausted by the church.',
+    alternativeReading: 'Hebrews applies Jeremiah to the church by extension; Israel\'s covenantal identity persists (Romans 11:29).',
+    evidence: ['Jeremiah 31:31', 'Romans 11:26–29'],
+    strength: 'moderate',
+    targets: 'AM-CLAIM-000191',
+    reliesOn: ['AM-AX-004'],
+    rejects: [],
+    position: null,
+    published: true,
+  }),
+  cm({
+    code: 'AM-CM-003',
+    title: 'Rhetorical silence',
+    heldBy: 'Historical-critical scholarship',
+    traditions: ['historical-critical'],
+    thesis:
+      'Hebrews 7:3 uses a known exegetical convention (quod non in thora non in mundo); it makes no claim about Melchizedek\'s nature.',
+    alternativeReading: 'Read as Alexandrian-style argument from silence comparable to Philo, not as ontology.',
+    evidence: ['Philo, Leg. All. 3.79–82', 'Hebrews 7:3'],
+    strength: 'moderate',
+    targets: 'AM-CLAIM-000189',
+    reliesOn: ['AM-AX-006'],
+    rejects: ['AM-AX-002'],
+    position: null,
+    published: true,
+  }),
+  cm({
+    code: 'AM-CM-004',
+    title: 'Royal, not messianic-priestly',
+    heldBy: 'Historical-critical scholarship',
+    traditions: ['historical-critical'],
+    thesis: 'Psalm 110 is a royal enthronement psalm granting a Jerusalem king Melchizedek-like priestly prerogatives.',
+    alternativeReading:
+      'The "priest forever" grants dynastic cultic rights to the Davidic king rather than predicting a future figure.',
+    evidence: ['Psalm 110:1–4', '2 Samuel 6:14–18'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000186',
+    reliesOn: ['AM-AX-006'],
+    rejects: [],
+    position: null,
+    published: true,
+  }),
+
+  /* ---------------- New in the October 2026 migration ---------------- */
+  cm({
+    code: 'AM-CM-005',
+    title: 'Annulment in the time to come',
+    heldBy: 'An Amoraic dictum, read by later authorities',
+    traditions: ['rabbinic-judaism'],
+    thesis: 'Permanence is qualified within rabbinic literature itself: “the commandments will be annulled in the time to come”.',
+    alternativeReading:
+      'Deuteronomy’s prohibition binds within history; it does not settle the status of the commandments for the dead or in the messianic age, which the dictum addresses.',
+    evidence: ['b. Niddah 61b'],
+    strength: 'minority',
+    targets: 'AM-CLAIM-000219',
+    reliesOn: ['AM-AX-007'],
+    rejects: [],
+    position: null,
+  }),
+  cm({
+    code: 'AM-CM-006',
+    title: 'Fulfilment in Christ',
+    heldBy: 'Christian traditions',
+    traditions: ['catholic', 'eastern-orthodox', 'lutheran', 'reformed', 'evangelical', 'dispensational'],
+    thesis: 'The Sinai covenant’s ceremonial provisions are fulfilled in Christ and no longer bind.',
+    alternativeReading:
+      'Jeremiah’s new covenant and Hebrews 8:13 mark the first covenant as growing old; Paul calls the law a guardian until Christ.',
+    evidence: ['Jeremiah 31:31–34', 'Hebrews 8:13', 'Galatians 3:24–25'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000219',
+    reliesOn: ['AM-AX-001'],
+    rejects: ['AM-AX-005', 'AM-AX-007'],
+    position: 'AM-CLAIM-000221',
+  }),
+  cm({
+    code: 'AM-CM-007',
+    title: 'Successive revelations, successive laws',
+    heldBy: 'Sunni and Shiʿi Islam',
+    traditions: ['sunni-islam', 'shia-islam'],
+    thesis: 'God gives each community a law and a way; later revelation may lift or modify earlier precepts.',
+    alternativeReading: 'The permanence of the Sinai law is not denied for its community; it does not bind those given a later law.',
+    evidence: ['Q 5:48', 'Q 3:50', 'Q 7:157'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000219',
+    reliesOn: ['AM-AX-008'],
+    rejects: ['AM-AX-005'],
+    position: 'AM-CLAIM-000225',
+  }),
+  cm({
+    code: 'AM-CM-008',
+    title: 'The law fulfilled in Christ (Restoration scripture)',
+    heldBy: 'Latter-day Saint',
+    traditions: ['latter-day-saint'],
+    thesis: 'The law of Moses was fulfilled in Christ and its performances ended.',
+    alternativeReading: 'The risen Jesus declares the law fulfilled to the people of the Book of Mormon.',
+    evidence: ['3 Nephi 15:4–5'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000219',
+    reliesOn: ['AM-AX-011'],
+    rejects: ['AM-AX-005'],
+    position: 'AM-CLAIM-000227',
+  }),
+  cm({
+    code: 'AM-CM-009',
+    title: 'The covenant line through Isaac',
+    heldBy: 'Rabbinic Judaism (with Christian traditions on the Genesis text)',
+    traditions: ['rabbinic-judaism'],
+    thesis: 'Genesis establishes the covenant with Isaac’s line; Ishmael is blessed but outside the covenant.',
+    alternativeReading: 'Reads Genesis 17:19–21 and 21:12 as the governing account of Abraham’s covenant.',
+    evidence: ['Genesis 17:19–21', 'Genesis 21:12'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000246',
+    reliesOn: ['AM-AX-010'],
+    rejects: ['AM-AX-008', 'AM-AX-009'],
+    position: 'AM-CLAIM-000247',
+  }),
+  cm({
+    code: 'AM-CM-010',
+    title: 'Abraham’s heirs by faith',
+    heldBy: 'Christian traditions',
+    traditions: ['catholic', 'eastern-orthodox', 'lutheran', 'reformed', 'evangelical', 'dispensational'],
+    thesis: 'Those who share Abraham’s faith are his children, whatever their descent.',
+    alternativeReading: 'Paul reckons heirs by faith; the promised offspring is Christ.',
+    evidence: ['Galatians 3:7', 'Galatians 3:29', 'Romans 4:16'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000247',
+    reliesOn: ['AM-AX-001'],
+    rejects: [],
+    position: 'AM-CLAIM-000248',
+  }),
+  cm({
+    code: 'AM-CM-011',
+    title: '“Abrahamic religions” as a modern construct',
+    heldBy: 'Historical-critical scholarship',
+    traditions: ['historical-critical'],
+    thesis:
+      'The category “Abrahamic religions” is a modern construct that can obscure how differently each tradition uses Abraham.',
+    alternativeReading: 'Read each portrait of Abraham within its own literary and polemical setting before comparing them.',
+    evidence: ['Hughes, Abrahamic Religions', 'Firestone, Journeys in Holy Lands'],
+    strength: 'moderate',
+    targets: 'AM-CLAIM-000246',
+    reliesOn: ['AM-AX-006'],
+    rejects: [],
+    position: null,
+  }),
+  cm({
+    code: 'AM-CM-012',
+    title: 'The seal as attestation',
+    heldBy: 'Ahmadiyya Muslim Community',
+    traditions: [],
+    thesis:
+      'khātam al-nabiyyīn denotes the seal that attests and ratifies prophets, not the last in time; a non-law-bearing prophet subordinate to Muhammad remains possible.',
+    alternativeReading: 'Reads khātam as a seal of authentication rather than of closure.',
+    evidence: ['Q 33:40'],
+    strength: 'minority',
+    targets: 'AM-CLAIM-000249',
+    reliesOn: ['AM-AX-008'],
+    rejects: [],
+    position: null,
+  }),
+  cm({
+    code: 'AM-CM-013',
+    title: 'No general apostasy',
+    heldBy: 'Catholic and Eastern Orthodox',
+    traditions: ['catholic', 'eastern-orthodox'],
+    thesis: 'Apostolic authority continued through the succession of bishops; no general loss occurred.',
+    alternativeReading: 'The promise of Matthew 16:18 and the appeal to succession in 1 Clement and Irenaeus describe continuity.',
+    evidence: ['Matthew 16:18', '1 Clement 42–44', 'Irenaeus, Against Heresies 3.3.1–3'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000269',
+    reliesOn: ['AM-AX-012'],
+    rejects: ['AM-AX-011'],
+    position: 'AM-CLAIM-000274',
+  }),
+  cm({
+    code: 'AM-CM-014',
+    title: 'Christ’s unique priesthood',
+    heldBy: 'Protestant traditions',
+    traditions: ['lutheran', 'reformed', 'evangelical', 'dispensational'],
+    thesis: 'Christ alone holds the Melchizedekian priesthood; believers share a common priesthood, and no office transmits another.',
+    alternativeReading: 'Hebrews 7:23–24 contrasts Christ’s permanent priesthood with succession; 1 Peter 2:9 gives the community its priesthood.',
+    evidence: ['Hebrews 7:23–24', '1 Peter 2:9'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000270',
+    reliesOn: ['AM-AX-013'],
+    rejects: ['AM-AX-011', 'AM-AX-012'],
+    position: 'AM-CLAIM-000202',
+  }),
+  cm({
+    code: 'AM-CM-015',
+    title: 'A developing account',
+    heldBy: 'Historical-critical scholarship',
+    traditions: ['historical-critical'],
+    thesis: 'The narratives of priesthood restoration took shape in documents of 1832–1835, after the events they describe.',
+    alternativeReading:
+      'Reads the 1835 addition to the revelation now numbered D&C 27 as evidence of a developing account rather than delayed recording.',
+    evidence: ['Prince, Power from On High', 'Book of Commandments (1833) ch. 28', 'Doctrine and Covenants (1835) sec. 50'],
+    strength: 'moderate',
+    targets: 'AM-CLAIM-000261',
+    reliesOn: ['AM-AX-006'],
+    rejects: [],
+    position: null,
+  }),
+  cm({
+    code: 'AM-CM-016',
+    title: 'A ministerial priesthood',
+    heldBy: 'Catholic and Eastern Orthodox',
+    traditions: ['catholic', 'eastern-orthodox'],
+    thesis: 'The ordained ministry participates in Christ’s priesthood and differs in essence from the common priesthood.',
+    alternativeReading: 'Hebrews 7:24 describes the permanence of Christ’s own priesthood, which the ordained share by participation.',
+    evidence: ['Lumen Gentium 10', 'Council of Trent Session 23'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000202',
+    reliesOn: ['AM-AX-012'],
+    rejects: ['AM-AX-013'],
+    position: 'AM-CLAIM-000199',
+  }),
+  cm({
+    code: 'AM-CM-017',
+    title: 'The priesthood of all believers',
+    heldBy: 'Protestant traditions',
+    traditions: ['lutheran', 'reformed', 'evangelical', 'dispensational'],
+    thesis: 'All the baptized are priests; ordained ministers hold an office, not a distinct sacrificing priesthood.',
+    alternativeReading: '1 Peter 2:9 and Revelation 1:6 give the whole community its priesthood.',
+    evidence: ['1 Peter 2:9', 'Revelation 1:6', 'Luther, To the Christian Nobility'],
+    strength: 'strong',
+    targets: 'AM-CLAIM-000199',
+    reliesOn: ['AM-AX-013'],
+    rejects: ['AM-AX-012'],
+    position: 'AM-CLAIM-000202',
+  }),
+];

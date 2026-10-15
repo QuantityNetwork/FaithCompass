@@ -1,0 +1,29 @@
+{
+  "object": "claim_dependencies",
+  "claim": "AM-CLAIM-000191",
+  "rests_on": [
+    {
+      "claim": "AM-CLAIM-000191",
+      "depends_on": "AM-CLAIM-000184",
+      "dependency_type": "premise",
+      "necessity": "necessary",
+      "rationale": "The supersession thesis requires that Jesus actually holds the Melchizedekian priesthood."
+    },
+    {
+      "claim": "AM-CLAIM-000191",
+      "depends_on": "AM-CLAIM-000190",
+      "dependency_type": "lemma",
+      "necessity": "necessary",
+      "rationale": "Without the priesthood-law linkage, a new priesthood would not displace the Levitical order."
+    },
+    {
+      "claim": "AM-CLAIM-000191",
+      "depends_on": "AM-CLAIM-000185",
+      "dependency_type": "premise",
+      "necessity": "supporting",
+      "rationale": "Jeremiah's \"not like the covenant\" (31:32) supplies the covenantal frame Hebrews 8 builds on."
+    }
+  ],
+  "supports": [],
+  "blast_radius": []
+}

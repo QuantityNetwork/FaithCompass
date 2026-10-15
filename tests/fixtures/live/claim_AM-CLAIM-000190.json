@@ -1,0 +1,18 @@
+{
+  "object": "claim",
+  "data": {
+    "code": "AM-CLAIM-000190",
+    "statement": "Hebrews argues that a change of priesthood necessarily entails a change of law.",
+    "claim_type": "Exegetical lemma",
+    "topic": "Priesthood",
+    "sources": [
+      "Hebrews 7:11–12",
+      "Hebrews 7:18–19"
+    ],
+    "textual_confidence": "Very high",
+    "disputed": "No",
+    "interpretive_divergence": "Traditions differ on whether \"change of law\" means abrogation, fulfilment or transformation of the Mosaic law.",
+    "updated_at": "2026-10-02T08:15:50.999443+00:00",
+    "provenance": []
+  }
+}

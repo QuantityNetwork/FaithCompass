@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { getStore } from '@/lib/evidence/store';
 import { Page } from '@/components/evidence/primitives';
+import { Logo } from '@/components/brand/logo';
 import { certaintyLabel } from '@/lib/evidence/format';
 
 export const dynamic = 'force-dynamic';
@@ -31,10 +32,10 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   return (
     <Page narrow>
       <div className="share-card">
-        <div className="wordmark" style={{ fontSize: 17 }}>
-          AbrahamMoses
+        <Logo height={30} />
+        <div className="wordmark__rule" style={{ marginTop: 10 }}>
+          Evidence Intelligence
         </div>
-        <div className="wordmark__rule">Evidence Intelligence</div>
 
         <div className="share-card__rule" />
 

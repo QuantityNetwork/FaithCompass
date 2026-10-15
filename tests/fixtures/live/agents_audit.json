@@ -1,0 +1,5 @@
+{
+  "object": "agent_action_audit",
+  "access": "public, read-only",
+  "actions": []
+}

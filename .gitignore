@@ -10,3 +10,4 @@ data/*.json
 !data/.gitkeep
 .DS_Store
 coverage/
+design/brand/.check-render.png

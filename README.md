@@ -2,8 +2,273 @@
 
 **Structured Theological Intelligence**
 
-A research system for Scripture, theology, manuscript evidence, archaeology and
-competing interpretation. This repository currently implements one feature:
+A working, inspectable research instrument for theology: a revisioned record of
+sources, claims, covenants, doctrine and traditions, in which every conclusion
+records what it rests on and can be challenged — by rejecting an assumption and
+watching the actual dependency graph recalculate, without any source being
+altered and without the system pretending the disagreement has gone away.
+
+People use it through the website; applications through a REST API; AI agents
+through an MCP server. All three read the same record, from one canonical host.
+
+- [What is here](#what-is-here)
+- [The review, finding by finding](#the-review-finding-by-finding)
+- [Running it](#running-it)
+- [Configuration](#configuration)
+- [Deploying](#deploying)
+- [The record and the editorial workflow](#the-record-and-the-editorial-workflow)
+- [The dependency model](#the-dependency-model)
+- [Machine access](#machine-access)
+- [Testing](#testing)
+- [What still needs a person](#what-still-needs-a-person)
+- [Evidence Intelligence](#evidence-intelligence)
+
+## What is here
+
+| Area | Where | What it does |
+| --- | --- | --- |
+| **The record** | `src/lib/record/` | 74 claims in four research cases, 13 reading principles (axioms), 24 derivations, 17 counter-models, 15 covenant and 29 doctrine relationships, 11 traditions, 79 cited works with editions. Validated by Zod at load and in tests. |
+| **Dependency engine** | `src/lib/record/engine.ts` | Least-fixed-point evaluation with AND/OR semantics, report-vs-warrant distinction, cycle handling, map-edge grounding, tradition lenses, explanations. Pure TypeScript — runs on the server and in the browser. |
+| **Website** | `src/app/` | Server-rendered pages: research workspace, four research cases with the Dependency Explorer, Claim Ledger with revisions and citations, Covenant Map, Doctrine Graph, Tradition Layer and comparator, Hermeneutics with a proof console, corpus coverage, methodology, about and governance, changelog, developers, status, privacy, terms. |
+| **REST API v1** | `src/lib/api/v1.ts` → `/api/v1` | 28 endpoints from one registry; OpenAPI 3.1 and JSON Schemas generated from the same Zod definitions the responses are tested against. |
+| **MCP server** | `src/lib/mcp/` → `/mcp` | Streamable HTTP (stateless JSON): 14 read-only tools with input and output schemas, resources, prompts. Tested end to end with the official SDK client. |
+| **Legacy API** | `src/lib/api/legacy.ts` → `/api/public/*` | The original endpoint shapes, kept for Doctrine Lab and the Sagolik sandbox; additive changes only. The manifest URL also accepts MCP over POST. |
+| **Evidence Intelligence** | `src/lib/evidence/` → `/evidence` | Claim-level assessment of historical and textual evidence ([below](#evidence-intelligence)). |
+
+## The review, finding by finding
+
+The October 2026 website review (P0–P2 findings and §§4–12 recommendations) and
+what this branch does about each. "Verified" means a test in this repository
+checks it.
+
+| Review item | What was built | Verified by |
+| --- | --- | --- |
+| **P0 · MCP endpoint inconsistent** (`abrahammoses.org` vs `am.sagolik.com`; manifest only, no JSON-RPC) | Every printed URL comes from one setting, `ABRAHAMMOSES_PUBLIC_ORIGIN`. A real MCP server at `/mcp`: `initialize`, `tools/list`, `tools/call`, resources, prompts, protocol 2024-11-05 → 2025-11-25. `/api/public/mcp` also speaks MCP. The status page checks the documented host against the serving host. | `tests/mcp.test.ts` (protocol, transport, official SDK client over HTTP at both URLs, output-schema validation); `tests/api.test.ts` ("documents one host only") |
+| **P0 · Privacy and Terms not verifiable** (both returned 404 on the live site) | Standalone `/privacy` and `/terms`, written from the system’s actual data flows: no accounts, no cookies, no analytics, research traces kept on the reader’s device with export and delete, GDPR Article 9 addressed. | `tests/site-links.test.ts` (every header/footer link resolves), e2e |
+| **P1 · Pages depend on dynamic loading** | All research pages are server-rendered; the explorer renders its initial state on the server, and every toggle is a real link, so it works without JavaScript. An error boundary replaces indefinite loading states. | e2e: "delivers the record in the HTML", "renders a simulation server-side … without JavaScript" |
+| **P1 · No working research query** | `/research`: ask without signing in; retrieval over published records (reference parsing, transliteration-aware), guardrails for tradition-ranking requests, results grouped as sources · claims · traditions · provenance. No text is generated. | `tests/api.test.ts` (search contract), e2e "research workspace" |
+| **P1 · Coverage and editorial authority** | `/corpus` (every work, edition, citation count, stated gaps), `/methodology` (every criterion published), `/about` (status, relationships, editorial responsibility), `/changelog`, per-revision editorial and machine-involvement disclosure, `/status` with outstanding editorial work. | `tests/record.test.ts` |
+| **P1 · Christian-centred** | Four flagship cases developed to the same minimum depth — Jewish (Torah permanence), Christian (priesthood), Islamic (Ibrāhīm, lineage, revelation), Latter-day Saint (Restoration and authority) — each asked in its own tradition’s categories, with responses marked *addresses*, *asks a different question* or *not comparable*. Doctrine Graph opens on Abraham; Covenant Map shows four readings; no default tradition lens; lists ordered by historical emergence. “Contemporary witness” renamed. | `tests/record.test.ts` ("same minimum depth", "explicit non-comparability", "renames Contemporary witness") |
+| **P2 · Branding** | The AbrahamMoses logo, traced from the supplied master to vectors (see [Brand](#brand)), in the header, footer, icons and social preview — never the “Institute” lockup. The homepage introduction is built on its emblem. Partner identities named in text; organisational status stated without implying accreditation or independence. The mislabelled `doctrine-lab-logo.jpeg` lives in the Lovable project and must be fixed there. | `tests/brand.test.ts`; `tests/e2e/site.e2e.ts` ("brand and emblem introduction") |
+| **P2 · SEO, performance, accessibility** | Per-route metadata in `<head>` for every client, canonical links, JSON-LD, sitemap with every claim, robots rules; WCAG 2.2 AA fixes (contrast, target size, focusable regions, skip link, keyboard-operable graph). | e2e: axe scan of 25 pages (0 violations), no overflow at 360px, no console errors. Lighthouse (mobile, throttled) below. |
+| **§5A · Reproducible claims** | Stable code and revision, primary witness, edition, translation and licence, classification, evidence, variants, confidence, attribution, counterviews, editorial history, machine involvement — on every claim, in the UI, API and MCP. | `tests/api.test.ts` ("full §5A metadata") |
+| **§5B · Confidence taxonomy** | Textual, philological, historical and inferential axes, each with five written criteria and “not applicable”; traditional acceptance as a per-tradition matrix. Never combined. | `/methodology`; schema |
+| **§5C · Exact rejection logic** | AND/OR derivations, multiple proofs, cycles, contested assumptions, versioned evidence. | `tests/record-engine.test.ts`; `tests/record.test.ts` pins corrections against the published engine |
+| **§11 · Living Research Record** | Append-only revisions pinned by content hash; any revision readable and citable; field-level diffs; text, BibTeX and CSL-JSON citations; printable provenance report; full-record export. | `tests/record.test.ts` (revision lock), `npm run record:check` |
+| **§11 · Developer gateway** | `/developers` with live examples generated by the handlers, schema explorer, error codes, rate limits, versioning, client configurations; `/status` with live self-tests. | `tests/api.test.ts` |
+| **§13 · The milestone** | On each case page: pick a question, see two opposing interpretations, inspect every premise, reject a disputed assumption, watch the graph recalculate — sources untouched, the rival position still on screen. | e2e "Dependency Explorer"; `tests/record.test.ts` ("the guided walkthrough") |
+
+**Lighthouse** (mobile, simulated throttling, production build): performance
+98–99, accessibility 100, best practices 100, SEO 100; LCP 1.7–1.9 s, CLS 0,
+TBT 70–130 ms on `/`, a research case and `/developers`. Lab figures, not field
+data: Core Web Vitals at the 75th percentile need real-user monitoring after
+deployment.
+
+## Running it
+
+```bash
+npm install
+npm run dev                 # http://localhost:3000
+npm run check               # typecheck + revision lock + 245 unit/contract tests
+npm run build
+npm run test:e2e            # Playwright + axe against the production build
+```
+
+Node 18.18 or later (20+ recommended). No API key or database is needed to run the site, API or MCP
+server: the record ships with the code. The e2e suite uses the Chromium at
+`/opt/pw-browsers/chromium` when present, or `CHROMIUM_PATH`.
+
+Try the MCP server locally with Claude Code:
+
+```bash
+claude mcp add --transport http abrahammoses http://localhost:3000/mcp
+```
+
+## Configuration
+
+| Variable | Needed | Purpose |
+| --- | --- | --- |
+| `ABRAHAMMOSES_PUBLIC_ORIGIN` | Production, **at build and run time** | Canonical origin, e.g. `https://abraham.sagolik.com`. Every URL in pages, API responses, the MCP manifest, canonical links and the sitemap uses it. Unset, a Vercel preview names its own branch URL, a Vercel production build names the project’s production domain, and anything else names `http://localhost:3000`. Set it for Production only, so previews keep their own URL. |
+| `ABRAHAMMOSES_PRIVACY_CONTACT` | Before promoting the site | Address named in the Privacy Policy. The status page warns while it is unset. |
+| `ABRAHAMMOSES_CONTACT` | Recommended | Corrections and enquiries address on About and Terms. |
+| `API_RATE_LIMIT_PER_MINUTE` | No | Per-client limit for REST and MCP (default 120). |
+| `RECORD_INCLUDE_DRAFTS` | Never in production | `1` serves draft revisions for local editorial preview. |
+| `EVIDENCE_PROVIDER`, `ANTHROPIC_API_KEY`, `SUPABASE_*` | Evidence Intelligence only | See [below](#evidence-intelligence). The Privacy Policy describes the AI provider only when one is enabled. |
+
+## Deploying
+
+The app is a standard Next.js 15 application. It is deployed on Vercel as its
+own project, **`abrahammoses`**, at <https://abraham.sagolik.com>
+(`ABRAHAMMOSES_PUBLIC_ORIGIN` for Production; `abrahammoses.vercel.app` serves
+the same deployment). The earlier site at `am.sagolik.com` stays on Lovable,
+unchanged.
+
+- **Separate from Sagolik MCP.** The repository's `main` branch holds a
+  different app (Sagolik MCP, Vercel project `sagolik-mcp`). The `abrahammoses`
+  project's Ignored Build Step, `[ ! -f src/lib/record/record.ts ]`, builds only
+  commits that contain this app, so a push to `main` can never replace it.
+- **Production is promoted deliberately.** Vercel's production branch for a
+  Git-linked project is the repository default (`main`), which this project
+  skips. Pushes to this app's branches build previews. To release, deploy a
+  commit to production (Vercel dashboard → Deployments → Promote, or
+  `vercel deploy --prod` from a checkout). Alternatively, set the project's
+  production branch to this app's branch in Settings → Environments.
+- **Environment.** `EVIDENCE_PROVIDER=corpus` and `EVIDENCE_STORE=memory`
+  (production and preview). With no database, Evidence Intelligence shows its
+  curated demonstrations read-only and refuses to save new analyses or
+  challenges. To let visitors save them, apply
+  `supabase/migrations/20260911000000_evidence_intelligence.sql` to a Supabase
+  project, then set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and
+  `EVIDENCE_STORE=supabase`.
+
+Steps that remain:
+
+1. Set the contact variables (`ABRAHAMMOSES_PRIVACY_CONTACT`,
+   `ABRAHAMMOSES_CONTACT`); `/status` warns until the privacy contact is set.
+2. `abrahammoses.org` does not resolve in DNS today; either configure it as an
+   alias that redirects to the canonical origin or stop publishing it — this
+   app never prints it.
+3. If the canonical domain changes, set `ABRAHAMMOSES_PUBLIC_ORIGIN` for
+   Production and redeploy — static pages bake it into canonical links.
+4. Open `/status`: every self-test should pass, and the canonical-origin check
+   confirms the documented host is the one serving requests.
+
+## The record and the editorial workflow
+
+```
+src/lib/record/
+  taxonomy.ts        classifications, roles, statuses, the four confidence axes and their criteria,
+                     acceptance stances, dependency types, corpus categories
+  schema.ts          Zod schemas for every record type (also the published JSON Schemas)
+  data/
+    live-import.ts   the published ledger, captured verbatim — revision 1 of claims 184–191
+    claims-*.ts      the four research cases
+    derivations.ts   the AND/OR structure; published rationales reproduced verbatim
+    axioms.ts, counter-models.ts, maps.ts, cases.ts, corpus.ts, traditions.ts
+  record.ts          assembly, the public view (drafts removed), record version hash
+  engine.ts          the dependency engine
+  integrity.ts       the checks used by tests, /status and /api/v1/status
+  revisions.lock.json  content hashes of every public revision
+```
+
+**Statuses.** `draft` is never served. `provisional` is public, citable and
+labelled everywhere it appears. `published` means an editor has verified it;
+`externally_reviewed` adds a named outside reviewer. Every revision added in
+this migration is provisional and discloses AI assistance.
+
+**Changing a claim.** Never edit a public revision: append revision *n+1*
+with a change note, then `npm run record:lock`. The lock script refuses to
+rewrite a pinned hash and the test suite fails if a public revision changes.
+To publish a provisional revision after verification, append a revision with
+`status: 'published'` and the reviewer recorded — the provisional one stays
+in the history.
+
+**Integrity.** `checkRecord()` rejects unknown references, unresolved works,
+underived interpretations, circular support, and any flagship case below the
+shared minimum depth (12 claims, 3 positions, 3 counter-models, 6 tradition
+responses). `ref('Hebrews 7:17')` throws at load time for an unknown work, so
+an uncheckable citation cannot be built.
+
+## The dependency model
+
+- A claim may have several **derivations**; it holds while **any** one holds.
+- Within a derivation, every **necessary** premise and **required** axiom must
+  hold. **Supporting** premises and **strengthening** axioms only weaken.
+- Claims grounded in a witness (what a text says) keep their standing as
+  **reports** when the argument behind them fails; they lose their **warrant**.
+  A derivation can require a premise’s report or its warrant.
+- Evaluation is a **least fixed point**, so circular support establishes nothing.
+- A map edge stays grounded while any grounding claim holds.
+- Counter-models are reported as **aligned** or **undermined**; the engine never
+  declares a dispute settled.
+- A **tradition lens** removes the axioms a tradition rejects or sets aside, and
+  nothing else.
+
+Against the published engine (fixtures in `tests/fixtures/live`): rejecting
+typology (`AM-AX-002`) used to collapse `AM-CLAIM-000191`; it is now *weakened*,
+because the covenant argument of Hebrews 8 (`AM-DRV-0007`) does not need
+typology. `AM-DOC-0004` is no longer collapsed while `AM-CLAIM-000186` still
+grounds it.
+
+## Machine access
+
+| Interface | URL | For |
+| --- | --- | --- |
+| MCP | `/mcp` (also `POST /api/public/mcp`) | AI agents and research tools |
+| REST v1 | `/api/v1` · `/api/v1/openapi.json` · `/api/v1/schema/{name}` | Applications |
+| Legacy | `/api/public/{claims,covenants,doctrine,provenance,dependencies,hermeneutics,connect,mcp,agents}` | Existing clients |
+
+Public and read-only; no key. One error envelope with stable codes; CORS open;
+ETags; `RateLimit-*` headers; `X-Record-Version` on every response. Full
+reference at `/developers`.
+
+## Testing
+
+| Suite | Covers |
+| --- | --- |
+| `tests/record.test.ts` | Integrity, equal depth of the four cases, the guided walkthrough, verbatim fidelity to the published ledger, corrected semantics against captured responses, revision lock, draft filtering, machine-involvement labelling |
+| `tests/record-engine.test.ts` | AND/OR, multiple proofs, supporting vs necessary, report vs warrant, cycles, map-edge OR grounding, counter-models, lenses, immutability |
+| `tests/api.test.ts` | Every v1 endpoint against its published schema, OpenAPI coverage, error contract, CORS, ETag/304, rate limiting, canonical host, legacy shapes against live fixtures |
+| `tests/mcp.test.ts` | JSON-RPC protocol, every tool against its output schema, transport (batches, notifications, parse errors, version header, GET), official SDK client end to end |
+| `tests/site-links.test.ts` | Every navigation link resolves to a route |
+| `tests/brand.test.ts` | Every brand asset derives from the traced logo; emblem geometry |
+| `tests/e2e/site.e2e.ts` | Production build in Chromium: server-rendered content, no-JS simulations, sitemap/canonical/robots, 360px layout, console errors, keyboard explorer, lens, local traces, logo, social preview and icons, the emblem introduction (no-JS links, hover and keyboard, reduced motion), axe WCAG 2.2 AA |
+| Evidence Intelligence suites | 168 tests ([below](#tests)) |
+
+## Brand
+
+The logo is the supplied master, `design/brand/abrahammoses-logo-master.png`,
+traced once to vector paths (`scripts/brand/trace_logo.py`, using potracer) and
+stored in `design/brand/logo-paths.json`. Rendered back over the master the
+trace overlaps it with an intersection-over-union of 0.988; the remaining
+differences are single anti-aliased edge pixels. `npm run brand:build` derives
+everything else from those paths:
+
+| Output | Use |
+| --- | --- |
+| `public/brand/abrahammoses-logo.svg`, `-ivory.svg` | The logo in black (for light backgrounds and press) and in the site's ivory (header and footer) |
+| `public/brand/abrahammoses-emblem.svg`, `-ivory.svg` | The emblem alone |
+| `src/app/icon.svg`, `src/app/apple-icon.png` | Browser and touch icons: the gold emblem on midnight |
+| `src/app/opengraph-image.png` | The 1200×630 social preview |
+| `src/components/brand/paths.ts` | Path data and ring geometry for components |
+
+**The emblem introduction** (`src/components/brand/emblem-intro.tsx`) opens the
+homepage. Its four rings are the four research cases, clockwise from the top
+in the historical order of their traditions — the same order as the example
+questions — and the star they lead into is the shared record. On arrival each
+ring lights in turn and traces to the centre. Hovering or focusing a ring, or
+the matching question, traces that question and names it; each ring links to
+its worked answer, so the figure works without JavaScript. It does not animate
+for visitors who prefer reduced motion.
+
+## What still needs a person
+
+These are decisions or facts the code cannot supply:
+
+1. **Editorial verification.** 74 claim revisions, 13 tradition-stance matrices,
+   4 translations and all 4 research cases are provisional and AI-assisted.
+   An editor should verify references against the named editions and publish
+   them as new revisions; the cases should be reviewed by scholars of each
+   tradition. Named editors and reviewers should be added as they are appointed.
+2. **Legal review.** The Privacy Policy and Terms describe what the code does,
+   but they should be reviewed by counsel, and `ABRAHAMMOSES_PRIVACY_CONTACT`
+   set, before the site is promoted. If accounts are ever added, the policy must
+   change first (special-category data, Article 9 GDPR).
+3. **Relationships.** The About page states only what is established: Sagolik
+   owns and operates AbrahamMoses; Doctrine Lab and the Sagolik Sandbox are
+   clients of its public interfaces. Ownership and licensing between Sagolik and
+   Doctrine Lab should be stated there once confirmed.
+4. **Domains and assets.** This app is canonical at `abraham.sagolik.com`;
+   the Lovable site stays at `am.sagolik.com`. Fix or retire
+   `abrahammoses.org`, and correct the `doctrine-lab-logo.jpeg` asset in the
+   Lovable project while it stays live.
+5. **Agent proposals.** The live manifest describes `POST /api/public/agent/act`
+   for editor-issued agent keys. No identities exist, so this branch answers
+   401/403 exactly as the live service did; a proposal queue would need an
+   authenticated store.
+
+
+---
 
 ## Evidence Intelligence
 
@@ -19,7 +284,7 @@ assessment beside it.
 
 ---
 
-## The core commitments
+### The core commitments
 
 **Claims, not corpora.** A passage is broken into atomic claims, each typed
 (textual, historical, archaeological, interpretive, theological, metaphysical
@@ -72,7 +337,7 @@ with the claim; a pile of weak support never produces it.
 
 ---
 
-## Running it
+### Running it
 
 ```bash
 npm install
@@ -85,7 +350,7 @@ npm run build
 No API key is needed locally. The default reasoning provider is corpus-backed
 and deterministic, and storage falls back to a local file.
 
-### Deploying
+#### Deploying
 
 Storage must be Supabase in any deployed environment. A serverless host has a
 read-only bundle filesystem and wipes `/tmp` between cold starts, so the file
@@ -112,10 +377,16 @@ forces it and raises if unconfigured, rather than degrading to a store that
 cannot persist — a deployment that looks healthy until the first restart loses
 everything written since the last one.
 
+A deployment without a database sets `EVIDENCE_STORE=memory` instead. The
+curated demonstrations are rebuilt in memory on each instance's first request,
+and the routes that would save a visitor's work (`POST /api/evidence/analyze`,
+`POST /api/evidence/claims/:id/challenge`) return 503 with the reason, instead
+of accepting work that the next cold start would lose.
+
 Reads are public by RLS policy; writes are `service_role` only. An assessment
 nobody can inspect is not checkable, and checkable is the whole proposition.
 
-### Routes
+#### Routes
 
 | Route | |
 |---|---|
@@ -130,7 +401,7 @@ nobody can inspect is not checkable, and checkable is the whole proposition.
 | `/evidence/analysis/[id]/sources` | Source Ledger |
 | `/evidence/method` | What the figures mean and where the method stops |
 
-### API
+#### API
 
 | | |
 |---|---|
@@ -141,7 +412,7 @@ nobody can inspect is not checkable, and checkable is the whole proposition.
 
 ---
 
-## Architecture
+### Architecture
 
 ```
 src/lib/evidence/
@@ -161,7 +432,7 @@ src/lib/evidence/
   seed/            Curated demonstrations, run through the real pipeline
 ```
 
-### The pipeline
+#### The pipeline
 
 Fourteen stages rather than one large model call, because the separation is
 what makes the output auditable — claim extraction can be cheap, evidence
@@ -175,7 +446,7 @@ sources · 6. Evaluate source quality and independence · 7. Supporting case ·
 11. Uncertainty statement · 12. What would change this · 13. Validate
 citations · 14. Persist with audit records
 
-### Providers
+#### Providers
 
 `EvidenceReasoningProvider` (`providers/types.ts`) has two implementations:
 
@@ -192,7 +463,7 @@ Set `EVIDENCE_PROVIDER=anthropic` with `ANTHROPIC_API_KEY` to enable. A missing
 key degrades to the curated provider rather than taking the feature down, and
 the analysis records which provider actually ran. See `.env.example`.
 
-### Calibration
+#### Calibration
 
 Confidence inflation is the standing risk, so the ceiling is defended
 explicitly rather than left to the arithmetic:
@@ -207,7 +478,7 @@ explicitly rather than left to the arithmetic:
   evidential support, never subject matter: a claim is not scored low for being
   supernatural.
 
-### Auditability
+#### Auditability
 
 Every analysis records its model provider, model version, prompt version,
 analysis version, sources and scoring factors. Challenge Assessments preserve
@@ -217,12 +488,8 @@ instructions changed.
 
 ---
 
-## Known limits
+### Known limits
 
-- **No Evidence Mode toggle** (§38 of the brief). The toggle switches between
-  "normal AbrahamMoses deep analysis" and Evidence Mode — but there is no rest
-  of the application to switch back to, so a toggle would be a control that
-  does nothing. It belongs with the surrounding product, not ahead of it.
 - **Four claim types have no curated analysis** exercising them —
   `ARCHAEOLOGICAL`, `LINGUISTIC`, `GEOGRAPHICAL`, `TRADITIONAL`. They are
   covered by unit tests over the admissibility matrix, not by seed data. Every
@@ -242,10 +509,11 @@ instructions changed.
 - **The curated provider's Challenge Assessment is a re-weighting**, not an
   adversarial review, and says so in its own output. A live provider is needed
   for a real one.
-- **Pro features are architecturally anticipated, not built**: PDF export,
-  academic citation export, saved dossiers, collaborative research, MCP.
+- **Not yet exposed through MCP or REST v1.** The record's MCP server and API
+  (above) serve the Claim Ledger; Evidence Intelligence analyses keep their
+  own `/api/evidence/*` routes.
 
-## Tests
+### Tests
 
 168 tests covering claim extraction, score calculation, confidence-label
 mapping, calibration rules, citation validation, structured-output rejection,

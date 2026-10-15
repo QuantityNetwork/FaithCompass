@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { challengeClaim } from '@/lib/evidence/challenge';
+import { canPersist, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { StructuredOutputError } from '@/lib/evidence/schema';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+  if (!canPersist()) {
+    return NextResponse.json({ error: NOT_PERSISTED_MESSAGE }, { status: 503 });
+  }
   const { id } = await params;
   await ensureSeeded();
 

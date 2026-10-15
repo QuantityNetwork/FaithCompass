@@ -1,0 +1,49 @@
+{
+  "object": "rejection_impact",
+  "rejected": {
+    "kind": "claim",
+    "code": "AM-CLAIM-000186"
+  },
+  "claims": [
+    {
+      "code": "AM-CLAIM-000184",
+      "depth": 1,
+      "effect": "collapses",
+      "via": [
+        "AM-CLAIM-000186",
+        "AM-CLAIM-000184"
+      ]
+    },
+    {
+      "code": "AM-CLAIM-000191",
+      "depth": 2,
+      "effect": "collapses",
+      "via": [
+        "AM-CLAIM-000186",
+        "AM-CLAIM-000184",
+        "AM-CLAIM-000191"
+      ]
+    }
+  ],
+  "map_edges": [
+    {
+      "map_kind": "covenant",
+      "relationship_code": "AM-COV-0006",
+      "effect": "weakened",
+      "via": "AM-CLAIM-000191"
+    },
+    {
+      "map_kind": "doctrine",
+      "relationship_code": "AM-DOC-0003",
+      "effect": "collapses",
+      "via": "AM-CLAIM-000184"
+    },
+    {
+      "map_kind": "doctrine",
+      "relationship_code": "AM-DOC-0004",
+      "effect": "collapses",
+      "via": "AM-CLAIM-000186"
+    }
+  ],
+  "counter_models_vindicated": []
+}
