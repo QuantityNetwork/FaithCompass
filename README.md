@@ -88,7 +88,7 @@ claude mcp add --transport http abrahammoses http://localhost:3000/mcp
 
 | Variable | Needed | Purpose |
 | --- | --- | --- |
-| `ABRAHAMMOSES_PUBLIC_ORIGIN` | Production, **at build and run time** | Canonical origin, e.g. `https://am.sagolik.com`. Every URL in pages, API responses, the MCP manifest, canonical links and the sitemap uses it. Unset, a Vercel preview names its own branch URL, a Vercel production build names the project’s production domain, and anything else names `http://localhost:3000`. Set it for Production only, so previews keep their own URL. |
+| `ABRAHAMMOSES_PUBLIC_ORIGIN` | Production, **at build and run time** | Canonical origin, e.g. `https://abraham.sagolik.com`. Every URL in pages, API responses, the MCP manifest, canonical links and the sitemap uses it. Unset, a Vercel preview names its own branch URL, a Vercel production build names the project’s production domain, and anything else names `http://localhost:3000`. Set it for Production only, so previews keep their own URL. |
 | `ABRAHAMMOSES_PRIVACY_CONTACT` | Before promoting the site | Address named in the Privacy Policy. The status page warns while it is unset. |
 | `ABRAHAMMOSES_CONTACT` | Recommended | Corrections and enquiries address on About and Terms. |
 | `API_RATE_LIMIT_PER_MINUTE` | No | Per-client limit for REST and MCP (default 120). |
@@ -98,7 +98,10 @@ claude mcp add --transport http abrahammoses http://localhost:3000/mcp
 ## Deploying
 
 The app is a standard Next.js 15 application. It is deployed on Vercel as its
-own project, **`abrahammoses`**, at <https://abrahammoses.vercel.app>.
+own project, **`abrahammoses`**, at <https://abraham.sagolik.com>
+(`ABRAHAMMOSES_PUBLIC_ORIGIN` for Production; `abrahammoses.vercel.app` serves
+the same deployment). The earlier site at `am.sagolik.com` stays on Lovable,
+unchanged.
 
 - **Separate from Sagolik MCP.** The repository's `main` branch holds a
   different app (Sagolik MCP, Vercel project `sagolik-mcp`). The `abrahammoses`
@@ -122,15 +125,11 @@ Steps that remain:
 
 1. Set the contact variables (`ABRAHAMMOSES_PRIVACY_CONTACT`,
    `ABRAHAMMOSES_CONTACT`); `/status` warns until the privacy contact is set.
-2. Point the domain at the project. The live `am.sagolik.com` is currently
-   served by a separate Lovable project; adding it to `abrahammoses` and
-   changing its DNS makes the corrected engine, MCP server and legal pages live
-   at the addresses the review tested. `abrahammoses.org` does not resolve in
-   DNS today; either configure it as an alias that redirects to the canonical
-   origin or stop publishing it — this app never prints it.
-3. Set `ABRAHAMMOSES_PUBLIC_ORIGIN` for Production to the chosen domain and
-   redeploy — static pages bake it into canonical links. Until then the
-   project's production domain is used, and previews name their own URL.
+2. `abrahammoses.org` does not resolve in DNS today; either configure it as an
+   alias that redirects to the canonical origin or stop publishing it — this
+   app never prints it.
+3. If the canonical domain changes, set `ABRAHAMMOSES_PUBLIC_ORIGIN` for
+   Production and redeploy — static pages bake it into canonical links.
 4. Open `/status`: every self-test should pass, and the canonical-origin check
    confirms the documented host is the one serving requests.
 
@@ -232,9 +231,10 @@ These are decisions or facts the code cannot supply:
    owns and operates AbrahamMoses; Doctrine Lab and the Sagolik Sandbox are
    clients of its public interfaces. Ownership and licensing between Sagolik and
    Doctrine Lab should be stated there once confirmed.
-4. **Domains and assets.** Decide the canonical host; fix or retire
-   `abrahammoses.org`; correct the `doctrine-lab-logo.jpeg` asset in the Lovable
-   project if it stays live.
+4. **Domains and assets.** This app is canonical at `abraham.sagolik.com`;
+   the Lovable site stays at `am.sagolik.com`. Fix or retire
+   `abrahammoses.org`, and correct the `doctrine-lab-logo.jpeg` asset in the
+   Lovable project while it stays live.
 5. **Agent proposals.** The live manifest describes `POST /api/public/agent/act`
    for editor-issued agent keys. No identities exist, so this branch answers
    401/403 exactly as the live service did; a proposal queue would need an
