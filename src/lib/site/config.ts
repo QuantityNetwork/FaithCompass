@@ -52,6 +52,22 @@ export function canonicalOrigin(): string {
   return 'http://localhost:3000';
 }
 
+/**
+ * Earlier canonical origins that keep serving the same deployment after a domain move
+ * (ABRAHAMMOSES_LEGACY_ORIGINS, comma-separated, e.g. `https://abraham.sagolik.com`).
+ * They are listed as secondary servers in the OpenAPI document and named on the developer
+ * page, so clients configured with them know they still work; the status page treats a
+ * request arriving on one as expected. Empty unless configured; never includes the canonical origin.
+ */
+export function legacyOrigins(): string[] {
+  const canonical = canonicalOrigin();
+  return (process.env.ABRAHAMMOSES_LEGACY_ORIGINS ?? '')
+    .split(',')
+    .map((o) => trim(o.trim()))
+    .filter((o) => /^https?:\/\/[^/\s]+$/.test(o) && o !== canonical)
+    .filter((o, i, all) => all.indexOf(o) === i);
+}
+
 export function absoluteUrl(path: string): string {
   return `${canonicalOrigin()}${path.startsWith('/') ? path : `/${path}`}`;
 }

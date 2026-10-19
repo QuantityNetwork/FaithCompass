@@ -49,7 +49,7 @@ checks it.
 | **P1 · No working research query** | `/research`: ask without signing in; retrieval over published records (reference parsing, transliteration-aware), guardrails for tradition-ranking requests, results grouped as sources · claims · traditions · provenance. No text is generated. | `tests/api.test.ts` (search contract), e2e "research workspace" |
 | **P1 · Coverage and editorial authority** | `/corpus` (every work, edition, citation count, stated gaps), `/methodology` (every criterion published), `/about` (status, relationships, editorial responsibility), `/changelog`, per-revision editorial and machine-involvement disclosure, `/status` with outstanding editorial work. | `tests/record.test.ts` |
 | **P1 · Christian-centred** | Four flagship cases developed to the same minimum depth — Jewish (Torah permanence), Christian (priesthood), Islamic (Ibrāhīm, lineage, revelation), Latter-day Saint (Restoration and authority) — each asked in its own tradition’s categories, with responses marked *addresses*, *asks a different question* or *not comparable*. Doctrine Graph opens on Abraham; Covenant Map shows four readings; no default tradition lens; lists ordered by historical emergence. “Contemporary witness” renamed. | `tests/record.test.ts` ("same minimum depth", "explicit non-comparability", "renames Contemporary witness") |
-| **P2 · Branding** | The AbrahamMoses logo, traced from the supplied master to vectors (see [Brand](#brand)), in the header, footer, icons and social preview — never the “Institute” lockup. The homepage introduction is built on its emblem. Partner identities named in text; organisational status stated without implying accreditation or independence. The mislabelled `doctrine-lab-logo.jpeg` lives in the Lovable project and must be fixed there. | `tests/brand.test.ts`; `tests/e2e/site.e2e.ts` ("brand and emblem introduction") |
+| **P2 · Branding** | The AbrahamMoses corporate logo (“A” mark and “Abraham Moses” wordmark), traced from the supplied master to vectors (see [Brand](#brand)), in the header, footer, icons and social preview — never the “Institute” lockup. The homepage introduction is built on the four-ring emblem. Partner identities named in text; organisational status stated without implying accreditation or independence. The mislabelled `doctrine-lab-logo.jpeg` lives in the Lovable project and must be fixed there. | `tests/brand.test.ts`; `tests/e2e/site.e2e.ts` ("brand and emblem introduction") |
 | **P2 · SEO, performance, accessibility** | Per-route metadata in `<head>` for every client, canonical links, JSON-LD, sitemap with every claim, robots rules; WCAG 2.2 AA fixes (contrast, target size, focusable regions, skip link, keyboard-operable graph). | e2e: axe scan of 25 pages (0 violations), no overflow at 360px, no console errors. Lighthouse (mobile, throttled) below. |
 | **§5A · Reproducible claims** | Stable code and revision, primary witness, edition, translation and licence, classification, evidence, variants, confidence, attribution, counterviews, editorial history, machine involvement — on every claim, in the UI, API and MCP. | `tests/api.test.ts` ("full §5A metadata") |
 | **§5B · Confidence taxonomy** | Textual, philological, historical and inferential axes, each with five written criteria and “not applicable”; traditional acceptance as a per-tradition matrix. Never combined. | `/methodology`; schema |
@@ -89,6 +89,8 @@ claude mcp add --transport http abrahammoses http://localhost:3000/mcp
 | Variable | Needed | Purpose |
 | --- | --- | --- |
 | `ABRAHAMMOSES_PUBLIC_ORIGIN` | Production, **at build and run time** | Canonical origin, e.g. `https://abraham.sagolik.com`. Every URL in pages, API responses, the MCP manifest, canonical links and the sitemap uses it. Unset, a Vercel preview names its own branch URL, a Vercel production build names the project’s production domain, and anything else names `http://localhost:3000`. Set it for Production only, so previews keep their own URL. |
+| `ABRAHAMMOSES_LEGACY_ORIGINS` | After a domain move | Comma-separated previous canonical origins that keep serving this deployment, e.g. `https://abraham.sagolik.com`. They are listed as secondary `servers` in the OpenAPI document, named on `/developers`, and accepted by the `/status` canonical-origin check. The canonical origin itself is ignored here. |
+| `ABRAHAMMOSES_REDIRECT_LEGACY_HOSTS` | Only once the new domain is live, **at build time** | `1` makes every page on a legacy host answer 308 with the same path and query on `ABRAHAMMOSES_PUBLIC_ORIGIN` (`next.config.mjs` → `src/lib/site/legacy-redirects.mjs`). `/api/*`, `/mcp` and `/_next/*` are never redirected, so REST and MCP clients configured with the old host keep working. It has no effect unless `ABRAHAMMOSES_PUBLIC_ORIGIN` is an `https` origin. Off by default. |
 | `ABRAHAMMOSES_PRIVACY_CONTACT` | Before promoting the site | Address named in the Privacy Policy. The status page warns while it is unset. |
 | `ABRAHAMMOSES_CONTACT` | Recommended | Corrections and enquiries address on About and Terms. |
 | `API_RATE_LIMIT_PER_MINUTE` | No | Per-client limit for REST and MCP (default 120). |
@@ -132,6 +134,32 @@ Steps that remain:
    Production and redeploy — static pages bake it into canonical links.
 4. Open `/status`: every self-test should pass, and the canonical-origin check
    confirms the documented host is the one serving requests.
+
+### Moving to abrahammoses.com
+
+The code names no host itself: every canonical link, `metadataBase`, sitemap
+and robots entry, Open Graph image URL, the MCP and REST URLs on `/developers`
+and the OpenAPI `servers` come from `ABRAHAMMOSES_PUBLIC_ORIGIN`. Merging or
+deploying this code therefore changes nothing until the variables change. In
+order, and only once `abrahammoses.com` is registered and serves this project
+with a valid certificate:
+
+1. Add `abrahammoses.com` (and `www.abrahammoses.com` → apex, 308) to the
+   `abrahammoses` Vercel project. Keep `abraham.sagolik.com` on it.
+2. Set, for Production: `ABRAHAMMOSES_PUBLIC_ORIGIN=https://abrahammoses.com`
+   and `ABRAHAMMOSES_LEGACY_ORIGINS=https://abraham.sagolik.com`. Redeploy and
+   promote. Both hosts now serve the site; canonical links, the sitemap and
+   documented API URLs name the new one, and the old host is still a listed
+   server for API and MCP clients.
+3. When ready to move search traffic, also set
+   `ABRAHAMMOSES_REDIRECT_LEGACY_HOSTS=1` and redeploy: pages on
+   `abraham.sagolik.com` then redirect permanently to `abrahammoses.com`, while
+   `/api/*` and `/mcp` keep answering there.
+4. Open `/status` on both hosts; the canonical-origin check passes on each.
+
+Setting step 2 before the domain resolves would publish canonical links, Open
+Graph images and API URLs that do not work, so do not set it early. Rolling
+back is unsetting the variables and redeploying.
 
 ## The record and the editorial workflow
 
@@ -211,26 +239,38 @@ reference at `/developers`.
 | `tests/api.test.ts` | Every v1 endpoint against its published schema, OpenAPI coverage, error contract, CORS, ETag/304, rate limiting, canonical host, legacy shapes against live fixtures |
 | `tests/mcp.test.ts` | JSON-RPC protocol, every tool against its output schema, transport (batches, notifications, parse errors, version header, GET), official SDK client end to end |
 | `tests/site-links.test.ts` | Every navigation link resolves to a route |
-| `tests/brand.test.ts` | Every brand asset derives from the traced logo; emblem geometry |
+| `tests/brand.test.ts` | Every brand asset derives from the traced logos; emblem geometry; favicon set |
+| `tests/legacy-redirects.test.ts` | Legacy-host redirects are off by default and never catch `/api`, `/mcp` or `/_next` |
 | `tests/e2e/site.e2e.ts` | Production build in Chromium: server-rendered content, no-JS simulations, sitemap/canonical/robots, 360px layout, console errors, keyboard explorer, lens, local traces, logo, social preview and icons, the emblem introduction (no-JS links, hover and keyboard, reduced motion), axe WCAG 2.2 AA |
 | Evidence Intelligence suites | 168 tests ([below](#tests)) |
 
 ## Brand
 
-The logo is the supplied master, `design/brand/abrahammoses-logo-master.png`,
-traced once to vector paths (`scripts/brand/trace_logo.py`, using potracer) and
-stored in `design/brand/logo-paths.json`. Rendered back over the master the
-trace overlaps it with an intersection-over-union of 0.988; the remaining
-differences are single anti-aliased edge pixels. `npm run brand:build` derives
-everything else from those paths:
+The corporate logo is the supplied master,
+`design/brand/corporate/abrahammoses-corporate-master.png`: a rounded-square
+“A” mark and the two-line “Abraham Moses” wordmark. It is traced once to vector
+paths (`scripts/brand/trace_corporate.py`, using the potrace CLI at 4× scale)
+and stored in `design/brand/corporate/logo-paths.json`. Rendered back over the
+master the trace overlaps it with an intersection-over-union of 0.988
+(`npm run brand:build -- --check`). The four-ring emblem keeps its own trace
+(`design/brand/logo-paths.json`, `scripts/brand/trace_logo.py`) and is used
+only by the homepage introduction. `npm run brand:build` derives everything
+else from those paths:
 
 | Output | Use |
 | --- | --- |
-| `public/brand/abrahammoses-logo.svg`, `-ivory.svg` | The logo in black (for light backgrounds and press) and in the site's ivory (header and footer) |
-| `public/brand/abrahammoses-emblem.svg`, `-ivory.svg` | The emblem alone |
-| `src/app/icon.svg`, `src/app/apple-icon.png` | Browser and touch icons: the gold emblem on midnight |
-| `src/app/opengraph-image.png` | The 1200×630 social preview |
-| `src/components/brand/paths.ts` | Path data and ring geometry for components |
+| `public/brand/abrahammoses-logo.svg`, `-ivory.svg` | The corporate lockup in black (for light backgrounds and press) and in the site's ivory (header and footer) |
+| `public/brand/abrahammoses-mark.svg`, `-ivory.svg` | The “A” mark alone |
+| `public/brand/abrahammoses-emblem.svg`, `-ivory.svg` | The four-ring emblem alone |
+| `src/app/icon.svg`, `src/app/apple-icon.png` | Browser and touch icons: the white mark on the logo's navy (`#080E16`) |
+| `src/app/opengraph-image.png` | The 1200×630 social preview: the white lockup on navy |
+| `src/components/brand/paths.ts` | Path data, viewboxes and ring geometry for components |
+
+The static favicon set comes from the brand kit, where the 16 px size is
+hand-hinted rather than downscaled: `src/app/favicon.ico` (16, 32, 48),
+`public/favicon-16x16.png`, `favicon-32x32.png`, `android-chrome-192x192.png`,
+`android-chrome-512x512.png` and `maskable-512x512.png`, listed in the web
+manifest (`src/app/manifest.ts`).
 
 **The emblem introduction** (`src/components/brand/emblem-intro.tsx`) opens the
 homepage. Its four rings are the four research cases, clockwise from the top
@@ -258,8 +298,11 @@ These are decisions or facts the code cannot supply:
    owns and operates AbrahamMoses; Doctrine Lab and the Sagolik Sandbox are
    clients of its public interfaces. Ownership and licensing between Sagolik and
    Doctrine Lab should be stated there once confirmed.
-4. **Domains and assets.** This app is canonical at `abraham.sagolik.com`;
-   the Lovable site stays at `am.sagolik.com`. Fix or retire
+4. **Domains and assets.** This app is canonical at `abraham.sagolik.com`
+   until `abrahammoses.com` is registered and live (see
+   [Moving to abrahammoses.com](#moving-to-abrahammosescom)); the Lovable site
+   stays at `am.sagolik.com`. Whether the name is written “AbrahamMoses” (text,
+   logo alt) or “Abraham Moses” (the new wordmark) is still to be decided. Fix or retire
    `abrahammoses.org`, and correct the `doctrine-lab-logo.jpeg` asset in the
    Lovable project while it stays live.
 5. **Agent proposals.** The live manifest describes `POST /api/public/agent/act`

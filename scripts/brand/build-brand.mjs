@@ -1,16 +1,28 @@
 /**
- * Derive every brand asset from the traced logo.
+ * Derive every brand asset from the traced logos.
  *
  *   npm run brand:build            write the assets
- *   npm run brand:build -- --check also render the logo over the master and report the overlap
+ *   npm run brand:build -- --check also render the logo at the master's scale for comparison
  *
- * Input: design/brand/logo-paths.json (from scripts/brand/trace_logo.py).
+ * Inputs:
+ *   design/brand/corporate/logo-paths.json  the corporate logo: "A" mark + two-line wordmark
+ *                                           (from scripts/brand/trace_corporate.py)
+ *   design/brand/logo-paths.json            the four-ring emblem, used by the homepage introduction
+ *                                           (from scripts/brand/trace_logo.py)
  * Output:
  *   src/components/brand/paths.ts     path data and emblem geometry for components
- *   public/brand/*.svg                logo and emblem, black and ivory
- *   src/app/icon.svg                  browser icon: gold emblem on midnight
+ *   public/brand/abrahammoses-logo*.svg   corporate lockup, black and ivory
+ *   public/brand/abrahammoses-mark*.svg   corporate "A" mark alone, black and ivory
+ *   public/brand/abrahammoses-emblem*.svg the four-ring emblem, black and ivory
+ *   src/app/icon.svg                  browser icon: the mark on a navy tile
  *   src/app/apple-icon.png            180×180 touch icon
  *   src/app/opengraph-image.png       1200×630 social preview
+ *
+ * Not generated here (committed from the brand kit, rendered from the same paths):
+ *   src/app/favicon.ico (16/32/48; the 16px layer is hand-hinted so the mark stays
+ *   legible), public/favicon-16x16.png, public/favicon-32x32.png,
+ *   public/android-chrome-192x192.png, public/android-chrome-512x512.png,
+ *   public/maskable-512x512.png.
  */
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -19,13 +31,12 @@ import { chromium } from 'playwright';
 
 const ROOT = join(import.meta.dirname, '../..');
 const traced = JSON.parse(readFileSync(join(ROOT, 'design/brand/logo-paths.json'), 'utf8'));
-const { width: W, height: H } = traced;
-const { emblem, wordmark } = traced.parts;
+const { emblem } = traced.parts;
+const corporate = JSON.parse(readFileSync(join(ROOT, 'design/brand/corporate/logo-paths.json'), 'utf8'));
+const { width: W, height: H, markWidth: MW, markHeight: MH } = corporate;
+const { mark, wordmark } = corporate.parts;
 
-const COLORS = { ink: '#000000', ivory: '#f4efe4', midnight: '#0b1020', gold: '#c9a227', goldBright: '#e8c14f' };
-
-// The divider is a plain rule: measured from the master (columns 351–356, rows 371–563), less the crop origin.
-const DIVIDER = { x: 351 - traced.crop[0], y: 371 - traced.crop[1], width: 6, height: 193 };
+const COLORS = { ink: '#000000', ivory: '#f4efe4', white: '#ffffff', navy: corporate.navy, midnight: '#0b1020', gold: '#c9a227', goldBright: '#e8c14f' };
 
 // Emblem geometry, measured from the master: the hole of each ring and the centre of the star.
 const EMBLEM_VIEWBOX = { width: 250, height: 268 };
@@ -57,20 +68,34 @@ function sparklePath(d) {
 const SPARKLE = sparklePath(emblem);
 
 function logoSvg(fill, title = 'AbrahamMoses') {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${title}"><title>${title}</title><g fill="${fill}" fill-rule="evenodd"><path d="${emblem}"/><rect x="${DIVIDER.x}" y="${DIVIDER.y}" width="${DIVIDER.width}" height="${DIVIDER.height}"/><path d="${wordmark}"/></g></svg>\n`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${title}"><title>${title}</title><g fill="${fill}"><path d="${mark}"/><path d="${wordmark}"/></g></svg>`;
+}
+
+function markSvg(fill, title = 'AbrahamMoses') {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MW} ${MH}" width="${MW}" height="${MH}" role="img" aria-label="${title}"><title>${title}</title><path fill="${fill}" d="${mark}"/></svg>`;
 }
 
 function emblemSvg(fill, title = 'AbrahamMoses') {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${EMBLEM_VIEWBOX.width} ${EMBLEM_VIEWBOX.height}" width="${EMBLEM_VIEWBOX.width}" height="${EMBLEM_VIEWBOX.height}" role="img" aria-label="${title}"><title>${title}</title><path fill="${fill}" fill-rule="evenodd" d="${emblem}"/></svg>\n`;
 }
 
-/** Square icon: the emblem centred on a midnight tile, with a gold mark. */
-function iconSvg(size = 64, radius = 12) {
-  const pad = 0.12;
-  const scale = (size * (1 - pad * 2)) / EMBLEM_VIEWBOX.height;
-  const tx = (size - EMBLEM_VIEWBOX.width * scale) / 2;
-  const ty = (size - EMBLEM_VIEWBOX.height * scale) / 2;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><rect width="${size}" height="${size}" rx="${radius}" fill="${COLORS.midnight}"/><path transform="translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${scale.toFixed(4)})" fill="${COLORS.goldBright}" fill-rule="evenodd" d="${emblem}"/></svg>\n`;
+/**
+ * Browser icon: the mark on a navy tile. The mark is a white rounded square with the "A" cut out;
+ * the navy behind it fills the cut-outs, so the A reads on light and dark tabs alike. The tile is
+ * inset slightly so no navy shows around the mark's rounded top corners.
+ */
+function iconSvg() {
+  const S = MW;
+  const i = S * 0.02;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${S} ${S}" width="32" height="32"><rect x="${i}" y="${i}" width="${S - 2 * i}" height="${S - i}" rx="${S * 0.2}" fill="${COLORS.navy}"/><path fill="${COLORS.white}" d="${mark}"/></svg>`;
+}
+
+/** App icon: the mark centred on a full navy square, at `fraction` of the width. */
+function appIconSvg(size, fraction) {
+  const S = MW / fraction;
+  const x = (MW - S) / 2;
+  const y = (MH - S) / 2;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x} ${y} ${S} ${S}" width="${size}" height="${size}" style="display:block"><rect x="${x}" y="${y}" width="${S}" height="${S}" fill="${COLORS.navy}"/><path fill="${COLORS.white}" d="${mark}"/></svg>`;
 }
 
 function write(rel, content) {
@@ -80,6 +105,8 @@ function write(rel, content) {
 
 write('public/brand/abrahammoses-logo.svg', logoSvg(COLORS.ink));
 write('public/brand/abrahammoses-logo-ivory.svg', logoSvg(COLORS.ivory));
+write('public/brand/abrahammoses-mark.svg', markSvg(COLORS.ink));
+write('public/brand/abrahammoses-mark-ivory.svg', markSvg(COLORS.ivory));
 write('public/brand/abrahammoses-emblem.svg', emblemSvg(COLORS.ink));
 write('public/brand/abrahammoses-emblem-ivory.svg', emblemSvg(COLORS.ivory));
 write('src/app/icon.svg', iconSvg());
@@ -87,11 +114,13 @@ write('src/app/icon.svg', iconSvg());
 write(
   'src/components/brand/paths.ts',
   `/**
- * Generated by scripts/brand/build-brand.mjs from design/brand/logo-paths.json,
- * a trace of the AbrahamMoses logo master. Do not edit by hand.
+ * Generated by scripts/brand/build-brand.mjs from design/brand/corporate/logo-paths.json
+ * (the corporate logo) and design/brand/logo-paths.json (the four-ring emblem). Do not edit by hand.
  */
 
+/** The corporate lockup: "A" mark and the two-line wordmark. */
 export const LOGO_VIEWBOX = { width: ${W}, height: ${H} } as const;
+export const MARK_VIEWBOX = { width: ${MW}, height: ${MH} } as const;
 export const EMBLEM_VIEWBOX = ${JSON.stringify(EMBLEM_VIEWBOX)} as const;
 
 /** The emblem: four rings joined through a four-pointed star. */
@@ -122,14 +151,12 @@ async function render(html, width, height, rel) {
   console.log(`wrote ${rel} (${width}×${height})`);
 }
 
-await render(iconSvg(180, 0).replace('<svg ', '<svg style="display:block" '), 180, 180, 'src/app/apple-icon.png');
+await render(appIconSvg(180, 0.66), 180, 180, 'src/app/apple-icon.png');
 
-const ogLogoWidth = 820;
+const ogLogoWidth = 760;
 await render(
-  `<div style="width:1200px;height:630px;background:${COLORS.midnight};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px">
-    <div style="width:${ogLogoWidth}px">${logoSvg(COLORS.ivory).replace('<svg ', '<svg style="display:block;width:100%;height:auto" ')}</div>
-    <div style="width:120px;height:1px;background:${COLORS.gold}"></div>
-    <div style="font:500 20px/1 Inter, 'Helvetica Neue', Arial, sans-serif;letter-spacing:0.32em;text-transform:uppercase;color:${COLORS.gold}">Structured Theological Intelligence</div>
+  `<div style="width:1200px;height:630px;background:${COLORS.navy};display:flex;align-items:center;justify-content:center">
+    <div style="width:${ogLogoWidth}px">${logoSvg(COLORS.white).replace('<svg ', '<svg style="display:block;width:100%;height:auto" ')}</div>
   </div>`,
   1200,
   630,
@@ -137,11 +164,11 @@ await render(
 );
 
 if (process.argv.includes('--check')) {
-  // Render the black logo at the master's scale; the trace script's docstring records the expected overlap.
-  const page = await browser.newPage({ viewport: { width: W, height: H } });
-  await page.setContent(`<!doctype html><html><body style="margin:0;background:#fff">${logoSvg(COLORS.ink).replace('<svg ', '<svg style="display:block" ')}</body></html>`);
-  writeFileSync(join(ROOT, 'design/brand/.check-render.png'), await page.screenshot({ clip: { x: 0, y: 0, width: W, height: H } }));
-  console.log('wrote design/brand/.check-render.png — compare with the master crop', traced.crop.join(','));
+  // Render the logo white on navy at the master's scale, to compare with the master crop.
+  const page = await browser.newPage({ viewport: { width: Math.ceil(W), height: Math.ceil(H) } });
+  await page.setContent(`<!doctype html><html><body style="margin:0;background:${COLORS.navy}">${logoSvg(COLORS.white).replace('<svg ', '<svg style="display:block" ')}</body></html>`);
+  writeFileSync(join(ROOT, 'design/brand/.check-render.png'), await page.screenshot({ clip: { x: 0, y: 0, width: Math.ceil(W), height: Math.ceil(H) } }));
+  console.log('wrote design/brand/.check-render.png — compare with the master crop', corporate.crop.join(','));
 }
 
 await browser.close();

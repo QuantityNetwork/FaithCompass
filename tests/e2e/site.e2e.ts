@@ -199,11 +199,20 @@ describe('brand and emblem introduction', () => {
     expect(html).toContain('<meta name="twitter:card" content="summary_large_image"/>');
     expect(html).toMatch(/<link rel="icon" href="\/icon\.svg/);
     expect(html).toMatch(/<link rel="apple-touch-icon" href="\/apple-icon\.png/);
-    for (const asset of ['/brand/abrahammoses-logo-ivory.svg', '/brand/abrahammoses-logo.svg', '/icon.svg']) {
+    expect(html).toMatch(/<link rel="icon" href="\/favicon\.ico"/);
+    expect(html).toContain('<link rel="manifest" href="/manifest.webmanifest"/>');
+    for (const asset of ['/brand/abrahammoses-logo-ivory.svg', '/brand/abrahammoses-logo.svg', '/brand/abrahammoses-mark.svg', '/icon.svg']) {
       const res = await fetch(`${base}${asset}`);
       expect(res.status, asset).toBe(200);
       expect(res.headers.get('content-type'), asset).toContain('image/svg+xml');
     }
+    const manifest = await (await fetch(`${base}/manifest.webmanifest`)).json();
+    for (const icon of manifest.icons as Array<{ src: string }>) {
+      const res = await fetch(`${base}${icon.src}`);
+      expect(res.status, icon.src).toBe(200);
+      expect(res.headers.get('content-type'), icon.src).toContain('image/png');
+    }
+    expect((await fetch(`${base}/favicon.ico`)).status).toBe(200);
   });
 
   it('works without JavaScript: each ring is a link to its worked answer', async () => {

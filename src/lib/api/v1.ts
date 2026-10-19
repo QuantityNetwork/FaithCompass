@@ -10,7 +10,7 @@
 import { z } from 'zod/v4';
 import { getRecord, type AbrahamMosesRecord } from '@/lib/record/record';
 import { RecordSchema } from '@/lib/record/schema';
-import { API_VERSION, SITE_DESCRIPTION, SITE_NAME, absoluteUrl, canonicalOrigin } from '@/lib/site/config';
+import { API_VERSION, SITE_DESCRIPTION, SITE_NAME, absoluteUrl, canonicalOrigin, legacyOrigins } from '@/lib/site/config';
 import { ApiError, ERROR_CODES, errorResponse, guarded, jsonResponse, readJsonBody } from './http';
 import {
   CaseSummaryV1,
@@ -618,7 +618,10 @@ export function openApiDocument() {
       version: API_VERSION,
       description: `${SITE_DESCRIPTION} Public and read-only: no key is required. Responses carry X-Record-Version; published revisions are immutable.`,
     },
-    servers: [{ url: canonicalOrigin() }],
+    servers: [
+      { url: canonicalOrigin() },
+      ...legacyOrigins().map((url) => ({ url, description: 'Previous host; still serves the same API.' })),
+    ],
     paths,
     components: { schemas: components },
     externalDocs: { url: absoluteUrl('/developers'), description: 'Developer documentation' },

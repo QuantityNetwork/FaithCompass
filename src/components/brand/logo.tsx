@@ -1,9 +1,10 @@
 import { LOGO_VIEWBOX } from './paths';
 
 /**
- * The AbrahamMoses logo, served as a cached SVG file rather than inlined: the
- * wordmark's outlines are about 30 KB, which every page would otherwise repeat.
- * The site is dark-only, so the ivory rendering is the default.
+ * The AbrahamMoses corporate logo (the "A" mark and the two-line wordmark),
+ * served as a cached SVG file rather than inlined: the wordmark's outlines are
+ * about 20 KB, which every page would otherwise repeat. The site is dark-only,
+ * so the ivory rendering is the default.
  */
 export function Logo({ height, tone = 'ivory', className }: { height: number; tone?: 'ivory' | 'ink'; className?: string }) {
   const width = Math.round((height * LOGO_VIEWBOX.width) / LOGO_VIEWBOX.height);

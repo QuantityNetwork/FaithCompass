@@ -91,13 +91,13 @@ svg {
 
 .brand__logo {
   display: block;
-  height: 30px;
+  height: 40px;
   width: auto;
 }
 
 @media (max-width: 640px) {
   .brand__logo {
-    height: 24px;
+    height: 34px;
   }
 }
 
