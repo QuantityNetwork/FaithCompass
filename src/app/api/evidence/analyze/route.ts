@@ -46,6 +46,15 @@ export async function POST(request: Request) {
     );
   }
 
+  // On Firestore every write carries the user's own ID token (ADR 0001): an anonymous draft cannot be stored, so
+  // say so before running the analysis rather than failing after it.
+  if (storeFor(gate.actor).requiresIdentity && !gate.actor.authenticated) {
+    return NextResponse.json(
+      { error: 'Sign in to save an analysis: drafts are stored under your own account.', code: 'unauthenticated' },
+      { status: 401, headers: noStore },
+    );
+  }
+
   try {
     const result = await runAnalysis({
       query: parsed.data.query,

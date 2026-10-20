@@ -84,6 +84,17 @@ describe('store selection with Firebase', () => {
   });
 });
 
+describe('anonymous drafts on Firestore', () => {
+  it('answer 401 before any analysis runs, and write nothing', async () => {
+    const calls: string[] = [];
+    setStore(new FirestoreEvidenceStore(new FirestoreRest({ projectId: 'p', emulatorHost: null }, null, async (url: string) => (calls.push(url), new Response('', { status: 404 })))));
+    const { POST } = await import('@/app/api/evidence/analyze/route');
+    const res = await POST(new Request('http://localhost/api/evidence/analyze', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'http://localhost' }, body: JSON.stringify({ query: 'Daniel 12:1' }) }));
+    expect(res.status).toBe(401);
+    expect(calls.filter((u) => u.includes(':commit'))).toEqual([]);
+  });
+});
+
 describe('curated demonstrations on Firestore', () => {
   it('carry the same version stamp in every server instance, so proposals stay valid across instances', async () => {
     const { runAnalysis } = await import('@/lib/evidence/pipeline');
