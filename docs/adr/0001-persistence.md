@@ -1,7 +1,7 @@
 # ADR 0001: Persistence on Firebase (Firestore and Firebase Auth, EU region)
 
 Status: Accepted (owner decision 2026-10-20). Adapter, security rules and emulator tests implemented; not yet enabled in any deployment. Firebase project: `abrahammoses-a0a26` (Firestore in the EU and Email/Password Auth enabled by the owner, 2026-10-20). Date: 2026-10-20. Supersedes the earlier draft of this ADR, which chose Supabase Postgres. Revised 2026-10-20: **no admin key** (the owner cannot create service-account keys).
-Deciders: Mikael Markus Andersson (owner); drafted by Grok Bot.
+Deciders: the owner; drafted by Grok Bot.
 
 ## Context
 

@@ -44,13 +44,13 @@ export default function PrivacyPage() {
 
         <h2>Who is responsible</h2>
         <p>
-          The controller is {OPERATOR.name} ({OPERATOR.status}), who writes, builds and operates {SITE_NAME}.{' '}
+          The controller is the operator of {SITE_NAME}: {OPERATOR.name}, {OPERATOR.location}.{' '}
           {contact.privacy ? (
             <>
               Privacy requests: <a className="link" href={`mailto:${contact.privacy}`}>{contact.privacy}</a>.
             </>
           ) : (
-            <>A dedicated privacy contact address will be published here. Until then, requests can be made through {OPERATOR.name}.</>
+            <>A dedicated privacy contact address will be published here. Until then, requests can be made through the contact address on this site.</>
           )}
         </p>
 

@@ -17,6 +17,7 @@ import { firestoreConfigured } from '@/lib/firebase/firestore-rest';
 import { getStore } from '@/lib/evidence/store';
 import { FirestoreEvidenceStore } from '@/lib/evidence/store/firestore-store';
 import { SupabaseEvidenceStore } from '@/lib/evidence/store/supabase-store';
+import { PILOT_CHECKOUT_ENABLED, PILOT_PAYMENT_LINK, SALES_STATUS, TERMS_REVIEW_NOTE, sellerContact, sellerText } from '@/lib/decision/product';
 import { API_VERSION, OPERATOR, canonicalOrigin, canonicalOriginSource, legacyOrigins, legalContact } from '@/lib/site/config';
 import { providerStatus } from '@/lib/evidence/providers/registry';
 import { dispatchLegacy } from './legacy';
@@ -189,9 +190,17 @@ export async function statusReport(
       const privacy = process.env.ABRAHAMMOSES_PRIVACY_CONTACT ? 'a dedicated privacy address' : 'the operator contact (no dedicated privacy address)';
       return {
         result: 'pass',
-        detail: `Operator: ${OPERATOR.name} (${OPERATOR.status}). A contact address (ABRAHAMMOSES_CONTACT) is published on the Terms of Sale, product and legal pages; privacy requests go to ${privacy}.`,
+        detail: `Operator: ${OPERATOR.name}, ${OPERATOR.location}. A contact address (ABRAHAMMOSES_CONTACT) is published on the Terms of Sale, product and legal pages; privacy requests go to ${privacy}.`,
       };
     }),
+    timed('pilot_checkout', 'Pilot reservations (Stripe payment link)', () =>
+      PILOT_CHECKOUT_ENABLED
+        ? {
+            result: 'pass',
+            detail: `Pilot checkout enabled: 'Reserve a pilot' opens the Stripe payment link (${PILOT_PAYMENT_LINK}), a paid reservation that starts once private workspaces are available. ${sellerText(sellerContact(legalContact().general))} Terms of Sale: ${SALES_STATUS.toLowerCase()}; ${TERMS_REVIEW_NOTE.toLowerCase().replace(/\.$/, '')}. Whether the link is active in Stripe is not probed here (no Stripe keys).`,
+          }
+        : { result: 'pass', detail: 'Pilot checkout disabled: pilots are offered by email enquiry only.' },
+    ),
   ]);
 
   const outstanding: Record<string, number> = {};

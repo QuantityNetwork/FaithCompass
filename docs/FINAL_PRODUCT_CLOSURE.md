@@ -31,7 +31,7 @@ Labels: **Operational** (works in production on real data) · **Demonstration** 
 | Editorial workflow (drafts, proposals, second-editor approval) | Blocked | Code + local RLS tests exist; needs DB (B1), auth (B2), editors (B3) |
 | External scholarly review | Blocked | B4; 0 reviewers |
 | Institutional Decision Room — Private Credit Decision Twin | Demonstration, deployed and verified 2026-10-20 | Synthetic $120M facility; deterministic rules; no AI |
-| AbrahamMoses Decision Twin product page and pricing | Demonstration; indicative pricing, pilots not on sale; enquiries by email | Seller Mikael Markus Andersson (private individual, Sweden), prices without VAT (not VAT-registered); no checkout rendered and the payment link is paused in Stripe; 'Request a pilot' mailto to `ABRAHAMMOSES_CONTACT`; draft terms 'not in force'. Selling requires B10 |
+| AbrahamMoses Decision Twin product page and pricing | Pilot reservations on sale once deployed (owner decision 2026-10-21); a paid reservation that starts once private workspaces are available | Seller shown as Sagolik, Halmstad, Sweden; prices exclude VAT (seller not VAT-registered); 'Reserve a pilot' opens the Stripe payment link (reactivated in Stripe only with the production deploy); Terms of Sale 1.0 in force, not reviewed by a lawyer. See B10 |
 | Institutional use cases (8 sectors) | Frozen (not to be built for now) | D2 |
 | Private tenant workspaces | Blocked | B1, B2, D3; no client data may be accepted |
 

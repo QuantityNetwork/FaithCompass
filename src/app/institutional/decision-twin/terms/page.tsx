@@ -1,36 +1,38 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageIntro } from '@/components/record/ui';
-import { SALES_STATUS, SELLER, SELLER_LINE, TERMS_REVIEW_NOTE, sellerContact } from '@/lib/decision/product';
+import { PILOT_PAYMENT_LINK, SALES_STATUS, SELLER_LINE, TERMS_REVIEW_NOTE, VAT_NOTE, sellerContact } from '@/lib/decision/product';
 import { legalContact } from '@/lib/site/config';
 
 export const metadata: Metadata = {
   title: 'Terms of Sale — Decision Twin Pilot',
   description:
-    'Draft terms, not in force, for a future 90-day AbrahamMoses Decision Twin pilot sold by Mikael Markus Andersson (private individual, Sweden) to businesses and organisations. No sales are accepted until private workspaces exist.',
+    'Terms of Sale for a paid reservation of a 90-day AbrahamMoses Decision Twin pilot, sold by Sagolik, Halmstad, Sweden, to businesses and organisations. The pilot starts once private workspaces are available.',
   alternates: { canonical: '/institutional/decision-twin/terms' },
 };
 
-const TERMS_OF_SALE_VERSION = 'Draft 0.2 · 20 October 2026';
-const SELLER_NAME = SELLER.name;
+const TERMS_OF_SALE_VERSION = 'Version 1.0 · 21 October 2026';
 
 export default function DecisionTwinTermsPage() {
   const contact = sellerContact(legalContact().general);
   return (
     <main id="main" className="shell shell--narrow page">
-      <PageIntro eyebrow={`Legal · ${TERMS_OF_SALE_VERSION} · Draft, not in force`} title="Terms of Sale — Decision Twin Pilot" />
+      <PageIntro eyebrow={`Legal · ${TERMS_OF_SALE_VERSION} · In force`} title="Terms of Sale — Decision Twin Pilot" />
       <div className="prose-block">
         <p className="am-note" role="note">
-          <strong>{SALES_STATUS}.</strong> {TERMS_REVIEW_NOTE} They are published so prospective buyers can see the intended
-          terms, and they may change before they come into force. To ask about a pilot, use the contact below; a request is an
-          enquiry, not a purchase.
+          <strong>{SALES_STATUS}.</strong> {TERMS_REVIEW_NOTE} They apply to pilot reservations paid through the Stripe
+          checkout linked from the pricing page. A reservation is governed by the version in force on the day you pay. To ask
+          about a pilot before paying, use the contact below; an email is an enquiry, not a purchase.
         </p>
 
         <h2>1. Seller</h2>
         <p>
-          The seller is {SELLER_LINE}, {SELLER.location}. The seller is a private individual, not a company: there is no
-          organisation number and no VAT registration. “AbrahamMoses”, “Decision Twin” and “Sagolik Institutional” are names
-          of the product, not of a legal entity.
+          The seller is {SELLER_LINE}. Contact:{' '}
+          <a className="link" href={`mailto:${contact}`}>
+            {contact}
+          </a>
+          . The seller is not VAT-registered. The seller’s legal name is shown on the Stripe receipt. “AbrahamMoses”,
+          “Decision Twin” and “Sagolik Institutional” are names of the product.
         </p>
 
         <h2>2. Buyers: businesses and organisations only</h2>
@@ -43,8 +45,8 @@ export default function DecisionTwinTermsPage() {
         <h2>3. What you buy</h2>
         <p>
           A reservation for a 90-day pilot of the AbrahamMoses Decision Twin: one private workspace, for up to 10 users, with
-          onboarding. Private institutional workspaces have not yet been released. The 90-day pilot period starts only when they
-          are released and on a start date agreed with you in writing. Until then, the public demonstration (the{' '}
+          onboarding. You are paying for a reservation: private institutional workspaces are not yet available. The 90-day
+          pilot period starts only once they are available, on a start date agreed with you in writing. Until then, the public demonstration (the{' '}
           <Link className="link" href="/institutional/decision-room">
             Decision Room
           </Link>
@@ -53,14 +55,17 @@ export default function DecisionTwinTermsPage() {
 
         <h2>4. Price, VAT and receipt</h2>
         <p>
-          The indicative price is €9,500. It is stated without VAT because the seller is not VAT-registered, so no VAT would be
-          added and the seller’s invoice would carry no VAT number. When sales open, Stripe issues the invoice and receipt.
+          The price is €9,500, paid once. {VAT_NOTE}, so no VAT is added and the invoice carries no seller VAT number. Stripe
+          issues the invoice and receipt.
         </p>
 
         <h2>5. Payment</h2>
         <p>
-          When sales open, payment will be made through Stripe on Stripe’s own checkout page; {SELLER_NAME} will not receive or
-          store card details. No payment is currently being taken.
+          Payment is made through Stripe on Stripe’s own checkout page (
+          <a className="link" href={PILOT_PAYMENT_LINK} rel="noopener noreferrer">
+            pilot reservation checkout
+          </a>
+          ). The seller does not receive or store card details.
         </p>
 
         <h2>6. Cancellation and refunds</h2>
@@ -69,7 +74,7 @@ export default function DecisionTwinTermsPage() {
           <li>
             If the pilot has not started within 90 days of payment, you receive a full refund on request.
           </li>
-          <li>If {SELLER_NAME} cancels the pilot, you receive a full refund.</li>
+          <li>If the seller cancels the pilot, you receive a full refund.</li>
           <li>After the pilot has started, no refund is given except where required by law.</li>
         </ul>
 
@@ -77,7 +82,7 @@ export default function DecisionTwinTermsPage() {
         <p>
           The Decision Twin is decision support. It does not make decisions, and you keep full responsibility for every decision
           you take with its help, including any credit, investment, legal or governance decision. It is not financial, legal or
-          investment advice. To the extent permitted by law, {SELLER_NAME}’s total liability under or in connection with the
+          investment advice. To the extent permitted by law, the seller’s total liability under or in connection with the
           pilot is limited to the fees you have paid for it. This does not limit liability that cannot lawfully be limited.
         </p>
 
@@ -98,8 +103,8 @@ export default function DecisionTwinTermsPage() {
         <h2>10. Your data</h2>
         <p>
           No customer data is accepted until private workspaces are authorized and released. Before you upload any customer data,
-          the processing of personal data will be governed by a separate data processing agreement between you and{' '}
-          {SELLER_NAME}. See also the <Link className="link" href="/privacy">Privacy Policy</Link>.
+          the processing of personal data will be governed by a separate data processing agreement between you and the
+          seller. See also the <Link className="link" href="/privacy">Privacy Policy</Link>.
         </p>
 
         <h2>11. Governing law</h2>
@@ -107,7 +112,7 @@ export default function DecisionTwinTermsPage() {
 
         <h2>12. Contact</h2>
         <p>
-          Questions about these terms, cancellations and refund requests: {SELLER_NAME},{' '}
+          Questions about these terms, cancellations and refund requests: {SELLER_LINE},{' '}
           <a className="link" href={`mailto:${contact}`}>
             {contact}
           </a>
