@@ -41,6 +41,7 @@ import {
   searchRecord,
 } from './operations';
 import { StatusV1, statusReport } from './status';
+import { MAX_PATHS, graphSummary, impactOf } from '@/lib/evidence-graph/api';
 import {
   AxiomV1,
   CaseV1,
@@ -475,6 +476,33 @@ export const ENDPOINTS_V1: Endpoint[] = [
     example: '/status',
     cache: 'none',
     run: (ctx) => statusReport(ctx.request, probeRest),
+  },
+  {
+    name: 'evidence_graph.get',
+    method: 'GET',
+    path: '/evidence-graph',
+    summary: 'Decision evidence graph (SDEP)',
+    description: 'The synthetic Decision Twin case as an SDEP 0.1 document, with its integrity report and the list of passages. Deterministic; no AI.',
+    response: { name: 'EvidenceGraph', schema: z.object({ object: z.literal('evidence_graph') }).loose() },
+    example: '/evidence-graph',
+    run: () => graphSummary(),
+  },
+  {
+    name: 'evidence_graph.impact',
+    method: 'GET',
+    path: '/evidence-graph/impact',
+    summary: 'Every conclusion depending on a passage',
+    description: 'Every conclusion and decision condition built, directly or transitively, on the given passage (or any node), with the dependency paths, shortest first, and the total number of paths.',
+    query: z.object({
+      passage: z.string().min(1).max(200).describe('Node id, e.g. span:DOC-03#total_debt (encode # as %23)'),
+      paths: z.coerce.number().int().min(1).max(MAX_PATHS).default(5).describe('Paths returned per conclusion or condition'),
+    }),
+    response: { name: 'EvidenceImpact', schema: z.object({ object: z.literal('evidence_impact') }).loose() },
+    example: '/evidence-graph/impact?passage=span%3ADOC-03%23total_debt',
+    run: (ctx) => {
+      const q = z.object({ passage: z.string().min(1).max(200), paths: z.coerce.number().int().min(1).max(MAX_PATHS).default(5) }).parse(ctx.query);
+      return impactOf(q.passage, q.paths);
+    },
   },
 ];
 

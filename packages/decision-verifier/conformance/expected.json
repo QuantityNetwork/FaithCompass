@@ -1,0 +1,124 @@
+{
+  "fixtures": [
+    {
+      "name": "valid-signed",
+      "description": "Signed by the active key; all artifacts present",
+      "result": "VALID",
+      "signature": "valid",
+      "failed": [],
+      "uncheckable": []
+    },
+    {
+      "name": "valid-unsigned",
+      "description": "Unsigned format 3 passport (integrity hash only)",
+      "result": "VALID",
+      "signature": "unsigned",
+      "failed": [],
+      "uncheckable": []
+    },
+    {
+      "name": "valid-historical-key",
+      "description": "Signed by a retired key inside its validity window",
+      "result": "VALID",
+      "signature": "valid",
+      "failed": [],
+      "uncheckable": []
+    },
+    {
+      "name": "valid-redacted",
+      "description": "Signed; source documents withheld (private artifacts)",
+      "result": "VALID",
+      "signature": "valid",
+      "failed": [],
+      "uncheckable": [
+        "source_documents"
+      ]
+    },
+    {
+      "name": "valid-legacy-format1",
+      "description": "Format 1 passport issued by production 690beea (hash 0f1ee5e…)",
+      "result": "VALID",
+      "signature": "unsigned",
+      "failed": [],
+      "uncheckable": [
+        "engine_known"
+      ]
+    },
+    {
+      "name": "tampered-assumption",
+      "description": "Debt edited from 124 to 118 in passport and state, nothing recomputed",
+      "result": "INVALID",
+      "signature": "invalid",
+      "failed": [
+        "artifact_hash:passport",
+        "artifact_hash:state",
+        "passport_hash",
+        "ref:id_state",
+        "signature"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "tampered-assumption-recomputed",
+      "description": "Debt edited and every unsigned hash and the ID recomputed: only the signature catches it",
+      "result": "INVALID",
+      "signature": "invalid",
+      "failed": [
+        "signature"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "tampered-source-hash",
+      "description": "DOC-03 hash in the source inventory replaced",
+      "result": "INVALID",
+      "signature": "valid",
+      "failed": [
+        "artifact_hash:sources",
+        "ref:sources",
+        "source_documents"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "tampered-attestation",
+      "description": "A forged committee attestation added, manifest recomputed",
+      "result": "INVALID",
+      "signature": "valid",
+      "failed": [
+        "attestation:0"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "unknown-version",
+      "description": "Bundle schema 9.0.0",
+      "result": "UNSUPPORTED",
+      "signature": "unsigned",
+      "failed": [
+        "schema"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "unknown-engine",
+      "description": "Engine dt-engine-9.9.9 (not pinned), hashes recomputed",
+      "result": "UNSUPPORTED",
+      "signature": "unsigned",
+      "failed": [
+        "engine_known"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "revoked-key",
+      "description": "Signed by a revoked key",
+      "result": "INVALID",
+      "signature": "invalid",
+      "failed": [
+        "signature"
+      ],
+      "uncheckable": []
+    }
+  ]
+}

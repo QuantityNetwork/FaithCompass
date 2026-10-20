@@ -70,6 +70,11 @@ const nextConfig = {
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
         ],
       },
+      {
+        // Self-hosted fonts: file names carry a content hash, so they never change.
+        source: '/fonts/:file*.woff2',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
     ];
   },
 };

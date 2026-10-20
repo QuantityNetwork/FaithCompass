@@ -256,6 +256,7 @@ describe('demonstration API', () => {
     expect(demo.map(([p]) => p).sort()).toEqual([
       '/api/institutional/decision-room/case',
       '/api/institutional/decision-room/contradictions',
+      '/api/institutional/decision-room/passport/bundle',
       '/api/institutional/decision-room/passport/verify',
       '/api/institutional/decision-room/scenario',
     ]);

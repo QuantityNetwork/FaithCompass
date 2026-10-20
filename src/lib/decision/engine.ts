@@ -513,3 +513,35 @@ export function traceFromDefaults(a: Assumptions): Trace {
     affected: NODE_IDS.filter((id) => !changedInputs.includes(id) && fingerprint(base[id]) !== fingerprint(cur[id])),
   };
 }
+
+/* ---------------------------------------------------- selective recalculation */
+
+/**
+ * Re-evaluate only what a change can reach: the inputs and premises whose value differs from `prev`, and the nodes
+ * downstream of them (`dependentsOf`). Every other node is carried over from `prev` unchanged. Gives the same result
+ * as `evaluate(input)` for every node (tests/counterfactual.test.ts checks this against full evaluation).
+ */
+export function recalculate(prev: Evaluation, input: Assumptions): { evaluation: Evaluation; changedInputs: string[]; recomputed: string[] } {
+  const a = normalise(AssumptionsSchema.parse(input) as Assumptions);
+  const out: Evaluation = {};
+  const v = (id: string) => {
+    const n = out[id];
+    if (!n) throw new Error(`Node ${id} evaluated before its dependency`);
+    return n.value;
+  };
+  const roots = DEFS.filter((d) => d.deps.length === 0 && (d.kind === 'input' || d.kind === 'premise'));
+  const changedInputs: string[] = [];
+  for (const d of roots) {
+    const next = d.compute(a, v);
+    if (!prev[d.id] || canonicalJson(prev[d.id].value) !== canonicalJson(next.value)) changedInputs.push(d.id);
+  }
+  const dirty = new Set([...changedInputs, ...dependentsOf(changedInputs)]);
+  const recomputed: string[] = [];
+  for (const d of DEFS) {
+    if (dirty.has(d.id) || !prev[d.id]) {
+      out[d.id] = { id: d.id, kind: d.kind, label: d.label, deps: d.deps, sources: d.sources, ...(d.formula ? { formula: d.formula } : {}), ...d.compute(a, v) };
+      recomputed.push(d.id);
+    } else out[d.id] = prev[d.id];
+  }
+  return { evaluation: out, changedInputs, recomputed };
+}

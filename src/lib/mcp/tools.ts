@@ -45,6 +45,7 @@ import {
   doctrineView,
 } from '@/lib/api/views';
 import { getRecord } from '@/lib/record/record';
+import { MAX_PATHS, impactOf } from '@/lib/evidence-graph/api';
 import { TRADITION_FAMILIES } from '@/lib/record/taxonomy';
 
 export interface ToolDefinition {
@@ -212,6 +213,17 @@ export const TOOLS: ToolDefinition[] = [
     run: (args) => {
       const { limit } = z.object({ limit: z.number().int().min(1).max(200).default(25) }).parse(args);
       return { data: changelog(getRecord()).slice(0, limit) };
+    },
+  },
+  {
+    name: 'evidence_impact',
+    title: 'Every conclusion depending on a passage',
+    description: `In the synthetic Decision Twin's evidence graph (SDEP 0.1), every conclusion and decision condition built on the given passage or node, with dependency paths (shortest first) and the total path count. Deterministic; no AI. ${READ_ONLY_NOTE}`,
+    input: z.object({ passage: z.string().min(1).max(200).describe('Node id, e.g. span:DOC-03#total_debt'), paths: z.number().int().min(1).max(MAX_PATHS).default(5) }),
+    output: z.object({ object: z.literal('evidence_impact') }).loose(),
+    run: (args) => {
+      const a = z.object({ passage: z.string().min(1).max(200), paths: z.number().int().min(1).max(MAX_PATHS).default(5) }).parse(args);
+      return impactOf(a.passage, a.paths);
     },
   },
 ];

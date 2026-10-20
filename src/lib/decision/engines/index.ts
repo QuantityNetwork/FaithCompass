@@ -20,9 +20,18 @@ export const ENGINES: Record<string, EngineEntry> = {
     source: 'src/lib/decision/engines/v1',
     sha256: '9e4eae8ae339afdeee285fa818f3a53295cc2fca6d39d35822113a4c669b9241',
   },
+  // 1.0.0 plus selective recalculation (`recalculate`); passport content is evaluated identically (tested).
+  '1.1.0': {
+    version: 'dt-engine-1.1.0',
+    source: 'src/lib/decision/engines/v1_1',
+    sha256: 'cc226a98bf0f096f7e8341401bb1ec8d699e380ab422a90120ee98f516038230',
+  },
 };
 
-/** Which engine evaluates each archived case version. */
+/**
+ * Which engine new passports of each archived case version name. Case 1.0.0 stays on engine 1.0.0: 1.1.0 changes no
+ * passport content, and switching would change the hash of every newly issued passport (an owner decision).
+ */
 export const ENGINE_FOR_CASE: Record<string, string> = { '1.0.0': '1.0.0' };
 
 /**
