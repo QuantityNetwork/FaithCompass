@@ -5,7 +5,7 @@ import { DecisionTwinLogo } from '@/components/decision/brand';
 import { PrintButton } from '@/components/decision/print-button';
 import { ClassChip, ConditionChip, SyntheticNotice } from '@/components/decision/ui';
 import type { ConditionStatus } from '@/lib/decision/engine';
-import { PassportIdError, buildPassport } from '@/lib/decision/passport';
+import { PassportIdError, UnsupportedVersionError, buildPassport } from '@/lib/decision/passport';
 
 export const metadata: Metadata = {
   title: 'Decision Passport (synthetic)',
@@ -13,10 +13,11 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-function load(id: string) {
+function load(id: string): { passport: ReturnType<typeof buildPassport> } | { unsupported: string } | null {
   try {
-    return buildPassport(id);
+    return { passport: buildPassport(id) };
   } catch (err) {
+    if (err instanceof UnsupportedVersionError) return { unsupported: err.message };
     if (err instanceof PassportIdError) return null;
     throw err;
   }
@@ -24,8 +25,28 @@ function load(id: string) {
 
 export default async function PassportPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = load(decodeURIComponent(id));
-  if (!p) notFound();
+  const loaded = load(decodeURIComponent(id));
+  if (!loaded) notFound();
+  if ('unsupported' in loaded) {
+    return (
+      <main id="main" className="am-page dr dr-passport">
+        <div className="am-wrap">
+          <header className="am-page__head">
+            <p className="am-eyebrow">Decision Passport</p>
+            <h1 className="am-h1">Unsupported passport version</h1>
+          </header>
+          <p className="am-note" role="alert">
+            {loaded.unsupported}
+          </p>
+          <p>
+            <Link href="/institutional/decision-room">Back to the Decision Room</Link>
+          </p>
+        </div>
+      </main>
+    );
+  }
+  const p = loaded.passport;
+  const sig = p.integrity.signature;
   const base = `/institutional/decision-room/passport/${p.id}`;
 
   return (
@@ -61,6 +82,23 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
           </dd>
           <dt>SHA-256</dt>
           <dd className="am-mono dr-hash">{p.integrity.sha256}</dd>
+          <dt>Signature</dt>
+          <dd>
+            {sig.status === 'signed' ? (
+              <>
+                Ed25519, key <span className="am-mono">{sig.key_id}</span> (<a href={sig.public_keys}>public keys</a>):{' '}
+                <span className="am-mono dr-hash">{sig.value}</span>
+              </>
+            ) : (
+              sig.status
+            )}
+          </dd>
+          <dt>Case data</dt>
+          <dd>
+            Archived version {p.integrity.case_archive.version}, SHA-256{' '}
+            <span className="am-mono dr-hash">{p.integrity.case_archive.content_sha256}</span>
+            {p.case.content_sha256 ? null : ' (format 1 passport: the hash is checked on rebuild but not recorded in its content)'}
+          </dd>
         </dl>
         <p className="am-note">{p.integrity_note}</p>
         <p className="am-note">{p.legal_note}</p>

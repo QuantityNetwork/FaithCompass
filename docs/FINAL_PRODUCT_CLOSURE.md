@@ -26,8 +26,8 @@ Labels: **Operational** (works in production on real data) · **Demonstration** 
 | Editorial workflow (drafts, proposals, second-editor approval) | Blocked | Code + local RLS tests exist; needs DB (B1), auth (B2), editors (B3) |
 | External scholarly review | Blocked | B4; 0 reviewers |
 | Institutional Decision Room — Private Credit Decision Twin | Demonstration, deployed and verified 2026-10-20 | Synthetic $120M facility; deterministic rules; no AI |
-| AbrahamMoses Decision Twin product page and pricing | Demonstration + live pilot reservation, deployed and verified 2026-10-20 | Pilot €9,500 via Stripe payment link; Institutional/Enterprise by contact (contact not yet published); terms of sale pending (B10) |
-| Institutional use cases (8 sectors) | Planned | D2 |
+| AbrahamMoses Decision Twin product page and pricing | Demonstration; indicative pricing only, pilots not on sale (after the review-fixes PR) | The Stripe payment link is deactivated in Stripe and no checkout is rendered; 'Request a pilot' needs a published contact; draft terms are 'not in force'. Selling requires the B10 seller-identity checklist |
+| Institutional use cases (8 sectors) | Frozen (not to be built for now) | D2 |
 | Private tenant workspaces | Blocked | B1, B2, D3; no client data may be accepted |
 
 ## 3. Validation (real counts, 2026-10-20)
@@ -51,8 +51,8 @@ No database is connected (no Supabase integration or variables on the project). 
 | Item | Status |
 |---|---|
 | Decision Room (`/institutional/decision-room`) | Demonstration, synthetic data, deployed and verified |
-| Decision Passports (public, synthetic, stateless) | Demonstration, deployed and verified |
-| Use cases | Planned |
+| Decision Passports (public, synthetic, stateless) | Demonstration, deployed and verified; archived case versions and optional signatures in the review-fixes PR (E16); unsigned until an owner-provided key is configured (B11) |
+| Use cases | Not built: feature expansion frozen after the external review (2026-10-20) |
 | Any bank, fund or institution relationship | **None.** Sagolik Institutional is a proposed commercial application, not validated by any institution |
 | Private pilots | Not authorized |
 

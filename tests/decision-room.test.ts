@@ -26,7 +26,7 @@ import {
 import { PassportIdError, REVIEWER_NONE, buildPassport, decodePassportId, encodePassportId, passportMarkdown, verifyPassport } from '@/lib/decision/passport';
 import { caseHandler, contradictionsHandler, scenarioHandler, verifyHandler } from '@/lib/decision/api';
 import { openApiDocument } from '@/lib/api/v1';
-import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_PAYMENT_LINK, PLANS, PRODUCT, decisionConfiguration } from '@/lib/decision/product';
+import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_CHECKOUT_ENABLED, PILOT_PAYMENT_LINK, PLANS, PRODUCT, contactHref, decisionConfiguration } from '@/lib/decision/product';
 
 const T = new Date('2026-10-20T16:00:00.000Z');
 const with_ = (p: Partial<Assumptions>): Assumptions => ({ ...DEFAULT_ASSUMPTIONS, ...p });
@@ -277,9 +277,16 @@ describe('Decision Twin product facts', () => {
   it('keeps automated decisions disabled in the planned workspace defaults', () => {
     expect(DEFAULT_WORKSPACE_SETTINGS.find((x) => x.setting === 'Automated decisions')!.value).toBe('Disabled');
   });
-  it('has one checkout only, the pilot payment link, and no other purchase path', () => {
+  it('keeps the pilot payment link in config but disabled, with no checkout plan', () => {
     expect(PILOT_PAYMENT_LINK).toMatch(/^https:\/\/buy\.stripe\.com\//);
-    expect(PLANS.filter((p) => p.action === 'checkout').map((p) => p.id)).toEqual(['pilot']);
+    expect(PILOT_CHECKOUT_ENABLED).toBe(false);
+    expect(PLANS.map((p) => p.action)).not.toContain('checkout');
+    expect(PLANS.find((p) => p.id === 'pilot')!.cta).toBe('Request a pilot');
+  });
+  it('builds a pilot enquiry mailto only from a configured contact', () => {
+    expect(contactHref(null, 'Decision Twin pilot enquiry')).toBeNull();
+    expect(contactHref('sales@example.org', 'Decision Twin pilot enquiry')).toBe('mailto:sales@example.org?subject=Decision%20Twin%20pilot%20enquiry');
+    expect(contactHref('not a contact')).toBeNull();
   });
 });
 

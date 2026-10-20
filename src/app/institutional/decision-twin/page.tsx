@@ -1,7 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DecisionTwinLogo } from '@/components/decision/brand';
-import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_PAYMENT_LINK, PLANS, PRODUCT, STATUS_LINE, type LayerStatus } from '@/lib/decision/product';
+import {
+  DEFAULT_WORKSPACE_SETTINGS,
+  LAYERS,
+  PILOT_CHECKOUT_ENABLED,
+  PILOT_ENQUIRY_SUBJECT,
+  PILOT_PAYMENT_LINK,
+  PLANS,
+  PRICING_LABEL,
+  PRODUCT,
+  STATUS_LINE,
+  contactHref,
+  type LayerStatus,
+} from '@/lib/decision/product';
 import { legalContact } from '@/lib/site/config';
 
 export const metadata: Metadata = {
@@ -22,14 +34,9 @@ const STATUS_STYLE: Record<LayerStatus, string> = {
   PLANNED: 'insufficient_evidence',
 };
 
-function contactHref(contact: string | null): string | null {
-  if (!contact) return null;
-  if (/^(https?:|mailto:)/.test(contact)) return contact;
-  return contact.includes('@') ? `mailto:${contact}` : null;
-}
-
 export default function DecisionTwinPage() {
   const contact = contactHref(legalContact().general);
+  const pilotContact = contactHref(legalContact().general, PILOT_ENQUIRY_SUBJECT);
   return (
     <main id="main" className="am-page dr">
       <div className="am-wrap">
@@ -57,8 +64,8 @@ export default function DecisionTwinPage() {
               The Decision Twin is a <strong>proposed</strong> product. Today it exists only as a public demonstration on one
               fictional private credit case: the <Link href="/institutional/decision-room">Decision Room</Link> and its
               synthetic Decision Passports. There are no private workspaces, accounts, customers or customer data. No bank,
-              fund or institution has reviewed, validated or used it, and it holds no certification. The only thing that can be
-              bought is a pilot reservation, which starts when private workspaces are released.
+              fund or institution has reviewed, validated or used it, and it holds no certification. Nothing can be bought:
+              pilots are not yet on sale.
             </p>
           </div>
           <p>
@@ -184,6 +191,9 @@ export default function DecisionTwinPage() {
               Plans
             </h2>
           </div>
+          <p className="am-tiny">
+            <strong>{PRICING_LABEL}.</strong>
+          </p>
           <p className="am-note" role="status">
             <strong>{STATUS_LINE}.</strong>
           </p>
@@ -201,12 +211,22 @@ export default function DecisionTwinPage() {
                     <li key={x}>{x}</li>
                   ))}
                 </ul>
-                {plan.action === 'checkout' ? (
-                  <p>
-                    <a className="am-btn am-btn--gold" href={PILOT_PAYMENT_LINK} rel="noopener noreferrer">
-                      {plan.cta}
-                    </a>
-                  </p>
+                {plan.action === 'pilot' ? (
+                  PILOT_CHECKOUT_ENABLED ? (
+                    <p>
+                      <a className="am-btn am-btn--gold" href={PILOT_PAYMENT_LINK} rel="noopener noreferrer">
+                        Reserve a pilot
+                      </a>
+                    </p>
+                  ) : pilotContact ? (
+                    <p>
+                      <a className="am-btn am-btn--gold" href={pilotContact}>
+                        {plan.cta}
+                      </a>
+                    </p>
+                  ) : (
+                    <p className="am-tiny">Pilot enquiries open once our contact details are published.</p>
+                  )
                 ) : contact ? (
                   <p>
                     <a className="am-btn" href={contact}>
@@ -219,17 +239,17 @@ export default function DecisionTwinPage() {
                   </p>
                 )}
                 {plan.note ? <p className="am-tiny">{plan.note}</p> : null}
-                {plan.action === 'checkout' ? (
+                {plan.action === 'pilot' ? (
                   <p className="am-tiny">
-                    By reserving you accept the{' '}
-                    <Link href="/institutional/decision-twin/terms">Terms of Sale</Link>.
+                    <Link href="/institutional/decision-twin/terms">Draft Terms of Sale</Link> (not in force; no sales are
+                    currently being accepted).
                   </p>
                 ) : null}
               </article>
             ))}
           </div>
           <p className="am-tiny">
-            Prices exclude VAT. Payment for the pilot is handled by Stripe on its own page. Decision support only: the customer
+            Prices exclude VAT and are indicative; nothing on this page is an offer to sell. Decision support only: the customer
             keeps responsibility for its decisions, and a Decision Passport is not a binding decision, audit opinion, regulatory
             approval or certification. No DORA assessment or regulatory approval is claimed; a written agreement is required
             before any client data is used.

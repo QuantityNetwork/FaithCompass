@@ -17,8 +17,26 @@ export const PRODUCT = {
   logo: { src: '/brand/decision-twin/decision-twin-logo-navy.svg', width: 2382, height: 1382 },
 } as const;
 
-/** Stripe payment link for the pilot reservation (Sagolik account). The only checkout on the site; no keys, no server integration. */
+/**
+ * Stripe payment link for a pilot reservation (Sagolik account). Kept for when sales open, but not rendered:
+ * the link is deactivated in Stripe and no sales are accepted until the seller identity and reviewed terms
+ * are published (register item B10). No keys, no server integration.
+ */
 export const PILOT_PAYMENT_LINK = 'https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d';
+/** Pilots are not on sale. Turning this on requires the B10 checklist to be complete. */
+export const PILOT_CHECKOUT_ENABLED: boolean = false;
+export const PRICING_LABEL = 'Indicative pricing, excl. VAT; pilots not yet on sale';
+export const PILOT_ENQUIRY_SUBJECT = 'Decision Twin pilot enquiry';
+/** A contact link from the configured contact (email or URL); null when none is configured. Never invents one. */
+export function contactHref(contact: string | null, subject?: string): string | null {
+  if (!contact) return null;
+  const query = subject ? `?subject=${encodeURIComponent(subject)}` : '';
+  if (contact.startsWith('mailto:')) return contact + query;
+  if (/^https?:/.test(contact)) return contact;
+  return contact.includes('@') ? `mailto:${contact}${query}` : null;
+}
+
+export const SALES_STATUS = 'Draft, not in force: no sales are currently being accepted';
 
 export const STATUS_LINE = 'Public institutional demonstration ready — private client onboarding not authorized';
 
@@ -29,9 +47,9 @@ export const PLANS = [
     price: '€9,500',
     period: 'one-off, 90 days',
     includes: ['One private workspace', 'Up to 10 users', 'Onboarding'],
-    action: 'checkout' as const,
-    cta: 'Reserve a pilot',
-    note: 'Reservation: the pilot period starts when private institutional workspaces are released; we confirm the start date with you.',
+    action: 'pilot' as const,
+    cta: 'Request a pilot',
+    note: 'Pilots start only when private institutional workspaces are released; the start date is agreed with you in writing.',
   },
   {
     id: 'institutional',
