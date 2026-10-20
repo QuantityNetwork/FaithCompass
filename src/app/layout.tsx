@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from 'next';
-import { SiteFooter } from '@/components/site/footer';
-import { SiteHeader } from '@/components/site/header';
+import { CommandPalette } from '@/components/shell/command-palette';
+import { SiteFooter } from '@/components/shell/footer';
+import { SiteHeader } from '@/components/shell/header';
+import { THEME_INIT_SCRIPT } from '@/components/shell/theme';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, canonicalOrigin } from '@/lib/site/config';
 import './globals.css';
 import './site.css';
+import './ds.css';
+import { FONT_VARIABLES } from './fonts';
 
 export const metadata: Metadata = {
   metadataBase: new URL(canonicalOrigin()),
@@ -25,13 +29,20 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0b1020',
-  colorScheme: 'dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#F6F2E9' },
+    { media: '(prefers-color-scheme: dark)', color: '#091121' },
+  ],
+  colorScheme: 'light dark',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={FONT_VARIABLES} suppressHydrationWarning>
+      <head>
+        {/* Applies a saved ivory/navy choice before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
@@ -39,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         {children}
         <SiteFooter />
+        <CommandPalette />
       </body>
     </html>
   );

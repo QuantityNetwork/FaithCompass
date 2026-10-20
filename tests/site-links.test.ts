@@ -3,7 +3,8 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { ENDPOINTS_V1 } from '@/lib/api/v1';
 import { getRecord } from '@/lib/record/record';
-import { FOOTER_NAV, PRIMARY_NAV } from '@/lib/site/nav';
+import { FOOTER_NAV, NAV_SECTIONS, PRIMARY_NAV } from '@/lib/site/nav';
+import { buildSearchIndex } from '@/lib/site/search-index';
 
 const APP = join(__dirname, '../src/app');
 
@@ -28,7 +29,7 @@ function resolvePage(path: string): string | null {
 }
 
 describe('site navigation', () => {
-  const links = [...PRIMARY_NAV, ...FOOTER_NAV.flatMap((g) => g.links)];
+  const links = [...PRIMARY_NAV, ...FOOTER_NAV.flatMap((g) => g.links), ...NAV_SECTIONS.flatMap((s) => s.pages)];
 
   it('has no dead internal links in the header or footer', () => {
     for (const link of links) {
@@ -39,6 +40,12 @@ describe('site navigation', () => {
         continue;
       }
       expect(resolvePage(path), `${link.label} → ${link.href}`).not.toBeNull();
+    }
+  });
+
+  it('has no dead links in the command palette index', () => {
+    for (const item of buildSearchIndex().items) {
+      expect(resolvePage(item.u.split('#')[0]), `${item.t} → ${item.u}`).not.toBeNull();
     }
   });
 

@@ -90,6 +90,7 @@ const PAGES = [
   '/methodology',
   '/system',
   '/about',
+  '/institutional',
   '/changelog',
   '/developers',
   '/status',
@@ -191,11 +192,14 @@ describe('Dependency Explorer', () => {
   });
 });
 
-describe('brand and emblem introduction', () => {
+describe('brand and shell', () => {
   it('shows the real logo, a social preview and icons', async () => {
     const html = await (await fetch(`${base}/`)).text();
-    expect(html).toMatch(/<img[^>]+src="\/brand\/abrahammoses-logo-ivory\.svg"[^>]+alt="AbrahamMoses"|<img[^>]+alt="AbrahamMoses"[^>]+src="\/brand\/abrahammoses-logo-ivory\.svg"/);
-    expect(html).toMatch(new RegExp(`<meta property="og:image" content="${base}/opengraph-image\\.png`));
+    expect(html).toMatch(/<img[^>]+src="\/brand\/intro\/poster-1600\.webp"[^>]+alt="AbrahamMoses"|<img[^>]+alt="AbrahamMoses"[^>]+src="\/brand\/intro\/poster-1600\.webp"/);
+    expect(html).toContain('src="/brand/abrahammoses-logo.svg"');
+    expect(html).toContain('src="/brand/abrahammoses-logo-ivory.svg"');
+    // The home page is prerendered, so its absolute URLs carry the origin configured at build time.
+    expect(html).toMatch(/<meta property="og:image" content="https?:\/\/[^"]+\/opengraph-image\.png/);
     expect(html).toContain('<meta name="twitter:card" content="summary_large_image"/>');
     expect(html).toMatch(/<link rel="icon" href="\/icon\.svg/);
     expect(html).toMatch(/<link rel="apple-touch-icon" href="\/apple-icon\.png/);
@@ -206,6 +210,9 @@ describe('brand and emblem introduction', () => {
       expect(res.status, asset).toBe(200);
       expect(res.headers.get('content-type'), asset).toContain('image/svg+xml');
     }
+    for (const asset of ['/brand/intro/poster-1600.webp', '/brand/intro/intro-1600.webm', '/brand/intro/intro-800.mp4']) {
+      expect((await fetch(`${base}${asset}`)).status, asset).toBe(200);
+    }
     const manifest = await (await fetch(`${base}/manifest.webmanifest`)).json();
     for (const icon of manifest.icons as Array<{ src: string }>) {
       const res = await fetch(`${base}${icon.src}`);
@@ -215,46 +222,109 @@ describe('brand and emblem introduction', () => {
     expect((await fetch(`${base}/favicon.ico`)).status).toBe(200);
   });
 
-  it('works without JavaScript: each ring is a link to its worked answer', async () => {
-    const { context, page: p } = await page({ javaScriptEnabled: false });
-    await p.goto(`${base}/`);
-    const rings = p.locator('a.emblem-node:not(.emblem-node--centre)');
-    await expect(rings.count()).resolves.toBe(4);
-    const labels = await rings.evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')));
-    // Clockwise from the top, in the historical order the cases are listed in.
-    expect(labels.map((l) => l?.split(':')[0])).toEqual(['Jewish studies', 'Christian studies', 'Islamic studies', 'Latter-day Saint studies']);
-    await rings.nth(2).click();
-    await p.waitForURL(/case=ibrahim-heirs-and-revelation/);
-    await expect(p.locator('#worked-title').locator('..').textContent()).resolves.toContain('Ibrāhīm');
+  it('has exactly six primary sections and marks the current one', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/claims/AM-CLAIM-000191`);
+    const nav = p.getByRole('navigation', { name: 'Primary' });
+    await expect(nav.getByRole('link').allTextContents()).resolves.toEqual(['Research', 'Evidence', 'Compare', 'Methodology', 'Developers', 'Institutional']);
+    await expect(nav.getByRole('link', { name: 'Evidence' }).getAttribute('aria-current')).resolves.toBe('true');
+    await p.goto(`${base}/institutional`);
+    await expect(nav.getByRole('link', { name: 'Institutional' }).getAttribute('aria-current')).resolves.toBe('page');
     await context.close();
   });
 
-  it('traces a question by hover or keyboard, in step with the example questions', async () => {
+  it('starts with a skip link to the main content', async () => {
     const { context, page: p } = await page();
     await p.goto(`${base}/`);
-    const caption = p.locator('#emblem-intro-caption');
-
-    await p.hover('a.emblem-node[aria-label^="Christian studies"]');
-    await expect.poll(() => caption.textContent()).toContain('What changed concerning priesthood');
-    await expect(p.locator('.example[data-case="priesthood-new-covenant"]').getAttribute('class')).resolves.toContain('is-lit');
-
-    await p.mouse.move(0, 0);
-    await p.hover('.example[data-case="restoration-priesthood-authority"]');
-    await expect.poll(() => p.locator('a.emblem-node[aria-label^="Latter-day Saint"]').getAttribute('class')).toContain('is-active');
-
-    await p.mouse.move(0, 0);
-    await p.locator('a.emblem-node--centre').focus();
-    await expect.poll(() => caption.textContent()).toContain('The shared record');
+    await p.keyboard.press('Tab');
+    await expect(p.evaluate(() => document.activeElement?.textContent)).resolves.toBe('Skip to content');
+    await p.keyboard.press('Enter');
+    await expect(p.evaluate(() => location.hash)).resolves.toBe('#main');
     await context.close();
   });
 
-  it('does not animate for visitors who ask for reduced motion', async () => {
-    const { context, page: p } = await page({ reducedMotion: 'reduce' });
+  it('works without JavaScript: coverage cards link to the real cases and the question bar submits to research', async () => {
+    const { context, page: p } = await page({ javaScriptEnabled: false });
     await p.goto(`${base}/`);
-    const names = await p.evaluate(() =>
-      ['.emblem-mark', '.emblem-play-fill', '.emblem-play-sparkle'].map((s) => getComputedStyle(document.querySelector(s)!).animationName),
-    );
-    expect(names).toEqual(['none', 'none', 'none']);
+    const cards = p.locator('section[aria-labelledby="coverage-title"] a');
+    await expect(cards.evaluateAll((els) => els.map((e) => e.getAttribute('href')))).resolves.toEqual([
+      '/research/torah-permanence',
+      '/research/priesthood-new-covenant',
+      '/research/ibrahim-heirs-and-revelation',
+      '/research/restoration-priesthood-authority',
+    ]);
+    await p.getByLabel('Research question').fill('Who are the heirs of Ibrahim?');
+    await p.getByRole('button', { name: 'Research', exact: true }).click();
+    await p.waitForURL(/\/research\?q=Who/);
+    await context.close();
+  });
+
+  it('opens the command palette with Ctrl-K, finds a claim in the record and returns focus on Escape', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/methodology`, { waitUntil: 'networkidle' });
+    const button = p.getByRole('button', { name: /Search the record/ });
+    await button.click();
+    const dialog = p.getByRole('dialog', { name: 'Search the record' });
+    await dialog.waitFor();
+    await p.keyboard.press('Escape');
+    await expect(dialog.count()).resolves.toBe(0);
+    await expect(button.evaluate((el) => el === document.activeElement)).resolves.toBe(true);
+
+    await p.keyboard.press('Control+k');
+    await dialog.waitFor();
+    await p.keyboard.type('melchizedekian priesthood');
+    const option = dialog.getByRole('option', { name: /Melchizedekian priesthood of Christ supersedes/ });
+    await option.waitFor();
+    await p.keyboard.press('ArrowDown');
+    await expect(p.getByRole('combobox').getAttribute('aria-activedescendant')).resolves.toBe('am-pal-opt-1');
+    await option.click();
+    await p.waitForURL(/\/claims\/AM-CLAIM-000191/);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('remembers the dark theme across visits', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/`);
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBeNull();
+    await p.getByRole('button', { name: 'Dark mode' }).click();
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('dark');
+    await p.goto(`${base}/claims`);
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('dark');
+    await expect(p.getByRole('button', { name: 'Dark mode' }).getAttribute('aria-pressed')).resolves.toBe('true');
+    const bg = await p.evaluate(() => getComputedStyle(document.body).backgroundColor);
+    expect(bg).toBe('rgb(9, 17, 33)');
+    await context.close();
+  });
+
+  it('plays the intro once per visit, and never on its own for reduced motion', async () => {
+    const first = await page();
+    await first.page.goto(`${base}/`);
+    await expect.poll(() => first.page.locator('.am-stage video').count()).toBe(1);
+    await first.page.reload();
+    await first.page.getByRole('button', { name: 'Play intro' }).waitFor();
+    await expect(first.page.locator('.am-stage video').count()).resolves.toBe(0);
+    await first.context.close();
+
+    const reduced = await page({ reducedMotion: 'reduce' });
+    await reduced.page.goto(`${base}/`);
+    await reduced.page.getByRole('button', { name: 'Play intro' }).waitFor();
+    await expect(reduced.page.locator('.am-stage video').count()).resolves.toBe(0);
+    await reduced.context.close();
+  });
+
+  it('opens and closes the menu at phone width', async () => {
+    const { context, page: p } = await page({ viewport: { width: 390, height: 844 } });
+    await p.goto(`${base}/`);
+    const menu = p.getByRole('button', { name: 'Menu' });
+    const nav = p.getByRole('navigation', { name: 'Primary' });
+    await expect(nav.isVisible()).resolves.toBe(false);
+    await menu.click();
+    await expect(menu.getAttribute('aria-expanded')).resolves.toBe('true');
+    await expect(nav.isVisible()).resolves.toBe(true);
+    await nav.getByRole('link', { name: 'Compare' }).click();
+    await p.waitForURL(/\/compare$/);
+    await expect.poll(() => menu.getAttribute('aria-expanded')).toBe('false');
     await context.close();
   });
 });
@@ -264,7 +334,7 @@ describe('research workspace', () => {
     const { context, page: p } = await page();
     await p.goto(`${base}/research`);
     await p.getByLabel('Research question').fill('Who are the heirs of Ibrahim?');
-    await p.getByRole('button', { name: 'Search the record' }).click();
+    await p.getByRole('button', { name: 'Search the record', exact: true }).click();
     await p.waitForURL(/q=Who/);
     await expect(p.getByText('This question has a research case')).toBeTruthy();
     await expect(p.locator('main').textContent()).resolves.toContain('Who are the heirs of Ibrāhīm');
@@ -281,16 +351,36 @@ describe('research workspace', () => {
 });
 
 describe('accessibility', () => {
-  it('has no WCAG 2.2 A/AA violations on the main pages', async () => {
-    const { context, page: p } = await page();
-    const report: string[] = [];
-    for (const path of PAGES) {
-      await p.goto(`${base}${path}`);
-      const results = await new AxeBuilder({ page: p }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
-      for (const v of results.violations) {
-        report.push(`${path}: ${v.id} (${v.impact}) — ${v.nodes.length} node(s): ${v.nodes[0]?.target.join(' ')}`);
-      }
+  async function scan(p: Page, label: string, report: string[]) {
+    const results = await new AxeBuilder({ page: p }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+    for (const v of results.violations) {
+      report.push(`${label}: ${v.id} (${v.impact}) — ${v.nodes.length} node(s): ${v.nodes[0]?.target.join(' ')}`);
     }
+  }
+
+  for (const theme of ['light', 'dark'] as const) {
+    it(`has no WCAG 2.2 A/AA violations on the main pages (${theme})`, async () => {
+      const { context, page: p } = await page({ reducedMotion: 'reduce' });
+      if (theme === 'dark') await context.addInitScript(() => localStorage.setItem('am-theme', 'dark'));
+      const report: string[] = [];
+      for (const path of PAGES) {
+        await p.goto(`${base}${path}`);
+        await scan(p, path, report);
+      }
+      expect(report).toEqual([]);
+      await context.close();
+    });
+  }
+
+  it('has no violations with the command palette open', async () => {
+    const { context, page: p } = await page({ reducedMotion: 'reduce' });
+    const report: string[] = [];
+    await p.goto(`${base}/`, { waitUntil: 'networkidle' });
+    await p.keyboard.press('Control+k');
+    await p.getByRole('dialog').waitFor();
+    await p.keyboard.type('covenant');
+    await p.getByRole('option').first().waitFor();
+    await scan(p, 'palette', report);
     expect(report).toEqual([]);
     await context.close();
   });
