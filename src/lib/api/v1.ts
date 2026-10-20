@@ -8,6 +8,7 @@
  */
 
 import { evidenceOpenApi } from './evidence-openapi';
+import { demoOpenApi } from '@/lib/decision/openapi';
 import { z } from 'zod/v4';
 import { getRecord, type AbrahamMosesRecord } from '@/lib/record/record';
 import { RecordSchema } from '@/lib/record/schema';
@@ -615,6 +616,7 @@ export function openApiDocument() {
   const evidence = evidenceOpenApi();
   Object.assign(paths, evidence.paths);
   Object.assign(components, evidence.schemas);
+  Object.assign(paths, demoOpenApi());
   return {
     openapi: '3.1.0',
     info: {
@@ -626,7 +628,10 @@ export function openApiDocument() {
       { url: canonicalOrigin() },
       ...legacyOrigins().map((url) => ({ url, description: 'Previous host; still serves the same API.' })),
     ],
-    tags: [{ name: 'evidence', description: 'Evidence Intelligence endpoints, outside v1 versioning.' }],
+    tags: [
+      { name: 'evidence', description: 'Evidence Intelligence endpoints, outside v1 versioning.' },
+      { name: 'institutional-demo', description: 'Sagolik Institutional Decision Room demonstration: synthetic data, read-only, outside v1 versioning.' },
+    ],
     paths,
     components: { schemas: components },
     externalDocs: { url: absoluteUrl('/developers'), description: 'Developer documentation' },

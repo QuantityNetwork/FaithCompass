@@ -2171,3 +2171,238 @@ kbd,
 .rw-graph__sep {
   stroke: var(--line);
 }
+
+/* ------------------------------------------------------------------ decision room (institutional demonstration) */
+.dr-notice p {
+  margin: 0 0 8px;
+}
+.dr-notice p:last-child {
+  margin-bottom: 0;
+}
+.dr-steps ol {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  counter-reset: dr;
+  font: 400 13.5px/1.6 var(--sans);
+}
+.dr-steps li {
+  counter-increment: dr;
+}
+.dr-steps li::before {
+  content: counter(dr) '. ';
+  color: var(--accent);
+}
+.dr-docs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.dr-docs > li {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+.dr-docs summary {
+  cursor: pointer;
+  line-height: 1.5;
+}
+.dr-hash {
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+.dr-form fieldset {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+  padding: 14px 16px;
+  margin: 0 0 14px;
+  min-width: 0;
+}
+.dr-form legend {
+  font: 600 13.5px/1 var(--sans);
+  padding: 0 6px;
+}
+.dr-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 12px 18px;
+}
+.dr-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font: 400 13.5px/1.4 var(--sans);
+}
+.dr-control input {
+  font: 400 15px/1.2 var(--mono);
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--bg);
+  color: var(--ink);
+  max-width: 12rem;
+}
+.dr-checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 4px 18px;
+}
+.dr-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font: 400 13.5px/1.5 var(--sans);
+  padding: 4px 0;
+}
+.dr-check input {
+  margin-top: 4px;
+  inline-size: 18px;
+  block-size: 18px;
+  flex: none;
+}
+.dr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+.dr-trace {
+  margin-top: 8px;
+}
+.dr-trace ul {
+  margin: 8px 0;
+}
+.dr-changed {
+  margin-left: 6px;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+.dr-chamber {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .dr-chamber {
+    grid-template-columns: 1fr;
+  }
+}
+.dr-args {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+.dr-args li + li {
+  margin-top: 8px;
+}
+.dr-refs {
+  display: block;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.dr-contra + .dr-contra {
+  margin-top: 16px;
+}
+.dr-contra h3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.dr-meta {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 18px;
+  margin: 0 0 14px;
+}
+.dr-meta dt {
+  font-weight: 600;
+}
+.dr-meta dd {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .dr-meta {
+    grid-template-columns: 1fr;
+  }
+  .dr-meta dd {
+    margin-bottom: 8px;
+  }
+}
+@media print {
+  .dr-noprint,
+  .am-hdr,
+  .am-subnav,
+  footer {
+    display: none !important;
+  }
+  .dr-passport .am-section {
+    break-inside: avoid-page;
+  }
+}
+
+/* Decision Twin brand (product pages, Decision Room, passports) */
+.dt-logo {
+  display: inline-block;
+  line-height: 0;
+}
+.dt-logo img {
+  max-width: 100%;
+  height: auto;
+}
+.dt-logo__dark {
+  display: none;
+}
+[data-theme='dark'] .dt-logo__light {
+  display: none;
+}
+[data-theme='dark'] .dt-logo__dark {
+  display: inline;
+}
+.dt-brand {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  margin-block-end: 16px;
+}
+.dt-principle {
+  font-style: italic;
+  color: var(--ink-2);
+}
+.dt-status {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+.dt-status > li {
+  border-inline-start: 2px solid var(--line);
+  padding-inline-start: 12px;
+}
+@media print {
+  .dt-logo__light {
+    display: inline !important;
+  }
+  .dt-logo__dark {
+    display: none !important;
+  }
+}
+.dr-meta__row {
+  display: contents;
+}
+.dt-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 0 0 16px;
+}
+.dt-plan__price strong {
+  font-size: 1.5rem;
+}
+#configuration.am-h3 {
+  margin-top: 28px;
+}

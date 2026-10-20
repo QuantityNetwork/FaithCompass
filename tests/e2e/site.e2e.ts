@@ -70,6 +70,9 @@ async function page(opts: Parameters<Browser['newContext']>[0] = {}): Promise<{ 
   return { context, page: p, errors };
 }
 
+/** A fixed synthetic passport (case DT-PC-001 v1.0.0, P1 and P2 rejected, generated 2026-10-20T16:00:00Z). */
+const PASSPORT_PATH = '/institutional/decision-room/passport/DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6WyJQMSIsIlAyIl0sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxNjowMDowMFoiLCJ2IjoxfQ';
+
 const PAGES = [
   '/',
   '/research',
@@ -103,6 +106,11 @@ const PAGES = [
   '/privacy',
   '/terms',
   '/evidence',
+  '/institutional/decision-twin',
+  '/institutional/decision-twin/terms',
+  '/institutional/decision-room',
+  '/institutional/decision-room?r=P1,P2&g=6',
+  PASSPORT_PATH,
 ];
 
 describe('server-rendered content', () => {
@@ -487,6 +495,91 @@ describe('research workspace', () => {
     const md = await (await fetch(`${base}/research/export?dossier=covenants&format=md`)).text();
     expect(md).toContain('## Unresolved questions');
     expect(md).toContain('## Reproducibility manifest');
+  });
+});
+
+describe('decision room', () => {
+  it('recalculates from the form without JavaScript and shows the audit trace', async () => {
+    const { context, page: p } = await page({ javaScriptEnabled: false });
+    await p.goto(`${base}/institutional/decision-room`);
+    expect(await p.locator('.dr-trace').textContent()).toContain('All inputs are at the case defaults.');
+    await p.getByLabel(/Reject P1/).check();
+    await p.getByLabel(/Reject P2/).check();
+    await p.getByRole('button', { name: 'Recalculate' }).click();
+    await p.waitForURL(/r=P1&r=P2/);
+    const trace = await p.locator('.dr-trace').textContent();
+    expect(trace).toMatch(/prem\.P1.*Accepted → Rejected/s);
+    expect(trace).toMatch(/k\.stress/);
+    expect(trace).not.toMatch(/m\.liquidityHeadroom/);
+    const cond = await p.locator('#conditions').textContent();
+    expect(cond).toMatch(/Stress case leverage within the covenant(\s*changed)?\s*Not met/);
+    await context.close();
+  });
+
+  it('generates a passport that reloads identically and exports the same hash', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-room?r=P3`);
+    await p.getByRole('link', { name: /Generate Decision Passport/ }).click();
+    await p.waitForURL(/\/passport\/DP1-/);
+    const hash = (await p.locator('.dr-meta').first().locator('dd').nth(7).textContent())!.trim();
+    expect(hash).toMatch(/^[0-9a-f]{64}$/);
+    expect(await p.locator('.dr-meta').first().textContent()).toContain('none (simulated decision)');
+    await p.reload();
+    expect((await p.locator('.dr-meta').first().locator('dd').nth(7).textContent())!.trim()).toBe(hash);
+    const url = new URL(p.url());
+    const json = await (await fetch(`${base}${url.pathname}/json`)).json();
+    expect(json.integrity.sha256).toBe(hash);
+    const md = await (await fetch(`${base}${url.pathname}/markdown`)).text();
+    expect(md).toContain(hash);
+    const id = url.pathname.split('/').pop();
+    const verify = await (await fetch(`${base}/api/institutional/decision-room/passport/verify?id=${id}&sha256=${hash}`)).json();
+    expect(verify.valid).toBe(true);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('presents the Decision Twin with honest status, one pilot checkout and no invented contact', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-twin`);
+    await expect(p.getByRole('img', { name: /AbrahamMoses Decision Twin/ }).first().isVisible()).resolves.toBe(true);
+    const text = (await p.locator('main').textContent())!;
+    expect(text).toContain('Public institutional demonstration ready — private client onboarding not authorized');
+    expect(text).toContain('Evidence informs. Humans decide. The system preserves the reasoning.');
+    expect(text).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
+    const reserve = p.getByRole('link', { name: 'Reserve a pilot' });
+    expect(await reserve.getAttribute('href')).toBe('https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d');
+    expect(await p.locator('a[href^="https://buy.stripe.com/"]').count()).toBe(1);
+    expect(await p.locator('main a[href^="mailto:"]').count()).toBe(0);
+    expect(text).toContain('contact details will be published');
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('publishes the draft pilot Terms of Sale and links them from the Reserve button and the footer', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-twin`);
+    const pricing = (await p.locator('#pricing').textContent())!;
+    expect(pricing).toContain('By reserving you accept the Terms of Sale');
+    await p.locator('#pricing').getByRole('link', { name: 'Terms of Sale' }).click();
+    await p.waitForURL(/\/institutional\/decision-twin\/terms$/);
+    const text = (await p.locator('main').textContent())!;
+    expect(text).toContain('Draft pending legal review');
+    expect(text).toContain('Legal entity details');
+    expect(text).toContain('not offered to consumers');
+    expect(text).toContain('€9,500 excluding VAT');
+    expect(text).toContain('If the pilot has not started within 90 days of payment, you receive a full refund on request.');
+    expect(text).toContain('Swedish law');
+    expect(text).toContain('Contact details will be published.');
+    expect(text).not.toMatch(/\b\d{6}-\d{4}\b/); // no invented Swedish organisation number
+    expect(await p.locator('footer a[href="/institutional/decision-twin/terms"]').count()).toBe(1);
+    const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
+    expect(sitemap).toContain(`${base}/institutional/decision-twin/terms`);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('answers 404 for a forged passport ID', async () => {
+    expect((await fetch(`${base}/institutional/decision-room/passport/DP1-forged`)).status).toBe(404);
   });
 });
 

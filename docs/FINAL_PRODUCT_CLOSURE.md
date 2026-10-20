@@ -26,6 +26,7 @@ Labels: **Operational** (works in production on real data) · **Demonstration** 
 | Editorial workflow (drafts, proposals, second-editor approval) | Blocked | Code + local RLS tests exist; needs DB (B1), auth (B2), editors (B3) |
 | External scholarly review | Blocked | B4; 0 reviewers |
 | Institutional Decision Room — Private Credit Decision Twin | Demonstration (pending PR #15) | Synthetic $120M facility; deterministic rules; no AI |
+| AbrahamMoses Decision Twin product page and pricing | Demonstration + pilot reservation (pending PR #15) | Pilot €9,500 via Stripe payment link; Institutional/Enterprise by contact (contact not yet published); terms of sale pending (B10) |
 | Institutional use cases (8 sectors) | Planned | D2 |
 | Private tenant workspaces | Blocked | B1, B2, D3; no client data may be accepted |
 
