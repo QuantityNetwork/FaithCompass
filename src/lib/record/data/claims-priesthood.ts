@@ -1,8 +1,9 @@
 /**
  * Christian studies flagship: priesthood under the New Covenant.
  *
- * AM-CLAIM-000184 to 000191 are the published Claim Ledger. Revision 1 of each
- * is the published record verbatim (from live-import.ts). Revision 2 adds the
+ * AM-CLAIM-000184 to 000191 are the earlier public Claim Ledger. Revision 1 of each
+ * is that record verbatim (from live-import.ts), provisional because no editorial
+ * verification of it was ever recorded (see IMPORTED_STATUS). Revision 2 adds the
  * formal metadata the ledger lacked — editions, variants, a confidence profile
  * on separate axes, tradition acceptance — without changing the statement.
  *
@@ -12,6 +13,7 @@
 import type { Claim, ClaimRevision } from '../schema';
 import type { ClaimClassification, ClaimRole } from '../taxonomy';
 import {
+  IMPORTED_STATUS,
   NOT_RECORDED,
   REPORT_CONFIDENCE,
   accept,
@@ -39,13 +41,13 @@ function live(code: string) {
   return l;
 }
 
-/** Revision 1: the published record, exactly. */
+/** Revision 1: the earlier public record, exactly; awaiting editorial review. */
 export function liveRevision(code: string): ClaimRevision {
   const l = live(code);
   const classification = CLASS_BY_LABEL[l.claim_type];
   if (!classification) throw new Error(`Unmapped claim type "${l.claim_type}"`);
   return revision(1, {
-    status: 'published',
+    status: IMPORTED_STATUS,
     publishedAt: l.updated_at,
     statement: l.statement,
     classification,

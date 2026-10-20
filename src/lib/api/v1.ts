@@ -182,7 +182,7 @@ export const ENDPOINTS_V1: Endpoint[] = [
     method: 'GET',
     path: '/claims/{code}/revisions',
     summary: 'List a claim’s revisions',
-    description: 'Every public revision, oldest first, with its content hash. Published revisions are immutable.',
+    description: 'Every public revision, oldest first, with its content hash. Public revisions are immutable; the one status correction (2026-10-20) is listed on /changelog.',
     response: { name: 'ClaimRevisionList', schema: listOf(RevisionV1) },
     example: '/claims/AM-CLAIM-000191/revisions',
     run: (ctx) => list(ctx, listRevisions(ctx.record, ctx.params.code)),
@@ -616,7 +616,7 @@ export function openApiDocument() {
     info: {
       title: `${SITE_NAME} API`,
       version: API_VERSION,
-      description: `${SITE_DESCRIPTION} Public and read-only: no key is required. Responses carry X-Record-Version; published revisions are immutable.`,
+      description: `${SITE_DESCRIPTION} Public and read-only: no key is required. Responses carry X-Record-Version; published revisions are immutable. Changes in 1.1 (2026-10-20, additive): simulation and comparison outcomes carry \`epistemic_status\` (supported, partially_supported, support_weakened, not_established, insufficient_evidence, disputed_interpretation) and display labels in that vocabulary, alongside the unchanged legacy \`status\` values; \`headline_confidence\` is deprecated and will be removed in v2; revision 1 of AM-CLAIM-000184 to 000191 now reports status \`provisional\` (no editorial verification was ever recorded for it).`,
     },
     servers: [
       { url: canonicalOrigin() },

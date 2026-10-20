@@ -1,5 +1,5 @@
 import type { Claim, EvidenceItem, Source } from '@/lib/evidence/schema';
-import { dimensionLabel, relationshipLabel } from '@/lib/evidence/format';
+import { dimensionLabel, isInterpretiveClaim, relationshipLabel } from '@/lib/evidence/format';
 import { RELATIONSHIP_VALENCE } from '@/lib/evidence/taxonomy';
 
 /**
@@ -109,7 +109,8 @@ export function EvidenceMap({
           fontSize="14"
           fontFamily="var(--sans)"
         >
-          {claim.overallConfidence === null ? '—' : claim.overallConfidence}
+          {/* Interpretive and theological claims are never given a figure. */}
+          {claim.overallConfidence === null || isInterpretiveClaim(claim) ? '—' : claim.overallConfidence}
         </text>
 
         {nodes.map((n) => {

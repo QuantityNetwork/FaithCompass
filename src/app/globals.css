@@ -292,6 +292,14 @@ h4 {
   color: var(--ink-faint);
 }
 
+/* An assessment stated in words (interpretive and theological claims): no figure, no meter. */
+.profile__band--words {
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1.35;
+}
+
 .profile__score {
   font-family: var(--sans);
   font-size: 40px;
@@ -407,6 +415,15 @@ h4 {
   color: var(--ink-faint);
 }
 
+.claim__verdict-band--words {
+  max-width: 190px;
+  margin-left: auto;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1.35;
+}
+
 .claim__verdict-score {
   font-family: var(--sans);
   font-size: 26px;
@@ -435,6 +452,9 @@ h4 {
   .claim__verdict {
     grid-column: 2;
     text-align: left;
+  }
+  .claim__verdict-band--words {
+    margin-left: 0;
   }
   .claim__body {
     padding-left: 30px;

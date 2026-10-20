@@ -28,6 +28,17 @@ export const AI_ASSISTED: ClaimRevision['machine'] = {
   verification: 'pending',
 };
 
+/**
+ * Review state of everything imported from the earlier public Claim Ledger.
+ *
+ * Those records were shown as "published" there, but no reviewer, review date or verification was
+ * ever recorded for them, and machine involvement was not tracked. Calling them "Published" here
+ * would assert an editorial verification the record cannot evidence, so they are provisional:
+ * public and citable, awaiting editorial review. Corrected 2026-10-20 (owner sign-off); see
+ * CHANGELOG.md. When an editor verifies one, append a revision that names the reviewer.
+ */
+export const IMPORTED_STATUS = 'provisional' as const;
+
 export const NOT_RECORDED: ClaimRevision['machine'] = {
   level: 'not_recorded',
   description:

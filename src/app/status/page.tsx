@@ -79,10 +79,10 @@ export default async function StatusPage() {
             <strong>{report.record.revisions}</strong> public revisions
           </span>
           <span>
-            <strong>{report.record.published_revisions}</strong> editor-verified
+            <strong>{report.record.published_revisions}</strong> editor-verified (named reviewer on record)
           </span>
           <span>
-            <strong>{report.record.provisional_revisions}</strong> provisional
+            <strong>{report.record.provisional_revisions}</strong> provisional, awaiting editorial review
           </span>
           <span>
             <strong>{report.record.cases}</strong> research cases

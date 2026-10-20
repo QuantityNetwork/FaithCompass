@@ -206,7 +206,8 @@ export default async function Home({ searchParams }: Props) {
                   </li>
                 ))}
                 <li>
-                  {after.summary.broken} broken, {after.summary.weakened + after.summary.unwarranted} weakened across the record. No source changed.
+                  Across the record: {after.summary.broken} not established under the selected assumptions,{' '}
+                  {after.summary.weakened + after.summary.unwarranted} with support weakened or only partial. No source changed.
                 </li>
               </ul>
               <div className="button-row" style={{ marginTop: 16 }}>
@@ -221,7 +222,7 @@ export default async function Home({ searchParams }: Props) {
           </div>
         </div>
         <p className="small faint">
-          Every line above is a published record with a code; nothing on this page is generated. Records marked provisional
+          Every line above is a public record with a code; nothing on this page is generated. Records marked provisional
           await editorial verification.
         </p>
       </section>
@@ -234,7 +235,7 @@ export default async function Home({ searchParams }: Props) {
         </h2>
         <p className="lede" style={{ marginTop: 0 }}>
           Six connected layers hold the evidence. Confidence is recorded on separate axes that are never combined, and every
-          conclusion records the derivations it rests on — so rejecting one assumption breaks only what genuinely needs it.
+          conclusion records the derivations it rests on — so setting one assumption aside affects only what genuinely needs it.
         </p>
         <div className="layers">
           {LAYERS.map(([n, name, desc]) => (
@@ -298,7 +299,7 @@ export default async function Home({ searchParams }: Props) {
             ['/corpus', 'Corpus', `${counts.works} works, cited by edition, with coverage and gaps.`],
             ['/evidence', 'Evidence assessments', 'Claim-level assessments of historical and textual evidence.'],
             ['/compare', 'Tradition comparator', 'Each tradition’s answer side by side, including where it asks a different question.'],
-            ['/changelog', 'Changelog', 'Every revision, newest first. Published revisions never change.'],
+            ['/changelog', 'Changelog', 'Every revision, newest first, with every correction listed.'],
           ].map(([href, title, desc]) => (
             <Link key={href} href={href} className="card card--link">
               <span className="card__title" style={{ display: 'block' }}>

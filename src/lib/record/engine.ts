@@ -29,6 +29,7 @@
  * on the server and in the explorer.
  */
 
+import { EPISTEMIC_META, type EpistemicStatus } from '../epistemic';
 import type { Derivation, MapLink } from './schema';
 import { LENS_REMOVES, type AxiomStance, type MapKind, type PremiseUse } from './taxonomy';
 
@@ -81,20 +82,76 @@ export interface DependencyGraph {
 export const CLAIM_STATUSES = ['stands', 'weakened', 'unwarranted', 'broken', 'rejected'] as const;
 export type ClaimStatus = (typeof CLAIM_STATUSES)[number];
 
+/**
+ * Display labels, in the epistemic vocabulary of src/lib/epistemic.ts (master prompt §6.4).
+ *
+ * The status VALUES above are the engine's internal and API vocabulary and are kept unchanged for
+ * compatibility (REST v1 and MCP clients key on them). What a reader sees is the label, and
+ * `EPISTEMIC_STATUS_OF` is what the API publishes as `epistemic_status`. "rejected" is the user's
+ * own selection, not an outcome, so it reads "Set aside in this simulation" and maps to
+ * not_established.
+ */
 export const STATUS_LABELS: Record<ClaimStatus, string> = {
-  stands: 'Stands',
-  weakened: 'Weakened',
-  unwarranted: 'Warrant lost',
-  broken: 'Broken',
-  rejected: 'Rejected',
+  stands: EPISTEMIC_META.supported.label,
+  weakened: EPISTEMIC_META.support_weakened.label,
+  unwarranted: EPISTEMIC_META.partially_supported.label,
+  broken: EPISTEMIC_META.not_established.label,
+  rejected: 'Set aside in this simulation',
+};
+
+export const EPISTEMIC_STATUS_OF: Record<ClaimStatus, EpistemicStatus> = {
+  stands: 'supported',
+  weakened: 'support_weakened',
+  unwarranted: 'partially_supported',
+  broken: 'not_established',
+  rejected: 'not_established',
+};
+
+/** Short forms for tight spaces (graph node captions); the legend carries the full label. */
+export const STATUS_SHORT_LABELS: Record<ClaimStatus, string> = {
+  stands: 'Supported',
+  weakened: 'Support weakened',
+  unwarranted: 'Partially supported',
+  broken: 'Not established',
+  rejected: 'Set aside',
+};
+
+/** Lower-case phrase for use inside a sentence ("Supporting premise X is …"). */
+export const STATUS_PHRASES: Record<ClaimStatus, string> = {
+  stands: 'still supported',
+  weakened: 'less well supported',
+  unwarranted: 'only partially supported',
+  broken: 'not established under the selected assumptions',
+  rejected: 'set aside',
 };
 
 export const STATUS_DESCRIPTIONS: Record<ClaimStatus, string> = {
-  stands: 'Unaffected by the rejection.',
-  weakened: 'Still holds, but on less support than before.',
-  unwarranted: 'The text still says this; the argument that made it a warranted reading no longer holds.',
-  broken: 'No derivation of this claim survives the rejection.',
-  rejected: 'Rejected directly in this simulation.',
+  stands: 'Unaffected by what was set aside.',
+  weakened: 'Still supported, but on fewer independent arguments than before.',
+  unwarranted:
+    'The cited text still says this; the argument that made it a supported reading does not hold under the selected assumptions.',
+  broken:
+    'No recorded derivation of this claim survives under the selected assumptions. This concerns the argument as recorded, not whether any tradition is right.',
+  rejected: 'Set aside directly in this simulation.',
+};
+
+export const EDGE_STATUS_LABELS: Record<EdgeStatus, string> = {
+  stands: EPISTEMIC_META.supported.label,
+  weakened: EPISTEMIC_META.support_weakened.label,
+  ungrounded: EPISTEMIC_META.not_established.label,
+};
+
+export const EDGE_EPISTEMIC_STATUS_OF: Record<EdgeStatus, EpistemicStatus> = {
+  stands: 'supported',
+  weakened: 'support_weakened',
+  ungrounded: 'not_established',
+};
+
+/** Counter-models are rival readings: "aligned" and "undermined" are relative to what was set aside. */
+export const COUNTER_STATUS_LABELS: Record<CounterStatus, string> = {
+  unaffected: 'Unaffected',
+  aligned: 'Consistent with what was set aside',
+  undermined: EPISTEMIC_META.not_established.label,
 };
 
 const SEVERITY: Record<ClaimStatus, number> = { stands: 0, weakened: 1, unwarranted: 2, broken: 3, rejected: 4 };

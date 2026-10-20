@@ -72,11 +72,12 @@ describe('the guided walkthrough', () => {
 describe('fidelity to the published record', () => {
   const live = fixture('claims.json').data as Array<Record<string, unknown>>;
 
-  it('reproduces every published claim exactly as revision 1', () => {
+  it('reproduces every claim of the earlier ledger exactly as revision 1', () => {
     for (const l of live) {
       const claim = record.claim(l.code as string)!;
       const r1 = record.revision(claim, 1)!;
-      expect(r1.status).toBe('published');
+      // Imported without a recorded reviewer, so provisional — see STATUS_CORRECTION_2026_10_20.
+      expect(r1.status).toBe('provisional');
       expect(r1.statement).toBe(l.statement);
       expect(r1.primaryWitnesses.map((w) => w.display)).toEqual(l.sources);
       expect(r1.headlineConfidence).toBe(l.textual_confidence);

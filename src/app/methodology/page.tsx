@@ -138,8 +138,9 @@ export default function MethodologyPage() {
       <Section id="dependencies" title="Dependency semantics">
         <p className="prose-block" style={{ marginTop: 0 }}>
           Every conclusion records its derivations — independent ways of arriving at it — and each derivation records its
-          necessary and supporting premises and the reading principles it requires or is strengthened by. A conclusion breaks
-          only when no derivation survives; a textual report keeps its standing when the reading built on it is rejected;
+          necessary and supporting premises and the reading principles it requires or is strengthened by. A conclusion is not
+          established under the selected assumptions only when no derivation survives; a textual report keeps its standing
+          when the reading built on it is set aside;
           circular support establishes nothing. The full rules, and the explorer that applies them, are on the{' '}
           <Link className="link" href="/hermeneutics#semantics">
             Hermeneutics page
@@ -180,6 +181,17 @@ export default function MethodologyPage() {
             revision stays readable at its own address, so a citation always resolves to what was cited. Every public revision’s
             content hash is pinned in the repository, and a build that alters one fails. Drafts are never served by the site,
             the API or the MCP server.
+          </p>
+          <p>
+            <strong>Published means a named reviewer.</strong> A revision is published only when the editor who verified it is
+            recorded, with the date, in its editorial history; the integrity check fails the build otherwise. In the review
+            sequence Draft → Source-validated → Editorially reviewed → Externally reviewed, a provisional revision is a public
+            draft awaiting source validation and editorial review. Records carried over from the earlier Claim Ledger, where
+            no reviewer was recorded, are provisional for that reason. Their one status correction (2026-10-20) is listed on the{' '}
+            <Link className="link" href="/changelog#status-corrections">
+              changelog
+            </Link>
+            .
           </p>
         </div>
       </Section>

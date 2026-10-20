@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { getStore } from '@/lib/evidence/store';
-import { Page, SectionTitle, Tag } from '@/components/evidence/primitives';
+import { AnalysisReviewNotice, Page, SectionTitle, Tag } from '@/components/evidence/primitives';
 import { ClaimDetail } from '@/components/evidence/claim-detail';
 import { ChallengePanel } from '@/components/evidence/challenge-panel';
-import { claimTypeLabel, ordinal } from '@/lib/evidence/format';
+import { claimTypeLabel, isInterpretiveClaim, ordinal } from '@/lib/evidence/format';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,6 +30,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ id: stri
       <h1 className="display" style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}>
         {claim.statement}
       </h1>
+      <AnalysisReviewNotice analysis={analysis} />
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 22 }}>
         <Tag variant="tag--type">{claimTypeLabel(claim.claimType)}</Tag>
@@ -47,7 +48,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ id: stri
 
       <div style={{ marginTop: 40 }}>
         <SectionTitle>Challenge</SectionTitle>
-        <ChallengePanel claimId={claim.id} history={challenges} />
+        <ChallengePanel claimId={claim.id} history={challenges} wordsOnly={isInterpretiveClaim(claim)} />
       </div>
 
       <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>

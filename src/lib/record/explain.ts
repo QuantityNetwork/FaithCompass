@@ -5,7 +5,7 @@
  * reason reads the same wherever it is shown. Pure; no Node or DOM APIs.
  */
 
-import { STATUS_LABELS, type DependencyGraph, type Failure, type Reason } from './engine';
+import { STATUS_PHRASES, type DependencyGraph, type Failure, type Reason } from './engine';
 
 export interface Lookup {
   claim(code: string): string;
@@ -24,9 +24,9 @@ export function lookupFor(graph: DependencyGraph): Lookup {
 function failure(f: Failure, l: Lookup): string {
   switch (f.kind) {
     case 'axiom_rejected':
-      return `it requires ${f.axiom} (${l.axiom(f.axiom)}), which is rejected`;
+      return `it requires ${f.axiom} (${l.axiom(f.axiom)}), which is set aside`;
     case 'premise_unwarranted':
-      return `it needs ${f.premise} to hold as a conclusion, and that claim has lost its warrant`;
+      return `it needs ${f.premise} to hold as a conclusion, and that claim is only partially supported`;
     case 'premise_lost':
       return `its necessary premise ${f.premise} no longer holds`;
   }
@@ -35,20 +35,20 @@ function failure(f: Failure, l: Lookup): string {
 export function explain(reason: Reason, l: Lookup): string {
   switch (reason.kind) {
     case 'rejected':
-      return 'Rejected directly in this simulation.';
+      return 'Set aside directly in this simulation.';
     case 'not_established_at_baseline':
-      return 'Not established even when nothing is rejected — a record defect.';
+      return 'Not established even when nothing is set aside — a record defect.';
     case 'witness_stands':
       return 'The cited text still says this; its standing as a report is unaffected.';
     case 'derivation_holds':
       return `${reason.derivation} “${reason.label}” still holds.`;
     case 'derivation_failed':
-      return `${reason.derivation} “${reason.label}” fails: ${reason.failures.map((f) => failure(f, l)).join('; ')}.`;
+      return `${reason.derivation} “${reason.label}” is not established: ${reason.failures.map((f) => failure(f, l)).join('; ')}.`;
     case 'supporting_premise_affected':
-      return `Supporting premise ${reason.premise} is ${STATUS_LABELS[reason.premiseStatus].toLowerCase()}.`;
+      return `Supporting premise ${reason.premise} is ${STATUS_PHRASES[reason.premiseStatus]}.`;
     case 'necessary_premise_weakened':
-      return `Necessary premise ${reason.premise} still holds but is ${STATUS_LABELS[reason.premiseStatus].toLowerCase()}.`;
+      return `Necessary premise ${reason.premise} still holds but is ${STATUS_PHRASES[reason.premiseStatus]}.`;
     case 'strengthening_axiom_rejected':
-      return `${reason.axiom} (${l.axiom(reason.axiom)}) strengthened ${reason.derivation} and is rejected.`;
+      return `${reason.axiom} (${l.axiom(reason.axiom)}) strengthened ${reason.derivation} and is set aside.`;
   }
 }

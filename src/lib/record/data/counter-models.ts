@@ -10,6 +10,7 @@
 
 import type { CounterModel } from '../schema';
 import { refs } from './corpus';
+import { IMPORTED_STATUS } from './build';
 
 const PUBLISHED = '2026-10-02';
 const MIGRATED = '2026-10-14T12:00:00Z';
@@ -24,7 +25,9 @@ function cm(input: Input): CounterModel {
   return {
     ...rest,
     evidence: refs(...evidence),
-    status: published ? 'published' : 'provisional',
+    // Imported counter-models keep their first-published date but not a "published" status:
+    // no editorial verification of them was recorded (see IMPORTED_STATUS).
+    status: published ? IMPORTED_STATUS : 'provisional',
     firstPublished: published ? PUBLISHED : MIGRATED,
   };
 }

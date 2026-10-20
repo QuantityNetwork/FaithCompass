@@ -18,7 +18,7 @@ import { getCitation } from '@/lib/api/operations';
 import { claimView } from '@/lib/api/views';
 import { getRecord } from '@/lib/record/record';
 import type { ClaimRevision } from '@/lib/record/schema';
-import { ROLE_META } from '@/lib/record/taxonomy';
+import { REVIEW_STATE_LABELS, ROLE_META, isEditorVerified, type RevisionStatus } from '@/lib/record/taxonomy';
 import { absoluteUrl } from '@/lib/site/config';
 import { param, type SearchParams } from '@/lib/site/explorer';
 
@@ -46,7 +46,6 @@ function diff(prev: ClaimRevision, next: ClaimRevision): Array<{ field: string; 
   const fields: Array<[string, (r: ClaimRevision) => string]> = [
     ['Statement', (r) => r.statement],
     ['Classification', (r) => r.classification],
-    ['Headline confidence', (r) => r.headlineConfidence],
     ['Disputed', (r) => r.disputed],
     ['Interpretive divergence', (r) => r.interpretiveDivergence],
     ['Primary witnesses', (r) => r.primaryWitnesses.map((w) => w.display).join('; ')],
@@ -111,7 +110,7 @@ export default async function ClaimPage({ params, searchParams }: Props) {
           valid. <Link className="link" href={`/claims/${claim.code}`}>Read the current revision ({current.rev})</Link>.
         </p>
       ) : null}
-      <ProvisionalNotice subject="This revision" status={view.status} />
+      <ProvisionalNotice subject="This revision" status={view.status} machine={view.machine_involvement.level} />
 
       <div className="grid-3 section--tight">
         <div className="card">
@@ -119,10 +118,14 @@ export default async function ClaimPage({ params, searchParams }: Props) {
           <p style={{ margin: '6px 0 0' }}>{view.disputed}</p>
         </div>
         <div className="card">
-          <div className="card__meta">Headline confidence</div>
-          <p style={{ margin: '6px 0 0' }}>{view.headline_confidence}</p>
+          <div className="card__meta">Review state</div>
+          <p style={{ margin: '6px 0 0' }}>{REVIEW_STATE_LABELS[view.status as RevisionStatus] ?? view.status}</p>
           <p className="small faint" style={{ margin: '4px 0 0' }}>
-            The summary label the ledger has shown since revision 1. The axes below are the formal record.
+            {isEditorVerified(view.status as RevisionStatus)
+              ? `Verified by ${view.editorial.reviewers.map((r) => r.name).join(', ')}.`
+              : view.machine_involvement.level === 'not_recorded'
+                ? 'From the earlier Claim Ledger; no reviewer or AI involvement was recorded.'
+                : `${view.machine_involvement.label}; editorial verification pending.`}
           </p>
         </div>
         <div className="card">
@@ -132,6 +135,11 @@ export default async function ClaimPage({ params, searchParams }: Props) {
       </div>
 
       <Section id="confidence" title="Confidence, on separate axes" eyebrow="Never combined">
+        {!isEditorVerified(view.status as RevisionStatus) && view.confidence ? (
+          <p className="small faint" style={{ marginTop: 0 }}>
+            Levels as proposed in the draft. They have not yet been verified by an editor and may change on review.
+          </p>
+        ) : null}
         <ConfidenceAxes confidence={view.confidence} />
       </Section>
 
@@ -210,8 +218,8 @@ export default async function ClaimPage({ params, searchParams }: Props) {
       <Section id="derivations" title="What this claim rests on">
         {view.grounded_in_witness ? (
           <p className="small muted" style={{ marginTop: 0 }}>
-            Grounded in its witness: as a report of what the text says, it stands unless rejected directly. Any argument
-            recorded below gives it its warrant as a reading.
+            Grounded in its witness: as a report of what the text says, it remains supported unless it is set aside directly. Any
+            argument recorded below is what supports it as a reading.
           </p>
         ) : (
           <p className="small muted" style={{ marginTop: 0 }}>

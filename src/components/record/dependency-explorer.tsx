@@ -16,7 +16,7 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState, type KeyboardEvent, type MouseEvent } from 'react';
-import { STATUS_DESCRIPTIONS, STATUS_LABELS, simulate, type ClaimStatus, type DependencyGraph } from '@/lib/record/engine';
+import { COUNTER_STATUS_LABELS, EDGE_STATUS_LABELS, STATUS_DESCRIPTIONS, STATUS_LABELS, STATUS_SHORT_LABELS, simulate, type ClaimStatus, type DependencyGraph } from '@/lib/record/engine';
 import { explain, lookupFor } from '@/lib/record/explain';
 import { NODE_H, NODE_W, layoutGraph } from '@/lib/record/layout';
 
@@ -114,10 +114,10 @@ export function DependencyExplorer(props: ExplorerProps) {
   const nothingRejected = reject.length === 0 && !lens;
 
   const summary = nothingRejected
-    ? 'Nothing rejected. Every claim in the record stands on at least one derivation.'
+    ? 'Nothing set aside. Every claim in the record is supported by at least one derivation under the full set of assumptions.'
     : `Rejected ${[...reject, ...lensAxioms].join(', ')}${lens ? ` (lens: ${traditionNames[lens] ?? lens})` : ''}. ` +
-      `${result.summary.broken} broken, ${result.summary.unwarranted} lost their warrant, ${result.summary.weakened} weakened; ` +
-      `${result.summary.edgesUngrounded} map connections ungrounded, ${result.summary.edgesWeakened} weakened. No source was changed.`;
+      `${result.summary.broken} not established under the selected assumptions, ${result.summary.unwarranted} partially supported, ${result.summary.weakened} with support weakened; ` +
+      `${result.summary.edgesUngrounded} map connections not established, ${result.summary.edgesWeakened} with support weakened. No source was changed.`;
 
   const selectedStatus = selected ? (result.statuses[selected] ?? null) : null;
   const selectedOutcome = selected ? result.affected.find((a) => a.code === selected) : undefined;
@@ -351,7 +351,7 @@ export function DependencyExplorer(props: ExplorerProps) {
                     <text x={n.x + 12} y={n.y + 17} fontSize="10.5" letterSpacing="0.06em" style={{ fontFamily: 'var(--sans)', fill: status === 'stands' ? 'var(--ink-faint)' : s.stroke }}>
                       {shortCode(n.id).toUpperCase()}
                       {n.role === 'position' ? ' · POSITION' : ''}
-                      {status !== 'stands' ? ` · ${STATUS_LABELS[status].toUpperCase()}` : ''}
+                      {status !== 'stands' ? ` · ${STATUS_SHORT_LABELS[status].toUpperCase()}` : ''}
                     </text>
                     {n.lines.map((line, i) => (
                       <text key={i} x={n.x + 12} y={n.y + 35 + i * 15} fontSize="12.5" textDecoration={status === 'broken' || status === 'rejected' ? 'line-through' : undefined} style={{ fontFamily: 'var(--serif)', fill: 'var(--ink)' }}>
@@ -365,19 +365,19 @@ export function DependencyExplorer(props: ExplorerProps) {
           </div>
           <div className="legend" aria-hidden="true">
             <span>
-              <i className="swatch" /> Stands
+              <i className="swatch" /> {STATUS_LABELS.stands}
             </span>
             <span>
-              <i className="swatch swatch--weakened" /> Weakened
+              <i className="swatch swatch--weakened" /> {STATUS_LABELS.weakened}
             </span>
             <span>
-              <i className="swatch swatch--unwarranted" /> Warrant lost
+              <i className="swatch swatch--unwarranted" /> {STATUS_LABELS.unwarranted}
             </span>
             <span>
-              <i className="swatch swatch--broken" /> Broken
+              <i className="swatch swatch--broken" /> {STATUS_LABELS.broken}
             </span>
             <span>
-              <i className="swatch swatch--rejected" /> Rejected
+              <i className="swatch swatch--rejected" /> {STATUS_LABELS.rejected}
             </span>
           </div>
 
@@ -486,7 +486,7 @@ export function DependencyExplorer(props: ExplorerProps) {
               <ul className="affected-list">
                 {result.mapEdges.map((e) => (
                   <li key={`${e.mapKind}:${e.code}`}>
-                    <span className="code-inline">{e.code}</span> <span className={`status status--${e.status}`}>{e.status === 'ungrounded' ? 'Ungrounded' : 'Weakened'}</span>{' '}
+                    <span className="code-inline">{e.code}</span> <span className={`status status--${e.status}`}>{EDGE_STATUS_LABELS[e.status]}</span>{' '}
                     <span className="small">{edgeLabels[`${e.mapKind}:${e.code}`] ?? ''}</span>
                     <p className="small muted" style={{ margin: '4px 0 0' }}>
                       {e.groundedBy.length
@@ -503,8 +503,8 @@ export function DependencyExplorer(props: ExplorerProps) {
             Rival readings
           </h3>
           <p className="small faint" style={{ marginTop: 0 }}>
-            Rejecting an assumption does not settle a dispute. Counter-models that deny what you rejected are shown as
-            aligned; those that need it, as undermined.
+            Setting an assumption aside does not settle a dispute. Counter-models that also deny it are shown as consistent
+            with what was set aside; those that need it, as not established under the selected assumptions.
           </p>
           {result.counterModels.filter((m) => m.status !== 'unaffected').length === 0 ? (
             <p className="small muted">No counter-model is affected.</p>
@@ -514,7 +514,7 @@ export function DependencyExplorer(props: ExplorerProps) {
                 .filter((m) => m.status !== 'unaffected')
                 .map((m) => (
                   <li key={m.code}>
-                    <span className="code-inline">{m.code}</span> <span className={`status status--${m.status}`}>{m.status}</span>{' '}
+                    <span className="code-inline">{m.code}</span> <span className={`status status--${m.status}`}>{COUNTER_STATUS_LABELS[m.status]}</span>{' '}
                     {counterModels[m.code]?.title} <span className="faint small">— {counterModels[m.code]?.heldBy}</span>
                     <p className="small muted" style={{ margin: '4px 0 0' }}>
                       {m.status === 'aligned' ? `Also denies ${m.alignedWith.join(', ')}.` : `Needs ${m.underminedBy.join(', ')}.`}

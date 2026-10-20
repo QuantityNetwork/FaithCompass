@@ -7,7 +7,8 @@
  */
 
 import { z } from 'zod/v4';
-import { SimulationInputError, downstreamOf, lensAxioms, simulate, upstreamOf } from '@/lib/record/engine';
+import { EPISTEMIC_STATUS_OF, STATUS_LABELS, SimulationInputError, downstreamOf, lensAxioms, simulate, upstreamOf } from '@/lib/record/engine';
+import { EPISTEMIC_STATUSES } from '@/lib/epistemic';
 import { citationFormats } from '@/lib/record/provenance';
 import { generateProvenance } from '@/lib/record/provenance';
 import { revisionHash, type AbrahamMosesRecord } from '@/lib/record/record';
@@ -252,7 +253,14 @@ export const CompareV1 = z.object({
       position: z.string().nullable(),
       position_statement: z.string().nullable(),
       lens_rejects: z.array(z.string()),
-      positions_under_lens: z.array(z.object({ claim: z.string(), status: z.string() })),
+      positions_under_lens: z.array(
+        z.object({
+          claim: z.string(),
+          status: z.string().describe('Legacy engine value (stands | weakened | unwarranted | broken | rejected), kept for compatibility.'),
+          epistemic_status: z.enum(EPISTEMIC_STATUSES),
+          status_label: z.string(),
+        }),
+      ),
     }),
   ),
 });
@@ -267,7 +275,7 @@ export function compareTraditions(record: R, slug: string): z.infer<typeof Compa
     question: rc.question,
     record_version: record.version,
     notice:
-      'Each row applies one tradition’s lens — removing the reading principles it rejects or sets aside — and shows which positions still stand. A lens records explicit rejections only; principles a tradition does not address are left in place. Where a tradition asks a different question, the row says so.',
+      'Each row applies one tradition’s lens — removing the reading principles it rejects or sets aside — and shows which positions are still supported under that lens. A lens records explicit rejections only; principles a tradition does not address are left in place. Where a tradition asks a different question, the row says so.',
     rows: rc.responses.map((resp) => {
       const t = record.tradition(resp.tradition)!;
       const result = simulate(graph, { lens: t.id });
@@ -281,7 +289,12 @@ export function compareTraditions(record: R, slug: string): z.infer<typeof Compa
         position: resp.position,
         position_statement: resp.position ? record.current(record.claim(resp.position)!).statement : null,
         lens_rejects: lensAxioms(graph, t.id),
-        positions_under_lens: rc.positions.map((p) => ({ claim: p.claim, status: result.statuses[p.claim] })),
+        positions_under_lens: rc.positions.map((p) => ({
+          claim: p.claim,
+          status: result.statuses[p.claim],
+          epistemic_status: EPISTEMIC_STATUS_OF[result.statuses[p.claim]],
+          status_label: STATUS_LABELS[result.statuses[p.claim]],
+        })),
       };
     }),
   };

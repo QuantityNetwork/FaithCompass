@@ -5,17 +5,29 @@ import {
   certaintyLabel,
   claimTypeLabel,
   dimensionLabel,
+  epistemicFromScore,
+  interpretiveAssessment,
+  isInterpretiveClaim,
   ordinal,
   perspectiveLabel,
   scholarlyPositionLabel,
 } from '@/lib/evidence/format';
 import { ABSENCE_VERDICT_META } from '@/lib/evidence/taxonomy';
+import { EPISTEMIC_META } from '@/lib/epistemic';
 import { EvidenceProfileGrid } from './evidence-profile';
 import { EvidenceLedger } from './evidence-ledger';
 import { EvidenceMap } from './evidence-map';
 import { ConfidenceFigure, Disclosure, ReasonList, SectionTitle, Tag } from './primitives';
 
 export function ClaimHeadline({ claim }: { claim: Claim }) {
+  const words = isInterpretiveClaim(claim) ? interpretiveAssessment(claim) : null;
+  if (words) {
+    return (
+      <div className="claim__verdict">
+        <div className="claim__verdict-band claim__verdict-band--words">{words.label}</div>
+      </div>
+    );
+  }
   return (
     <div className="claim__verdict">
       <div
@@ -41,7 +53,7 @@ export function ClaimRow({ analysis, claim }: { analysis: Analysis; claim: Claim
           <span className="claim__statement">{claim.statement}</span>
           <span className="claim__meta">
             <Tag variant="tag--type">{claimTypeLabel(claim.claimType)}</Tag>
-            <span className="tiny faint">{certaintyLabel(claim.certainty)}</span>
+            {isInterpretiveClaim(claim) ? null : <span className="tiny faint">{certaintyLabel(claim.certainty)}</span>}
             {claim.positionNote ? (
               <span className="tiny muted" style={{ textTransform: 'none', letterSpacing: 0 }}>
                 {claim.positionNote}
@@ -55,7 +67,7 @@ export function ClaimRow({ analysis, claim }: { analysis: Analysis; claim: Claim
         <p className="prose" style={{ marginTop: 0 }}>
           {claim.summary}
         </p>
-        <EvidenceProfileGrid profile={claim.primaryProfile} />
+        <EvidenceProfileGrid profile={claim.primaryProfile} interpretiveClaim={isInterpretiveClaim(claim)} />
         <div style={{ marginTop: 22, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <Link className="button" href={`/evidence/claim/${claim.id}`}>
             View Evidence · {items.length} item{items.length === 1 ? '' : 's'}
@@ -88,10 +100,13 @@ export function ClaimDetail({ analysis, claim }: { analysis: Analysis; claim: Cl
       e.relationship === 'INSUFFICIENT_DATA',
   );
 
+  const interpretive = isInterpretiveClaim(claim);
+  const words = interpretive ? interpretiveAssessment(claim) : null;
+
   return (
     <>
       <SectionTitle>Evidence Profile</SectionTitle>
-      <EvidenceProfileGrid profile={claim.primaryProfile} />
+      <EvidenceProfileGrid profile={claim.primaryProfile} interpretiveClaim={interpretive} />
 
       <div className="panel" style={{ marginTop: 24 }}>
         <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap', alignItems: 'flex-start' }}>
@@ -99,20 +114,34 @@ export function ClaimDetail({ analysis, claim }: { analysis: Analysis; claim: Cl
             <ConfidenceFigure
               score={claim.overallConfidence}
               label={claim.confidenceLabel}
-              caption="Overall evidence confidence"
+              caption={words ? 'Assessment' : 'Overall evidence confidence'}
+              qualitative={words ? { label: words.label } : undefined}
             />
             <p className="small faint" style={{ marginTop: 14, marginBottom: 0 }}>
-              An assessment of evidential support. Not a probability that the claim is true.
+              {words
+                ? 'An interpretive or theological claim: described in words, never given a figure. Relative to the evidence and assumptions on record, not a verdict on whether a reading or a tradition is true.'
+                : 'An assessment of evidential support. Not a probability that the claim is true.'}
             </p>
           </div>
           <div style={{ flex: '1 1 320px' }}>
-            <div className="profile__label">Certainty</div>
-            <div className="profile__band" style={{ marginTop: 12 }}>
-              {certaintyLabel(claim.certainty)}
-            </div>
-            <p className="small muted" style={{ marginTop: 10 }}>
-              {certaintyDefinition(claim.certainty)}
-            </p>
+            {words ? (
+              <>
+                <div className="profile__label">What this means</div>
+                <p className="small muted" style={{ marginTop: 12 }}>
+                  {words.definition}
+                </p>
+              </>
+            ) : (
+              <>
+                <div className="profile__label">Certainty</div>
+                <div className="profile__band" style={{ marginTop: 12 }}>
+                  {certaintyLabel(claim.certainty)}
+                </div>
+                <p className="small muted" style={{ marginTop: 10 }}>
+                  {certaintyDefinition(claim.certainty)}
+                </p>
+              </>
+            )}
             <div className="profile__label" style={{ marginTop: 22 }}>
               Scholarly position
             </div>
@@ -140,7 +169,7 @@ export function ClaimDetail({ analysis, claim }: { analysis: Analysis; claim: Cl
         </div>
       ) : null}
 
-      <Disclosure title="Why this score?" open>
+      <Disclosure title={interpretive ? 'Why this assessment?' : 'Why this score?'} open>
         <div className="balance">
           <div>
             <div className="compare__row-label" style={{ marginTop: 0 }}>
@@ -283,7 +312,7 @@ export function ClaimDetail({ analysis, claim }: { analysis: Analysis; claim: Cl
               <div className="ledger__head">
                 <h4 className="ledger__title">{dimensionLabel(d.dimensionType)}</h4>
                 <span className="ledger__rel" style={{ color: 'var(--gold-bright)' }}>
-                  {d.confidenceLabel} · {d.score}
+                  {interpretive ? dimensionWords(d.score) : `${d.confidenceLabel} · ${d.score}`}
                 </span>
               </div>
               <p className="small muted" style={{ marginBottom: 0 }}>
@@ -307,6 +336,12 @@ export function ClaimDetail({ analysis, claim }: { analysis: Analysis; claim: Cl
           {analysis.analysisVersion}. Created {analysis.createdAt.slice(0, 10)}, last updated{' '}
           {analysis.updatedAt.slice(0, 10)}.
         </p>
+        {interpretive ? (
+          <p className="small faint">
+            Numerical scoring factors are not shown for interpretive and theological claims.
+          </p>
+        ) : (
+          <>
         <div className="compare__row-label">Scoring factors</div>
         <div className="ledger">
           <div className="ledger__row">
@@ -321,6 +356,8 @@ export function ClaimDetail({ analysis, claim }: { analysis: Analysis; claim: Cl
             </p>
           </div>
         </div>
+          </>
+        )}
         {claim.calibrationNotes.length > 0 ? (
           <>
             <div className="compare__row-label">Calibration rules applied</div>
@@ -380,9 +417,10 @@ export function InterpretationComparison({ claim }: { claim: Claim }) {
 
           <div style={{ marginTop: 22 }}>
             <ConfidenceFigure
-              score={interp.confidence}
+              score={null}
               label={interp.confidenceLabel}
-              caption="Interpretive confidence"
+              caption="Assessment"
+              qualitative={{ label: interpretationLabel(interp.confidence, interp.scholarlyPosition) }}
             />
           </div>
 
@@ -410,4 +448,16 @@ export function InterpretationComparison({ claim }: { claim: Claim }) {
       ))}
     </div>
   );
+}
+
+/** A dimension of an interpretive claim, in the epistemic vocabulary rather than a confidence band. */
+function dimensionWords(score: number | null): string {
+  const s = epistemicFromScore(score);
+  return s ? EPISTEMIC_META[s].label : 'Not assessed';
+}
+
+/** Competing interpretations are interpretive by nature: always words, never a figure. */
+function interpretationLabel(score: number | null, position: Parameters<typeof epistemicFromScore>[1]): string {
+  const status = epistemicFromScore(score, position);
+  return status ? EPISTEMIC_META[status].label : 'Not assessed';
 }

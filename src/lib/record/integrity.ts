@@ -64,10 +64,30 @@ export function checkRecord(data: RecordData, graph: DependencyGraph): Finding[]
     if (!works.has(id)) err('unknown_work', subject, `Unknown work "${id}".`);
   };
 
+  /* Publication requires a recorded reviewer. Axioms, counter-models and map edges have no reviewer
+   * field yet, so none of them can be "published"; they stay provisional until one is added. */
+  for (const [kind, items] of [
+    ['axiom', data.axioms],
+    ['counter-model', data.counterModels],
+    ['covenant edge', data.covenants],
+    ['doctrine edge', data.doctrine],
+    ['research case', data.cases],
+  ] as const) {
+    for (const item of items as ReadonlyArray<{ status: string; code?: string; slug?: string }>) {
+      if (item.status === 'published' || item.status === 'externally_reviewed') {
+        err('unverified_publication', item.code ?? item.slug ?? kind, `This ${kind} is ${item.status}, but the record has no field to name its reviewer.`);
+      }
+    }
+  }
+
   /* Claims and revisions */
   for (const c of data.claims) {
     c.revisions.forEach((r, i) => {
       if (r.rev !== i + 1) err('revision_sequence', c.code, `Revision ${r.rev} is out of sequence (expected ${i + 1}).`);
+      if ((r.status === 'published' || r.status === 'externally_reviewed') && r.editorial.reviewers.length === 0) {
+        // "Published" asserts an editorial verification; without a named reviewer the record cannot evidence it.
+        err('unverified_publication', c.code, `Revision ${r.rev} is ${r.status} but names no reviewer.`);
+      }
       if (i > 0 && r.publishedAt < c.revisions[i - 1].publishedAt) {
         err('revision_order', c.code, `Revision ${r.rev} is dated before revision ${r.rev - 1}.`);
       }

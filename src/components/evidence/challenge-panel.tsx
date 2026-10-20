@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { AssessmentChallenge } from '@/lib/evidence/schema';
+import { epistemicFromScore } from '@/lib/evidence/format';
+import { EPISTEMIC_META } from '@/lib/epistemic';
 
 /**
  * Challenge Assessment.
@@ -14,9 +16,12 @@ import type { AssessmentChallenge } from '@/lib/evidence/schema';
 export function ChallengePanel({
   claimId,
   history,
+  wordsOnly = false,
 }: {
   claimId: string;
   history: AssessmentChallenge[];
+  /** Interpretive or theological claim: show the outcome in words, never as figures. */
+  wordsOnly?: boolean;
 }) {
   const router = useRouter();
   const [running, setRunning] = useState(false);
@@ -64,7 +69,7 @@ export function ChallengePanel({
       {shown.length > 0 ? (
         <div style={{ marginTop: 28 }}>
           {shown.map((c) => (
-            <ChallengeRecord key={c.id} challenge={c} />
+            <ChallengeRecord key={c.id} challenge={c} wordsOnly={wordsOnly} />
           ))}
         </div>
       ) : null}
@@ -72,7 +77,24 @@ export function ChallengePanel({
   );
 }
 
-function ChallengeRecord({ challenge }: { challenge: AssessmentChallenge }) {
+function ChallengeRecord({ challenge, wordsOnly = false }: { challenge: AssessmentChallenge; wordsOnly?: boolean }) {
+  const words = (score: number | null) => {
+    const s = epistemicFromScore(score);
+    return s ? EPISTEMIC_META[s].label : 'Not assessed';
+  };
+  if (wordsOnly) {
+    return (
+      <div className="notice" style={{ marginTop: 0 }}>
+        <div className="tiny" style={{ color: 'var(--gold)', marginBottom: 14 }}>
+          Assessment challenged · {challenge.outcome}
+        </div>
+        <Field label="Previous assessment">{words(challenge.previousScore)}</Field>
+        <Field label="Revised assessment">{words(challenge.revisedScore)}</Field>
+        <Field label="Reason">{challenge.challengeReasoning}</Field>
+        <Field label="Strongest opposing case">{challenge.strongestOpposingCase}</Field>
+      </div>
+    );
+  }
   return (
     <div className="notice" style={{ marginTop: 0 }}>
       <div className="tiny" style={{ color: 'var(--gold)', marginBottom: 14 }}>

@@ -66,7 +66,8 @@ describe('REST v1 — contract', () => {
     const { body } = await v1('/claims/AM-CLAIM-000191');
     expect(body.code).toBe('AM-CLAIM-000191');
     expect(body.revisions.map((r: { rev: number }) => r.rev)).toEqual([1, 2]);
-    expect(body.last_verified_revision).toBe(1);
+    // No editorial verification was ever recorded for the imported revision 1 (status correction 2026-10-20).
+    expect(body.last_verified_revision).toBeNull();
     expect(body.editions.length).toBeGreaterThan(0);
     expect(Object.keys(body.confidence)).toEqual(['textual', 'philological', 'historical', 'inferential']);
     expect(body.acceptance.length).toBeGreaterThan(5);
@@ -79,7 +80,7 @@ describe('REST v1 — contract', () => {
   it('serves any revision, so a citation keeps pointing at what was cited', async () => {
     const { body } = await v1('/claims/AM-CLAIM-000191?rev=1');
     expect(body.revision).toBe(1);
-    expect(body.status).toBe('published');
+    expect(body.status).toBe('provisional');
     expect(body.confidence).toBeNull();
     const missing = await v1('/claims/AM-CLAIM-000191?rev=9');
     expect(missing.res.status).toBe(404);
@@ -130,7 +131,7 @@ describe('REST v1 — errors, headers and limits', () => {
     expect(pre.headers.get('access-control-allow-origin')).toBe('*');
     const { res } = await v1('/claims/AM-CLAIM-000184');
     expect(res.headers.get('access-control-allow-origin')).toBe('*');
-    expect(res.headers.get('x-abrahammoses-api-version')).toBe('1.0');
+    expect(res.headers.get('x-abrahammoses-api-version')).toBe('1.1');
     expect(res.headers.get('x-record-version')).toBe(getRecord().version);
     expect(res.headers.get('ratelimit-limit')).toBe('120');
   });

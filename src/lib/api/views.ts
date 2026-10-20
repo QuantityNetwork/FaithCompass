@@ -13,7 +13,16 @@ import { generateProvenance, citationText } from '@/lib/record/provenance';
 import type { AbrahamMosesRecord } from '@/lib/record/record';
 import type { Claim, Reference } from '@/lib/record/schema';
 import type { Reason, SimulationResult } from '@/lib/record/engine';
-import { STATUS_DESCRIPTIONS, STATUS_LABELS, CLAIM_STATUSES } from '@/lib/record/engine';
+import {
+  CLAIM_STATUSES,
+  COUNTER_STATUS_LABELS,
+  EDGE_EPISTEMIC_STATUS_OF,
+  EDGE_STATUS_LABELS,
+  EPISTEMIC_STATUS_OF,
+  STATUS_DESCRIPTIONS,
+  STATUS_LABELS,
+} from '@/lib/record/engine';
+import { EPISTEMIC_STATUSES } from '@/lib/epistemic';
 import { explain, lookupFor } from '@/lib/record/explain';
 import {
   ACCEPTANCE_STANCES,
@@ -66,6 +75,23 @@ export const AcceptanceV1 = z.object({
 
 const Status = z.enum(REVISION_STATUSES);
 
+/**
+ * headline_confidence is kept so existing clients do not break, but it is no longer shown on the
+ * site: it is the single summary label carried over from the earlier Claim Ledger, it was never an
+ * editorial assessment, and on provisional (unverified) revisions it overstated certainty.
+ */
+export const HEADLINE_DEPRECATION =
+  'Deprecated (2026-10-20). Legacy summary label carried over from the earlier Claim Ledger. It is not an editorial assessment and has not been verified; it is no longer displayed. Use `status` (review state) and the per-axis `confidence` profile instead. Will be removed in /api/v2.';
+
+const EpistemicStatusV1 = z
+  .enum(EPISTEMIC_STATUSES)
+  .describe(
+    'Public epistemic status (product language rules, 2026-10-20): supported = "Supported under selected assumptions", partially_supported, support_weakened, not_established = "Not established under selected assumptions", insufficient_evidence, disputed_interpretation. Relative to the assumptions in force; never a verdict on whether a tradition is true.',
+  );
+
+const LegacyEngineStatus = (values: string) =>
+  `Legacy engine value (${values}), kept unchanged for compatibility. Display \`status_label\` and key new logic on \`epistemic_status\`.`;
+
 export const ClaimSummaryV1 = z.object({
   object: z.literal('claim_summary'),
   code: z.string(),
@@ -79,7 +105,10 @@ export const ClaimSummaryV1 = z.object({
   revision: z.number().int(),
   status: Status,
   published_at: z.string(),
-  headline_confidence: z.string(),
+  headline_confidence: z
+    .string()
+    .meta({ deprecated: true })
+    .describe(HEADLINE_DEPRECATION),
   disputed: z.string(),
   interpretive_divergence: z.string(),
   witnesses: z.array(ReferenceV1),
@@ -277,21 +306,35 @@ export const SimulationV1 = z.object({
   notice: z.string(),
   input: z.object({ reject_claims: z.array(z.string()), reject_axioms: z.array(z.string()), lens: z.string().nullable() }),
   effective_axioms: z.array(z.string()),
-  summary: z.object({
-    stands: z.number().int(),
-    weakened: z.number().int(),
-    unwarranted: z.number().int(),
-    broken: z.number().int(),
-    rejected: z.number().int(),
-    map_edges_ungrounded: z.number().int(),
-    map_edges_weakened: z.number().int(),
-  }),
+  summary: z
+    .object({
+      stands: z.number().int(),
+      weakened: z.number().int(),
+      unwarranted: z.number().int(),
+      broken: z.number().int(),
+      rejected: z.number().int(),
+      map_edges_ungrounded: z.number().int(),
+      map_edges_weakened: z.number().int(),
+    })
+    .describe('Counts by legacy engine status, kept for compatibility. See epistemic_summary for the public vocabulary.'),
+  epistemic_summary: z
+    .object({
+      supported: z.number().int(),
+      partially_supported: z.number().int(),
+      support_weakened: z.number().int(),
+      not_established: z.number().int(),
+      set_aside: z.number().int(),
+    })
+    .describe(
+      'Claim counts in the public vocabulary. not_established counts claims no recorded derivation establishes under the selected assumptions; set_aside counts claims rejected directly in the request (their epistemic_status is not_established).',
+    ),
   affected: z.array(
     z.object({
       code: z.string(),
       statement: z.string(),
-      status: z.enum(CLAIM_STATUSES),
-      status_label: z.string(),
+      status: z.enum(CLAIM_STATUSES).describe(LegacyEngineStatus('stands | weakened | unwarranted | broken | rejected')),
+      epistemic_status: EpistemicStatusV1,
+      status_label: z.string().describe('Display label in the public vocabulary, e.g. "Not established under selected assumptions".'),
       status_description: z.string(),
       depth: z.number().int(),
       via: z.array(z.string()),
@@ -300,10 +343,25 @@ export const SimulationV1 = z.object({
   ),
   derivations: z.array(z.object({ code: z.string(), claim: z.string(), valid: z.boolean(), valid_at_baseline: z.boolean() })),
   map_edges: z.array(
-    z.object({ map_kind: z.string(), code: z.string(), status: z.string(), grounded_by: z.array(z.string()), affected_links: z.array(z.string()) }),
+    z.object({
+      map_kind: z.string(),
+      code: z.string(),
+      status: z.string().describe(LegacyEngineStatus('stands | weakened | ungrounded')),
+      epistemic_status: EpistemicStatusV1,
+      status_label: z.string(),
+      grounded_by: z.array(z.string()),
+      affected_links: z.array(z.string()),
+    }),
   ),
   counter_models: z.array(
-    z.object({ code: z.string(), title: z.string(), status: z.string(), aligned_with: z.array(z.string()), undermined_by: z.array(z.string()) }),
+    z.object({
+      code: z.string(),
+      title: z.string(),
+      status: z.string().describe(LegacyEngineStatus('aligned | undermined')),
+      status_label: z.string().describe('"Consistent with what was set aside" or "Not established under selected assumptions".'),
+      aligned_with: z.array(z.string()),
+      undermined_by: z.array(z.string()),
+    }),
   ),
 });
 
@@ -652,7 +710,7 @@ export function caseView(record: R, slug: string): z.infer<typeof CaseV1> {
  * ------------------------------------------------------------------ */
 
 export const SIMULATION_NOTICE =
-  'Simulation only. Nothing in the record has been changed: every source, claim and revision is exactly as published. The result shows what would follow if the named claims or reading principles were rejected; rival readings are reported on both sides.';
+  'Simulation only. Nothing in the record has been changed: every source, claim and revision is exactly as recorded. The result shows what would follow if the named claims or reading principles were set aside; rival readings are reported on both sides.';
 
 export function explainReason(record: R, reason: Reason): z.infer<typeof ReasonV1> {
   const lookup = lookupFor(record.graph());
@@ -679,10 +737,18 @@ export function simulationView(record: R, result: SimulationResult): z.infer<typ
       map_edges_ungrounded: result.summary.edgesUngrounded,
       map_edges_weakened: result.summary.edgesWeakened,
     },
+    epistemic_summary: {
+      supported: result.summary.stands,
+      partially_supported: result.summary.unwarranted,
+      support_weakened: result.summary.weakened,
+      not_established: result.summary.broken,
+      set_aside: result.summary.rejected,
+    },
     affected: result.affected.map((a) => ({
       code: a.code,
       statement: record.current(record.claim(a.code)!).statement,
       status: a.status,
+      epistemic_status: EPISTEMIC_STATUS_OF[a.status],
       status_label: STATUS_LABELS[a.status],
       status_description: STATUS_DESCRIPTIONS[a.status],
       depth: a.depth,
@@ -701,6 +767,8 @@ export function simulationView(record: R, result: SimulationResult): z.infer<typ
       map_kind: e.mapKind,
       code: e.code,
       status: e.status,
+      epistemic_status: EDGE_EPISTEMIC_STATUS_OF[e.status],
+      status_label: EDGE_STATUS_LABELS[e.status],
       grounded_by: e.groundedBy,
       affected_links: e.affectedLinks.map((l) => l.claim),
     })),
@@ -710,6 +778,7 @@ export function simulationView(record: R, result: SimulationResult): z.infer<typ
         code: m.code,
         title: record.counterModel(m.code)!.title,
         status: m.status,
+        status_label: COUNTER_STATUS_LABELS[m.status],
         aligned_with: m.alignedWith,
         undermined_by: m.underminedBy,
       })),

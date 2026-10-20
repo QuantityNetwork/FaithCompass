@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { getStore } from '@/lib/evidence/store';
-import { Page } from '@/components/evidence/primitives';
+import { AnalysisReviewNotice, Page } from '@/components/evidence/primitives';
 import { Logo } from '@/components/brand/logo';
-import { certaintyLabel } from '@/lib/evidence/format';
+import { analysisReviewState, certaintyLabel, interpretiveAssessment, isInterpretiveClaim } from '@/lib/evidence/format';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,11 +26,14 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
 
   const { analysis, claimIndex } = found;
   const claim = analysis.claims[claimIndex];
+  const words = isInterpretiveClaim(claim) ? interpretiveAssessment(claim) : null;
+  const review = analysisReviewState(analysis);
   const alternatives =
     claim.interpretations.length || claim.whyThisScore.alternativeInterpretations.length;
 
   return (
     <Page narrow>
+      <AnalysisReviewNotice analysis={analysis} />
       <div className="share-card">
         <Logo height={32} />
         <div className="wordmark__rule" style={{ marginTop: 10 }}>
@@ -50,7 +53,17 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
 
         <div className="share-card__rule" />
 
-        {claim.overallConfidence === null ? (
+        {words ? (
+          <>
+            <p className="profile__label">Assessment</p>
+            <p className="profile__band profile__band--words" style={{ marginTop: 12 }}>
+              {words.label}
+            </p>
+            <p className="small muted" style={{ marginTop: 14 }}>
+              {words.definition} An interpretive or theological claim is described in words, never given a figure.
+            </p>
+          </>
+        ) : claim.overallConfidence === null ? (
           <>
             <p className="profile__label">Assessment</p>
             <p className="profile__band profile__band--na" style={{ marginTop: 12 }}>
@@ -76,6 +89,10 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
             </p>
           </>
         )}
+
+        <p className="tiny" style={{ marginTop: 22, color: 'var(--ink-muted)' }}>
+          {review.label}
+        </p>
 
         <p className="profile__label" style={{ marginTop: 26 }}>
           Why

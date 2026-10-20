@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ClaimCard, JsonLd, PageIntro } from '@/components/record/ui';
 import { ClaimFilters, listClaims } from '@/lib/api/operations';
 import { getRecord } from '@/lib/record/record';
-import { CLAIM_CLASSIFICATIONS, CLASSIFICATION_META, STATUS_META } from '@/lib/record/taxonomy';
+import { CLAIM_CLASSIFICATIONS, CLASSIFICATION_META, REVIEW_STATE_LABELS, STATUS_META, type RevisionStatus } from '@/lib/record/taxonomy';
 import { absoluteUrl } from '@/lib/site/config';
 import { param, type SearchParams } from '@/lib/site/explorer';
 
@@ -126,7 +126,7 @@ export default async function ClaimLedger({ searchParams }: Props) {
         {result.data.map((c) => (
           <ClaimCard key={c.code} claim={c}>
             <p className="small faint" style={{ margin: '4px 0 0' }}>
-              Disputed: {c.disputed} · Headline: {c.headline_confidence}
+              Disputed: {c.disputed} · Review: {REVIEW_STATE_LABELS[c.status as RevisionStatus] ?? c.status}
             </p>
           </ClaimCard>
         ))}

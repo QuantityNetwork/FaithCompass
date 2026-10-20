@@ -129,12 +129,13 @@ export const STATUS_META: Record<
   provisional: {
     label: 'Provisional',
     definition:
-      'Public and citable, but its references and wording have not yet been verified by an editor. Shown with a notice everywhere it appears.',
+      'Awaiting editorial review. Public and citable, but its sources, references and wording have not yet been verified by an editor. Shown with a notice everywhere it appears.',
     public: true,
   },
   published: {
     label: 'Published',
-    definition: 'Verified by an AbrahamMoses editor against the cited editions.',
+    definition:
+      'Verified against the cited editions by an AbrahamMoses editor, who is named with the date in the editorial history. A revision without a named reviewer is never published.',
     public: true,
   },
   externally_reviewed: {
@@ -150,6 +151,24 @@ export const STATUS_META: Record<
     public: true,
   },
 };
+
+/**
+ * Review state in plain words, for places that used to show the legacy headline-confidence label.
+ * Maps the publication states onto the scholarly review sequence (master prompt §7.2):
+ * provisional = public draft awaiting source validation and editorial review.
+ */
+export const REVIEW_STATE_LABELS: Record<RevisionStatus, string> = {
+  draft: 'Draft, not public',
+  provisional: 'Awaiting editorial review',
+  published: 'Editor-verified',
+  externally_reviewed: 'Externally reviewed',
+  withdrawn: 'Withdrawn',
+};
+
+/** Whether a revision carries an editorial verification the record can evidence. */
+export function isEditorVerified(status: RevisionStatus): boolean {
+  return status === 'published' || status === 'externally_reviewed';
+}
 
 /* ------------------------------------------------------------------ *
  * The five confidence axes

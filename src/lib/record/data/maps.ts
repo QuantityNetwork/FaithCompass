@@ -12,6 +12,7 @@
 import type { CovenantEdge, CovenantNode, DoctrineEdge, DoctrineNode, MapLink } from '../schema';
 import type { TraditionFamily } from '../taxonomy';
 import { refs } from './corpus';
+import { IMPORTED_STATUS } from './build';
 import { LIVE_COVENANTS, LIVE_DOCTRINE, LIVE_MAP_LINKS } from './live-import';
 
 const MIGRATED = '2026-10-14T12:00:00Z';
@@ -68,7 +69,7 @@ const importedCovenants: CovenantEdge[] = LIVE_COVENANTS.map((c) => ({
   confidence: c.confidence as CovenantEdge['confidence'],
   readings: LIVE_COVENANT_READINGS[c.code],
   updatedAt: c.updated_at,
-  status: 'published',
+  status: IMPORTED_STATUS,
 }));
 
 function covenant(input: Omit<CovenantEdge, 'evidence' | 'updatedAt' | 'status'> & { evidence: string[] }): CovenantEdge {
@@ -244,7 +245,7 @@ const importedDoctrine: DoctrineEdge[] = LIVE_DOCTRINE.map((d) => ({
   topic: d.topic,
   families: LIVE_DOCTRINE_FAMILIES[d.code] ?? CHRISTIANISH,
   updatedAt: d.updated_at,
-  status: 'published',
+  status: IMPORTED_STATUS,
 }));
 
 function doctrine(

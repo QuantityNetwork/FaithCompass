@@ -6,7 +6,7 @@
  */
 
 import { useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
-import { STATUS_LABELS, simulate, upstreamOf, downstreamOf, type DependencyGraph } from '@/lib/record/engine';
+import { COUNTER_STATUS_LABELS, STATUS_LABELS, simulate, upstreamOf, downstreamOf, type DependencyGraph } from '@/lib/record/engine';
 import { explain, lookupFor } from '@/lib/record/explain';
 
 const HELP = `Commands
@@ -56,18 +56,18 @@ export function ProofConsole({ graph, traditions }: { graph: DependencyGraph; tr
       rejectAxioms: nextReject.filter((c) => c.startsWith('AM-AX-')),
       lens: nextLens,
     });
-    if (r.affected.length === 0 && r.effectiveAxioms.length === 0) return ['Nothing rejected. Every claim stands.'];
+    if (r.affected.length === 0 && r.effectiveAxioms.length === 0) return ['Nothing set aside. Every claim is supported under the full set of assumptions.'];
     const rows = [
       `Rejected: ${[...nextReject, ...r.effectiveAxioms.filter((a) => !nextReject.includes(a))].join(', ') || 'none'}${nextLens ? `  (lens ${nextLens})` : ''}`,
-      `${r.summary.broken} broken · ${r.summary.unwarranted} warrant lost · ${r.summary.weakened} weakened · ${r.summary.edgesUngrounded} map edges ungrounded · ${r.summary.edgesWeakened} weakened`,
+      `${r.summary.broken} not established under selected assumptions · ${r.summary.unwarranted} partially supported · ${r.summary.weakened} support weakened · ${r.summary.edgesUngrounded} map edges not established · ${r.summary.edgesWeakened} support weakened`,
     ];
     for (const a of r.affected.filter((x) => x.status !== 'rejected').slice(0, 30)) {
-      rows.push(`  ${STATUS_LABELS[a.status].padEnd(12)} ${a.code}  via ${a.via.join(' → ')}`);
+      rows.push(`  ${STATUS_LABELS[a.status].padEnd(43)} ${a.code}  via ${a.via.join(' → ')}`);
       for (const reason of a.reasons.slice(0, 3)) rows.push(`      ${explain(reason, lookup)}`);
     }
     if (r.affected.length > 31) rows.push(`  … ${r.affected.length - 31} more`);
     const counters = r.counterModels.filter((m) => m.status !== 'unaffected');
-    if (counters.length) rows.push(`Counter-models: ${counters.map((m) => `${m.code} ${m.status}`).join(', ')}`);
+    if (counters.length) rows.push(`Counter-models: ${counters.map((m) => `${m.code} ${COUNTER_STATUS_LABELS[m.status].toLowerCase()}`).join(', ')}`);
     rows.push('No source was changed.');
     return rows;
   };
