@@ -117,6 +117,38 @@ export default function InstitutionalPage() {
           </p>
         </section>
 
+        <section className="am-section" id="decision-room" aria-labelledby="dr-title">
+          <div className="am-section__head">
+            <p className="am-eyebrow">Sagolik Institutional · Demonstration</p>
+            <h2 className="am-h2" id="dr-title">
+              AbrahamMoses and Sagolik Institutional
+            </h2>
+          </div>
+          <div className="am-grid2">
+            <div>
+              <h3 className="am-h3">AbrahamMoses</h3>
+              <p>
+                A scholarly research record: claims about the Abrahamic traditions, each tied to its sources, the assumptions it
+                rests on and what depends on it. Everything on this site outside the Decision Room is AbrahamMoses.
+              </p>
+            </div>
+            <div>
+              <h3 className="am-h3">Sagolik Institutional (proposed)</h3>
+              <p>
+                A proposed commercial application of the same method to institutional decisions. It exists today only as a
+                public demonstration on fictional data. It has not been validated, reviewed or used by any bank, fund or
+                institution, and no private client data is accepted.
+              </p>
+            </div>
+          </div>
+          <p>
+            <Link className="am-btn am-btn--gold" href="/institutional/decision-room">
+              Open the Decision Room
+            </Link>{' '}
+            <span className="am-tiny">A synthetic $120M private credit facility, traced from ten documents to a reproducible Decision Passport.</span>
+          </p>
+        </section>
+
         <section className="am-section" aria-labelledby="review-title">
           <div className="am-section__head">
             <p className="am-eyebrow">Review today</p>

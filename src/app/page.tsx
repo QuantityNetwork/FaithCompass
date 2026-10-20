@@ -48,6 +48,12 @@ const WAYS_IN = [
   { who: 'Researchers', text: 'Take a question through the record, compare positions and challenge the assumptions behind them.', href: '/research', chips: ['Research', 'Compare'] },
   { who: 'Institutions', text: 'See who is responsible for the record, how it is governed and what review has and has not happened.', href: '/institutional', chips: ['Institutional', 'Methodology'] },
   { who: 'Developers', text: 'The same claims and review states through a REST API and an MCP server.', href: '/developers', chips: ['REST', 'MCP'] },
+  {
+    who: 'Decision Room (demonstration)',
+    text: 'Sagolik Institutional, a proposed application of the same method: a fictional credit decision traced to a reproducible Decision Passport. Synthetic data; not validated by any institution.',
+    href: '/institutional/decision-room',
+    chips: ['Institutional', 'Synthetic'],
+  },
 ];
 
 function short(s: string, n: number) {

@@ -84,6 +84,7 @@ export const NAV_SECTIONS: NavSection[] = [
     match: ['/institutional', '/about', '/privacy', '/terms'],
     pages: [
       { href: '/institutional', label: 'Institutional' },
+      { href: '/institutional/decision-room', label: 'Decision Room (demo)' },
       { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },

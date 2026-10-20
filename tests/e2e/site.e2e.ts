@@ -70,6 +70,9 @@ async function page(opts: Parameters<Browser['newContext']>[0] = {}): Promise<{ 
   return { context, page: p, errors };
 }
 
+/** A fixed synthetic passport (case DT-PC-001 v1.0.0, P1 and P2 rejected, generated 2026-10-20T16:00:00Z). */
+const PASSPORT_PATH = '/institutional/decision-room/passport/DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6WyJQMSIsIlAyIl0sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxNjowMDowMFoiLCJ2IjoxfQ';
+
 const PAGES = [
   '/',
   '/research',
@@ -103,6 +106,9 @@ const PAGES = [
   '/privacy',
   '/terms',
   '/evidence',
+  '/institutional/decision-room',
+  '/institutional/decision-room?r=P1,P2&g=6',
+  PASSPORT_PATH,
 ];
 
 describe('server-rendered content', () => {
@@ -487,6 +493,51 @@ describe('research workspace', () => {
     const md = await (await fetch(`${base}/research/export?dossier=covenants&format=md`)).text();
     expect(md).toContain('## Unresolved questions');
     expect(md).toContain('## Reproducibility manifest');
+  });
+});
+
+describe('decision room', () => {
+  it('recalculates from the form without JavaScript and shows the audit trace', async () => {
+    const { context, page: p } = await page({ javaScriptEnabled: false });
+    await p.goto(`${base}/institutional/decision-room`);
+    expect(await p.locator('.dr-trace').textContent()).toContain('All inputs are at the case defaults.');
+    await p.getByLabel(/Reject P1/).check();
+    await p.getByLabel(/Reject P2/).check();
+    await p.getByRole('button', { name: 'Recalculate' }).click();
+    await p.waitForURL(/r=P1&r=P2/);
+    const trace = await p.locator('.dr-trace').textContent();
+    expect(trace).toMatch(/prem\.P1.*Accepted → Rejected/s);
+    expect(trace).toMatch(/k\.stress/);
+    expect(trace).not.toMatch(/m\.liquidityHeadroom/);
+    const cond = await p.locator('#conditions').textContent();
+    expect(cond).toMatch(/Stress case leverage within the covenant(\s*changed)?\s*Not met/);
+    await context.close();
+  });
+
+  it('generates a passport that reloads identically and exports the same hash', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-room?r=P3`);
+    await p.getByRole('link', { name: /Generate Decision Passport/ }).click();
+    await p.waitForURL(/\/passport\/DP1-/);
+    const hash = (await p.locator('.dr-meta dd').nth(7).textContent())!.trim();
+    expect(hash).toMatch(/^[0-9a-f]{64}$/);
+    expect(await p.locator('.dr-meta').textContent()).toContain('none (simulated decision)');
+    await p.reload();
+    expect((await p.locator('.dr-meta dd').nth(7).textContent())!.trim()).toBe(hash);
+    const url = new URL(p.url());
+    const json = await (await fetch(`${base}${url.pathname}/json`)).json();
+    expect(json.integrity.sha256).toBe(hash);
+    const md = await (await fetch(`${base}${url.pathname}/markdown`)).text();
+    expect(md).toContain(hash);
+    const id = url.pathname.split('/').pop();
+    const verify = await (await fetch(`${base}/api/institutional/decision-room/passport/verify?id=${id}&sha256=${hash}`)).json();
+    expect(verify.valid).toBe(true);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('answers 404 for a forged passport ID', async () => {
+    expect((await fetch(`${base}/institutional/decision-room/passport/DP1-forged`)).status).toBe(404);
   });
 });
 
