@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/institutional',
     '/institutional/decision-twin',
     '/institutional/decision-room',
+    '/institutional/decision-twin/terms',
     '/changelog',
     '/developers',
     '/evidence',

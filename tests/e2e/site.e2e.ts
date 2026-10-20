@@ -107,6 +107,7 @@ const PAGES = [
   '/terms',
   '/evidence',
   '/institutional/decision-twin',
+  '/institutional/decision-twin/terms',
   '/institutional/decision-room',
   '/institutional/decision-room?r=P1,P2&g=6',
   PASSPORT_PATH,
@@ -550,6 +551,29 @@ describe('decision room', () => {
     expect(await p.locator('a[href^="https://buy.stripe.com/"]').count()).toBe(1);
     expect(await p.locator('main a[href^="mailto:"]').count()).toBe(0);
     expect(text).toContain('contact details will be published');
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('publishes the draft pilot Terms of Sale and links them from the Reserve button and the footer', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-twin`);
+    const pricing = (await p.locator('#pricing').textContent())!;
+    expect(pricing).toContain('By reserving you accept the Terms of Sale');
+    await p.locator('#pricing').getByRole('link', { name: 'Terms of Sale' }).click();
+    await p.waitForURL(/\/institutional\/decision-twin\/terms$/);
+    const text = (await p.locator('main').textContent())!;
+    expect(text).toContain('Draft pending legal review');
+    expect(text).toContain('Legal entity details');
+    expect(text).toContain('not offered to consumers');
+    expect(text).toContain('€9,500 excluding VAT');
+    expect(text).toContain('If the pilot has not started within 90 days of payment, you receive a full refund on request.');
+    expect(text).toContain('Swedish law');
+    expect(text).toContain('Contact details will be published.');
+    expect(text).not.toMatch(/\b\d{6}-\d{4}\b/); // no invented Swedish organisation number
+    expect(await p.locator('footer a[href="/institutional/decision-twin/terms"]').count()).toBe(1);
+    const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
+    expect(sitemap).toContain(`${base}/institutional/decision-twin/terms`);
     expect(errors).toEqual([]);
     await context.close();
   });

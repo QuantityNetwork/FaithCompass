@@ -89,6 +89,7 @@ export const NAV_SECTIONS: NavSection[] = [
       { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },
+      { href: '/institutional/decision-twin/terms', label: 'Terms of Sale (pilot)' },
     ],
   },
 ];

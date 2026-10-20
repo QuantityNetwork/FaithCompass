@@ -219,6 +219,12 @@ export default function DecisionTwinPage() {
                   </p>
                 )}
                 {plan.note ? <p className="am-tiny">{plan.note}</p> : null}
+                {plan.action === 'checkout' ? (
+                  <p className="am-tiny">
+                    By reserving you accept the{' '}
+                    <Link href="/institutional/decision-twin/terms">Terms of Sale</Link>.
+                  </p>
+                ) : null}
               </article>
             ))}
           </div>
