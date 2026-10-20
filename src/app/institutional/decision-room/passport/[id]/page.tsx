@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { DecisionTwinLogo } from '@/components/decision/brand';
 import { PrintButton } from '@/components/decision/print-button';
 import { ClassChip, ConditionChip, SyntheticNotice } from '@/components/decision/ui';
 import type { ConditionStatus } from '@/lib/decision/engine';
@@ -31,7 +32,10 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
     <main id="main" className="am-page dr dr-passport">
       <div className="am-wrap">
         <header className="am-page__head">
-          <p className="am-eyebrow">Decision Passport · Simulated</p>
+          <div className="dt-brand">
+            <DecisionTwinLogo height={96} />
+          </div>
+          <p className="am-eyebrow">AbrahamMoses Decision Twin · Decision Passport · Simulated</p>
           <h1 className="am-h1">{p.title}</h1>
           <SyntheticNotice />
         </header>
@@ -53,12 +57,13 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
           <dd>{p.reviewer}</dd>
           <dt>Versions</dt>
           <dd>
-            Ruleset {p.versions.ruleset}; model: {p.versions.model}; format {p.versions.passport_format}
+            Ruleset {p.versions.ruleset}; configuration {p.versions.configuration}; model: {p.versions.model}; format {p.versions.passport_format}
           </dd>
           <dt>SHA-256</dt>
           <dd className="am-mono dr-hash">{p.integrity.sha256}</dd>
         </dl>
         <p className="am-note">{p.integrity_note}</p>
+        <p className="am-note">{p.legal_note}</p>
 
         <div className="dr-actions dr-noprint">
           <a className="am-btn" href={`${base}/json`}>
@@ -129,6 +134,47 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
               Base: leverage {p.scenarios.base.leverage}, coverage {p.scenarios.base.coverage}. Stress: EBITDA {p.scenarios.stress.ebitda}, leverage{' '}
               {p.scenarios.stress.leverage}, coverage {p.scenarios.stress.coverage}.
             </li>
+          </ul>
+        </section>
+
+        <section className="am-section" aria-labelledby="p-config">
+          <h2 className="am-h2" id="p-config">
+            Decision configuration (snapshot)
+          </h2>
+          <dl className="dr-meta">
+            <dt>Configuration</dt>
+            <dd className="am-mono">{p.configuration.version}</dd>
+            <dt>Objective</dt>
+            <dd>{p.configuration.objective}</dd>
+            <dt>Evidence standard</dt>
+            <dd>{p.configuration.evidence_standard}</dd>
+            <dt>Approval policy</dt>
+            <dd>
+              {p.configuration.approval_policy.actions.join(' / ')}. {p.configuration.approval_policy.rule}
+            </dd>
+            <dt>Escalation rules</dt>
+            <dd>
+              <ul>
+                {p.configuration.escalation_rules.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </dd>
+            <dt>Monitoring triggers</dt>
+            <dd>
+              <ul>
+                {p.configuration.monitoring_triggers.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </dd>
+          </dl>
+          <ul>
+            {p.configuration.assumptions.map((x) => (
+              <li key={x.label}>
+                <span className="am-mono">{x.state.toLowerCase()}</span> · {x.label}: {x.value} ({x.source})
+              </li>
+            ))}
           </ul>
         </section>
 

@@ -133,9 +133,10 @@ export default function InstitutionalPage() {
               </p>
             </div>
             <div>
-              <h3 className="am-h3">Sagolik Institutional (proposed)</h3>
+              <h3 className="am-h3">Sagolik Institutional: AbrahamMoses Decision Twin (proposed)</h3>
               <p>
-                A proposed commercial application of the same method to institutional decisions. It exists today only as a
+                A proposed commercial application of the same method to institutional decisions, as the{' '}
+                <Link href="/institutional/decision-twin">AbrahamMoses Decision Twin</Link>. It exists today only as a
                 public demonstration on fictional data. It has not been validated, reviewed or used by any bank, fund or
                 institution, and no private client data is accepted.
               </p>

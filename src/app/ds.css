@@ -2344,3 +2344,65 @@ kbd,
     break-inside: avoid-page;
   }
 }
+
+/* Decision Twin brand (product pages, Decision Room, passports) */
+.dt-logo {
+  display: inline-block;
+  line-height: 0;
+}
+.dt-logo img {
+  max-width: 100%;
+  height: auto;
+}
+.dt-logo__dark {
+  display: none;
+}
+[data-theme='dark'] .dt-logo__light {
+  display: none;
+}
+[data-theme='dark'] .dt-logo__dark {
+  display: inline;
+}
+.dt-brand {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  margin-block-end: 16px;
+}
+.dt-principle {
+  font-style: italic;
+  color: var(--ink-2);
+}
+.dt-status {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+.dt-status > li {
+  border-inline-start: 2px solid var(--line);
+  padding-inline-start: 12px;
+}
+@media print {
+  .dt-logo__light {
+    display: inline !important;
+  }
+  .dt-logo__dark {
+    display: none !important;
+  }
+}
+.dr-meta__row {
+  display: contents;
+}
+.dt-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 0 0 16px;
+}
+.dt-plan__price strong {
+  font-size: 1.5rem;
+}
+#configuration.am-h3 {
+  margin-top: 28px;
+}

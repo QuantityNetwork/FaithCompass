@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { DecisionTwinLogo } from '@/components/decision/brand';
 import { ClassChip, ConditionChip, SyntheticNotice, fmtValue } from '@/components/decision/ui';
 import { CASE, DOCUMENTS, RULESET_VERSION, documentHash } from '@/lib/decision/case';
 import { CHAMBER_RULES, chamber, type Side } from '@/lib/decision/chamber';
@@ -14,11 +15,12 @@ import {
   type ConditionStatus,
 } from '@/lib/decision/engine';
 import { encodePassportId } from '@/lib/decision/passport';
+import { DEFAULT_WORKSPACE_SETTINGS, PRODUCT, decisionConfiguration } from '@/lib/decision/product';
 
 export const metadata: Metadata = {
-  title: 'Decision Room',
+  title: 'Decision Room · AbrahamMoses Decision Twin',
   description:
-    'Sagolik Institutional demonstration: a synthetic private credit decision traced from source documents through assumptions, calculations, opposing evidence and contradictions to a reproducible Decision Passport. Fictional data; no approval is made.',
+    'AbrahamMoses Decision Twin demonstration: a synthetic private credit decision traced from source documents through assumptions, calculations, opposing evidence and contradictions to a reproducible Decision Passport. Fictional data; no approval is made.',
   alternates: { canonical: '/institutional/decision-room' },
 };
 
@@ -48,14 +50,19 @@ export default async function DecisionRoomPage({ searchParams }: { searchParams:
   const conditions = nodes.filter((n) => n.kind === 'condition');
   const judgment = conditions.filter((n) => n.status === 'NEEDS_HUMAN_JUDGMENT' || n.status === 'EVIDENCE_MISSING');
   const passportId = encodePassportId(a, new Date());
+  const config = decisionConfiguration(a);
   const Changed = ({ id }: { id: string }) => (changed.has(id) ? <span className="am-chip am-chip--flag dr-changed">changed</span> : null);
 
   return (
     <main id="main" className="am-page dr">
       <div className="am-wrap">
         <header className="am-page__head">
-          <p className="am-eyebrow">Sagolik Institutional · Demonstration</p>
+          <div className="dt-brand">
+            <DecisionTwinLogo height={120} />
+          </div>
+          <p className="am-eyebrow">{PRODUCT.name} · Sagolik Institutional · Demonstration</p>
           <h1 className="am-h1">Decision Room</h1>
+          <p className="dt-principle">{PRODUCT.principle}</p>
           <p className="am-lede">
             One decision, traced from its source documents to a record anyone can reproduce: the assumptions it rests on,
             the arithmetic, the case against it, the places the documents disagree and what still needs a person to
@@ -112,6 +119,87 @@ export default async function DecisionRoomPage({ searchParams }: { searchParams:
               </tbody>
             </table>
           </div>
+          <h3 className="am-h3" id="configuration">Decision configuration</h3>
+          <p className="am-tiny">
+            Configuration <span className="am-mono">{config.version}</span>. Saved into every Decision Passport with the
+            assumption values below, and covered by its hash, so the record can be reproduced. In a private workspace these
+            would be set per decision; here they are fixed for the synthetic case.
+          </p>
+          <dl className="dr-meta">
+            <dt>Objective</dt>
+            <dd>{config.objective}</dd>
+            <dt>Evidence standard</dt>
+            <dd>{config.evidence_standard}</dd>
+            <dt>Approval policy</dt>
+            <dd>
+              {config.approval_policy.actions.join(' / ')}. {config.approval_policy.rule}
+            </dd>
+            <dt>Escalation rules</dt>
+            <dd>
+              <ul>
+                {config.escalation_rules.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </dd>
+            <dt>Monitoring triggers</dt>
+            <dd>
+              <ul>
+                {config.monitoring_triggers.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </dd>
+          </dl>
+          <div className="table-wrap">
+            <table className="table table--stack">
+              <caption className="am-sr">Assumption states: fixed, adjustable and disputed</caption>
+              <thead>
+                <tr>
+                  <th scope="col">State</th>
+                  <th scope="col">Assumption</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {config.assumptions.map((x) => (
+                  <tr key={x.label}>
+                    <td data-label="State">
+                      <span className="am-mono">{x.state.toLowerCase()}</span>
+                    </td>
+                    <td data-label="Assumption">
+                      {x.label}
+                      <br />
+                      <span className="am-tiny">{x.note}</span>
+                    </td>
+                    <td data-label="Value">{x.value}</td>
+                    <td data-label="Source" className="am-mono">
+                      {x.source}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <details className="dr-details">
+            <summary>Default workspace settings (planned for private workspaces; read-only)</summary>
+            <p className="am-tiny">
+              Planned defaults for a private Decision Twin workspace. No private workspace exists yet; nothing here can be
+              changed and none of it is in effect on this public site.
+            </p>
+            <dl className="dr-meta">
+              {DEFAULT_WORKSPACE_SETTINGS.map((x) => (
+                <div key={x.setting} className="dr-meta__row">
+                  <dt>{x.setting}</dt>
+                  <dd>{x.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+          <p className="am-tiny">
+            <Link href="/institutional/decision-twin">About {PRODUCT.name}: the six layers and what is demonstrated now</Link>
+          </p>
         </section>
 
         <section className="am-section" id="sources" aria-labelledby="sources-title">

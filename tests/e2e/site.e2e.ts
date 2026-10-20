@@ -106,6 +106,7 @@ const PAGES = [
   '/privacy',
   '/terms',
   '/evidence',
+  '/institutional/decision-twin',
   '/institutional/decision-room',
   '/institutional/decision-room?r=P1,P2&g=6',
   PASSPORT_PATH,
@@ -519,11 +520,11 @@ describe('decision room', () => {
     await p.goto(`${base}/institutional/decision-room?r=P3`);
     await p.getByRole('link', { name: /Generate Decision Passport/ }).click();
     await p.waitForURL(/\/passport\/DP1-/);
-    const hash = (await p.locator('.dr-meta dd').nth(7).textContent())!.trim();
+    const hash = (await p.locator('.dr-meta').first().locator('dd').nth(7).textContent())!.trim();
     expect(hash).toMatch(/^[0-9a-f]{64}$/);
-    expect(await p.locator('.dr-meta').textContent()).toContain('none (simulated decision)');
+    expect(await p.locator('.dr-meta').first().textContent()).toContain('none (simulated decision)');
     await p.reload();
-    expect((await p.locator('.dr-meta dd').nth(7).textContent())!.trim()).toBe(hash);
+    expect((await p.locator('.dr-meta').first().locator('dd').nth(7).textContent())!.trim()).toBe(hash);
     const url = new URL(p.url());
     const json = await (await fetch(`${base}${url.pathname}/json`)).json();
     expect(json.integrity.sha256).toBe(hash);
@@ -532,6 +533,23 @@ describe('decision room', () => {
     const id = url.pathname.split('/').pop();
     const verify = await (await fetch(`${base}/api/institutional/decision-room/passport/verify?id=${id}&sha256=${hash}`)).json();
     expect(verify.valid).toBe(true);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('presents the Decision Twin with honest status, one pilot checkout and no invented contact', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-twin`);
+    await expect(p.getByRole('img', { name: /AbrahamMoses Decision Twin/ }).first().isVisible()).resolves.toBe(true);
+    const text = (await p.locator('main').textContent())!;
+    expect(text).toContain('Public institutional demonstration ready — private client onboarding not authorized');
+    expect(text).toContain('Evidence informs. Humans decide. The system preserves the reasoning.');
+    expect(text).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
+    const reserve = p.getByRole('link', { name: 'Reserve a pilot' });
+    expect(await reserve.getAttribute('href')).toBe('https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d');
+    expect(await p.locator('a[href^="https://buy.stripe.com/"]').count()).toBe(1);
+    expect(await p.locator('main a[href^="mailto:"]').count()).toBe(0);
+    expect(text).toContain('contact details will be published');
     expect(errors).toEqual([]);
     await context.close();
   });

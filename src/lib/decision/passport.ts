@@ -12,6 +12,7 @@ import { canonicalJson, sha256 } from './canonical';
 import { CASE, CASE_VERSION, RULESET_VERSION, sourceInventory } from './case';
 import { chamber } from './chamber';
 import { contradictionsView } from './contradictions';
+import { CONFIG_VERSION, decisionConfiguration } from './product';
 import { AssumptionsSchema, DEFAULT_ASSUMPTIONS, PREMISES, evaluate, normalise, traceFromDefaults, type Assumptions } from './engine';
 
 export const PASSPORT_PREFIX = 'DP1-';
@@ -68,7 +69,9 @@ export function buildPassport(id: string) {
     case: { id: CASE.id, version: CASE_VERSION, borrower: CASE.borrower, question: CASE.question, facility: CASE.facility },
     status: 'SIMULATED: demonstration only. No credit decision has been made.',
     reviewer: REVIEWER_NONE,
-    versions: { ruleset: RULESET_VERSION, model: 'none (deterministic rules; no AI model)', passport_format: 'DP1' },
+    product: 'AbrahamMoses Decision Twin (demonstration)',
+    versions: { ruleset: RULESET_VERSION, configuration: CONFIG_VERSION, model: 'none (deterministic rules; no AI model)', passport_format: 'DP1' },
+    configuration: decisionConfiguration(a),
     sources: sourceInventory(),
     assumptions: { ...a, defaults: DEFAULT_ASSUMPTIONS },
     premises: PREMISES.map((p) => ({ id: p.id, statement: p.statement, sources: p.sources, accepted: !a.rejected.includes(p.id) })),
@@ -94,6 +97,8 @@ export function buildPassport(id: string) {
     ],
     reproducibility:
       'Open this passport ID at /institutional/decision-room/passport/{id} or call GET /api/institutional/decision-room/passport/verify?id={id}&sha256={hash}. The ID encodes every input, so the same passport and hash are rebuilt with no stored state.',
+    legal_note:
+      'Decision support only. This passport is an evidentiary and governance record. It is not a binding decision, an audit opinion, a regulatory approval or a certification; the responsible institution keeps responsibility for any decision.',
     integrity_note: 'The SHA-256 hash shows this passport has not changed since it was generated. It does not show that the content is correct.',
   };
   return { ...content, integrity: { algorithm: 'SHA-256', canonicalisation: 'JSON, keys sorted, no whitespace, integrity field excluded', sha256: sha256(canonicalJson(content)) } };
@@ -110,6 +115,8 @@ export function passportMarkdown(p: Passport): string {
   const lines = [
     `# ${p.title}`,
     '',
+    `*${p.product}. Evidence Today. Wisdom Tomorrow. Evidence informs. Humans decide. The system preserves the reasoning.*`,
+    '',
     `> ${p.label}`,
     '',
     `- **Passport ID:** \`${p.id}\``,
@@ -121,6 +128,26 @@ export function passportMarkdown(p: Passport): string {
     `- **Ruleset:** ${p.versions.ruleset}; model: ${p.versions.model}`,
     `- **SHA-256:** \`${p.integrity.sha256}\``,
     `- ${p.integrity_note}`,
+    `- ${p.legal_note}`,
+    '',
+    '## Decision configuration',
+    '',
+    `- **Configuration:** ${p.configuration.version}`,
+    `- **Objective:** ${p.configuration.objective}`,
+    `- **Evidence standard:** ${p.configuration.evidence_standard}`,
+    `- **Approval policy:** ${p.configuration.approval_policy.actions.join(' / ')}. ${p.configuration.approval_policy.rule}`,
+    '',
+    '| State | Assumption | Value | Source |',
+    '|---|---|---|---|',
+    ...p.configuration.assumptions.map((x) => `| ${x.state} | ${x.label} | ${x.value} | ${x.source} |`),
+    '',
+    '**Escalation rules**',
+    '',
+    ...p.configuration.escalation_rules.map((r) => `- ${r}`),
+    '',
+    '**Monitoring triggers**',
+    '',
+    ...p.configuration.monitoring_triggers.map((r) => `- ${r}`),
     '',
     '## Conclusion',
     '',

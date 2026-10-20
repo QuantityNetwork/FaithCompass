@@ -7,7 +7,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { CASE, DOCUMENTS, documentHash, sourceInventory } from '@/lib/decision/case';
-import { canonicalJson } from '@/lib/decision/canonical';
+import { canonicalJson, sha256 } from '@/lib/decision/canonical';
 import { chamber } from '@/lib/decision/chamber';
 import { CONTRADICTIONS, CONTRADICTION_CLASSES, contradictionsView, isConflict } from '@/lib/decision/contradictions';
 import {
@@ -26,6 +26,7 @@ import {
 import { PassportIdError, REVIEWER_NONE, buildPassport, decodePassportId, encodePassportId, passportMarkdown, verifyPassport } from '@/lib/decision/passport';
 import { caseHandler, contradictionsHandler, scenarioHandler, verifyHandler } from '@/lib/decision/api';
 import { openApiDocument } from '@/lib/api/v1';
+import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_PAYMENT_LINK, PLANS, PRODUCT, decisionConfiguration } from '@/lib/decision/product';
 
 const T = new Date('2026-10-20T16:00:00.000Z');
 const with_ = (p: Partial<Assumptions>): Assumptions => ({ ...DEFAULT_ASSUMPTIONS, ...p });
@@ -259,5 +260,45 @@ describe('demonstration API', () => {
       '/api/institutional/decision-room/scenario',
     ]);
     for (const [, op] of demo) expect(op.get!.tags).toEqual(['institutional-demo']);
+  });
+});
+
+describe('Decision Twin product facts', () => {
+  it('states the product name, tagline and principle from the brief', () => {
+    expect(PRODUCT.name).toBe('AbrahamMoses Decision Twin');
+    expect(PRODUCT.tagline).toBe('Evidence Today. Wisdom Tomorrow.');
+    expect(PRODUCT.principle).toBe('Evidence informs. Humans decide. The system preserves the reasoning.');
+  });
+  it('labels each of the six layers honestly: ingestion and governance are planned', () => {
+    expect(LAYERS.map((l) => l.n)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(LAYERS.find((l) => l.name === 'Data ingestion')!.status).toBe('PLANNED');
+    expect(LAYERS.find((l) => l.name === 'Governance and approval')!.status).toBe('PLANNED');
+  });
+  it('keeps automated decisions disabled in the planned workspace defaults', () => {
+    expect(DEFAULT_WORKSPACE_SETTINGS.find((x) => x.setting === 'Automated decisions')!.value).toBe('Disabled');
+  });
+  it('has one checkout only, the pilot payment link, and no other purchase path', () => {
+    expect(PILOT_PAYMENT_LINK).toMatch(/^https:\/\/buy\.stripe\.com\//);
+    expect(PLANS.filter((p) => p.action === 'checkout').map((p) => p.id)).toEqual(['pilot']);
+  });
+});
+
+describe('per-decision configuration in the passport', () => {
+  it('records fixed, adjustable and disputed assumptions and the approval policy', () => {
+    const c = decisionConfiguration(DEFAULT_ASSUMPTIONS);
+    expect(new Set(c.assumptions.map((x) => x.state))).toEqual(new Set(['FIXED', 'ADJUSTABLE', 'DISPUTED']));
+    expect(c.approval_policy.actions).toEqual(['propose', 'review', 'reject', 'approve']);
+    expect(c.escalation_rules.length).toBeGreaterThan(0);
+    expect(c.monitoring_triggers.length).toBeGreaterThan(0);
+  });
+  it('saves the configuration snapshot into the passport and its hash', () => {
+    const rejected = buildPassport(encodePassportId({ ...DEFAULT_ASSUMPTIONS, rejected: ['P1'] }, T));
+    const base = buildPassport(encodePassportId(DEFAULT_ASSUMPTIONS, T));
+    expect(rejected.configuration.assumptions.find((x) => x.label.startsWith('P1'))!.value).toBe('rejected');
+    expect(base.configuration.assumptions.find((x) => x.label.startsWith('P1'))!.value).toBe('accepted');
+    const { integrity, ...content } = base;
+    expect(integrity.sha256).toBe(sha256(canonicalJson(content)));
+    expect(base.legal_note).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
+    expect(passportMarkdown(base)).toContain('## Decision configuration');
   });
 });

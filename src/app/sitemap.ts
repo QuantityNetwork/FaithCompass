@@ -23,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/system',
     '/about',
     '/institutional',
+    '/institutional/decision-twin',
+    '/institutional/decision-room',
     '/changelog',
     '/developers',
     '/evidence',
