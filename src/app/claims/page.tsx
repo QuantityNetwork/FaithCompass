@@ -41,7 +41,7 @@ export default async function ClaimLedger({ searchParams }: Props) {
           description: 'Revisioned theological claims with sources, editions, confidence axes, attribution and provenance.',
           url: absoluteUrl('/claims'),
           version: record.version,
-          creator: { '@type': 'Organization', name: 'Sagolik' },
+          creator: { '@type': 'Person', name: 'Mikael Markus Andersson' },
           distribution: [{ '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: absoluteUrl('/api/v1/export') }],
         }}
       />

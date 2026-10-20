@@ -16,7 +16,8 @@ import type { Actor } from '@/lib/auth/actor';
 import { computeChallenge } from './challenge';
 import type { EvidenceReasoningProvider } from './providers/types';
 import { ChallengeProposalSchema, type Analysis, type ChallengeProposal, type Claim } from './schema';
-import { canPersist, getStore } from './store';
+import { canPersist, storeFor } from './store';
+import type { AuditRecord } from './schema';
 
 export type RevisionErrorCode =
   | 'not_persisted'
@@ -62,7 +63,10 @@ export async function proposeChallenge(
 ): Promise<ProposalResult> {
   if (!can(actor.role, 'proposal.create')) throw new RevisionError('forbidden', 'This role may not submit challenges.');
   if (!canPersist()) throw new RevisionError('not_persisted', 'No durable store is configured.');
-  const store = getStore();
+  const store = storeFor(actor);
+  if (store.requiresIdentity && !actor.authenticated) {
+    throw new RevisionError('unauthenticated', 'Sign in to submit a challenge: proposals are recorded under your own account.');
+  }
 
   const key = opts.idempotencyKey ?? null;
   if (key) {
@@ -137,7 +141,7 @@ export async function decideProposal(
     throw new RevisionError('forbidden', 'Only research editors and editorial administrators may decide proposals.');
   }
   if (!canPersist()) throw new RevisionError('not_persisted', 'No durable store is configured.');
-  const store = getStore();
+  const store = storeFor(actor);
 
   const proposal = await store.getProposal(proposalId);
   if (!proposal) throw new RevisionError('not_found', `No proposal with id "${proposalId}".`);
@@ -154,6 +158,26 @@ export async function decideProposal(
   const decided = { decidedBy: actor.id, decidedRole: actor.role, decidedAt: now, decisionReason: reason };
 
   if (decision === 'reject') {
+    const audit: AuditRecord = {
+      id: randomUUID(),
+      entityType: 'PROPOSAL',
+      entityId: proposal.id,
+      changeType: 'REJECTED',
+      oldValue: null,
+      newValue: { claimId: proposal.claimId },
+      reason,
+      modelProvider: null,
+      modelVersion: null,
+      promptVersion: null,
+      timestamp: now,
+      actorId: actor.id,
+      actorRole: actor.role,
+    };
+    if (store.commitDecision) {
+      const ok = await store.commitDecision({ proposalId: proposal.id, from: 'proposed', patch: { status: 'rejected', ...decided }, audit });
+      if (!ok) throw new RevisionError('conflict', 'Proposal was decided concurrently.');
+      return { proposal: { ...proposal, status: 'rejected', ...decided }, analysis: current };
+    }
     const moved = await store.transitionProposal(proposal.id, 'proposed', { status: 'rejected', ...decided });
     if (!moved) throw new RevisionError('conflict', 'Proposal was decided concurrently.');
     await store.appendAudit({
@@ -176,12 +200,18 @@ export async function decideProposal(
 
   // Approve. A stale proposal is never applied over a newer analysis.
   if (current.updatedAt !== proposal.baseVersion) {
+    if (store.commitDecision) {
+      await store.commitDecision({
+        proposalId: proposal.id,
+        from: 'proposed',
+        patch: { status: 'superseded', ...decided, decisionReason: 'Analysis changed after this proposal was made.' },
+        audit: { id: randomUUID(), entityType: 'PROPOSAL', entityId: proposal.id, changeType: 'UPDATED', oldValue: { status: 'proposed' }, newValue: { status: 'superseded' }, reason: 'Analysis changed after this proposal was made.', modelProvider: null, modelVersion: null, promptVersion: null, timestamp: now, actorId: actor.id, actorRole: actor.role },
+      });
+      throw new RevisionError('conflict', 'The analysis changed after this proposal was made; it must be re-proposed.');
+    }
     await store.transitionProposal(proposal.id, 'proposed', { status: 'superseded', ...decided, decisionReason: 'Analysis changed after this proposal was made.' });
     throw new RevisionError('conflict', 'The analysis changed after this proposal was made; it must be re-proposed.');
   }
-
-  const moved = await store.transitionProposal(proposal.id, 'proposed', { status: 'approved', ...decided });
-  if (!moved) throw new RevisionError('conflict', 'Proposal was decided concurrently.');
 
   const claimIndex = current.claims.findIndex((c) => c.id === proposal.claimId);
   if (claimIndex === -1) throw new RevisionError('not_found', 'The claim this proposal targets no longer exists.');
@@ -194,14 +224,7 @@ export async function decideProposal(
     updatedAt: nextVersion,
   };
 
-  const replaced = await store.replaceAnalysisIfVersion(updated, proposal.baseVersion);
-  if (!replaced) {
-    await store.transitionProposal(proposal.id, 'approved', { status: 'superseded', ...decided, decisionReason: 'Analysis changed while the decision was being applied.' });
-    throw new RevisionError('conflict', 'The analysis changed while the decision was being applied; nothing was overwritten.');
-  }
-
-  await store.saveChallenge(proposal.challenge);
-  await store.appendAudit({
+  const approvalAudit = (): AuditRecord => ({
     id: randomUUID(),
     entityType: 'CLAIM',
     entityId: proposal.claimId,
@@ -222,6 +245,31 @@ export async function decideProposal(
     actorId: actor.id,
     actorRole: actor.role,
   });
+
+  if (store.commitDecision) {
+    const ok = await store.commitDecision({
+      proposalId: proposal.id,
+      from: 'proposed',
+      patch: { status: 'approved', ...decided },
+      audit: approvalAudit(),
+      analysis: { next: updated, expectedUpdatedAt: proposal.baseVersion },
+      challenge: proposal.challenge,
+    });
+    if (!ok) throw new RevisionError('conflict', 'The proposal or the analysis changed while the decision was being applied; nothing was written.');
+    return { proposal: { ...proposal, status: 'approved', ...decided }, analysis: updated };
+  }
+
+  const moved = await store.transitionProposal(proposal.id, 'proposed', { status: 'approved', ...decided });
+  if (!moved) throw new RevisionError('conflict', 'Proposal was decided concurrently.');
+
+  const replaced = await store.replaceAnalysisIfVersion(updated, proposal.baseVersion);
+  if (!replaced) {
+    await store.transitionProposal(proposal.id, 'approved', { status: 'superseded', ...decided, decisionReason: 'Analysis changed while the decision was being applied.' });
+    throw new RevisionError('conflict', 'The analysis changed while the decision was being applied; nothing was overwritten.');
+  }
+
+  await store.saveChallenge(proposal.challenge);
+  await store.appendAudit(approvalAudit());
 
   return { proposal: { ...proposal, status: 'approved', ...decided }, analysis: updated };
 }

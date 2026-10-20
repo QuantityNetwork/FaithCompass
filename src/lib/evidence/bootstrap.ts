@@ -22,8 +22,14 @@ async function seed(): Promise<void> {
   const provider = new CorpusReasoningProvider();
 
   for (const subject of SEEDED_SUBJECTS) {
-    const existing = await store.getAnalysisBySlug(subject.slug);
-    if (existing && existing.analysisVersion === ANALYSIS_VERSION) continue;
+    if (store.hasCurated) {
+      // Firestore: the curated version lives in this process only, so it is always regenerated here, even when an
+      // approved revision is stored (that revision is still read first).
+      if (await store.hasCurated(subject.slug)) continue;
+    } else {
+      const existing = await store.getAnalysisBySlug(subject.slug);
+      if (existing && existing.analysisVersion === ANALYSIS_VERSION) continue;
+    }
 
     await runAnalysis(
       {
@@ -34,6 +40,11 @@ async function seed(): Promise<void> {
       provider,
     );
   }
+}
+
+/** Tests only: forget that seeding ran, as a new server process would. */
+export function resetSeeding(): void {
+  done = null;
 }
 
 /** Idempotent, and safe to call from any route or page. */

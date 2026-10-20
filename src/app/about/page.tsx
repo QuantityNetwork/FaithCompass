@@ -81,8 +81,8 @@ export default function AboutPage() {
         <div className="prose-block">
           <ul>
             <li>
-              <strong>A product of Sagolik, not an independent body.</strong> {OPERATOR.statement} AbrahamMoses has no legal
-              existence separate from Sagolik.
+              <strong>A Sagolik product, not an independent body.</strong> {OPERATOR.statement} AbrahamMoses has no legal
+              existence separate from its owner.
             </li>
             <li>
               <strong>Not an accredited institution.</strong> It is not a university, institute or degree-granting body, and

@@ -10,7 +10,7 @@ function publicProviderStatus() {
   return { configured, active, degraded, reason };
 }
 import { runAnalysis } from '@/lib/evidence/pipeline';
-import { canPersist, getStore, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
+import { canPersist, getStore, storeFor, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { guardWrite } from '@/lib/security/write-guard';
 import { NoAnalysisAvailableError, ProviderUnavailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
@@ -46,6 +46,15 @@ export async function POST(request: Request) {
     );
   }
 
+  // On Firestore every write carries the user's own ID token (ADR 0001): an anonymous draft cannot be stored, so
+  // say so before running the analysis rather than failing after it.
+  if (storeFor(gate.actor).requiresIdentity && !gate.actor.authenticated) {
+    return NextResponse.json(
+      { error: 'Sign in to save an analysis: drafts are stored under your own account.', code: 'unauthenticated' },
+      { status: 401, headers: noStore },
+    );
+  }
+
   try {
     const result = await runAnalysis({
       query: parsed.data.query,
@@ -64,7 +73,7 @@ export async function POST(request: Request) {
 
     const draftId = randomUUID();
     const now = new Date().toISOString();
-    const store = getStore();
+    const store = storeFor(gate.actor);
     await store.saveDraft({
       id: draftId,
       status: 'draft',

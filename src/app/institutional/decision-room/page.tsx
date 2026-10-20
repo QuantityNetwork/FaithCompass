@@ -14,7 +14,7 @@ import {
   traceFromDefaults,
   type ConditionStatus,
 } from '@/lib/decision/engine';
-import { encodePassportId } from '@/lib/decision/passport';
+import { issuePassportId } from '@/lib/decision/passport';
 import { DEFAULT_WORKSPACE_SETTINGS, PRODUCT, decisionConfiguration } from '@/lib/decision/product';
 
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ export default async function DecisionRoomPage({ searchParams }: { searchParams:
   const conflicts = contradictionsView();
   const conditions = nodes.filter((n) => n.kind === 'condition');
   const judgment = conditions.filter((n) => n.status === 'NEEDS_HUMAN_JUDGMENT' || n.status === 'EVIDENCE_MISSING');
-  const passportId = encodePassportId(a, new Date());
+  const passportId = issuePassportId(a, new Date());
   const config = decisionConfiguration(a);
   const Changed = ({ id }: { id: string }) => (changed.has(id) ? <span className="am-chip am-chip--flag dr-changed">changed</span> : null);
 

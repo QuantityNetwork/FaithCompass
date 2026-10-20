@@ -47,7 +47,7 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
   }
   const p = loaded.passport;
   const sig = p.integrity.signature;
-  const base = `/institutional/decision-room/passport/${p.id}`;
+  const base = `/institutional/decision-room/passport/${p.passport_id}`;
 
   return (
     <main id="main" className="am-page dr dr-passport">
@@ -63,7 +63,7 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
 
         <dl className="dr-meta">
           <dt>Passport ID</dt>
-          <dd className="am-mono dr-hash">{p.id}</dd>
+          <dd className="am-mono dr-hash">{p.passport_id}</dd>
           <dt>Generated</dt>
           <dd>{p.generated_at}</dd>
           <dt>Case</dt>
@@ -86,12 +86,22 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
           <dd>
             {sig.status === 'signed' ? (
               <>
-                Ed25519, key <span className="am-mono">{sig.key_id}</span> (<a href={sig.public_keys}>public keys</a>):{' '}
-                <span className="am-mono dr-hash">{sig.value}</span>
+                {sig.valid ? 'Valid as issued' : `Invalid: ${sig.reason}`} · Ed25519, key <span className="am-mono">{sig.key_id}</span>, issued{' '}
+                {sig.issued_at} (<a href={sig.public_keys}>public keys</a>): <span className="am-mono dr-hash">{sig.value}</span>
               </>
             ) : (
               sig.status
             )}
+          </dd>
+          <dt>Engine</dt>
+          <dd>
+            {p.integrity.engine.version}
+            {p.integrity.engine.sha256 ? (
+              <>
+                , source SHA-256 <span className="am-mono dr-hash">{p.integrity.engine.sha256}</span>
+              </>
+            ) : null}{' '}
+            (frozen; <span className="am-mono">{p.integrity.engine.source}</span>)
           </dd>
           <dt>Case data</dt>
           <dd>

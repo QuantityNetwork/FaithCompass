@@ -556,7 +556,7 @@ describe('decision room', () => {
     await context.close();
   });
 
-  it('presents the Decision Twin with honest status, no checkout while sales are closed and no invented contact', async () => {
+  it('presents the Decision Twin with honest status, no checkout, a pilot enquiry and the seller as a private individual', async () => {
     const { context, page: p, errors } = await page();
     await p.goto(`${base}/institutional/decision-twin`);
     await expect(p.getByRole('img', { name: /AbrahamMoses Decision Twin/ }).first().isVisible()).resolves.toBe(true);
@@ -564,35 +564,42 @@ describe('decision room', () => {
     expect(text).toContain('Public institutional demonstration ready — private client onboarding not authorized');
     expect(text).toContain('Evidence informs. Humans decide. The system preserves the reasoning.');
     expect(text).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
-    expect(text).toContain('Indicative pricing, excl. VAT; pilots not yet on sale');
+    expect(text).toContain('Indicative pricing, stated without VAT (the seller is not VAT-registered); pilots not yet on sale');
+    expect(text).toContain('Seller: Mikael Markus Andersson (private individual, Sweden)');
     expect(text).toContain('€9,500');
-    // PILOT_CHECKOUT_ENABLED is false: no payment link anywhere, and no pilot link without a published contact
+    expect(text).not.toMatch(/excl\. VAT|excluding VAT/);
+    // PILOT_CHECKOUT_ENABLED is false: no payment link anywhere
     expect(await p.locator('a[href*="stripe.com"]').count()).toBe(0);
-    expect(await p.getByRole('link', { name: /Reserve a pilot|Request a pilot/ }).count()).toBe(0);
-    expect(await p.locator('main a[href^="mailto:"]').count()).toBe(0);
-    expect(text).toContain('Pilot enquiries open once our contact details are published.');
-    expect(text).toContain('contact details will be published');
+    expect(await p.getByRole('link', { name: 'Reserve a pilot' }).count()).toBe(0);
+    // The contact channel is active: 'Request a pilot' is a mailto enquiry to ABRAHAMMOSES_CONTACT, or the seller's address
+    const contact = process.env.ABRAHAMMOSES_CONTACT || 'markus@sagolik.com';
+    const pilot = await p.getByRole('link', { name: 'Request a pilot' }).getAttribute('href');
+    expect(pilot).toBe(`mailto:${contact}?subject=${encodeURIComponent('Decision Twin pilot enquiry')}`);
+    expect(await p.getByRole('link', { name: 'Talk to us' }).first().getAttribute('href')).toBe(`mailto:${contact}`);
     expect(errors).toEqual([]);
     await context.close();
   });
 
-  it('publishes the draft pilot Terms of Sale as not in force and links them from pricing and the footer', async () => {
+  it('publishes the draft pilot Terms of Sale as not in force, with the private seller, linked from pricing and the footer', async () => {
     const { context, page: p, errors } = await page();
     await p.goto(`${base}/institutional/decision-twin`);
     const pricing = (await p.locator('#pricing').textContent())!;
-    expect(pricing).toContain('Draft Terms of Sale (not in force; no sales are currently being accepted)');
+    expect(pricing).toContain('Draft Terms of Sale (not in force; no sales are accepted until private workspaces exist)');
     await p.locator('#pricing').getByRole('link', { name: 'Draft Terms of Sale' }).click();
     await p.waitForURL(/\/institutional\/decision-twin\/terms$/);
     const text = (await p.locator('main').textContent())!;
-    expect(text).toContain('Draft, not in force: no sales are currently being accepted');
-    expect(text).toContain('Legal entity details');
-    expect(await p.locator('a[href*="stripe.com"]').count()).toBe(0);
+    expect(text).toContain('Draft, not in force: no sales are accepted until private workspaces exist');
+    expect(text).toContain('These terms have not been reviewed by a lawyer.');
+    expect(text).toContain('The seller is Mikael Markus Andersson (private individual, Sweden), Halmstad, Sweden.');
+    expect(text).toContain('there is no organisation number and no VAT registration');
     expect(text).toContain('not offered to consumers');
-    expect(text).toContain('€9,500 excluding VAT');
+    expect(text).toContain('It is stated without VAT because the seller is not VAT-registered');
     expect(text).toContain('If the pilot has not started within 90 days of payment, you receive a full refund on request.');
     expect(text).toContain('Swedish law');
-    expect(text).toContain('Contact details will be published.');
-    expect(text).not.toMatch(/\b\d{6}-\d{4}\b/); // no invented Swedish organisation number
+    expect(text).not.toMatch(/\b\d{6}-\d{4}\b/); // no invented organisation number
+    expect(text).not.toMatch(/Sagolik (AB|Ltd|company)|Legal entity details/);
+    expect(await p.locator('a[href*="stripe.com"]').count()).toBe(0);
+    expect(await p.locator('main a[href^="mailto:"]').count()).toBe(1);
     expect(await p.locator('footer a[href="/institutional/decision-twin/terms"]').count()).toBe(1);
     const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
     expect(sitemap).toContain(`${base}/institutional/decision-twin/terms`);

@@ -54,3 +54,34 @@ describe('security headers', () => {
     expect(h['Permissions-Policy']).not.toContain('interest-cohort');
   });
 });
+
+describe('release identity and operator contact on /status', () => {
+  it('reports the serving commit and deployment from the Vercel system environment, or null', async () => {
+    const { releaseInfo } = await import('@/lib/api/status');
+    expect(releaseInfo({ VERCEL_GIT_COMMIT_SHA: 'abc123', VERCEL_GIT_COMMIT_REF: 'main', VERCEL_DEPLOYMENT_ID: 'dpl_x', VERCEL_ENV: 'production' })).toMatchObject({
+      commit_sha: 'abc123',
+      commit_ref: 'main',
+      deployment_id: 'dpl_x',
+      environment: 'production',
+    });
+    expect(releaseInfo({})).toMatchObject({ commit_sha: null, deployment_id: null });
+  });
+
+  it('names the private operator and passes legal_contact when ABRAHAMMOSES_CONTACT is set', async () => {
+    const { statusReport } = await import('@/lib/api/status');
+    const probe = async () => ({ status: 200, body: { code: 'AM-CLAIM-000184' } });
+    const prev = process.env.ABRAHAMMOSES_CONTACT;
+    try {
+      process.env.ABRAHAMMOSES_CONTACT = 'markus@sagolik.com';
+      const on = (await statusReport(new Request('http://localhost/api/v1/status'), probe)).checks.find((c) => c.id === 'legal_contact')!;
+      expect(on.result).toBe('pass');
+      expect(on.detail).toContain('Mikael Markus Andersson (private individual, Sweden)');
+      delete process.env.ABRAHAMMOSES_CONTACT;
+      const off = (await statusReport(new Request('http://localhost/api/v1/status'), probe)).checks.find((c) => c.id === 'legal_contact')!;
+      expect(off.result).toBe(process.env.ABRAHAMMOSES_PRIVACY_CONTACT ? 'pass' : 'warn');
+    } finally {
+      if (prev === undefined) delete process.env.ABRAHAMMOSES_CONTACT;
+      else process.env.ABRAHAMMOSES_CONTACT = prev;
+    }
+  });
+});

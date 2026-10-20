@@ -18,14 +18,32 @@ export const PRODUCT = {
 } as const;
 
 /**
- * Stripe payment link for a pilot reservation (Sagolik account). Kept for when sales open, but not rendered:
- * the link is deactivated in Stripe and no sales are accepted until the seller identity and reviewed terms
- * are published (register item B10). No keys, no server integration.
+ * The seller of pilot reservations (owner instruction 2026-10-20): a private individual, not a company.
+ * There is no organisation number and no VAT registration, so no VAT is added to prices.
+ */
+export const SELLER = {
+  name: 'Mikael Markus Andersson',
+  status: 'private individual, Sweden',
+  location: 'Halmstad, Sweden',
+  /** Owner-confirmed public contact; ABRAHAMMOSES_CONTACT takes precedence when set. */
+  contact: 'markus@sagolik.com',
+} as const;
+export const SELLER_LINE = `${SELLER.name} (${SELLER.status})`;
+
+/** The configured contact (ABRAHAMMOSES_CONTACT), falling back to the seller's owner-confirmed address. */
+export function sellerContact(configured: string | null | undefined): string {
+  return configured || SELLER.contact;
+}
+
+/**
+ * Stripe payment link for a pilot reservation (payment link plink_1USgj0G6rcRJryPyPwPo6y5w). Kept for when sales
+ * open, but not rendered: the link is paused in Stripe and no sales are accepted until private workspaces exist
+ * (register item B10). No keys, no server integration.
  */
 export const PILOT_PAYMENT_LINK = 'https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d';
-/** Pilots are not on sale. Turning this on requires the B10 checklist to be complete. */
+/** Pilots are not on sale (external review, 2026-10-20). Turning this on requires the B10 checklist. */
 export const PILOT_CHECKOUT_ENABLED: boolean = false;
-export const PRICING_LABEL = 'Indicative pricing, excl. VAT; pilots not yet on sale';
+export const PRICING_LABEL = 'Indicative pricing, stated without VAT (the seller is not VAT-registered); pilots not yet on sale';
 export const PILOT_ENQUIRY_SUBJECT = 'Decision Twin pilot enquiry';
 /** A contact link from the configured contact (email or URL); null when none is configured. Never invents one. */
 export function contactHref(contact: string | null, subject?: string): string | null {
@@ -36,7 +54,8 @@ export function contactHref(contact: string | null, subject?: string): string | 
   return contact.includes('@') ? `mailto:${contact}${query}` : null;
 }
 
-export const SALES_STATUS = 'Draft, not in force: no sales are currently being accepted';
+export const SALES_STATUS = 'Draft, not in force: no sales are accepted until private workspaces exist';
+export const TERMS_REVIEW_NOTE = 'These terms have not been reviewed by a lawyer.';
 
 export const STATUS_LINE = 'Public institutional demonstration ready — private client onboarding not authorized';
 
@@ -45,11 +64,11 @@ export const PLANS = [
     id: 'pilot',
     name: 'Pilot',
     price: '€9,500',
-    period: 'one-off, 90 days',
+    period: 'one-off reservation, 90-day pilot',
     includes: ['One private workspace', 'Up to 10 users', 'Onboarding'],
     action: 'pilot' as const,
     cta: 'Request a pilot',
-    note: 'Pilots start only when private institutional workspaces are released; the start date is agreed with you in writing.',
+    note: 'Reservation: the 90-day pilot starts only when private institutional workspaces exist; the start date is agreed with you in writing.',
   },
   {
     id: 'institutional',

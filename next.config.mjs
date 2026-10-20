@@ -9,20 +9,26 @@ import { legacyHostRedirects } from './src/lib/site/legacy-redirects.mjs';
  * script before paint. A nonce would remove that, but only by rendering every
  * page per request, which would give up static rendering and the CDN cache;
  * that trade-off is recorded in docs/RELEASE_BLOCKERS.md (E12). Everything
- * else is locked down: no plugins, no foreign frames, no foreign connections,
+ * else is locked down: no plugins, no foreign frames, no foreign connections (except Firebase's
+ * Auth and Firestore endpoints when it is configured),
  * forms post only here, and <base> cannot be changed.
  */
 function contentSecurityPolicy(env) {
   const dev = env.NODE_ENV !== 'production';
   // Vercel's preview toolbar, on preview deployments only.
   const toolbar = env.VERCEL_ENV === 'preview' ? ' https://vercel.live' : '';
+  // Firebase browser SDK (ADR 0001): Email/Password sign-in, token refresh and Firestore, only when the public web
+  // config is set.
+  const firebase = env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    ? ' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com'
+    : '';
   return [
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ''}${toolbar}`,
     `style-src 'self' 'unsafe-inline'${toolbar}`,
     `img-src 'self' data: blob:${toolbar}`,
     `font-src 'self' data:${toolbar}`,
-    `connect-src 'self'${toolbar}${toolbar ? ' wss://ws-us3.pusher.com' : ''}`,
+    `connect-src 'self'${firebase}${toolbar}${toolbar ? ' wss://ws-us3.pusher.com' : ''}`,
     `frame-src 'self'${toolbar}`,
     "object-src 'none'",
     "base-uri 'self'",

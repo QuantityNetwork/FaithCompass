@@ -10,8 +10,10 @@ import {
   PLANS,
   PRICING_LABEL,
   PRODUCT,
+  SELLER_LINE,
   STATUS_LINE,
   contactHref,
+  sellerContact,
   type LayerStatus,
 } from '@/lib/decision/product';
 import { legalContact } from '@/lib/site/config';
@@ -35,8 +37,8 @@ const STATUS_STYLE: Record<LayerStatus, string> = {
 };
 
 export default function DecisionTwinPage() {
-  const contact = contactHref(legalContact().general);
-  const pilotContact = contactHref(legalContact().general, PILOT_ENQUIRY_SUBJECT);
+  const contact = contactHref(sellerContact(legalContact().general));
+  const pilotContact = contactHref(sellerContact(legalContact().general), PILOT_ENQUIRY_SUBJECT);
   return (
     <main id="main" className="am-page dr">
       <div className="am-wrap">
@@ -65,7 +67,7 @@ export default function DecisionTwinPage() {
               fictional private credit case: the <Link href="/institutional/decision-room">Decision Room</Link> and its
               synthetic Decision Passports. There are no private workspaces, accounts, customers or customer data. No bank,
               fund or institution has reviewed, validated or used it, and it holds no certification. Nothing can be bought:
-              pilots are not yet on sale.
+              pilots are not yet on sale, and enquiries are welcome.
             </p>
           </div>
           <p>
@@ -240,16 +242,24 @@ export default function DecisionTwinPage() {
                 )}
                 {plan.note ? <p className="am-tiny">{plan.note}</p> : null}
                 {plan.action === 'pilot' ? (
-                  <p className="am-tiny">
-                    <Link href="/institutional/decision-twin/terms">Draft Terms of Sale</Link> (not in force; no sales are
-                    currently being accepted).
-                  </p>
+                  PILOT_CHECKOUT_ENABLED ? (
+                    <p className="am-tiny">
+                      By reserving you accept the <Link href="/institutional/decision-twin/terms">Terms of Sale</Link>.
+                    </p>
+                  ) : (
+                    <p className="am-tiny">
+                      <Link href="/institutional/decision-twin/terms">Draft Terms of Sale</Link> (not in force; no sales are
+                      accepted until private workspaces exist). A request is an enquiry, not a purchase.
+                    </p>
+                  )
                 ) : null}
               </article>
             ))}
           </div>
           <p className="am-tiny">
-            Prices exclude VAT and are indicative; nothing on this page is an offer to sell. Decision support only: the customer
+            Seller: {SELLER_LINE}. Prices are indicative and stated without VAT because the seller is not VAT-registered;
+            nothing on this page is an offer to sell. A pilot would be a reservation that starts once private workspaces exist.
+            Decision support only: the customer
             keeps responsibility for its decisions, and a Decision Passport is not a binding decision, audit opinion, regulatory
             approval or certification. No DORA assessment or regulatory approval is claimed; a written agreement is required
             before any client data is used.
