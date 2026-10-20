@@ -105,6 +105,58 @@ export function conclusionsDependingOn(doc: SdepDocument, nodeId: string): { con
   };
 }
 
+export interface PathStep {
+  node: string;
+  kind: NodeKind | null;
+  label: string | null;
+  /** Edge type leading from the previous step to this one (null for the first step). */
+  via: string | null;
+}
+
+/**
+ * The dependency paths from `from` up to `to` (each step is built on the previous one), shortest first, at most
+ * `limit` of them, with the total number of distinct paths. Assumes an acyclic graph (checked by `checkIntegrity`).
+ */
+export function dependencyPaths(doc: SdepDocument, from: string, to: string, limit = 5): { total: number; paths: PathStep[][] } {
+  const { nodes, dependents } = index(doc);
+  const viaOf = new Map<string, string>();
+  for (const e of doc.edges) {
+    const dep = EDGE_RULES[e.type].dependent;
+    if (dep === 'from') viaOf.set(`${e.to}>${e.from}`, e.type);
+    else if (dep === 'to') viaOf.set(`${e.from}>${e.to}`, e.type);
+  }
+  const reaches = reach([to], index(doc).dependencies);
+  reaches.add(to);
+  const count = new Map<string, number>();
+  const total = (id: string): number => {
+    if (id === to) return 1;
+    if (count.has(id)) return count.get(id)!;
+    let n = 0;
+    for (const next of dependents.get(id) ?? []) if (reaches.has(next)) n += total(next);
+    count.set(id, n);
+    return n;
+  };
+  const paths: string[][] = [];
+  // Breadth-first so the shortest paths come first.
+  let frontier: string[][] = [[from]];
+  while (frontier.length && paths.length < limit) {
+    const next: string[][] = [];
+    for (const p of frontier) {
+      const last = p[p.length - 1];
+      if (last === to) {
+        if (paths.length < limit) paths.push(p);
+        continue;
+      }
+      for (const n of [...(dependents.get(last) ?? [])].sort()) if (reaches.has(n) && !p.includes(n)) next.push([...p, n]);
+    }
+    frontier = next;
+  }
+  return {
+    total: reaches.has(from) ? total(from) : 0,
+    paths: paths.map((p) => p.map((id, i) => ({ node: id, kind: nodes.get(id)?.kind ?? null, label: nodes.get(id)?.label ?? null, via: i === 0 ? null : viaOf.get(`${p[i - 1]}>${id}`) ?? null }))),
+  };
+}
+
 /** The distinct SourceDocuments a node ultimately rests on. Two spans of one document are one source. */
 export function rootSources(doc: SdepDocument, nodeId: string): string[] {
   const { nodes } = index(doc);

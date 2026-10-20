@@ -20,7 +20,8 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 | "Every conclusion depending on this passage" | **Existing (this PR)** | `conclusionsDependingOn`, `dependentsOf`, `rootSources` in `src/lib/evidence-graph/integrity.ts` |
 | Tests: missing/duplicate evidence, shared ancestry, contradictory fields, version mismatch, cycles, broken refs, unauthorized (cross-tenant) access, impact isolation | **Existing (this PR)** | `tests/evidence-graph.test.ts` (one mutation per check) |
 | Decision Twin exported as SDEP | **Existing (this PR)** | `src/lib/evidence-graph/decision-twin.ts` – adapter over the frozen v1 engine, archived case and Contradiction Map; no logic duplicated |
-| Graph persisted / multi-tenant store / API | Absent | SDEP documents are computed, not stored; tenancy is modelled (`tenant`) but no tenant exists |
+| Graph API ("every conclusion depending on passage X") | **Existing (phase 3)** | `GET /api/v1/evidence-graph`, `/api/v1/evidence-graph/impact`, MCP `evidence_impact` |
+| Graph persisted / multi-tenant store | Absent | SDEP documents are computed, not stored; tenancy is modelled (`tenant`) but no tenant exists |
 
 ## Tech 2 – Contradiction engine
 
@@ -28,9 +29,9 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 |---|---|---|
 | 5 contradiction classes | Existing | `src/lib/decision/contradictions.ts` (CONFIRMED…UNRESOLVED_INTERPRETATION) – 8c429c3 |
 | Curated contradiction map with refs and affected nodes | Existing (hand-curated, 1 case) | same file; SDEP adapter checks graph impact covers declared `affects` |
-| Context normalisation (entity, period, unit, basis) | Partial | SDEP `context` + `UNRECORDED_CONTRADICTION` compares entity/measure/period/unit/basis; currency, definition, effective date, jurisdiction, mutual exclusivity absent |
-| Automatic deterministic detection | Partial (this PR) | integrity checker flags same-context value conflicts that are not recorded; no extraction |
-| AI-candidate layer, separated | Absent | — |
+| Context normalisation (entity, concept, period, unit, basis, definition, version, effective date, scope, mutual exclusivity) | **Existing (phase 3)** | `src/lib/contradiction/normalize.ts` (currency scale to USD millions only; jurisdiction not modelled); SDEP `UNRECORDED_CONTRADICTION` uses entity/measure/period/unit/basis |
+| Automatic deterministic detection | **Existing (phase 3)** | `src/lib/contradiction/detect.ts`: 3 of 5 curated entries found with the same class on the synthetic case (`docs/V5_PHASE3_4_TEST_REPORT.md`); no extraction from raw documents |
+| AI-candidate layer, separated | Interface only (phase 3) | `CandidateSource`, `NO_AI_CANDIDATES`, `combineLayers`; no provider, no AI call |
 | Benchmark vs exact-value / LLM / RAG | Absent | no benchmark exists |
 
 ## Tech 3 – Counterfactual
@@ -41,9 +42,9 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 | Trace of changed nodes vs defaults | Existing | `traceFromDefaults`, `fingerprint` – 8c429c3 |
 | Counterarguments regenerated per scenario | Existing (rule-based) | `src/lib/decision/chamber.ts` – 8c429c3 |
 | Conditions MET / NOT_MET / EVIDENCE_MISSING / NEEDS_HUMAN_JUDGMENT | Existing | engine `ConditionStatus` – 8c429c3 |
-| Selective recalculation (only affected nodes) | Absent | engine recomputes everything (cheap at this size) |
-| Structured diff, side-by-side, arithmetic/forecast/stress/causal/judgment distinction | Partial | trace lists changes; no typed change classes or side-by-side view |
-| Oracle tests + timing | Partial | engine unit tests; no timing |
+| Selective recalculation (only affected nodes) | **Existing (phase 3)** | `recalculate` in `src/lib/decision/engine.ts`; 56/56 equal to full evaluation |
+| Structured diff with change classes | **Existing (phase 3)** | `src/lib/counterfactual/` labels assumption / judgment / stress / arithmetic; forecast and causal not distinguished; no side-by-side UI |
+| Oracle tests + timing | **Existing (phase 3)** | `tests/counterfactual.test.ts`, `scripts/v5-report.ts`; 56 mutations, 0 missing, 0 unexpected |
 
 ## Tech 4 – Historical replay
 
@@ -52,9 +53,9 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 | Immutable archived case inputs with pinned hash | Existing | `src/lib/decision/versions/` (`ARCHIVED_CASES`, `archiveHash`) – 2ceebb5 |
 | Engine id + digest, frozen engine | Existing | `src/lib/decision/engines/index.ts` (`dt-engine-1.0.0`, sha256 pinned) – f5ba82c |
 | Verify (passport against its version) | Existing | `verifyPassport` in `passport.ts` – f5ba82c; production check: old passport `0f1ee5e` valid |
-| Deterministic replay of a past release; two-release demo | Partial | only one archived version exists, so no cross-release replay yet |
+| Verify / deterministic replay / historical AI review as separate operations; two-release demo | **Existing (phase 4)** | `src/lib/replay/`; the active engine is the demo's second release (not frozen) |
 | AI model/config capture, reviews, event sequence in snapshot | Absent | the Decision Twin uses no model |
-| Tamper / unknown-version tests | Existing for passports | passport tests (f5ba82c); incomplete-replay tests absent |
+| Tamper / unknown-version / incomplete-replay tests | **Existing (phase 4)** | `tests/replay.test.ts` (source, ruleset, engine source, unknown version, incomplete) |
 
 ## Tech 5 – Portable passport
 

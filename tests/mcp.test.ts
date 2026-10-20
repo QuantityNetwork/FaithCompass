@@ -17,6 +17,7 @@ const rpc = (method: string, params?: unknown, id: number | string = 1) => handl
 
 /** Arguments that exercise each tool against the real record. */
 const SAMPLE_ARGS: Record<string, Record<string, unknown>> = {
+  evidence_impact: { passage: 'span:DOC-03#total_debt' },
   search_record: { q: 'What changed concerning priesthood under the New Covenant?' },
   get_claim: { code: 'AM-CLAIM-000184' },
   list_claims: { topic: 'Torah', limit: 5 },
