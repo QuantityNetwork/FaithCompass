@@ -105,8 +105,8 @@ summary:focus-visible {
   display: block;
   font-family: var(--serif);
   font-size: 20px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-strong);
 }
 
@@ -114,9 +114,9 @@ summary:focus-visible {
   display: block;
   margin-top: 5px;
   font-family: var(--sans);
-  font-size: 9.5px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
 }
 
@@ -124,9 +124,9 @@ summary:focus-visible {
   display: flex;
   gap: 26px;
   font-family: var(--sans);
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-muted);
   flex-wrap: wrap;
 }
@@ -140,7 +140,7 @@ summary:focus-visible {
   margin-top: 96px;
   padding-block: 32px 56px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.8;
   color: var(--ink-faint);
 }
@@ -175,9 +175,9 @@ h4 {
 
 .eyebrow {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   margin: 0 0 14px;
 }
@@ -188,9 +188,9 @@ h4 {
 
 .section-title {
   font-family: var(--sans);
-  font-size: 11.5px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-muted);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule);
@@ -224,9 +224,9 @@ h4 {
 
 .tiny {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 /* ---------------------------------------------------------------- *
@@ -247,9 +247,9 @@ h4 {
   display: block;
   margin-top: 16px;
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
 }
 
@@ -273,17 +273,17 @@ h4 {
 
 .profile__label {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-muted);
 }
 
 .profile__band {
   font-family: var(--sans);
   font-size: 13px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold-bright);
   margin-top: 14px;
 }
@@ -314,7 +314,7 @@ h4 {
 .profile__score sub {
   font-size: 13px;
   color: var(--ink-faint);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.01em;
   vertical-align: baseline;
   margin-left: 4px;
 }
@@ -377,8 +377,8 @@ h4 {
 
 .claim__ordinal {
   font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   color: var(--gold-dim);
   padding-top: 4px;
   font-variant-numeric: tabular-nums;
@@ -405,9 +405,9 @@ h4 {
 
 .claim__verdict-band {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold-bright);
 }
 
@@ -418,7 +418,7 @@ h4 {
 .claim__verdict-band--words {
   max-width: 190px;
   margin-left: auto;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.01em;
   text-transform: none;
   line-height: 1.35;
@@ -468,9 +468,9 @@ h4 {
 .tag {
   display: inline-block;
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   padding: 3px 9px;
   border: 1px solid var(--rule-strong);
   color: var(--ink-muted);
@@ -511,9 +511,9 @@ h4 {
 
 .panel__title {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-muted);
   margin-bottom: 16px;
 }
@@ -522,9 +522,9 @@ h4 {
   cursor: pointer;
   list-style: none;
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   padding: 12px 0;
   border-top: 1px solid var(--rule);
@@ -583,9 +583,9 @@ h4 {
 
 .ledger__rel {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   white-space: nowrap;
 }
 
@@ -597,7 +597,7 @@ h4 {
 .rel--challenges,
 .rel--weakly-challenges,
 .rel--contradicts {
-  color: #c98a7a;
+  color: var(--rust-text);
 }
 
 .rel--contextual,
@@ -648,7 +648,7 @@ h4 {
 
 .reasons--minus li::before {
   content: '–';
-  color: #c98a7a;
+  color: var(--rust-text);
 }
 
 .reasons--neutral li::before {
@@ -676,9 +676,9 @@ h4 {
 
 .ladder__label {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   padding-top: 3px;
 }
@@ -709,9 +709,9 @@ h4 {
 
 .compare__row-label {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
   margin: 22px 0 7px;
 }
@@ -725,9 +725,9 @@ h4 {
   align-items: center;
   gap: 10px;
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   background: transparent;
   border: 1px solid var(--gold-dim);
@@ -789,7 +789,7 @@ h4 {
 
 .chip {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   padding: 7px 12px;
   border: 1px solid var(--rule-strong);
@@ -853,10 +853,10 @@ h4 {
   display: flex;
   gap: 20px;
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   color: var(--ink-faint);
-  text-transform: uppercase;
+  text-transform: none;
   flex-wrap: wrap;
 }
 
@@ -873,20 +873,20 @@ h4 {
 }
 
 .notice--caution {
-  border-left-color: #8a5a4a;
+  border-left-color: var(--rust-dim);
 }
 
 .verification {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .verification--verified { color: var(--gold-bright); }
 .verification--partially_verified { color: var(--ink-muted); }
 .verification--internal_corpus { color: var(--ink-faint); }
-.verification--unverified { color: #c98a7a; }
+.verification--unverified { color: var(--rust-text); }
 
 /* ---------------------------------------------------------------- *
  * Evidence map
@@ -914,9 +914,9 @@ h4 {
   padding: 14px 20px;
   border-top: 1px solid var(--rule);
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
 }
 
@@ -930,7 +930,7 @@ h4 {
 }
 
 .map-legend .lg-supports::before { background: var(--gold); }
-.map-legend .lg-challenges::before { background: #c98a7a; }
+.map-legend .lg-challenges::before { background: var(--rust-text); }
 .map-legend .lg-contextual::before { background: var(--ink-faint); }
 
 /* ---------------------------------------------------------------- *

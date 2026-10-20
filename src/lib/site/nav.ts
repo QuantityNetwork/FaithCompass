@@ -1,9 +1,14 @@
 /**
  * Every navigation link on the site, in one place.
  *
+ * The primary navigation follows the information architecture of the v2 design
+ * (master prompt §6.1): Research, Evidence, Compare, Methodology, Developers,
+ * Institutional. Every existing page belongs to exactly one section; the
+ * section bar under the header lists a section's pages, so no page lost its
+ * way in when the header shrank from nine links to six.
+ *
  * tests/site-links.test.ts resolves each internal href against the app's
- * routes, so a footer link to a page that does not exist fails the build —
- * the review found Privacy and Terms links that returned 404.
+ * routes, so a link to a page that does not exist fails the build.
  */
 
 export interface NavLink {
@@ -11,54 +16,61 @@ export interface NavLink {
   label: string;
 }
 
-export const PRIMARY_NAV: NavLink[] = [
-  { href: '/research', label: 'Research' },
-  { href: '/claims', label: 'Claims' },
-  { href: '/covenants', label: 'Covenants' },
-  { href: '/doctrine', label: 'Doctrine' },
-  { href: '/traditions', label: 'Traditions' },
-  { href: '/hermeneutics', label: 'Hermeneutics' },
-  { href: '/methodology', label: 'Method' },
-  { href: '/developers', label: 'Developers' },
-  { href: '/about', label: 'About' },
-];
+export interface NavSection extends NavLink {
+  /** Path prefixes that belong to this section (for aria-current and the section bar). */
+  match: string[];
+  /** The section's pages, shown in the section bar and the footer. */
+  pages: NavLink[];
+}
 
-export const FOOTER_NAV: Array<{ title: string; links: NavLink[] }> = [
+export const NAV_SECTIONS: NavSection[] = [
   {
-    title: 'Research',
-    links: [
+    href: '/research',
+    label: 'Research',
+    match: ['/research'],
+    pages: [
       { href: '/research', label: 'Research workspace' },
       { href: '/research/torah-permanence', label: 'Torah permanence' },
       { href: '/research/priesthood-new-covenant', label: 'Priesthood' },
       { href: '/research/ibrahim-heirs-and-revelation', label: 'Ibrāhīm and revelation' },
       { href: '/research/restoration-priesthood-authority', label: 'Restoration and authority' },
-      { href: '/compare', label: 'Compare traditions' },
     ],
   },
   {
-    title: 'Record',
-    links: [
-      { href: '/claims', label: 'Claim Ledger' },
-      { href: '/covenants', label: 'Covenant Map' },
-      { href: '/doctrine', label: 'Doctrine Graph' },
+    href: '/claims',
+    label: 'Evidence',
+    match: ['/claims', '/evidence', '/covenants', '/doctrine', '/traditions', '/corpus', '/changelog'],
+    pages: [
+      { href: '/claims', label: 'Claim ledger' },
+      { href: '/corpus', label: 'Source library' },
+      { href: '/covenants', label: 'Covenant map' },
+      { href: '/doctrine', label: 'Doctrine graph' },
       { href: '/traditions', label: 'Traditions' },
-      { href: '/hermeneutics', label: 'Hermeneutics' },
-      { href: '/corpus', label: 'Corpus' },
       { href: '/evidence', label: 'Evidence assessments' },
       { href: '/changelog', label: 'Changelog' },
     ],
   },
   {
-    title: 'Method',
-    links: [
+    href: '/compare',
+    label: 'Compare',
+    match: ['/compare'],
+    pages: [{ href: '/compare', label: 'Compare traditions' }],
+  },
+  {
+    href: '/methodology',
+    label: 'Methodology',
+    match: ['/methodology', '/hermeneutics', '/system'],
+    pages: [
       { href: '/methodology', label: 'Methodology' },
+      { href: '/hermeneutics', label: 'Hermeneutics and assumptions' },
       { href: '/system', label: 'The AbrahamMoses System' },
-      { href: '/about', label: 'About and governance' },
     ],
   },
   {
-    title: 'Access',
-    links: [
+    href: '/developers',
+    label: 'Developers',
+    match: ['/developers', '/status'],
+    pages: [
       { href: '/developers', label: 'Developers' },
       { href: '/developers#mcp', label: 'MCP server' },
       { href: '/api/v1', label: 'REST API' },
@@ -67,10 +79,26 @@ export const FOOTER_NAV: Array<{ title: string; links: NavLink[] }> = [
     ],
   },
   {
-    title: 'Legal',
-    links: [
+    href: '/institutional',
+    label: 'Institutional',
+    match: ['/institutional', '/about', '/privacy', '/terms'],
+    pages: [
+      { href: '/institutional', label: 'Institutional' },
+      { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },
     ],
   },
 ];
+
+export const PRIMARY_NAV: NavLink[] = NAV_SECTIONS.map(({ href, label }) => ({ href, label }));
+
+export const FOOTER_NAV: Array<{ title: string; links: NavLink[] }> = NAV_SECTIONS.map((s) => ({
+  title: s.label,
+  links: s.pages,
+}));
+
+/** The section a path belongs to, if any. */
+export function sectionFor(pathname: string): NavSection | undefined {
+  return NAV_SECTIONS.find((s) => s.match.some((m) => pathname === m || pathname.startsWith(`${m}/`)));
+}

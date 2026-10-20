@@ -113,9 +113,9 @@ svg {
   gap: 18px;
   align-items: center;
   font-family: var(--sans);
-  font-size: 11.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-muted);
 }
 
@@ -139,9 +139,9 @@ svg {
   list-style: none;
   cursor: pointer;
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   border: 1px solid var(--gold-dim);
   padding: 9px 14px;
@@ -191,7 +191,7 @@ svg {
   margin-top: 112px;
   padding-block: 48px 64px;
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.8;
   color: var(--ink-faint);
 }
@@ -215,9 +215,9 @@ svg {
 
 .site-footer__brand p {
   margin: 0;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
 }
 
@@ -230,9 +230,9 @@ svg {
 
 .site-footer h2 {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   margin-bottom: 10px;
 }
@@ -303,10 +303,10 @@ svg {
 
 .chapter-number {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.28em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   color: var(--gold);
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .grid-2 {
@@ -346,9 +346,9 @@ svg {
 
 .card__meta {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
 }
 
@@ -357,7 +357,7 @@ svg {
   flex-wrap: wrap;
   gap: 10px 26px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-muted);
   margin-top: 14px;
 }
@@ -416,9 +416,9 @@ svg {
 .pill {
   display: inline-block;
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   padding: 3px 8px;
   border: 1px solid var(--rule-strong);
   color: var(--ink-muted);
@@ -484,9 +484,9 @@ svg {
 }
 
 .table th {
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
   font-weight: 500;
   background: var(--ground-inset);
@@ -518,9 +518,9 @@ svg {
   .table--stack td[data-label]::before {
     content: attr(data-label);
     display: block;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    text-transform: none;
     color: var(--ink-faint);
   }
 }
@@ -551,260 +551,6 @@ svg {
   .hero__grid {
     grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
     gap: 64px;
-  }
-}
-
-/* ---------------------------------------------------------------- *
- * The emblem introduction
- * ---------------------------------------------------------------- */
-
-.emblem-intro {
-  margin: 0 auto;
-  width: min(100%, 380px);
-  display: grid;
-  gap: 18px;
-  justify-items: center;
-}
-
-@media (max-width: 959px) {
-  .emblem-intro {
-    width: min(100%, 320px);
-  }
-}
-
-.emblem-intro__svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.emblem-mark {
-  fill: var(--ink);
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.emblem-node {
-  cursor: pointer;
-  outline: none;
-}
-
-.emblem-hit {
-  fill: transparent;
-}
-
-.emblem-fill,
-.emblem-play-fill {
-  fill: var(--gold-bright);
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.emblem-arm,
-.emblem-play-arm {
-  stroke: var(--gold-bright);
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0;
-}
-
-.emblem-sparkle,
-.emblem-play-sparkle {
-  fill: var(--gold-bright);
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.emblem-focus {
-  fill: none;
-  stroke: var(--gold-bright);
-  stroke-width: 2.5;
-  stroke-dasharray: 4 4;
-  opacity: 0;
-}
-
-.emblem-label {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  fill: var(--ink-muted);
-}
-
-/* The case whose worked answer is shown below. */
-.emblem-node.is-selected .emblem-fill {
-  opacity: 0.4;
-  transform: scale(0.55);
-}
-
-.emblem-node.is-selected .emblem-label {
-  fill: var(--gold);
-}
-
-/* Hover or focus: the ring lights, its arm traces to the centre, the centre answers. */
-.emblem-node.is-active .emblem-fill {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.emblem-node.is-active .emblem-arm {
-  opacity: 1;
-  stroke-dashoffset: 0;
-}
-
-.emblem-node.is-active .emblem-label {
-  fill: var(--gold-bright);
-}
-
-.emblem-intro.has-active .emblem-sparkle {
-  opacity: 1;
-  transform: scale(1.12);
-}
-
-/* The ring's own dashed halo replaces the page-wide rectangular outline, which would box ring and label together. */
-.emblem-node:focus-visible {
-  outline: none;
-}
-
-.emblem-node:focus-visible .emblem-focus {
-  opacity: 1;
-}
-
-.emblem-intro__caption {
-  display: grid;
-  gap: 6px;
-  text-align: center;
-  max-width: 34ch;
-  /* Room for the longest question, so the caption never shifts the layout. */
-  min-height: 6.2em;
-}
-
-.emblem-intro__eyebrow {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.emblem-intro__text {
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--ink-strong);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .emblem-fill,
-  .emblem-sparkle,
-  .emblem-label {
-    transition: opacity 260ms ease, transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), fill 200ms ease;
-  }
-
-  .emblem-arm {
-    transition: stroke-dashoffset 520ms cubic-bezier(0.4, 0, 0.2, 1), opacity 120ms ease;
-  }
-
-  /* Once, on arrival: the emblem settles, each ring lights in historical order and traces to the
-     centre, then the centre takes the light and keeps a slow pulse. */
-  .emblem-mark {
-    animation: emblem-settle 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-
-  .emblem-play-fill {
-    animation: emblem-ring 1500ms ease calc(700ms + var(--i) * 220ms) both;
-  }
-
-  .emblem-play-arm {
-    animation: emblem-trace 1500ms cubic-bezier(0.4, 0, 0.2, 1) calc(800ms + var(--i) * 220ms) both;
-  }
-
-  .emblem-play-sparkle {
-    animation:
-      emblem-arrive 1200ms ease 1900ms both,
-      emblem-breathe 5200ms ease-in-out 3100ms infinite alternate;
-  }
-
-  .emblem-label {
-    animation: emblem-fade 700ms ease 1500ms both;
-  }
-}
-
-@keyframes emblem-settle {
-  from {
-    opacity: 0;
-    transform: scale(0.94) rotate(-8deg);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes emblem-ring {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  30% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
-
-@keyframes emblem-trace {
-  0% {
-    opacity: 1;
-    stroke-dashoffset: 1;
-  }
-  45% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-  100% {
-    opacity: 0;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes emblem-arrive {
-  0% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  40% {
-    opacity: 1;
-    transform: scale(1.25);
-  }
-  100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-}
-
-@keyframes emblem-breathe {
-  from {
-    opacity: 0.55;
-  }
-  to {
-    opacity: 0.12;
-  }
-}
-
-@keyframes emblem-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 
@@ -917,9 +663,9 @@ svg {
 
 .example__field {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
 }
 
@@ -979,8 +725,8 @@ svg {
 
 .layer__n {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.24em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   color: var(--gold);
 }
 
@@ -1007,10 +753,10 @@ svg {
   align-items: baseline;
   flex-wrap: wrap;
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   color: var(--ink-faint);
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .claim-card__statement {
@@ -1022,7 +768,7 @@ svg {
 
 .claim-card__witnesses {
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--ink-muted);
 }
 
@@ -1046,9 +792,9 @@ svg {
 
 .axis__name {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
 }
 
@@ -1082,7 +828,7 @@ svg {
 
 .axis__basis {
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
   color: var(--ink-muted);
 }
@@ -1097,7 +843,7 @@ svg {
   border: 1px solid var(--rule);
   padding: 12px 14px;
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.5;
   background: var(--ground-raised);
 }
@@ -1108,9 +854,9 @@ svg {
 }
 
 .stance__what {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   margin-left: 8px;
 }
 
@@ -1141,8 +887,8 @@ svg {
   top: 0;
   width: 28px;
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   text-align: center;
   color: var(--gold);
   background: var(--ground);
@@ -1150,9 +896,9 @@ svg {
 
 .chain__label {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
 }
 
@@ -1188,9 +934,9 @@ svg {
 }
 
 .premise-tag {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
   margin-left: 6px;
 }
@@ -1202,7 +948,7 @@ svg {
 
 .cite-box {
   font-family: var(--mono);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
   background: var(--ground-inset);
   border: 1px solid var(--rule);
@@ -1239,7 +985,7 @@ svg {
   padding: 14px 20px;
   border-bottom: 1px solid var(--rule);
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
 }
 
 .explorer__summary {
@@ -1272,9 +1018,9 @@ svg {
 }
 
 .explorer__group-title {
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
   margin: 18px 0 8px;
 }
@@ -1323,15 +1069,15 @@ svg {
 .toggle__code {
   display: block;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--ink-faint);
 }
 
 .toggle__suggested {
   display: block;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--gold);
   margin-top: 3px;
 }
@@ -1375,7 +1121,7 @@ svg {
   flex-wrap: wrap;
   gap: 8px 18px;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--ink-muted);
   margin-top: 10px;
 }
@@ -1401,9 +1147,9 @@ svg {
 .status {
   display: inline-block;
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   padding: 2px 7px;
   border: 1px solid var(--rule-strong);
   color: var(--status-stands);
@@ -1442,7 +1188,7 @@ svg {
 
 .position__held {
   font-family: var(--sans);
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--ink-faint);
   margin-top: 8px;
 }
@@ -1472,7 +1218,7 @@ svg {
   margin: 6px 0 0;
   padding-left: 18px;
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
   color: var(--ink-muted);
 }
@@ -1540,7 +1286,7 @@ svg {
 
 .filter-link {
   font-family: var(--sans);
-  font-size: 11.5px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   padding: 7px 12px;
   border: 1px solid var(--rule-strong);
@@ -1573,9 +1319,9 @@ svg {
 .filters label {
   display: block;
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
   margin-bottom: 6px;
 }
@@ -1597,7 +1343,7 @@ svg {
 
 .code {
   font-family: var(--mono);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.6;
   background: #05070f;
   border: 1px solid var(--rule);
@@ -1610,9 +1356,9 @@ svg {
 
 .code-label {
   font-family: var(--sans);
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink-faint);
   margin: 18px 0 6px;
 }
@@ -1641,9 +1387,9 @@ svg {
 
 .check {
   font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .check--pass { color: var(--ink-strong); }

@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/methodology',
     '/system',
     '/about',
+    '/institutional',
     '/changelog',
     '/developers',
     '/evidence',

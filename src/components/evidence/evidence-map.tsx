@@ -63,7 +63,7 @@ export function EvidenceMap({
   });
 
   const edgeColour = (v: number) =>
-    v > 0.05 ? 'var(--gold)' : v < -0.05 ? '#c98a7a' : 'var(--ink-faint)';
+    v > 0.05 ? 'var(--gold)' : v < -0.05 ? 'var(--rust-text)' : 'var(--ink-faint)';
 
   return (
     <div className="map-wrap">
