@@ -122,6 +122,7 @@ export type SignatureCheck = { valid: true } | { valid: false; reason: string };
 export function verifyIssued(sha256Hex: string, sig: IssuedSignature, keys: readonly PublishedKey[]): SignatureCheck {
   const key = keys.find((k) => k.kid === sig.kid);
   if (!key) return { valid: false, reason: `Unknown key id ${sig.kid}.` };
+  if (key.status === 'revoked') return { valid: false, reason: `Key ${sig.kid} was revoked${key.revoked_at ? ` at ${key.revoked_at}` : ''}; its signatures are not trusted.` };
   const at = Date.parse(sig.issued_at);
   if (Number.isNaN(at)) return { valid: false, reason: 'Invalid issue time.' };
   if (key.not_before && at < Date.parse(key.not_before)) return { valid: false, reason: `Issued before key ${sig.kid} was valid.` };
@@ -146,11 +147,12 @@ export function publicKeysDocument(state: SignerState = configuredSigner(), hist
       status: k.status,
       not_before: k.not_before,
       not_after: k.not_after,
+      ...(k.status === 'revoked' ? { revoked_at: k.revoked_at ?? null } : {}),
       public_key_pem: createPublicKey({ key: { kty: 'OKP', crv: 'Ed25519', x: k.x }, format: 'jwk' }).export({ format: 'pem', type: 'spki' }).toString(),
     })),
     signed_message:
       'UTF-8 bytes of "AbrahamMoses Decision Passport issuance v2\\n" + lowercase hex SHA-256 integrity hash + "\\n" + kid + "\\n" + issued_at. The signature is made once at issuance and carried in the passport ID.',
-    rotation: 'Retired keys stay listed with their validity window, so passports issued before a rotation keep verifying.',
+    rotation: 'Retired keys stay listed with their validity window, so passports issued before a rotation keep verifying. Revoked keys stay listed so that their signatures are recognised as untrusted.',
     meaning: SIGNATURE_MEANING,
   };
 }

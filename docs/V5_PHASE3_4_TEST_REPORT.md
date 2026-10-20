@@ -127,6 +127,7 @@ Median deterministic replay time is 1.2 ms (p95 1.5 ms, 200 runs).
 **Two engine releases.**
 - Release 1 is the frozen `dt-engine-1.0.0`, source SHA-256 `9e4eae8a…9241` (pinned).
 - Release 2 is the active engine (`src/lib/decision/engine.ts`, unfrozen, adds selective recalculation), source SHA-256 `2fb72275…7e96` at this commit. This hash is computed, not pinned.
+  *Update (phase 5):* this engine is now frozen and pinned as `dt-engine-1.1.0` in `src/lib/decision/engines/v1_1` (directory hash `cc226a98bf0f096f7e8341401bb1ec8d699e380ab422a90120ee98f516038230`); see `docs/INDEPENDENT_VERIFICATION.md`.
 
 The production-issued format 1 passport `0f1ee5e…` verifies (VALID). It then replays under the active engine with 38 of 38 nodes identical, conclusion included. A fixture release that changes one rule (coverage threshold 10x) is caught: exactly one node differs (`k.coverage`).
 

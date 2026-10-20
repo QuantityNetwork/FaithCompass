@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { REPLAY_MANIFEST, deterministicReplay, historicalAiReview, replayUnderEngine, verifyOperation, type EngineRelease } from '@/lib/replay';
-import { RELEASE_V1, activeRelease } from '@/lib/replay/releases';
+import { RELEASE_V1, RELEASE_V1_1, activeRelease } from '@/lib/replay/releases';
 import { CASE_ARCHIVE, buildPassport, encodePassportId, PASSPORT_PREFIX, type CaseArchive } from '@/lib/decision/passport';
 import { canonicalJson, hashOf } from '@/lib/decision/canonical';
 import { DEFAULT_ASSUMPTIONS, normalise } from '@/lib/decision/engine';
@@ -53,13 +53,26 @@ describe('two engine releases', () => {
     expect(ACTIVE.sha256).not.toBe(RELEASE_V1.sha256);
   });
 
-  it('the old passport verifies and replays under the active engine: every node identical', () => {
+  it('the old passport verifies and replays under the active engine and under frozen 1.1.0: every node identical', () => {
     expect(verifyOperation(OLD_ID, OLD_SHA).status).toBe('VALID');
-    const r = replayUnderEngine(OLD_ID, RELEASE_V1, ACTIVE);
-    expect(r.compared).toBe(38);
-    expect(r.identical).toBe(38);
-    expect(r.differing).toEqual([]);
-    expect(r.conclusionIdentical).toBe(true);
+    for (const target of [ACTIVE, RELEASE_V1_1]) {
+      const r = replayUnderEngine(OLD_ID, RELEASE_V1, target);
+      expect(r.compared).toBe(38);
+      expect(r.identical).toBe(38);
+      expect(r.differing).toEqual([]);
+      expect(r.conclusionIdentical).toBe(true);
+    }
+    expect(RELEASE_V1_1.sha256).toBe('cc226a98bf0f096f7e8341401bb1ec8d699e380ab422a90120ee98f516038230');
+  });
+
+  it('a passport issued under 1.1.0 replays deterministically against the pinned 1.1.0 source', () => {
+    const v11 = { ...CASE_ARCHIVE, versions: { '1.0.0': { ...CASE_ARCHIVE.versions['1.0.0'], engine: '1.1.0' } } };
+    const id = encodePassportId(DEFAULT_ASSUMPTIONS, new Date('2026-10-20T18:00:00Z'), v11);
+    const sha = buildPassport(id).integrity.sha256;
+    const dir11 = join(process.cwd(), 'src/lib/decision/engines/v1_1');
+    const files11 = Object.fromEntries(readdirSync(dir11).filter((f) => f.endsWith('.ts')).map((f) => [f, readFileSync(join(dir11, f), 'utf8')]));
+    expect(deterministicReplay(id, sha, { engineSources: { '1.1.0': files11 } }).status).toBe('REPRODUCED');
+    expect(deterministicReplay(id, sha, env).status).toBe('INCOMPLETE'); // 1.1.0 sources not supplied
   });
 
   it('a release that changes a rule is caught node by node', () => {

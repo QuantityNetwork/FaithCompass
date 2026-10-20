@@ -1,0 +1,27 @@
+{
+  "note": "TEST KEYS for conformance only. Private halves were discarded when the fixtures were generated.",
+  "keys": [
+    {
+      "kid": "ed25519-15f5ad068b350fb4",
+      "x": "f26AuRWi1_MYScDXP5AiKDg5WMLL2HP8EQnyBSUBZOE",
+      "status": "active",
+      "not_before": "2026-01-01T00:00:00Z",
+      "not_after": null
+    },
+    {
+      "kid": "ed25519-5195fbf4afb33a47",
+      "x": "jfzJuOFuNCd7OYuvgNBN9E-thfao7r2n86UDVI2KycA",
+      "status": "retired",
+      "not_before": "2025-01-01T00:00:00Z",
+      "not_after": "2026-06-30T00:00:00Z"
+    },
+    {
+      "kid": "ed25519-11ed04c34d9bf14f",
+      "x": "C61_Olw-sbnR6mKPszkddu8TQDY-ZPhfLHwkQ3Ge0bg",
+      "status": "revoked",
+      "not_before": "2025-06-01T00:00:00Z",
+      "not_after": null,
+      "revoked_at": "2026-09-01T00:00:00Z"
+    }
+  ]
+}

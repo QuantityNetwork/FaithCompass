@@ -53,7 +53,7 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 | Immutable archived case inputs with pinned hash | Existing | `src/lib/decision/versions/` (`ARCHIVED_CASES`, `archiveHash`) – 2ceebb5 |
 | Engine id + digest, frozen engine | Existing | `src/lib/decision/engines/index.ts` (`dt-engine-1.0.0`, sha256 pinned) – f5ba82c |
 | Verify (passport against its version) | Existing | `verifyPassport` in `passport.ts` – f5ba82c; production check: old passport `0f1ee5e` valid |
-| Verify / deterministic replay / historical AI review as separate operations; two-release demo | **Existing (phase 4)** | `src/lib/replay/`; the active engine is the demo's second release (not frozen) |
+| Verify / deterministic replay / historical AI review as separate operations; two-release demo | **Existing (phase 4–5)** | `src/lib/replay/`; second release frozen as `dt-engine-1.1.0` (`src/lib/decision/engines/v1_1`, sha256 `cc226a98…8230`); new passports still issue under 1.0.0 |
 | AI model/config capture, reviews, event sequence in snapshot | Absent | the Decision Twin uses no model |
 | Tamper / unknown-version / incomplete-replay tests | **Existing (phase 4)** | `tests/replay.test.ts` (source, ruleset, engine source, unknown version, incomplete) |
 
@@ -62,12 +62,12 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 | Element | Status | Evidence |
 |---|---|---|
 | Canonical record + sha256, source inventory, engine manifest | Existing | `passport.ts`, `canonical.ts`, `case.ts` `sourceInventory` – 8c429c3, f5ba82c |
-| Ed25519 signatures, kid, issued_at, historical keys | Existing (signing optional, off unless key configured) | `signing.ts`, `keys.ts`, `/.well-known/abrahammoses-passport-keys.json` – 2ceebb5, f5ba82c |
+| Ed25519 signatures, kid, issued_at, historical keys | Existing (signing optional, off unless key configured; no production key exists) | `signing.ts`, `keys.ts`, `/.well-known/abrahammoses-passport-keys.json` – 2ceebb5, f5ba82c |
 | Signed vs unsigned shown clearly | Existing | `UNSIGNED` state – f5ba82c |
-| Revocation | Absent | — |
-| Offline independent verifier (separate package / second language, conformance fixtures) | Absent | verification is server code only |
-| Bundle (report, manifest, schema, redacted exports) | Partial | passport encodes record + hash; no downloadable bundle |
-| Standards mapping (PROV-O, VC 2.0, in-toto, OpenLineage, JCS) | Absent | canonical JSON is sorted-key, not asserted JCS-conformant |
+| Revocation | **Existing (phase 5)** | key status `revoked` in `keys.ts`; rejected by `verifyIssued`, the TS and the Go verifier (fixture `revoked-key`); no key has been revoked in production |
+| Offline independent verifier (separate package / second language, conformance fixtures) | **Existing (phase 5)** | `packages/decision-verifier` (Go, stdlib only); 12/12 shared fixtures and 25/25 canonical vectors in both verifiers; CI runs it with networking disabled – `docs/INDEPENDENT_VERIFICATION.md` |
+| Bundle (report, manifest, schema, redacted exports) | **Existing (phase 5)** | `src/lib/passport-bundle/bundle.ts`; API `/api/institutional/decision-room/passport/bundle`, download `/institutional/decision-room/passport/<id>/bundle` – `docs/DECISION_PASSPORT_SPEC.md` |
+| Standards mapping (PROV-O, VC 2.0, in-toto, OpenLineage, JCS) | **Documented (phase 5)** | `docs/STANDARDS_MAPPING.md`: JCS implemented (subset, vector-tested); PROV-O, in-toto, OpenLineage adapter (mapping only); VC 2.0 unsupported. No certification claimed |
 
 ## Tech 6 – Adversarial challenge
 

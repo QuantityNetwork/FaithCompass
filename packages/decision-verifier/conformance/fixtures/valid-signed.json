@@ -1,0 +1,1496 @@
+{
+  "bundle": "abrahammoses-decision-passport-bundle",
+  "schema_version": "1.0.0",
+  "redacted": false,
+  "passport_id": "DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6W10sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJlIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJ2IjozfQ.S-eyJhbGciOiJFZDI1NTE5IiwiaXNzdWVkX2F0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJraWQiOiJlZDI1NTE5LTE1ZjVhZDA2OGIzNTBmYjQiLCJ2YWx1ZSI6IlliTHJCREt0V3dudW1YUDlGeHd0S183TW9uRXRUdjBacjUydUZqZ2ZhRC00NkF1aE1leDF6OXRqZmdCRWRZLTJ4N2c2ZEpCSlcxc3dTaFBjS1BWSUF3In0",
+  "artifacts": {
+    "passport": {
+      "id": "DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6W10sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJlIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJ2IjozfQ",
+      "title": "Decision Passport: Private Credit Decision Twin: $120M senior secured facility",
+      "label": "Illustrative and synthetic. Not a real borrower, lender or credit decision.",
+      "generated_at": "2026-10-20T18:00:00Z",
+      "case": {
+        "id": "DT-PC-001",
+        "version": "1.0.0",
+        "content_sha256": "248623021f23b82b9f1921142a9a49b6ea1239ead04b7c22b53502f7be9c7caf",
+        "archive": "src/lib/decision/versions/v1.ts",
+        "borrower": "Exemplar Industrial Holdings (fictional)",
+        "question": "Should the committee approve the proposed facility under the specified conditions?",
+        "facility": {
+          "total": 120,
+          "tranches": [
+            {
+              "name": "Term loan",
+              "amount": 90,
+              "note": "Five years, amortising 5% a year"
+            },
+            {
+              "name": "Revolving credit facility",
+              "amount": 30,
+              "note": "$10M drawn at close"
+            }
+          ],
+          "purpose": "Refinance existing bank debt and fund a plant expansion"
+        }
+      },
+      "status": "SIMULATED: demonstration only. No credit decision has been made.",
+      "reviewer": "none (simulated decision)",
+      "product": "AbrahamMoses Decision Twin (demonstration)",
+      "versions": {
+        "ruleset": "dr-rules-1.0.0",
+        "configuration": "dr-config-1.0.0",
+        "model": "none (deterministic rules; no AI model)",
+        "passport_format": "DP3",
+        "engine": "dt-engine-1.0.0"
+      },
+      "configuration": {
+        "version": "dr-config-1.0.0",
+        "objective": "Decide whether the synthetic $120M facility can go to a (simulated) credit committee, and on which conditions.",
+        "evidence_standard": "Every figure used in a calculation must trace to a named source document. Unverified documents may inform the analysis but cannot by themselves satisfy a condition; the verification condition stays unmet until they are verified by a human.",
+        "assumptions": [
+          {
+            "state": "FIXED",
+            "label": "Revenue FY2025",
+            "value": "$260M",
+            "source": "DOC-01",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "FIXED",
+            "label": "Reported EBITDA margin FY2025",
+            "value": "16%",
+            "source": "DOC-01",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "FIXED",
+            "label": "Cash at close",
+            "value": "$15M",
+            "source": "DOC-03",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "FIXED",
+            "label": "Undrawn RCF",
+            "value": "$20M",
+            "source": "DOC-03",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "FIXED",
+            "label": "Minimum interest cover",
+            "value": "3x",
+            "source": "DOC-05",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "FIXED",
+            "label": "Customer concentration policy limit",
+            "value": "25%",
+            "source": "DOC-04",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "FIXED",
+            "label": "Stress EBITDA decline",
+            "value": "20%",
+            "source": "DOC-04",
+            "note": "Taken from the source document; not adjustable in this case."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "Revenue growth FY2026",
+            "value": "12%",
+            "source": "DOC-02",
+            "note": "Source value."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "EBITDA margin",
+            "value": "17.5%",
+            "source": "DOC-02",
+            "note": "Source value."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "Total debt at close",
+            "value": "$124M",
+            "source": "DOC-03",
+            "note": "Source value."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "Annual interest expense",
+            "value": "$10.5M",
+            "source": "DOC-03",
+            "note": "Source value."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "Leverage covenant ceiling",
+            "value": "3.5x",
+            "source": "DOC-05",
+            "note": "Source value."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "Minimum liquidity requirement",
+            "value": "$10M",
+            "source": "DOC-05",
+            "note": "Source value."
+          },
+          {
+            "state": "ADJUSTABLE",
+            "label": "Top customer share of revenue",
+            "value": "22%",
+            "source": "DOC-07",
+            "note": "Source value."
+          },
+          {
+            "state": "DISPUTED",
+            "label": "P1: Management’s 12% revenue growth for FY2026 is achievable.",
+            "value": "accepted",
+            "source": "DOC-02",
+            "note": "If rejected: Revenue growth falls back to FY2025 actual growth of 4.0% (DOC-01)."
+          },
+          {
+            "state": "DISPUTED",
+            "label": "P2: Management’s 17.5% EBITDA margin for FY2026 is achievable.",
+            "value": "accepted",
+            "source": "DOC-02",
+            "note": "If rejected: EBITDA margin falls back to the FY2025 reported margin of 16.0% (DOC-01)."
+          },
+          {
+            "state": "DISPUTED",
+            "label": "P3: The top customer renews on current terms in Q1 2027.",
+            "value": "accepted",
+            "source": "DOC-02, DOC-07",
+            "note": "If rejected: Revenue loses half of the top customer’s share (dual-sourcing, DOC-07)."
+          }
+        ],
+        "approval_policy": {
+          "actions": [
+            "propose",
+            "review",
+            "reject",
+            "approve"
+          ],
+          "rule": "The system may only propose. Review, rejection and approval are human actions by authorized people. In this public demonstration no human action is recorded and nothing is approved."
+        },
+        "escalation_rules": [
+          "A condition with missing evidence (EVIDENCE_MISSING) is escalated to a human before any recommendation.",
+          "A confirmed contradiction between sources is escalated until a human resolves which source governs.",
+          "An unresolved interpretation of a contract term is escalated to legal review.",
+          "A different reporting basis is shown side by side and is not escalated as a conflict."
+        ],
+        "monitoring_triggers": [
+          "A new or revised source document for this case (planned; no monitoring runs in the demonstration).",
+          "Top customer renewal outcome in Q1 2027 (DOC-07).",
+          "Collateral appraisal received (DOC-08).",
+          "Covenant headroom below the configured threshold in a new compliance certificate."
+        ]
+      },
+      "sources": [
+        {
+          "id": "DOC-01",
+          "title": "Audited financial statements FY2025",
+          "date": "2026-03-15",
+          "verification": "verified",
+          "sha256": "7881d86346c9d53f53394f8d8fc0a11c2894afcb1f9e7de1eae3a72a3275ecce"
+        },
+        {
+          "id": "DOC-02",
+          "title": "Management forecast FY2026",
+          "date": "2026-05-02",
+          "verification": "unverified",
+          "sha256": "73232bfd86a0b96421c4fb92cb7f23b87b74a196a20039a3950a45da60326dbe"
+        },
+        {
+          "id": "DOC-03",
+          "title": "Pro forma debt schedule at close",
+          "date": "2026-06-30",
+          "verification": "unverified",
+          "sha256": "64263f2e0991c11054d155fd0a73d6bdd6d7ac2eeeb72d882afd37a6ee2789c0"
+        },
+        {
+          "id": "DOC-04",
+          "title": "Credit memo (draft for committee)",
+          "date": "2026-07-08",
+          "verification": "unverified",
+          "sha256": "8236b02741ff274abab84e6953928588006978230f5797c71ec7dbaf345c4af0"
+        },
+        {
+          "id": "DOC-05",
+          "title": "Draft loan agreement (financial covenants)",
+          "date": "2026-07-01",
+          "verification": "unverified",
+          "sha256": "afbe7848997bde0c17d343813557342ee5930d20997171feece2be843676cecc"
+        },
+        {
+          "id": "DOC-06",
+          "title": "Covenant definitions schedule (term sheet)",
+          "date": "2026-05-20",
+          "verification": "unverified",
+          "sha256": "f154d4cb10fe370e2f14d6112187538ece31f995b470d46eaf2cfe5a9ab86e34"
+        },
+        {
+          "id": "DOC-07",
+          "title": "Customer concentration report",
+          "date": "2026-06-12",
+          "verification": "unverified",
+          "sha256": "34230621b4ea44c49e25d862b76db8ad6560942d69eb31f4da90944d414aa9b9"
+        },
+        {
+          "id": "DOC-08",
+          "title": "Collateral summary",
+          "date": "2026-06-28",
+          "verification": "unverified",
+          "sha256": "6abc6a976c8978285cb5e92c5b214539277b8e9230357e4b0ee64f66b1b0ee78"
+        },
+        {
+          "id": "DOC-09",
+          "title": "Independent assessment note",
+          "date": "2026-06-20",
+          "verification": "unverified",
+          "sha256": "4ffc6959a461b51972ba1a9dbcb23f6766c34007fb3ccaf040da663022cdd14d"
+        },
+        {
+          "id": "DOC-10",
+          "title": "Risk committee questions",
+          "date": "2026-07-10",
+          "verification": "verified",
+          "sha256": "e39ad77e7b361167a3349664bc0f743164167275d873b8fdea0b0016c2fa45e5"
+        }
+      ],
+      "assumptions": {
+        "growth": 12,
+        "margin": 17.5,
+        "debt": 124,
+        "interest": 10.5,
+        "covMax": 3.5,
+        "minLiq": 10,
+        "concentration": 22,
+        "verified": [
+          "DOC-01",
+          "DOC-10"
+        ],
+        "rejected": [],
+        "defaults": {
+          "growth": 12,
+          "margin": 17.5,
+          "debt": 124,
+          "interest": 10.5,
+          "covMax": 3.5,
+          "minLiq": 10,
+          "concentration": 22,
+          "verified": [
+            "DOC-01",
+            "DOC-10"
+          ],
+          "rejected": []
+        }
+      },
+      "premises": [
+        {
+          "id": "P1",
+          "statement": "Management’s 12% revenue growth for FY2026 is achievable.",
+          "sources": [
+            "DOC-02"
+          ],
+          "accepted": true
+        },
+        {
+          "id": "P2",
+          "statement": "Management’s 17.5% EBITDA margin for FY2026 is achievable.",
+          "sources": [
+            "DOC-02"
+          ],
+          "accepted": true
+        },
+        {
+          "id": "P3",
+          "statement": "The top customer renews on current terms in Q1 2027.",
+          "sources": [
+            "DOC-02",
+            "DOC-07"
+          ],
+          "accepted": true
+        }
+      ],
+      "calculations": [
+        {
+          "id": "e.growth",
+          "label": "Revenue growth used",
+          "value": 12,
+          "display": "12.0%",
+          "formula": "P1 accepted ? growth input : FY2025 actual growth",
+          "inputs": [
+            "in.growth",
+            "prem.P1"
+          ]
+        },
+        {
+          "id": "e.margin",
+          "label": "EBITDA margin used",
+          "value": 17.5,
+          "display": "17.5%",
+          "formula": "P2 accepted ? margin input : FY2025 reported margin",
+          "inputs": [
+            "in.margin",
+            "prem.P2"
+          ]
+        },
+        {
+          "id": "m.revenue",
+          "label": "FY2026 revenue",
+          "value": 291.2,
+          "display": "$291.2M",
+          "formula": "FY2025 revenue ($260M) × (1 + growth) × (P3 accepted ? 1 : 1 − top customer share ÷ 2)",
+          "inputs": [
+            "e.growth",
+            "prem.P3",
+            "in.concentration"
+          ]
+        },
+        {
+          "id": "m.ebitda",
+          "label": "FY2026 EBITDA",
+          "value": 50.96,
+          "display": "$51.0M",
+          "formula": "Revenue × EBITDA margin",
+          "inputs": [
+            "m.revenue",
+            "e.margin"
+          ]
+        },
+        {
+          "id": "m.leverage",
+          "label": "Debt / EBITDA",
+          "value": 2.4333,
+          "display": "2.43x",
+          "formula": "Total debt ÷ EBITDA",
+          "inputs": [
+            "in.debt",
+            "m.ebitda"
+          ]
+        },
+        {
+          "id": "m.coverage",
+          "label": "Interest coverage",
+          "value": 4.8533,
+          "display": "4.85x",
+          "formula": "EBITDA ÷ annual interest expense",
+          "inputs": [
+            "m.ebitda",
+            "in.interest"
+          ]
+        },
+        {
+          "id": "m.liquidity",
+          "label": "Liquidity at close",
+          "value": 35,
+          "display": "$35.0M",
+          "formula": "Cash at close ($15M) + undrawn revolver ($20M)",
+          "inputs": []
+        },
+        {
+          "id": "m.liquidityHeadroom",
+          "label": "Liquidity headroom",
+          "value": 25,
+          "display": "$25.0M",
+          "formula": "Liquidity − minimum liquidity requirement",
+          "inputs": [
+            "m.liquidity",
+            "in.minLiq"
+          ]
+        },
+        {
+          "id": "m.covenantHeadroom",
+          "label": "Leverage covenant headroom",
+          "value": 30.4771,
+          "display": "30.5% (1.07x)",
+          "formula": "(Covenant ceiling − Debt/EBITDA) ÷ covenant ceiling = how far EBITDA can fall before a breach",
+          "inputs": [
+            "m.leverage",
+            "in.covMax"
+          ]
+        },
+        {
+          "id": "m.stressEbitda",
+          "label": "Stress case EBITDA (−20%)",
+          "value": 40.768,
+          "display": "$40.8M",
+          "formula": "EBITDA × (1 − 20%)",
+          "inputs": [
+            "m.ebitda"
+          ]
+        },
+        {
+          "id": "m.stressLeverage",
+          "label": "Stress case Debt / EBITDA",
+          "value": 3.0416,
+          "display": "3.04x",
+          "formula": "Total debt ÷ stress case EBITDA",
+          "inputs": [
+            "in.debt",
+            "m.stressEbitda"
+          ]
+        },
+        {
+          "id": "m.stressCoverage",
+          "label": "Stress case interest coverage",
+          "value": 3.8827,
+          "display": "3.88x",
+          "formula": "Stress case EBITDA ÷ annual interest expense",
+          "inputs": [
+            "m.stressEbitda",
+            "in.interest"
+          ]
+        }
+      ],
+      "scenarios": {
+        "base": {
+          "leverage": "2.43x",
+          "coverage": "4.85x"
+        },
+        "stress": {
+          "ebitda": "$40.8M",
+          "leverage": "3.04x",
+          "coverage": "3.88x"
+        }
+      },
+      "conditions": [
+        {
+          "id": "k.leverage",
+          "label": "Debt / EBITDA within the leverage covenant",
+          "status": "MET",
+          "note": "2.43x ≤ 3.5x"
+        },
+        {
+          "id": "k.coverage",
+          "label": "Interest coverage at least 3.00x",
+          "status": "MET",
+          "note": "4.85x ≥ 3x"
+        },
+        {
+          "id": "k.liquidity",
+          "label": "Liquidity above the minimum requirement",
+          "status": "MET",
+          "note": "headroom $25.0M"
+        },
+        {
+          "id": "k.concentration",
+          "label": "Top customer at most 25% of revenue (policy)",
+          "status": "MET",
+          "note": "22% ≤ 25%"
+        },
+        {
+          "id": "k.stress",
+          "label": "Stress case leverage within the covenant",
+          "status": "MET",
+          "note": "3.04x ≤ 3.5x"
+        },
+        {
+          "id": "k.verification",
+          "label": "Key documents verified (financials, debt schedule, loan agreement)",
+          "status": "NOT_MET",
+          "note": "unverified: DOC-03, DOC-05"
+        },
+        {
+          "id": "k.debtReconciled",
+          "label": "Total debt reconciled between memo and debt schedule",
+          "status": "NEEDS_HUMAN_JUDGMENT",
+          "note": "memo $118.0M vs schedule $124.0M; calculations use $124M"
+        },
+        {
+          "id": "k.ebitdaDefinition",
+          "label": "Covenant EBITDA definition agreed",
+          "status": "NEEDS_HUMAN_JUDGMENT",
+          "note": "draft agreement has no add-back cap; term sheet caps add-backs at 10%"
+        },
+        {
+          "id": "k.collateral",
+          "label": "Collateral value supported by the cited appraisal",
+          "status": "EVIDENCE_MISSING",
+          "note": "appraisal A-2026-03 is not in the data room"
+        }
+      ],
+      "warnings": [
+        {
+          "id": "w.forecastVsHistory",
+          "label": "Forecast growth well above history and sector outlook",
+          "note": "12.0% growth against 4.0% in FY2025 and a 4.5% sector outlook"
+        },
+        {
+          "id": "w.renewal",
+          "label": "Forecast relies on the top customer renewing",
+          "note": "22% of revenue renews in Q1 2027; the customer has signalled dual-sourcing"
+        },
+        {
+          "id": "w.unverified",
+          "label": "Calculations rely on unverified documents",
+          "note": "DOC-03, DOC-05 not verified"
+        }
+      ],
+      "conclusion": "5 of 9 conditions met; 1 not met; 2 need human judgment; 1 missing evidence. No approval is made here.",
+      "claims": [
+        {
+          "id": "S-k.leverage",
+          "side": "SUPPORTING",
+          "text": "Debt / EBITDA within the leverage covenant: 2.43x ≤ 3.5x.",
+          "nodes": [
+            "k.leverage",
+            "m.leverage",
+            "in.covMax"
+          ],
+          "docs": [
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "S-k.coverage",
+          "side": "SUPPORTING",
+          "text": "Interest coverage at least 3.00x: 4.85x ≥ 3x.",
+          "nodes": [
+            "k.coverage",
+            "m.coverage"
+          ],
+          "docs": [
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "S-k.liquidity",
+          "side": "SUPPORTING",
+          "text": "Liquidity above the minimum requirement: headroom $25.0M.",
+          "nodes": [
+            "k.liquidity",
+            "m.liquidityHeadroom"
+          ],
+          "docs": [
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "S-k.concentration",
+          "side": "SUPPORTING",
+          "text": "Top customer at most 25% of revenue (policy): 22% ≤ 25%.",
+          "nodes": [
+            "k.concentration",
+            "in.concentration"
+          ],
+          "docs": [
+            "DOC-04",
+            "DOC-07"
+          ]
+        },
+        {
+          "id": "S-k.stress",
+          "side": "SUPPORTING",
+          "text": "Stress case leverage within the covenant: 3.04x ≤ 3.5x.",
+          "nodes": [
+            "k.stress",
+            "m.stressLeverage",
+            "in.covMax"
+          ],
+          "docs": [
+            "DOC-04",
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "O-k.verification",
+          "side": "OPPOSING",
+          "text": "Key documents verified (financials, debt schedule, loan agreement): not met (unverified: DOC-03, DOC-05).",
+          "nodes": [
+            "k.verification",
+            "in.verified"
+          ],
+          "docs": [
+            "DOC-01",
+            "DOC-03",
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "S-prem.P1",
+          "side": "SUPPORTING",
+          "text": "Premise P1 accepted: Management’s 12% revenue growth for FY2026 is achievable.",
+          "nodes": [
+            "prem.P1"
+          ],
+          "docs": [
+            "DOC-02"
+          ]
+        },
+        {
+          "id": "S-prem.P2",
+          "side": "SUPPORTING",
+          "text": "Premise P2 accepted: Management’s 17.5% EBITDA margin for FY2026 is achievable.",
+          "nodes": [
+            "prem.P2"
+          ],
+          "docs": [
+            "DOC-02"
+          ]
+        },
+        {
+          "id": "S-prem.P3",
+          "side": "SUPPORTING",
+          "text": "Premise P3 accepted: The top customer renews on current terms in Q1 2027.",
+          "nodes": [
+            "prem.P3"
+          ],
+          "docs": [
+            "DOC-02",
+            "DOC-07"
+          ]
+        },
+        {
+          "id": "O-w.forecastVsHistory",
+          "side": "OPPOSING",
+          "text": "Forecast growth well above history and sector outlook: 12.0% growth against 4.0% in FY2025 and a 4.5% sector outlook.",
+          "nodes": [
+            "w.forecastVsHistory",
+            "e.growth"
+          ],
+          "docs": [
+            "DOC-01",
+            "DOC-02",
+            "DOC-09"
+          ]
+        },
+        {
+          "id": "O-w.renewal",
+          "side": "OPPOSING",
+          "text": "Forecast relies on the top customer renewing: 22% of revenue renews in Q1 2027; the customer has signalled dual-sourcing.",
+          "nodes": [
+            "w.renewal",
+            "prem.P3",
+            "in.concentration"
+          ],
+          "docs": [
+            "DOC-02",
+            "DOC-07"
+          ]
+        },
+        {
+          "id": "O-w.unverified",
+          "side": "OPPOSING",
+          "text": "Calculations rely on unverified documents: DOC-03, DOC-05 not verified.",
+          "nodes": [
+            "w.unverified",
+            "in.verified"
+          ],
+          "docs": [
+            "DOC-01",
+            "DOC-03",
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "A-unverified-DOC-03",
+          "side": "AUDITOR",
+          "text": "DOC-03 (Pro forma debt schedule at close) is unverified; 7 calculation(s) or condition(s) cite it.",
+          "nodes": [
+            "m.leverage",
+            "m.coverage",
+            "m.liquidity",
+            "m.stressLeverage",
+            "m.stressCoverage",
+            "k.verification",
+            "k.debtReconciled"
+          ],
+          "docs": [
+            "DOC-03"
+          ]
+        },
+        {
+          "id": "A-unverified-DOC-05",
+          "side": "AUDITOR",
+          "text": "DOC-05 (Draft loan agreement (financial covenants)) is unverified; 8 calculation(s) or condition(s) cite it.",
+          "nodes": [
+            "m.liquidityHeadroom",
+            "m.covenantHeadroom",
+            "k.leverage",
+            "k.coverage",
+            "k.liquidity",
+            "k.stress",
+            "k.verification",
+            "k.ebitdaDefinition"
+          ],
+          "docs": [
+            "DOC-05"
+          ]
+        },
+        {
+          "id": "A-X-01",
+          "side": "AUDITOR",
+          "text": "Confirmed conflict X-01: Total debt at close. Reconcile the two figures before the committee relies on either. The calculations default to the higher, itemised figure.",
+          "nodes": [
+            "in.debt",
+            "m.leverage",
+            "m.stressLeverage",
+            "k.leverage",
+            "k.stress",
+            "k.debtReconciled"
+          ],
+          "docs": [
+            "DOC-03",
+            "DOC-04"
+          ]
+        },
+        {
+          "id": "A-X-02",
+          "side": "AUDITOR",
+          "text": "Potential conflict X-02: Top customer volumes. Ask management for evidence of the customer’s FY2026 orders; test the case with premise P3 rejected.",
+          "nodes": [
+            "prem.P3",
+            "m.revenue",
+            "w.renewal"
+          ],
+          "docs": [
+            "DOC-02",
+            "DOC-07"
+          ]
+        },
+        {
+          "id": "A-X-03",
+          "side": "AUDITOR",
+          "text": "X-03 (EBITDA: $41.6M vs $46.8M) is a difference of reporting basis, not a conflict.",
+          "nodes": [],
+          "docs": [
+            "DOC-01",
+            "DOC-04"
+          ]
+        },
+        {
+          "id": "A-X-04",
+          "side": "AUDITOR",
+          "text": "Missing evidence X-04: PP&E appraisal not provided. Obtain the appraisal (committee question Q3).",
+          "nodes": [
+            "k.collateral"
+          ],
+          "docs": [
+            "DOC-08"
+          ]
+        },
+        {
+          "id": "A-X-05",
+          "side": "AUDITOR",
+          "text": "Unresolved interpretation X-05: Which EBITDA the leverage covenant uses. Counsel and the deal team agree the definition; the draft is conformed to the term sheet or the difference is approved.",
+          "nodes": [
+            "k.ebitdaDefinition"
+          ],
+          "docs": [
+            "DOC-05",
+            "DOC-06"
+          ]
+        }
+      ],
+      "conflicts": [
+        {
+          "id": "X-01",
+          "class": "CONFIRMED_CONFLICT",
+          "conflict": true,
+          "title": "Total debt at close",
+          "a": {
+            "doc": "DOC-03",
+            "docTitle": "Pro forma debt schedule at close",
+            "field": "total_debt",
+            "label": "Total debt",
+            "value": 124,
+            "unit": "$M",
+            "period": "At close",
+            "basis": "Total debt incl. leases and seller note"
+          },
+          "b": {
+            "doc": "DOC-04",
+            "docTitle": "Credit memo (draft for committee)",
+            "field": "total_debt",
+            "label": "Total debt",
+            "value": 118,
+            "unit": "$M",
+            "period": "At close",
+            "basis": "Total debt incl. leases and seller note"
+          },
+          "human_action": "Reconcile the two figures before the committee relies on either. The calculations default to the higher, itemised figure."
+        },
+        {
+          "id": "X-02",
+          "class": "POTENTIAL_CONFLICT",
+          "conflict": true,
+          "title": "Top customer volumes",
+          "a": {
+            "doc": "DOC-02",
+            "docTitle": "Management forecast FY2026",
+            "field": "top_customer_volume_growth",
+            "label": "Top customer volume growth",
+            "value": 15,
+            "unit": "%",
+            "period": "FY2026",
+            "basis": "Management case"
+          },
+          "b": {
+            "doc": "DOC-07",
+            "docTitle": "Customer concentration report",
+            "field": "renewal_risk",
+            "label": "Stated intent",
+            "value": "Dual-sourcing under consideration",
+            "unit": "text",
+            "period": null,
+            "basis": null
+          },
+          "human_action": "Ask management for evidence of the customer’s FY2026 orders; test the case with premise P3 rejected."
+        },
+        {
+          "id": "X-03",
+          "class": "DIFFERENT_REPORTING_BASIS",
+          "conflict": false,
+          "title": "EBITDA: $41.6M vs $46.8M",
+          "a": {
+            "doc": "DOC-01",
+            "docTitle": "Audited financial statements FY2025",
+            "field": "ebitda_fy2025",
+            "label": "EBITDA FY2025",
+            "value": 41.6,
+            "unit": "$M",
+            "period": "FY2025",
+            "basis": "Reported (no add-backs)"
+          },
+          "b": {
+            "doc": "DOC-04",
+            "docTitle": "Credit memo (draft for committee)",
+            "field": "adj_ebitda_ltm",
+            "label": "Adjusted EBITDA LTM",
+            "value": 46.8,
+            "unit": "$M",
+            "period": "LTM to 30 Jun 2026",
+            "basis": "Adjusted (incl. $3.2M add-backs)"
+          },
+          "human_action": "None required for consistency. Which definition the covenant uses is a separate question (X-05)."
+        },
+        {
+          "id": "X-04",
+          "class": "MISSING_EVIDENCE",
+          "conflict": false,
+          "title": "PP&E appraisal not provided",
+          "a": {
+            "doc": "DOC-08",
+            "docTitle": "Collateral summary",
+            "field": "ppe_olv",
+            "label": "PP&E orderly liquidation value",
+            "value": 52,
+            "unit": "$M",
+            "period": null,
+            "basis": "Per appraisal A-2026-03 (not provided)"
+          },
+          "b": null,
+          "human_action": "Obtain the appraisal (committee question Q3)."
+        },
+        {
+          "id": "X-05",
+          "class": "UNRESOLVED_INTERPRETATION",
+          "conflict": false,
+          "title": "Which EBITDA the leverage covenant uses",
+          "a": {
+            "doc": "DOC-05",
+            "docTitle": "Draft loan agreement (financial covenants)",
+            "field": "addback_cap",
+            "label": "Cap on non-recurring add-backs",
+            "value": "None",
+            "unit": "text",
+            "period": null,
+            "basis": "Clause 22.1 definition"
+          },
+          "b": {
+            "doc": "DOC-06",
+            "docTitle": "Covenant definitions schedule (term sheet)",
+            "field": "addback_cap",
+            "label": "Cap on non-recurring add-backs",
+            "value": "10% of EBITDA",
+            "unit": "text",
+            "period": null,
+            "basis": "Term sheet"
+          },
+          "human_action": "Counsel and the deal team agree the definition; the draft is conformed to the term sheet or the difference is approved."
+        }
+      ],
+      "open_questions": [
+        "Total debt reconciled between memo and debt schedule: memo $118.0M vs schedule $124.0M; calculations use $124M",
+        "Covenant EBITDA definition agreed: draft agreement has no add-back cap; term sheet caps add-backs at 10%",
+        "Collateral value supported by the cited appraisal: appraisal A-2026-03 is not in the data room"
+      ],
+      "audit_history": [
+        {
+          "at": "2026-10-20T18:00:00Z",
+          "event": "passport_generated",
+          "detail": "From case DT-PC-001 v1.0.0 (archived, sha256 248623021f23b82b…) with ruleset dr-rules-1.0.0."
+        }
+      ],
+      "reproducibility": "Open this passport ID at /institutional/decision-room/passport/{id} or call GET /api/institutional/decision-room/passport/verify?id={id}&sha256={hash}. The ID encodes the case version, the engine version and every input; the passport is rebuilt from that archived case version with that frozen engine, so the same passport and hash are produced with no stored state.",
+      "legal_note": "Decision support only. This passport is an evidentiary and governance record. It is not a binding decision, an audit opinion, a regulatory approval or a certification; the responsible institution keeps responsibility for any decision.",
+      "integrity_note": "The SHA-256 hash shows the passport is unchanged since it was generated. A signature, when present, was made once at issuance over this hash, the key id and the issue time, and shows who issued it (the holder of the published key). Neither shows that the content is correct, and neither is a third-party attestation.",
+      "engine": {
+        "version": "dt-engine-1.0.0",
+        "sha256": "9e4eae8ae339afdeee285fa818f3a53295cc2fca6d39d35822113a4c669b9241",
+        "source": "src/lib/decision/engines/v1"
+      }
+    },
+    "report_markdown": "# Decision Passport: Private Credit Decision Twin: $120M senior secured facility\n\n*AbrahamMoses Decision Twin (demonstration). Evidence Today. Wisdom Tomorrow. Evidence informs. Humans decide. The system preserves the reasoning.*\n\n> Illustrative and synthetic. Not a real borrower, lender or credit decision.\n\n- **Passport ID:** `DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6W10sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJlIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJ2IjozfQ.S-eyJhbGciOiJFZDI1NTE5IiwiaXNzdWVkX2F0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJraWQiOiJlZDI1NTE5LTE1ZjVhZDA2OGIzNTBmYjQiLCJ2YWx1ZSI6IlliTHJCREt0V3dudW1YUDlGeHd0S183TW9uRXRUdjBacjUydUZqZ2ZhRC00NkF1aE1leDF6OXRqZmdCRWRZLTJ4N2c2ZEpCSlcxc3dTaFBjS1BWSUF3In0`\n- **Generated:** 2026-10-20T18:00:00Z\n- **Case:** DT-PC-001 v1.0.0 (Exemplar Industrial Holdings (fictional)); archived case data SHA-256 `248623021f23b82b9f1921142a9a49b6ea1239ead04b7c22b53502f7be9c7caf`\n- **Question:** Should the committee approve the proposed facility under the specified conditions?\n- **Status:** SIMULATED: demonstration only. No credit decision has been made.\n- **Reviewer:** none (simulated decision)\n- **Ruleset:** dr-rules-1.0.0; model: none (deterministic rules; no AI model)\n- **Engine:** dt-engine-1.0.0, source SHA-256 `9e4eae8ae339afdeee285fa818f3a53295cc2fca6d39d35822113a4c669b9241` (frozen, src/lib/decision/engines/v1)\n- **SHA-256:** `09509fbff3a2a13ab1524f6f2ccaee23ebe6ad030084ada111646eb874523141`\n- **Signature:** valid as issued; Ed25519, key ed25519-15f5ad068b350fb4, issued 2026-10-20T18:00:00Z (/.well-known/abrahammoses-passport-keys.json): `YbLrBDKtWwnumXP9FxwtK_7MonEtTv0Zr52uFjgfaD-46AuhMex1z9tjfgBEdY-2x7g6dJBJW1swShPcKPVIAw`\n- The SHA-256 hash shows the passport is unchanged since it was generated. A signature, when present, was made once at issuance over this hash, the key id and the issue time, and shows who issued it (the holder of the published key). Neither shows that the content is correct, and neither is a third-party attestation.\n- Decision support only. This passport is an evidentiary and governance record. It is not a binding decision, an audit opinion, a regulatory approval or a certification; the responsible institution keeps responsibility for any decision.\n\n## Decision configuration\n\n- **Configuration:** dr-config-1.0.0\n- **Objective:** Decide whether the synthetic $120M facility can go to a (simulated) credit committee, and on which conditions.\n- **Evidence standard:** Every figure used in a calculation must trace to a named source document. Unverified documents may inform the analysis but cannot by themselves satisfy a condition; the verification condition stays unmet until they are verified by a human.\n- **Approval policy:** propose / review / reject / approve. The system may only propose. Review, rejection and approval are human actions by authorized people. In this public demonstration no human action is recorded and nothing is approved.\n\n| State | Assumption | Value | Source |\n|---|---|---|---|\n| FIXED | Revenue FY2025 | $260M | DOC-01 |\n| FIXED | Reported EBITDA margin FY2025 | 16% | DOC-01 |\n| FIXED | Cash at close | $15M | DOC-03 |\n| FIXED | Undrawn RCF | $20M | DOC-03 |\n| FIXED | Minimum interest cover | 3x | DOC-05 |\n| FIXED | Customer concentration policy limit | 25% | DOC-04 |\n| FIXED | Stress EBITDA decline | 20% | DOC-04 |\n| ADJUSTABLE | Revenue growth FY2026 | 12% | DOC-02 |\n| ADJUSTABLE | EBITDA margin | 17.5% | DOC-02 |\n| ADJUSTABLE | Total debt at close | $124M | DOC-03 |\n| ADJUSTABLE | Annual interest expense | $10.5M | DOC-03 |\n| ADJUSTABLE | Leverage covenant ceiling | 3.5x | DOC-05 |\n| ADJUSTABLE | Minimum liquidity requirement | $10M | DOC-05 |\n| ADJUSTABLE | Top customer share of revenue | 22% | DOC-07 |\n| DISPUTED | P1: Management’s 12% revenue growth for FY2026 is achievable. | accepted | DOC-02 |\n| DISPUTED | P2: Management’s 17.5% EBITDA margin for FY2026 is achievable. | accepted | DOC-02 |\n| DISPUTED | P3: The top customer renews on current terms in Q1 2027. | accepted | DOC-02, DOC-07 |\n\n**Escalation rules**\n\n- A condition with missing evidence (EVIDENCE_MISSING) is escalated to a human before any recommendation.\n- A confirmed contradiction between sources is escalated until a human resolves which source governs.\n- An unresolved interpretation of a contract term is escalated to legal review.\n- A different reporting basis is shown side by side and is not escalated as a conflict.\n\n**Monitoring triggers**\n\n- A new or revised source document for this case (planned; no monitoring runs in the demonstration).\n- Top customer renewal outcome in Q1 2027 (DOC-07).\n- Collateral appraisal received (DOC-08).\n- Covenant headroom below the configured threshold in a new compliance certificate.\n\n## Conclusion\n\n5 of 9 conditions met; 1 not met; 2 need human judgment; 1 missing evidence. No approval is made here.\n\n## Conditions\n\n| Condition | Status | Note |\n|---|---|---|\n| Debt / EBITDA within the leverage covenant | MET | 2.43x ≤ 3.5x |\n| Interest coverage at least 3.00x | MET | 4.85x ≥ 3x |\n| Liquidity above the minimum requirement | MET | headroom $25.0M |\n| Top customer at most 25% of revenue (policy) | MET | 22% ≤ 25% |\n| Stress case leverage within the covenant | MET | 3.04x ≤ 3.5x |\n| Key documents verified (financials, debt schedule, loan agreement) | NOT_MET | unverified: DOC-03, DOC-05 |\n| Total debt reconciled between memo and debt schedule | NEEDS_HUMAN_JUDGMENT | memo $118.0M vs schedule $124.0M; calculations use $124M |\n| Covenant EBITDA definition agreed | NEEDS_HUMAN_JUDGMENT | draft agreement has no add-back cap; term sheet caps add-backs at 10% |\n| Collateral value supported by the cited appraisal | EVIDENCE_MISSING | appraisal A-2026-03 is not in the data room |\n\n## Calculations\n\n| Measure | Value | Formula |\n|---|---|---|\n| Revenue growth used | 12.0% | P1 accepted ? growth input : FY2025 actual growth |\n| EBITDA margin used | 17.5% | P2 accepted ? margin input : FY2025 reported margin |\n| FY2026 revenue | $291.2M | FY2025 revenue ($260M) × (1 + growth) × (P3 accepted ? 1 : 1 − top customer share ÷ 2) |\n| FY2026 EBITDA | $51.0M | Revenue × EBITDA margin |\n| Debt / EBITDA | 2.43x | Total debt ÷ EBITDA |\n| Interest coverage | 4.85x | EBITDA ÷ annual interest expense |\n| Liquidity at close | $35.0M | Cash at close ($15M) + undrawn revolver ($20M) |\n| Liquidity headroom | $25.0M | Liquidity − minimum liquidity requirement |\n| Leverage covenant headroom | 30.5% (1.07x) | (Covenant ceiling − Debt/EBITDA) ÷ covenant ceiling = how far EBITDA can fall before a breach |\n| Stress case EBITDA (−20%) | $40.8M | EBITDA × (1 − 20%) |\n| Stress case Debt / EBITDA | 3.04x | Total debt ÷ stress case EBITDA |\n| Stress case interest coverage | 3.88x | Stress case EBITDA ÷ annual interest expense |\n\n## Premises\n\n- P1 (accepted): Management’s 12% revenue growth for FY2026 is achievable. [DOC-02]\n- P2 (accepted): Management’s 17.5% EBITDA margin for FY2026 is achievable. [DOC-02]\n- P3 (accepted): The top customer renews on current terms in Q1 2027. [DOC-02, DOC-07]\n\n## Warnings\n\n- Forecast growth well above history and sector outlook: 12.0% growth against 4.0% in FY2025 and a 4.5% sector outlook\n- Forecast relies on the top customer renewing: 22% of revenue renews in Q1 2027; the customer has signalled dual-sourcing\n- Calculations rely on unverified documents: DOC-03, DOC-05 not verified\n\n## Conflicts and evidence gaps\n\n- X-01 CONFIRMED_CONFLICT: Total debt at close. Reconcile the two figures before the committee relies on either. The calculations default to the higher, itemised figure.\n- X-02 POTENTIAL_CONFLICT: Top customer volumes. Ask management for evidence of the customer’s FY2026 orders; test the case with premise P3 rejected.\n- X-03 DIFFERENT_REPORTING_BASIS (not a conflict): EBITDA: $41.6M vs $46.8M. None required for consistency. Which definition the covenant uses is a separate question (X-05).\n- X-04 MISSING_EVIDENCE (not a conflict): PP&E appraisal not provided. Obtain the appraisal (committee question Q3).\n- X-05 UNRESOLVED_INTERPRETATION (not a conflict): Which EBITDA the leverage covenant uses. Counsel and the deal team agree the definition; the draft is conformed to the term sheet or the difference is approved.\n\n## Open questions for human judgment\n\n- Total debt reconciled between memo and debt schedule: memo $118.0M vs schedule $124.0M; calculations use $124M\n- Covenant EBITDA definition agreed: draft agreement has no add-back cap; term sheet caps add-backs at 10%\n- Collateral value supported by the cited appraisal: appraisal A-2026-03 is not in the data room\n\n## Sources\n\n| ID | Title | Date | Verification | SHA-256 |\n|---|---|---|---|---|\n| DOC-01 | Audited financial statements FY2025 | 2026-03-15 | verified | `7881d86346c9d53f…` |\n| DOC-02 | Management forecast FY2026 | 2026-05-02 | unverified | `73232bfd86a0b964…` |\n| DOC-03 | Pro forma debt schedule at close | 2026-06-30 | unverified | `64263f2e0991c110…` |\n| DOC-04 | Credit memo (draft for committee) | 2026-07-08 | unverified | `8236b02741ff274a…` |\n| DOC-05 | Draft loan agreement (financial covenants) | 2026-07-01 | unverified | `afbe7848997bde0c…` |\n| DOC-06 | Covenant definitions schedule (term sheet) | 2026-05-20 | unverified | `f154d4cb10fe370e…` |\n| DOC-07 | Customer concentration report | 2026-06-12 | unverified | `34230621b4ea44c4…` |\n| DOC-08 | Collateral summary | 2026-06-28 | unverified | `6abc6a976c897828…` |\n| DOC-09 | Independent assessment note | 2026-06-20 | unverified | `4ffc6959a461b519…` |\n| DOC-10 | Risk committee questions | 2026-07-10 | verified | `e39ad77e7b361167…` |\n\n## Audit history\n\n- 2026-10-20T18:00:00Z passport_generated: From case DT-PC-001 v1.0.0 (archived, sha256 248623021f23b82b…) with ruleset dr-rules-1.0.0.\n\n## Reproducibility\n\nOpen this passport ID at /institutional/decision-room/passport/{id} or call GET /api/institutional/decision-room/passport/verify?id={id}&sha256={hash}. The ID encodes the case version, the engine version and every input; the passport is rebuilt from that archived case version with that frozen engine, so the same passport and hash are produced with no stored state.\n",
+    "state": {
+      "v": 3,
+      "case": "DT-PC-001",
+      "caseVersion": "1.0.0",
+      "e": "1.0.0",
+      "a": {
+        "growth": 12,
+        "margin": 17.5,
+        "debt": 124,
+        "interest": 10.5,
+        "covMax": 3.5,
+        "minLiq": 10,
+        "concentration": 22,
+        "verified": [
+          "DOC-01",
+          "DOC-10"
+        ],
+        "rejected": []
+      },
+      "t": "2026-10-20T18:00:00Z"
+    },
+    "sources": {
+      "inventory": [
+        {
+          "id": "DOC-01",
+          "title": "Audited financial statements FY2025",
+          "date": "2026-03-15",
+          "verification": "verified",
+          "sha256": "7881d86346c9d53f53394f8d8fc0a11c2894afcb1f9e7de1eae3a72a3275ecce"
+        },
+        {
+          "id": "DOC-02",
+          "title": "Management forecast FY2026",
+          "date": "2026-05-02",
+          "verification": "unverified",
+          "sha256": "73232bfd86a0b96421c4fb92cb7f23b87b74a196a20039a3950a45da60326dbe"
+        },
+        {
+          "id": "DOC-03",
+          "title": "Pro forma debt schedule at close",
+          "date": "2026-06-30",
+          "verification": "unverified",
+          "sha256": "64263f2e0991c11054d155fd0a73d6bdd6d7ac2eeeb72d882afd37a6ee2789c0"
+        },
+        {
+          "id": "DOC-04",
+          "title": "Credit memo (draft for committee)",
+          "date": "2026-07-08",
+          "verification": "unverified",
+          "sha256": "8236b02741ff274abab84e6953928588006978230f5797c71ec7dbaf345c4af0"
+        },
+        {
+          "id": "DOC-05",
+          "title": "Draft loan agreement (financial covenants)",
+          "date": "2026-07-01",
+          "verification": "unverified",
+          "sha256": "afbe7848997bde0c17d343813557342ee5930d20997171feece2be843676cecc"
+        },
+        {
+          "id": "DOC-06",
+          "title": "Covenant definitions schedule (term sheet)",
+          "date": "2026-05-20",
+          "verification": "unverified",
+          "sha256": "f154d4cb10fe370e2f14d6112187538ece31f995b470d46eaf2cfe5a9ab86e34"
+        },
+        {
+          "id": "DOC-07",
+          "title": "Customer concentration report",
+          "date": "2026-06-12",
+          "verification": "unverified",
+          "sha256": "34230621b4ea44c49e25d862b76db8ad6560942d69eb31f4da90944d414aa9b9"
+        },
+        {
+          "id": "DOC-08",
+          "title": "Collateral summary",
+          "date": "2026-06-28",
+          "verification": "unverified",
+          "sha256": "6abc6a976c8978285cb5e92c5b214539277b8e9230357e4b0ee64f66b1b0ee78"
+        },
+        {
+          "id": "DOC-09",
+          "title": "Independent assessment note",
+          "date": "2026-06-20",
+          "verification": "unverified",
+          "sha256": "4ffc6959a461b51972ba1a9dbcb23f6766c34007fb3ccaf040da663022cdd14d"
+        },
+        {
+          "id": "DOC-10",
+          "title": "Risk committee questions",
+          "date": "2026-07-10",
+          "verification": "verified",
+          "sha256": "e39ad77e7b361167a3349664bc0f743164167275d873b8fdea0b0016c2fa45e5"
+        }
+      ],
+      "documents": [
+        {
+          "id": "DOC-01",
+          "title": "Audited financial statements FY2025",
+          "kind": "Financial statements",
+          "author": "Borrower, audited (synthetic)",
+          "date": "2026-03-15",
+          "verification": "verified",
+          "summary": "Reported results for the year to 31 December 2025, with FY2024 comparatives.",
+          "fields": [
+            {
+              "key": "revenue_fy2024",
+              "label": "Revenue FY2024",
+              "value": 250,
+              "unit": "$M",
+              "period": "FY2024",
+              "basis": "Reported"
+            },
+            {
+              "key": "revenue_fy2025",
+              "label": "Revenue FY2025",
+              "value": 260,
+              "unit": "$M",
+              "period": "FY2025",
+              "basis": "Reported"
+            },
+            {
+              "key": "ebitda_fy2025",
+              "label": "EBITDA FY2025",
+              "value": 41.6,
+              "unit": "$M",
+              "period": "FY2025",
+              "basis": "Reported (no add-backs)"
+            },
+            {
+              "key": "ebitda_margin_fy2025",
+              "label": "EBITDA margin FY2025",
+              "value": 16,
+              "unit": "%",
+              "period": "FY2025",
+              "basis": "Reported"
+            },
+            {
+              "key": "cash_fy2025",
+              "label": "Cash at year end",
+              "value": 18,
+              "unit": "$M",
+              "period": "31 Dec 2025",
+              "basis": "Reported"
+            }
+          ]
+        },
+        {
+          "id": "DOC-02",
+          "title": "Management forecast FY2026",
+          "kind": "Forecast",
+          "author": "Borrower management (synthetic)",
+          "date": "2026-05-02",
+          "verification": "unverified",
+          "summary": "Management case for FY2026. Assumes the top customer grows volumes 15% and renews on current terms.",
+          "fields": [
+            {
+              "key": "revenue_growth_fy2026",
+              "label": "Revenue growth FY2026",
+              "value": 12,
+              "unit": "%",
+              "period": "FY2026",
+              "basis": "Management case"
+            },
+            {
+              "key": "ebitda_margin_fy2026",
+              "label": "EBITDA margin FY2026",
+              "value": 17.5,
+              "unit": "%",
+              "period": "FY2026",
+              "basis": "Management case, adjusted"
+            },
+            {
+              "key": "top_customer_volume_growth",
+              "label": "Top customer volume growth",
+              "value": 15,
+              "unit": "%",
+              "period": "FY2026",
+              "basis": "Management case"
+            }
+          ]
+        },
+        {
+          "id": "DOC-03",
+          "title": "Pro forma debt schedule at close",
+          "kind": "Debt schedule",
+          "author": "Borrower finance team (synthetic)",
+          "date": "2026-06-30",
+          "verification": "unverified",
+          "summary": "All borrowings at close, including leases and the seller note from the 2024 acquisition.",
+          "fields": [
+            {
+              "key": "term_loan",
+              "label": "Term loan",
+              "value": 90,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Face value"
+            },
+            {
+              "key": "rcf_drawn",
+              "label": "Revolver drawn",
+              "value": 10,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Face value"
+            },
+            {
+              "key": "leases",
+              "label": "Equipment leases",
+              "value": 8,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Face value"
+            },
+            {
+              "key": "seller_note",
+              "label": "Seller note",
+              "value": 16,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Face value"
+            },
+            {
+              "key": "total_debt",
+              "label": "Total debt",
+              "value": 124,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Total debt incl. leases and seller note"
+            },
+            {
+              "key": "interest_expense",
+              "label": "Pro forma annual interest expense",
+              "value": 10.5,
+              "unit": "$M",
+              "period": "First 12 months",
+              "basis": "Contractual rates at close"
+            },
+            {
+              "key": "cash_at_close",
+              "label": "Cash at close",
+              "value": 15,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Estimated"
+            },
+            {
+              "key": "rcf_undrawn",
+              "label": "Revolver undrawn",
+              "value": 20,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Commitment less drawn"
+            }
+          ]
+        },
+        {
+          "id": "DOC-04",
+          "title": "Credit memo (draft for committee)",
+          "kind": "Credit memo",
+          "author": "Deal team (synthetic)",
+          "date": "2026-07-08",
+          "verification": "unverified",
+          "summary": "Recommends approval subject to conditions. Uses LTM adjusted EBITDA. States bank policy on concentration.",
+          "fields": [
+            {
+              "key": "total_debt",
+              "label": "Total debt",
+              "value": 118,
+              "unit": "$M",
+              "period": "At close",
+              "basis": "Total debt incl. leases and seller note"
+            },
+            {
+              "key": "adj_ebitda_ltm",
+              "label": "Adjusted EBITDA LTM",
+              "value": 46.8,
+              "unit": "$M",
+              "period": "LTM to 30 Jun 2026",
+              "basis": "Adjusted (incl. $3.2M add-backs)"
+            },
+            {
+              "key": "concentration_policy",
+              "label": "Single-customer concentration policy limit",
+              "value": 25,
+              "unit": "%",
+              "basis": "Synthetic bank policy"
+            },
+            {
+              "key": "stress_ebitda_decline",
+              "label": "Committee stress case: EBITDA decline",
+              "value": 20,
+              "unit": "%",
+              "basis": "Synthetic bank policy"
+            }
+          ]
+        },
+        {
+          "id": "DOC-05",
+          "title": "Draft loan agreement (financial covenants)",
+          "kind": "Loan agreement (draft)",
+          "author": "Lender counsel (synthetic)",
+          "date": "2026-07-01",
+          "verification": "unverified",
+          "summary": "Draft clause 22. \"Consolidated EBITDA\" adds back non-recurring charges without a cap.",
+          "fields": [
+            {
+              "key": "max_leverage",
+              "label": "Maximum total leverage",
+              "value": 3.5,
+              "unit": "x",
+              "basis": "Total debt / Consolidated EBITDA"
+            },
+            {
+              "key": "min_interest_cover",
+              "label": "Minimum interest cover",
+              "value": 3,
+              "unit": "x",
+              "basis": "Consolidated EBITDA / interest expense"
+            },
+            {
+              "key": "min_liquidity",
+              "label": "Minimum liquidity",
+              "value": 10,
+              "unit": "$M",
+              "basis": "Cash plus undrawn revolver"
+            },
+            {
+              "key": "addback_cap",
+              "label": "Cap on non-recurring add-backs",
+              "value": "None",
+              "unit": "text",
+              "basis": "Clause 22.1 definition"
+            }
+          ]
+        },
+        {
+          "id": "DOC-06",
+          "title": "Covenant definitions schedule (term sheet)",
+          "kind": "Term sheet schedule",
+          "author": "Deal team (synthetic)",
+          "date": "2026-05-20",
+          "verification": "unverified",
+          "summary": "Agreed commercial terms. Caps add-backs at 10% of EBITDA.",
+          "fields": [
+            {
+              "key": "max_leverage",
+              "label": "Maximum total leverage",
+              "value": 3.5,
+              "unit": "x",
+              "basis": "Total debt / Covenant EBITDA"
+            },
+            {
+              "key": "addback_cap",
+              "label": "Cap on non-recurring add-backs",
+              "value": "10% of EBITDA",
+              "unit": "text",
+              "basis": "Term sheet"
+            }
+          ]
+        },
+        {
+          "id": "DOC-07",
+          "title": "Customer concentration report",
+          "kind": "Analysis",
+          "author": "Borrower, reviewed by deal team (synthetic)",
+          "date": "2026-06-12",
+          "verification": "unverified",
+          "summary": "Top customer is 22% of FY2025 revenue; its contract renews in Q1 2027 and it has said it intends to dual-source.",
+          "fields": [
+            {
+              "key": "top_customer_share",
+              "label": "Top customer share of revenue",
+              "value": 22,
+              "unit": "%",
+              "period": "FY2025",
+              "basis": "Reported revenue"
+            },
+            {
+              "key": "renewal_date",
+              "label": "Top customer contract renewal",
+              "value": "Q1 2027",
+              "unit": "date"
+            },
+            {
+              "key": "renewal_risk",
+              "label": "Stated intent",
+              "value": "Dual-sourcing under consideration",
+              "unit": "text"
+            }
+          ]
+        },
+        {
+          "id": "DOC-08",
+          "title": "Collateral summary",
+          "kind": "Collateral",
+          "author": "Deal team (synthetic)",
+          "date": "2026-06-28",
+          "verification": "unverified",
+          "summary": "Receivables, inventory and plant. PP&E value cites appraisal A-2026-03, which is not in the data room.",
+          "fields": [
+            {
+              "key": "receivables",
+              "label": "Eligible receivables",
+              "value": 38,
+              "unit": "$M",
+              "period": "30 Jun 2026",
+              "basis": "Book value"
+            },
+            {
+              "key": "inventory",
+              "label": "Inventory",
+              "value": 30,
+              "unit": "$M",
+              "period": "30 Jun 2026",
+              "basis": "Book value"
+            },
+            {
+              "key": "ppe_olv",
+              "label": "PP&E orderly liquidation value",
+              "value": 52,
+              "unit": "$M",
+              "basis": "Per appraisal A-2026-03 (not provided)"
+            }
+          ]
+        },
+        {
+          "id": "DOC-09",
+          "title": "Independent assessment note",
+          "kind": "Third-party note",
+          "author": "Synthetic adviser (no real firm)",
+          "date": "2026-06-20",
+          "verification": "unverified",
+          "summary": "Sector outlook. Confirms FY2025 reported EBITDA and notes margins are sensitive to input costs.",
+          "fields": [
+            {
+              "key": "ebitda_fy2025",
+              "label": "EBITDA FY2025",
+              "value": 41.6,
+              "unit": "$M",
+              "period": "FY2025",
+              "basis": "Reported (no add-backs)"
+            },
+            {
+              "key": "sector_growth",
+              "label": "Sector growth outlook",
+              "value": 4.5,
+              "unit": "%",
+              "period": "FY2026",
+              "basis": "Adviser estimate"
+            }
+          ]
+        },
+        {
+          "id": "DOC-10",
+          "title": "Risk committee questions",
+          "kind": "Questions",
+          "author": "Risk committee secretary (synthetic)",
+          "date": "2026-07-10",
+          "verification": "verified",
+          "summary": "Questions the committee asked the deal team to answer before the meeting.",
+          "fields": [
+            {
+              "key": "q1",
+              "label": "Q1",
+              "value": "Reconcile total debt between the memo and the debt schedule.",
+              "unit": "text"
+            },
+            {
+              "key": "q2",
+              "label": "Q2",
+              "value": "Which EBITDA definition will the covenant use?",
+              "unit": "text"
+            },
+            {
+              "key": "q3",
+              "label": "Q3",
+              "value": "Provide the PP&E appraisal.",
+              "unit": "text"
+            },
+            {
+              "key": "q4",
+              "label": "Q4",
+              "value": "What happens if the top customer dual-sources?",
+              "unit": "text"
+            }
+          ]
+        }
+      ]
+    },
+    "release": {
+      "case_id": "DT-PC-001",
+      "case_version": "1.0.0",
+      "case_archive_sha256": "248623021f23b82b9f1921142a9a49b6ea1239ead04b7c22b53502f7be9c7caf",
+      "ruleset": "dr-rules-1.0.0",
+      "engine": {
+        "version": "dt-engine-1.0.0",
+        "sha256": "9e4eae8ae339afdeee285fa818f3a53295cc2fca6d39d35822113a4c669b9241",
+        "source": "src/lib/decision/engines/v1"
+      }
+    },
+    "review": {
+      "status": "SIMULATED: demonstration only. No credit decision has been made.",
+      "reviewer": "none (simulated decision)",
+      "attestations": []
+    },
+    "crypto": {
+      "signature": {
+        "alg": "Ed25519",
+        "kid": "ed25519-15f5ad068b350fb4",
+        "issued_at": "2026-10-20T18:00:00Z",
+        "value": "YbLrBDKtWwnumXP9FxwtK_7MonEtTv0Zr52uFjgfaD-46AuhMex1z9tjfgBEdY-2x7g6dJBJW1swShPcKPVIAw"
+      },
+      "algorithm": "Ed25519",
+      "keys_url": "/.well-known/abrahammoses-passport-keys.json",
+      "keys": [
+        {
+          "kid": "ed25519-15f5ad068b350fb4",
+          "x": "f26AuRWi1_MYScDXP5AiKDg5WMLL2HP8EQnyBSUBZOE",
+          "status": "active",
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": null
+        },
+        {
+          "kid": "ed25519-5195fbf4afb33a47",
+          "x": "jfzJuOFuNCd7OYuvgNBN9E-thfao7r2n86UDVI2KycA",
+          "status": "retired",
+          "not_before": "2025-01-01T00:00:00Z",
+          "not_after": "2026-06-30T00:00:00Z"
+        },
+        {
+          "kid": "ed25519-11ed04c34d9bf14f",
+          "x": "C61_Olw-sbnR6mKPszkddu8TQDY-ZPhfLHwkQ3Ge0bg",
+          "status": "revoked",
+          "not_before": "2025-06-01T00:00:00Z",
+          "not_after": null,
+          "revoked_at": "2026-09-01T00:00:00Z"
+        }
+      ]
+    }
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalization": "canonical-json/1: object keys sorted by UTF-16 code units, no whitespace, strings and numbers as ECMAScript JSON.stringify (RFC 8785 JCS-compatible for these values), undefined members omitted",
+    "passport_sha256": "09509fbff3a2a13ab1524f6f2ccaee23ebe6ad030084ada111646eb874523141",
+    "artifacts": {
+      "passport": "09509fbff3a2a13ab1524f6f2ccaee23ebe6ad030084ada111646eb874523141",
+      "report_markdown": "d9d50d8b3c2fe4295a5d43a6c1fc14dd7a41dae36b4f8daaa0ced1734d7011e6",
+      "state": "ad543e88269e2d29696377fbc851773af2a9e25c0bebd9c83a4d4e08e31f6bff",
+      "sources": "9b94b8d3e0e2f6930adcb1200cd5c294bde109a7bccd15a9c541e0409b124199",
+      "release": "526db56e127ca92c8c8e332f2e33e8cd9f48673dbd11f7757c53e759023d6d11",
+      "review": "a0f47aebfe0cec5344feb79cf4fe6f16b451d63a2aa79b14cac52e9db852c913",
+      "crypto": "47a888251678c7c27d01e2bee7b6940b6f82066cd3e9ec0c3d2f779e84e4708c"
+    }
+  }
+}

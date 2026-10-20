@@ -13,6 +13,7 @@
 import { z } from 'zod';
 import { canonicalJson, sha256 } from './canonical';
 import { buildFormat1, buildFormat2, buildFormat3, type V1State } from './engines/v1/build';
+import { buildFormat3 as buildFormat3V11 } from './engines/v1_1/build';
 import { AssumptionsSchema, normalise, type Assumptions } from './engines/v1/engine';
 import type { DecisionConfiguration } from './engines/v1/config';
 import { ENGINES, ENGINE_FOR_CASE, type EngineEntry } from './engines';
@@ -183,6 +184,9 @@ function buildCaseV1(id: string, state: PassportState, data: ArchivedCaseData, d
   if (state.v === 1) return buildFormat1(id, s, data);
   if (state.v === 2) return buildFormat2(id, s, data, dataSha256);
   if (!engine) throw new UnsupportedVersionError('A format 3 passport must name its engine.');
+  // Each frozen engine builds with its own frozen code.
+  if (state.e === '1.1.0') return buildFormat3V11(id, s, data, dataSha256, engine);
+  if (state.e !== '1.0.0') throw new UnsupportedVersionError(`No builder for engine ${state.e}.`);
   return buildFormat3(id, s, data, dataSha256, engine);
 }
 

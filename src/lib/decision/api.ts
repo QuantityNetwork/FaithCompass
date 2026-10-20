@@ -8,6 +8,7 @@ import { CHAMBER_RULES, chamber } from './chamber';
 import { CONTRADICTION_CLASSES, contradictionsView } from './contradictions';
 import { CONTROLS, DEFAULT_ASSUMPTIONS, PREMISES, evaluate, parseAssumptions, traceFromDefaults } from './engine';
 import { PassportIdError, buildPassport, verifyPassport } from './passport';
+import { buildBundle } from '@/lib/passport-bundle/bundle';
 
 const LABEL = CASE.label;
 const DEMO_PARAMS = new Set([...CONTROLS.map((c) => c.param), 'v', 'vset', 'r']);
@@ -119,9 +120,27 @@ export function verifyHandler(request: Request): Promise<Response> {
   });
 }
 
+export function bundleHandler(request: Request): Promise<Response> {
+  return guarded(request, () => {
+    const url = new URL(request.url);
+    for (const key of url.searchParams.keys()) if (key !== 'id' && key !== 'redacted') throw new ApiError('invalid_parameter', `Unknown parameter "${key}".`, { allowed: ['id', 'redacted'] });
+    const id = url.searchParams.get('id');
+    if (!id) throw new ApiError('invalid_parameter', 'id is required.');
+    const redacted = url.searchParams.get('redacted');
+    if (redacted !== null && redacted !== '1' && redacted !== 'true' && redacted !== '0' && redacted !== 'false') throw new ApiError('invalid_parameter', 'redacted must be 1/true or 0/false.');
+    try {
+      return jsonResponse(request, buildBundle(id, { redacted: redacted === '1' || redacted === 'true' }));
+    } catch (err) {
+      if (err instanceof PassportIdError) throw new ApiError('not_found', err.message);
+      throw err;
+    }
+  });
+}
+
 export const DEMO_ENDPOINTS = [
   { path: '/api/institutional/decision-room/case', operationId: 'demo.case', summary: 'The synthetic case: documents with hashes, premises, controls and defaults', params: [] as string[] },
   { path: '/api/institutional/decision-room/scenario', operationId: 'demo.scenario', summary: 'Evaluate the case on given inputs: every node, the audit trace and the Adversarial Chamber', params: [...CONTROLS.map((c) => c.param), 'v', 'r'] },
   { path: '/api/institutional/decision-room/contradictions', operationId: 'demo.contradictions', summary: 'The Contradiction Map with side-by-side fields', params: [] },
   { path: '/api/institutional/decision-room/passport/verify', operationId: 'demo.passport.verify', summary: 'Rebuild a passport from its ID and compare its SHA-256', params: ['id', 'sha256'] },
+  { path: '/api/institutional/decision-room/passport/bundle', operationId: 'demo.passport.bundle', summary: 'Portable passport bundle for offline verification (schema 1.0.0); redacted=1 omits the source documents', params: ['id', 'redacted'] },
 ];

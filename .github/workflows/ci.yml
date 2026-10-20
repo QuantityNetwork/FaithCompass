@@ -111,3 +111,30 @@ jobs:
           PORT=3311 ABRAHAMMOSES_PUBLIC_ORIGIN=http://localhost:3311 npx next start -p 3311 &
           for i in $(seq 1 60); do curl -sf http://localhost:3311/api/v1 >/dev/null && break; sleep 1; done
           node scripts/security-smoke.mjs http://localhost:3311
+
+  verifier:
+    name: Independent passport verifier (Go, offline conformance)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: packages/decision-verifier
+    env:
+      # Standard library only: with the module proxy off, any third-party dependency would fail the build.
+      GOPROXY: 'off'
+      GOFLAGS: '-mod=mod'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: false
+      - name: Independent of the application (no imports from src/)
+        run: '! grep -rn "src/lib\|FaithCompass/src" --include=*.go .'
+      - name: Vet, build, unit tests (canonical JSON vectors, conformance)
+        run: go vet ./... && go build -o decision-verifier . && go test ./...
+      - name: Conformance fixtures with networking disabled (network namespace without interfaces)
+        run: |
+          sudo unshare --net -- sh -c 'if curl -s -m 5 https://example.com >/dev/null; then echo "network reachable" >&2; exit 9; fi'
+          sudo unshare --net -- ./decision-verifier --conformance conformance > conformance-report.json
+          python3 -c "import json; d=json.load(open('conformance-report.json')); print(d['passed'], '/', d['fixtures'], 'fixtures as expected'); assert d['passed'] == d['fixtures']"

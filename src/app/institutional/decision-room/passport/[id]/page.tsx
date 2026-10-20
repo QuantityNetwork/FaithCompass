@@ -120,6 +120,9 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
           <a className="am-btn" href={`${base}/markdown`}>
             Download Markdown
           </a>
+          <a className="am-btn" href={`${base}/bundle`}>
+            Download bundle (offline verification)
+          </a>
           <PrintButton />
           <a className="am-btn" href={`/api/institutional/decision-room/passport/verify?id=${p.id}&sha256=${p.integrity.sha256}`}>
             Verify hash

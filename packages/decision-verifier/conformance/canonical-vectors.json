@@ -1,0 +1,105 @@
+{
+  "note": "Generated with Node.js JSON.stringify semantics (the canonicalisation the passport hash uses).",
+  "vectors": [
+    {
+      "input": "0",
+      "canonical": "0"
+    },
+    {
+      "input": "-0",
+      "canonical": "0"
+    },
+    {
+      "input": "1",
+      "canonical": "1"
+    },
+    {
+      "input": "-1",
+      "canonical": "-1"
+    },
+    {
+      "input": "124",
+      "canonical": "124"
+    },
+    {
+      "input": "3.5",
+      "canonical": "3.5"
+    },
+    {
+      "input": "17.5",
+      "canonical": "17.5"
+    },
+    {
+      "input": "0.1",
+      "canonical": "0.1"
+    },
+    {
+      "input": "1e21",
+      "canonical": "1e+21"
+    },
+    {
+      "input": "1e20",
+      "canonical": "100000000000000000000"
+    },
+    {
+      "input": "123456789012345678901",
+      "canonical": "123456789012345680000"
+    },
+    {
+      "input": "1.5e-7",
+      "canonical": "1.5e-7"
+    },
+    {
+      "input": "0.000001",
+      "canonical": "0.000001"
+    },
+    {
+      "input": "0.0000001",
+      "canonical": "1e-7"
+    },
+    {
+      "input": "1E3",
+      "canonical": "1000"
+    },
+    {
+      "input": "2.50",
+      "canonical": "2.5"
+    },
+    {
+      "input": "-12.340",
+      "canonical": "-12.34"
+    },
+    {
+      "input": "9007199254740993",
+      "canonical": "9007199254740992"
+    },
+    {
+      "input": "5e-324",
+      "canonical": "5e-324"
+    },
+    {
+      "input": "1.7976931348623157e308",
+      "canonical": "1.7976931348623157e+308"
+    },
+    {
+      "input": "100e-2",
+      "canonical": "1"
+    },
+    {
+      "input": "0.30000000000000004",
+      "canonical": "0.30000000000000004"
+    },
+    {
+      "input": "{\"b\":1,\"a\":2,\"A\":3,\"é\":4,\"\\ud83d\\ude00\":5,\"\\uffff\":6}",
+      "canonical": "{\"A\":3,\"a\":2,\"b\":1,\"é\":4,\"😀\":5,\"￿\":6}"
+    },
+    {
+      "input": "[\"\\u0000\\u001f\\b\\f\\n\\r\\t\\\"\\\\/\",\"\\u2028\\u2029\",\"ü€😀\"]",
+      "canonical": "[\"\\u0000\\u001f\\b\\f\\n\\r\\t\\\"\\\\/\",\"  \",\"ü€😀\"]"
+    },
+    {
+      "input": "{\"z\":{\"y\":[1,{\"b\":null,\"a\":true}],\"x\":false}}",
+      "canonical": "{\"z\":{\"x\":false,\"y\":[1,{\"a\":true,\"b\":null}]}}"
+    }
+  ]
+}
