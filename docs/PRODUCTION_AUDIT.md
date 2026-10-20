@@ -78,7 +78,7 @@ These match the brief's figures. The earlier Stage 0 integrity issues (8 revisio
 
 | # | Finding | Evidence |
 |---|---|---|
-| P2-A1 | Rate limits are per serverless instance (memory). Brake, not guarantee. | `src/lib/api/http.ts:115-160`, `src/lib/security/write-guard.ts` |
+| P2-A1 | Rate limits are per serverless instance (memory) and per client address. On the preview, 28 rapid writes from a client with rotating egress addresses never hit 429. Brake, not guarantee. | `src/lib/api/http.ts:115-160`, `src/lib/security/write-guard.ts` |
 | P2-A2 | No error reporting, alerting or backups. Security events are now structured JSON log lines (`type: "security"`) but there is no drain or alert on them. | `src/lib/security/audit-log.ts` |
 | P2-A3 | `POST /api/evidence/ask` is read-only but unthrottled. | `src/app/api/evidence/ask/route.ts` |
 | P2-A4 | Default model IDs are legacy. | §1 above |
@@ -139,7 +139,16 @@ $ npm run test:e2e   (against next start on :3311)
 
 Database policies, on a throwaway **local** PostgreSQL 17 with a stub of Supabase's `auth.uid()` and API roles (`npm run test:rls`). Both migrations were applied twice (repeatable), then 29 checks ran, all PASS. Examples: anon cannot write any canonical table; a contributor cannot insert a proposal as someone else or decide their own; an editor cannot approve their own revision or proposal; an illegal workflow transition is refused; published content and history are immutable even for the service role; a forged reviewer attestation is refused. This is evidence for the SQL, **not** a pass on Supabase.
 
-Real-HTTP security test (`scripts/security-smoke.mjs`) against a local production build (`next start`, no database): 11/11 PASS. Results against the Vercel preview are in the PR description.
+Real-HTTP security test (`scripts/security-smoke.mjs`):
+
+- **Local production build** (`next start`, no database): all checks pass, and the rate limit engaged (429 after 5 analyze calls).
+- **Vercel preview** of this branch (`abrahammoses-bec5pacht-…vercel.app`, reached with a temporary Vercel share link): all 10 mutation and authorisation checks PASS.
+  - Anonymous analyze and challenge: 503.
+  - Forged role in body or header: 400.
+  - Cross-origin: 403. Form content type: 415.
+  - Anonymous or forged-token approval: 401.
+  - The published analyses list was identical before and after.
+  - **The rate limit did not engage**: 28 rapid writes, no 429. Runtime logs show a different client hash on almost every request, because the test machine's egress address rotates (6 distinct IPs in 6 calls). This confirms P2-A1: per-address, per-instance limits are a brake, not protection. The per-action daily quota still applies per instance. A durable, global limit needs the database (E3).
 
 ## 6. Not done here (by instruction)
 
