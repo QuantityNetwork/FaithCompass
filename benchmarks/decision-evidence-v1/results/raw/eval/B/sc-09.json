@@ -1,0 +1,39 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "f019d73d76d5b16c66f0eb62abb58af8ed5cb94c7453d07c628ff2f8e9eb1e12",
+    "prompt_chars": 2791
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D2#s2\", \"D1#s3\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D2#s2\", \"D1#s3\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 722,
+      "completion_tokens": 250
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 1813.2399520000035,
+  "usd": 0.0006887999999999999,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Critical edition introduction (retrieved excerpts)\nCritical edition introduction — Varro Glosses (fictional).\n[D1#s1] Varro AB reports number of scribal hands of 2 for FY2024.\n[D1#s3] Varro Glosses reports folio count of 159 for FY2025.\n[D1#s4] Varro Glosses reports recorded variant readings of 1496 for FY2024 on a reported basis.\n[D1#s5] For Varro Glosses, the reading of the colophon is read as: names the scribe as a monk of the house.\n\n## D2 Catalogue entry (retrieved excerpts)\n[D2#s1] Varro Ltd reports number of scribal hands of 3 for FY2024.\n[D2#s2] Varro Glosses reports witness count of 50 for FY2024.\n[D2#s3] Varro Glosses reports quire count of 32 for FY2025.\n[D2#s5] For Varro Glosses, the reading of the colophon is read as: names the scribe as a lay copyist hired by the house.\n\n## D3 Review article (retrieved excerpts)\n[D3#s1] Varro Glosses reports folio count of 139 for FY2025.\n[D3#s2] Varro Glosses reports recorded variant readings of 1801 for FY2024 on a adjusted (management definition) basis.\n[D3#s3] Varro Glosses reports quire count of 26.\n\n# Conclusions\nC1: The number of known witnesses and number of surviving folios of Varro Glosses support the edition's dating and stemma argument\nC2: The recorded variant readings of Varro Glosses supports the edition's dating and stemma argument",
+  "extra": {
+    "retrieved": [
+      "D1#ctx-1",
+      "D1#s1",
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D2#s1",
+      "D2#s2",
+      "D2#s3",
+      "D2#s5",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3"
+    ]
+  }
+}

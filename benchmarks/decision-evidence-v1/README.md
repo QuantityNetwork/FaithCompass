@@ -81,7 +81,7 @@ passport integrity, unauthorized-access failures, review time, cost per case. De
 
 | | Baseline | Status |
 |---|---|---|
-| A | plain LLM over the documents | adapter; BLOCKED without an API key |
-| B | RAG over the documents | adapter; BLOCKED without an API key |
+| A | plain LLM over the raw documents (gpt-4.1-mini-2025-04-14, temperature 0, seed 20261020) | ran once on eval; BLOCKED when OPENAI_API_KEY is unset (e.g. CI) |
+| B | RAG over the raw documents (BM25 top-10 per conclusion, same model) | ran once on eval; BLOCKED when OPENAI_API_KEY is unset |
 | C | previous Decision Twin (deterministic layer, frozen at merge cad6e95) | runs |
 | D | manual review | BLOCKED: no reviewers recruited |

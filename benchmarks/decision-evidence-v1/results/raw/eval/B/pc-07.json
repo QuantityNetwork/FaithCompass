@@ -1,0 +1,38 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "be16f2c28602a09909310c539bccd40faee92d5ce41d908d70dd260f70f07857",
+    "prompt_chars": 2826
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"UNRESOLVED_INTERPRETATION\"\n    },\n    {\n      \"facts\": [\"D1#s6\", \"D2#s6\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"MISSING_EVIDENCE\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s3\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s3\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 697,
+      "completion_tokens": 258
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2303.475292000003,
+  "usd": 0.0006916,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Audited financial statements (retrieved excerpts)\n[D1#s3] Esker Industries reports cash margin of 4.5% for FY2025.\n[D1#s4] Esker Industries reports revenue of $716m for FY2025 on a reported basis.\n[D1#s5] For Esker Industries, the treatment of restructuring add-backs is read as: add-backs limited to costs incurred within 12 months.\n[D1#s6] For Esker Industries, the sponsor equity cure is: no equity cure right.\n\n## D2 Lender presentation (retrieved excerpts)\n[D2#s4] Esker Industries: interest cover for FY2024 — not provided.\n[D2#s5] For Esker Industries, the treatment of restructuring add-backs is read as: add-backs include expected future synergies.\n[D2#s6] For Esker Industries, the sponsor equity cure is: equity cure available twice over the life of the facility.\n\n## D3 Compliance certificate (retrieved excerpts)\n[D3#s1] Esker Industries reports cash margin of 5% for FY2025.\n[D3#s2] Esker Industries reports revenue of $852.5m for FY2025 on a adjusted (management definition) basis.\n[D3#s3] Esker Industries reports available liquidity of $53.3m on a reported basis.\n[D3#s4] Esker Industries reports interest cover of 2.5x for FY2024.\n\n# Conclusions\nC1: The capital expenditure and cash interest margin of Esker Industries support the credit committee approval\nC2: The revenue of Esker Industries supports the credit committee approval",
+  "extra": {
+    "retrieved": [
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D1#s6",
+      "D2#s4",
+      "D2#s5",
+      "D2#s6",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s4"
+    ]
+  }
+}

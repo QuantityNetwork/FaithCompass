@@ -1,0 +1,23 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "fe755a233b574d372c17c3a66640f6163fcc7197346e782837290dae1df393f5",
+    "prompt_chars": 3026
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"MISSING_EVIDENCE\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 827,
+      "completion_tokens": 297
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2047.3553840000022,
+  "usd": 0.000806,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Critical edition introduction\nCritical edition introduction — Codex Aldane (fictional).\nIn this document \"CA-MS\" means Codex Aldane. [D1#s1] Codex AB reports radiocarbon median date (CE) of 1135 year for FY2024. [D1#s2] Codex Aldane reports approximately quire count of 36 for FY2024. [D1#s3] Codex Aldane reports lacunae share of 33.3% for FY2024. [D1#s4] Codex Aldane reports recorded variant readings of 1426 for FY2025 on a reported basis. [D1#s5] For Codex Aldane, the place of origin is: copied in the northern scriptorium.\n\n## D2 Catalogue entry\nCatalogue entry — Codex Aldane (fictional).\n[D2#s1] Codex Ltd reports radiocarbon median date (CE) of 1406 year for FY2024. [D2#s2] Codex Aldane reports quire count of 37 for FY2024. [D2#s3] Codex Aldane reports line count of 31 for FY2025. [D2#s4] Codex Aldane: number of known witnesses for FY2024 — not provided. [D2#s5] For Codex Aldane, the place of origin is: copied in the southern scriptorium.\n\n## D3 Review article\nReview article — Codex Aldane (fictional).\n[D3#s1] Codex Aldane reports lacunae share of 26.6% for FY2024. [D3#s2] Codex Aldane reports recorded variant readings of 1051 for FY2025 on a adjusted (management definition) basis. [D3#s3] Codex Aldane reports line count of 23. [D3#s4] Codex Aldane reports witness count of 47 for FY2024.\n\n# Conclusions\nC1: The number of quires and share of text lost to lacunae of Codex Aldane support the edition's dating and stemma argument\nC2: The recorded variant readings of Codex Aldane supports the edition's dating and stemma argument"
+}

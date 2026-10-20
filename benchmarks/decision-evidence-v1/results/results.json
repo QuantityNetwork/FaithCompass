@@ -1,6 +1,7 @@
 {
   "benchmark": "decision-evidence-v1",
-  "generated_at": "2026-10-20T21:46:53Z",
+  "spent_usd": 0.042791,
+  "generated_at": "2026-10-20T22:42:04Z",
   "manifest": {
     "ok": true,
     "eval_set_sha256": "0d69dc2e51f9a74dc0322eedacb7fb20fd4e46bfbaf6b6742a88c07ea7418524",
@@ -9,28 +10,1063 @@
     "files": 28
   },
   "splits": [
-    "dev",
     "eval"
   ],
   "baselines": {
     "A": {
-      "name": "Plain LLM: all documents in one prompt",
-      "status": "BLOCKED",
-      "reason": "no API key configured (BENCH_LLM_API_KEY unset); no call was made",
+      "name": "Plain LLM (gpt-4.1-mini-2025-04-14): all raw documents, span-labelled, in one prompt",
+      "status": "RAN",
       "produces": {
         "findings": true,
         "citations": true,
         "dependencies": true
+      },
+      "prompt_version": "dev-validated-2",
+      "llm": {
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "temperature": 0,
+        "seed": 20261020,
+        "response_format": "json_object",
+        "usd_per_1m_input": 0.4,
+        "usd_per_1m_output": 1.6
+      },
+      "results": {
+        "eval": {
+          "cases": 28,
+          "conflict_recall": {
+            "k": 99,
+            "n": 113,
+            "value": 0.8761,
+            "ci95": [
+              0.8027,
+              0.9247
+            ]
+          },
+          "conflict_precision": {
+            "k": 99,
+            "n": 157,
+            "value": 0.6306,
+            "ci95": [
+              0.5528,
+              0.7021
+            ]
+          },
+          "false_positive_rate_all_pairs": {
+            "k": 58,
+            "n": 2351,
+            "value": 0.0247,
+            "ci95": [
+              0.0191,
+              0.0318
+            ]
+          },
+          "false_positive_rate_hard_negatives": {
+            "k": 58,
+            "n": 79,
+            "value": 0.7342,
+            "ci95": [
+              0.6276,
+              0.8191
+            ]
+          },
+          "class_agreement_on_found": {
+            "k": 81,
+            "n": 99,
+            "value": 0.8182,
+            "ci95": [
+              0.7308,
+              0.8818
+            ]
+          },
+          "citation_precision": {
+            "k": 135,
+            "n": 150,
+            "value": 0.9,
+            "ci95": [
+              0.8416,
+              0.9385
+            ]
+          },
+          "evidence_recall": {
+            "k": 80,
+            "n": 84,
+            "value": 0.9524,
+            "ci95": [
+              0.8839,
+              0.9813
+            ]
+          },
+          "dependency_accuracy": {
+            "k": 37,
+            "n": 56,
+            "value": 0.6607,
+            "ci95": [
+              0.53,
+              0.7708
+            ]
+          },
+          "per_plant": {
+            "alias": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 10,
+              "correct": 10
+            },
+            "approximation": {
+              "gold": "NONE",
+              "n": 12,
+              "correct": 3
+            },
+            "basis": {
+              "gold": "DIFFERENT_REPORTING_BASIS",
+              "n": 12,
+              "correct": 12
+            },
+            "confirmed": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 20,
+              "correct": 18
+            },
+            "diff_entity": {
+              "gold": "NONE",
+              "n": 11,
+              "correct": 5
+            },
+            "diff_period": {
+              "gold": "NONE",
+              "n": 11,
+              "correct": 3
+            },
+            "exclusive": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 12,
+              "correct": 12
+            },
+            "fiscal_year_end": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 11,
+              "correct": 10
+            },
+            "interpretation": {
+              "gold": "UNRESOLVED_INTERPRETATION",
+              "n": 12,
+              "correct": 11
+            },
+            "legal_entity": {
+              "gold": "NONE",
+              "n": 12,
+              "correct": 7
+            },
+            "missing": {
+              "gold": "MISSING_EVIDENCE",
+              "n": 12,
+              "correct": 10
+            },
+            "potential": {
+              "gold": "POTENTIAL_CONFLICT",
+              "n": 12,
+              "correct": 6
+            },
+            "rounding": {
+              "gold": "NONE",
+              "n": 19,
+              "correct": 3
+            },
+            "superseded": {
+              "gold": "NONE",
+              "n": 11,
+              "correct": 0
+            },
+            "synonym": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 10,
+              "correct": 8
+            },
+            "unit_scale": {
+              "gold": "NONE",
+              "n": 3,
+              "correct": 0
+            },
+            "unit_word": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 2,
+              "correct": 2
+            }
+          },
+          "per_domain": {
+            "contract": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 24,
+                "n": 27,
+                "value": 0.8889,
+                "ci95": [
+                  0.7194,
+                  0.9615
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 16,
+                "n": 21,
+                "value": 0.7619,
+                "ci95": [
+                  0.5491,
+                  0.8937
+                ]
+              }
+            },
+            "m_and_a": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 26,
+                "n": 30,
+                "value": 0.8667,
+                "ci95": [
+                  0.7032,
+                  0.9469
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 16,
+                "n": 18,
+                "value": 0.8889,
+                "ci95": [
+                  0.672,
+                  0.969
+                ]
+              }
+            },
+            "private_credit": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 25,
+                "n": 29,
+                "value": 0.8621,
+                "ci95": [
+                  0.6944,
+                  0.945
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 10,
+                "n": 19,
+                "value": 0.5263,
+                "ci95": [
+                  0.3171,
+                  0.7267
+                ]
+              }
+            },
+            "scholarly": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 24,
+                "n": 27,
+                "value": 0.8889,
+                "ci95": [
+                  0.7194,
+                  0.9615
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 16,
+                "n": 21,
+                "value": 0.7619,
+                "ci95": [
+                  0.5491,
+                  0.8937
+                ]
+              }
+            }
+          },
+          "cost_per_case": {
+            "usd_total": 0.023146000000000003,
+            "ms_p50": 2047.3553840000022,
+            "ms_p95": 2530.776439999994
+          },
+          "cases_detail": [
+            {
+              "id": "ct-04",
+              "tp": 4,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2070,
+              "usd": 0.000798
+            },
+            {
+              "id": "ct-05",
+              "tp": 2,
+              "p": 2,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 1818,
+              "usd": 0.000782
+            },
+            {
+              "id": "ct-06",
+              "tp": 4,
+              "p": 4,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1933,
+              "usd": 0.0007324000000000001
+            },
+            {
+              "id": "ct-07",
+              "tp": 6,
+              "p": 6,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2472,
+              "usd": 0.0009316000000000001
+            },
+            {
+              "id": "ct-08",
+              "tp": 2,
+              "p": 3,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1967,
+              "usd": 0.0007944000000000001
+            },
+            {
+              "id": "ct-09",
+              "tp": 4,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2270,
+              "usd": 0.0008632000000000001
+            },
+            {
+              "id": "ct-10",
+              "tp": 2,
+              "p": 2,
+              "fp": 5,
+              "hard_fp": 5,
+              "ms": 2151,
+              "usd": 0.0008584
+            },
+            {
+              "id": "ma-04",
+              "tp": 5,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2337,
+              "usd": 0.0009376
+            },
+            {
+              "id": "ma-05",
+              "tp": 4,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2026,
+              "usd": 0.0008108
+            },
+            {
+              "id": "ma-06",
+              "tp": 1,
+              "p": 1,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 1986,
+              "usd": 0.000784
+            },
+            {
+              "id": "ma-07",
+              "tp": 6,
+              "p": 6,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2437,
+              "usd": 0.0009980000000000002
+            },
+            {
+              "id": "ma-08",
+              "tp": 3,
+              "p": 3,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 2194,
+              "usd": 0.0008512000000000001
+            },
+            {
+              "id": "ma-09",
+              "tp": 4,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2255,
+              "usd": 0.0008812000000000001
+            },
+            {
+              "id": "ma-10",
+              "tp": 3,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1968,
+              "usd": 0.0007992
+            },
+            {
+              "id": "pc-04",
+              "tp": 4,
+              "p": 5,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1999,
+              "usd": 0.0007896
+            },
+            {
+              "id": "pc-05",
+              "tp": 4,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2230,
+              "usd": 0.0008612
+            },
+            {
+              "id": "pc-06",
+              "tp": 3,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2127,
+              "usd": 0.0008008000000000001
+            },
+            {
+              "id": "pc-07",
+              "tp": 6,
+              "p": 6,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2626,
+              "usd": 0.0009848
+            },
+            {
+              "id": "pc-08",
+              "tp": 1,
+              "p": 1,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 2007,
+              "usd": 0.0007856000000000001
+            },
+            {
+              "id": "pc-09",
+              "tp": 3,
+              "p": 5,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1665,
+              "usd": 0.0007112
+            },
+            {
+              "id": "pc-10",
+              "tp": 4,
+              "p": 4,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 2008,
+              "usd": 0.0007264000000000001
+            },
+            {
+              "id": "sc-04",
+              "tp": 4,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2047,
+              "usd": 0.000806
+            },
+            {
+              "id": "sc-05",
+              "tp": 2,
+              "p": 2,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 1909,
+              "usd": 0.0007827999999999999
+            },
+            {
+              "id": "sc-06",
+              "tp": 4,
+              "p": 4,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 1917,
+              "usd": 0.000758
+            },
+            {
+              "id": "sc-07",
+              "tp": 5,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2531,
+              "usd": 0.0009384
+            },
+            {
+              "id": "sc-08",
+              "tp": 4,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2028,
+              "usd": 0.0007856
+            },
+            {
+              "id": "sc-09",
+              "tp": 3,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2082,
+              "usd": 0.000804
+            },
+            {
+              "id": "sc-10",
+              "tp": 2,
+              "p": 2,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 2090,
+              "usd": 0.0007896
+            }
+          ]
+        }
       }
     },
     "B": {
-      "name": "RAG: BM25 top-8 passages per conclusion, then the LLM",
-      "status": "BLOCKED",
-      "reason": "no API key configured (BENCH_LLM_API_KEY unset); no call was made",
+      "name": "RAG (gpt-4.1-mini-2025-04-14): BM25 top-10 sentence chunks of the raw documents per conclusion, then the LLM with citations",
+      "status": "RAN",
       "produces": {
         "findings": true,
         "citations": true,
         "dependencies": true
+      },
+      "prompt_version": "dev-validated-2",
+      "llm": {
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "temperature": 0,
+        "seed": 20261020,
+        "response_format": "json_object",
+        "usd_per_1m_input": 0.4,
+        "usd_per_1m_output": 1.6
+      },
+      "results": {
+        "eval": {
+          "cases": 28,
+          "conflict_recall": {
+            "k": 82,
+            "n": 113,
+            "value": 0.7257,
+            "ci95": [
+              0.637,
+              0.7995
+            ]
+          },
+          "conflict_precision": {
+            "k": 82,
+            "n": 123,
+            "value": 0.6667,
+            "ci95": [
+              0.5794,
+              0.7438
+            ]
+          },
+          "false_positive_rate_all_pairs": {
+            "k": 41,
+            "n": 2351,
+            "value": 0.0174,
+            "ci95": [
+              0.0129,
+              0.0236
+            ]
+          },
+          "false_positive_rate_hard_negatives": {
+            "k": 40,
+            "n": 79,
+            "value": 0.5063,
+            "ci95": [
+              0.3984,
+              0.6137
+            ]
+          },
+          "class_agreement_on_found": {
+            "k": 67,
+            "n": 82,
+            "value": 0.8171,
+            "ci95": [
+              0.7199,
+              0.8859
+            ]
+          },
+          "citation_precision": {
+            "k": 124,
+            "n": 138,
+            "value": 0.8986,
+            "ci95": [
+              0.8369,
+              0.9386
+            ]
+          },
+          "evidence_recall": {
+            "k": 78,
+            "n": 84,
+            "value": 0.9286,
+            "ci95": [
+              0.8528,
+              0.9669
+            ]
+          },
+          "dependency_accuracy": {
+            "k": 33,
+            "n": 56,
+            "value": 0.5893,
+            "ci95": [
+              0.4588,
+              0.7083
+            ]
+          },
+          "per_plant": {
+            "alias": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 10,
+              "correct": 6
+            },
+            "approximation": {
+              "gold": "NONE",
+              "n": 12,
+              "correct": 6
+            },
+            "basis": {
+              "gold": "DIFFERENT_REPORTING_BASIS",
+              "n": 12,
+              "correct": 9
+            },
+            "confirmed": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 20,
+              "correct": 17
+            },
+            "diff_entity": {
+              "gold": "NONE",
+              "n": 11,
+              "correct": 6
+            },
+            "diff_period": {
+              "gold": "NONE",
+              "n": 11,
+              "correct": 7
+            },
+            "exclusive": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 12,
+              "correct": 12
+            },
+            "fiscal_year_end": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 11,
+              "correct": 4
+            },
+            "interpretation": {
+              "gold": "UNRESOLVED_INTERPRETATION",
+              "n": 12,
+              "correct": 12
+            },
+            "legal_entity": {
+              "gold": "NONE",
+              "n": 12,
+              "correct": 11
+            },
+            "missing": {
+              "gold": "MISSING_EVIDENCE",
+              "n": 12,
+              "correct": 7
+            },
+            "potential": {
+              "gold": "POTENTIAL_CONFLICT",
+              "n": 12,
+              "correct": 7
+            },
+            "rounding": {
+              "gold": "NONE",
+              "n": 19,
+              "correct": 8
+            },
+            "superseded": {
+              "gold": "NONE",
+              "n": 11,
+              "correct": 1
+            },
+            "synonym": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 10,
+              "correct": 7
+            },
+            "unit_scale": {
+              "gold": "NONE",
+              "n": 3,
+              "correct": 0
+            },
+            "unit_word": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 2,
+              "correct": 1
+            }
+          },
+          "per_domain": {
+            "contract": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 22,
+                "n": 27,
+                "value": 0.8148,
+                "ci95": [
+                  0.633,
+                  0.9182
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 13,
+                "n": 21,
+                "value": 0.619,
+                "ci95": [
+                  0.4088,
+                  0.7925
+                ]
+              }
+            },
+            "m_and_a": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 20,
+                "n": 30,
+                "value": 0.6667,
+                "ci95": [
+                  0.4878,
+                  0.8077
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 10,
+                "n": 18,
+                "value": 0.5556,
+                "ci95": [
+                  0.3372,
+                  0.7544
+                ]
+              }
+            },
+            "private_credit": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 22,
+                "n": 29,
+                "value": 0.7586,
+                "ci95": [
+                  0.5789,
+                  0.8778
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 9,
+                "n": 19,
+                "value": 0.4737,
+                "ci95": [
+                  0.2733,
+                  0.6829
+                ]
+              }
+            },
+            "scholarly": {
+              "cases": 7,
+              "conflict_recall": {
+                "k": 18,
+                "n": 27,
+                "value": 0.6667,
+                "ci95": [
+                  0.4782,
+                  0.8136
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 8,
+                "n": 21,
+                "value": 0.381,
+                "ci95": [
+                  0.2075,
+                  0.5912
+                ]
+              }
+            }
+          },
+          "cost_per_case": {
+            "usd_total": 0.019645199999999998,
+            "ms_p50": 1893.505496999991,
+            "ms_p95": 2292.233500000002
+          },
+          "cases_detail": [
+            {
+              "id": "ct-04",
+              "tp": 5,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2068,
+              "usd": 0.0008012000000000001
+            },
+            {
+              "id": "ct-05",
+              "tp": 2,
+              "p": 2,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1734,
+              "usd": 0.0006852000000000001
+            },
+            {
+              "id": "ct-06",
+              "tp": 3,
+              "p": 4,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 1994,
+              "usd": 0.0006792
+            },
+            {
+              "id": "ct-07",
+              "tp": 5,
+              "p": 6,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2292,
+              "usd": 0.0008167999999999999
+            },
+            {
+              "id": "ct-08",
+              "tp": 1,
+              "p": 3,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1854,
+              "usd": 0.0007012
+            },
+            {
+              "id": "ct-09",
+              "tp": 4,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 1978,
+              "usd": 0.0007488000000000001
+            },
+            {
+              "id": "ct-10",
+              "tp": 2,
+              "p": 2,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1977,
+              "usd": 0.0007528
+            },
+            {
+              "id": "ma-04",
+              "tp": 3,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2037,
+              "usd": 0.0007604
+            },
+            {
+              "id": "ma-05",
+              "tp": 3,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 1849,
+              "usd": 0.0006996000000000001
+            },
+            {
+              "id": "ma-06",
+              "tp": 0,
+              "p": 1,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1469,
+              "usd": 0.000588
+            },
+            {
+              "id": "ma-07",
+              "tp": 5,
+              "p": 6,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 2034,
+              "usd": 0.0007624000000000001
+            },
+            {
+              "id": "ma-08",
+              "tp": 3,
+              "p": 3,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1870,
+              "usd": 0.000762
+            },
+            {
+              "id": "ma-09",
+              "tp": 3,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1934,
+              "usd": 0.0007648
+            },
+            {
+              "id": "ma-10",
+              "tp": 3,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2104,
+              "usd": 0.0006948000000000001
+            },
+            {
+              "id": "pc-04",
+              "tp": 4,
+              "p": 5,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1600,
+              "usd": 0.0006144000000000001
+            },
+            {
+              "id": "pc-05",
+              "tp": 4,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2196,
+              "usd": 0.0008328
+            },
+            {
+              "id": "pc-06",
+              "tp": 2,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1935,
+              "usd": 0.0007067999999999999
+            },
+            {
+              "id": "pc-07",
+              "tp": 5,
+              "p": 6,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 2303,
+              "usd": 0.0006916
+            },
+            {
+              "id": "pc-08",
+              "tp": 0,
+              "p": 1,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 1919,
+              "usd": 0.0007
+            },
+            {
+              "id": "pc-09",
+              "tp": 4,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2195,
+              "usd": 0.0006892000000000001
+            },
+            {
+              "id": "pc-10",
+              "tp": 3,
+              "p": 4,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1506,
+              "usd": 0.0006052000000000001
+            },
+            {
+              "id": "sc-04",
+              "tp": 4,
+              "p": 5,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1769,
+              "usd": 0.0006852000000000001
+            },
+            {
+              "id": "sc-05",
+              "tp": 2,
+              "p": 2,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1734,
+              "usd": 0.0006556
+            },
+            {
+              "id": "sc-06",
+              "tp": 3,
+              "p": 4,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1448,
+              "usd": 0.0006044000000000001
+            },
+            {
+              "id": "sc-07",
+              "tp": 3,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 0,
+              "ms": 1664,
+              "usd": 0.0006216000000000001
+            },
+            {
+              "id": "sc-08",
+              "tp": 2,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1894,
+              "usd": 0.00071
+            },
+            {
+              "id": "sc-09",
+              "tp": 3,
+              "p": 5,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 1813,
+              "usd": 0.0006887999999999999
+            },
+            {
+              "id": "sc-10",
+              "tp": 1,
+              "p": 2,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1603,
+              "usd": 0.0006224000000000001
+            }
+          ]
+        }
       }
     },
     "C": {
@@ -42,321 +1078,6 @@
         "dependencies": false
       },
       "results": {
-        "dev": {
-          "cases": 12,
-          "conflict_recall": {
-            "k": 33,
-            "n": 51,
-            "value": 0.6471,
-            "ci95": [
-              0.5099,
-              0.7637
-            ]
-          },
-          "conflict_precision": {
-            "k": 33,
-            "n": 40,
-            "value": 0.825,
-            "ci95": [
-              0.6805,
-              0.9125
-            ]
-          },
-          "false_positive_rate_all_pairs": {
-            "k": 7,
-            "n": 1057,
-            "value": 0.0066,
-            "ci95": [
-              0.0032,
-              0.0136
-            ]
-          },
-          "false_positive_rate_hard_negatives": {
-            "k": 7,
-            "n": 33,
-            "value": 0.2121,
-            "ci95": [
-              0.1068,
-              0.3775
-            ]
-          },
-          "class_agreement_on_found": {
-            "k": 33,
-            "n": 33,
-            "value": 1,
-            "ci95": [
-              0.8957,
-              1
-            ]
-          },
-          "citation_precision": "NOT_APPLICABLE",
-          "evidence_recall": "NOT_APPLICABLE",
-          "dependency_accuracy": "NOT_APPLICABLE",
-          "per_plant": {
-            "alias": {
-              "gold": "CONFIRMED_CONFLICT",
-              "n": 6,
-              "correct": 0
-            },
-            "approximation": {
-              "gold": "NONE",
-              "n": 4,
-              "correct": 1
-            },
-            "basis": {
-              "gold": "DIFFERENT_REPORTING_BASIS",
-              "n": 4,
-              "correct": 4
-            },
-            "confirmed": {
-              "gold": "CONFIRMED_CONFLICT",
-              "n": 9,
-              "correct": 9
-            },
-            "diff_entity": {
-              "gold": "NONE",
-              "n": 5,
-              "correct": 5
-            },
-            "diff_period": {
-              "gold": "NONE",
-              "n": 5,
-              "correct": 5
-            },
-            "exclusive": {
-              "gold": "CONFIRMED_CONFLICT",
-              "n": 4,
-              "correct": 4
-            },
-            "fiscal_year_end": {
-              "gold": "CONFIRMED_CONFLICT",
-              "n": 5,
-              "correct": 0
-            },
-            "interpretation": {
-              "gold": "UNRESOLVED_INTERPRETATION",
-              "n": 8,
-              "correct": 8
-            },
-            "legal_entity": {
-              "gold": "NONE",
-              "n": 4,
-              "correct": 0
-            },
-            "missing": {
-              "gold": "MISSING_EVIDENCE",
-              "n": 4,
-              "correct": 4
-            },
-            "potential": {
-              "gold": "POTENTIAL_CONFLICT",
-              "n": 4,
-              "correct": 4
-            },
-            "rounding": {
-              "gold": "NONE",
-              "n": 8,
-              "correct": 8
-            },
-            "superseded": {
-              "gold": "NONE",
-              "n": 5,
-              "correct": 5
-            },
-            "synonym": {
-              "gold": "CONFIRMED_CONFLICT",
-              "n": 6,
-              "correct": 0
-            },
-            "unit_scale": {
-              "gold": "NONE",
-              "n": 2,
-              "correct": 2
-            },
-            "unit_word": {
-              "gold": "CONFIRMED_CONFLICT",
-              "n": 1,
-              "correct": 0
-            }
-          },
-          "per_domain": {
-            "contract": {
-              "cases": 3,
-              "conflict_recall": {
-                "k": 9,
-                "n": 14,
-                "value": 0.6429,
-                "ci95": [
-                  0.3876,
-                  0.8366
-                ]
-              },
-              "hard_negative_fp": {
-                "k": 2,
-                "n": 7,
-                "value": 0.2857,
-                "ci95": [
-                  0.0822,
-                  0.6411
-                ]
-              }
-            },
-            "m_and_a": {
-              "cases": 3,
-              "conflict_recall": {
-                "k": 8,
-                "n": 11,
-                "value": 0.7273,
-                "ci95": [
-                  0.4344,
-                  0.9025
-                ]
-              },
-              "hard_negative_fp": {
-                "k": 2,
-                "n": 10,
-                "value": 0.2,
-                "ci95": [
-                  0.0567,
-                  0.5098
-                ]
-              }
-            },
-            "private_credit": {
-              "cases": 3,
-              "conflict_recall": {
-                "k": 7,
-                "n": 12,
-                "value": 0.5833,
-                "ci95": [
-                  0.3195,
-                  0.8067
-                ]
-              },
-              "hard_negative_fp": {
-                "k": 2,
-                "n": 9,
-                "value": 0.2222,
-                "ci95": [
-                  0.0632,
-                  0.5474
-                ]
-              }
-            },
-            "scholarly": {
-              "cases": 3,
-              "conflict_recall": {
-                "k": 9,
-                "n": 14,
-                "value": 0.6429,
-                "ci95": [
-                  0.3876,
-                  0.8366
-                ]
-              },
-              "hard_negative_fp": {
-                "k": 1,
-                "n": 7,
-                "value": 0.1429,
-                "ci95": [
-                  0.0257,
-                  0.5131
-                ]
-              }
-            }
-          },
-          "cost_per_case": {
-            "usd_total": 0,
-            "ms_p50": 0.6115680000000054,
-            "ms_p95": 2.442826999999994
-          },
-          "cases_detail": [
-            {
-              "id": "ct-01",
-              "tp": 3,
-              "p": 6,
-              "fp": 2,
-              "hard_fp": 2
-            },
-            {
-              "id": "ct-02",
-              "tp": 4,
-              "p": 4,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "ct-03",
-              "tp": 2,
-              "p": 4,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "ma-01",
-              "tp": 2,
-              "p": 3,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "ma-02",
-              "tp": 2,
-              "p": 4,
-              "fp": 2,
-              "hard_fp": 2
-            },
-            {
-              "id": "ma-03",
-              "tp": 4,
-              "p": 4,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "pc-01",
-              "tp": 2,
-              "p": 6,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "pc-02",
-              "tp": 4,
-              "p": 4,
-              "fp": 2,
-              "hard_fp": 2
-            },
-            {
-              "id": "pc-03",
-              "tp": 1,
-              "p": 2,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "sc-01",
-              "tp": 4,
-              "p": 6,
-              "fp": 1,
-              "hard_fp": 1
-            },
-            {
-              "id": "sc-02",
-              "tp": 3,
-              "p": 3,
-              "fp": 0,
-              "hard_fp": 0
-            },
-            {
-              "id": "sc-03",
-              "tp": 2,
-              "p": 5,
-              "fp": 0,
-              "hard_fp": 0
-            }
-          ]
-        },
         "eval": {
           "cases": 28,
           "conflict_recall": {
@@ -582,8 +1303,8 @@
           },
           "cost_per_case": {
             "usd_total": 0,
-            "ms_p50": 0.38775800000001936,
-            "ms_p95": 0.9657890000000009
+            "ms_p50": 0.6236239999998361,
+            "ms_p95": 2.2123739999951795
           },
           "cases_detail": [
             {
@@ -591,196 +1312,252 @@
               "tp": 4,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 3,
+              "usd": 0
             },
             {
               "id": "ct-05",
               "tp": 2,
               "p": 2,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 2,
+              "usd": 0
             },
             {
               "id": "ct-06",
               "tp": 1,
               "p": 4,
               "fp": 1,
-              "hard_fp": 1
+              "hard_fp": 1,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ct-07",
               "tp": 6,
               "p": 6,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ct-08",
               "tp": 1,
               "p": 3,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 0,
+              "usd": 0
             },
             {
               "id": "ct-09",
               "tp": 4,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ct-10",
               "tp": 2,
               "p": 2,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ma-04",
               "tp": 2,
               "p": 5,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ma-05",
               "tp": 5,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ma-06",
               "tp": 0,
               "p": 1,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ma-07",
               "tp": 3,
               "p": 6,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ma-08",
               "tp": 3,
               "p": 3,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 0,
+              "usd": 0
             },
             {
               "id": "ma-09",
               "tp": 1,
               "p": 5,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "ma-10",
               "tp": 5,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 0,
+              "usd": 0
             },
             {
               "id": "pc-04",
               "tp": 3,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "pc-05",
               "tp": 4,
               "p": 4,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "pc-06",
               "tp": 1,
               "p": 4,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "pc-07",
               "tp": 6,
               "p": 6,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "pc-08",
               "tp": 0,
               "p": 1,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 0,
+              "usd": 0
             },
             {
               "id": "pc-09",
               "tp": 3,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 0,
+              "usd": 0
             },
             {
               "id": "pc-10",
               "tp": 4,
               "p": 4,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "sc-04",
               "tp": 5,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 0,
+              "usd": 0
             },
             {
               "id": "sc-05",
               "tp": 1,
               "p": 2,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "sc-06",
               "tp": 2,
               "p": 4,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "sc-07",
               "tp": 5,
               "p": 5,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "sc-08",
               "tp": 1,
               "p": 4,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "sc-09",
               "tp": 5,
               "p": 5,
               "fp": 2,
-              "hard_fp": 2
+              "hard_fp": 2,
+              "ms": 1,
+              "usd": 0
             },
             {
               "id": "sc-10",
               "tp": 1,
               "p": 2,
               "fp": 0,
-              "hard_fp": 0
+              "hard_fp": 0,
+              "ms": 0,
+              "usd": 0
             }
           ]
         }
