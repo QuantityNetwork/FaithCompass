@@ -193,3 +193,18 @@ export async function readJsonBody(request: Request): Promise<unknown> {
     throw new ApiError('invalid_json', 'Request body is not valid JSON.');
   }
 }
+
+/**
+ * HEAD for a GET handler: same status and headers, no body. Link checkers and
+ * uptime monitors use HEAD; without this every API URL answered 405 to them.
+ */
+export function headFromGet<C>(handler: (request: Request, ctx: C) => Promise<Response>) {
+  return async (request: Request, ctx: C): Promise<Response> => {
+    const res = await handler(new Request(request.url, { method: 'GET', headers: request.headers }), ctx);
+    return new Response(null, {
+      status: res.status,
+      statusText: res.statusText,
+      headers: res.headers,
+    });
+  };
+}

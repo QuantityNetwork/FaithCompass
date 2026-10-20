@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { z } from 'zod';
+import { ChallengeBodySchema, CLAIM_ID_PATTERN, IDEMPOTENCY_KEY_PATTERN } from '@/lib/evidence/write-api';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { proposeChallenge, RevisionError, REVISION_ERROR_STATUS } from '@/lib/evidence/revisions';
 import { canPersist, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
@@ -17,11 +17,6 @@ export const dynamic = 'force-dynamic';
  * proposer approves it (POST /api/evidence/proposals/{id}/decision).
  */
 
-// Strict: unknown fields (a "role", an "approved" flag) are rejected, not ignored.
-const BodySchema = z.object({ note: z.string().max(2000).optional() }).strict();
-const IDEMPOTENCY_KEY = /^[A-Za-z0-9_-]{8,128}$/;
-const CLAIM_ID = /^[A-Za-z0-9._:-]{1,200}$/;
-
 const noStore = { 'cache-control': 'no-store' };
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -29,13 +24,13 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   if (!gate.ok) return gate.response;
 
   const { id } = await params;
-  if (!CLAIM_ID.test(id)) return NextResponse.json({ error: 'Invalid claim id.' }, { status: 400, headers: noStore });
-  const parsed = BodySchema.safeParse(gate.body);
+  if (!CLAIM_ID_PATTERN.test(id)) return NextResponse.json({ error: 'Invalid claim id.' }, { status: 400, headers: noStore });
+  const parsed = ChallengeBodySchema.safeParse(gate.body);
   if (!parsed.success) {
     return NextResponse.json({ error: 'Invalid request.', issues: parsed.error.issues }, { status: 400, headers: noStore });
   }
   const key = request.headers.get('idempotency-key');
-  if (key !== null && !IDEMPOTENCY_KEY.test(key)) {
+  if (key !== null && !IDEMPOTENCY_KEY_PATTERN.test(key)) {
     return NextResponse.json({ error: 'Idempotency-Key must be 8-128 characters of [A-Za-z0-9_-].' }, { status: 400, headers: noStore });
   }
 

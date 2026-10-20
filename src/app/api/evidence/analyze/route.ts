@@ -1,10 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
-import { z } from 'zod';
+import { AnalyzeBodySchema } from '@/lib/evidence/write-api';
 import { runAnalysis } from '@/lib/evidence/pipeline';
 import { canPersist, getStore, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { guardWrite } from '@/lib/security/write-guard';
-import { PassageReferenceSchema } from '@/lib/evidence/schema';
 import { NoAnalysisAvailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
 
@@ -18,29 +17,13 @@ export const dynamic = 'force-dynamic';
  * the route refuses (503) rather than pretending to keep anything.
  */
 
-const BodySchema = z.strictObject({
-  query: z.string().min(1).max(2000),
-  reference: PassageReferenceSchema.nullable().optional(),
-  passageText: z.string().max(20000).nullable().optional(),
-  lens: z
-    .object({
-      primarySourcesOnly: z.boolean().optional(),
-      beforeYear: z.number().int().optional(),
-      historicalOnly: z.boolean().optional(),
-      scriptureOnly: z.boolean().optional(),
-      note: z.string().max(300).optional(),
-    })
-    .strict()
-    .optional(),
-});
-
 const noStore = { 'cache-control': 'no-store' };
 
 export async function POST(request: Request) {
   const gate = await guardWrite(request, { permission: 'draft.create', action: 'analysis.draft', maxBytes: 32_768, perMinute: 5, perDay: 200 });
   if (!gate.ok) return gate.response;
 
-  const parsed = BodySchema.safeParse(gate.body);
+  const parsed = AnalyzeBodySchema.safeParse(gate.body);
   if (!parsed.success) {
     return NextResponse.json(
       { error: 'Invalid request.', issues: parsed.error.issues },

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ReviewChip } from '@/components/ds/status';
+import { CORPUS_ENTRIES } from '@/lib/evidence/corpus/documents';
+import { SEEDED_SUBJECTS } from '@/lib/evidence/seed';
+import { canPersist } from '@/lib/evidence/store';
 import { getRecord } from '@/lib/record/record';
 import { REVISION_STATUSES } from '@/lib/record/taxonomy';
 import { OPERATOR, legalContact } from '@/lib/site/config';
@@ -57,6 +60,25 @@ export default function InstitutionalPage() {
   const revisions = record.data.claims.flatMap((c) => c.revisions).filter((r) => r.status !== 'draft');
   const byStatus = REVISION_STATUSES.filter((s) => s !== 'draft').map((s) => ({ status: s, n: revisions.filter((r) => r.status === s).length }));
   const contact = legalContact();
+  // Distinct named reviewers recorded on any revision (editorial or external).
+  const reviewers = new Set(
+    record.data.claims.flatMap((c) => c.revisions.flatMap((r) => r.editorial.reviewers.map((x) => x.name))),
+  );
+  const externallyVerifiedSources = CORPUS_ENTRIES.filter((e) => e.verified === 'VERIFIED').length;
+  const glance: Array<{ n: number; label: string }> = [
+    { n: record.data.claims.length, label: 'claims' },
+    { n: record.data.works.length, label: 'works in the corpus' },
+    { n: CORPUS_ENTRIES.length, label: 'sources in the evidence registry' },
+    {
+      n: externallyVerifiedSources,
+      label: 'sources verified against an external catalogue',
+    },
+    {
+      n: SEEDED_SUBJECTS.length,
+      label: 'evidence assessments, all awaiting editorial review',
+    },
+    { n: reviewers.size, label: 'named reviewers on record' },
+  ];
 
   return (
     <main id="main" className="am-page">
@@ -70,6 +92,30 @@ export default function InstitutionalPage() {
             responsibility, review and change.
           </p>
         </header>
+
+        <section className="am-section" aria-labelledby="glance-title">
+          <div className="am-section__head">
+            <p className="am-eyebrow">The record at a glance</p>
+            <h2 className="am-h2" id="glance-title">
+              What exists today
+            </h2>
+          </div>
+          <ul className="am-inst-states">
+            {glance.map(({ n, label }) => (
+              <li key={label}>
+                <span className="am-inst-states__n">{n}</span>
+                <span>{label}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="am-tiny">
+            Challenges to an evidence assessment are taken as proposals for editorial review and never change a
+            published assessment by themselves.{' '}
+            {canPersist()
+              ? 'New analyses and challenges are stored privately until an editor reviews them.'
+              : 'This deployment has no database, so new analyses and challenges are not accepted yet.'}
+          </p>
+        </section>
 
         <section className="am-section" aria-labelledby="review-title">
           <div className="am-section__head">

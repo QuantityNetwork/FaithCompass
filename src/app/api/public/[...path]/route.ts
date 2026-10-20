@@ -1,4 +1,5 @@
 import { dispatchLegacy } from '@/lib/api/legacy';
+import { headFromGet } from '@/lib/api/http';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,5 +11,6 @@ async function handle(request: Request, { params }: Params) {
 }
 
 export const GET = handle;
+export const HEAD = headFromGet(handle);
 export const POST = handle;
 export const OPTIONS = handle;

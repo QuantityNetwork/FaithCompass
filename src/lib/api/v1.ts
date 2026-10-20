@@ -7,6 +7,7 @@
  * without being documented, or be documented without existing.
  */
 
+import { evidenceOpenApi } from './evidence-openapi';
 import { z } from 'zod/v4';
 import { getRecord, type AbrahamMosesRecord } from '@/lib/record/record';
 import { RecordSchema } from '@/lib/record/schema';
@@ -611,17 +612,21 @@ export function openApiDocument() {
     };
   }
   components.Error = z.toJSONSchema(ErrorV1);
+  const evidence = evidenceOpenApi();
+  Object.assign(paths, evidence.paths);
+  Object.assign(components, evidence.schemas);
   return {
     openapi: '3.1.0',
     info: {
       title: `${SITE_NAME} API`,
       version: API_VERSION,
-      description: `${SITE_DESCRIPTION} Public and read-only: no key is required. Responses carry X-Record-Version; published revisions are immutable. Changes in 1.1 (2026-10-20, additive): simulation and comparison outcomes carry \`epistemic_status\` (supported, partially_supported, support_weakened, not_established, insufficient_evidence, disputed_interpretation) and display labels in that vocabulary, alongside the unchanged legacy \`status\` values; \`headline_confidence\` is deprecated and will be removed in v2; revision 1 of AM-CLAIM-000184 to 000191 now reports status \`provisional\` (no editorial verification was ever recorded for it).`,
+      description: `${SITE_DESCRIPTION} The record API (/api/v1) is public and read-only: no key is required. The Evidence Intelligence endpoints (tag \`evidence\`) accept submissions only as unpublished drafts and proposals, never as changes to a published assessment, and answer 503 on a deployment without a database. Responses carry X-Record-Version; published revisions are immutable. Changes in 1.1 (2026-10-20, additive): simulation and comparison outcomes carry \`epistemic_status\` (supported, partially_supported, support_weakened, not_established, insufficient_evidence, disputed_interpretation) and display labels in that vocabulary, alongside the unchanged legacy \`status\` values; \`headline_confidence\` is deprecated and will be removed in v2; revision 1 of AM-CLAIM-000184 to 000191 now reports status \`provisional\` (no editorial verification was ever recorded for it).`,
     },
     servers: [
       { url: canonicalOrigin() },
       ...legacyOrigins().map((url) => ({ url, description: 'Previous host; still serves the same API.' })),
     ],
+    tags: [{ name: 'evidence', description: 'Evidence Intelligence endpoints, outside v1 versioning.' }],
     paths,
     components: { schemas: components },
     externalDocs: { url: absoluteUrl('/developers'), description: 'Developer documentation' },
