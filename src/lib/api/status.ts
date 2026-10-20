@@ -13,7 +13,7 @@ import { checkRecord } from '@/lib/record/integrity';
 import { RAW_RECORD, getRecord, revisionHash } from '@/lib/record/record';
 import lock from '@/lib/record/revisions.lock.json';
 import { handleMessage, SUPPORTED_PROTOCOL_VERSIONS } from '@/lib/mcp/server';
-import { API_VERSION, canonicalOrigin, canonicalOriginSource, legalContact } from '@/lib/site/config';
+import { API_VERSION, canonicalOrigin, canonicalOriginSource, legacyOrigins, legalContact } from '@/lib/site/config';
 import { dispatchLegacy } from './legacy';
 
 export const StatusV1 = z.object({
@@ -130,6 +130,9 @@ export async function statusReport(
       const source = canonicalOriginSource();
       if (source === 'fallback') {
         return { result: 'warn', detail: `ABRAHAMMOSES_PUBLIC_ORIGIN is not set; documentation falls back to ${origin}.` };
+      }
+      if (servedFrom !== origin && legacyOrigins().includes(servedFrom)) {
+        return { result: 'pass', detail: `Documented origin is ${origin}; this request arrived at ${servedFrom}, a previous host that is kept serving.` };
       }
       if (servedFrom !== origin) {
         return { result: 'warn', detail: `Documented origin is ${origin}, but this request arrived at ${servedFrom}.` };

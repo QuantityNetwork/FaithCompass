@@ -7,7 +7,7 @@ import { ENDPOINTS_V1, SCHEMA_NAMES } from '@/lib/api/v1';
 import { SUPPORTED_PROTOCOL_VERSIONS, handleMessage } from '@/lib/mcp/server';
 import { TOOLS, toolListing } from '@/lib/mcp/tools';
 import { getRecord } from '@/lib/record/record';
-import { API_VERSION, absoluteUrl } from '@/lib/site/config';
+import { API_VERSION, absoluteUrl, legacyOrigins } from '@/lib/site/config';
 
 export const metadata: Metadata = {
   title: 'Developers',
@@ -105,6 +105,20 @@ export default function DevelopersPage() {
             The previously published address <code className="code-inline">{absoluteUrl('/api/public/mcp')}</code> also accepts
             MCP over POST, so clients configured with it keep working; a GET there still returns the service manifest.
           </p>
+          {legacyOrigins().length > 0 && (
+            <p>
+              The record moved to <code className="code-inline">{absoluteUrl('')}</code>. The previous{' '}
+              {legacyOrigins().length === 1 ? 'host' : 'hosts'}{' '}
+              {legacyOrigins().map((o, i) => (
+                <span key={o}>
+                  {i > 0 && ', '}
+                  <code className="code-inline">{o}</code>
+                </span>
+              ))}{' '}
+              still {legacyOrigins().length === 1 ? 'serves' : 'serve'} the MCP server and the REST API directly, without a
+              redirect, so existing configurations keep working. Please update them to the address above.
+            </p>
+          )}
         </div>
         <Code label="Claude Code">{claudeCode}</Code>
         <CopyButton text={claudeCode} label="Copy command" />

@@ -1,3 +1,5 @@
+import { legacyHostRedirects } from './src/lib/site/legacy-redirects.mjs';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -9,6 +11,10 @@ const nextConfig = {
     // Evidence analyses are persisted through the store abstraction, not the
     // Next data cache; keep server actions modest.
     serverActions: { bodySizeLimit: '2mb' },
+  },
+  // Previous hosts → canonical origin. Empty (no redirects) unless ABRAHAMMOSES_REDIRECT_LEGACY_HOSTS=1.
+  async redirects() {
+    return legacyHostRedirects(process.env);
   },
   async headers() {
     return [

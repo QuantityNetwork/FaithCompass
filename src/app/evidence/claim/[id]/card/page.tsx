@@ -32,7 +32,7 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   return (
     <Page narrow>
       <div className="share-card">
-        <Logo height={30} />
+        <Logo height={32} />
         <div className="wordmark__rule" style={{ marginTop: 10 }}>
           Evidence Intelligence
         </div>

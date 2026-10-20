@@ -6,7 +6,7 @@ import { dispatchLegacy } from '@/lib/api/legacy';
 import { ENDPOINTS_V1, dispatchV1, openApiDocument } from '@/lib/api/v1';
 import { ErrorV1 } from '@/lib/api/views';
 import { getRecord } from '@/lib/record/record';
-import { canonicalOrigin, canonicalOriginSource } from '@/lib/site/config';
+import { canonicalOrigin, canonicalOriginSource, legacyOrigins } from '@/lib/site/config';
 
 const ORIGIN = 'https://am.example.test';
 const fixture = (name: string) => JSON.parse(readFileSync(join(__dirname, 'fixtures/live', name), 'utf8'));
@@ -157,6 +157,20 @@ describe('REST v1 — errors, headers and limits', () => {
     const text = JSON.stringify(body) + JSON.stringify((await legacy('mcp')).body) + JSON.stringify((await legacy('connect')).body);
     expect(text).toContain(ORIGIN);
     expect(text).not.toContain('abrahammoses.org');
+  });
+
+  it('lists previous hosts as secondary servers, never in place of the canonical origin', () => {
+    try {
+      process.env.ABRAHAMMOSES_LEGACY_ORIGINS = ` https://old.example.test/ , ${ORIGIN}, not-a-url, https://old.example.test`;
+      expect(legacyOrigins()).toEqual(['https://old.example.test']);
+      const doc = openApiDocument();
+      expect(doc.servers.map((s: { url: string }) => s.url)).toEqual([ORIGIN, 'https://old.example.test']);
+      delete process.env.ABRAHAMMOSES_LEGACY_ORIGINS;
+      expect(legacyOrigins()).toEqual([]);
+      expect(openApiDocument().servers).toEqual([{ url: ORIGIN }]);
+    } finally {
+      delete process.env.ABRAHAMMOSES_LEGACY_ORIGINS;
+    }
   });
 
   it('names a Vercel preview by its own URL, never the production domain', () => {
