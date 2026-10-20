@@ -1,0 +1,38 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "1ce3bc39c8fe351cb8c2f32aac4d3180db60f91e281a271a8af3d31b2b60d857",
+    "prompt_chars": 2751
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_197486f41a",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 681,
+      "completion_tokens": 264
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2104.2903850000002,
+  "usd": 0.0006948000000000001,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Information memorandum (retrieved excerpts)\n[D1#s2] Quillon Industries reports approximately headcount of 803 for FY2024.\n[D1#s3] Quillon Industries reports gross margin of 58.1% for FY2025.\n[D1#s4] Quillon Industries reports EBITDA of $22.6m for FY2024 on a reported basis.\n[D1#s5] For Quillon Industries, the form of consideration is: all-cash consideration.\n\n## D2 Financial due diligence report (retrieved excerpts)\n[D2#s2] Quillon Industries reports headcount of 828 for FY2024.\n[D2#s3] Quillon Industries reports annual customer churn of 8.7% for FY2025.\n[D2#s5] For Quillon Industries, the form of consideration is: part-share consideration with a 12-month lock-up.\n\n## D3 Draft share purchase agreement (retrieved excerpts)\n[D3#s1] Quillon Industries reports gross margin of 47.7% for FY2025.\n[D3#s2] Quillon Industries reports EBITDA of $28.8m for FY2024 on a adjusted (management definition) basis.\n[D3#s3] Quillon Industries reports annual customer churn of 9.8%.\n[D3#s4] Quillon Industries reports revenue of $307.2m for FY2024 on a reported basis.\n\n# Conclusions\nC1: The employees and gross margin of Quillon Industries support the investment committee bid recommendation\nC2: The EBITDA of Quillon Industries supports the investment committee bid recommendation",
+  "extra": {
+    "retrieved": [
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D2#s2",
+      "D2#s3",
+      "D2#s5",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s4"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "a442986f44727b8fbfa7b1d493040039ecb5351dcf52aadefc1f1e3261334374",
+    "prompt_chars": 2806
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_622e44cde8",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"UNRESOLVED_INTERPRETATION\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 681,
+      "completion_tokens": 267
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 1849.393658999994,
+  "usd": 0.0006996000000000001,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Information memorandum (retrieved excerpts)\n[D1#s2] Sorrel Industries reports approximately EBITDA of $43m for FY2024 on a reported basis.\n[D1#s3] Sorrel Industries reports revenue of $620.3m for FY2024 on a reported basis.\n[D1#s4] Sorrel Industries reports headcount of 2071 for FY2025 on a reported basis.\n[D1#s5] For Sorrel Industries, the leakage definition is read as: permitted leakage excludes management bonuses.\n\n## D2 Financial due diligence report (retrieved excerpts)\n[D2#s2] Sorrel Industries reports EBITDA of $44.6m for FY2024 on a reported basis.\n[D2#s5] For Sorrel Industries, the leakage definition is read as: management bonuses are permitted leakage up to $2m.\n\n## D3 Draft share purchase agreement (retrieved excerpts)\n[D3#s1] Sorrel Industries reports revenue of $547.5m for FY2024 on a reported basis.\n[D3#s2] Sorrel Industries reports headcount of 2430 for FY2025 on a adjusted (management definition) basis.\n[D3#s3] Sorrel Industries reports normalised net working capital of $32.2m on a reported basis.\n[D3#s4] Sorrel Industries reports enterprise value of $866.1m for FY2025 on a reported basis.\n\n# Conclusions\nC1: The EBITDA and revenue of Sorrel Industries support the investment committee bid recommendation\nC2: The employees of Sorrel Industries supports the investment committee bid recommendation",
+  "extra": {
+    "retrieved": [
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D2#s2",
+      "D2#s5",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s4"
+    ]
+  }
+}

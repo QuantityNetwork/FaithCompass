@@ -79,3 +79,13 @@ describe('baselines A, B, D are blocked, not estimated', () => {
     expect(parsed.citations!.C1).toEqual([c.spans[0].id]);
   });
 });
+
+describe('committed raw model outputs', () => {
+  it('contain no API key or authorization header', () => {
+    const dir = join(ROOT, 'results');
+    const walk = (d: string): string[] => readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)]));
+    const files = walk(dir);
+    expect(files.length).toBeGreaterThan(50);
+    for (const f of files) expect(readFileSync(f, 'utf8'), f).not.toMatch(/sk-[A-Za-z0-9_-]{16,}|authorization|bearer /i);
+  });
+});

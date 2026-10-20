@@ -1,0 +1,23 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "f365e1216c62dcd4540f126f71cad5ef69201b0d81d866f59749194609594520",
+    "prompt_chars": 3449
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s1\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D3#s1\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s1\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D3#s1\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 866,
+      "completion_tokens": 228
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 1665.4082840000046,
+  "usd": 0.0007112,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Audited financial statements\nAudited financial statements — Meridian Vale Partners (fictional).\nIn this document \"MVPH\" means Meridian Vale Partners. [D1#s1] Meridian Vale Partners reports available liquidity of $31m for FY2024 on a reported basis. [D1#s2] Meridian Vale Partners reports interest cover of 3x for FY2024. [D1#s3] Meridian Vale Partners reports capex of $44.1m for LTM to 30 Jun 2025 on a reported basis. [D1#s4] Meridian AB reports revenue of $459.7m for FY2025 on a reported basis. [D1#s5] For Meridian Vale Partners, the permitted acquisitions basket is read as: capped at the greater of $15m and 20% of EBITDA. The fiscal year of Meridian Vale Partners ends on 30 June.\n\n## D2 Lender presentation\nLender presentation — Meridian Vale Partners (fictional).\n[D2#s1] Meridian Vale Partners reports available liquidity of $23.6m for FY2024 on a reported basis. [D2#s2] Meridian Vale Partners reports interest cover of 3.3x for FY2024. [D2#s3] Meridian Vale Partners reports cash margin of 4.7% for FY2024. [D2#s4] Meridian Vale Partners reports customer concentration of 21.4% for FY2025. [D2#s5] For Meridian Vale Partners, the permitted acquisitions basket is read as: uncapped where pro forma leverage stays below 4.0x.\n\n## D3 Compliance certificate\nCompliance certificate — Meridian Vale Partners (fictional).\n[D3#s1] Meridian Vale Partners reports capex of $35.6m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. [D3#s2] Meridian Ltd reports revenue of $513.9m for FY2025 on a reported basis. [D3#s3] Meridian Vale Partners reports approximately cash margin of 5% for FY2024. [D3#s4] Meridian Vale Partners reports customer concentration of 17.2% for FY2025. \"available liquidity\" has the same meaning as \"liquidity\".\n\n# Conclusions\nC1: The available liquidity and interest cover of Meridian Vale Partners support the credit committee approval\nC2: The capital expenditure of Meridian Vale Partners supports the credit committee approval"
+}
