@@ -55,12 +55,12 @@ const claimId = /\/evidence\/claim\/([A-Za-z0-9._:-]+)/.exec(page.text)?.[1] ?? 
 check('public read needs no registration', true, `analyses list 200; claim under test: ${claimId}`);
 
 let r = await post('/api/evidence/analyze', { query: 'Daniel 12:1' });
-check('anonymous analyze is refused or kept as an unpublished draft', r.status === 503 || (r.status === 202 && r.body?.published === false), `status ${r.status}`);
+check('anonymous analyze is refused or kept as an unpublished draft', r.status === 401 || r.status === 503 || (r.status === 202 && r.body?.published === false), `status ${r.status}`);
 r = await post('/api/evidence/analyze', { query: 'Daniel 12:1', role: 'editorial_admin', publish: true });
 check('analyze rejects role/publish fields in the payload', r.status === 400 || r.status === 429, `status ${r.status}`);
 
 r = await post(`/api/evidence/claims/${claimId}/challenge`, {}, { 'idempotency-key': `smoke-${Date.now()}` });
-check('anonymous challenge is refused or recorded as a proposal only', r.status === 503 || ((r.status === 202 || r.status === 200) && r.body?.publishedChanged === false), `status ${r.status}`);
+check('anonymous challenge is refused or recorded as a proposal only', r.status === 401 || r.status === 503 || ((r.status === 202 || r.status === 200) && r.body?.publishedChanged === false), `status ${r.status}`);
 r = await post(`/api/evidence/claims/${claimId}/challenge`, { role: 'editorial_admin', approved: true }, { 'x-role': 'editorial_admin' });
 check('challenge rejects a forged role in body/header', r.status === 400, `status ${r.status}`);
 r = await post(`/api/evidence/claims/${claimId}/challenge`, {}, { origin: 'https://evil.example' });
