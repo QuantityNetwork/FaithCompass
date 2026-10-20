@@ -1,5 +1,6 @@
 /**
- * firestore.rules against the emulator: the six roles, tenant isolation and the editorial rules.
+ * firestore.rules against the emulator: the six roles, tenant isolation and the editorial rules. With no admin key,
+ * these rules are the only guard on every write.
  * Runs only under `npm run test:firestore` (FIRESTORE_EMULATOR_HOST set); skipped otherwise.
  */
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -16,6 +17,14 @@ const sysadmin = mockToken('sam', { am_role: 'system_admin' });
 const reviewer = mockToken('rev', { am_role: 'scholarly_reviewer' });
 const anonymousAuth = mockToken('anon-1', {}, 'anonymous');
 
+const decisionAudit = (pid: string, by: string, changeType = 'APPROVED') => ({ json: '{}', entityType: 'CLAIM', entityId: 'c1', changeType, actorId: by, proposalId: pid });
+const decided = (by: string, actor: string, auditId: string, status = 'approved') => ({ ...proposal(by), status, decidedBy: actor, decisionAuditId: auditId });
+const approval = (pid: string, by: string, actor: string, auditId: string) => [
+  { path: `evidence_challenge_proposals/${pid}`, data: decided(by, actor, auditId) },
+  { path: `evidence_audit/${auditId}`, data: decisionAudit(pid, actor), exists: false },
+  { path: 'evidence_analyses/a1', data: { json: '{"revised":true}', title: 'A', lastProposalId: pid, lastAuditId: auditId } },
+  { path: `evidence_challenges/ch-${auditId}`, data: { json: '{}', claimId: 'c1', analysisId: 'a1', proposalId: pid }, exists: false },
+];
 const proposal = (by: string | null) => ({ json: '{}', claimId: 'c1', analysisId: 'a1', status: 'proposed', proposedBy: by, proposerRole: 'research_contributor', idempotencyKey: null, decidedBy: null, createdAt: '2026-10-20T00:00:00Z' });
 
 describe.skipIf(!ON_EMULATOR)('Firestore security rules (emulator)', () => {
@@ -39,12 +48,15 @@ describe.skipIf(!ON_EMULATOR)('Firestore security rules (emulator)', () => {
     expect(await client.commit(anonymousAuth, [{ path: 'evidence_challenge_proposals/p-anon', data: proposal('anon-1') }])).toBe(DENIED);
   });
 
-  it('nobody writes the canonical record or the audit log directly, whatever their role', async () => {
+  it('nobody writes the canonical record outside an approval, and nobody edits or deletes the audit log', async () => {
     for (const t of [contributor, editor, admin, sysadmin, reviewer]) {
-      expect(await client.commit(t, [{ path: 'evidence_analyses/a1', data: { json: '{"changed":true}' } }])).toBe(DENIED);
-      expect(await client.commit(t, [{ path: 'evidence_challenges/ch1', data: { json: '{}' } }])).toBe(DENIED);
+      expect(await client.commit(t, [{ path: 'evidence_analyses/a1', data: { json: '{"changed":true}', lastProposalId: null, lastAuditId: null } }])).toBe(DENIED);
+      // Naming an undecided proposal is not enough: the approval must happen in the same batch
+      expect(await client.commit(t, [{ path: 'evidence_analyses/a1', data: { json: '{"changed":true}', lastProposalId: 'p-alice', lastAuditId: 'x1' } }])).toBe(DENIED);
+      expect(await client.commit(t, [{ path: 'evidence_challenges/ch1', data: { json: '{}', proposalId: 'p-alice', claimId: 'c1' } }])).toBe(DENIED);
       expect(await client.commit(t, [{ path: 'evidence_audit/x1', data: { json: 'tampered' } }])).toBe(DENIED);
       expect(await client.commit(t, [{ path: 'evidence_audit/x1', data: {}, del: true }])).toBe(DENIED);
+      expect(await client.commit(t, [{ path: 'evidence_audit/y-' + t.length, data: decisionAudit('p-alice', 'ed'), exists: false }])).toBe(DENIED);
     }
   });
 
@@ -62,48 +74,73 @@ describe.skipIf(!ON_EMULATOR)('Firestore security rules (emulator)', () => {
   });
 
   it('a contributor cannot decide, not even their own proposal', async () => {
+    expect(await client.commit(contributor, approval('p-alice', 'alice', 'alice', 'au1'))).toBe(DENIED);
+    expect(await client.commit(contributor, approval('p-ed', 'ed', 'alice', 'au1'))).toBe(DENIED);
+  });
+
+  it('research_editor: approves another person’s proposal atomically with its audit event and the revised record', async () => {
+    // Without the audit event: denied
+    expect(await client.commit(editor, approval('p-alice', 'alice', 'ed', 'au0').filter((w) => !w.path.startsWith('evidence_audit')))).toBe(DENIED);
+    // Recorded as someone else: denied
+    expect(await client.commit(editor, approval('p-alice', 'alice', 'someone', 'au0'))).toBe(DENIED);
+    // The editor is never the proposer
+    expect(await client.commit(editor, approval('p-ed', 'ed', 'ed', 'au2'))).toBe(DENIED);
+    // Changing the proposal body while deciding: denied
+    const rewritten = approval('p-alice', 'alice', 'ed', 'au3');
+    rewritten[0] = { path: 'evidence_challenge_proposals/p-alice', data: { ...decided('alice', 'ed', 'au3'), json: '{"rewritten":true}' } };
+    expect(await client.commit(editor, rewritten)).toBe(DENIED);
+    // An audit event pointing at another proposal: denied
+    const crossed = approval('p-alice', 'alice', 'ed', 'au6');
+    crossed[1] = { path: 'evidence_audit/au6', data: decisionAudit('p-ed', 'ed'), exists: false };
+    expect(await client.commit(editor, crossed)).toBe(DENIED);
+    // Correct approval: allowed, all four writes together
+    expect(await client.commit(editor, approval('p-alice', 'alice', 'ed', 'au1'))).toBe(OK);
+    // Decided proposals cannot be decided again; the record cannot be rewritten on the old approval; the audit is frozen
+    expect(await client.commit(editor, approval('p-alice', 'alice', 'ed', 'au4'))).toBe(DENIED);
+    expect(await client.commit(editor, [{ path: 'evidence_analyses/a1', data: { json: '{"again":true}', lastProposalId: 'p-alice', lastAuditId: 'au1' } }])).toBe(DENIED);
+    expect(await client.commit(editor, [{ path: 'evidence_audit/au1', data: { ...decisionAudit('p-alice', 'ed'), json: 'edited' } }])).toBe(DENIED);
+    expect(await client.get(editor, 'evidence_challenge_proposals/p-ed')).toBe(OK);
+  });
+
+  it('research_editor: rejects or supersedes with an audit event and without touching the record', async () => {
+    await seed('evidence_challenge_proposals/p-bob', proposal('bob'));
     expect(
-      await client.commit(contributor, [
-        { path: 'evidence_challenge_proposals/p-alice', data: { ...proposal('alice'), status: 'approved', decidedBy: 'alice', decisionAuditId: 'au1' } },
-        { path: 'evidence_audit/au1', data: { json: '{}', entityType: 'PROPOSAL', entityId: 'p-alice', actorId: 'alice' }, exists: false },
+      await client.commit(editor, [
+        { path: 'evidence_challenge_proposals/p-alice', data: decided('alice', 'ed', 'au7', 'rejected') },
+        { path: 'evidence_audit/au7', data: decisionAudit('p-alice', 'ed', 'REJECTED'), exists: false },
+      ]),
+    ).toBe(OK);
+    expect(
+      await client.commit(editor, [
+        { path: 'evidence_challenge_proposals/p-bob', data: decided('bob', 'ed', 'au8', 'superseded') },
+        { path: 'evidence_audit/au8', data: decisionAudit('p-bob', 'ed', 'UPDATED'), exists: false },
+      ]),
+    ).toBe(OK);
+    // A rejection cannot carry a record change
+    await seed('evidence_challenge_proposals/p-carl', proposal('carl'));
+    expect(
+      await client.commit(editor, [
+        { path: 'evidence_challenge_proposals/p-carl', data: decided('carl', 'ed', 'au9', 'rejected') },
+        { path: 'evidence_audit/au9', data: decisionAudit('p-carl', 'ed', 'REJECTED'), exists: false },
+        { path: 'evidence_analyses/a1', data: { json: '{"sneaky":true}', lastProposalId: 'p-carl', lastAuditId: 'au9' } },
       ]),
     ).toBe(DENIED);
   });
 
-  it('research_editor: decides another person’s proposal only with an audit event in the same batch', async () => {
-    const decide = (pid: string, by: string, auditId: string, withAudit = true) => [
-      { path: `evidence_challenge_proposals/${pid}`, data: { ...proposal(pid === 'p-ed' ? 'ed' : 'alice'), status: 'approved', decidedBy: by, decisionAuditId: auditId } },
-      ...(withAudit ? [{ path: `evidence_audit/${auditId}`, data: { json: '{}', entityType: 'PROPOSAL', entityId: pid, actorId: by }, exists: false }] : []),
-    ];
-    // Without the audit event: denied
-    expect(await client.commit(editor, decide('p-alice', 'ed', 'au0', false))).toBe(DENIED);
-    // Recorded as someone else: denied
-    expect(await client.commit(editor, decide('p-alice', 'someone', 'au0'))).toBe(DENIED);
-    // The editor is not the proposer: own proposal denied
-    expect(await client.commit(editor, decide('p-ed', 'ed', 'au2'))).toBe(DENIED);
-    // Changing the proposal body while deciding: denied
-    expect(
-      await client.commit(editor, [
-        { path: 'evidence_challenge_proposals/p-alice', data: { ...proposal('alice'), json: '{"rewritten":true}', status: 'approved', decidedBy: 'ed', decisionAuditId: 'au3' } },
-        { path: 'evidence_audit/au3', data: { json: '{}', entityType: 'PROPOSAL', entityId: 'p-alice', actorId: 'ed' }, exists: false },
-      ]),
-    ).toBe(DENIED);
-    // Correct decision: allowed
-    expect(await client.commit(editor, decide('p-alice', 'ed', 'au1'))).toBe(OK);
-    // Decided proposals cannot be decided again, and the audit event cannot be changed afterwards
-    expect(await client.commit(editor, decide('p-alice', 'ed', 'au4'))).toBe(DENIED);
-    expect(await client.commit(editor, [{ path: 'evidence_audit/au1', data: { json: 'edited', entityType: 'PROPOSAL', entityId: 'p-alice', actorId: 'ed' } }])).toBe(DENIED);
-    expect(await client.get(editor, 'evidence_challenge_proposals/p-ed')).toBe(OK);
+  it('audit events are attributed to their author: own proposal and own draft only', async () => {
+    const ev = (changeType: string, entityType: string, entityId: string, actorId: string) => ({ json: '{}', entityType, entityId, changeType, actorId, proposalId: entityType === 'PROPOSAL' ? entityId : null });
+    expect(await client.commit(contributor, [{ path: 'evidence_audit/e1', data: ev('PROPOSED', 'PROPOSAL', 'p-alice', 'alice'), exists: false }])).toBe(OK);
+    expect(await client.commit(contributor, [{ path: 'evidence_audit/e2', data: ev('PROPOSED', 'PROPOSAL', 'p-ed', 'alice'), exists: false }])).toBe(DENIED);
+    expect(await client.commit(contributor, [{ path: 'evidence_audit/e3', data: ev('PROPOSED', 'PROPOSAL', 'p-alice', 'ed'), exists: false }])).toBe(DENIED);
+    expect(await client.commit(contributor, [{ path: 'evidence_analysis_drafts/d9', data: { json: '{}', createdBy: 'alice' } }])).toBe(OK);
+    expect(await client.commit(contributor, [{ path: 'evidence_audit/e4', data: ev('DRAFTED', 'DRAFT', 'd9', 'alice'), exists: false }])).toBe(OK);
+    expect(await client.commit(editor, [{ path: 'evidence_audit/e5', data: ev('DRAFTED', 'DRAFT', 'd9', 'ed'), exists: false }])).toBe(DENIED);
+    expect(await client.commit(null, [{ path: 'evidence_audit/e6', data: ev('PROPOSED', 'PROPOSAL', 'p-alice', 'alice'), exists: false }])).toBe(DENIED);
   });
 
   it('system_admin: reads the audit log, has no editorial authority', async () => {
     expect(await client.get(sysadmin, 'evidence_audit/x1')).toBe(OK);
-    expect(
-      await client.commit(sysadmin, [
-        { path: 'evidence_challenge_proposals/p-alice', data: { ...proposal('alice'), status: 'approved', decidedBy: 'sam', decisionAuditId: 'au5' } },
-        { path: 'evidence_audit/au5', data: { json: '{}', entityType: 'PROPOSAL', entityId: 'p-alice', actorId: 'sam' }, exists: false },
-      ]),
-    ).toBe(DENIED);
+    expect(await client.commit(sysadmin, approval('p-alice', 'alice', 'sam', 'au5'))).toBe(DENIED);
     expect(await client.commit(sysadmin, [{ path: 'review_assignments/r1', data: { reviewerId: 'rev', status: 'open' } }])).toBe(DENIED);
   });
 

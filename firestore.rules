@@ -2,11 +2,10 @@ rules_version = '2';
 
 // AbrahamMoses security rules (ADR 0001). Project abrahammoses-a0a26.
 //
-// The server writes with the service account (Admin access bypasses these rules) and is the only writer of the
-// canonical record and the audit log. These rules govern every client SDK / REST access with a Firebase ID token:
-// deny by default; anonymous visitors and anonymous-auth users never write; roles come only from the custom claim
-// `am_role`, which only the server can set; the editor is never the proposer; audit events are append-only; tenants
-// are isolated.
+// There is no admin key: every write, from the browser SDK or from a server route forwarding the user's own ID
+// token, is checked here. Deny by default; anonymous visitors and anonymous-auth users never write; roles come only
+// from the custom claim `am_role`; the editor is never the proposer; the canonical record changes only in the same
+// atomic batch as an approved decision and its audit event; audit events are append-only; tenants are isolated.
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() {
@@ -24,32 +23,51 @@ service cloud.firestore {
       return !request.resource.data.diff(resource.data).affectedKeys().hasAny(keys);
     }
 
-    // Canonical record: public read, server-only writes.
+    function proposalPath(pid) { return /databases/$(database)/documents/evidence_challenge_proposals/$(pid); }
+    function auditPath(aid) { return /databases/$(database)/documents/evidence_audit/$(aid); }
+    // True only inside the batch in which this editor approves proposal `pid`, which was undecided before the batch
+    // and was not proposed by them.
+    function approvingNow(pid) {
+      return signedIn() && isEditor()
+        && get(proposalPath(pid)).data.status == 'proposed'
+        && get(proposalPath(pid)).data.proposedBy != uid()
+        && getAfter(proposalPath(pid)).data.status == 'approved'
+        && getAfter(proposalPath(pid)).data.decidedBy == uid();
+    }
+
+    // Canonical record: public read. It changes only with an approval: the revised analysis, the proposal decision
+    // and the audit event in one batch.
     match /evidence_analyses/{id} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if approvingNow(request.resource.data.lastProposalId)
+        && getAfter(proposalPath(request.resource.data.lastProposalId)).data.analysisId == id
+        && existsAfter(auditPath(request.resource.data.lastAuditId));
+      allow delete: if false;
     }
     match /evidence_challenges/{id} {
       allow read: if true;
-      allow write: if false;
+      allow create: if approvingNow(request.resource.data.proposalId)
+        && getAfter(proposalPath(request.resource.data.proposalId)).data.claimId == request.resource.data.claimId;
+      allow update, delete: if false;
     }
 
-    // Proposals (user research): kept apart from the canonical record.
+    // Proposals (user research): kept apart from the canonical record. Signed-in users only.
     match /evidence_challenge_proposals/{id} {
       allow read: if signedIn() && (resource.data.proposedBy == uid() || isEditor());
       allow create: if signedIn()
         && request.resource.data.proposedBy == uid()
         && request.resource.data.status == 'proposed'
         && request.resource.data.decidedBy == null;
-      // A decision: an editor who is not the proposer, recorded as themselves, with an audit event written in the
-      // same batch. Nothing but the decision fields may change.
+      // A decision: an editor who is not the proposer, recorded as themselves, with its audit event in the same
+      // batch. Nothing but the decision fields may change.
       allow update: if signedIn() && isEditor()
         && resource.data.status == 'proposed'
         && resource.data.proposedBy != uid()
-        && request.resource.data.status in ['approved', 'rejected']
+        && request.resource.data.status in ['approved', 'rejected', 'superseded']
         && request.resource.data.decidedBy == uid()
         && unchanged(['json', 'claimId', 'analysisId', 'proposedBy', 'proposerRole', 'idempotencyKey', 'createdAt'])
-        && existsAfter(/databases/$(database)/documents/evidence_audit/$(request.resource.data.decisionAuditId));
+        && existsAfter(auditPath(request.resource.data.decisionAuditId))
+        && getAfter(auditPath(request.resource.data.decisionAuditId)).data.proposalId == id;
       allow delete: if false;
     }
 
@@ -60,13 +78,25 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
-    // Audit log: append-only. A client may only add the audit event of its own proposal decision.
+    // Audit log: append-only, every event attributed to the signed-in user who caused it.
     match /evidence_audit/{id} {
       allow read: if role() in ['editorial_admin', 'system_admin'];
-      allow create: if signedIn() && isEditor()
-        && request.resource.data.actorId == uid()
-        && request.resource.data.entityType == 'PROPOSAL'
-        && getAfter(/databases/$(database)/documents/evidence_challenge_proposals/$(request.resource.data.entityId)).data.decidedBy == uid();
+      allow create: if signedIn() && request.resource.data.actorId == uid() && (
+        // A decision event, in the batch that decides the proposal
+        (request.resource.data.changeType in ['APPROVED', 'REJECTED', 'UPDATED']
+          && isEditor()
+          && get(proposalPath(request.resource.data.proposalId)).data.status == 'proposed'
+          && getAfter(proposalPath(request.resource.data.proposalId)).data.decidedBy == uid())
+        // The proposer's own submission event
+        || (request.resource.data.changeType == 'PROPOSED'
+          && request.resource.data.entityType == 'PROPOSAL'
+          && request.resource.data.proposalId == request.resource.data.entityId
+          && get(proposalPath(request.resource.data.entityId)).data.proposedBy == uid())
+        // The creator's own draft event
+        || (request.resource.data.changeType == 'DRAFTED'
+          && request.resource.data.entityType == 'DRAFT'
+          && get(/databases/$(database)/documents/evidence_analysis_drafts/$(request.resource.data.entityId)).data.createdBy == uid())
+      );
       allow update, delete: if false;
     }
 
@@ -84,7 +114,8 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
-    // Private institutional workspaces (Decision Twin): members only, membership written by the server.
+    // Private institutional workspaces (Decision Twin): members only. No client can write membership; the owner
+    // manages it in the Firebase console (there is no admin key on the server).
     match /tenants/{t} {
       allow read: if isMember(t);
       allow write: if false;

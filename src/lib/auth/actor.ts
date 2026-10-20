@@ -2,7 +2,7 @@
  * Who is making this request.
  *
  * Identity comes from a configured identity provider only. Firebase Auth is the intended one
- * (ADR 0001; AUTH_PROVIDER=firebase with FIREBASE_PROJECT_ID): a bearer ID token is verified
+ * (ADR 0001; AUTH_PROVIDER=firebase with FIREBASE_PROJECT_ID or NEXT_PUBLIC_FIREBASE_PROJECT_ID): a bearer ID token is verified
  * against Google's keys and the role is read from the custom claim `am_role`, which only the
  * server can set. Supabase Auth (AUTH_PROVIDER=supabase) is superseded but still supported: the
  * role is read from `app_metadata.am_role`, which only the service (never the user) can set. `user_metadata`,
@@ -12,6 +12,7 @@
  * With no identity provider configured, every request is an anonymous public reader. No
  * login is simulated.
  */
+import { firebaseProjectId } from '@/lib/firebase/firestore-rest';
 import { verifyFirebaseIdToken } from '@/lib/firebase/id-token';
 import { isRole, type Role } from './roles';
 
@@ -24,11 +25,28 @@ export interface Actor {
   via: 'none' | 'supabase' | 'firebase';
 }
 
+const ID_TOKEN = Symbol('firebase-id-token');
+
+/**
+ * The verified Firebase ID token behind this actor, kept as a non-enumerable symbol property so it is never
+ * serialised into a response or a log. The Firestore store forwards it so the security rules apply to the user.
+ */
+export function idTokenOf(actor: Actor): string | null {
+  return (actor as Actor & { [ID_TOKEN]?: string })[ID_TOKEN] ?? null;
+}
+
+/** Test seam: an actor carrying an ID token (as resolveActor produces for Firebase). */
+export function withIdToken(actor: Actor, token: string): Actor {
+  const a = { ...actor };
+  Object.defineProperty(a, ID_TOKEN, { value: token, enumerable: false });
+  return a;
+}
+
 export const ANONYMOUS: Actor = Object.freeze({ id: null, role: 'public_reader', authenticated: false, via: 'none' });
 
 function provider(): 'firebase' | 'supabase' | null {
   const p = (process.env.AUTH_PROVIDER || '').toLowerCase();
-  if (p === 'firebase' && process.env.FIREBASE_PROJECT_ID) return 'firebase';
+  if (p === 'firebase' && firebaseProjectId()) return 'firebase';
   if (
     p === 'supabase' &&
     Boolean(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL) &&
@@ -55,7 +73,7 @@ async function supabaseVerifier(token: string): Promise<{ id: string; appRole: u
 }
 
 async function firebaseVerifier(token: string): Promise<{ id: string; appRole: unknown } | null> {
-  return verifyFirebaseIdToken(token, process.env.FIREBASE_PROJECT_ID!);
+  return verifyFirebaseIdToken(token, firebaseProjectId()!);
 }
 
 let override: Verifier | null = null;
@@ -77,7 +95,8 @@ export async function resolveActor(request: Request): Promise<Actor> {
     if (!user) return ANONYMOUS;
     // An authenticated user with no assigned role is a contributor, never more.
     const role: Role = isRole(user.appRole) && user.appRole !== 'public_reader' ? user.appRole : 'research_contributor';
-    return { id: user.id, role, authenticated: true, via };
+    const actor: Actor = { id: user.id, role, authenticated: true, via };
+    return via === 'firebase' ? withIdToken(actor, m[1]) : actor;
   } catch {
     return ANONYMOUS;
   }

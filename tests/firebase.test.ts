@@ -5,14 +5,15 @@
  */
 import { generateKeyPairSync, createSign } from 'node:crypto';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { resolveActor, setTokenVerifier } from '@/lib/auth/actor';
-import { FirestoreConfigError, FirestoreRest, firestoreConfigFromEnv, firestoreConfigured, normalisePrivateKey } from '@/lib/firebase/firestore-rest';
+import { idTokenOf, resolveActor, setTokenVerifier } from '@/lib/auth/actor';
+import { FirestoreConfigError, FirestoreRest, firestoreConfigFromEnv, firestoreConfigured } from '@/lib/firebase/firestore-rest';
+import { firebaseWebConfig } from '@/lib/firebase/web-config';
 import { verifyFirebaseIdToken } from '@/lib/firebase/id-token';
 import { getStore, setStore } from '@/lib/evidence/store';
 import { FirestoreEvidenceStore } from '@/lib/evidence/store/firestore-store';
 import { MemoryEvidenceStore } from '@/lib/evidence/store/memory-store';
 
-const KEYS = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIRESTORE_EMULATOR_HOST', 'EVIDENCE_STORE', 'VERCEL', 'AUTH_PROVIDER', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'] as const;
+const KEYS = ['FIREBASE_PROJECT_ID', 'NEXT_PUBLIC_FIREBASE_PROJECT_ID', 'NEXT_PUBLIC_FIREBASE_API_KEY', 'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN', 'NEXT_PUBLIC_FIREBASE_APP_ID', 'FIRESTORE_EMULATOR_HOST', 'EVIDENCE_STORE', 'VERCEL', 'AUTH_PROVIDER', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'] as const;
 let saved: Record<string, string | undefined>;
 beforeEach(() => {
   saved = Object.fromEntries(KEYS.map((k) => [k, process.env[k]]));
@@ -29,43 +30,38 @@ afterEach(() => {
 });
 
 const { privateKey, publicKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
-const PEM = privateKey.export({ format: 'pem', type: 'pkcs8' }).toString();
 
-describe('Firebase configuration', () => {
-  it('uses exactly FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL and FIREBASE_PRIVATE_KEY, and accepts \\n escapes', () => {
-    const escaped = PEM.replace(/\n/g, '\\n');
-    const c = firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'abrahammoses-a0a26', FIREBASE_CLIENT_EMAIL: 'sa@abrahammoses-a0a26.iam.gserviceaccount.com', FIREBASE_PRIVATE_KEY: `"${escaped}"` });
-    expect(c.projectId).toBe('abrahammoses-a0a26');
-    expect(c.privateKey).toBe(PEM.trim());
-    expect(normalisePrivateKey(PEM)).toBe(PEM.trim());
+describe('Firebase configuration (no admin key)', () => {
+  it('needs only the project id, from FIREBASE_PROJECT_ID or NEXT_PUBLIC_FIREBASE_PROJECT_ID', () => {
+    expect(firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'abrahammoses-a0a26' })).toEqual({ projectId: 'abrahammoses-a0a26', emulatorHost: null });
+    expect(firestoreConfigFromEnv({ NEXT_PUBLIC_FIREBASE_PROJECT_ID: 'abrahammoses-a0a26' }).projectId).toBe('abrahammoses-a0a26');
+    expect(() => firestoreConfigFromEnv({})).toThrow(FirestoreConfigError);
+    expect(firestoreConfigured({})).toBe(false);
   });
 
-  it('names missing variables without echoing any value', () => {
-    try {
-      firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'abrahammoses-a0a26', FIREBASE_PRIVATE_KEY: PEM });
-      throw new Error('expected a config error');
-    } catch (e) {
-      expect(e).toBeInstanceOf(FirestoreConfigError);
-      expect((e as Error).message).toBe('Firestore store selected but not configured. Missing: FIREBASE_CLIENT_EMAIL.');
-      expect((e as Error).message).not.toContain('PRIVATE KEY-----');
-    }
+  it('reads the public web config from NEXT_PUBLIC_FIREBASE_* and reports what is missing', () => {
+    expect(firebaseWebConfig({})).toEqual({ ok: false, missing: ['NEXT_PUBLIC_FIREBASE_API_KEY', 'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN', 'NEXT_PUBLIC_FIREBASE_PROJECT_ID', 'NEXT_PUBLIC_FIREBASE_APP_ID'] });
+    const ok = firebaseWebConfig({ NEXT_PUBLIC_FIREBASE_API_KEY: 'k', NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: 'abrahammoses-a0a26.firebaseapp.com', NEXT_PUBLIC_FIREBASE_PROJECT_ID: 'abrahammoses-a0a26', NEXT_PUBLIC_FIREBASE_APP_ID: '1:2:web:3' });
+    expect(ok).toMatchObject({ ok: true, config: { projectId: 'abrahammoses-a0a26', authDomain: 'abrahammoses-a0a26.firebaseapp.com' } });
   });
 
-  it('the emulator needs only the project id', () => {
-    expect(firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'abrahammoses-a0a26', FIRESTORE_EMULATOR_HOST: '127.0.0.1:8085' }).emulatorHost).toBe('127.0.0.1:8085');
-    expect(firestoreConfigured({ FIREBASE_PROJECT_ID: 'p' })).toBe(false);
+  it('sends the user’s own ID token, never an admin credential, and refuses the emulator owner token in production', async () => {
+    const seen: (string | undefined)[] = [];
+    const fake = async (_url: string, init?: RequestInit) => {
+      seen.push((init?.headers as Record<string, string>).authorization);
+      return new Response('', { status: 404 });
+    };
+    const db = new FirestoreRest({ projectId: 'abrahammoses-a0a26', emulatorHost: null }, null, fake);
+    await db.get('evidence_analyses', 'a');
+    await db.as('user-id-token').get('evidence_analyses', 'a');
+    expect(seen).toEqual([undefined, 'Bearer user-id-token']);
+    expect(() => new FirestoreRest({ projectId: 'abrahammoses-a0a26', emulatorHost: null }, 'owner')).toThrow(/emulator only/);
   });
 });
 
 describe('store selection with Firebase', () => {
-  const creds = () => {
+  it('on a deployed runtime, a project id alone keeps the site read-only until EVIDENCE_STORE=firestore', () => {
     process.env.FIREBASE_PROJECT_ID = 'abrahammoses-a0a26';
-    process.env.FIREBASE_CLIENT_EMAIL = 'sa@abrahammoses-a0a26.iam.gserviceaccount.com';
-    process.env.FIREBASE_PRIVATE_KEY = PEM;
-  };
-
-  it('on a deployed runtime, credentials alone keep the site read-only until EVIDENCE_STORE=firestore', () => {
-    creds();
     process.env.VERCEL = '1';
     expect(getStore()).toBeInstanceOf(MemoryEvidenceStore);
     setStore(null);
@@ -73,36 +69,18 @@ describe('store selection with Firebase', () => {
     expect(getStore()).toBeInstanceOf(FirestoreEvidenceStore);
   });
 
-  it('selects Firestore in development when configured, and raises when forced without credentials', () => {
-    creds();
-    expect(getStore()).toBeInstanceOf(FirestoreEvidenceStore);
-    setStore(null);
-    for (const k of ['FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY'] as const) delete process.env[k];
+  it('raises when Firestore is forced without a project id', () => {
     process.env.EVIDENCE_STORE = 'firestore';
     expect(() => getStore()).toThrow(FirestoreConfigError);
   });
-});
 
-describe('service-account access token', () => {
-  it('signs an RS256 assertion for the datastore scope, caches the token and never sends the key', async () => {
-    const calls: { url: string; body: string }[] = [];
-    const fake = async (url: string, init?: RequestInit) => {
-      calls.push({ url, body: String(init?.body ?? '') });
-      if (url.startsWith('https://oauth2.googleapis.com/token')) return new Response(JSON.stringify({ access_token: 'tok', expires_in: 3600 }), { status: 200 });
-      expect((init?.headers as Record<string, string>).authorization).toBe('Bearer tok');
-      return new Response('', { status: 404 });
-    };
-    const db = new FirestoreRest({ projectId: 'abrahammoses-a0a26', emulatorHost: null, clientEmail: 'sa@x.iam.gserviceaccount.com', privateKey: PEM }, fake);
-    expect(await db.get('evidence_analyses', 'a')).toBeNull();
-    expect(await db.get('evidence_analyses', 'b')).toBeNull();
-    const tokenCalls = calls.filter((c) => c.url.startsWith('https://oauth2.googleapis.com/token'));
-    expect(tokenCalls).toHaveLength(1);
-    const assertion = new URLSearchParams(tokenCalls[0].body).get('assertion')!;
-    const [h, p] = assertion.split('.').slice(0, 2).map((x) => JSON.parse(Buffer.from(x, 'base64url').toString()));
-    expect(h.alg).toBe('RS256');
-    expect(p).toMatchObject({ iss: 'sa@x.iam.gserviceaccount.com', scope: 'https://www.googleapis.com/auth/datastore', aud: 'https://oauth2.googleapis.com/token' });
-    expect(calls.map((c) => c.body).join()).not.toContain('PRIVATE KEY');
-    expect(calls[1].url).toBe('https://firestore.googleapis.com/v1/projects/abrahammoses-a0a26/databases/(default)/documents/evidence_analyses/a');
+  it('the Firestore store refuses attributed writes without a user and keeps curated seeds in the overlay', async () => {
+    const store = new FirestoreEvidenceStore(new FirestoreRest({ projectId: 'p', emulatorHost: null }, null, async () => new Response('', { status: 404 })));
+    expect(store.requiresIdentity).toBe(true);
+    await expect(store.saveDraft({ id: 'd', status: 'draft', createdBy: null, creatorRole: 'public_reader', analysis: {} as never, createdAt: 'x' })).rejects.toThrow();
+    await expect(
+      store.appendAudit({ id: 'a', entityType: 'PROPOSAL', entityId: 'p', changeType: 'PROPOSED', oldValue: null, newValue: null, reason: 'r', modelProvider: null, modelVersion: null, promptVersion: null, timestamp: 't', actorId: 'u1' }),
+    ).rejects.toThrow(/signed-in user/);
   });
 });
 
@@ -142,7 +120,11 @@ describe('Firebase ID tokens', () => {
     process.env.AUTH_PROVIDER = 'firebase';
     process.env.FIREBASE_PROJECT_ID = 'abrahammoses-a0a26';
     setTokenVerifier(async () => ({ id: 'u1', appRole: undefined }));
-    expect(await resolveActor(req)).toEqual({ id: 'u1', role: 'research_contributor', authenticated: true, via: 'firebase' });
+    const actor = await resolveActor(req);
+    expect(actor).toEqual({ id: 'u1', role: 'research_contributor', authenticated: true, via: 'firebase' });
+    // The verified token rides along for Firestore, but is never serialised
+    expect(idTokenOf(actor)).toBe('a'.repeat(40));
+    expect(JSON.stringify(actor)).not.toContain('aaaa');
     setTokenVerifier(async () => ({ id: 'u1', appRole: 'research_editor' }));
     expect((await resolveActor(req)).role).toBe('research_editor');
   });

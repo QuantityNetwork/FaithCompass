@@ -17,7 +17,25 @@ import type {
  * separate collections. Nothing a visitor submits is written to the canonical
  * collection; see src/lib/evidence/revisions.ts.
  */
+/** One editorial decision, applied atomically by stores that support it (Firestore, whose rules require it). */
+export interface DecisionCommit {
+  proposalId: string;
+  from: ProposalStatus;
+  patch: Pick<ChallengeProposal, 'status' | 'decidedBy' | 'decidedRole' | 'decidedAt' | 'decisionReason'>;
+  audit: AuditRecord;
+  /** On approval: the revised analysis, applied only if the analysis is still at `expectedUpdatedAt`. */
+  analysis?: { next: Analysis; expectedUpdatedAt: string };
+  challenge?: AssessmentChallenge;
+}
+
 export interface EvidenceStore {
+  /** True when writes are made with the acting user's identity (bind with `forActor`); anonymous actors cannot write. */
+  readonly requiresIdentity?: boolean;
+  /** The store acting as this user. Stores without per-user identity return themselves. */
+  forActor?(actor: import('@/lib/auth/actor').Actor): EvidenceStore;
+  /** Atomic decision; when present, revisions.ts uses it instead of the separate calls below. */
+  commitDecision?(decision: DecisionCommit): Promise<boolean>;
+
   /**
    * True only when writes survive the current process. A store that would lose
    * a write on the next cold start must say so, so routes refuse rather than

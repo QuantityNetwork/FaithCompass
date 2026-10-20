@@ -6,8 +6,14 @@ export const HOST = process.env.FIRESTORE_EMULATOR_HOST || '';
 export const ON_EMULATOR = Boolean(HOST);
 export const DOCS = `http://${HOST}/v1/projects/${PROJECT}/databases/(default)/documents`;
 
+/** Unauthenticated client (public reads). */
+export function publicDb(): FirestoreRest {
+  return new FirestoreRest({ projectId: PROJECT, emulatorHost: HOST });
+}
+
+/** Emulator-only rules bypass, for seeding and inspecting test data. Never possible against a real project. */
 export function adminDb(): FirestoreRest {
-  return new FirestoreRest({ projectId: PROJECT, emulatorHost: HOST, clientEmail: null, privateKey: null });
+  return new FirestoreRest({ projectId: PROJECT, emulatorHost: HOST }, 'owner');
 }
 
 export async function clearEmulator(): Promise<void> {
@@ -35,7 +41,7 @@ export function mockToken(uid: string, claims: Record<string, unknown> = {}, pro
 type Token = string | null;
 
 function enc(v: unknown): unknown {
-  if (v === null) return { nullValue: null };
+  if (v === null || v === undefined) return { nullValue: null };
   if (typeof v === 'string') return { stringValue: v };
   if (typeof v === 'boolean') return { booleanValue: v };
   if (typeof v === 'number') return { integerValue: String(v) };

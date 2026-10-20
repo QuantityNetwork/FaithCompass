@@ -177,7 +177,7 @@ export async function statusReport(
       return {
         result: 'warn',
         detail: fb
-          ? 'Firebase credentials (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY) are set but Firestore is not enabled (EVIDENCE_STORE=firestore); the site is read-only.'
+          ? 'A Firebase project is configured but Firestore is not enabled (EVIDENCE_STORE=firestore); the site is read-only.'
           : 'No database configured; the site is read-only and every write answers 503.',
       };
     }),

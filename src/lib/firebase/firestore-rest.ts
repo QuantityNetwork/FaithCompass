@@ -1,17 +1,15 @@
 /**
- * Minimal Cloud Firestore REST client (server only).
+ * Minimal Cloud Firestore REST client (server side), with no admin credentials.
  *
- * No SDK: the store needs get, query and atomic commits with preconditions, which the v1 REST API provides with
- * plain fetch. Credentials come only from the server environment:
+ * There is no service-account key (ADR 0001). Every request is made either unauthenticated (public reads) or with the
+ * signed-in user's own Firebase Auth ID token, so Firestore evaluates firestore.rules for that user exactly as it
+ * does for the client SDK. The server can therefore never do more than the user could do directly.
  *
- *   FIREBASE_PROJECT_ID     project id (not secret), e.g. abrahammoses-a0a26
- *   FIREBASE_CLIENT_EMAIL   service account email
- *   FIREBASE_PRIVATE_KEY    service account private key (PEM; "\n" escapes are accepted)
+ *   FIREBASE_PROJECT_ID (or NEXT_PUBLIC_FIREBASE_PROJECT_ID)   project id (not secret), e.g. abrahammoses-a0a26
+ *   FIRESTORE_EMULATOR_HOST                                    local emulator (tests); never set in deployments
  *
- * With FIRESTORE_EMULATOR_HOST set, requests go to the local emulator and no credentials are used. The private key
- * and access tokens are never logged or returned.
+ * ID tokens are never logged or returned.
  */
-import { createSign } from 'node:crypto';
 
 export class FirestoreConfigError extends Error {
   constructor(missing: string[]) {
@@ -34,36 +32,21 @@ export class FirestoreRequestError extends Error {
 export interface FirestoreConfig {
   projectId: string;
   emulatorHost: string | null;
-  clientEmail: string | null;
-  privateKey: string | null;
 }
 
-/** Vercel stores multi-line values either verbatim or with literal "\n"; accept both, and stray quotes. */
-export function normalisePrivateKey(raw: string): string {
-  return raw.trim().replace(/^"|"$/g, '').replace(/\\n/g, '\n').replace(/\r/g, '').trim();
+export function firebaseProjectId(env: Record<string, string | undefined> = process.env): string | null {
+  return env.FIREBASE_PROJECT_ID || env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || null;
 }
 
 export function firestoreConfigFromEnv(env: Record<string, string | undefined> = process.env): FirestoreConfig {
-  const projectId = env.FIREBASE_PROJECT_ID || null;
-  const emulatorHost = env.FIRESTORE_EMULATOR_HOST || null;
-  const missing: string[] = [];
-  if (!projectId) missing.push('FIREBASE_PROJECT_ID');
-  if (!emulatorHost) {
-    if (!env.FIREBASE_CLIENT_EMAIL) missing.push('FIREBASE_CLIENT_EMAIL');
-    if (!env.FIREBASE_PRIVATE_KEY) missing.push('FIREBASE_PRIVATE_KEY');
-  }
-  if (missing.length) throw new FirestoreConfigError(missing);
-  return {
-    projectId: projectId!,
-    emulatorHost,
-    clientEmail: emulatorHost ? null : env.FIREBASE_CLIENT_EMAIL!,
-    privateKey: emulatorHost ? null : normalisePrivateKey(env.FIREBASE_PRIVATE_KEY!),
-  };
+  const projectId = firebaseProjectId(env);
+  if (!projectId) throw new FirestoreConfigError(['FIREBASE_PROJECT_ID (or NEXT_PUBLIC_FIREBASE_PROJECT_ID)']);
+  return { projectId, emulatorHost: env.FIRESTORE_EMULATOR_HOST || null };
 }
 
-/** True when the environment selects Firestore: a project id plus either the emulator or service credentials. */
+/** True when a Firebase project id is configured. */
 export function firestoreConfigured(env: Record<string, string | undefined> = process.env): boolean {
-  return Boolean(env.FIREBASE_PROJECT_ID && (env.FIRESTORE_EMULATOR_HOST || (env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY)));
+  return Boolean(firebaseProjectId(env));
 }
 
 /* ---------- value encoding ---------- */
@@ -129,16 +112,27 @@ export type FsFilter = { field: string; op: 'EQUAL' | 'ARRAY_CONTAINS'; value: u
 
 export type Fetch = (input: string, init?: RequestInit) => Promise<Response>;
 
-const SCOPE = 'https://www.googleapis.com/auth/datastore';
-const TOKEN_URL = 'https://oauth2.googleapis.com/token';
-
 export class FirestoreRest {
-  private token: { value: string; exp: number } | null = null;
-
+  /**
+   * @param idToken the signed-in user's Firebase ID token, or null for an unauthenticated request. The literal
+   *   'owner' bypasses rules and is accepted only by the emulator (test seeding); it is refused otherwise.
+   */
   constructor(
     readonly config: FirestoreConfig,
+    private readonly idToken: string | null = null,
     private readonly fetchImpl: Fetch = (i, init) => fetch(i, init),
-  ) {}
+  ) {
+    if (idToken === 'owner' && !config.emulatorHost) throw new Error('The owner token is for the emulator only.');
+  }
+
+  /** The same client acting as another user (or unauthenticated). */
+  as(idToken: string | null): FirestoreRest {
+    return new FirestoreRest(this.config, idToken, this.fetchImpl);
+  }
+
+  get authenticated(): boolean {
+    return this.idToken !== null;
+  }
 
   get documentsPath(): string {
     return `projects/${this.config.projectId}/databases/(default)/documents`;
@@ -148,29 +142,10 @@ export class FirestoreRest {
     return this.config.emulatorHost ? `http://${this.config.emulatorHost}/v1` : 'https://firestore.googleapis.com/v1';
   }
 
-  /** OAuth2 access token from a service-account JWT (RFC 7523), cached until shortly before expiry. */
-  private async authorization(): Promise<string> {
-    if (this.config.emulatorHost) return 'Bearer owner';
-    const now = Math.floor(Date.now() / 1000);
-    if (this.token && this.token.exp - 60 > now) return `Bearer ${this.token.value}`;
-    const b64 = (o: unknown) => Buffer.from(JSON.stringify(o)).toString('base64url');
-    const unsigned = `${b64({ alg: 'RS256', typ: 'JWT' })}.${b64({ iss: this.config.clientEmail, scope: SCOPE, aud: TOKEN_URL, iat: now, exp: now + 3600 })}`;
-    const signature = createSign('RSA-SHA256').update(unsigned).sign(this.config.privateKey!).toString('base64url');
-    const res = await this.fetchImpl(TOKEN_URL, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer', assertion: `${unsigned}.${signature}` }).toString(),
-    });
-    if (!res.ok) throw new FirestoreRequestError(res.status, 'UNAUTHENTICATED', `Service account token request failed (HTTP ${res.status}).`);
-    const body = (await res.json()) as { access_token: string; expires_in: number };
-    this.token = { value: body.access_token, exp: now + body.expires_in };
-    return `Bearer ${body.access_token}`;
-  }
-
   private async call(method: string, path: string, body?: unknown): Promise<Response> {
     const res = await this.fetchImpl(`${this.base}/${path}`, {
       method,
-      headers: { authorization: await this.authorization(), 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...(this.idToken ? { authorization: `Bearer ${this.idToken}` } : {}) },
       body: body === undefined ? undefined : JSON.stringify(body),
     });
     return res;
@@ -215,6 +190,7 @@ export class FirestoreRest {
       /* ignore */
     }
     if (status === 'FAILED_PRECONDITION' || status === 'ALREADY_EXISTS' || status === 'NOT_FOUND' || status === 'ABORTED') return false;
+    if (res.status === 403) throw new FirestoreRequestError(403, 'PERMISSION_DENIED', 'Firestore refused the write under the security rules.');
     return FirestoreRest.fail(res, 'commit');
   }
 

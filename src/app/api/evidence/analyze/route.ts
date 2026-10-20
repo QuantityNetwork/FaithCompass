@@ -10,7 +10,7 @@ function publicProviderStatus() {
   return { configured, active, degraded, reason };
 }
 import { runAnalysis } from '@/lib/evidence/pipeline';
-import { canPersist, getStore, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
+import { canPersist, getStore, storeFor, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { guardWrite } from '@/lib/security/write-guard';
 import { NoAnalysisAvailableError, ProviderUnavailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
     const draftId = randomUUID();
     const now = new Date().toISOString();
-    const store = getStore();
+    const store = storeFor(gate.actor);
     await store.saveDraft({
       id: draftId,
       status: 'draft',

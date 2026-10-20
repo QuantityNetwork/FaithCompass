@@ -18,9 +18,9 @@ function isDeployedRuntime(): boolean {
 /**
  * Pick a store.
  *
- * Firestore (ADR 0001) when FIREBASE_PROJECT_ID plus service credentials
- * (FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY) or FIRESTORE_EMULATOR_HOST are
- * set in local development and CI, and on a deployed runtime only with
+ * Firestore (ADR 0001; no admin key, writes carry the user's ID token) when a
+ * project id (FIREBASE_PROJECT_ID or NEXT_PUBLIC_FIREBASE_PROJECT_ID) is set in
+ * local development and CI, and on a deployed runtime only with
  * EVIDENCE_STORE=firestore (which raises if they are not). Supabase is
  * superseded but still selected when only it is configured, or with
  * EVIDENCE_STORE=supabase. EVIDENCE_STORE=json and =memory force the file and
@@ -68,4 +68,10 @@ export const NOT_PERSISTED_MESSAGE =
 /** Test seam. */
 export function setStore(store: EvidenceStore | null): void {
   instance = store;
+}
+
+/** The active store acting as this actor (Firestore writes carry the actor's own ID token). */
+export function storeFor(actor: import('@/lib/auth/actor').Actor): EvidenceStore {
+  const store = getStore();
+  return store.forActor ? store.forActor(actor) : store;
 }
