@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import type { AssessmentChallenge } from '@/lib/evidence/schema';
 import { epistemicFromScore } from '@/lib/evidence/format';
 import { EPISTEMIC_META } from '@/lib/epistemic';
@@ -9,9 +8,10 @@ import { EPISTEMIC_META } from '@/lib/epistemic';
 /**
  * Challenge Assessment.
  *
- * Runs an adversarial pass over the claim and reports what moved. The previous
- * score stays visible next to the revised one — an assessment that quietly
- * changed its mind would be worth less than one that never changed at all.
+ * Submits an adversarial pass over the claim as a *proposal* for editorial
+ * review. It does not change the published assessment: only an editor other
+ * than the proposer can approve that. `history` lists challenges that editors
+ * have approved, with the previous score kept visible next to the revised one.
  */
 export function ChallengePanel({
   claimId,
@@ -23,20 +23,22 @@ export function ChallengePanel({
   /** Interpretive or theological claim: show the outcome in words, never as figures. */
   wordsOnly?: boolean;
 }) {
-  const router = useRouter();
   const [running, setRunning] = useState(false);
-  const [result, setResult] = useState<AssessmentChallenge | null>(null);
+  const [submitted, setSubmitted] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function run() {
     setRunning(true);
     setError(null);
     try {
-      const res = await fetch(`/api/evidence/claims/${claimId}/challenge`, { method: 'POST' });
+      const res = await fetch(`/api/evidence/claims/${encodeURIComponent(claimId)}/challenge`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'idempotency-key': crypto.randomUUID() },
+        body: '{}',
+      });
       const body = await res.json();
       if (!res.ok) throw new Error(body?.error ?? `Request failed (${res.status})`);
-      setResult(body.challenge as AssessmentChallenge);
-      router.refresh();
+      setSubmitted(body?.message ?? 'Your challenge was recorded as a proposal for editorial review.');
     } catch (e) {
       setError(e instanceof Error ? e.message : 'The challenge could not be completed.');
     } finally {
@@ -44,7 +46,7 @@ export function ChallengePanel({
     }
   }
 
-  const shown = result ? [result, ...history] : history;
+  const shown = history;
 
   return (
     <div className="panel panel--inset">
@@ -52,13 +54,20 @@ export function ChallengePanel({
       <p className="small muted" style={{ maxWidth: '62ch', marginTop: 0 }}>
         Identify the weakest assumptions in the current assessment, construct the strongest
         reasonable opposing interpretation, re-examine source quality and independence, and
-        re-score. A challenge may raise confidence as well as lower it. The previous score is
-        preserved.
+        re-score. A challenge is submitted as a proposal for editorial review; the published
+        assessment changes only if an editor approves it. A challenge may raise confidence as
+        well as lower it. The previous score is always preserved.
       </p>
 
-      <button className="button" onClick={run} disabled={running}>
-        {running ? 'Challenging…' : 'Challenge Assessment'}
+      <button className="button" onClick={run} disabled={running || submitted !== null}>
+        {running ? 'Submitting…' : submitted ? 'Proposal submitted' : 'Challenge Assessment'}
       </button>
+
+      {submitted ? (
+        <p className="small" role="status" style={{ marginTop: 16 }}>
+          {submitted}
+        </p>
+      ) : null}
 
       {error ? (
         <p className="small" style={{ color: 'var(--rust-text)', marginTop: 16 }}>

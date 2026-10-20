@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { runAnalysis } from '@/lib/evidence/pipeline';
-import { challengeClaim } from '@/lib/evidence/challenge';
+import { computeChallenge } from '@/lib/evidence/challenge';
+import type { Analysis } from '@/lib/evidence/schema';
 import { CorpusReasoningProvider } from '@/lib/evidence/providers/corpus';
 import { NoAnalysisAvailableError } from '@/lib/evidence/providers/types';
 import { setStore } from '@/lib/evidence/store';
@@ -210,64 +211,48 @@ describe('persistence and audit', () => {
   });
 });
 
-describe('challenge assessment', () => {
+describe('challenge assessment (computation only; see tests/security.test.ts for the workflow)', () => {
+  const challengeOf = (analysis: Analysis, claimId: string) =>
+    computeChallenge(analysis, analysis.claims.findIndex((c) => c.id === claimId), provider);
+
   it('records the previous score alongside the revised one', async () => {
-    const store = new MemoryStore();
-    setStore(store);
-    const { analysis } = await analyse(DANIEL_12_1, true);
+    const { analysis } = await analyse(DANIEL_12_1);
     const claim = analysis!.claims[0];
 
-    const outcome = await challengeClaim(claim.id, provider);
-    expect(outcome).not.toBeNull();
-    expect(outcome!.challenge.previousScore).toBe(claim.overallConfidence);
-    expect(outcome!.challenge.previousLabel).toBe(claim.confidenceLabel);
-    expect(['LOWERED', 'RAISED', 'UNCHANGED']).toContain(outcome!.challenge.outcome);
+    const outcome = await challengeOf(analysis!, claim.id);
+    expect(outcome.challenge.previousScore).toBe(claim.overallConfidence);
+    expect(outcome.challenge.previousLabel).toBe(claim.confidenceLabel);
+    expect(['LOWERED', 'RAISED', 'UNCHANGED']).toContain(outcome.challenge.outcome);
   });
 
-  it('writes the revision back to the claim and into the audit trail', async () => {
+  it('computes a revision without writing anything', async () => {
     const store = new MemoryStore();
     setStore(store);
     const { analysis } = await analyse(DANIEL_12_1, true);
-    const claim = analysis!.claims[0];
+    const before = await store.getAnalysis(analysis!.id);
 
-    const outcome = await challengeClaim(claim.id, provider);
-    const updated = await store.getAnalysis(analysis!.id);
-    expect(updated!.claims[0].overallConfidence).toBe(outcome!.challenge.revisedScore);
-
-    const audit = await store.listAudit(claim.id);
-    const challenged = audit.find((r) => r.changeType === 'CHALLENGED')!;
-    expect(challenged).toBeDefined();
-    expect(challenged.oldValue).toEqual({
-      score: claim.overallConfidence,
-      label: claim.confidenceLabel,
-    });
+    const outcome = await challengeOf(before!, analysis!.claims[0].id);
+    expect(outcome.updatedClaim.overallConfidence).toBe(outcome.challenge.revisedScore);
+    expect(await store.getAnalysis(analysis!.id)).toEqual(before);
+    expect(await store.listChallenges(analysis!.claims[0].id)).toHaveLength(0);
   });
 
   it('names the strongest opposing case and the weakest assumptions', async () => {
-    const store = new MemoryStore();
-    setStore(store);
-    const { analysis } = await analyse(DANIEL_12_1, true);
+    const { analysis } = await analyse(DANIEL_12_1);
     const christ = analysis!.claims.find((c) => /Jesus Christ/.test(c.statement))!;
 
-    const outcome = await challengeClaim(christ.id, provider);
-    expect(outcome!.challenge.weakestAssumptions.length).toBeGreaterThan(0);
-    expect(outcome!.challenge.strongestOpposingCase.length).toBeGreaterThan(40);
+    const outcome = await challengeOf(analysis!, christ.id);
+    expect(outcome.challenge.weakestAssumptions.length).toBeGreaterThan(0);
+    expect(outcome.challenge.strongestOpposingCase.length).toBeGreaterThan(40);
   });
 
   it('keeps an unscorable claim unscorable through a challenge', async () => {
-    const store = new MemoryStore();
-    setStore(store);
-    const { analysis } = await analyse(PONTIUS_PILATE, true);
+    const { analysis } = await analyse(PONTIUS_PILATE);
     const metaphysical = analysis!.claims.find((c) => c.claimType === 'METAPHYSICAL')!;
 
-    const outcome = await challengeClaim(metaphysical.id, provider);
-    expect(outcome!.challenge.revisedScore).toBeNull();
-    expect(outcome!.updatedClaim.confidenceLabel).toBe('NOT DIRECTLY SCORABLE');
-  });
-
-  it('returns null for a claim that does not exist', async () => {
-    setStore(new MemoryStore());
-    expect(await challengeClaim('no-such-claim', provider)).toBeNull();
+    const outcome = await challengeOf(analysis!, metaphysical.id);
+    expect(outcome.challenge.revisedScore).toBeNull();
+    expect(outcome.updatedClaim.confidenceLabel).toBe('NOT DIRECTLY SCORABLE');
   });
 });
 

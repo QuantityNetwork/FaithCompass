@@ -11,6 +11,10 @@
  * unsupported assumptions than the original reading, that is a finding. And the
  * previous score is preserved in the audit history, so a reader can always see
  * what changed, when, under which model and which prompt version.
+ *
+ * This module only computes. It writes nothing: a challenge becomes a proposal
+ * (src/lib/evidence/revisions.ts) and changes the published assessment only
+ * when an editor other than its author approves it.
  */
 
 import { randomUUID } from 'node:crypto';
@@ -23,7 +27,6 @@ import {
 import { computeScore, type ScorableEvidence } from './scoring';
 import { getReasoningProvider } from './providers/registry';
 import type { EvidenceReasoningProvider } from './providers/types';
-import { getStore } from './store';
 import { PROMPT_VERSION } from './prompts';
 import { filterCorpus } from './corpus';
 
@@ -34,16 +37,22 @@ export interface ChallengeOutcome {
   updatedClaim: Claim;
 }
 
-export async function challengeClaim(
-  claimId: string,
-  provider: EvidenceReasoningProvider = getReasoningProvider(),
-): Promise<ChallengeOutcome | null> {
-  const store = getStore();
-  const found = await store.findClaim(claimId);
-  if (!found) return null;
+export interface ComputedChallenge extends ChallengeOutcome {
+  /** Audit fields for whoever eventually applies the outcome. */
+  reason: string;
+  modelProvider: string;
+  modelVersion: string;
+  promptVersion: string;
+}
 
-  const { analysis, claimIndex } = found;
+/** Pure: computes a challenge against `analysis` without persisting anything. */
+export async function computeChallenge(
+  analysis: Analysis,
+  claimIndex: number,
+  provider: EvidenceReasoningProvider = getReasoningProvider(),
+): Promise<ComputedChallenge> {
   const claim = analysis.claims[claimIndex];
+  const claimId = claim.id;
 
   const claimEvidence = analysis.evidence.filter((e) => e.claimId === claimId);
   const supporting = claimEvidence
@@ -149,27 +158,12 @@ export async function challengeClaim(
     ],
   };
 
-  const updatedAnalysis: Analysis = {
-    ...analysis,
-    claims: analysis.claims.map((c, i) => (i === claimIndex ? updatedClaim : c)),
-    updatedAt: timestamp,
-  };
-
-  await store.saveAnalysis(updatedAnalysis);
-  await store.saveChallenge(challenge);
-  await store.appendAudit({
-    id: randomUUID(),
-    entityType: 'CLAIM',
-    entityId: claimId,
-    changeType: 'CHALLENGED',
-    oldValue: { score: previousScore, label: claim.confidenceLabel },
-    newValue: { score: revisedScore, label: rescored.confidenceLabel },
+  return {
+    challenge,
+    updatedClaim,
     reason: result.challengeReasoning,
     modelProvider: identity.provider,
     modelVersion: identity.modelVersion,
     promptVersion: PROMPT_VERSION,
-    timestamp,
-  });
-
-  return { challenge, updatedClaim };
+  };
 }

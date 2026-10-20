@@ -13,6 +13,8 @@
     "test:watch": "vitest",
     "seed": "tsx scripts/seed.ts",
     "test:e2e": "vitest run --config vitest.e2e.config.mts",
+    "test:rls": "bash supabase/tests/run-local.sh",
+    "test:security-http": "node scripts/security-smoke.mjs",
     "record:lock": "tsx scripts/record-lock.ts",
     "record:check": "tsx scripts/record-lock.ts --check",
     "check": "npm run typecheck && npm run record:check && npm test",

@@ -1,14 +1,24 @@
+import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { runAnalysis } from '@/lib/evidence/pipeline';
-import { canPersist, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
+import { canPersist, getStore, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
+import { guardWrite } from '@/lib/security/write-guard';
 import { PassageReferenceSchema } from '@/lib/evidence/schema';
 import { NoAnalysisAvailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
 
 export const dynamic = 'force-dynamic';
 
-const BodySchema = z.object({
+/**
+ * Generate a provisional analysis.
+ *
+ * The result is saved as a private *draft*, never into the published analyses,
+ * and is not listed or rendered as part of the record. With no durable store
+ * the route refuses (503) rather than pretending to keep anything.
+ */
+
+const BodySchema = z.strictObject({
   query: z.string().min(1).max(2000),
   reference: PassageReferenceSchema.nullable().optional(),
   passageText: z.string().max(20000).nullable().optional(),
@@ -20,27 +30,26 @@ const BodySchema = z.object({
       scriptureOnly: z.boolean().optional(),
       note: z.string().max(300).optional(),
     })
+    .strict()
     .optional(),
 });
 
+const noStore = { 'cache-control': 'no-store' };
+
 export async function POST(request: Request) {
-  if (!canPersist()) {
-    return NextResponse.json({ error: NOT_PERSISTED_MESSAGE }, { status: 503 });
-  }
+  const gate = await guardWrite(request, { permission: 'draft.create', action: 'analysis.draft', maxBytes: 32_768, perMinute: 5, perDay: 200 });
+  if (!gate.ok) return gate.response;
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: 'Request body must be JSON.' }, { status: 400 });
-  }
-
-  const parsed = BodySchema.safeParse(body);
+  const parsed = BodySchema.safeParse(gate.body);
   if (!parsed.success) {
     return NextResponse.json(
       { error: 'Invalid request.', issues: parsed.error.issues },
-      { status: 400 },
+      { status: 400, headers: noStore },
     );
+  }
+
+  if (!canPersist()) {
+    return NextResponse.json({ error: NOT_PERSISTED_MESSAGE, persisted: false, published: false }, { status: 503, headers: noStore });
   }
 
   try {
@@ -49,6 +58,8 @@ export async function POST(request: Request) {
       reference: parsed.data.reference ?? null,
       passageText: parsed.data.passageText ?? null,
       lens: parsed.data.lens,
+      // Never into the published collection.
+      persist: false,
     });
 
     if (result.guardrail) {
@@ -57,11 +68,45 @@ export async function POST(request: Request) {
       return NextResponse.json({ kind: 'GUARDRAIL', guardrail: result.guardrail });
     }
 
-    return NextResponse.json({
-      kind: 'ANALYSIS',
-      analysis: result.analysis,
-      citationFlags: result.citationFlags,
+    const draftId = randomUUID();
+    const now = new Date().toISOString();
+    const store = getStore();
+    await store.saveDraft({
+      id: draftId,
+      status: 'draft',
+      createdBy: gate.actor.id,
+      creatorRole: gate.actor.role,
+      analysis: result.analysis!,
+      createdAt: now,
     });
+    await store.appendAudit({
+      id: randomUUID(),
+      entityType: 'DRAFT',
+      entityId: draftId,
+      changeType: 'DRAFTED',
+      oldValue: null,
+      newValue: { claimCount: result.analysis!.claims.length },
+      reason: 'Provisional analysis generated as an unpublished draft.',
+      modelProvider: result.analysis!.modelProvider,
+      modelVersion: result.analysis!.modelVersion,
+      promptVersion: result.analysis!.promptVersion,
+      timestamp: now,
+      actorId: gate.actor.id,
+      actorRole: gate.actor.role,
+    });
+
+    return NextResponse.json(
+      {
+        kind: 'DRAFT',
+        draftId,
+        status: 'draft',
+        published: false,
+        message: 'Saved as an unpublished draft. It is not part of the published record and has not been reviewed.',
+        analysis: result.analysis,
+        citationFlags: result.citationFlags,
+      },
+      { status: 202, headers: noStore },
+    );
   } catch (err) {
     if (err instanceof NoAnalysisAvailableError) {
       return NextResponse.json({ kind: 'NONE', error: err.message }, { status: 404 });
