@@ -82,7 +82,7 @@ export async function statusReport(
         ? { result: 'pass', detail: `${record.data.claims.length} claims, ${record.data.derivations.length} derivations, every claim established at baseline.` }
         : { result: 'fail', detail: `${errors.length} integrity error(s): ${errors.slice(0, 3).map((e) => `${e.subject}: ${e.message}`).join(' · ')}` };
     }),
-    timed('revision_lock', 'Published revisions unchanged', () => {
+    timed('revision_lock', 'Public revisions match the lock', () => {
       const pinned = lock as Record<string, string>;
       const bad: string[] = [];
       let count = 0;

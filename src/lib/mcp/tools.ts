@@ -119,7 +119,7 @@ export const TOOLS: ToolDefinition[] = [
     name: 'simulate_rejection',
     title: 'Simulate rejecting claims or assumptions',
     description:
-      'Reject one or more claims (AM-CLAIM-…) or reading principles (AM-AX-…), or apply a tradition’s lens, and see what still holds. A conclusion breaks only when none of its independent derivations survives; textual reports keep their standing as reports when the reading built on them fails; rival readings are reported on both sides. This is a simulation: the record and its sources are never changed. Use it to test how much a conclusion depends on a disputed assumption.',
+      'Reject one or more claims (AM-CLAIM-…) or reading principles (AM-AX-…), or apply a tradition’s lens, and see what still holds. A conclusion is not established under the selected assumptions only when none of its independent derivations survives; textual reports keep their standing as reports when the reading built on them fails; rival readings are reported on both sides. This is a simulation: the record and its sources are never changed. Use it to test how much a conclusion depends on a disputed assumption. Each outcome carries epistemic_status (supported, partially_supported, support_weakened, not_established, …) alongside the legacy status value; report results in that wording.',
     input: SimulationParams,
     output: SimulationV1,
     run: (args) => runSimulation(getRecord(), SimulationParams.parse(args)),

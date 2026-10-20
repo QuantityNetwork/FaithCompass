@@ -34,13 +34,28 @@ export function StatusPill({ status }: { status: RevisionStatus | string }) {
   );
 }
 
-export function ProvisionalNotice({ subject = 'This record', status }: { subject?: string; status: string }) {
+export function ProvisionalNotice({
+  subject = 'This record',
+  status,
+  machine,
+}: {
+  subject?: string;
+  status: string;
+  /** Machine involvement of the revision shown, when known, so the notice says how it was produced. */
+  machine?: string;
+}) {
   if (status !== 'provisional') return null;
+  const origin =
+    machine === 'not_recorded'
+      ? 'It is reproduced from the earlier Claim Ledger, which recorded neither a reviewer nor whether AI assisted.'
+      : machine === 'assisted'
+        ? 'It was drafted with AI assistance, as disclosed below.'
+        : 'Any AI assistance is disclosed on the record it affects.';
   return (
     <p className="status-notice" role="note">
-      <strong>Provisional.</strong> {subject} is public and citable, but its references, wording and confidence levels have
-      not yet been verified by an AbrahamMoses editor. It was drafted with AI assistance, which is disclosed on every
-      record it affects. <Link className="link" href="/methodology#publication">What provisional means</Link>
+      <strong>Provisional · awaiting editorial review.</strong> {subject} is public and citable, but its references, wording
+      and confidence levels have not yet been verified by an AbrahamMoses editor. {origin}{' '}
+      <Link className="link" href="/methodology#publication">What provisional means</Link>
     </p>
   );
 }
@@ -105,8 +120,8 @@ export function ConfidenceAxes({ confidence }: { confidence: Claim['confidence']
   if (!confidence) {
     return (
       <p className="faint small">
-        This revision predates the formal confidence taxonomy. Its headline label is shown above; later revisions record each
-        axis separately.
+        This revision predates the formal confidence taxonomy and records no confidence on separate axes. Later revisions
+        record each axis separately.
       </p>
     );
   }

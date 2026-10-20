@@ -12,7 +12,7 @@ import { explorerProps, param, type SearchParams } from '@/lib/site/explorer';
 export const metadata: Metadata = {
   title: 'Hermeneutical Dependency Model',
   description:
-    'Every conclusion rests on texts, on in-between steps and on a tradition’s reading principles. Reject any of them and see exactly what breaks, what weakens and what still stands.',
+    'Every conclusion rests on texts, on in-between steps and on a tradition’s reading principles. Set any of them aside and see exactly what is no longer established, what is weakened and what is still supported.',
   alternates: { canonical: '/hermeneutics' },
 };
 
@@ -74,17 +74,17 @@ export default async function HermeneuticsPage({ searchParams }: Props) {
           <ul>
             <li>
               <strong>Derivations are alternatives (OR).</strong> A claim holds while at least one of its derivations holds. A
-              conclusion with two independent arguments is not broken by losing one; it is weakened.
+              conclusion with two independent arguments is still supported after losing one; its support is weakened.
             </li>
             <li>
               <strong>Within a derivation, requirements are joint (AND).</strong> Every necessary premise and every required
-              principle must hold. Supporting premises and strengthening principles never break a derivation; when they fail,
-              the claim is weakened.
+              principle must hold. Supporting premises and strengthening principles never defeat a derivation; when they fail,
+              the claim’s support is weakened.
             </li>
             <li>
               <strong>Reports are not conclusions.</strong> “Hebrews says X” stands on Hebrews. When the argument that makes X a
-              warranted reading fails, the report keeps its standing and loses its warrant — and a derivation that needs X’s
-              warrant, not merely the report, fails with it.
+              supported reading does not hold, the report keeps its standing and the reading is only partially supported — and a
+              derivation that needs X as a supported reading, not merely the report, is not established either.
             </li>
             <li>
               <strong>Circles prove nothing.</strong> Evaluation is a least fixed point: claims supported only by one another
@@ -94,13 +94,13 @@ export default async function HermeneuticsPage({ searchParams }: Props) {
               <strong>Map connections stay grounded while any grounding claim holds.</strong>
             </li>
             <li>
-              <strong>Disagreement is never resolved by the engine.</strong> Counter-models are shown as aligned with a
-              rejection or undermined by it, on both sides.
+              <strong>Disagreement is never resolved by the engine.</strong> Counter-models are shown as consistent with what
+              was set aside, or as not established under the selected assumptions, on both sides.
             </li>
           </ul>
           <p className="small muted">
             These semantics correct the published model, which propagated rejection edge by edge: a conclusion with two
-            independent arguments was marked as collapsed when either failed, and a map edge collapsed when one of two
+            independent arguments was marked as failing when either failed, and a map edge lost its grounding when one of two
             grounding claims did. The test suite pins the difference against responses captured from the published service.
           </p>
         </div>

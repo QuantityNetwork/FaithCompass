@@ -170,8 +170,8 @@ describe('Dependency Explorer', () => {
 
     // The supersession thesis survives on its second derivation; the rival position is untouched.
     const positions = p.locator('#explorer .position');
-    await expect(positions.filter({ hasText: 'AM-CLAIM-000191' }).first().textContent()).resolves.toMatch(/Weakened/);
-    await expect(positions.filter({ hasText: 'AM-CLAIM-000197' }).first().textContent()).resolves.toMatch(/Stands/);
+    await expect(positions.filter({ hasText: 'AM-CLAIM-000191' }).first().textContent()).resolves.toMatch(/Support weakened/);
+    await expect(positions.filter({ hasText: 'AM-CLAIM-000197' }).first().textContent()).resolves.toMatch(/Supported under selected assumptions/);
 
     // Graph nodes are reachable by keyboard and open the inspector.
     const node = p.locator('g.graph-node[aria-label^="AM-CLAIM-000191"]');
@@ -186,7 +186,7 @@ describe('Dependency Explorer', () => {
     await p.goto(`${base}/research/torah-permanence`);
     await p.getByLabel('Read through a tradition’s lens').selectOption('rabbinic-judaism');
     await expect.poll(() => p.getByRole('status').first().textContent()).toMatch(/lens: Rabbinic Judaism/);
-    await expect(p.locator('#explorer .position').filter({ hasText: 'AM-CLAIM-000219' }).first().textContent()).resolves.toMatch(/Stands/);
+    await expect(p.locator('#explorer .position').filter({ hasText: 'AM-CLAIM-000219' }).first().textContent()).resolves.toMatch(/Supported under selected assumptions/);
     await context.close();
   });
 });

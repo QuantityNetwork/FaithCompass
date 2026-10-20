@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { getStore } from '@/lib/evidence/store';
-import { Page, SectionTitle } from '@/components/evidence/primitives';
+import { AnalysisReviewNotice, Page, SectionTitle } from '@/components/evidence/primitives';
 import { EvidenceProfileGrid } from '@/components/evidence/evidence-profile';
 import { ClaimRow } from '@/components/evidence/claim-detail';
 import { AskPanel } from '@/components/evidence/ask-panel';
@@ -36,6 +36,7 @@ export default async function PassageView({
       <p className="eyebrow">Evidence Intelligence</p>
       <h1 className="display">{analysis.title}</h1>
       {analysis.subtitle ? <p className="standfirst">“{analysis.subtitle}”</p> : null}
+      <AnalysisReviewNotice analysis={analysis} />
 
       {analysis.passageText ? (
         <blockquote className="passage">
@@ -54,9 +55,10 @@ export default async function PassageView({
         <SectionTitle>Evidence Profile</SectionTitle>
         <EvidenceProfileGrid profile={profile} scope="analysis" />
         <p className="small faint" style={{ marginTop: 14, maxWidth: '68ch' }}>
-          Each figure is the strongest evidenced assessment across the claims below. They are shown
-          separately and never combined: a passage can be textually secure and historically
-          uncorroborated at the same time, and a single number would hide exactly that.
+          Each dimension shows the strongest evidenced assessment across the claims below. They are
+          shown separately and never combined: a passage can be textually secure and historically
+          uncorroborated at the same time, and a single number would hide exactly that. Interpretive
+          support is stated in words, never as a figure.
         </p>
       </div>
 

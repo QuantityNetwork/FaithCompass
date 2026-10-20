@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { analysisReviewState } from '@/lib/evidence/format';
 
 /** Section navigation for the Evidence Intelligence pages. The site header and footer come from the root layout. */
 export function EvidenceNav() {
@@ -23,9 +24,11 @@ export function EvidenceNote() {
     <aside className="notice" style={{ marginTop: 72 }}>
       <p className="small" style={{ maxWidth: '68ch', margin: 0 }}>
         Every figure shown is an <strong>evidence confidence</strong> — an assessment of how strongly the available
-        evidence supports a specific claim. It is not a probability that the claim is true, and AbrahamMoses does not
-        score religious traditions. Assessments record the model, prompt version and sources they were produced from,
-        and can be challenged.
+        evidence supports a specific textual or historical claim. It is not a probability that the claim is true.
+        Interpretive and theological claims carry no figure: they are described in words (for example, “Supported under
+        selected assumptions” or “Disputed interpretation”), and AbrahamMoses does not score religious traditions. Every
+        assessment here was drafted with AI assistance and awaits editorial review; each records the model, prompt version
+        and sources it was produced from.
       </p>
     </aside>
   );
@@ -72,11 +75,30 @@ export function ConfidenceFigure({
   score,
   label,
   caption,
+  qualitative,
 }: {
   score: number | null;
   label: string;
   caption?: string;
+  /**
+   * Show the assessment in words only: no number and no meter. Used for interpretive and
+   * theological claims, where a figure would read as the probability that a reading is true.
+   */
+  qualitative?: { label: string; definition?: string };
 }) {
+  if (qualitative) {
+    return (
+      <div>
+        {caption ? <div className="profile__label">{caption}</div> : null}
+        <div className="profile__band profile__band--words">{qualitative.label}</div>
+        {qualitative.definition ? (
+          <p className="small muted" style={{ margin: '8px 0 0' }}>
+            {qualitative.definition}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
   const scorable = score !== null;
   return (
     <div>
@@ -128,5 +150,25 @@ export function Disclosure({
       <summary>{title}</summary>
       <div className="disclosure__body">{children}</div>
     </details>
+  );
+}
+
+/**
+ * Review state and AI disclosure for an analysis. Shown at the top of every Evidence Intelligence
+ * page that presents an assessment, so it is never read as reviewed scholarship.
+ */
+export function AnalysisReviewNotice({
+  analysis,
+}: {
+  analysis: { seeded: boolean; modelProvider: string; modelVersion: string };
+}) {
+  const review = analysisReviewState(analysis);
+  return (
+    <p className="status-notice" role="note" data-review-state={review.state}>
+      <strong>{review.label}.</strong> {review.disclosure}{' '}
+      <Link className="link" href="/methodology#publication">
+        What provisional means
+      </Link>
+    </p>
   );
 }

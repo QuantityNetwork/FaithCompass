@@ -19,7 +19,8 @@ export const OPERATOR = {
     'Written and built by Sagolik. All intellectual property rights in AbrahamMoses are owned by Sagolik.',
 };
 
-export const API_VERSION = '1.0';
+/** Minor versions are additive; see CHANGELOG.md. 1.1 (2026-10-20): epistemic_status fields, headline_confidence deprecated. */
+export const API_VERSION = '1.1';
 export const MCP_SERVER_VERSION = '1.0.0';
 
 function trim(origin: string): string {

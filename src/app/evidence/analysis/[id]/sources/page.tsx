@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { getStore } from '@/lib/evidence/store';
-import { Page, SectionTitle } from '@/components/evidence/primitives';
+import { AnalysisReviewNotice, Page, SectionTitle } from '@/components/evidence/primitives';
 import { SourceLedgerTable } from '@/components/evidence/evidence-ledger';
 import { SOURCE_TIERS, SOURCE_TIER_META } from '@/lib/evidence/taxonomy';
 
@@ -29,6 +29,7 @@ export default async function SourcesPage({ params }: { params: Promise<{ id: st
         Every source cited in this analysis, with its class, standpoint, reliability assessment and
         verification state.
       </p>
+      <AnalysisReviewNotice analysis={analysis} />
 
       {unverified.length > 0 ? (
         <div className="notice notice--caution">

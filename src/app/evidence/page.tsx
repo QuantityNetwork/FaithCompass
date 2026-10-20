@@ -54,6 +54,7 @@ export default async function EvidenceHome() {
                   <span>{a.claims.length} claims</span>
                   <span>{a.sources.length} sources</span>
                   {unscorable > 0 ? <span>{unscorable} not scorable</span> : null}
+                  <span>AI-drafted · awaiting editorial review</span>
                 </div>
               </Link>
             );

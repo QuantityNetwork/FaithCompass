@@ -12,6 +12,7 @@
 import type { Axiom } from '../schema';
 import type { AxiomStance } from '../taxonomy';
 import { refs } from './corpus';
+import { IMPORTED_STATUS } from './build';
 
 const PUBLISHED = '2026-10-02';
 const MIGRATED = '2026-10-14T12:00:00Z';
@@ -58,7 +59,7 @@ export const AXIOMS: Axiom[] = [
     ),
     stancesStatus: 'provisional',
     firstPublished: PUBLISHED,
-    status: 'published',
+    status: IMPORTED_STATUS,
   },
   {
     code: 'AM-AX-002',
@@ -84,7 +85,7 @@ export const AXIOMS: Axiom[] = [
     ),
     stancesStatus: 'provisional',
     firstPublished: PUBLISHED,
-    status: 'published',
+    status: IMPORTED_STATUS,
   },
   {
     code: 'AM-AX-003',
@@ -100,7 +101,7 @@ export const AXIOMS: Axiom[] = [
     ),
     stancesStatus: 'provisional',
     firstPublished: PUBLISHED,
-    status: 'published',
+    status: IMPORTED_STATUS,
   },
   {
     code: 'AM-AX-004',
@@ -132,7 +133,7 @@ export const AXIOMS: Axiom[] = [
     ),
     stancesStatus: 'provisional',
     firstPublished: PUBLISHED,
-    status: 'published',
+    status: IMPORTED_STATUS,
   },
   {
     code: 'AM-AX-005',
@@ -161,7 +162,7 @@ export const AXIOMS: Axiom[] = [
     ),
     stancesStatus: 'provisional',
     firstPublished: PUBLISHED,
-    status: 'published',
+    status: IMPORTED_STATUS,
   },
   {
     code: 'AM-AX-006',
@@ -187,7 +188,7 @@ export const AXIOMS: Axiom[] = [
     ),
     stancesStatus: 'provisional',
     firstPublished: PUBLISHED,
-    status: 'published',
+    status: IMPORTED_STATUS,
   },
   {
     code: 'AM-AX-007',

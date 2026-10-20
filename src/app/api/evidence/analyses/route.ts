@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { ensureSeeded } from '@/lib/evidence/bootstrap';
 import { getStore } from '@/lib/evidence/store';
+import { analysisReviewState } from '@/lib/evidence/format';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,6 +21,9 @@ export async function GET() {
       modelVersion: a.modelVersion,
       promptVersion: a.promptVersion,
       updatedAt: a.updatedAt,
+      // No Evidence Intelligence analysis has been editorially reviewed; say so in the data too.
+      reviewState: analysisReviewState(a).state,
+      reviewDisclosure: analysisReviewState(a).disclosure,
     })),
   });
 }

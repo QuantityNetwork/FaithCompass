@@ -111,8 +111,11 @@ export default function AboutPage() {
             .
           </p>
           <p>
-            Of {revisions.length} public revisions, <strong>{verified}</strong> have been verified by an editor and{' '}
-            <strong>{reviewed}</strong> externally reviewed. The rest are provisional and say so wherever they appear. Named
+            Of {revisions.length} public revisions, <strong>{verified}</strong> {verified === 1 ? 'has' : 'have'} a recorded
+            verification by a named editor and <strong>{reviewed}</strong> {reviewed === 1 ? 'has' : 'have'} been externally
+            reviewed. The rest are provisional, awaiting editorial review, and say so wherever they appear. That includes the
+            records carried over from the earlier Claim Ledger: they were shown there as published, but no reviewer was ever
+            recorded for them, so they are not counted as verified here. Named
             editors and external reviewers from each tradition will be listed here, and on every revision they review, as they
             are appointed; the record does not attribute review to anyone who has not done it.
           </p>
@@ -122,7 +125,10 @@ export default function AboutPage() {
       <Section id="governance" title="Governance and accountability">
         <div className="prose-block">
           <ul>
-            <li>Every revision is permanent and citable; corrections append, never overwrite.</li>
+            <li>
+              Every revision is permanent and citable; corrections append, never overwrite. The one exception, a correction of
+              status only, is listed with its reason on the <Link className="link" href="/changelog#status-corrections">changelog</Link>.
+            </li>
             <li>Every revision discloses whether AI assisted and whether an editor has verified it.</li>
             <li>
               The <Link className="link" href="/changelog">changelog</Link> and the{' '}

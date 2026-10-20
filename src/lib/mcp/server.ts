@@ -108,11 +108,12 @@ const RESOURCE_TEMPLATES = [
 export const DEPENDENCY_SEMANTICS = `# How rejection propagates
 
 - A claim may have several **derivations** — independent ways of arriving at it. It holds while **any** derivation holds (OR).
-- Within a derivation, every **necessary** premise and every **required** axiom must hold (AND). **Supporting** premises and **strengthening** axioms never break a derivation; when they fail, the claim is **weakened**.
-- Claims grounded in a witness (what a text says) keep their standing as **reports** when the argument behind them fails; they lose their **warrant**. A derivation that needs only the report survives; one that needs the warrant fails.
+- Within a derivation, every **necessary** premise and every **required** axiom must hold (AND). **Supporting** premises and **strengthening** axioms never defeat a derivation; when they fail, the claim's **support is weakened**.
+- Claims grounded in a witness (what a text says) keep their standing as **reports** when the argument behind them fails; the reading is then only **partially supported**. A derivation that needs only the report survives; one that needs the warrant fails.
 - Evaluation is a least fixed point, so claims that support only each other in a circle are never established.
 - Map connections stay grounded while **any** grounding claim holds.
-- Counter-models are shown on both sides: **aligned** when a rejection agrees with them, **undermined** when it removes something they need.
+- Counter-models are shown on both sides: **aligned** (consistent with what was set aside) when they also deny it, **undermined** (not established under the selected assumptions) when it removes something they need.
+- Every outcome carries \`epistemic_status\`, the public vocabulary: supported ("Supported under selected assumptions"), partially_supported, support_weakened, not_established ("Not established under selected assumptions"), insufficient_evidence, disputed_interpretation. The legacy \`status\` values (stands, weakened, unwarranted, broken, rejected) are kept for compatibility. Report results in the epistemic wording: never describe a conclusion, position or tradition as "broken", and never present a simulation as a verdict on whether a faith is true.
 - Simulation never changes the record.`;
 
 function readResource(uri: string) {
@@ -173,7 +174,7 @@ function getPrompt(name: string, args: Record<string, string>) {
           role: 'user',
           content: {
             type: 'text',
-            text: `Using simulate_rejection, reject ${args.code} in the AbrahamMoses record. Report which conclusions break, which are weakened, which keep their standing as textual reports, which map connections lose their grounding, and which counter-models the rejection aligns with or undermines. Make clear that no source was changed and that the disagreement remains.`,
+            text: `Using simulate_rejection, reject ${args.code} in the AbrahamMoses record. Report, in the epistemic wording (epistemic_status labels), which conclusions are not established under the selected assumptions, which have weakened or only partial support, which keep their standing as textual reports, which map connections lose their grounding, and which counter-models are consistent with the change or no longer established under it. Make clear that no source was changed and that the disagreement remains.`,
           },
         },
       ],

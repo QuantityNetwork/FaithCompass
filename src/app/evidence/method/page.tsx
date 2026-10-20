@@ -1,3 +1,4 @@
+import { EPISTEMIC_META, EPISTEMIC_STATUSES } from '@/lib/epistemic';
 import { Page, SectionTitle } from '@/components/evidence/primitives';
 import {
   CERTAINTY_LEVELS,
@@ -46,6 +47,37 @@ export default function MethodPage() {
       </section>
 
       <section style={{ marginTop: 56 }}>
+        <SectionTitle>Interpretive and theological claims: words, not figures</SectionTitle>
+        <div className="prose">
+          <p>
+            For interpretive, theological, canonical, prophetic and metaphysical claims, no figure and no
+            probability-style label is shown. A number attached to a reading of a text would be read as the
+            probability that the reading is true, which no evidence can supply. The assessment is stated in
+            the epistemic vocabulary used across AbrahamMoses instead, always relative to the evidence and
+            assumptions on record and never a verdict on whether a tradition is true. The interpretive
+            dimension of every profile is shown the same way.
+          </p>
+        </div>
+        <div className="ladder">
+          {EPISTEMIC_STATUSES.map((s) => (
+            <div className="ladder__step" key={s}>
+              <div className="ladder__label">{EPISTEMIC_META[s].label}</div>
+              <p className="small" style={{ margin: 0 }}>
+                {EPISTEMIC_META[s].definition}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="small muted" style={{ marginTop: 18 }}>
+          How the internal certainty ladder is worded for these claims: established or highly probable → supported
+          under selected assumptions; probable or plausible → partially supported; possible or speculative →
+          insufficient evidence; unsupported or contradicted → not established under selected assumptions; any claim
+          on which scholarship is significantly divided → disputed interpretation. The internal figures still drive
+          calibration and are kept with each analysis.
+        </p>
+      </section>
+
+      <section style={{ marginTop: 56 }}>
         <SectionTitle>Three dimensions, never combined</SectionTitle>
         <div className="prose">
           <p>
@@ -65,7 +97,7 @@ export default function MethodPage() {
       </section>
 
       <section style={{ marginTop: 56 }}>
-        <SectionTitle>Certainty taxonomy</SectionTitle>
+        <SectionTitle>Certainty taxonomy (textual and historical claims)</SectionTitle>
         <div className="ladder">
           {CERTAINTY_LEVELS.map((level) => (
             <div className="ladder__step" key={level}>
