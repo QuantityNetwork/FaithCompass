@@ -12,7 +12,7 @@ export function SiteFooter() {
             {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
             <img className="am-only-dark" src="/brand/abrahammoses-logo-ivory.svg" alt="" width={262} height={34} />
             {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
-            <img className="am-only-light" src="/brand/abrahammoses-logo.svg" alt="" width={262} height={34} />
+            <img className="am-only-light" src="/brand/abrahammoses-logo-navy.svg" alt="" width={262} height={34} />
           </Link>
           <p>{SITE_TAGLINE}</p>
         </div>

@@ -101,7 +101,7 @@ export default async function ClaimPage({ params, searchParams }: Props) {
         <StatusPill status={view.status} />
         <span>{view.classification_label}</span>
       </div>
-      <h1 className="display" style={{ fontSize: 'clamp(28px, 4vw, 42px)', marginTop: 14 }}>
+      <h1 className="display display--statement" style={{ fontSize: 'clamp(30px, 4vw, 46px)', marginTop: 14 }}>
         {view.statement}
       </h1>
       {!isCurrent ? (

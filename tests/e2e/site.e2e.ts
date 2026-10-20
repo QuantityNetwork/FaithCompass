@@ -201,8 +201,7 @@ describe('Dependency Explorer', () => {
 describe('brand and shell', () => {
   it('shows the real logo, a social preview and icons', async () => {
     const html = await (await fetch(`${base}/`)).text();
-    expect(html).toMatch(/<img[^>]+src="\/brand\/intro\/poster-1600\.webp"[^>]+alt="AbrahamMoses"|<img[^>]+alt="AbrahamMoses"[^>]+src="\/brand\/intro\/poster-1600\.webp"/);
-    expect(html).toContain('src="/brand/abrahammoses-logo.svg"');
+    expect(html).toContain('src="/brand/abrahammoses-logo-navy.svg"');
     expect(html).toContain('src="/brand/abrahammoses-logo-ivory.svg"');
     // The home page is prerendered, so its absolute URLs carry the origin configured at build time.
     expect(html).toMatch(/<meta property="og:image" content="https?:\/\/[^"]+\/opengraph-image\.png/);
@@ -211,7 +210,7 @@ describe('brand and shell', () => {
     expect(html).toMatch(/<link rel="apple-touch-icon" href="\/apple-icon\.png/);
     expect(html).toMatch(/<link rel="icon" href="\/favicon\.ico"/);
     expect(html).toContain('<link rel="manifest" href="/manifest.webmanifest"/>');
-    for (const asset of ['/brand/abrahammoses-logo-ivory.svg', '/brand/abrahammoses-logo.svg', '/brand/abrahammoses-mark.svg', '/icon.svg']) {
+    for (const asset of ['/brand/abrahammoses-logo-ivory.svg', '/brand/abrahammoses-logo-navy.svg', '/brand/abrahammoses-logo.svg', '/brand/abrahammoses-mark.svg', '/icon.svg']) {
       const res = await fetch(`${base}${asset}`);
       expect(res.status, asset).toBe(200);
       expect(res.headers.get('content-type'), asset).toContain('image/svg+xml');
@@ -290,35 +289,36 @@ describe('brand and shell', () => {
     await context.close();
   });
 
-  it('defaults to navy and remembers the ivory reading mode across visits', async () => {
+  it('defaults to the warm off-white theme and remembers the optional dark mode across visits', async () => {
     const { context, page: p } = await page();
     await p.goto(`${base}/`);
     await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBeNull();
-    // navy is the default surface, as on production
-    await expect(p.evaluate(() => getComputedStyle(document.body).backgroundColor)).resolves.toBe('rgb(11, 16, 32)');
-    await p.getByRole('button', { name: 'Ivory reading mode' }).click();
-    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('light');
+    await expect(p.evaluate(() => getComputedStyle(document.body).backgroundColor)).resolves.toBe('rgb(251, 249, 244)');
+    await p.getByRole('button', { name: 'Dark mode' }).click();
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('dark');
     await p.goto(`${base}/claims`);
-    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('light');
-    await expect(p.getByRole('button', { name: 'Ivory reading mode' }).getAttribute('aria-pressed')).resolves.toBe('true');
-    const bg = await p.evaluate(() => getComputedStyle(document.body).backgroundColor);
-    expect(bg).toBe('rgb(246, 242, 233)');
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('dark');
+    await expect(p.getByRole('button', { name: 'Dark mode' }).getAttribute('aria-pressed')).resolves.toBe('true');
+    await expect(p.evaluate(() => getComputedStyle(document.body).backgroundColor)).resolves.toBe('rgb(11, 16, 32)');
     await context.close();
   });
 
-  it('plays the intro once per visit, and never on its own for reduced motion', async () => {
-    const first = await page();
-    await first.page.goto(`${base}/`);
-    await expect.poll(() => first.page.locator('.am-stage video').count()).toBe(1);
-    await first.page.reload();
-    await first.page.getByRole('button', { name: 'Play intro' }).waitFor();
-    await expect(first.page.locator('.am-stage video').count()).resolves.toBe(0);
-    await first.context.close();
-
+  it('cycles the word covenant through Hebrew, Greek and Arabic, and never on its own for reduced motion', async () => {
     const reduced = await page({ reducedMotion: 'reduce' });
     await reduced.page.goto(`${base}/`);
-    await reduced.page.getByRole('button', { name: 'Play intro' }).waitFor();
-    await expect(reduced.page.locator('.am-stage video').count()).resolves.toBe(0);
+    const word = reduced.page.locator('.d-script__word');
+    await expect(word.getAttribute('lang')).resolves.toBe('he');
+    // once hydrated, a click on a dot switches the language; nothing moves on its own
+    await expect
+      .poll(async () => {
+        await reduced.page.getByRole('button', { name: 'Greek', exact: true }).click();
+        return word.getAttribute('lang');
+      })
+      .toBe('grc');
+    await reduced.page.waitForTimeout(4600);
+    await expect(word.getAttribute('lang')).resolves.toBe('grc');
+    await reduced.page.getByRole('button', { name: 'Arabic', exact: true }).click();
+    await expect.poll(() => word.getAttribute('lang')).toBe('ar');
     await reduced.context.close();
   });
 
@@ -501,7 +501,7 @@ describe('accessibility', () => {
   for (const theme of ['light', 'dark'] as const) {
     it(`has no WCAG 2.2 A/AA violations on the main pages (${theme})`, async () => {
       const { context, page: p } = await page({ reducedMotion: 'reduce' });
-      if (theme === 'light') await context.addInitScript(() => localStorage.setItem('am-reading-mode', 'light'));
+      if (theme === 'dark') await context.addInitScript(() => localStorage.setItem('am-reading-mode', 'dark'));
       const report: string[] = [];
       for (const path of PAGES) {
         await p.goto(`${base}${path}`);

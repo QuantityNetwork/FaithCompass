@@ -7,6 +7,7 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, canonicalOrigin } from '@/li
 import './globals.css';
 import './site.css';
 import './ds.css';
+import './theme-d.css';
 import { FONT_VARIABLES } from './fonts';
 
 export const metadata: Metadata = {
@@ -30,17 +31,17 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#080c18' },
-    { media: '(prefers-color-scheme: dark)', color: '#080c18' },
+    { media: '(prefers-color-scheme: light)', color: '#fbf9f4' },
+    { media: '(prefers-color-scheme: dark)', color: '#fbf9f4' },
   ],
-  colorScheme: 'dark',
+  colorScheme: 'light dark',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={FONT_VARIABLES} suppressHydrationWarning>
       <head>
-        {/* Applies a saved ivory/navy choice before first paint. */}
+        {/* Applies a saved dark-mode choice before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body>

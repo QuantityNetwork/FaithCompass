@@ -32,7 +32,7 @@ export function SiteHeader() {
           {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
           <img className="on-dark" src="/brand/abrahammoses-logo-ivory.svg" alt="" width={LOGO_W} height={LOGO_H} />
           {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
-          <img className="on-light" src="/brand/abrahammoses-logo.svg" alt="" width={LOGO_W} height={LOGO_H} />
+          <img className="on-light" src="/brand/abrahammoses-logo-navy.svg" alt="" width={LOGO_W} height={LOGO_H} />
         </Link>
         <nav className={`am-nav${open ? ' is-open' : ''}`} id="am-nav" aria-label="Primary">
           {NAV_SECTIONS.map((s) => {

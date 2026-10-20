@@ -1,19 +1,20 @@
 /**
- * Theme persistence: the production navy ("dark") is the default; archival ivory ("light") is an optional
- * reading mode, remembered per browser.
+ * Theme persistence: design D's warm off-white ("light") is the default; navy ("dark") is an optional
+ * mode, remembered per browser.
  */
 export const THEME_KEY = 'am-reading-mode';
 export type Theme = 'light' | 'dark';
 
-/** Runs in <head> before first paint, so a returning ivory-mode reader never sees a navy flash. */
-export const THEME_INIT_SCRIPT = `try{var t=localStorage.getItem('${THEME_KEY}');if(t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
+/** Runs in <head> before first paint, so a returning dark-mode reader never sees a light flash. */
+export const THEME_INIT_SCRIPT = `try{var t=localStorage.getItem('${THEME_KEY}');if(t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
 
 export function currentTheme(): Theme {
-  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
 }
 
 export function applyTheme(t: Theme) {
-  document.documentElement.setAttribute('data-theme', t);
+  if (t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  else document.documentElement.removeAttribute('data-theme');
   try {
     localStorage.setItem(THEME_KEY, t);
   } catch {

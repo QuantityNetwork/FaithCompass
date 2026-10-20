@@ -2,13 +2,31 @@
  * Script typefaces, self-hosted through next/font (downloaded at build time and served
  * from this origin; no request reaches Google from a reader's browser).
  *
- * Latin text uses the production stacks (system serif for reading and headings, system
- * sans for labels and data), exactly as on the live site, so nothing is preloaded.
+ * Design D (warm scholarly-minimal): Figtree for UI, headings and body; Newsreader for
+ * quotations, statements, numerals and italic emphasis. Figtree is preloaded (latin only); Newsreader loads on first use.
  * - Noto Serif: polytonic Greek (greek, greek-ext).
  * - Noto Serif Hebrew, Noto Naskh Arabic, Noto Sans Syriac: original-language passages.
  * Each carries a unicode-range, so a browser downloads it only when a page contains that script.
  */
-import { Noto_Naskh_Arabic, Noto_Sans_Syriac, Noto_Serif, Noto_Serif_Hebrew } from 'next/font/google';
+import { Figtree, Newsreader, Noto_Naskh_Arabic, Noto_Sans_Syriac, Noto_Serif, Noto_Serif_Hebrew } from 'next/font/google';
+
+export const figtree = Figtree({
+  // Variable font: one file covers 400–700. Only the latin subset is preloaded; latin-ext
+  // (ā, ī, ḥ in transliterations) loads on demand through its unicode-range.
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-figtree',
+});
+
+export const newsreader = Newsreader({
+  // Static 400 roman and italic: much smaller than the variable font with its optical-size axis.
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-newsreader',
+});
 
 export const notoSerifGreek = Noto_Serif({
   subsets: ['greek', 'greek-ext'],
@@ -42,6 +60,6 @@ export const notoSansSyriac = Noto_Sans_Syriac({
   variable: '--font-syriac',
 });
 
-export const FONT_VARIABLES = [notoSerifGreek, notoSerifHebrew, notoNaskhArabic, notoSansSyriac]
+export const FONT_VARIABLES = [figtree, newsreader, notoSerifGreek, notoSerifHebrew, notoNaskhArabic, notoSansSyriac]
   .map((f) => f.variable)
   .join(' ');
