@@ -5,21 +5,22 @@
  *   npm run brand:build -- --check also render the logo at the master's scale for comparison
  *
  * Inputs:
- *   design/brand/corporate/logo-paths.json  the corporate logo: "A" mark + two-line wordmark
- *                                           (from scripts/brand/trace_corporate.py)
+ *   design/brand/official/logo-paths.json   the official one-word logo: "A" mark + "AbrahamMoses"
+ *                                           (from scripts/brand/trace_official.py)
+ *   design/brand/corporate/logo-paths.json  the first corporate logo: "A" mark + two-line wordmark
+ *                                           (from scripts/brand/trace_corporate.py); the icons' mark
  *   design/brand/logo-paths.json            the four-ring emblem, used by the homepage introduction
  *                                           (from scripts/brand/trace_logo.py)
  * Output:
  *   src/components/brand/paths.ts     path data and emblem geometry for components
- *   public/brand/abrahammoses-logo*.svg   primary logo: the mark and the one-line "AbrahamMoses"
- *                                         wordmark (composed below from the traced two-line wordmark),
- *                                         black and ivory
+ *   public/brand/abrahammoses-logo*.svg   primary logo: the official one-word lockup ("A" mark +
+ *                                         "AbrahamMoses"), traced from design/brand/official/, black and ivory
  *   public/brand/abrahammoses-logo-stacked*.svg  the original two-line lockup, black and ivory
  *   public/brand/abrahammoses-mark*.svg   corporate "A" mark alone, black and ivory
  *   public/brand/abrahammoses-emblem*.svg the four-ring emblem, black and ivory
  *   src/app/icon.svg                  browser icon: the mark on a navy tile
  *   src/app/apple-icon.png            180×180 touch icon
- *   src/app/opengraph-image.png       1200×630 social preview
+ *   src/app/opengraph-image.png       1200×630 social preview: the official logo, white on navy
  *
  * Not generated here (committed from the brand kit, rendered from the same paths):
  *   src/app/favicon.ico (16/32/48; the 16px layer is hand-hinted so the mark stays
@@ -71,18 +72,12 @@ function sparklePath(d) {
 const SPARKLE = sparklePath(emblem);
 
 /*
- * The one-line wordmark and horizontal lockup, composed from the traced letterforms rather than
- * retyped: "Moses" moves onto the baseline of "Abraham", the capital M marking the word break.
- *   - Lines: subpaths of the wordmark above and below its vertical middle.
- *   - Baseline of a line: the lowest bottom among its flat-footed letters, i.e. the minimum of the
- *     outer contours' bottoms (round letters overshoot below it).
- *   - m–M gap: 19 units, the a–m gap in the master (the widest gap between straight-sided letters).
- *   - Lockup: the mark at 1.7× the wordmark's height (ascender to baseline), centred on it, half that
- *     height away. The same geometry is in the brand kit (abrahammoses-lockup-horizontal-*).
+ * The primary logo is the official one-word lockup: the "A" mark beside "AbrahamMoses" on one
+ * line, traced from the supplied official PNG (design/brand/official/logo-paths.json, from
+ * scripts/brand/trace_official.py). Its letterforms, tracking, mark size and gap are the official
+ * ones; nothing is composed or retyped here.
  */
-const WORD_GAP = 19;
-const MARK_TO_TEXT = 1.7;
-const MARK_GAP = 0.5;
+const official = JSON.parse(readFileSync(join(ROOT, 'design/brand/official/logo-paths.json'), 'utf8'));
 const NUM = /-?\d+(?:\.\d+)?/g;
 const boxOf = (d) => {
   const n = (d.match(NUM) ?? []).map(Number);
@@ -90,57 +85,23 @@ const boxOf = (d) => {
   const ys = n.filter((_, i) => i % 2 === 1);
   return { x0: Math.min(...xs), y0: Math.min(...ys), x1: Math.max(...xs), y1: Math.max(...ys) };
 };
-const moved = (d, scale, tx, ty) => {
+const moved = (d, tx, ty) => {
   let i = 0;
-  return d.replace(NUM, (v) => (Number(v) * scale + (i++ % 2 === 0 ? tx : ty)).toFixed(2).replace(/\.?0+$/, ''));
+  return d.replace(NUM, (v) => (Number(v) + (i++ % 2 === 0 ? tx : ty)).toFixed(1).replace(/\.0$/, ''));
 };
-function composeOneLine() {
-  const subs = wordmark.split(/(?=M)/).map((x) => x.trim()).filter(Boolean).map((d) => ({ d, b: boxOf(d) }));
-  const all = boxOf(wordmark);
-  const mid = (all.y0 + all.y1) / 2;
-  const inside = (a, b) => a !== b && a.b.x0 >= b.b.x0 && a.b.x1 <= b.b.x1 && a.b.y0 >= b.b.y0 && a.b.y1 <= b.b.y1;
-  const line = (top) => {
-    const ps = subs.filter((p) => (p.b.y0 < mid) === top);
-    const outer = ps.filter((p) => !ps.some((q) => inside(p, q)));
-    return {
-      ps,
-      x0: Math.min(...ps.map((p) => p.b.x0)),
-      x1: Math.max(...ps.map((p) => p.b.x1)),
-      top: Math.min(...ps.map((p) => p.b.y0)),
-      baseline: Math.min(...outer.map((p) => p.b.y1)),
-    };
-  };
-  const [a, m] = [line(true), line(false)];
-  const dx = a.x1 + WORD_GAP - m.x0;
-  const dy = a.baseline - m.baseline;
-  const joined = [...a.ps.map((p) => p.d), ...m.ps.map((p) => moved(p.d, 1, dx, dy))].join(' ');
-  const b = boxOf(joined);
-  const word = moved(joined, 1, -b.x0, -a.top);
-  const wordW = b.x1 - b.x0;
-  const textH = a.baseline - a.top; // ascender to baseline
-  const wordH = b.y1 - a.top; // includes the round letters' overshoot
-  const s = (MARK_TO_TEXT * textH) / MH;
-  const markY = textH / 2 - (MH * s) / 2;
-  const textX = MW * s + MARK_GAP * textH;
-  return {
-    word,
-    wordW,
-    wordH,
-    lockup: { mark: moved(mark, s, 0, 0), word: moved(word, 1, textX, -markY), width: textX + wordW, height: Math.max(MH * s, wordH - markY) },
-  };
-}
-const ONE = composeOneLine();
-const r2 = (v) => Math.round(v * 100) / 100;
-const HW = r2(ONE.lockup.width);
-const HH = r2(ONE.lockup.height);
+const HW = official.width;
+const HH = official.height;
+const WB = boxOf(official.parts.wordmark);
+const WORD_ALONE = moved(official.parts.wordmark, -WB.x0, -WB.y0);
+const WW = Math.round((WB.x1 - WB.x0) * 10) / 10;
+const WH = Math.round((WB.y1 - WB.y0) * 10) / 10;
 
 function logoSvg(fill, title = 'AbrahamMoses') {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${HW} ${HH}" width="${HW}" height="${HH}" role="img" aria-label="${title}"><title>${title}</title><g fill="${fill}"><path d="${ONE.lockup.mark}"/><path d="${ONE.lockup.word}"/></g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${HW} ${HH}" width="${HW}" height="${HH}" role="img" aria-label="${title}"><title>${title}</title><g fill="${fill}"><path d="${official.parts.mark}"/><path d="${official.parts.wordmark}"/></g></svg>`;
 }
 
 function wordmarkSvg(fill, title = 'AbrahamMoses') {
-  const w = r2(ONE.wordW), h = r2(ONE.wordH);
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img" aria-label="${title}"><title>${title}</title><path fill="${fill}" d="${ONE.word}"/></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WW} ${WH}" width="${WW}" height="${WH}" role="img" aria-label="${title}"><title>${title}</title><path fill="${fill}" d="${WORD_ALONE}"/></svg>`;
 }
 
 function stackedSvg(fill, title = 'AbrahamMoses') {
@@ -198,7 +159,7 @@ write(
  * (the corporate logo) and design/brand/logo-paths.json (the four-ring emblem). Do not edit by hand.
  */
 
-/** The primary logo: the "A" mark and the one-line "AbrahamMoses" wordmark. */
+/** The primary logo: the official one-word lockup, the "A" mark beside "AbrahamMoses". */
 export const LOGO_VIEWBOX = { width: ${HW}, height: ${HH} } as const;
 /** The secondary, stacked lockup: the mark and the two-line wordmark, as traced. */
 export const STACKED_LOGO_VIEWBOX = { width: ${W}, height: ${H} } as const;
@@ -235,10 +196,10 @@ async function render(html, width, height, rel) {
 
 await render(appIconSvg(180, 0.66), 180, 180, 'src/app/apple-icon.png');
 
-const ogLogoWidth = 760;
+const ogLogoWidth = 900;
 await render(
   `<div style="width:1200px;height:630px;background:${COLORS.navy};display:flex;align-items:center;justify-content:center">
-    <div style="width:${ogLogoWidth}px">${stackedSvg(COLORS.white).replace('<svg ', '<svg style="display:block;width:100%;height:auto" ')}</div>
+    <div style="width:${ogLogoWidth}px">${logoSvg(COLORS.white).replace('<svg ', '<svg style="display:block;width:100%;height:auto" ')}</div>
   </div>`,
   1200,
   630,
