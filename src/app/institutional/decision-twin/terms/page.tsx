@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageIntro } from '@/components/record/ui';
-import { PILOT_PAYMENT_LINK } from '@/lib/decision/product';
+import { SALES_STATUS } from '@/lib/decision/product';
 import { OPERATOR, legalContact } from '@/lib/site/config';
 
 export const metadata: Metadata = {
   title: 'Terms of Sale — Decision Twin Pilot',
   description:
-    'Draft terms on which Sagolik sells a reservation for a 90-day AbrahamMoses Decision Twin pilot to businesses and organisations. Pending legal review.',
+    'Draft terms, not in force, for a future 90-day AbrahamMoses Decision Twin pilot for businesses and organisations. No sales are currently being accepted.',
   alternates: { canonical: '/institutional/decision-twin/terms' },
 };
 
@@ -17,12 +17,12 @@ export default function DecisionTwinTermsPage() {
   const contact = legalContact().general;
   return (
     <main id="main" className="shell shell--narrow page">
-      <PageIntro eyebrow={`Legal · ${TERMS_OF_SALE_VERSION} · Draft pending legal review`} title="Terms of Sale — Decision Twin Pilot" />
+      <PageIntro eyebrow={`Legal · ${TERMS_OF_SALE_VERSION} · Draft, not in force`} title="Terms of Sale — Decision Twin Pilot" />
       <div className="prose-block">
         <p className="am-note" role="note">
-          <strong>Draft pending legal review.</strong> These terms have not yet been reviewed by a lawyer and may change before
-          they are final. A reservation made while they are in draft is governed by the version shown on this page at the time
-          of payment.
+          <strong>{SALES_STATUS}.</strong> These terms have not yet been reviewed by a lawyer, the seller’s identity has not
+          been published and pilots are not on sale. They are published so prospective buyers can see the intended terms; they
+          will change before they come into force.
         </p>
 
         <h2>1. Seller</h2>
@@ -57,11 +57,8 @@ export default function DecisionTwinTermsPage() {
 
         <h2>5. Payment</h2>
         <p>
-          Payment is made by Stripe on Stripe’s own checkout page (
-          <a className="link" href={PILOT_PAYMENT_LINK} rel="noopener noreferrer">
-            pilot reservation
-          </a>
-          ). {OPERATOR.name} does not receive or store your card details.
+          When sales open, payment will be made through Stripe on Stripe’s own checkout page; {OPERATOR.name} will not receive
+          or store card details. No payment is currently being taken.
         </p>
 
         <h2>6. Cancellation and refunds</h2>

@@ -252,6 +252,8 @@ describe('brand and shell', () => {
     await p.keyboard.press('Tab');
     await expect(p.evaluate(() => document.activeElement?.textContent)).resolves.toBe('Skip to content');
     await p.keyboard.press('Enter');
+    // Fragment navigation runs as a separate browser task after the key event: wait for it instead of sampling once
+    await p.waitForFunction(() => location.hash === '#main', undefined, { timeout: 5000 });
     await expect(p.evaluate(() => location.hash)).resolves.toBe('#main');
     await context.close();
   });
@@ -422,6 +424,22 @@ describe('research workspace', () => {
     await context.close();
   });
 
+  it('applies a filter chosen before the page has hydrated (no lost change event)', async () => {
+    const { context, page: p } = await page();
+    // Hold every client script until the select has been changed, which reproduces a slow CI runner deterministically.
+    const held: Array<() => Promise<void>> = [];
+    let holding = true;
+    await p.route('**/_next/static/chunks/**', (route) => (holding ? void held.push(() => route.continue()) : route.continue()));
+    await p.goto(`${base}/research?dossier=covenants`, { waitUntil: 'commit' });
+    await p.getByLabel('Review state').waitFor();
+    await p.getByLabel('Review state').selectOption('externally_reviewed');
+    holding = false;
+    for (const release of held.splice(0)) await release();
+    await p.waitForURL(/state=externally_reviewed/);
+    await expect(p.locator('.rw-filters').textContent()).resolves.toContain('Showing 0 of');
+    await context.close();
+  });
+
   it('opens the nine-part inspector as a dialog, closes on Escape and returns focus', async () => {
     const { context, page: p, errors } = await page();
     await p.goto(`${base}/research?dossier=covenants`, { waitUntil: 'networkidle' });
@@ -538,7 +556,7 @@ describe('decision room', () => {
     await context.close();
   });
 
-  it('presents the Decision Twin with honest status, one pilot checkout and no invented contact', async () => {
+  it('presents the Decision Twin with honest status, no checkout while sales are closed and no invented contact', async () => {
     const { context, page: p, errors } = await page();
     await p.goto(`${base}/institutional/decision-twin`);
     await expect(p.getByRole('img', { name: /AbrahamMoses Decision Twin/ }).first().isVisible()).resolves.toBe(true);
@@ -546,25 +564,29 @@ describe('decision room', () => {
     expect(text).toContain('Public institutional demonstration ready — private client onboarding not authorized');
     expect(text).toContain('Evidence informs. Humans decide. The system preserves the reasoning.');
     expect(text).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
-    const reserve = p.getByRole('link', { name: 'Reserve a pilot' });
-    expect(await reserve.getAttribute('href')).toBe('https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d');
-    expect(await p.locator('a[href^="https://buy.stripe.com/"]').count()).toBe(1);
+    expect(text).toContain('Indicative pricing, excl. VAT; pilots not yet on sale');
+    expect(text).toContain('€9,500');
+    // PILOT_CHECKOUT_ENABLED is false: no payment link anywhere, and no pilot link without a published contact
+    expect(await p.locator('a[href*="stripe.com"]').count()).toBe(0);
+    expect(await p.getByRole('link', { name: /Reserve a pilot|Request a pilot/ }).count()).toBe(0);
     expect(await p.locator('main a[href^="mailto:"]').count()).toBe(0);
+    expect(text).toContain('Pilot enquiries open once our contact details are published.');
     expect(text).toContain('contact details will be published');
     expect(errors).toEqual([]);
     await context.close();
   });
 
-  it('publishes the draft pilot Terms of Sale and links them from the Reserve button and the footer', async () => {
+  it('publishes the draft pilot Terms of Sale as not in force and links them from pricing and the footer', async () => {
     const { context, page: p, errors } = await page();
     await p.goto(`${base}/institutional/decision-twin`);
     const pricing = (await p.locator('#pricing').textContent())!;
-    expect(pricing).toContain('By reserving you accept the Terms of Sale');
-    await p.locator('#pricing').getByRole('link', { name: 'Terms of Sale' }).click();
+    expect(pricing).toContain('Draft Terms of Sale (not in force; no sales are currently being accepted)');
+    await p.locator('#pricing').getByRole('link', { name: 'Draft Terms of Sale' }).click();
     await p.waitForURL(/\/institutional\/decision-twin\/terms$/);
     const text = (await p.locator('main').textContent())!;
-    expect(text).toContain('Draft pending legal review');
+    expect(text).toContain('Draft, not in force: no sales are currently being accepted');
     expect(text).toContain('Legal entity details');
+    expect(await p.locator('a[href*="stripe.com"]').count()).toBe(0);
     expect(text).toContain('not offered to consumers');
     expect(text).toContain('€9,500 excluding VAT');
     expect(text).toContain('If the pilot has not started within 90 days of payment, you receive a full refund on request.');
@@ -580,6 +602,21 @@ describe('decision room', () => {
 
   it('answers 404 for a forged passport ID', async () => {
     expect((await fetch(`${base}/institutional/decision-room/passport/DP1-forged`)).status).toBe(404);
+  });
+
+  it('marks passports unsigned without a key, publishes an empty key set and explains unsupported versions', async () => {
+    const page1 = await (await fetch(`${base}${PASSPORT_PATH}`)).text();
+    expect(page1).toContain('unsigned: integrity hash only');
+    const keys = await (await fetch(`${base}/.well-known/abrahammoses-passport-keys.json`)).json();
+    expect(keys.keys).toEqual([]);
+    expect(keys.status).toBe('unsigned: integrity hash only');
+    const state = { a: { concentration: 22, covMax: 3.5, debt: 124, growth: 12, interest: 10.5, margin: 17.5, minLiq: 10, rejected: [], verified: ['DOC-01', 'DOC-10'] }, case: 'DT-PC-001', caseVersion: '9.9.9', t: '2026-10-20T16:00:00Z', v: 2 };
+    const future = 'DP1-' + Buffer.from(JSON.stringify(state)).toString('base64url');
+    const html = await (await fetch(`${base}/institutional/decision-room/passport/${future}`)).text();
+    expect(html).toContain('Unsupported version');
+    const api = await fetch(`${base}/api/institutional/decision-room/passport/verify?id=${future}&sha256=${'a'.repeat(64)}`);
+    expect(api.status).toBe(404);
+    expect(JSON.stringify(await api.json())).toContain('Unsupported version');
   });
 });
 

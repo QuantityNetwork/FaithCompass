@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export function PrintButton() {
   return (
@@ -10,14 +10,21 @@ export function PrintButton() {
   );
 }
 
-/** Applies a filter as soon as it changes; the Apply button remains for keyboard and no-JS use. */
+/**
+ * Applies a filter as soon as it changes; the Apply button remains for keyboard and no-JS use.
+ *
+ * A select changed before hydration fires its change event before this listener exists, so on
+ * mount any select whose value differs from its server-rendered default is applied at once.
+ */
 export function AutoSubmit({ formId }: { formId: string }) {
-  const done = useRef(false);
   useEffect(() => {
-    if (done.current) return;
-    done.current = true;
     const form = document.getElementById(formId) as HTMLFormElement | null;
     if (!form) return;
+    const changedBeforeHydration = Array.from(form.querySelectorAll('select')).some((select) => {
+      const initial = Array.from(select.options).find((o) => o.defaultSelected) ?? select.options[0];
+      return initial !== undefined && select.value !== initial.value;
+    });
+    if (changedBeforeHydration) form.requestSubmit();
     const on = (e: Event) => {
       if ((e.target as HTMLElement).tagName === 'SELECT') form.requestSubmit();
     };
