@@ -73,13 +73,6 @@ export function absoluteUrl(path: string): string {
   return `${canonicalOrigin()}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-export const ENDPOINTS = {
-  mcp: '/mcp',
-  legacyMcp: '/api/public/mcp',
-  rest: '/api/v1',
-  openapi: '/api/v1/openapi.json',
-} as const;
-
 /** Contact addresses published in the legal pages, when the operator has configured them. */
 export function legalContact(): { privacy: string | null; general: string | null } {
   return {

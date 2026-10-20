@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { PageIntro, Section } from '@/components/record/ui';
 import { CopyButton } from '@/components/ui/copy-button';
 import { ERROR_CODES, rateLimitPerMinute } from '@/lib/api/http';
+import { EVIDENCE_ENDPOINTS } from '@/lib/api/evidence-openapi';
 import { ENDPOINTS_V1, SCHEMA_NAMES } from '@/lib/api/v1';
+import { canPersist } from '@/lib/evidence/store';
 import { SUPPORTED_PROTOCOL_VERSIONS, handleMessage } from '@/lib/mcp/server';
 import { TOOLS, toolListing } from '@/lib/mcp/tools';
 import { getRecord } from '@/lib/record/record';
@@ -171,8 +173,13 @@ export default function DevelopersPage() {
           <code className="code-inline">examine_question</code>, <code className="code-inline">challenge_assumption</code>.
         </p>
         <p className="small muted">
-          Conformance is tested on every build with the official MCP TypeScript SDK client, connecting over HTTP to both
-          endpoints, listing tools, calling them with output-schema validation, reading resources and listing prompts.
+          Conformance is covered by the project&rsquo;s test suite, which uses the official MCP TypeScript SDK client to
+          connect over HTTP to both endpoints, list tools, call them with output-schema validation, read resources and
+          list prompts. The{' '}
+          <Link className="link" href="/status">
+            status page
+          </Link>{' '}
+          runs an initialize, tools/list and tools/call self-test on every load.
         </p>
       </Section>
 
@@ -245,6 +252,64 @@ const { total, data } = await res.json();
               {n}
             </a>
           ))}
+        </div>
+      </Section>
+
+      <Section id="evidence" title="Evidence Intelligence endpoints" eyebrow="Outside v1">
+        <div className="prose-block">
+          <p>
+            The Evidence pages use a small set of endpoints under <code className="code-inline">/api/evidence</code>.
+            They are not part of the versioned v1 API, but they are described in the same{' '}
+            <a className="link" href="/api/v1/openapi.json">
+              OpenAPI document
+            </a>{' '}
+            (tag <code className="code-inline">evidence</code>). Nothing sent to them changes a published assessment: a
+            request for an analysis becomes a private draft, and a challenge becomes a proposal for editorial review.{' '}
+            {canPersist() ? (
+              <>
+                Both are stored privately and answer <code className="code-inline">202</code>.
+              </>
+            ) : (
+              <>
+                This deployment has no database, so both are refused with <code className="code-inline">503</code> and
+                nothing is kept.
+              </>
+            )}{' '}
+            Approving or rejecting a proposal needs a signed-in editor who did not write it; no sign-in exists yet, so
+            that answers <code className="code-inline">401</code>.
+          </p>
+          <p>
+            Write requests must be same-origin <code className="code-inline">application/json</code> with no unknown
+            fields, and are rate-limited per client address and per server instance. Errors here have the shape{' '}
+            <code className="code-inline">{'{ error, code? }'}</code>, not the v1 shape.
+          </p>
+        </div>
+        <div className="table-wrap">
+          <table className="table table--stack">
+            <thead>
+              <tr>
+                <th scope="col">Method</th>
+                <th scope="col">Path</th>
+                <th scope="col">What happens</th>
+              </tr>
+            </thead>
+            <tbody>
+              {EVIDENCE_ENDPOINTS.map((e) => (
+                <tr key={`${e.method} ${e.path}`}>
+                  <td data-label="Method" className="mono">
+                    {e.method}
+                  </td>
+                  <td data-label="Path" className="mono">
+                    {e.path}
+                  </td>
+                  <td data-label="What happens">
+                    {e.summary}
+                    <div className="faint">{e.behaviour}</div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </Section>
 

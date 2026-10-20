@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageIntro } from '@/components/record/ui';
+import { canPersist } from '@/lib/evidence/store';
 import { OPERATOR, SITE_NAME, legalContact } from '@/lib/site/config';
 
 export const metadata: Metadata = {
@@ -10,12 +11,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
-const POLICY_VERSION = '1.0';
-const POLICY_EFFECTIVE = '14 October 2026';
+const POLICY_VERSION = '1.1';
+const POLICY_EFFECTIVE = '20 October 2026';
 
 export default function PrivacyPage() {
   const contact = legalContact();
   const evidenceProvider = process.env.EVIDENCE_PROVIDER === 'anthropic' && Boolean(process.env.ANTHROPIC_API_KEY);
+  const storesSubmissions = canPersist();
 
   return (
     <main id="main" className="shell shell--narrow page">
@@ -74,17 +76,32 @@ export default function PrivacyPage() {
           {evidenceProvider ? (
             <>
               The Evidence Intelligence “Ask” and “Analyze” features send the text you submit to Anthropic, PBC, which processes it
-              to produce a structured assessment on our behalf. Assessments are published as part of the public record, and a
-              submitted question may appear as the title of a published analysis. Do not submit personal information.
+              to produce a structured assessment on our behalf.
             </>
           ) : (
             <>
               The Evidence Intelligence features currently run on a curated, offline provider: no text you submit is sent to a
               third-party AI service. If an AI provider is enabled, this section will be updated before it is, naming the
-              provider and what it receives. Assessments are published as part of the public record, so do not submit personal
-              information.
+              provider and what it receives.
             </>
           )}
+        </p>
+        <p>
+          {storesSubmissions ? (
+            <>
+              A requested analysis is kept as a private draft and a challenge as a proposal for editorial review.
+              Neither is published by being submitted; an editor may later publish a reviewed assessment. Do not submit
+              personal information.
+            </>
+          ) : (
+            <>
+              This version has no database, so requests for new analyses and challenges are refused and nothing you
+              submit is kept. The published assessments are curated and contain no visitor submissions.
+            </>
+          )}{' '}
+          Each attempt to request an analysis or submit a challenge is logged by the server as a security event containing the time, the outcome and a
+          one-way hash of your IP address, but not the text you sent; these lines stay in the hosting provider&rsquo;s
+          logs for its operational log period.
         </p>
         <h3>The API and MCP server</h3>
         <p>
