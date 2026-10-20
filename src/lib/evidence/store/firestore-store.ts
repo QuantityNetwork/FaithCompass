@@ -184,6 +184,10 @@ export class FirestoreEvidenceStore implements EvidenceStore {
     return doc ? AnalysisSchema.parse(body(doc)) : this.overlay.getAnalysisBySlug(s);
   }
 
+  async hasCurated(slug: string): Promise<boolean> {
+    return (await this.overlay.getAnalysisBySlug(slug.replace(/^\/+|\/+$/g, ''))) !== null;
+  }
+
   async listAnalyses(): Promise<Analysis[]> {
     const stored = (await this.db.query(COLLECTIONS.analyses, [])).map((d) => AnalysisSchema.parse(body(d)));
     const ids = new Set(stored.map((a) => a.id));

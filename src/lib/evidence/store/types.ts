@@ -35,6 +35,11 @@ export interface EvidenceStore {
   forActor?(actor: import('@/lib/auth/actor').Actor): EvidenceStore;
   /** Atomic decision; when present, revisions.ts uses it instead of the separate calls below. */
   commitDecision?(decision: DecisionCommit): Promise<boolean>;
+  /**
+   * Stores that keep curated demonstrations apart from durable records (Firestore) report here whether this process
+   * already holds the curated version; seeding then never depends on what the database holds.
+   */
+  hasCurated?(slug: string): Promise<boolean>;
 
   /**
    * True only when writes survive the current process. A store that would lose

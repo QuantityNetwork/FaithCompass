@@ -6,9 +6,10 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { RevisionError, decideProposal, proposeChallenge } from '@/lib/evidence/revisions';
 import { setStore, storeFor } from '@/lib/evidence/store';
-import { FirestoreEvidenceStore } from '@/lib/evidence/store/firestore-store';
+import { CURATED_VERSION_STAMP, FirestoreEvidenceStore } from '@/lib/evidence/store/firestore-store';
+import { ensureSeeded, resetSeeding } from '@/lib/evidence/bootstrap';
 import { FirestoreRequestError } from '@/lib/firebase/firestore-rest';
-import { ON_EMULATOR, adminDb, clearEmulator, publicDb } from './emulator';
+import { ON_EMULATOR, adminDb, clearEmulator, client, publicDb } from './emulator';
 import { withIdToken } from '@/lib/auth/actor';
 import { mockToken } from './emulator';
 import { anonymous, auditor, contributor, editor, provider, runWorkflow, seedCurated } from './workflow';
@@ -69,6 +70,14 @@ describe.skipIf(!ON_EMULATOR)('Firestore store under the security rules (emulato
     expect(await fresh.listChallenges(claimId)).toHaveLength(1);
     expect((await fresh.forActor(contributor).getDraft('draft-1'))?.createdBy).toBe('alice');
     expect((await fresh.forActor(auditor).listAudit(claimId)).map((r) => r.changeType)).toContain('APPROVED');
+    // A process that starts while the approved revision is stored still regenerates the curated version, so the
+    // record stays complete if that revision is ever removed (for example by the owner, cleaning up test data).
+    setStore(fresh);
+    resetSeeding();
+    await ensureSeeded();
+    expect(await fresh.hasCurated('daniel/12/1')).toBe(true);
+    expect(await client.commit('owner', [{ path: `evidence_analyses/${analysis.id}`, data: {}, del: true }])).toBe(200);
+    expect((await fresh.getAnalysis(analysis.id))?.updatedAt).toBe(CURATED_VERSION_STAMP);
     // Audit and proposals are not public
     await expect(fresh.getProposal(proposalId)).rejects.toBeInstanceOf(FirestoreRequestError);
   });
