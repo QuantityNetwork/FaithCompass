@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { NAV_SECTIONS, sectionFor } from '@/lib/site/nav';
-import { MenuIcon, SearchIcon } from './icons';
+import { SearchIcon } from './icons';
 import { openPalette } from './theme';
 import { ThemeToggle } from './theme-toggle';
 
-/** Logo dimensions (one-line wordmark): 22px high. */
-const LOGO_W = 169;
-const LOGO_H = 22;
+/** Logo dimensions (one-line wordmark), as on the production masthead: 28px high. */
+const LOGO_W = 215;
+const LOGO_H = 28;
 
 export function SiteHeader() {
   const pathname = usePathname() ?? '/';
@@ -30,9 +30,9 @@ export function SiteHeader() {
       <div className="am-wrap am-hdr__in">
         <Link href="/" className="am-brand" aria-label="AbrahamMoses home">
           {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
-          <img className="on-light" src="/brand/abrahammoses-logo.svg" alt="" width={LOGO_W} height={LOGO_H} />
-          {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
           <img className="on-dark" src="/brand/abrahammoses-logo-ivory.svg" alt="" width={LOGO_W} height={LOGO_H} />
+          {/* eslint-disable-next-line @next/next/no-img-element -- static SVG */}
+          <img className="on-light" src="/brand/abrahammoses-logo.svg" alt="" width={LOGO_W} height={LOGO_H} />
         </Link>
         <nav className={`am-nav${open ? ' is-open' : ''}`} id="am-nav" aria-label="Primary">
           {NAV_SECTIONS.map((s) => {
@@ -48,7 +48,7 @@ export function SiteHeader() {
         <div className="am-hdr__tools">
           <button type="button" className="am-kbtn" onClick={() => openPalette()} aria-label={`Search the record (${mod} K)`}>
             <SearchIcon />
-            <span className="am-kbtn__label">Search the record</span>
+            <span className="am-kbtn__label">Search</span>
             <kbd aria-hidden="true">{mod} K</kbd>
           </button>
           <ThemeToggle />
@@ -60,7 +60,7 @@ export function SiteHeader() {
             aria-label="Menu"
             onClick={() => setOpen((o) => !o)}
           >
-            <MenuIcon />
+            Menu
           </button>
         </div>
       </div>

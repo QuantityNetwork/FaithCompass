@@ -164,7 +164,7 @@ export function CommandPalette() {
     }
     const byGroup = new Map<string, Row[]>();
     for (const item of items) byGroup.set(item.g, [...(byGroup.get(item.g) ?? []), { kind: 'item', item }]);
-    const themeMatch = !terms.length || terms.every((t) => 'dark light mode theme'.includes(t));
+    const themeMatch = !terms.length || terms.every((t) => 'dark light ivory navy reading mode theme'.includes(t));
     if (themeMatch) byGroup.set('Actions', [{ kind: 'theme' }]);
     for (const g of GROUP_ORDER) {
       const rows = byGroup.get(g);
@@ -195,7 +195,7 @@ export function CommandPalette() {
     }
     if (row.kind === 'ask') return research(row.q);
     if (row.kind === 'theme') {
-      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+      applyTheme(currentTheme() === 'light' ? 'dark' : 'light');
       close();
       return;
     }

@@ -152,8 +152,9 @@ function contrast(a: RGBA, b: RGBA) {
 
 describe('design tokens meet WCAG 2.2 AA (4.5:1 for text)', () => {
   const css = readFileSync(join(__dirname, '../src/app/ds.css'), 'utf8');
-  const light = block(css, ':root');
-  const themes: Record<string, Record<string, string>> = { light, dark: { ...light, ...block(css, "[data-theme='dark']") } };
+  const dark = block(css, ':root');
+  const light = { ...dark, ...block(css, "[data-theme='light']") };
+  const themes: Record<string, Record<string, string>> = { light, dark };
   const TEXT = ['ink', 'ink-2', 'muted', 'accent', 'ink-faint', 'rust-text', 'ok', 'part', 'weak', 'no', 'ins', 'disp', 'ex'];
   const GROUNDS = ['bg', 'surface', 'surface-2', 'raised'];
 

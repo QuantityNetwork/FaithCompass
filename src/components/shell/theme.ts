@@ -1,12 +1,15 @@
-/** Theme persistence: ivory ("light") by default, navy ("dark") on request, remembered per browser. */
-export const THEME_KEY = 'am-theme';
+/**
+ * Theme persistence: the production navy ("dark") is the default; archival ivory ("light") is an optional
+ * reading mode, remembered per browser.
+ */
+export const THEME_KEY = 'am-reading-mode';
 export type Theme = 'light' | 'dark';
 
-/** Runs in <head> before first paint, so a returning dark-mode reader never sees an ivory flash. */
-export const THEME_INIT_SCRIPT = `try{var t=localStorage.getItem('${THEME_KEY}');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
+/** Runs in <head> before first paint, so a returning ivory-mode reader never sees a navy flash. */
+export const THEME_INIT_SCRIPT = `try{var t=localStorage.getItem('${THEME_KEY}');if(t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
 
 export function currentTheme(): Theme {
-  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
 }
 
 export function applyTheme(t: Theme) {

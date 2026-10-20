@@ -283,17 +283,19 @@ describe('brand and shell', () => {
     await context.close();
   });
 
-  it('remembers the dark theme across visits', async () => {
+  it('defaults to navy and remembers the ivory reading mode across visits', async () => {
     const { context, page: p } = await page();
     await p.goto(`${base}/`);
     await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBeNull();
-    await p.getByRole('button', { name: 'Dark mode' }).click();
-    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('dark');
+    // navy is the default surface, as on production
+    await expect(p.evaluate(() => getComputedStyle(document.body).backgroundColor)).resolves.toBe('rgb(11, 16, 32)');
+    await p.getByRole('button', { name: 'Ivory reading mode' }).click();
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('light');
     await p.goto(`${base}/claims`);
-    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('dark');
-    await expect(p.getByRole('button', { name: 'Dark mode' }).getAttribute('aria-pressed')).resolves.toBe('true');
+    await expect(p.evaluate(() => document.documentElement.getAttribute('data-theme'))).resolves.toBe('light');
+    await expect(p.getByRole('button', { name: 'Ivory reading mode' }).getAttribute('aria-pressed')).resolves.toBe('true');
     const bg = await p.evaluate(() => getComputedStyle(document.body).backgroundColor);
-    expect(bg).toBe('rgb(9, 17, 33)');
+    expect(bg).toBe('rgb(246, 242, 233)');
     await context.close();
   });
 
@@ -361,7 +363,7 @@ describe('accessibility', () => {
   for (const theme of ['light', 'dark'] as const) {
     it(`has no WCAG 2.2 A/AA violations on the main pages (${theme})`, async () => {
       const { context, page: p } = await page({ reducedMotion: 'reduce' });
-      if (theme === 'dark') await context.addInitScript(() => localStorage.setItem('am-theme', 'dark'));
+      if (theme === 'light') await context.addInitScript(() => localStorage.setItem('am-reading-mode', 'light'));
       const report: string[] = [];
       for (const path of PAGES) {
         await p.goto(`${base}${path}`);
