@@ -3,8 +3,10 @@
  * (the corporate logo) and design/brand/logo-paths.json (the four-ring emblem). Do not edit by hand.
  */
 
-/** The corporate lockup: "A" mark and the two-line wordmark. */
-export const LOGO_VIEWBOX = { width: 1530.6, height: 454.3 } as const;
+/** The primary logo: the "A" mark and the one-line "AbrahamMoses" wordmark. */
+export const LOGO_VIEWBOX = { width: 2033.79, height: 274.21 } as const;
+/** The secondary, stacked lockup: the mark and the two-line wordmark, as traced. */
+export const STACKED_LOGO_VIEWBOX = { width: 1530.6, height: 454.3 } as const;
 export const MARK_VIEWBOX = { width: 484.5, height: 454.3 } as const;
 export const EMBLEM_VIEWBOX = {"width":250,"height":268} as const;
 

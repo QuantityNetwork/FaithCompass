@@ -1,5 +1,5 @@
 """
-Trace the AbrahamMoses corporate logo master (mark + two-line "Abraham Moses"
+Trace the AbrahamMoses corporate logo master (mark + two-line "Abraham" / "Moses"
 wordmark, white on navy) into vector paths.
 
     apt-get install potrace && pip install pillow numpy

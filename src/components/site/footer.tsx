@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="shell">
         <div className="site-footer__brand">
           <Link href="/" aria-label={`${SITE_NAME} — home`}>
-            <Logo height={44} />
+            <Logo height={36} />
           </Link>
           <p>{SITE_TAGLINE}</p>
         </div>

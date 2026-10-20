@@ -1,7 +1,8 @@
 import { LOGO_VIEWBOX } from './paths';
 
 /**
- * The AbrahamMoses corporate logo (the "A" mark and the two-line wordmark),
+ * The AbrahamMoses logo (the "A" mark and the one-line wordmark; the stacked
+ * two-line lockup is in public/brand/abrahammoses-logo-stacked*.svg),
  * served as a cached SVG file rather than inlined: the wordmark's outlines are
  * about 20 KB, which every page would otherwise repeat. The site is dark-only,
  * so the ivory rendering is the default.
