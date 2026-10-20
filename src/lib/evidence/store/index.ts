@@ -8,19 +8,21 @@ export { SupabaseConfigError } from './supabase-store';
 
 let instance: EvidenceStore | null = null;
 
+function isDeployedRuntime(): boolean {
+  return process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
+}
+
 /**
  * Pick a store.
  *
- * Defaults to Supabase when it is configured, because the file store cannot
- * survive a serverless host: the bundle filesystem is read-only, /tmp is wiped
- * between cold starts, and seeding would throw on the first request. Falling
- * back silently to the file store in production would turn that into a
- * deployment that looks healthy until the first restart quietly loses every
- * challenge recorded since the last one.
+ * Supabase when it is configured (or EVIDENCE_STORE=supabase, which raises if
+ * it is not). EVIDENCE_STORE=json and =memory force the file and memory stores.
  *
- * EVIDENCE_STORE forces the choice either way. EVIDENCE_STORE=memory is the
- * deliberate choice for a deployment without a database: the curated
- * demonstrations are served, and anything a visitor would create is refused.
+ * With nothing configured: local development gets the file store; a deployed
+ * runtime gets the read-only memory store. There is no silent fallback that
+ * accepts writes it cannot keep: the file store reports `durable: false`
+ * outside local development, the memory store always does, and every write
+ * route checks `canPersist()` and answers 503 when it is false.
  */
 export function getStore(): EvidenceStore {
   if (instance) return instance;
@@ -33,28 +35,19 @@ export function getStore(): EvidenceStore {
 
   if (configured === 'json') {
     instance = new JsonEvidenceStore();
-    return instance;
-  }
-
-  if (configured === 'memory') {
+  } else if (configured === 'memory') {
     instance = new MemoryEvidenceStore();
-    return instance;
-  }
-
-  // An explicit request for Supabase raises if it is not configured, rather
-  // than quietly degrading to a store that cannot persist anything.
-  if (configured === 'supabase' || supabaseConfigured) {
+  } else if (configured === 'supabase' || supabaseConfigured) {
     instance = new SupabaseEvidenceStore();
-    return instance;
+  } else {
+    instance = isDeployedRuntime() ? new MemoryEvidenceStore() : new JsonEvidenceStore();
   }
-
-  instance = new JsonEvidenceStore();
   return instance;
 }
 
-/** False while the store keeps nothing past the current instance. */
+/** True only when the active store keeps writes beyond the current process. */
 export function canPersist(): boolean {
-  return !(getStore() instanceof MemoryEvidenceStore);
+  return getStore().durable === true;
 }
 
 export const NOT_PERSISTED_MESSAGE =

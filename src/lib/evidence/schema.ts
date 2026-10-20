@@ -330,9 +330,21 @@ export type AssessmentChallenge = z.infer<typeof AssessmentChallengeSchema>;
 
 export const AuditRecordSchema = z.object({
   id: Id,
-  entityType: z.enum(['ANALYSIS', 'CLAIM', 'EVIDENCE_ITEM', 'SOURCE', 'INTERPRETATION']),
+  entityType: z.enum(['ANALYSIS', 'CLAIM', 'EVIDENCE_ITEM', 'SOURCE', 'INTERPRETATION', 'PROPOSAL', 'DRAFT']),
   entityId: Id,
-  changeType: z.enum(['CREATED', 'UPDATED', 'CHALLENGED', 'RESCORED', 'CITATION_FLAGGED']),
+  changeType: z.enum([
+    'CREATED',
+    'UPDATED',
+    'CHALLENGED',
+    'RESCORED',
+    'CITATION_FLAGGED',
+    // Editorial workflow (Master Prompt 3, §3): a proposal never changes the
+    // published record; only an APPROVED decision by someone else does.
+    'PROPOSED',
+    'APPROVED',
+    'REJECTED',
+    'DRAFTED',
+  ]),
   oldValue: z.unknown().nullable(),
   newValue: z.unknown().nullable(),
   reason: NonEmpty,
@@ -340,8 +352,53 @@ export const AuditRecordSchema = z.object({
   modelVersion: z.string().nullable(),
   promptVersion: z.string().nullable(),
   timestamp: z.string(),
+  /** Who caused the change. Null for system and pipeline events; never taken from a request body. */
+  actorId: z.string().nullable().optional(),
+  actorRole: z.string().nullable().optional(),
 });
 export type AuditRecord = z.infer<typeof AuditRecordSchema>;
+
+/**
+ * A challenge kept apart from the published assessment.
+ *
+ * Public and contributor challenges are stored here and nowhere else. The
+ * published analysis changes only when an editor who did not write the proposal
+ * approves it, and only if the analysis is still at `baseVersion` (otherwise the
+ * decision is a conflict, never a silent overwrite).
+ */
+export const PROPOSAL_STATUSES = ['proposed', 'approved', 'rejected', 'superseded'] as const;
+export type ProposalStatus = (typeof PROPOSAL_STATUSES)[number];
+
+export const ChallengeProposalSchema = z.object({
+  id: Id,
+  claimId: Id,
+  analysisId: Id,
+  /** The analysis `updatedAt` the proposal was computed against. */
+  baseVersion: z.string().min(1),
+  status: z.enum(PROPOSAL_STATUSES),
+  proposedBy: z.string().nullable(),
+  proposerRole: z.string().min(1),
+  idempotencyKey: z.string().max(128).nullable(),
+  challenge: AssessmentChallengeSchema,
+  revisedClaim: ClaimSchema,
+  decidedBy: z.string().nullable(),
+  decidedRole: z.string().nullable(),
+  decidedAt: z.string().nullable(),
+  decisionReason: z.string().max(2000).nullable(),
+  createdAt: z.string(),
+});
+export type ChallengeProposal = z.infer<typeof ChallengeProposalSchema>;
+
+/** A visitor-requested analysis: stored as a private draft, never listed as published. */
+export const AnalysisDraftSchema = z.object({
+  id: Id,
+  status: z.literal('draft'),
+  createdBy: z.string().nullable(),
+  creatorRole: z.string().min(1),
+  analysis: AnalysisSchema,
+  createdAt: z.string(),
+});
+export type AnalysisDraft = z.infer<typeof AnalysisDraftSchema>;
 
 /* ------------------------------------------------------------------ *
  * Model-facing schemas

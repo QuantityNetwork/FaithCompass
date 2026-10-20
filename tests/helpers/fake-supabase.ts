@@ -15,6 +15,47 @@ interface Result<T> {
   error: { message: string } | null;
 }
 
+/** Resolves `col` and the PostgREST `col->>key` JSON path form. */
+function readPath(row: FakeRow, column: string): unknown {
+  const m = /^(\w+)->>(\w+)$/.exec(column);
+  if (!m) return row[column];
+  const obj = row[m[1]] as Record<string, unknown> | undefined;
+  const v = obj?.[m[2]];
+  return v === undefined || v === null ? v : String(v);
+}
+
+/** Conditional update: `.update(patch).eq(...).select()` applies to the matching rows only. */
+class UpdateBuilder {
+  private filters: Array<[string, unknown]> = [];
+  constructor(
+    private readonly table: FakeTable,
+    private readonly patch: FakeRow,
+  ) {}
+  eq(column: string, value: unknown) {
+    this.filters.push([column, value]);
+    return this;
+  }
+  select(_cols?: string) {
+    return this;
+  }
+  then<TResult1 = Result<FakeRow[]>, TResult2 = never>(
+    onfulfilled?: ((value: Result<FakeRow[]>) => TResult1 | PromiseLike<TResult1>) | null,
+    onrejected?: ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null,
+  ): Promise<TResult1 | TResult2> {
+    if (this.table.failWith) {
+      return Promise.resolve({ data: [], error: { message: this.table.failWith } } as Result<FakeRow[]>).then(onfulfilled, onrejected);
+    }
+    const hit: FakeRow[] = [];
+    this.table.rows = this.table.rows.map((r) => {
+      if (!this.filters.every(([c, v]) => readPath(r, c) === v)) return r;
+      const next = { ...r, ...this.patch };
+      hit.push(next);
+      return next;
+    });
+    return Promise.resolve({ data: hit, error: null } as Result<FakeRow[]>).then(onfulfilled, onrejected);
+  }
+}
+
 class QueryBuilder {
   private rows: FakeRow[];
   private readonly table: FakeTable;
@@ -30,7 +71,7 @@ class QueryBuilder {
   }
 
   eq(column: string, value: unknown) {
-    this.rows = this.rows.filter((r) => r[column] === value);
+    this.rows = this.rows.filter((r) => readPath(r, column) === value);
     return this;
   }
 
@@ -100,6 +141,10 @@ class FakeTable {
     if (existing === -1) this.rows.push(row);
     else this.rows[existing] = row;
     return { data: null, error: null };
+  }
+
+  update(patch: FakeRow) {
+    return new UpdateBuilder(this, patch);
   }
 
   async insert(row: FakeRow) {

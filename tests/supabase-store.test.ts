@@ -2,13 +2,22 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { SupabaseEvidenceStore } from '@/lib/evidence/store/supabase-store';
 import { runAnalysis } from '@/lib/evidence/pipeline';
-import { challengeClaim } from '@/lib/evidence/challenge';
+import { proposeChallenge, decideProposal } from '@/lib/evidence/revisions';
+import type { Actor } from '@/lib/auth/actor';
 import { CorpusReasoningProvider } from '@/lib/evidence/providers/corpus';
 import { setStore } from '@/lib/evidence/store';
 import { DANIEL_12_1 } from '@/lib/evidence/seed/daniel-12-1';
 import { FakeSupabaseClient } from './helpers/fake-supabase';
 
 const provider = new CorpusReasoningProvider();
+const visitor: Actor = { id: null, role: 'public_reader', authenticated: false, via: 'none' };
+const editor: Actor = { id: 'editor-1', role: 'research_editor', authenticated: true, via: 'supabase' };
+
+async function challengeAndApprove(claimId: string) {
+  const { proposal } = await proposeChallenge(claimId, visitor, { provider });
+  await decideProposal(proposal.id, 'approve', editor, 'Reviewed against the cited sources.');
+  return proposal;
+}
 
 let fake: FakeSupabaseClient;
 let store: SupabaseEvidenceStore;
@@ -106,8 +115,7 @@ describe('challenges and audit', () => {
     const analysis = await seedDaniel();
     const claim = analysis.claims[0];
 
-    const outcome = await challengeClaim(claim.id, provider);
-    expect(outcome).not.toBeNull();
+    await challengeAndApprove(claim.id);
 
     const history = await store.listChallenges(claim.id);
     expect(history).toHaveLength(1);
@@ -117,7 +125,7 @@ describe('challenges and audit', () => {
   it('keeps the previous score queryable as a column, not only inside the payload', async () => {
     const analysis = await seedDaniel();
     const claim = analysis.claims[0];
-    await challengeClaim(claim.id, provider);
+    await challengeAndApprove(claim.id);
 
     const [row] = fake.rowsIn('evidence_challenges');
     expect(row.previous_score).toBe(claim.overallConfidence);
@@ -125,13 +133,25 @@ describe('challenges and audit', () => {
     expect(['LOWERED', 'RAISED', 'UNCHANGED']).toContain(row.outcome);
   });
 
-  it('writes the revised analysis back so the claim reflects the challenge', async () => {
+  it('keeps a proposal out of the published analysis until an editor approves it', async () => {
     const analysis = await seedDaniel();
     const claim = analysis.claims[0];
-    const outcome = await challengeClaim(claim.id, provider);
+    const { proposal } = await proposeChallenge(claim.id, visitor, { provider });
 
+    expect((await store.getAnalysis(analysis.id))!).toEqual(analysis);
+    expect(fake.rowsIn('evidence_challenge_proposals')[0].status).toBe('proposed');
+
+    await decideProposal(proposal.id, 'approve', editor, 'Reviewed against the cited sources.');
     const reloaded = await store.getAnalysis(analysis.id);
-    expect(reloaded!.claims[0].overallConfidence).toBe(outcome!.challenge.revisedScore);
+    expect(reloaded!.claims[0].overallConfidence).toBe(proposal.challenge.revisedScore);
+    expect(fake.rowsIn('evidence_challenge_proposals')[0].status).toBe('approved');
+  });
+
+  it('refuses a conditional update against a stale version', async () => {
+    const analysis = await seedDaniel();
+    const ok = await store.replaceAnalysisIfVersion({ ...analysis, updatedAt: '2099-01-01T00:00:00.000Z' }, 'not-the-version');
+    expect(ok).toBe(false);
+    expect(await store.getAnalysis(analysis.id)).toEqual(analysis);
   });
 
   it('records the model and prompt versions on every audit row', async () => {

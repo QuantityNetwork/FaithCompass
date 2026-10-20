@@ -16,9 +16,14 @@ import {
   AnalysisSchema,
   AssessmentChallengeSchema,
   AuditRecordSchema,
+  AnalysisDraftSchema,
+  ChallengeProposalSchema,
   type Analysis,
+  type AnalysisDraft,
   type AssessmentChallenge,
   type AuditRecord,
+  type ChallengeProposal,
+  type ProposalStatus,
 } from '../schema';
 import type { EvidenceStore } from './types';
 
@@ -26,11 +31,23 @@ interface StoreShape {
   analyses: Record<string, Analysis>;
   challenges: Record<string, AssessmentChallenge[]>;
   audit: AuditRecord[];
+  proposals: Record<string, ChallengeProposal>;
+  drafts: Record<string, AnalysisDraft>;
 }
 
-const EMPTY: StoreShape = { analyses: {}, challenges: {}, audit: [] };
+const EMPTY: StoreShape = { analyses: {}, challenges: {}, audit: [], proposals: {}, drafts: {} };
+
+/**
+ * A local file is not durable on a serverless host (read-only bundle, /tmp
+ * wiped between cold starts). Outside local development it must not be
+ * treated as somewhere a visitor's work can be kept.
+ */
+export function fileStoreIsDurableHere(): boolean {
+  return process.env.NODE_ENV !== 'production' && !process.env.VERCEL;
+}
 
 export class JsonEvidenceStore implements EvidenceStore {
+  readonly durable = fileStoreIsDurableHere();
   private readonly file: string;
   private queue: Promise<unknown> = Promise.resolve();
   private cache: StoreShape | null = null;
@@ -48,6 +65,8 @@ export class JsonEvidenceStore implements EvidenceStore {
         analyses: parsed.analyses ?? {},
         challenges: parsed.challenges ?? {},
         audit: parsed.audit ?? [],
+        proposals: parsed.proposals ?? {},
+        drafts: parsed.drafts ?? {},
       };
     } catch {
       // Missing or unreadable file is the normal cold-start case.
@@ -75,6 +94,69 @@ export class JsonEvidenceStore implements EvidenceStore {
     await this.write((s) => {
       s.analyses[validated.id] = validated;
     });
+  }
+
+  async replaceAnalysisIfVersion(analysis: Analysis, expectedUpdatedAt: string): Promise<boolean> {
+    const validated = AnalysisSchema.parse(analysis);
+    let replaced = false;
+    // The check runs inside the serialised write, so two decisions cannot both pass it.
+    await this.write((s) => {
+      const current = s.analyses[validated.id];
+      if (!current || current.updatedAt !== expectedUpdatedAt) return;
+      s.analyses[validated.id] = validated;
+      replaced = true;
+    });
+    return replaced;
+  }
+
+  async saveProposal(proposal: ChallengeProposal): Promise<void> {
+    const validated = ChallengeProposalSchema.parse(proposal);
+    await this.write((s) => {
+      if (s.proposals[validated.id]) throw new Error(`Proposal ${validated.id} already exists.`);
+      s.proposals[validated.id] = validated;
+    });
+  }
+
+  async getProposal(id: string): Promise<ChallengeProposal | null> {
+    const s = await this.read();
+    return s.proposals[id] ?? null;
+  }
+
+  async findProposalByIdempotencyKey(key: string): Promise<ChallengeProposal | null> {
+    const s = await this.read();
+    return Object.values(s.proposals).find((p) => p.idempotencyKey === key) ?? null;
+  }
+
+  async listProposals(claimId: string): Promise<ChallengeProposal[]> {
+    const s = await this.read();
+    return Object.values(s.proposals).filter((p) => p.claimId === claimId);
+  }
+
+  async transitionProposal(
+    id: string,
+    from: ProposalStatus,
+    patch: Pick<ChallengeProposal, 'status' | 'decidedBy' | 'decidedRole' | 'decidedAt' | 'decisionReason'>,
+  ): Promise<boolean> {
+    let moved = false;
+    await this.write((s) => {
+      const p = s.proposals[id];
+      if (!p || p.status !== from) return;
+      s.proposals[id] = { ...p, ...patch };
+      moved = true;
+    });
+    return moved;
+  }
+
+  async saveDraft(draft: AnalysisDraft): Promise<void> {
+    const validated = AnalysisDraftSchema.parse(draft);
+    await this.write((s) => {
+      s.drafts[validated.id] = validated;
+    });
+  }
+
+  async getDraft(id: string): Promise<AnalysisDraft | null> {
+    const s = await this.read();
+    return s.drafts[id] ?? null;
   }
 
   async getAnalysis(id: string): Promise<Analysis | null> {

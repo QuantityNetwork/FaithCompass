@@ -44,6 +44,31 @@ describe('store selection', () => {
     expect(getStore()).toBeInstanceOf(JsonEvidenceStore);
   });
 
+  it('never defaults to the file store on a deployed runtime: read-only memory instead', () => {
+    const prev = process.env.VERCEL;
+    process.env.VERCEL = '1';
+    try {
+      expect(getStore()).toBeInstanceOf(MemoryEvidenceStore);
+      expect(canPersist()).toBe(false);
+    } finally {
+      if (prev === undefined) delete process.env.VERCEL;
+      else process.env.VERCEL = prev;
+    }
+  });
+
+  it('does not count a forced file store as durable on a deployed runtime', () => {
+    const prev = process.env.VERCEL;
+    process.env.VERCEL = '1';
+    process.env.EVIDENCE_STORE = 'json';
+    try {
+      expect(getStore()).toBeInstanceOf(JsonEvidenceStore);
+      expect(canPersist()).toBe(false);
+    } finally {
+      if (prev === undefined) delete process.env.VERCEL;
+      else process.env.VERCEL = prev;
+    }
+  });
+
   it('honours an explicit request for the file store', () => {
     process.env.SUPABASE_URL = 'https://example.supabase.co';
     process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-key';
@@ -59,14 +84,15 @@ describe('store selection', () => {
     expect(canPersist()).toBe(false);
 
     const { POST: challenge } = await import('@/app/api/evidence/claims/[id]/challenge/route');
-    const res = await challenge(new Request('http://localhost/api/evidence/claims/x/challenge', { method: 'POST' }), {
+    const json = { 'content-type': 'application/json' };
+    const res = await challenge(new Request('http://localhost/api/evidence/claims/x/challenge', { method: 'POST', headers: json, body: '{}' }), {
       params: Promise.resolve({ id: 'x' }),
     });
     expect(res.status).toBe(503);
     expect((await res.json()).error).toMatch(/no database/);
 
     const { POST: analyze } = await import('@/app/api/evidence/analyze/route');
-    const res2 = await analyze(new Request('http://localhost/api/evidence/analyze', { method: 'POST', body: '{"query":"Daniel 12:1"}' }));
+    const res2 = await analyze(new Request('http://localhost/api/evidence/analyze', { method: 'POST', headers: json, body: '{"query":"Daniel 12:1"}' }));
     expect(res2.status).toBe(503);
   });
 
