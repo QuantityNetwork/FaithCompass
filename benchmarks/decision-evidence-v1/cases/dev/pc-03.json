@@ -1,0 +1,365 @@
+{
+  "id": "pc-03",
+  "domain": "private_credit",
+  "split": "dev",
+  "fictional": true,
+  "title": "Kestrel Point Holdings: private credit review (fictional)",
+  "entity": "Kestrel Point Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Kestrel Point Holdings (fictional).\nIn this document \"KPHH\" means Kestrel Point Holdings. Kestrel Point Holdings reports interest cover of 2.3x for FY2024. Kestrel Point Holdings reports EBITDA of $83400k for FY2025 on a reported basis. Kestrel Point Holdings reports net debt of $165.53m for FY2025 on a reported basis. Kestrel Point Holdings reports revenue of $722.4m for FY2024 on a reported basis under the original agreement. For Kestrel Point Holdings, the treatment of restructuring add-backs is read as: add-backs limited to costs incurred within 12 months."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Kestrel Point Holdings (fictional).\nKestrel Point Holdings reports interest cover of 1.8x for FY2025. Kestrel Point Holdings reports EBITDA of $83.4m for FY2025 on a reported basis. Kestrel Point Holdings reports available liquidity of $32.6m for FY2024 on a reported basis. KPHH reports cash margin of 4.5% for FY2024. For Kestrel Point Holdings, the treatment of restructuring add-backs is read as: add-backs include expected future synergies."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Kestrel Point Holdings (fictional).\nKestrel Point Holdings reports net debt of $165.2m for FY2025 on a reported basis. Kestrel Point Holdings reports revenue of $536.4m for FY2024 on a reported basis under the amendment no. 1 (supersedes). Kestrel Logistics subsidiary reports available liquidity of $39.2m for FY2024 on a reported basis. Kestrel Point Holdings reports cash margin of 4.9% for FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 121,
+      "end": 186,
+      "text": "Kestrel Point Holdings reports interest cover of 2.3x for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 187,
+      "end": 267,
+      "text": "Kestrel Point Holdings reports EBITDA of $83400k for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 268,
+      "end": 351,
+      "text": "Kestrel Point Holdings reports net debt of $165.53m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 352,
+      "end": 462,
+      "text": "Kestrel Point Holdings reports revenue of $722.4m for FY2024 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 463,
+      "end": 597,
+      "text": "For Kestrel Point Holdings, the treatment of restructuring add-backs is read as: add-backs limited to costs incurred within 12 months."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 58,
+      "end": 123,
+      "text": "Kestrel Point Holdings reports interest cover of 1.8x for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 124,
+      "end": 203,
+      "text": "Kestrel Point Holdings reports EBITDA of $83.4m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 204,
+      "end": 296,
+      "text": "Kestrel Point Holdings reports available liquidity of $32.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 297,
+      "end": 341,
+      "text": "KPHH reports cash margin of 4.5% for FY2024."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 342,
+      "end": 467,
+      "text": "For Kestrel Point Holdings, the treatment of restructuring add-backs is read as: add-backs include expected future synergies."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 61,
+      "end": 143,
+      "text": "Kestrel Point Holdings reports net debt of $165.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 144,
+      "end": 264,
+      "text": "Kestrel Point Holdings reports revenue of $536.4m for FY2024 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 265,
+      "end": 363,
+      "text": "Kestrel Logistics subsidiary reports available liquidity of $39.2m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 364,
+      "end": 426,
+      "text": "Kestrel Point Holdings reports cash margin of 4.9% for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Kestrel Point Holdings",
+      "concept": "interest_cover",
+      "value": 2.3,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Kestrel Point Holdings",
+      "concept": "ebitda",
+      "value": 83400,
+      "unit": "$k",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Kestrel Point Holdings",
+      "concept": "net_debt",
+      "value": 165.53,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Kestrel Point Holdings",
+      "concept": "revenue",
+      "value": 722.4,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Kestrel Point Holdings",
+      "concept": "ebitda_addbacks",
+      "value": "add-backs limited to costs incurred within 12 months",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Kestrel Point Holdings",
+      "concept": "interest_cover",
+      "value": 1.8,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Kestrel Point Holdings",
+      "concept": "ebitda",
+      "value": 83.4,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Kestrel Point Holdings",
+      "concept": "liquidity",
+      "value": 32.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "KPHH",
+      "concept": "cash_margin",
+      "value": 4.5,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Kestrel Point Holdings",
+      "concept": "ebitda_addbacks",
+      "value": "add-backs include expected future synergies",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Kestrel Point Holdings",
+      "concept": "net_debt",
+      "value": 165.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Kestrel Point Holdings",
+      "concept": "revenue",
+      "value": 536.4,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Kestrel Logistics subsidiary",
+      "concept": "liquidity",
+      "value": 39.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Kestrel Point Holdings",
+      "concept": "cash_margin",
+      "value": 4.9,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The EBITDA and net debt of Kestrel Point Holdings support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The revenue of Kestrel Point Holdings supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"KPHH\" is defined in the documents as Kestrel Point Holdings"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "EBITDA",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "net debt",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "revenue",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D3#s2"
+      ]
+    }
+  }
+}

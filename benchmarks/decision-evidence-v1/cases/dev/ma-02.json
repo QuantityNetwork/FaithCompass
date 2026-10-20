@@ -1,0 +1,330 @@
+{
+  "id": "ma-02",
+  "domain": "m_and_a",
+  "split": "dev",
+  "fictional": true,
+  "title": "Pellwood Industries: m and a review (fictional)",
+  "entity": "Pellwood Industries",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Pellwood Industries (fictional).\nIn this document \"PIH\" means Pellwood Industries. Pellwood Industries reports gross margin of 44.9% for FY2024. Pellwood Industries reports headcount of 2027 for FY2025. Pellwood Industries reports earn out of $36.1m for LTM to 30 Jun 2025 on a reported basis. Pellwood AB reports normalised net working capital of $83.7m for FY2024 on a reported basis. The fiscal year of Pellwood Industries ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Pellwood Industries (fictional).\nPellwood Industries reports gross profit margin of 40.4% for FY2024. Pellwood Industries reports headcount of 1792 for FY2025. Pellwood Industries reports enterprise value of $818.2m for FY2025 on a reported basis. Pellwood Industries reports annual customer churn of 5% for FY2024."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Pellwood Industries (fictional).\nPellwood Industries reports earn out of $30.3m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. Pellwood Ltd reports normalised net working capital of $68m for FY2024 on a reported basis. Pellwood Industries reports approximately enterprise value of $794m for FY2025 on a reported basis. Pellwood Industries reports annual customer churn of 4.2% for FY2024. \"gross profit margin\" has the same meaning as \"gross margin\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 108,
+      "end": 169,
+      "text": "Pellwood Industries reports gross margin of 44.9% for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 170,
+      "end": 227,
+      "text": "Pellwood Industries reports headcount of 2027 for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 228,
+      "end": 318,
+      "text": "Pellwood Industries reports earn out of $36.1m for LTM to 30 Jun 2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 319,
+      "end": 411,
+      "text": "Pellwood AB reports normalised net working capital of $83.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 66,
+      "end": 134,
+      "text": "Pellwood Industries reports gross profit margin of 40.4% for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 135,
+      "end": 192,
+      "text": "Pellwood Industries reports headcount of 1792 for FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 193,
+      "end": 280,
+      "text": "Pellwood Industries reports enterprise value of $818.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 281,
+      "end": 348,
+      "text": "Pellwood Industries reports annual customer churn of 5% for FY2024."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 66,
+      "end": 178,
+      "text": "Pellwood Industries reports earn out of $30.3m for FY2025 (fiscal year ending 30 June 2025) on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 179,
+      "end": 270,
+      "text": "Pellwood Ltd reports normalised net working capital of $68m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 271,
+      "end": 370,
+      "text": "Pellwood Industries reports approximately enterprise value of $794m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 371,
+      "end": 440,
+      "text": "Pellwood Industries reports annual customer churn of 4.2% for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Pellwood Industries",
+      "concept": "gross_margin",
+      "value": 44.9,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Pellwood Industries",
+      "concept": "headcount",
+      "value": 2027,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Pellwood Industries",
+      "concept": "earn_out",
+      "value": 36.1,
+      "unit": "$m",
+      "period": "LTM to 30 Jun 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Pellwood AB",
+      "concept": "net_working_capital",
+      "value": 83.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Pellwood Industries",
+      "concept": "gross_profit_margin",
+      "value": 40.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Pellwood Industries",
+      "concept": "headcount",
+      "value": 1792,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Pellwood Industries",
+      "concept": "enterprise_value",
+      "value": 818.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Pellwood Industries",
+      "concept": "customer_churn",
+      "value": 5,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Pellwood Industries",
+      "concept": "earn_out",
+      "value": 30.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "definition": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Pellwood Ltd",
+      "concept": "net_working_capital",
+      "value": 68,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Pellwood Industries",
+      "concept": "enterprise_value",
+      "value": 794,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Pellwood Industries",
+      "concept": "customer_churn",
+      "value": 4.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The gross margin and employees of Pellwood Industries support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The maximum earn-out of Pellwood Industries supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"gross_profit_margin\" is defined as the same measure as \"gross_margin\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "gross margin",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "maximum earn-out",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

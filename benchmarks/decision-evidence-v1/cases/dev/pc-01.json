@@ -1,0 +1,401 @@
+{
+  "id": "pc-01",
+  "domain": "private_credit",
+  "split": "dev",
+  "fictional": true,
+  "title": "Osprey Group: private credit review (fictional)",
+  "entity": "Osprey Group",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Osprey Group (fictional).\nIn this document \"OGH\" means Osprey Group. Osprey Group reports capex of $7.3m for FY2025 on a reported basis under the original agreement. Osprey Logistics subsidiary reports net debt of $323.7m for FY2024 on a reported basis. OGH reports cash margin of 6.4% for FY2025. Osprey Group reports available liquidity of $47.6m for FY2024 on a reported basis. For Osprey Group, the permitted acquisitions basket is read as: capped at the greater of $15m and 20% of EBITDA. For Osprey Group, the sponsor equity cure is: no equity cure right. The fiscal year of Osprey Group ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Osprey Group (fictional).\nOsprey Group reports capex of $5.4m for FY2025 on a reported basis under the amendment no. 1 (supersedes). Osprey Group reports net debt of $283.1m for FY2024 on a reported basis. Osprey Group reports revenue of $311.6m for FY2025 on a reported basis. Osprey Group reports interest cover of 7.4x for LTM to 30 Jun 2025. For Osprey Group, the permitted acquisitions basket is read as: uncapped where pro forma leverage stays below 4.0x. For Osprey Group, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Osprey Group (fictional).\nOsprey Group reports cash margin of 5.9% for FY2025. Osprey Group reports available liquidity of $57.8m for FY2024 on a reported basis. Osprey Group reports revenue of USD 235.4 million for FY2025 on a reported basis. Osprey Group reports interest cover of 5.8x for FY2025 (fiscal year ending 30 June 2025). \"available liquidity\" has the same meaning as \"liquidity\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 100,
+      "end": 196,
+      "text": "Osprey Group reports capex of $7.3m for FY2025 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 197,
+      "end": 284,
+      "text": "Osprey Logistics subsidiary reports net debt of $323.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 285,
+      "end": 328,
+      "text": "OGH reports cash margin of 6.4% for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 329,
+      "end": 411,
+      "text": "Osprey Group reports available liquidity of $47.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 412,
+      "end": 524,
+      "text": "For Osprey Group, the permitted acquisitions basket is read as: capped at the greater of $15m and 20% of EBITDA."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 525,
+      "end": 592,
+      "text": "For Osprey Group, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 48,
+      "end": 154,
+      "text": "Osprey Group reports capex of $5.4m for FY2025 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 155,
+      "end": 227,
+      "text": "Osprey Group reports net debt of $283.1m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 228,
+      "end": 299,
+      "text": "Osprey Group reports revenue of $311.6m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 300,
+      "end": 367,
+      "text": "Osprey Group reports interest cover of 7.4x for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 368,
+      "end": 483,
+      "text": "For Osprey Group, the permitted acquisitions basket is read as: uncapped where pro forma leverage stays below 4.0x."
+    },
+    {
+      "id": "D2#s6",
+      "doc": "D2",
+      "start": 484,
+      "end": 588,
+      "text": "For Osprey Group, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 51,
+      "end": 103,
+      "text": "Osprey Group reports cash margin of 5.9% for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 104,
+      "end": 186,
+      "text": "Osprey Group reports available liquidity of $57.8m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 187,
+      "end": 268,
+      "text": "Osprey Group reports revenue of USD 235.4 million for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 269,
+      "end": 358,
+      "text": "Osprey Group reports interest cover of 5.8x for FY2025 (fiscal year ending 30 June 2025)."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Osprey Group",
+      "concept": "capex",
+      "value": 7.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Osprey Logistics subsidiary",
+      "concept": "net_debt",
+      "value": 323.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "OGH",
+      "concept": "cash_margin",
+      "value": 6.4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Osprey Group",
+      "concept": "liquidity",
+      "value": 47.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Osprey Group",
+      "concept": "permitted_basket",
+      "value": "capped at the greater of $15m and 20% of EBITDA",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Osprey Group",
+      "concept": "sponsor_support_b",
+      "value": false,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Osprey Group",
+      "concept": "capex",
+      "value": 5.4,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Osprey Group",
+      "concept": "net_debt",
+      "value": 283.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Osprey Group",
+      "concept": "revenue",
+      "value": 311.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Osprey Group",
+      "concept": "interest_cover",
+      "value": 7.4,
+      "unit": "x",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Osprey Group",
+      "concept": "permitted_basket",
+      "value": "uncapped where pro forma leverage stays below 4.0x",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s6",
+      "entity": "Osprey Group",
+      "concept": "sponsor_support_a",
+      "value": true,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Osprey Group",
+      "concept": "cash_margin",
+      "value": 5.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Osprey Group",
+      "concept": "available_liquidity",
+      "value": 57.8,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Osprey Group",
+      "concept": "revenue",
+      "value": 235.4,
+      "unit": "USD million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Osprey Group",
+      "concept": "interest_cover",
+      "value": 5.8,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The capital expenditure and net debt of Osprey Group support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The cash interest margin of Osprey Group supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"OGH\" is defined in the documents as Osprey Group"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"available_liquidity\" is defined as the same measure as \"liquidity\""
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word",
+        "note": "\"USD million\" is the same unit as $m"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      },
+      {
+        "facts": [
+          "D2#s6",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "net debt",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "cash interest margin",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

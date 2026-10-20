@@ -1,0 +1,366 @@
+{
+  "id": "sc-04",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "title": "Codex Aldane: scholarly review (fictional)",
+  "entity": "Codex Aldane",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Codex Aldane (fictional).\nIn this document \"CA-MS\" means Codex Aldane. Codex AB reports radiocarbon median date (CE) of 1135 year for FY2024. Codex Aldane reports approximately quire count of 36 for FY2024. Codex Aldane reports lacunae share of 33.3% for FY2024. Codex Aldane reports recorded variant readings of 1426 for FY2025 on a reported basis. For Codex Aldane, the place of origin is: copied in the northern scriptorium."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Codex Aldane (fictional).\nCodex Ltd reports radiocarbon median date (CE) of 1406 year for FY2024. Codex Aldane reports quire count of 37 for FY2024. Codex Aldane reports line count of 31 for FY2025. Codex Aldane: number of known witnesses for FY2024 — not provided. For Codex Aldane, the place of origin is: copied in the southern scriptorium."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Codex Aldane (fictional).\nCodex Aldane reports lacunae share of 26.6% for FY2024. Codex Aldane reports recorded variant readings of 1051 for FY2025 on a adjusted (management definition) basis. Codex Aldane reports line count of 23. Codex Aldane reports witness count of 47 for FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 103,
+      "end": 173,
+      "text": "Codex AB reports radiocarbon median date (CE) of 1135 year for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 174,
+      "end": 238,
+      "text": "Codex Aldane reports approximately quire count of 36 for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 239,
+      "end": 294,
+      "text": "Codex Aldane reports lacunae share of 33.3% for FY2024."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 295,
+      "end": 381,
+      "text": "Codex Aldane reports recorded variant readings of 1426 for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 382,
+      "end": 459,
+      "text": "For Codex Aldane, the place of origin is: copied in the northern scriptorium."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 44,
+      "end": 115,
+      "text": "Codex Ltd reports radiocarbon median date (CE) of 1406 year for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 116,
+      "end": 166,
+      "text": "Codex Aldane reports quire count of 37 for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 167,
+      "end": 216,
+      "text": "Codex Aldane reports line count of 31 for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 217,
+      "end": 283,
+      "text": "Codex Aldane: number of known witnesses for FY2024 — not provided."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 284,
+      "end": 361,
+      "text": "For Codex Aldane, the place of origin is: copied in the southern scriptorium."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 43,
+      "end": 98,
+      "text": "Codex Aldane reports lacunae share of 26.6% for FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 99,
+      "end": 209,
+      "text": "Codex Aldane reports recorded variant readings of 1051 for FY2025 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 210,
+      "end": 248,
+      "text": "Codex Aldane reports line count of 23."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 249,
+      "end": 301,
+      "text": "Codex Aldane reports witness count of 47 for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Codex AB",
+      "concept": "radiocarbon_median",
+      "value": 1135,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Codex Aldane",
+      "concept": "quire_count",
+      "value": 36,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Codex Aldane",
+      "concept": "lacunae_share",
+      "value": 33.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Codex Aldane",
+      "concept": "variant_readings",
+      "value": 1426,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Codex Aldane",
+      "concept": "provenance_a",
+      "value": true,
+      "exclusiveGroup": "provenance"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Codex Ltd",
+      "concept": "radiocarbon_median",
+      "value": 1406,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Codex Aldane",
+      "concept": "quire_count",
+      "value": 37,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Codex Aldane",
+      "concept": "line_count",
+      "value": 31,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Codex Aldane",
+      "concept": "witness_count",
+      "value": null,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Codex Aldane",
+      "concept": "provenance_b",
+      "value": false,
+      "exclusiveGroup": "provenance"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Codex Aldane",
+      "concept": "lacunae_share",
+      "value": 26.6,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Codex Aldane",
+      "concept": "variant_readings",
+      "value": 1051,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Codex Aldane",
+      "concept": "line_count",
+      "value": 23,
+      "unit": "count",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Codex Aldane",
+      "concept": "witness_count",
+      "value": 47,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The number of quires and share of text lost to lacunae of Codex Aldane support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The recorded variant readings of Codex Aldane supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "number of quires",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "share of text lost to lacunae",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "recorded variant readings",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

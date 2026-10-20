@@ -1,0 +1,366 @@
+{
+  "id": "ma-10",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "title": "Quillon Industries: m and a review (fictional)",
+  "entity": "Quillon Industries",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Quillon Industries (fictional).\nIn this document \"QIH\" means Quillon Industries. Quillon AB reports normalised net working capital of $35.4m for FY2025 on a reported basis. Quillon Industries reports approximately headcount of 803 for FY2024. Quillon Industries reports gross margin of 58.1% for FY2025. Quillon Industries reports EBITDA of $22.6m for FY2024 on a reported basis. For Quillon Industries, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Quillon Industries (fictional).\nQuillon Ltd reports normalised net working capital of $45.2m for FY2025 on a reported basis. Quillon Industries reports headcount of 828 for FY2024. Quillon Industries reports annual customer churn of 8.7% for FY2025. Quillon Industries: revenue for FY2024 on a reported basis — not provided. For Quillon Industries, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Quillon Industries (fictional).\nQuillon Industries reports gross margin of 47.7% for FY2025. Quillon Industries reports EBITDA of $28.8m for FY2024 on a adjusted (management definition) basis. Quillon Industries reports annual customer churn of 9.8%. Quillon Industries reports revenue of $307.2m for FY2024 on a reported basis."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 106,
+      "end": 197,
+      "text": "Quillon AB reports normalised net working capital of $35.4m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 198,
+      "end": 267,
+      "text": "Quillon Industries reports approximately headcount of 803 for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 268,
+      "end": 328,
+      "text": "Quillon Industries reports gross margin of 58.1% for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 329,
+      "end": 404,
+      "text": "Quillon Industries reports EBITDA of $22.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 405,
+      "end": 482,
+      "text": "For Quillon Industries, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 65,
+      "end": 157,
+      "text": "Quillon Ltd reports normalised net working capital of $45.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 158,
+      "end": 213,
+      "text": "Quillon Industries reports headcount of 828 for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 214,
+      "end": 282,
+      "text": "Quillon Industries reports annual customer churn of 8.7% for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 283,
+      "end": 357,
+      "text": "Quillon Industries: revenue for FY2024 on a reported basis — not provided."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 358,
+      "end": 461,
+      "text": "For Quillon Industries, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 65,
+      "end": 125,
+      "text": "Quillon Industries reports gross margin of 47.7% for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 126,
+      "end": 225,
+      "text": "Quillon Industries reports EBITDA of $28.8m for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 226,
+      "end": 283,
+      "text": "Quillon Industries reports annual customer churn of 9.8%."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 284,
+      "end": 361,
+      "text": "Quillon Industries reports revenue of $307.2m for FY2024 on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Quillon AB",
+      "concept": "net_working_capital",
+      "value": 35.4,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Quillon Industries",
+      "concept": "headcount",
+      "value": 803,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Quillon Industries",
+      "concept": "gross_margin",
+      "value": 58.1,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Quillon Industries",
+      "concept": "ebitda",
+      "value": 22.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Quillon Industries",
+      "concept": "consideration_form_a",
+      "value": true,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Quillon Ltd",
+      "concept": "net_working_capital",
+      "value": 45.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Quillon Industries",
+      "concept": "headcount",
+      "value": 828,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Quillon Industries",
+      "concept": "customer_churn",
+      "value": 8.7,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Quillon Industries",
+      "concept": "revenue",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Quillon Industries",
+      "concept": "consideration_form_b",
+      "value": false,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Quillon Industries",
+      "concept": "gross_margin",
+      "value": 47.7,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Quillon Industries",
+      "concept": "ebitda",
+      "value": 28.8,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Quillon Industries",
+      "concept": "customer_churn",
+      "value": 9.8,
+      "unit": "%",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Quillon Industries",
+      "concept": "revenue",
+      "value": 307.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The employees and gross margin of Quillon Industries support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The EBITDA of Quillon Industries supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "gross margin",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "EBITDA",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

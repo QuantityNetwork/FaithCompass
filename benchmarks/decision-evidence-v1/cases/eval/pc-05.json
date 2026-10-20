@@ -1,0 +1,365 @@
+{
+  "id": "pc-05",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "title": "Sorrel Holdings: private credit review (fictional)",
+  "entity": "Sorrel Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Sorrel Holdings (fictional).\nIn this document \"SHH\" means Sorrel Holdings. Sorrel Holdings reports net debt of $332.6m for FY2024 on a reported basis. Sorrel Holdings reports available liquidity of $71.2m on a reported basis. Sorrel Holdings: capital expenditure for FY2025 on a reported basis — not provided. Sorrel Holdings reports revenue of $422.3m for FY2025 on a reported basis. For Sorrel Holdings, the permitted acquisitions basket is read as: capped at the greater of $15m and 20% of EBITDA."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Sorrel Holdings (fictional).\nSorrel Holdings reports net debt of $283.8m for FY2024 on a adjusted (management definition) basis. Sorrel Holdings reports available liquidity of $59.7m for FY2025 on a reported basis. Sorrel Holdings reports cash margin of 6.2% for FY2024. Sorrel Holdings reports interest cover of 1.603x for FY2024. For Sorrel Holdings, the permitted acquisitions basket is read as: uncapped where pro forma leverage stays below 4.0x."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Sorrel Holdings (fictional).\nSorrel Holdings reports capex of $13.7m for FY2025 on a reported basis. Sorrel Holdings reports revenue of $328.4m for FY2024 on a reported basis. Sorrel Holdings reports cash margin of 6.212% for FY2024. Sorrel Holdings reports interest cover of 1.6x for FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 106,
+      "end": 181,
+      "text": "Sorrel Holdings reports net debt of $332.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 182,
+      "end": 256,
+      "text": "Sorrel Holdings reports available liquidity of $71.2m on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 257,
+      "end": 340,
+      "text": "Sorrel Holdings: capital expenditure for FY2025 on a reported basis — not provided."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 341,
+      "end": 415,
+      "text": "Sorrel Holdings reports revenue of $422.3m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 416,
+      "end": 531,
+      "text": "For Sorrel Holdings, the permitted acquisitions basket is read as: capped at the greater of $15m and 20% of EBITDA."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 51,
+      "end": 150,
+      "text": "Sorrel Holdings reports net debt of $283.8m for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 151,
+      "end": 236,
+      "text": "Sorrel Holdings reports available liquidity of $59.7m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 237,
+      "end": 292,
+      "text": "Sorrel Holdings reports cash margin of 6.2% for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 293,
+      "end": 353,
+      "text": "Sorrel Holdings reports interest cover of 1.603x for FY2024."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 354,
+      "end": 472,
+      "text": "For Sorrel Holdings, the permitted acquisitions basket is read as: uncapped where pro forma leverage stays below 4.0x."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 54,
+      "end": 125,
+      "text": "Sorrel Holdings reports capex of $13.7m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 126,
+      "end": 200,
+      "text": "Sorrel Holdings reports revenue of $328.4m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 201,
+      "end": 258,
+      "text": "Sorrel Holdings reports cash margin of 6.212% for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 259,
+      "end": 317,
+      "text": "Sorrel Holdings reports interest cover of 1.6x for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Sorrel Holdings",
+      "concept": "net_debt",
+      "value": 332.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Sorrel Holdings",
+      "concept": "liquidity",
+      "value": 71.2,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Sorrel Holdings",
+      "concept": "capex",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Sorrel Holdings",
+      "concept": "revenue",
+      "value": 422.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Sorrel Holdings",
+      "concept": "permitted_basket",
+      "value": "capped at the greater of $15m and 20% of EBITDA",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Sorrel Holdings",
+      "concept": "net_debt",
+      "value": 283.8,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Sorrel Holdings",
+      "concept": "liquidity",
+      "value": 59.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Sorrel Holdings",
+      "concept": "cash_margin",
+      "value": 6.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Sorrel Holdings",
+      "concept": "interest_cover",
+      "value": 1.603,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Sorrel Holdings",
+      "concept": "permitted_basket",
+      "value": "uncapped where pro forma leverage stays below 4.0x",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Sorrel Holdings",
+      "concept": "capex",
+      "value": 13.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Sorrel Holdings",
+      "concept": "revenue",
+      "value": 328.4,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Sorrel Holdings",
+      "concept": "cash_margin",
+      "value": 6.212,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Sorrel Holdings",
+      "concept": "interest_cover",
+      "value": 1.6,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The net debt and available liquidity of Sorrel Holdings support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The capital expenditure of Sorrel Holdings supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "net debt",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "available liquidity",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}
