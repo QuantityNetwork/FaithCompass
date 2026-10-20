@@ -61,7 +61,7 @@ export function ChallengePanel({
       </button>
 
       {error ? (
-        <p className="small" style={{ color: '#c98a7a', marginTop: 16 }}>
+        <p className="small" style={{ color: 'var(--rust-text)', marginTop: 16 }}>
           {error}
         </p>
       ) : null}

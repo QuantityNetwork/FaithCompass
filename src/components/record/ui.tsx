@@ -6,6 +6,7 @@
  */
 
 import Link from 'next/link';
+import { getRecord } from '@/lib/record/record';
 import type { ReactNode } from 'react';
 import type { z } from 'zod/v4';
 import type { AcceptanceV1, ClaimSummaryV1, ClaimV1, DerivationV1, ProvenanceStepV1, ReferenceV1 } from '@/lib/api/views';
@@ -74,6 +75,12 @@ export function Refs({ refs, empty = 'None recorded.' }: { refs: Array<z.infer<t
   );
 }
 
+/** A doctrine edge is listed on the page of its source node, so the anchor needs that node in the query. */
+function doctrineHref(code: string): string {
+  const edge = getRecord().data.doctrine.find((e) => e.code === code);
+  return edge ? `/doctrine?node=${encodeURIComponent(edge.source)}#${code}` : `/doctrine#${code}`;
+}
+
 export function CodeLink({ code }: { code: string }) {
   const href = code.startsWith('AM-CLAIM-')
     ? `/claims/${code}`
@@ -82,7 +89,7 @@ export function CodeLink({ code }: { code: string }) {
       : code.startsWith('AM-COV-')
         ? `/covenants#${code}`
         : code.startsWith('AM-DOC-')
-          ? `/doctrine#${code}`
+          ? doctrineHref(code)
           : code.startsWith('AM-CM-')
             ? `/hermeneutics#${code}`
             : null;
