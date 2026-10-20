@@ -1,10 +1,18 @@
 import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { AnalyzeBodySchema } from '@/lib/evidence/write-api';
+import { providerStatus } from '@/lib/evidence/providers/registry';
+import { logServerError } from '@/lib/security/audit-log';
+
+/** What reasoning provider runs, and whether it is degraded from the configured one (model IDs are on /status). */
+function publicProviderStatus() {
+  const { configured, active, degraded, reason } = providerStatus();
+  return { configured, active, degraded, reason };
+}
 import { runAnalysis } from '@/lib/evidence/pipeline';
 import { canPersist, getStore, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { guardWrite } from '@/lib/security/write-guard';
-import { NoAnalysisAvailableError } from '@/lib/evidence/providers/types';
+import { NoAnalysisAvailableError, ProviderUnavailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
 
 export const dynamic = 'force-dynamic';
@@ -32,7 +40,10 @@ export async function POST(request: Request) {
   }
 
   if (!canPersist()) {
-    return NextResponse.json({ error: NOT_PERSISTED_MESSAGE, persisted: false, published: false }, { status: 503, headers: noStore });
+    return NextResponse.json(
+      { error: NOT_PERSISTED_MESSAGE, persisted: false, published: false, provider: publicProviderStatus() },
+      { status: 503, headers: noStore },
+    );
   }
 
   try {
@@ -87,6 +98,7 @@ export async function POST(request: Request) {
         message: 'Saved as an unpublished draft. It is not part of the published record and has not been reviewed.',
         analysis: result.analysis,
         citationFlags: result.citationFlags,
+        provider: publicProviderStatus(),
       },
       { status: 202, headers: noStore },
     );
@@ -103,9 +115,13 @@ export async function POST(request: Request) {
         { status: 502 },
       );
     }
-    return NextResponse.json(
-      { error: err instanceof Error ? err.message : 'Analysis failed.' },
-      { status: 500 },
-    );
+    if (err instanceof ProviderUnavailableError) {
+      return NextResponse.json(
+        { error: 'The reasoning provider is unavailable. Nothing was saved.', code: 'provider_unavailable', provider: publicProviderStatus() },
+        { status: 503, headers: noStore },
+      );
+    }
+    logServerError('evidence.analyze', err);
+    return NextResponse.json({ error: 'Analysis failed. Nothing was saved.' }, { status: 500, headers: noStore });
   }
 }

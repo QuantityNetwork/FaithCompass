@@ -14,6 +14,7 @@ import { RAW_RECORD, getRecord, revisionHash } from '@/lib/record/record';
 import lock from '@/lib/record/revisions.lock.json';
 import { handleMessage, SUPPORTED_PROTOCOL_VERSIONS } from '@/lib/mcp/server';
 import { API_VERSION, canonicalOrigin, canonicalOriginSource, legacyOrigins, legalContact } from '@/lib/site/config';
+import { providerStatus } from '@/lib/evidence/providers/registry';
 import { dispatchLegacy } from './legacy';
 
 export const StatusV1 = z.object({
@@ -138,6 +139,13 @@ export async function statusReport(
         return { result: 'warn', detail: `Documented origin is ${origin}, but this request arrived at ${servedFrom}.` };
       }
       return { result: 'pass', detail: `Documentation, API and MCP all name ${origin}, which is serving this request.` };
+    }),
+    timed('ai_provider', 'Evidence reasoning provider', () => {
+      const p = providerStatus();
+      if (p.degraded) return { result: 'warn', detail: `${p.reason} Active provider: ${p.active}.` };
+      return p.active === 'corpus'
+        ? { result: 'pass', detail: 'Curated, offline provider (configured). No text is sent to an AI service; only curated analyses are available.' }
+        : { result: 'pass', detail: `Provider ${p.active} is configured and has credentials (models: ${p.models?.fast}, ${p.models?.deep}). Reachability is not probed here.` };
     }),
     timed('legal_contact', 'Privacy contact published', () => {
       const contact = legalContact();

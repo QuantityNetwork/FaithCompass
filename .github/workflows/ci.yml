@@ -1,0 +1,89 @@
+# Pull-request gate. Every job runs against throwaway local resources only:
+# no secrets, no real database, no deployment.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [claude/abrahammoses-research-instrument]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  checks:
+    name: Typecheck, unit, contract, record, audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Unit tests (includes the security regression suite)
+        run: npm test
+      - name: API contract and MCP tests
+        run: npx vitest run tests/api.test.ts tests/mcp.test.ts tests/developer-docs.test.ts tests/security.test.ts
+      - name: Record lock
+        run: npm run record:check
+      - name: Dependency audit (high and above)
+        run: npm audit --audit-level=high
+
+  rls:
+    name: Migrations and RLS (PostgreSQL service)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Migrations (twice) and RLS tests
+        env:
+          RLS_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+        run: |
+          npm run test:rls | tee rls.log
+          grep -q 'ALL RLS TESTS PASSED' rls.log
+
+  browser:
+    name: Build, browser e2e + axe, HTTP security regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Browser e2e (includes axe WCAG 2.2 AA)
+        run: npm run test:e2e
+      - name: HTTP security regression against the local build
+        run: |
+          PORT=3311 ABRAHAMMOSES_PUBLIC_ORIGIN=http://localhost:3311 npx next start -p 3311 &
+          for i in $(seq 1 60); do curl -sf http://localhost:3311/api/v1 >/dev/null && break; sleep 1; done
+          node scripts/security-smoke.mjs http://localhost:3311

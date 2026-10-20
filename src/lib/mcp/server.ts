@@ -12,6 +12,7 @@
  * client notifications (accepted and ignored).
  */
 
+import { logServerError } from '@/lib/security/audit-log';
 import { z } from 'zod/v4';
 import { ApiError, CORS_HEADERS, rateLimit, rateLimitPerMinute } from '@/lib/api/http';
 import { caseView, axiomView } from '@/lib/api/views';
@@ -216,7 +217,7 @@ function callTool(params: Record<string, unknown>) {
     } else if (err instanceof ApiError) {
       message = err.details ? `${err.message} ${JSON.stringify(err.details)}` : err.message;
     } else {
-      console.error('[mcp] tool failed', name, err);
+      logServerError(`mcp.tool.${name}`, err);
       message = 'The tool failed unexpectedly. Nothing was changed.';
     }
     return { content: [{ type: 'text', text: message }], isError: true };
@@ -296,7 +297,7 @@ export function handleMessage(message: unknown): object | null {
     return { jsonrpc: '2.0', id, result: dispatch(message.method, message.params) };
   } catch (err) {
     if (err instanceof RpcError) return errorMessage(id, err.code, err.message, err.data);
-    console.error('[mcp] internal error', err);
+    logServerError('mcp', err);
     return errorMessage(id, JSONRPC.INTERNAL_ERROR, 'Internal error');
   }
 }

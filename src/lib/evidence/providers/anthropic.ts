@@ -42,8 +42,13 @@ import { CLAIM_TYPES, EVIDENCE_DIMENSIONS, EVIDENCE_RELATIONSHIPS } from '../tax
 const API_URL = 'https://api.anthropic.com/v1/messages';
 const API_VERSION = '2023-06-01';
 
-const FAST_MODEL = process.env.EVIDENCE_MODEL_FAST || 'claude-haiku-4-5-20251001';
-const DEEP_MODEL = process.env.EVIDENCE_MODEL_DEEP || 'claude-opus-5';
+// Defaults are current model IDs from Anthropic's models overview (checked
+// 2026-10-20). Both are pinned snapshots; override per deployment with
+// EVIDENCE_MODEL_FAST / EVIDENCE_MODEL_DEEP.
+export const DEFAULT_FAST_MODEL = 'claude-haiku-5-5';
+export const DEFAULT_DEEP_MODEL = 'claude-opus-5-5';
+const FAST_MODEL = process.env.EVIDENCE_MODEL_FAST || DEFAULT_FAST_MODEL;
+const DEEP_MODEL = process.env.EVIDENCE_MODEL_DEEP || DEFAULT_DEEP_MODEL;
 
 interface AnthropicTextBlock {
   type: string;
@@ -102,8 +107,9 @@ export class AnthropicReasoningProvider implements EvidenceReasoningProvider {
     });
 
     if (!res.ok) {
-      const detail = await res.text().catch(() => '');
-      throw new ProviderUnavailableError(this.name, `HTTP ${res.status}: ${detail.slice(0, 300)}`);
+      // The body is not quoted: it can echo the prompt, which carries the question.
+      await res.body?.cancel().catch(() => undefined);
+      throw new ProviderUnavailableError(this.name, `HTTP ${res.status}`);
     }
 
     const body = (await res.json()) as AnthropicResponse;
