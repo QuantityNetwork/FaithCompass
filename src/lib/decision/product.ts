@@ -44,6 +44,7 @@ export function sellerContact(configured: string | null | undefined): string {
  * Stripe payment link for a pilot reservation (payment link plink_1USgj0G6rcRJryPyPwPo6y5w): Stripe's hosted
  * checkout, no keys and no server integration. The owner reactivates the link in Stripe together with the
  * production deploy (register item B10); until then Stripe shows the link's inactive message.
+ * Card statements read 'SWECANDY* ABRAHAMMOSES' (the link's statement_descriptor_suffix; account prefix unchanged).
  */
 export const PILOT_PAYMENT_LINK = 'https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d';
 /** Pilot reservations are on sale (owner decision 2026-10-21, register item B10). */
