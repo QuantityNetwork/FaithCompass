@@ -259,13 +259,13 @@ else from those paths:
 
 | Output | Use |
 | --- | --- |
-| `public/brand/abrahammoses-logo.svg`, `-ivory.svg` | **Primary logo:** the mark beside the one-line “AbrahamMoses” wordmark, in black (for light backgrounds and press) and in the site's ivory (header and footer). The one line is composed from the traced letterforms: “Moses” moves onto the baseline of “Abraham”, 19 units after the m, and the mark is 1.7× the wordmark's height, centred, half that height away |
+| `public/brand/abrahammoses-logo.svg`, `-ivory.svg` | **Primary logo:** the official one-word lockup, the mark beside “AbrahamMoses” on one line. It is traced from `design/brand/official/abrahammoses-official-navy-on-white.png` (`scripts/brand/trace_official.py` → `design/brand/official/logo-paths.json`, IoU 0.992 against the PNG). Black is for light backgrounds and press; the site's ivory is for the header and footer |
 | `public/brand/abrahammoses-wordmark.svg`, `-ivory.svg` | The one-line wordmark alone |
 | `public/brand/abrahammoses-logo-stacked.svg`, `-ivory.svg` | Secondary: the stacked lockup as traced (mark and two-line wordmark) |
 | `public/brand/abrahammoses-mark.svg`, `-ivory.svg` | The “A” mark alone |
 | `public/brand/abrahammoses-emblem.svg`, `-ivory.svg` | The four-ring emblem alone |
 | `src/app/icon.svg`, `src/app/apple-icon.png` | Browser and touch icons: the white mark on the logo's navy (`#080E16`) |
-| `src/app/opengraph-image.png` | The 1200×630 social preview: the white stacked lockup on navy |
+| `src/app/opengraph-image.png` | The 1200×630 social preview: the official logo in white on navy |
 | `src/components/brand/paths.ts` | Path data, viewboxes and ring geometry for components |
 
 The static favicon set comes from the brand kit, where the 16 px size is
@@ -304,7 +304,7 @@ These are decisions or facts the code cannot supply:
    until `abrahammoses.com` is registered and live (see
    [Moving to abrahammoses.com](#moving-to-abrahammosescom)); the Lovable site
    stays at `am.sagolik.com`. The name is written “AbrahamMoses”, one word,
-   everywhere; the primary logo sets it on one line. Fix or retire
+   everywhere; the primary logo is the official one-word lockup. Fix or retire
    `abrahammoses.org`, and correct the `doctrine-lab-logo.jpeg` asset in the
    Lovable project while it stays live.
 5. **Agent proposals.** The live manifest describes `POST /api/public/agent/act`

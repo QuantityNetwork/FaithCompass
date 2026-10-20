@@ -16,6 +16,7 @@ const ROOT = join(__dirname, '..');
 const read = (rel: string) => readFileSync(join(ROOT, rel), 'utf8');
 const traced = JSON.parse(read('design/brand/logo-paths.json'));
 const corporate = JSON.parse(read('design/brand/corporate/logo-paths.json'));
+const official = JSON.parse(read('design/brand/official/logo-paths.json'));
 const pathsIn = (svg: string) => [...svg.matchAll(/ d="([^"]+)"/g)].map((m) => m[1]);
 /** The command letters of a path: identical when one path is the other moved or scaled. */
 const commands = (d: string) => d.replace(/[^MLCZ]/g, '');
@@ -33,16 +34,16 @@ describe('brand assets', () => {
       expect(svg, file).toContain('aria-label="AbrahamMoses"');
     }
     for (const file of ['public/brand/abrahammoses-logo.svg', 'public/brand/abrahammoses-logo-ivory.svg']) {
-      // The primary logo is the traced mark and wordmark moved into one line, never retyped.
+      // The primary logo is the official one-word lockup, exactly as traced.
       const svg = read(file);
-      const [markD, wordD] = pathsIn(svg);
-      expect(commands(markD), file).toBe(commands(corporate.parts.mark));
-      expect(commands(wordD), file).toBe(commands(corporate.parts.wordmark));
+      expect(svg, file).toContain(official.parts.mark);
+      expect(svg, file).toContain(official.parts.wordmark);
       expect(svg, file).toContain(`viewBox="0 0 ${LOGO_VIEWBOX.width} ${LOGO_VIEWBOX.height}"`);
       expect(svg, file).toContain('aria-label="AbrahamMoses"');
     }
+    expect(LOGO_VIEWBOX).toEqual({ width: official.width, height: official.height });
     const [wordD] = pathsIn(read('public/brand/abrahammoses-wordmark.svg'));
-    expect(commands(wordD)).toBe(commands(corporate.parts.wordmark));
+    expect(commands(wordD)).toBe(commands(official.parts.wordmark));
     for (const file of ['public/brand/abrahammoses-mark.svg', 'public/brand/abrahammoses-mark-ivory.svg', 'src/app/icon.svg']) {
       expect(read(file), file).toContain(corporate.parts.mark);
     }
