@@ -1,0 +1,39 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "8a2398604d8472d418895968780c37740f22c96af27b2fb88cc00d524edda9e7",
+    "prompt_chars": 2893
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"UNRESOLVED_INTERPRETATION\"\n    },\n    {\n      \"facts\": [\"D1#s6\", \"D2#s6\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\", \"D2#s2\", \"D3#s1\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 737,
+      "completion_tokens": 330
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2587.6401130000013,
+  "usd": 0.0008227999999999999,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things. Use definitions stated in the documents (abbreviations, terms with the same meaning, fiscal year ends).\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Information memorandum (retrieved excerpts)\n[D1#s1] Osprey Partners reports annual customer churn of 17.3% for FY2024.\n[D1#s2] Osprey Partners reports headcount of 2400.792 for FY2024.\n[D1#s3] Osprey Partners reports earn out of $65.731m for FY2025 on a reported basis.\n[D1#s4] Osprey Partners reports normalised net working capital of $81.6m for FY2025 on a reported basis under the original agreement.\n[D1#s5] For Osprey Partners, the leakage definition is read as: permitted leakage excludes management bonuses.\n[D1#s6] For Osprey Partners, the form of consideration is: part-share consideration with a 12-month lock-up.\n\n## D2 Financial due diligence report (retrieved excerpts)\n[D2#s1] Osprey Partners reports annual customer churn of 21.8% for FY2025.\n[D2#s2] Osprey Partners reports headcount of 2396 for FY2024.\n[D2#s5] For Osprey Partners, the leakage definition is read as: management bonuses are permitted leakage up to $2m.\n[D2#s6] For Osprey Partners, the form of consideration is: all-cash consideration.\n\n## D3 Draft share purchase agreement (retrieved excerpts)\n[D3#s1] Osprey Partners reports earn out of $65.6m for FY2025 on a reported basis.\n[D3#s2] Osprey Partners reports normalised net working capital of $65m for FY2025 on a reported basis under the amendment no. 1 (supersedes).\n\n# Conclusions\nC1: The employees and maximum earn-out of Osprey Partners support the investment committee bid recommendation\nC2: The normalised net working capital of Osprey Partners supports the investment committee bid recommendation",
+  "extra": {
+    "retrieved": [
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D1#s6",
+      "D2#s1",
+      "D2#s2",
+      "D2#s5",
+      "D2#s6",
+      "D3#s1",
+      "D3#s2"
+    ]
+  }
+}

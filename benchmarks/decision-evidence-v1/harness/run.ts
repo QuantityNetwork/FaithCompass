@@ -5,7 +5,8 @@
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { BASELINES, PROMPT_VERSION } from './baselines';
+import { BASELINES, LLM, PROMPT_VERSION, RAW, buildPrompt, labelledDocuments } from './baselines';
+import { existsSync } from 'node:fs';
 import { aggregate, scoreCase } from './metrics';
 import { passportIntegrity, replayFidelity } from './system-metrics';
 import type { BenchCase } from './types';
@@ -35,8 +36,25 @@ async function main() {
   const manifest = verifyManifest();
   if (!manifest.ok && split !== 'dev') throw new Error(`eval manifest mismatch: ${JSON.stringify(manifest)}`);
   const splits = split === 'all' ? ['dev', 'eval'] : [split];
+  const only = arg('--baselines', 'A,B,C,D').split(',');
+  const rawDir = (s: string, b: string) => join(outDir, 'raw', s, b);
+  // Cost guard: estimate before any call (prompt chars / 4 tokens in, 1500 tokens out per call), stop above the cap.
+  const CAP = Number(arg('--usd-cap', '5'));
+  const llm = BASELINES.filter((b) => (b.id === 'A' || b.id === 'B') && only.includes(b.id) && b.availability().status === 'READY');
+  const estimate = llm.length * splits.reduce((a, s) => a + load(s).reduce((x, c) => x + (buildPrompt(c, labelledDocuments(c)).length / 4) * LLM.usd_per_1m_input / 1e6 + 1500 * LLM.usd_per_1m_output / 1e6, 0), 0);
+  console.log(JSON.stringify({ estimated_usd: Math.round(estimate * 10000) / 10000, cap_usd: CAP }));
+  if (estimate > CAP) throw new Error('estimated cost exceeds the cap; stopping before any call');
+  for (const b of llm) if (splits.includes('eval') && existsSync(rawDir('eval', b.id)) && !process.argv.includes('--force')) throw new Error(`eval already scored for ${b.id}; one scored run only`);
+  let spent = 0;
+  RAW.sink = (bl, caseId, call) => {
+    spent += call.usd;
+    if (spent > CAP) throw new Error(`spend ${spent} exceeded cap`);
+    const s = caseId && splits.find((sp) => existsSync(join(ROOT, 'cases', sp, `${caseId}.json`)))!;
+    mkdirSync(rawDir(s, bl), { recursive: true });
+    writeFileSync(join(rawDir(s, bl), `${caseId}.json`), JSON.stringify(call, null, 2) + '\n');
+  };
   const baselines: Record<string, unknown> = {};
-  for (const b of BASELINES) {
+  for (const b of BASELINES.filter((x) => only.includes(x.id))) {
     const av = b.availability();
     if (av.status === 'BLOCKED') {
       baselines[b.id] = { name: b.name, status: 'BLOCKED', reason: av.reason, produces: b.produces };
@@ -48,9 +66,9 @@ async function main() {
       const scores = [];
       for (const c of cases) scores.push(scoreCase(c, await b.run(c)));
       const agg = aggregate(scores);
-      perSplit[s] = { ...agg, cases_detail: scores.map((x) => ({ id: x.id, tp: x.conflictTP, p: x.conflictP, fp: x.FP, hard_fp: x.hardFP })) };
+      perSplit[s] = { ...agg, cases_detail: scores.map((x) => ({ id: x.id, tp: x.conflictTP, p: x.conflictP, fp: x.FP, hard_fp: x.hardFP, ms: Math.round(x.ms), usd: x.usd })) };
     }
-    baselines[b.id] = { name: b.name, status: 'RAN', produces: b.produces, ...(b.id === 'A' || b.id === 'B' ? { prompt_version: PROMPT_VERSION, model: process.env.BENCH_LLM_MODEL } : {}), results: perSplit };
+    baselines[b.id] = { name: b.name, status: 'RAN', produces: b.produces, ...(b.id === 'A' || b.id === 'B' ? { prompt_version: PROMPT_VERSION, llm: LLM } : {}), results: perSplit };
   }
   const OLD: [string, string] = ['DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6WyJQMSIsIlAyIl0sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxNjowMDowMFoiLCJ2IjoxfQ', '0f1ee5eedbcf922571819886b1600321f7252c3525bd85cdb679d8ecee09e59b'];
   const { FORMAT2_GOLDEN, FORMAT3_GOLDEN } = await import('../../../tests/fixtures/passport-golden');
@@ -61,7 +79,7 @@ async function main() {
     review_time: { status: 'BLOCKED', reason: 'needs baseline D (human reviewers)' },
   };
   mkdirSync(outDir, { recursive: true });
-  const report = { benchmark: 'decision-evidence-v1', generated_at: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'), manifest, splits, baselines, system };
+  const report = { benchmark: 'decision-evidence-v1', spent_usd: Math.round(spent * 1e6) / 1e6, generated_at: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'), manifest, splits, baselines, system };
   writeFileSync(join(outDir, 'results.json'), JSON.stringify(report, null, 2) + '\n');
   console.log(JSON.stringify({ manifest: manifest.ok, baselines: Object.fromEntries(Object.entries(baselines).map(([k, v]) => [k, (v as { status: string }).status])) }));
 }
