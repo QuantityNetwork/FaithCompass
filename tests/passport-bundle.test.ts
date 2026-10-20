@@ -92,3 +92,16 @@ describe('bundle API', () => {
     expect((await get(`?id=${id}&foo=1`)).status).toBe(400);
   });
 });
+
+describe('pinned production key', () => {
+  it('is a well-formed active Ed25519 public key whose kid matches its x', async () => {
+    const { createHash } = await import('node:crypto');
+    const doc = JSON.parse(readFileSync(join(process.cwd(), 'packages/decision-verifier/keys/production.json'), 'utf8'));
+    expect(doc.keys).toHaveLength(1);
+    const k = doc.keys[0];
+    expect(Buffer.from(k.x, 'base64url')).toHaveLength(32);
+    expect(k.kid).toBe(`ed25519-${createHash('sha256').update(Buffer.from(k.x, 'base64url')).digest('hex').slice(0, 16)}`);
+    expect(k.status).toBe('active');
+    expect(JSON.stringify(doc)).not.toMatch(/"d"\s*:|PRIVATE/);
+  });
+});

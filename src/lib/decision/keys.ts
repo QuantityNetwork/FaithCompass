@@ -15,5 +15,8 @@ export interface PublishedKey {
   revoked_at?: string | null;
 }
 
-/** No key has been configured in production yet, so none has been retired. */
+/**
+ * The active production key (kid ed25519-e31c2d82da92a114, from 2026-10-20T21:30:00Z) is published at runtime from
+ * PASSPORT_SIGNING_KEY and pinned for verifiers in packages/decision-verifier/keys/production.json. None retired yet.
+ */
 export const HISTORICAL_KEYS: readonly PublishedKey[] = [];

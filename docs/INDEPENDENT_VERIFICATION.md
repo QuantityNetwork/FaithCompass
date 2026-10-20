@@ -32,8 +32,10 @@ GOPROXY=off go build -o decision-verifier .          # no network needed
 ```
 
 `keys.json` may be the published `/.well-known/abrahammoses-passport-keys.json`, saved once from a trusted channel
-(the verifier reads `keys[].kid/x/status/not_before/not_after/revoked_at`). Production currently publishes no key:
-production passports are unsigned, so `{"keys":[]}` is enough to verify them.
+(the verifier reads `keys[].kid/x/status/not_before/not_after/revoked_at`). The production key is also pinned in git
+at `packages/decision-verifier/keys/production.json` (kid `ed25519-e31c2d82da92a114`, x
+`HLvxNqISBr_AJlCdpAPCYcvUYH0qRaqte0cyeabuEWs`, valid from 2026-10-20T21:30:00Z). Passports issued before that time are
+unsigned (integrity hash only) and verify with any key file.
 
 Exit codes: `0` VALID (or all fixtures as expected), `1` INVALID, `2` UNSUPPORTED, `3` usage or I/O error,
 `4` a conformance fixture deviated. Output is the JSON report of §5 of the spec.
@@ -73,7 +75,7 @@ conformance run (single measurement each, includes file parsing; `unknown-versio
 
 ## Limits
 
-* Fixtures use test keys. No production key exists; no real revocation has been issued.
+* Fixtures use test keys. The production key (above) has not been rotated or revoked.
 * An unsigned bundle whose hashes were all recomputed after tampering verifies `VALID` unless an independently
   obtained hash is supplied (see the spec, §6).
 * The verifiers check consistency, hashes and signatures; they do not re-run the decision engine (that is replay,

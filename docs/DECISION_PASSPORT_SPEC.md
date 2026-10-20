@@ -15,7 +15,8 @@ A bundle is one JSON file containing everything needed to check a Decision Passp
 | `GET /institutional/decision-room/passport/<id>/bundle[?redacted=1]` | Download (`content-disposition: attachment; filename="decision-passport-<sha256[0:12]>[-redacted].bundle.json"`) |
 | Passport page | "Download bundle (offline verification)" button |
 
-The demo case is synthetic. Production passports are currently **unsigned** (no signing key is configured).
+The demo case is synthetic. Production passports issued from 2026-10-20T21:30:00Z are signed with kid
+`ed25519-e31c2d82da92a114` (pinned in `packages/decision-verifier/keys/production.json`); earlier ones are unsigned.
 
 ## 2. Structure
 
@@ -133,5 +134,5 @@ Output (both verifiers, machine-readable):
   re-deriving the passport content from the inputs is the replay operation (`src/lib/replay/`), which needs the
   frozen engine sources.
 * A redacted bundle cannot prove the source documents' content; it reports `source_documents` as uncheckable.
-* No production signing key or revocation has been issued. Revocation is implemented and tested with test keys only.
+* One production signing key exists (kid `ed25519-e31c2d82da92a114`); none has been revoked. Revocation is tested with test keys only.
 * No standard certification is claimed. See `docs/STANDARDS_MAPPING.md`.

@@ -62,7 +62,7 @@ The Decision Twin case (DT-PC-001) is **synthetic**. All Decision Twin rows desc
 | Element | Status | Evidence |
 |---|---|---|
 | Canonical record + sha256, source inventory, engine manifest | Existing | `passport.ts`, `canonical.ts`, `case.ts` `sourceInventory` – 8c429c3, f5ba82c |
-| Ed25519 signatures, kid, issued_at, historical keys | Existing (signing optional, off unless key configured; no production key exists) | `signing.ts`, `keys.ts`, `/.well-known/abrahammoses-passport-keys.json` – 2ceebb5, f5ba82c |
+| Ed25519 signatures, kid, issued_at, historical keys | Existing (signing optional, production key `ed25519-e31c2d82da92a114` since 2026-10-20T21:30:00Z) | `signing.ts`, `keys.ts`, `/.well-known/abrahammoses-passport-keys.json` – 2ceebb5, f5ba82c |
 | Signed vs unsigned shown clearly | Existing | `UNSIGNED` state – f5ba82c |
 | Revocation | **Existing (phase 5)** | key status `revoked` in `keys.ts`; rejected by `verifyIssued`, the TS and the Go verifier (fixture `revoked-key`); no key has been revoked in production |
 | Offline independent verifier (separate package / second language, conformance fixtures) | **Existing (phase 5)** | `packages/decision-verifier` (Go, stdlib only); 12/12 shared fixtures and 25/25 canonical vectors in both verifiers; CI runs it with networking disabled – `docs/INDEPENDENT_VERIFICATION.md` |
