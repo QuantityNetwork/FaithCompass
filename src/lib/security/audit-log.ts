@@ -37,3 +37,28 @@ export function newRequestId(): string {
 export function securityEvent(evt: SecurityEvent): void {
   sink(JSON.stringify({ type: 'security', at: new Date().toISOString(), ...evt }));
 }
+
+/**
+ * Log a server error without its message.
+ *
+ * Error messages can carry request content (a parser quoting its input, a
+ * provider echoing a prompt), so only the error's class and its code
+ * locations are written. The full error never reaches the host's logs.
+ */
+export function logServerError(scope: string, err: unknown): void {
+  const name = err instanceof Error ? err.name : typeof err;
+  const frames =
+    err instanceof Error && typeof err.stack === 'string'
+      ? err.stack
+          .split('\n')
+          .filter((l) => /^\s+at /.test(l))
+          .slice(0, 5)
+          .map((l) => l.trim())
+      : [];
+  errorSink(JSON.stringify({ type: 'error', at: new Date().toISOString(), scope, name, frames }));
+}
+
+let errorSink: Sink = (line) => console.error(line);
+export function setErrorSink(s: Sink | null): void {
+  errorSink = s ?? ((line) => console.error(line));
+}

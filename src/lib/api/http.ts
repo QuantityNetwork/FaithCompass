@@ -16,6 +16,7 @@
 
 import { createHash } from 'node:crypto';
 import { API_VERSION, absoluteUrl } from '@/lib/site/config';
+import { logServerError } from '@/lib/security/audit-log';
 
 export const ERROR_CODES = {
   invalid_parameter: { status: 400, description: 'A query parameter, path segment or body field failed validation.' },
@@ -174,7 +175,7 @@ export async function guarded(request: Request, run: () => Promise<Response> | R
   } catch (err) {
     if (err instanceof ApiError) response = errorResponse(err.code, err.message, err.details);
     else {
-      console.error('[api] unhandled error', err);
+      logServerError('api', err);
       response = errorResponse('internal_error', 'An unexpected error occurred. Nothing was changed.');
     }
   }
