@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { verifyManifest } from '../benchmarks/decision-evidence-v1/harness/run';
 import { aggregate, scoreCase, wilson } from '../benchmarks/decision-evidence-v1/harness/metrics';
-import { baselineA, baselineB, baselineD, bm25, buildPrompt, parseAnswer } from '../benchmarks/decision-evidence-v1/harness/baselines';
+import { baselineA, baselineB, baselineD, bm25, buildPrompt, chunks, labelledDocuments, parseAnswer } from '../benchmarks/decision-evidence-v1/harness/baselines';
 import type { BenchCase } from '../benchmarks/decision-evidence-v1/harness/types';
 
 const ROOT = join(process.cwd(), 'benchmarks/decision-evidence-v1');
@@ -58,6 +58,7 @@ describe('baselines A, B, D are blocked, not estimated', () => {
   afterEach(() => vi.unstubAllEnvs());
   it('A and B report BLOCKED without an API key and make no network call', () => {
     vi.stubEnv('BENCH_LLM_API_KEY', '');
+    vi.stubEnv('OPENAI_API_KEY', '');
     const spy = vi.spyOn(globalThis, 'fetch');
     expect(baselineA.availability().status).toBe('BLOCKED');
     expect(baselineB.availability().status).toBe('BLOCKED');
@@ -69,8 +70,10 @@ describe('baselines A, B, D are blocked, not estimated', () => {
   });
   it('the adapters build prompts, retrieve deterministically and parse answers (dev only, no model)', () => {
     const c = dev[0];
-    expect(buildPrompt(c)).toContain(c.spans[0].id);
-    expect(bm25(c.spans, c.conclusions[0].text).map((s) => s.id)).toEqual(bm25(c.spans, c.conclusions[0].text).map((s) => s.id));
+    expect(buildPrompt(c, labelledDocuments(c))).toContain(`[${c.spans[0].id}] ${c.spans[0].text}`);
+    const ch = chunks(c);
+    expect(ch.filter((x) => x.citable).map((x) => x.id).sort()).toEqual(c.spans.map((s) => s.id).sort());
+    expect(bm25(ch, c.conclusions[0].text).map((s) => s.id)).toEqual(bm25(ch, c.conclusions[0].text).map((s) => s.id));
     const parsed = parseAnswer(`ok {"findings":[{"facts":["${c.spans[0].id}","${c.spans[1].id}"],"class":"CONFIRMED_CONFLICT"},{"facts":["X","Y"],"class":"CONFIRMED_CONFLICT"}],"citations":{"C1":["${c.spans[0].id}","nope"]}}`, c);
     expect(parsed.findings).toHaveLength(1);
     expect(parsed.citations!.C1).toEqual([c.spans[0].id]);
