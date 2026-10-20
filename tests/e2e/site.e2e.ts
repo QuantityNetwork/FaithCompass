@@ -74,6 +74,12 @@ const PAGES = [
   '/',
   '/research',
   '/research?q=What%20changed%20concerning%20priesthood%20under%20the%20New%20Covenant%3F',
+  '/research?dossier=covenants',
+  '/research?dossier=covenants&view=graph',
+  '/research?dossier=covenants&view=table',
+  '/research?dossier=covenants&inspect=AM-CLAIM-000187',
+  '/research?case=torah-permanence&state=externally_reviewed',
+  '/research?q=photosynthesis%20chlorophyll',
   '/research/torah-permanence',
   '/research/priesthood-new-covenant',
   '/research/ibrahim-heirs-and-revelation',
@@ -255,7 +261,8 @@ describe('brand and shell', () => {
     ]);
     await p.getByLabel('Research question').fill('Who are the heirs of Ibrahim?');
     await p.getByRole('button', { name: 'Research', exact: true }).click();
-    await p.waitForURL(/\/research\?q=Who/);
+    // POSTed: the question text never becomes part of an address
+    await p.waitForURL(/\/research\?case=ibrahim-heirs-and-revelation$/);
     await context.close();
   });
 
@@ -332,23 +339,154 @@ describe('brand and shell', () => {
 });
 
 describe('research workspace', () => {
-  it('answers a question without sign-in and keeps saved traces on the device', async () => {
-    const { context, page: p } = await page();
+  it('posts a question, opens the matching dossier at a clean address and keeps saved traces on the device', async () => {
+    const { context, page: p, errors } = await page();
+    const posted: string[] = [];
+    p.on('request', (r) => {
+      if (r.url().includes('/research/ask')) posted.push(`${r.method()} ${r.url()}`);
+    });
     await p.goto(`${base}/research`);
     await p.getByLabel('Research question').fill('Who are the heirs of Ibrahim?');
-    await p.getByRole('button', { name: 'Search the record', exact: true }).click();
-    await p.waitForURL(/q=Who/);
-    await expect(p.getByText('This question has a research case')).toBeTruthy();
-    await expect(p.locator('main').textContent()).resolves.toContain('Who are the heirs of Ibrāhīm');
+    await p.getByRole('button', { name: 'Research', exact: true }).click();
+    await p.waitForURL(/\/research\?case=ibrahim-heirs-and-revelation$/);
+    expect(posted[0]).toMatch(/^POST .*\/research\/ask$/);
+    expect(p.url()).not.toMatch(/Who|%3F|\?q=/);
+    for (const col of ['Direct evidence', 'Interpretations', 'Inferences', 'Unresolved questions']) {
+      await expect(p.getByRole('heading', { name: new RegExp(`^${col}`) }).count()).resolves.toBe(1);
+    }
+    await expect(p.locator('.rw-cov').textContent()).resolves.toContain('Full coverage');
 
     await p.getByRole('button', { name: 'Save this trace' }).click();
     const stored = await p.evaluate(() => window.localStorage.getItem('abrahammoses.traces.v1'));
-    expect(JSON.parse(stored!)[0].url).toContain('/research?q=');
+    expect(JSON.parse(stored!)[0].url).toContain('/research?case=ibrahim-heirs-and-revelation');
     await p.reload();
-    await expect(p.locator('#traces-title').locator('..').textContent()).resolves.toContain('Who are the heirs of Ibrahim?');
     await p.getByRole('button', { name: 'Delete all' }).click();
     expect(await p.evaluate(() => window.localStorage.getItem('abrahammoses.traces.v1'))).toBeNull();
+    expect(errors).toEqual([]);
     await context.close();
+  });
+
+  it('keeps only the search terms of a free-text question in the address', async () => {
+    const res = await fetch(`${base}/research/ask`, {
+      method: 'POST',
+      body: new URLSearchParams({ q: 'What does my grandmother think about the temple in Jerusalem?' }),
+      redirect: 'manual',
+    });
+    expect(res.status).toBe(303);
+    const loc = res.headers.get('location')!;
+    expect(loc).toContain('/research?q=');
+    expect(decodeURIComponent(loc)).not.toContain('grandmother think');
+    const vision = await fetch(`${base}/research/ask`, {
+      method: 'POST',
+      body: new URLSearchParams({ q: 'How is the Abrahamic covenant related to the Mosaic covenant at Sinai?' }),
+      redirect: 'manual',
+    });
+    expect(vision.headers.get('location')).toMatch(/\/research\?dossier=covenants$/);
+  });
+
+  it('shows partial coverage, computed gaps and the four-way split for the covenant dossier', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/research?dossier=covenants`);
+    await expect(p.locator('.rw-cov').textContent()).resolves.toContain('Partial coverage');
+    const unresolved = p.locator('.rw-col--unresolved');
+    await expect(unresolved.textContent()).resolves.toContain('Coverage gap · computed from the record');
+    await expect(unresolved.textContent()).resolves.toContain('No published research case addresses this question as asked');
+    await expect(p.locator('.rw-col--direct .rw-item').count()).resolves.toBeGreaterThan(0);
+    await context.close();
+  });
+
+  it('makes no-answer a first-class state, without generated text', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/research?q=photosynthesis%20chlorophyll`);
+    await expect(p.getByRole('heading', { level: 1 }).textContent()).resolves.toBe('The record does not yet answer this question.');
+    await expect(p.locator('main').textContent()).resolves.toContain('nothing is generated to fill the gap');
+    await expect(p.locator('.rw-empty').count()).resolves.toBe(4);
+    await context.close();
+  });
+
+  it('filters by review state and says when a column is empty because of a filter', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/research?dossier=covenants`);
+    await p.getByLabel('Review state').selectOption('externally_reviewed');
+    await p.waitForURL(/state=externally_reviewed/);
+    await expect(p.locator('main').textContent()).resolves.toContain('No record in this column matches the filters.');
+    await expect(p.locator('.rw-filters').textContent()).resolves.toContain('Showing 0 of');
+    await context.close();
+  });
+
+  it('opens the nine-part inspector as a dialog, closes on Escape and returns focus', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/research?dossier=covenants`, { waitUntil: 'networkidle' });
+    const trigger = p.locator('.rw-col--direct [data-inspect-trigger]').first();
+    const code = await trigger.getAttribute('data-inspect-trigger');
+    await trigger.click();
+    const dialog = p.getByRole('dialog');
+    await dialog.waitFor();
+    await p.waitForURL(new RegExp(`inspect=${code}`));
+    await expect(dialog.getAttribute('aria-modal')).resolves.toBe('true');
+    const parts = await dialog.locator('.ins-part__title').allTextContents();
+    expect(parts.map((t) => t.replace(/^\d\s*/, '').trim())).toEqual([
+      'Exact claim',
+      'Cited passage',
+      'Source edition',
+      'Original-language text',
+      'Translation differences',
+      'Supporting and opposing arguments',
+      'Assumptions',
+      'Review history',
+      'Known limitations',
+    ]);
+    await expect(dialog.textContent()).resolves.toContain('Permanent citation');
+    await expect(p.evaluate(() => document.activeElement?.id)).resolves.toBe('ins-dlg-title');
+    await p.keyboard.press('Escape');
+    await dialog.waitFor({ state: 'detached' });
+    await p.waitForURL((u) => !u.searchParams.has('inspect'));
+    await expect.poll(() => p.evaluate(() => document.activeElement?.getAttribute('data-inspect-trigger'))).toBe(code);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('serves the inspector without JavaScript from its address', async () => {
+    const { context, page: p } = await page({ javaScriptEnabled: false });
+    await p.goto(`${base}/research?dossier=covenants&inspect=AM-CLAIM-000187`);
+    await expect(p.getByRole('dialog').locator('.ins-statement').textContent()).resolves.toContain('Genesis presents an unconditional promise');
+    await p.getByRole('link', { name: /Close the inspector/ }).click();
+    await p.waitForURL(/\/research\?dossier=covenants$/);
+    await context.close();
+  });
+
+  it('draws the argument graph with a table alternative', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/research?dossier=covenants&view=graph`);
+    await expect(p.locator('.rw-graph svg').getAttribute('aria-label')).resolves.toMatch(/Argument graph: \d+ premises and assumptions, \d+ derivations/);
+    await p.getByRole('link', { name: 'Same content as a table' }).click();
+    await p.waitForURL(/view=table/);
+    await expect(p.locator('table.table tbody tr').count()).resolves.toBeGreaterThan(10);
+    await context.close();
+  });
+
+  it('replays the pipeline without calling anything', async () => {
+    const { context, page: p } = await page();
+    await p.goto(`${base}/research?dossier=covenants`, { waitUntil: 'networkidle' });
+    await expect(p.locator('.rw-pipe__note').textContent()).resolves.toContain('No model is called');
+    const requests: string[] = [];
+    p.on('request', (r) => requests.push(r.url()));
+    await p.getByRole('button', { name: 'Replay the steps' }).click();
+    await expect.poll(() => p.locator('.rw-pipe__step.is-done').count(), { timeout: 6000 }).toBe(7);
+    expect(requests).toEqual([]);
+    await context.close();
+  });
+
+  it('exports the dossier as JSON and Markdown with a reproducibility manifest', async () => {
+    const json = await fetch(`${base}/research/export?dossier=covenants&format=json`);
+    expect(json.headers.get('content-disposition')).toMatch(/attachment; filename="abrahammoses-covenants-.+\.json"/);
+    const body = await json.json();
+    expect(body.manifest.record_version).toBeTruthy();
+    expect(body.manifest.claims[0]).toMatch(/^AM-CLAIM-\d+@rev\d+$/);
+    expect(body.review.named_reviewers).toEqual([]);
+    const md = await (await fetch(`${base}/research/export?dossier=covenants&format=md`)).text();
+    expect(md).toContain('## Unresolved questions');
+    expect(md).toContain('## Reproducibility manifest');
   });
 });
 

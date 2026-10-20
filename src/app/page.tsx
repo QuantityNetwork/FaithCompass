@@ -25,13 +25,13 @@ const JOURNEY_Q = 'What is the relationship between the Abrahamic and Mosaic cov
 
 /** The covenant journey: each step opens the page of the current site that does that work today. */
 const JOURNEY: Array<{ step: string; text: string; href: string; where: string }> = [
-  { step: 'Question', text: 'The relationship between the Abrahamic and Mosaic covenants.', href: `/research?q=${encodeURIComponent(JOURNEY_Q)}`, where: 'Research' },
+  { step: 'Question', text: 'The relationship between the Abrahamic and Mosaic covenants.', href: '/research?dossier=covenants', where: 'Research workspace' },
   { step: 'Source discovery', text: 'The works and editions the record cites, by provenance.', href: '/corpus', where: 'Corpus' },
   { step: 'Historical context', text: 'Where each covenant sits in each tradition’s history.', href: '/covenants', where: 'Covenant map' },
   { step: 'Comparative analysis', text: 'Positions side by side, with the disagreement inside each tradition.', href: '/compare', where: 'Compare' },
-  { step: 'Evidence graph', text: 'Premises, assumptions and conclusions, with evidence on every edge.', href: '/doctrine', where: 'Doctrine graph' },
-  { step: 'Assumption testing', text: 'Set aside an interpretive assumption and see which conclusions still follow.', href: '/research/torah-permanence#explore', where: 'Dependency explorer' },
-  { step: 'Research dossier', text: 'A printable report for one claim, with every citation. Full dossier export is planned.', href: '/claims/AM-CLAIM-000187/report', where: 'Claim report' },
+  { step: 'Evidence graph', text: 'Premises, assumptions and conclusions, with evidence on every edge.', href: '/research?dossier=covenants&view=graph', where: 'Argument graph' },
+  { step: 'Assumption testing', text: 'Set aside an interpretive assumption and see which conclusions still follow.', href: '/research?dossier=covenants&view=graph#rw-graph-title', where: 'Argument graph' },
+  { step: 'Research dossier', text: 'The dossier as JSON or Markdown, with its reproducibility manifest, or printed.', href: '/research?dossier=covenants#rw-export-title', where: 'Dossier export' },
   { step: 'Accountability', text: 'Who is responsible, what is still provisional, and every status correction.', href: '/changelog#status-corrections', where: 'Changelog' },
 ];
 
@@ -91,7 +91,7 @@ export default function Home() {
             A research record of the Abrahamic traditions, built claim by claim. Every statement names its passage and
             edition, says what kind of claim it is, and shows who holds it, who disputes it and what it depends on.
           </p>
-          <form className="am-cmdbar" action="/research" method="get" role="search" aria-label="Research the record">
+          <form className="am-cmdbar" action="/research/ask" method="post" role="search" aria-label="Research the record">
             <SearchIcon />
             <label className="am-sr" htmlFor="home-q">
               Research question
@@ -108,7 +108,7 @@ export default function Home() {
             Try{' '}
             {cases.slice(0, 3).map((c) => (
               <span key={c.slug}>
-                <Link href={`/research?q=${encodeURIComponent(c.question)}`}>{c.title}</Link>
+                <Link href={`/research?case=${c.slug}`}>{c.title}</Link>
                 {' · '}
               </span>
             ))}

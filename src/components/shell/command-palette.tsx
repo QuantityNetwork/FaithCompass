@@ -183,9 +183,19 @@ export function CommandPalette() {
     listRef.current?.querySelector(`#am-pal-opt-${selected}`)?.scrollIntoView({ block: 'nearest' });
   }, [selected, open]);
 
+  /** Questions are POSTed, so their text never becomes part of an address (see /research/ask). */
   const research = (q: string) => {
     close();
-    router.push(`/research?q=${encodeURIComponent(q)}`);
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = '/research/ask';
+    form.hidden = true;
+    const input = document.createElement('input');
+    input.name = 'q';
+    input.value = q;
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
   };
 
   const activate = (row: Row | undefined) => {
@@ -279,13 +289,13 @@ export function CommandPalette() {
                 };
                 if (row.kind === 'ask') {
                   return (
-                    <a key="ask" href={`/research?q=${encodeURIComponent(row.q)}`} {...common}>
+                    <div key="ask" {...common}>
                       <span className="am-pal__k">Ask</span>
                       <span>
                         <span className="am-pal__t">Research “{row.q}”</span>
                         <span className="am-pal__s">Open the research workspace with this question · {mod} Enter</span>
                       </span>
-                    </a>
+                    </div>
                   );
                 }
                 if (row.kind === 'theme') {
