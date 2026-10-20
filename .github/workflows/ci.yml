@@ -40,6 +40,8 @@ jobs:
         run: npx vitest run tests/api.test.ts tests/mcp.test.ts tests/developer-docs.test.ts tests/security.test.ts
       - name: Record lock
         run: npm run record:check
+      - name: Release identity in the docs is generated, not hand-written
+        run: node scripts/release-stamp.mjs --check
       - name: Dependency audit (high and above)
         run: npm audit --audit-level=high
 
@@ -64,6 +66,28 @@ jobs:
         run: |
           npm run test:rls | tee rls.log
           grep -q 'ALL RLS TESTS PASSED' rls.log
+
+  firestore:
+    name: Firestore rules, adapter and durable workflow (emulator)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm ci
+      - name: Install the Firebase CLI (emulator only; no credentials, never the live project)
+        run: npm install -g firebase-tools@14
+      - name: Security rules (6 roles, tenants, editorial rules) and the Firestore adapter
+        run: npm run test:firestore
+      - name: Durable workflow across a database restart (export, new process, import)
+        run: npm run test:firestore:durable
 
   browser:
     name: Build, browser e2e + axe, HTTP security regression

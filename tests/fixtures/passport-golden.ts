@@ -1,0 +1,9 @@
+/** Pinned passports and the hashes their issuing code built. Never edit; add new entries. */
+/** Format 2 passports and the hashes the production code of PR #17 (918346e) built for them. */
+export const FORMAT2_GOLDEN: [string, string][] = [
+  ['DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6W10sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJ2IjoyfQ', 'e921f154daea6049ffba8092a9f4a1c914d756f72c2fca7d16bac2aa5b8b46a3'],
+  ['DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTMxLCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6WyJQMyJdLCJ2ZXJpZmllZCI6WyJET0MtMDEiLCJET0MtMTAiXX0sImNhc2UiOiJEVC1QQy0wMDEiLCJjYXNlVmVyc2lvbiI6IjEuMC4wIiwidCI6IjIwMjYtMTAtMjBUMTg6MDA6MDBaIiwidiI6Mn0', '866039e9b2652bf5286b4b12822891b4364eabb896777e54cce0f2072ea79430'],
+];
+
+/** Format 3 (engine dt-engine-1.0.0), default inputs at 2026-10-20T18:00:00Z. */
+export const FORMAT3_GOLDEN: [string, string] = ['DP1-eyJhIjp7ImNvbmNlbnRyYXRpb24iOjIyLCJjb3ZNYXgiOjMuNSwiZGVidCI6MTI0LCJncm93dGgiOjEyLCJpbnRlcmVzdCI6MTAuNSwibWFyZ2luIjoxNy41LCJtaW5MaXEiOjEwLCJyZWplY3RlZCI6W10sInZlcmlmaWVkIjpbIkRPQy0wMSIsIkRPQy0xMCJdfSwiY2FzZSI6IkRULVBDLTAwMSIsImNhc2VWZXJzaW9uIjoiMS4wLjAiLCJlIjoiMS4wLjAiLCJ0IjoiMjAyNi0xMC0yMFQxODowMDowMFoiLCJ2IjozfQ', '09509fbff3a2a13ab1524f6f2ccaee23ebe6ad030084ada111646eb874523141'];

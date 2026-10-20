@@ -13,7 +13,11 @@ import { checkRecord } from '@/lib/record/integrity';
 import { RAW_RECORD, getRecord, revisionHash } from '@/lib/record/record';
 import lock from '@/lib/record/revisions.lock.json';
 import { handleMessage, SUPPORTED_PROTOCOL_VERSIONS } from '@/lib/mcp/server';
-import { API_VERSION, canonicalOrigin, canonicalOriginSource, legacyOrigins, legalContact } from '@/lib/site/config';
+import { firestoreConfigured } from '@/lib/firebase/firestore-rest';
+import { getStore } from '@/lib/evidence/store';
+import { FirestoreEvidenceStore } from '@/lib/evidence/store/firestore-store';
+import { SupabaseEvidenceStore } from '@/lib/evidence/store/supabase-store';
+import { API_VERSION, OPERATOR, canonicalOrigin, canonicalOriginSource, legacyOrigins, legalContact } from '@/lib/site/config';
 import { providerStatus } from '@/lib/evidence/providers/registry';
 import { dispatchLegacy } from './legacy';
 
@@ -46,7 +50,25 @@ export const StatusV1 = z.object({
     works: z.number().int(),
   }),
   outstanding_editorial_work: z.record(z.string(), z.number().int()),
+  /** Which build is serving, from Vercel's system environment. Null outside Vercel. Added in API 1.1 (additive). */
+  release: z.object({
+    commit_sha: z.string().nullable(),
+    commit_ref: z.string().nullable(),
+    deployment_id: z.string().nullable(),
+    environment: z.string().nullable(),
+    source: z.literal('VERCEL_GIT_COMMIT_SHA, VERCEL_GIT_COMMIT_REF, VERCEL_DEPLOYMENT_ID, VERCEL_ENV'),
+  }),
 });
+
+export function releaseInfo(env: Record<string, string | undefined> = process.env): z.infer<typeof StatusV1>['release'] {
+  return {
+    commit_sha: env.VERCEL_GIT_COMMIT_SHA || null,
+    commit_ref: env.VERCEL_GIT_COMMIT_REF || null,
+    deployment_id: env.VERCEL_DEPLOYMENT_ID || null,
+    environment: env.VERCEL_ENV || null,
+    source: 'VERCEL_GIT_COMMIT_SHA, VERCEL_GIT_COMMIT_REF, VERCEL_DEPLOYMENT_ID, VERCEL_ENV',
+  };
+}
 
 type Check = z.infer<typeof StatusV1>['checks'][number];
 
@@ -147,11 +169,28 @@ export async function statusReport(
         ? { result: 'pass', detail: 'Curated, offline provider (configured). No text is sent to an AI service; only curated analyses are available.' }
         : { result: 'pass', detail: `Provider ${p.active} is configured and has credentials (models: ${p.models?.fast}, ${p.models?.deep}). Reachability is not probed here.` };
     }),
-    timed('legal_contact', 'Privacy contact published', () => {
+    timed('persistence', 'Durable storage', () => {
+      const store = getStore();
+      const kind = store instanceof FirestoreEvidenceStore ? 'Firestore' : store instanceof SupabaseEvidenceStore ? 'Supabase (superseded)' : 'local file';
+      const fb = firestoreConfigured();
+      if (store.durable) return { result: 'pass', detail: `Durable store: ${kind}. Writes are kept.` };
+      return {
+        result: 'warn',
+        detail: fb
+          ? 'Firebase credentials (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY) are set but Firestore is not enabled (EVIDENCE_STORE=firestore); the site is read-only.'
+          : 'No database configured; the site is read-only and every write answers 503.',
+      };
+    }),
+    timed('legal_contact', 'Operator and privacy contact published', () => {
       const contact = legalContact();
-      return contact.privacy
-        ? { result: 'pass', detail: 'A privacy contact is published in the Privacy Policy.' }
-        : { result: 'warn', detail: 'ABRAHAMMOSES_PRIVACY_CONTACT is not set; the Privacy Policy cannot name a contact address.' };
+      if (!contact.general && !contact.privacy) {
+        return { result: 'warn', detail: 'ABRAHAMMOSES_CONTACT is not set; the legal pages show only the seller\u2019s fallback address.' };
+      }
+      const privacy = process.env.ABRAHAMMOSES_PRIVACY_CONTACT ? 'a dedicated privacy address' : 'the operator contact (no dedicated privacy address)';
+      return {
+        result: 'pass',
+        detail: `Operator: ${OPERATOR.name} (${OPERATOR.status}). A contact address (ABRAHAMMOSES_CONTACT) is published on the Terms of Sale, product and legal pages; privacy requests go to ${privacy}.`,
+      };
     }),
   ]);
 
@@ -180,5 +219,6 @@ export async function statusReport(
       works: record.data.works.length,
     },
     outstanding_editorial_work: outstanding,
+    release: releaseInfo(),
   };
 }

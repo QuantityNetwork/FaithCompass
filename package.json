@@ -18,7 +18,9 @@
     "record:lock": "tsx scripts/record-lock.ts",
     "record:check": "tsx scripts/record-lock.ts --check",
     "check": "npm run typecheck && npm run record:check && npm test",
-    "brand:build": "node scripts/brand/build-brand.mjs"
+    "brand:build": "node scripts/brand/build-brand.mjs",
+    "test:firestore": "firebase emulators:exec --only firestore --project abrahammoses-a0a26 \"vitest run --no-file-parallelism tests/firestore\"",
+    "test:firestore:durable": "bash scripts/firestore-durable.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",

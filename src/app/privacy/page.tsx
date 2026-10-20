@@ -44,7 +44,7 @@ export default function PrivacyPage() {
 
         <h2>Who is responsible</h2>
         <p>
-          The controller is {OPERATOR.name}, which writes, builds and operates {SITE_NAME}.{' '}
+          The controller is {OPERATOR.name} ({OPERATOR.status}), who writes, builds and operates {SITE_NAME}.{' '}
           {contact.privacy ? (
             <>
               Privacy requests: <a className="link" href={`mailto:${contact.privacy}`}>{contact.privacy}</a>.

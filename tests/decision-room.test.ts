@@ -26,7 +26,7 @@ import {
 import { PassportIdError, REVIEWER_NONE, buildPassport, decodePassportId, encodePassportId, passportMarkdown, verifyPassport } from '@/lib/decision/passport';
 import { caseHandler, contradictionsHandler, scenarioHandler, verifyHandler } from '@/lib/decision/api';
 import { openApiDocument } from '@/lib/api/v1';
-import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_CHECKOUT_ENABLED, PILOT_PAYMENT_LINK, PLANS, PRODUCT, contactHref, decisionConfiguration } from '@/lib/decision/product';
+import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_CHECKOUT_ENABLED, PILOT_PAYMENT_LINK, PLANS, PRODUCT, SELLER_LINE, contactHref, decisionConfiguration, sellerContact } from '@/lib/decision/product';
 
 const T = new Date('2026-10-20T16:00:00.000Z');
 const with_ = (p: Partial<Assumptions>): Assumptions => ({ ...DEFAULT_ASSUMPTIONS, ...p });
@@ -190,7 +190,7 @@ describe('I: Decision Passport', () => {
     expect(p.reviewer).toBe(REVIEWER_NONE);
     expect(p.reviewer).toBe('none (simulated decision)');
     expect(p.status).toMatch(/SIMULATED/);
-    expect(p.integrity_note).toMatch(/not .*correct/);
+    expect(p.integrity_note).toMatch(/Neither shows that the content is correct/);
     expect(p.sources).toHaveLength(10);
     expect(p.audit_history.map((h) => h.event)).toEqual(['passport_generated', 'input_changed', 'input_changed', 'conclusions_affected']);
     const { integrity, ...content } = p;
@@ -277,9 +277,12 @@ describe('Decision Twin product facts', () => {
   it('keeps automated decisions disabled in the planned workspace defaults', () => {
     expect(DEFAULT_WORKSPACE_SETTINGS.find((x) => x.setting === 'Automated decisions')!.value).toBe('Disabled');
   });
-  it('keeps the pilot payment link in config but disabled, with no checkout plan', () => {
+  it('keeps the pilot payment link in config but disabled, names the private seller and offers an enquiry', () => {
     expect(PILOT_PAYMENT_LINK).toMatch(/^https:\/\/buy\.stripe\.com\//);
     expect(PILOT_CHECKOUT_ENABLED).toBe(false);
+    expect(SELLER_LINE).toBe('Mikael Markus Andersson (private individual, Sweden)');
+    expect(sellerContact(undefined)).toBe('markus@sagolik.com');
+    expect(sellerContact('other@example.org')).toBe('other@example.org');
     expect(PLANS.map((p) => p.action)).not.toContain('checkout');
     expect(PLANS.find((p) => p.id === 'pilot')!.cta).toBe('Request a pilot');
   });
@@ -303,7 +306,7 @@ describe('per-decision configuration in the passport', () => {
     const base = buildPassport(encodePassportId(DEFAULT_ASSUMPTIONS, T));
     expect(rejected.configuration.assumptions.find((x) => x.label.startsWith('P1'))!.value).toBe('rejected');
     expect(base.configuration.assumptions.find((x) => x.label.startsWith('P1'))!.value).toBe('accepted');
-    const { integrity, ...content } = base;
+    const { integrity, passport_id: _pid, ...content } = base;
     expect(integrity.sha256).toBe(sha256(canonicalJson(content)));
     expect(base.legal_note).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
     expect(passportMarkdown(base)).toContain('## Decision configuration');

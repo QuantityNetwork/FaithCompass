@@ -1,0 +1,101 @@
+rules_version = '2';
+
+// AbrahamMoses security rules (ADR 0001). Project abrahammoses-a0a26.
+//
+// The server writes with the service account (Admin access bypasses these rules) and is the only writer of the
+// canonical record and the audit log. These rules govern every client SDK / REST access with a Firebase ID token:
+// deny by default; anonymous visitors and anonymous-auth users never write; roles come only from the custom claim
+// `am_role`, which only the server can set; the editor is never the proposer; audit events are append-only; tenants
+// are isolated.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+    function uid() { return request.auth.uid; }
+    function role() {
+      return signedIn() ? request.auth.token.get('am_role', 'research_contributor') : 'public_reader';
+    }
+    function isEditor() { return role() in ['research_editor', 'editorial_admin']; }
+    function isMember(t) {
+      return signedIn() && exists(/databases/$(database)/documents/tenants/$(t)/members/$(uid()));
+    }
+    function unchanged(keys) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(keys);
+    }
+
+    // Canonical record: public read, server-only writes.
+    match /evidence_analyses/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /evidence_challenges/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Proposals (user research): kept apart from the canonical record.
+    match /evidence_challenge_proposals/{id} {
+      allow read: if signedIn() && (resource.data.proposedBy == uid() || isEditor());
+      allow create: if signedIn()
+        && request.resource.data.proposedBy == uid()
+        && request.resource.data.status == 'proposed'
+        && request.resource.data.decidedBy == null;
+      // A decision: an editor who is not the proposer, recorded as themselves, with an audit event written in the
+      // same batch. Nothing but the decision fields may change.
+      allow update: if signedIn() && isEditor()
+        && resource.data.status == 'proposed'
+        && resource.data.proposedBy != uid()
+        && request.resource.data.status in ['approved', 'rejected']
+        && request.resource.data.decidedBy == uid()
+        && unchanged(['json', 'claimId', 'analysisId', 'proposedBy', 'proposerRole', 'idempotencyKey', 'createdAt'])
+        && existsAfter(/databases/$(database)/documents/evidence_audit/$(request.resource.data.decisionAuditId));
+      allow delete: if false;
+    }
+
+    // Drafts: private to their creator; never published by being created.
+    match /evidence_analysis_drafts/{id} {
+      allow read: if signedIn() && resource.data.createdBy == uid();
+      allow create: if signedIn() && request.resource.data.createdBy == uid();
+      allow update, delete: if false;
+    }
+
+    // Audit log: append-only. A client may only add the audit event of its own proposal decision.
+    match /evidence_audit/{id} {
+      allow read: if role() in ['editorial_admin', 'system_admin'];
+      allow create: if signedIn() && isEditor()
+        && request.resource.data.actorId == uid()
+        && request.resource.data.entityType == 'PROPOSAL'
+        && getAfter(/databases/$(database)/documents/evidence_challenge_proposals/$(request.resource.data.entityId)).data.decidedBy == uid();
+      allow update, delete: if false;
+    }
+
+    // Review assignments and attestations (planned editorial review).
+    match /review_assignments/{id} {
+      allow read: if signedIn() && (resource.data.reviewerId == uid() || isEditor());
+      allow write: if role() == 'editorial_admin' && request.resource.data.reviewerId != uid();
+    }
+    match /attestations/{id} {
+      allow read: if true;
+      allow create: if role() == 'scholarly_reviewer'
+        && request.resource.data.reviewerId == uid()
+        && get(/databases/$(database)/documents/review_assignments/$(request.resource.data.assignmentId)).data.reviewerId == uid()
+        && get(/databases/$(database)/documents/review_assignments/$(request.resource.data.assignmentId)).data.status == 'open';
+      allow update, delete: if false;
+    }
+
+    // Private institutional workspaces (Decision Twin): members only, membership written by the server.
+    match /tenants/{t} {
+      allow read: if isMember(t);
+      allow write: if false;
+      match /members/{member} {
+        allow read: if isMember(t);
+        allow write: if false;
+      }
+      // Every other subcollection; `members` is excluded so a member cannot add members or change roles.
+      match /{sub}/{doc=**} {
+        allow read, write: if isMember(t) && sub != 'members';
+      }
+    }
+  }
+}

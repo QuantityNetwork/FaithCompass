@@ -13,10 +13,16 @@ export const SITE_TAGLINE = 'Structured Theological Intelligence';
 export const SITE_DESCRIPTION =
   'A structured theological research record: sources, claims, covenants, doctrine and traditions, with every conclusion traceable to its source and open to challenge.';
 
+/**
+ * The operator is a private individual (owner instruction 2026-10-20). "Sagolik" is a brand name he uses, not a
+ * company: there is no organisation number and no VAT registration.
+ */
 export const OPERATOR = {
-  name: 'Sagolik',
+  name: 'Mikael Markus Andersson',
+  brand: 'Sagolik',
+  status: 'private individual, Sweden',
   statement:
-    'Written and built by Sagolik. All intellectual property rights in AbrahamMoses are owned by Sagolik.',
+    'Written and built by Mikael Markus Andersson (private individual, Sweden) under the Sagolik name; Sagolik is a brand, not a company. All intellectual property rights in AbrahamMoses are owned by Mikael Markus Andersson.',
 };
 
 /** Minor versions are additive; see CHANGELOG.md. 1.1 (2026-10-20): epistemic_status fields, headline_confidence deprecated. */
@@ -76,7 +82,8 @@ export function absoluteUrl(path: string): string {
 /** Contact addresses published in the legal pages, when the operator has configured them. */
 export function legalContact(): { privacy: string | null; general: string | null } {
   return {
-    privacy: process.env.ABRAHAMMOSES_PRIVACY_CONTACT || null,
+    // Without a dedicated privacy address, privacy requests go to the operator's contact address.
+    privacy: process.env.ABRAHAMMOSES_PRIVACY_CONTACT || process.env.ABRAHAMMOSES_CONTACT || null,
     general: process.env.ABRAHAMMOSES_CONTACT || null,
   };
 }

@@ -11,3 +11,8 @@ data/*.json
 .DS_Store
 coverage/
 design/brand/.check-render.png
+
+# Firebase emulator logs
+firestore-debug.log
+firebase-debug.log
+ui-debug.log

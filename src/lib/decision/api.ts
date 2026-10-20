@@ -8,7 +8,6 @@ import { CHAMBER_RULES, chamber } from './chamber';
 import { CONTRADICTION_CLASSES, contradictionsView } from './contradictions';
 import { CONTROLS, DEFAULT_ASSUMPTIONS, PREMISES, evaluate, parseAssumptions, traceFromDefaults } from './engine';
 import { PassportIdError, buildPassport, verifyPassport } from './passport';
-import { configuredSigner, verifySignature } from './signing';
 
 const LABEL = CASE.label;
 const DEMO_PARAMS = new Set([...CONTROLS.map((c) => c.param), 'v', 'vset', 'r']);
@@ -89,15 +88,16 @@ export function verifyHandler(request: Request): Promise<Response> {
     const hash = url.searchParams.get('sha256');
     if (!id) throw new ApiError('invalid_parameter', 'id is required.');
     if (!hash || !/^[0-9a-fA-F]{64}$/.test(hash)) throw new ApiError('invalid_parameter', 'sha256 must be a 64-character hex digest.');
-    const signer = configuredSigner();
     let result: { valid: boolean; expected: string };
     let signature: ReturnType<typeof buildPassport>['integrity']['signature'];
     let caseVersion: { version: string; content_sha256: string };
+    let engine: ReturnType<typeof buildPassport>['integrity']['engine'];
     try {
       result = verifyPassport(id, hash);
       const p = buildPassport(id);
       signature = p.integrity.signature;
       caseVersion = { version: p.integrity.case_archive.version, content_sha256: p.integrity.case_archive.content_sha256 };
+      engine = p.integrity.engine;
     } catch (err) {
       if (err instanceof PassportIdError) throw new ApiError('not_found', err.message);
       throw err;
@@ -109,10 +109,9 @@ export function verifyHandler(request: Request): Promise<Response> {
       valid: result.valid,
       expected_sha256: result.expected,
       case_version: caseVersion,
-      signature:
-        signature.status === 'signed'
-          ? { ...signature, valid: signer.status === 'signing' && verifySignature(result.expected, signature.value!, signer.signer.x) }
-          : signature,
+      engine,
+      // Checked as issued (kid, issue time within the key's validity window, Ed25519); never re-signed.
+      signature,
       meaning: result.valid
         ? 'The passport rebuilt from this ID has this hash: it is unchanged since it was generated. This does not show its content is correct.'
         : 'The hash does not match the passport rebuilt from this ID: either the hash or the passport was altered.',
