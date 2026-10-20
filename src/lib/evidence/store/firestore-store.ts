@@ -13,6 +13,7 @@
  * Append-only collections are created with an `exists: false` precondition; compare-and-set uses `updateTime`
  * preconditions; a decision (proposal + analysis + challenge + audit) is one atomic commit, which the rules require.
  */
+import { PROMPT_VERSION } from '../prompts';
 import type { Actor } from '@/lib/auth/actor';
 import { idTokenOf } from '@/lib/auth/actor';
 import { FirestoreRest, firestoreConfigFromEnv, type FsDocument, type FsWrite } from '@/lib/firebase/firestore-rest';
@@ -46,6 +47,15 @@ export class IdentityRequiredError extends Error {
     this.name = 'IdentityRequiredError';
   }
 }
+
+/**
+ * Version stamp of the curated demonstrations on Firestore deployments: the first day of the prompt release
+ * (`PROMPT_VERSION` ei-YYYY.MM.n), identical in every server instance.
+ */
+export const CURATED_VERSION_STAMP = (() => {
+  const m = /^ei-(\d{4})\.(\d{2})\./.exec(PROMPT_VERSION);
+  return m ? `${m[1]}-${m[2]}-01T00:00:00.000Z` : '1970-01-01T00:00:00.000Z';
+})();
 
 function proposalOf(doc: FsDocument): ChallengeProposal {
   const decision = Object.fromEntries(DECISION_KEYS.map((k) => [k, doc.fields[k] ?? null]));
@@ -144,7 +154,9 @@ export class FirestoreEvidenceStore implements EvidenceStore {
     if (!this.db.authenticated) {
       if (!v.seeded) throw new IdentityRequiredError('Saving a non-curated analysis');
       // Curated demonstration, regenerated from code on every cold start: kept in the overlay, not in Firestore.
-      await this.overlay.saveAnalysis(v);
+      // Its version stamp must be the same in every server instance, or a proposal made against one instance would
+      // look stale (superseded) when approved on another. The content is deterministic; only the clock is not.
+      await this.overlay.saveAnalysis({ ...v, createdAt: CURATED_VERSION_STAMP, updatedAt: CURATED_VERSION_STAMP });
       return;
     }
     throw new Error('Canonical analyses change only through an approved decision (commitDecision).');

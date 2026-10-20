@@ -39,7 +39,7 @@ describe.skipIf(!ON_EMULATOR)('Firestore store under the security rules (emulato
         from: 'proposed',
         patch: { status: 'approved', decidedBy: 'alice', decidedRole: 'research_editor', decidedAt: 'now', decisionReason: 'self' },
         audit: { id: 'forged', entityType: 'CLAIM', entityId: a.claims[0].id, changeType: 'APPROVED', oldValue: null, newValue: null, reason: 'self', modelProvider: null, modelVersion: null, promptVersion: null, timestamp: 'now', actorId: 'alice', actorRole: 'research_editor' },
-        analysis: { next: { ...a, title: 'Forged', updatedAt: '2030-01-01T00:00:00.000Z' }, expectedUpdatedAt: a.updatedAt },
+        analysis: { next: { ...a, title: 'Forged', updatedAt: '2030-01-01T00:00:00.000Z' }, expectedUpdatedAt: (await storeFor(anonymous).getAnalysis(a.id))!.updatedAt },
       }),
     ).rejects.toBeInstanceOf(FirestoreRequestError);
     expect(await adminDb().get('evidence_analyses', a.id)).toBeNull();

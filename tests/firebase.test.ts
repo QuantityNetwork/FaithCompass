@@ -84,6 +84,26 @@ describe('store selection with Firebase', () => {
   });
 });
 
+describe('curated demonstrations on Firestore', () => {
+  it('carry the same version stamp in every server instance, so proposals stay valid across instances', async () => {
+    const { runAnalysis } = await import('@/lib/evidence/pipeline');
+    const { CorpusReasoningProvider } = await import('@/lib/evidence/providers/corpus');
+    const { DANIEL_12_1 } = await import('@/lib/evidence/seed/daniel-12-1');
+    const { CURATED_VERSION_STAMP } = await import('@/lib/evidence/store/firestore-store');
+    const instance = async () => {
+      const store = new FirestoreEvidenceStore(new FirestoreRest({ projectId: 'p', emulatorHost: null }, null, async () => new Response('', { status: 404 })));
+      setStore(store);
+      const r = await runAnalysis({ query: DANIEL_12_1.aliases[0], reference: DANIEL_12_1.reference, passageText: DANIEL_12_1.passageText }, new CorpusReasoningProvider());
+      return store.getAnalysis(r.analysis!.id);
+    };
+    const a = await instance();
+    await new Promise((r) => setTimeout(r, 5));
+    const b = await instance();
+    expect(a?.updatedAt).toBe(CURATED_VERSION_STAMP);
+    expect(b).toEqual(a);
+  });
+});
+
 describe('Firebase ID tokens', () => {
   const kid = 'k1';
   const jwk = { ...(publicKey.export({ format: 'jwk' }) as object), kid } as never;
