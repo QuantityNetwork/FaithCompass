@@ -17,7 +17,7 @@ export default function TermsPage() {
       <div className="prose-block">
         <h2>1. The service</h2>
         <p>
-          {SITE_NAME} is a research product written, built and operated by {OPERATOR.name}. It provides a structured record of
+          {SITE_NAME} is a research product written, built and operated by {OPERATOR.name}, {OPERATOR.location}. It provides a structured record of
           theological sources, claims and interpretations through this website, a REST API and an MCP server.
         </p>
 

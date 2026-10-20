@@ -18,17 +18,22 @@ export const PRODUCT = {
 } as const;
 
 /**
- * The seller of pilot reservations (owner instruction 2026-10-20): a private individual, not a company.
- * There is no organisation number and no VAT registration, so no VAT is added to prices.
+ * The seller of pilot reservations as shown on the site (owner instruction 2026-10-21): "Sagolik" only. Sagolik must
+ * not be described as a company, AB, registered entity or VAT-registered. The seller is not VAT-registered, so no
+ * VAT is added. The seller's legal name appears only on Stripe receipts, from the Stripe account settings.
  */
 export const SELLER = {
-  name: 'Mikael Markus Andersson',
-  status: 'private individual, Sweden',
+  name: 'Sagolik',
   location: 'Halmstad, Sweden',
   /** Owner-confirmed public contact; ABRAHAMMOSES_CONTACT takes precedence when set. */
   contact: 'markus@sagolik.com',
 } as const;
-export const SELLER_LINE = `${SELLER.name} (${SELLER.status})`;
+export const SELLER_LINE = `${SELLER.name}, ${SELLER.location}`;
+export const VAT_NOTE = 'Prices exclude VAT; the seller is not VAT-registered';
+/** The exact public seller text (owner-approved wording, 2026-10-21). */
+export function sellerText(contact: string): string {
+  return `Seller: ${SELLER_LINE}. Contact: ${contact}. ${VAT_NOTE}.`;
+}
 
 /** The configured contact (ABRAHAMMOSES_CONTACT), falling back to the seller's owner-confirmed address. */
 export function sellerContact(configured: string | null | undefined): string {
@@ -36,14 +41,15 @@ export function sellerContact(configured: string | null | undefined): string {
 }
 
 /**
- * Stripe payment link for a pilot reservation (payment link plink_1USgj0G6rcRJryPyPwPo6y5w). Kept for when sales
- * open, but not rendered: the link is paused in Stripe and no sales are accepted until private workspaces exist
- * (register item B10). No keys, no server integration.
+ * Stripe payment link for a pilot reservation (payment link plink_1USgj0G6rcRJryPyPwPo6y5w): Stripe's hosted
+ * checkout, no keys and no server integration. The owner reactivates the link in Stripe together with the
+ * production deploy (register item B10); until then Stripe shows the link's inactive message.
+ * Card statements read 'SWECANDY* ABRAHAMMOSES' (the link's statement_descriptor_suffix; account prefix unchanged).
  */
 export const PILOT_PAYMENT_LINK = 'https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d';
-/** Pilots are not on sale (external review, 2026-10-20). Turning this on requires the B10 checklist. */
-export const PILOT_CHECKOUT_ENABLED: boolean = false;
-export const PRICING_LABEL = 'Indicative pricing, stated without VAT (the seller is not VAT-registered); pilots not yet on sale';
+/** Pilot reservations are on sale (owner decision 2026-10-21, register item B10). */
+export const PILOT_CHECKOUT_ENABLED: boolean = true;
+export const PRICING_LABEL = `${VAT_NOTE}. The pilot is a paid reservation that starts once private workspaces are available`;
 export const PILOT_ENQUIRY_SUBJECT = 'Decision Twin pilot enquiry';
 /** A contact link from the configured contact (email or URL); null when none is configured. Never invents one. */
 export function contactHref(contact: string | null, subject?: string): string | null {
@@ -54,7 +60,7 @@ export function contactHref(contact: string | null, subject?: string): string | 
   return contact.includes('@') ? `mailto:${contact}${query}` : null;
 }
 
-export const SALES_STATUS = 'Draft, not in force: no sales are accepted until private workspaces exist';
+export const SALES_STATUS = 'In force for pilot reservations';
 export const TERMS_REVIEW_NOTE = 'These terms have not been reviewed by a lawyer.';
 
 export const STATUS_LINE = 'Public institutional demonstration ready — private client onboarding not authorized';

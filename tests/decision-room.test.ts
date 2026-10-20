@@ -26,7 +26,7 @@ import {
 import { PassportIdError, REVIEWER_NONE, buildPassport, decodePassportId, encodePassportId, passportMarkdown, verifyPassport } from '@/lib/decision/passport';
 import { caseHandler, contradictionsHandler, scenarioHandler, verifyHandler } from '@/lib/decision/api';
 import { openApiDocument } from '@/lib/api/v1';
-import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_CHECKOUT_ENABLED, PILOT_PAYMENT_LINK, PLANS, PRODUCT, SELLER_LINE, contactHref, decisionConfiguration, sellerContact } from '@/lib/decision/product';
+import { DEFAULT_WORKSPACE_SETTINGS, LAYERS, PILOT_CHECKOUT_ENABLED, PILOT_PAYMENT_LINK, PLANS, PRODUCT, SELLER_LINE, contactHref, sellerText, decisionConfiguration, sellerContact } from '@/lib/decision/product';
 
 const T = new Date('2026-10-20T16:00:00.000Z');
 const with_ = (p: Partial<Assumptions>): Assumptions => ({ ...DEFAULT_ASSUMPTIONS, ...p });
@@ -278,10 +278,12 @@ describe('Decision Twin product facts', () => {
   it('keeps automated decisions disabled in the planned workspace defaults', () => {
     expect(DEFAULT_WORKSPACE_SETTINGS.find((x) => x.setting === 'Automated decisions')!.value).toBe('Disabled');
   });
-  it('keeps the pilot payment link in config but disabled, names the private seller and offers an enquiry', () => {
+  it('enables the pilot payment link, names the seller as Sagolik only and keeps an enquiry', () => {
     expect(PILOT_PAYMENT_LINK).toMatch(/^https:\/\/buy\.stripe\.com\//);
-    expect(PILOT_CHECKOUT_ENABLED).toBe(false);
-    expect(SELLER_LINE).toBe('Mikael Markus Andersson (private individual, Sweden)');
+    expect(PILOT_PAYMENT_LINK).toBe('https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d');
+    expect(PILOT_CHECKOUT_ENABLED).toBe(true);
+    expect(SELLER_LINE).toBe('Sagolik, Halmstad, Sweden');
+    expect(sellerText('markus@sagolik.com')).toBe('Seller: Sagolik, Halmstad, Sweden. Contact: markus@sagolik.com. Prices exclude VAT; the seller is not VAT-registered.');
     expect(sellerContact(undefined)).toBe('markus@sagolik.com');
     expect(sellerContact('other@example.org')).toBe('other@example.org');
     expect(PLANS.map((p) => p.action)).not.toContain('checkout');

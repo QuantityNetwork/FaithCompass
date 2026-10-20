@@ -10,7 +10,7 @@ import {
   PLANS,
   PRICING_LABEL,
   PRODUCT,
-  SELLER_LINE,
+  sellerText,
   STATUS_LINE,
   contactHref,
   sellerContact,
@@ -66,8 +66,8 @@ export default function DecisionTwinPage() {
               The Decision Twin is a <strong>proposed</strong> product. Today it exists only as a public demonstration on one
               fictional private credit case: the <Link href="/institutional/decision-room">Decision Room</Link> and its
               synthetic Decision Passports. There are no private workspaces, accounts, customers or customer data. No bank,
-              fund or institution has reviewed, validated or used it, and it holds no certification. Nothing can be bought:
-              pilots are not yet on sale, and enquiries are welcome.
+              fund or institution has reviewed, validated or used it, and it holds no certification. The only thing for sale is a
+              paid pilot reservation: the 90-day pilot starts once private workspaces are available.
             </p>
           </div>
           <p>
@@ -244,12 +244,19 @@ export default function DecisionTwinPage() {
                 {plan.action === 'pilot' ? (
                   PILOT_CHECKOUT_ENABLED ? (
                     <p className="am-tiny">
-                      By reserving you accept the <Link href="/institutional/decision-twin/terms">Terms of Sale</Link>.
+                      By reserving you accept the <Link href="/institutional/decision-twin/terms">Terms of Sale</Link>{' '}
+                      (not reviewed by a lawyer). Full refund on request if the pilot has not started within 90 days of payment.
+                      {pilotContact ? (
+                        <>
+                          {' '}
+                          Questions first? <a href={pilotContact}>Ask us by email</a>.
+                        </>
+                      ) : null}
                     </p>
                   ) : (
                     <p className="am-tiny">
-                      <Link href="/institutional/decision-twin/terms">Draft Terms of Sale</Link> (not in force; no sales are
-                      accepted until private workspaces exist). A request is an enquiry, not a purchase.
+                      <Link href="/institutional/decision-twin/terms">Terms of Sale</Link>. A request is an enquiry, not a
+                      purchase.
                     </p>
                   )
                 ) : null}
@@ -257,9 +264,8 @@ export default function DecisionTwinPage() {
             ))}
           </div>
           <p className="am-tiny">
-            Seller: {SELLER_LINE}. Prices are indicative and stated without VAT because the seller is not VAT-registered;
-            nothing on this page is an offer to sell. A pilot would be a reservation that starts once private workspaces exist.
-            Decision support only: the customer
+            {sellerText(sellerContact(legalContact().general))} A pilot is a paid reservation that starts once private
+            workspaces are available; payment is taken by Stripe, which issues the receipt. Decision support only: the customer
             keeps responsibility for its decisions, and a Decision Passport is not a binding decision, audit opinion, regulatory
             approval or certification. No DORA assessment or regulatory approval is claimed; a written agreement is required
             before any client data is used.

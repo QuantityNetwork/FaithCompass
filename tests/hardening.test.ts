@@ -67,7 +67,7 @@ describe('release identity and operator contact on /status', () => {
     expect(releaseInfo({})).toMatchObject({ commit_sha: null, deployment_id: null });
   });
 
-  it('names the private operator and passes legal_contact when ABRAHAMMOSES_CONTACT is set', async () => {
+  it('names the operator as Sagolik and passes legal_contact when ABRAHAMMOSES_CONTACT is set', async () => {
     const { statusReport } = await import('@/lib/api/status');
     const probe = async () => ({ status: 200, body: { code: 'AM-CLAIM-000184' } });
     const prev = process.env.ABRAHAMMOSES_CONTACT;
@@ -75,7 +75,12 @@ describe('release identity and operator contact on /status', () => {
       process.env.ABRAHAMMOSES_CONTACT = 'markus@sagolik.com';
       const on = (await statusReport(new Request('http://localhost/api/v1/status'), probe)).checks.find((c) => c.id === 'legal_contact')!;
       expect(on.result).toBe('pass');
-      expect(on.detail).toContain('Mikael Markus Andersson (private individual, Sweden)');
+      expect(on.detail).toContain('Operator: Sagolik, Halmstad, Sweden.');
+      expect(on.detail).not.toMatch(/Mikael|Andersson/);
+      const pilot = (await statusReport(new Request('http://localhost/api/v1/status'), probe)).checks.find((c) => c.id === 'pilot_checkout')!;
+      expect(pilot.result).toBe('pass');
+      expect(pilot.detail).toContain('https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d');
+      expect(pilot.detail).toContain('Seller: Sagolik, Halmstad, Sweden. Contact: markus@sagolik.com. Prices exclude VAT; the seller is not VAT-registered.');
       delete process.env.ABRAHAMMOSES_CONTACT;
       const off = (await statusReport(new Request('http://localhost/api/v1/status'), probe)).checks.find((c) => c.id === 'legal_contact')!;
       expect(off.result).toBe(process.env.ABRAHAMMOSES_PRIVACY_CONTACT ? 'pass' : 'warn');

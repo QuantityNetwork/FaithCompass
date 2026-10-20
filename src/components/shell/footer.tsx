@@ -39,7 +39,7 @@ export function SiteFooter() {
             records marked provisional have not yet been verified by an editor.
           </p>
           <p>
-            {OPERATOR.statement} © {new Date().getFullYear()} {OPERATOR.name}. All rights reserved.
+            {OPERATOR.statement} © {new Date().getFullYear()} {OPERATOR.name}.
           </p>
         </div>
       </div>
