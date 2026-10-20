@@ -1,0 +1,329 @@
+{
+  "id": "pc-02",
+  "domain": "private_credit",
+  "split": "dev",
+  "fictional": true,
+  "title": "Pellwood Systems: private credit review (fictional)",
+  "entity": "Pellwood Systems",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Pellwood Systems (fictional).\nIn this document \"PSH\" means Pellwood Systems. Pellwood AB reports customer concentration of 22.3% for FY2024. Pellwood Systems reports approximately capex of $13m for FY2025 on a reported basis. Pellwood Systems reports interest cover of 2.5x for FY2025. Pellwood Systems reports available liquidity of $15.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Pellwood Systems (fictional).\nPellwood Ltd reports customer concentration of 24.8% for FY2024. Pellwood Systems reports capex of $13.5m for FY2025 on a reported basis. Pellwood Systems reports EBITDA of $35.2m for FY2025 on a reported basis. Pellwood Systems: revenue for FY2025 on a reported basis — not provided."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Pellwood Systems (fictional).\nPellwood Systems reports interest cover of 2.1x for FY2025. Pellwood Systems reports available liquidity of $12.9m for FY2025 on a adjusted (management definition) basis. Pellwood Systems reports EBITDA of $39.8m on a reported basis. Pellwood Systems reports revenue of $683.6m for FY2025 on a reported basis."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 108,
+      "end": 171,
+      "text": "Pellwood AB reports customer concentration of 22.3% for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 172,
+      "end": 256,
+      "text": "Pellwood Systems reports approximately capex of $13m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 257,
+      "end": 316,
+      "text": "Pellwood Systems reports interest cover of 2.5x for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 317,
+      "end": 403,
+      "text": "Pellwood Systems reports available liquidity of $15.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 52,
+      "end": 116,
+      "text": "Pellwood Ltd reports customer concentration of 24.8% for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 117,
+      "end": 189,
+      "text": "Pellwood Systems reports capex of $13.5m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 190,
+      "end": 263,
+      "text": "Pellwood Systems reports EBITDA of $35.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 264,
+      "end": 336,
+      "text": "Pellwood Systems: revenue for FY2025 on a reported basis — not provided."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 55,
+      "end": 114,
+      "text": "Pellwood Systems reports interest cover of 2.1x for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 115,
+      "end": 225,
+      "text": "Pellwood Systems reports available liquidity of $12.9m for FY2025 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 226,
+      "end": 288,
+      "text": "Pellwood Systems reports EBITDA of $39.8m on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 289,
+      "end": 364,
+      "text": "Pellwood Systems reports revenue of $683.6m for FY2025 on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Pellwood AB",
+      "concept": "customer_concentration",
+      "value": 22.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Pellwood Systems",
+      "concept": "capex",
+      "value": 13,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Pellwood Systems",
+      "concept": "interest_cover",
+      "value": 2.5,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Pellwood Systems",
+      "concept": "liquidity",
+      "value": 15.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Pellwood Ltd",
+      "concept": "customer_concentration",
+      "value": 24.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Pellwood Systems",
+      "concept": "capex",
+      "value": 13.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Pellwood Systems",
+      "concept": "ebitda",
+      "value": 35.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Pellwood Systems",
+      "concept": "revenue",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Pellwood Systems",
+      "concept": "interest_cover",
+      "value": 2.1,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Pellwood Systems",
+      "concept": "liquidity",
+      "value": 12.9,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Pellwood Systems",
+      "concept": "ebitda",
+      "value": 39.8,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Pellwood Systems",
+      "concept": "revenue",
+      "value": 683.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The capital expenditure and interest cover of Pellwood Systems support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The available liquidity of Pellwood Systems supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "interest cover",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "available liquidity",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

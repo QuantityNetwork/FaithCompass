@@ -1,0 +1,330 @@
+{
+  "id": "ct-06",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "title": "Brightwater Partners: contract review (fictional)",
+  "entity": "Brightwater Partners",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Brightwater Partners (fictional).\nIn this document \"BPH\" means Brightwater Partners. Brightwater Partners reports termination notice period of 93 days for FY2024. Brightwater Partners reports availability sla of 88.17% for FY2025. Brightwater Partners reports term years of 8 years for FY2024. Brightwater Partners reports liability cap of $3.6m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. The fiscal year of Brightwater Partners ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Brightwater Partners (fictional).\nBPH reports termination notice period of 111 days for FY2024. Brightwater Partners reports uptime commitment of 99.66% for FY2025. Brightwater AB reports annual price escalator of 3.9% for FY2025. Brightwater Partners reports approximately maximum service credit of 10% for FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Brightwater Partners (fictional).\nBrightwater Partners reports term years of 7 years for FY2024. Brightwater Partners reports liability cap of $4.2m for LTM to 30 Jun 2025 on a reported basis. Brightwater Ltd reports annual price escalator of 4.5% for FY2025. Brightwater Partners reports maximum service credit of 10% for FY2025. \"availability sla\" has the same meaning as \"uptime commitment\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 113,
+      "end": 190,
+      "text": "Brightwater Partners reports termination notice period of 93 days for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 191,
+      "end": 258,
+      "text": "Brightwater Partners reports availability sla of 88.17% for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 259,
+      "end": 321,
+      "text": "Brightwater Partners reports term years of 8 years for FY2024."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 322,
+      "end": 439,
+      "text": "Brightwater Partners reports liability cap of $3.6m for FY2025 (fiscal year ending 30 June 2025) on a reported basis."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 53,
+      "end": 114,
+      "text": "BPH reports termination notice period of 111 days for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 115,
+      "end": 183,
+      "text": "Brightwater Partners reports uptime commitment of 99.66% for FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 184,
+      "end": 249,
+      "text": "Brightwater AB reports annual price escalator of 3.9% for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 250,
+      "end": 334,
+      "text": "Brightwater Partners reports approximately maximum service credit of 10% for FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 58,
+      "end": 120,
+      "text": "Brightwater Partners reports term years of 7 years for FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 121,
+      "end": 216,
+      "text": "Brightwater Partners reports liability cap of $4.2m for LTM to 30 Jun 2025 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 217,
+      "end": 283,
+      "text": "Brightwater Ltd reports annual price escalator of 4.5% for FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 284,
+      "end": 354,
+      "text": "Brightwater Partners reports maximum service credit of 10% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Brightwater Partners",
+      "concept": "notice_period",
+      "value": 93,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Brightwater Partners",
+      "concept": "availability_sla",
+      "value": 88.17,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Brightwater Partners",
+      "concept": "term_years",
+      "value": 8,
+      "unit": "years",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Brightwater Partners",
+      "concept": "liability_cap",
+      "value": 3.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "definition": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "BPH",
+      "concept": "notice_period",
+      "value": 111,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Brightwater Partners",
+      "concept": "uptime_commitment",
+      "value": 99.66,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Brightwater AB",
+      "concept": "price_escalator",
+      "value": 3.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Brightwater Partners",
+      "concept": "service_credit",
+      "value": 10,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Brightwater Partners",
+      "concept": "term_years",
+      "value": 7,
+      "unit": "years",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Brightwater Partners",
+      "concept": "liability_cap",
+      "value": 4.2,
+      "unit": "$m",
+      "period": "LTM to 30 Jun 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Brightwater Ltd",
+      "concept": "price_escalator",
+      "value": 4.5,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Brightwater Partners",
+      "concept": "service_credit",
+      "value": 10,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The termination notice period and availability commitment of Brightwater Partners support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The initial term of Brightwater Partners supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"BPH\" is defined in the documents as Brightwater Partners"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"availability_sla\" is defined as the same measure as \"uptime_commitment\""
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "termination notice period",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "availability commitment",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "initial term",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

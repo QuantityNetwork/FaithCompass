@@ -1,0 +1,364 @@
+{
+  "id": "ma-09",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "title": "Meridian Vale Industries: m and a review (fictional)",
+  "entity": "Meridian Vale Industries",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Meridian Vale Industries (fictional).\nIn this document \"MVIH\" means Meridian Vale Industries. Meridian Vale Industries reports normalised net working capital of $49m for FY2024 on a reported basis under the original agreement. Meridian Logistics subsidiary reports EBITDA of $108m for FY2024 on a reported basis. MVIH reports revenue of $370.6m for FY2024 on a reported basis. Meridian Vale Industries reports gross margin of 34.9% for FY2024. For Meridian Vale Industries, the leakage definition is read as: permitted leakage excludes management bonuses. The fiscal year of Meridian Vale Industries ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Meridian Vale Industries (fictional).\nMeridian Vale Industries reports normalised net working capital of $39.1m for FY2024 on a reported basis under the amendment no. 1 (supersedes). Meridian Vale Industries reports EBITDA of $99.3m for FY2024 on a reported basis. Meridian Vale Industries reports earn out of $70.1m for FY2024 on a reported basis. Meridian Vale Industries reports headcount of 581 for LTM to 30 Jun 2025. For Meridian Vale Industries, the leakage definition is read as: management bonuses are permitted leakage up to $2m."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Meridian Vale Industries (fictional).\nMeridian Vale Industries reports revenue of $306.7m for FY2024 on a reported basis. Meridian Vale Industries reports gross profit margin of 42.3% for FY2024. Meridian Vale Industries reports earn out of USD 80.7 million for FY2024 on a reported basis. Meridian Vale Industries reports headcount of 711 for FY2025 (fiscal year ending 30 June 2025). \"gross profit margin\" has the same meaning as \"gross margin\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 119,
+      "end": 251,
+      "text": "Meridian Vale Industries reports normalised net working capital of $49m for FY2024 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 252,
+      "end": 337,
+      "text": "Meridian Logistics subsidiary reports EBITDA of $108m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 338,
+      "end": 401,
+      "text": "MVIH reports revenue of $370.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 402,
+      "end": 468,
+      "text": "Meridian Vale Industries reports gross margin of 34.9% for FY2024."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 469,
+      "end": 580,
+      "text": "For Meridian Vale Industries, the leakage definition is read as: permitted leakage excludes management bonuses."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 71,
+      "end": 215,
+      "text": "Meridian Vale Industries reports normalised net working capital of $39.1m for FY2024 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 216,
+      "end": 297,
+      "text": "Meridian Vale Industries reports EBITDA of $99.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 298,
+      "end": 381,
+      "text": "Meridian Vale Industries reports earn out of $70.1m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 382,
+      "end": 455,
+      "text": "Meridian Vale Industries reports headcount of 581 for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 456,
+      "end": 572,
+      "text": "For Meridian Vale Industries, the leakage definition is read as: management bonuses are permitted leakage up to $2m."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 71,
+      "end": 154,
+      "text": "Meridian Vale Industries reports revenue of $306.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 155,
+      "end": 228,
+      "text": "Meridian Vale Industries reports gross profit margin of 42.3% for FY2024."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 229,
+      "end": 322,
+      "text": "Meridian Vale Industries reports earn out of USD 80.7 million for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 323,
+      "end": 418,
+      "text": "Meridian Vale Industries reports headcount of 711 for FY2025 (fiscal year ending 30 June 2025)."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Meridian Vale Industries",
+      "concept": "net_working_capital",
+      "value": 49,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Meridian Logistics subsidiary",
+      "concept": "ebitda",
+      "value": 108,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "MVIH",
+      "concept": "revenue",
+      "value": 370.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Meridian Vale Industries",
+      "concept": "gross_margin",
+      "value": 34.9,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Meridian Vale Industries",
+      "concept": "locked_box",
+      "value": "permitted leakage excludes management bonuses",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Meridian Vale Industries",
+      "concept": "net_working_capital",
+      "value": 39.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Meridian Vale Industries",
+      "concept": "ebitda",
+      "value": 99.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Meridian Vale Industries",
+      "concept": "earn_out",
+      "value": 70.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Meridian Vale Industries",
+      "concept": "headcount",
+      "value": 581,
+      "unit": "count",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Meridian Vale Industries",
+      "concept": "locked_box",
+      "value": "management bonuses are permitted leakage up to $2m",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Meridian Vale Industries",
+      "concept": "revenue",
+      "value": 306.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Meridian Vale Industries",
+      "concept": "gross_profit_margin",
+      "value": 42.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Meridian Vale Industries",
+      "concept": "earn_out",
+      "value": 80.7,
+      "unit": "USD million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Meridian Vale Industries",
+      "concept": "headcount",
+      "value": 711,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The normalised net working capital and EBITDA of Meridian Vale Industries support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The revenue of Meridian Vale Industries supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"MVIH\" is defined in the documents as Meridian Vale Industries"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"gross_profit_margin\" is defined as the same measure as \"gross_margin\""
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word",
+        "note": "\"USD million\" is the same unit as $m"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "normalised net working capital",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "EBITDA",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "revenue",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

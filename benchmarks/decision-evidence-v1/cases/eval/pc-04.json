@@ -1,0 +1,367 @@
+{
+  "id": "pc-04",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "title": "Tamsin Partners: private credit review (fictional)",
+  "entity": "Tamsin Partners",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Tamsin Partners (fictional).\nIn this document \"TPH\" means Tamsin Partners. Tamsin Partners reports cash margin of 4.9% for FY2025. Tamsin Partners reports interest cover of 4x for FY2025. Tamsin Partners reports capex of $8.3m for LTM to 30 Jun 2025 on a reported basis. Tamsin AB reports revenue of $420.4m for FY2025 on a reported basis. For Tamsin Partners, the sponsor equity cure is: equity cure available twice over the life of the facility. The fiscal year of Tamsin Partners ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Tamsin Partners (fictional).\nTamsin Partners reports cash interest margin of 6.2% for FY2025. Tamsin Partners reports interest cover of 3.7x for FY2025. Tamsin Partners reports available liquidity of $28m for FY2025 on a reported basis. Tamsin Partners reports customer concentration of 21.8% for FY2025. For Tamsin Partners, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Tamsin Partners (fictional).\nTamsin Partners reports capex of $7.7m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. Tamsin Ltd reports revenue of $482.6m for FY2025 on a reported basis. Tamsin Partners reports approximately available liquidity of $27m for FY2025 on a reported basis. Tamsin Partners reports customer concentration of 24.7% for FY2025. \"cash interest margin\" has the same meaning as \"cash margin\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 106,
+      "end": 161,
+      "text": "Tamsin Partners reports cash margin of 4.9% for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 162,
+      "end": 218,
+      "text": "Tamsin Partners reports interest cover of 4x for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 219,
+      "end": 301,
+      "text": "Tamsin Partners reports capex of $8.3m for LTM to 30 Jun 2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 302,
+      "end": 370,
+      "text": "Tamsin AB reports revenue of $420.4m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 371,
+      "end": 478,
+      "text": "For Tamsin Partners, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 51,
+      "end": 115,
+      "text": "Tamsin Partners reports cash interest margin of 6.2% for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 116,
+      "end": 174,
+      "text": "Tamsin Partners reports interest cover of 3.7x for FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 175,
+      "end": 258,
+      "text": "Tamsin Partners reports available liquidity of $28m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 259,
+      "end": 326,
+      "text": "Tamsin Partners reports customer concentration of 21.8% for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 327,
+      "end": 397,
+      "text": "For Tamsin Partners, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 54,
+      "end": 158,
+      "text": "Tamsin Partners reports capex of $7.7m for FY2025 (fiscal year ending 30 June 2025) on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 159,
+      "end": 228,
+      "text": "Tamsin Ltd reports revenue of $482.6m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 229,
+      "end": 326,
+      "text": "Tamsin Partners reports approximately available liquidity of $27m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 327,
+      "end": 394,
+      "text": "Tamsin Partners reports customer concentration of 24.7% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Tamsin Partners",
+      "concept": "cash_margin",
+      "value": 4.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Tamsin Partners",
+      "concept": "interest_cover",
+      "value": 4,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Tamsin Partners",
+      "concept": "capex",
+      "value": 8.3,
+      "unit": "$m",
+      "period": "LTM to 30 Jun 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Tamsin AB",
+      "concept": "revenue",
+      "value": 420.4,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Tamsin Partners",
+      "concept": "sponsor_support_a",
+      "value": true,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Tamsin Partners",
+      "concept": "cash_interest_margin",
+      "value": 6.2,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Tamsin Partners",
+      "concept": "interest_cover",
+      "value": 3.7,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Tamsin Partners",
+      "concept": "liquidity",
+      "value": 28,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Tamsin Partners",
+      "concept": "customer_concentration",
+      "value": 21.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Tamsin Partners",
+      "concept": "sponsor_support_b",
+      "value": false,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Tamsin Partners",
+      "concept": "capex",
+      "value": 7.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "definition": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Tamsin Ltd",
+      "concept": "revenue",
+      "value": 482.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Tamsin Partners",
+      "concept": "liquidity",
+      "value": 27,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Tamsin Partners",
+      "concept": "customer_concentration",
+      "value": 24.7,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The cash interest margin and interest cover of Tamsin Partners support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The capital expenditure of Tamsin Partners supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"cash_interest_margin\" is defined as the same measure as \"cash_margin\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "cash interest margin",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "interest cover",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}
