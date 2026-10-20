@@ -371,6 +371,14 @@ svg {
   white-space: nowrap;
 }
 
+/* Long URLs and commands may wrap on phones rather than widen the page. */
+@media (max-width: 560px) {
+  .code-inline {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
 .link {
   color: var(--gold-bright);
   border-bottom: 1px solid var(--gold-dim);
@@ -514,7 +522,15 @@ svg {
  * ---------------------------------------------------------------- */
 
 .hero {
-  padding: 72px 0 24px;
+  /* Block padding only: the inline padding is the .shell gutter. A `padding`
+     shorthand here would reset it to 0 and run the hero into the screen edge. */
+  padding-block: 72px 24px;
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-top: 44px;
+  }
 }
 
 .hero__grid {
@@ -803,15 +819,67 @@ svg {
   max-width: 780px;
 }
 
-.ask .field {
+.ask__field {
+  position: relative;
   flex: 1;
   min-width: 0;
+  /* The hint below is chosen by the field's own width, not the window's:
+     the field is narrower in the two-column hero than on a tablet. */
+  container-type: inline-size;
+}
+
+.ask .field {
   font-size: 18px;
+}
+
+/*
+ * The visible hint stands in for the placeholder so it can be shortened when
+ * the field is too narrow for the full example. The input keeps a blank
+ * placeholder so :placeholder-shown hides the hint as soon as anything is typed;
+ * the full text is the input's accessible description.
+ */
+.ask__hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 17px;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.ask__hint--short {
+  display: none;
+}
+
+.field:not(:placeholder-shown) ~ .ask__hint {
+  display: none;
+}
+
+@container (max-width: 479px) {
+  .ask__hint--long {
+    display: none;
+  }
+  .ask__hint--short {
+    display: flex;
+  }
 }
 
 @media (max-width: 560px) {
   .ask {
     flex-direction: column;
+  }
+  .ask .field,
+  .ask__hint {
+    font-size: 16px;
+  }
+  .ask .button {
+    justify-content: center;
   }
 }
 

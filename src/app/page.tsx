@@ -91,7 +91,22 @@ export default async function Home({ searchParams }: Props) {
               <label htmlFor="home-q" className="visually-hidden">
                 Research question
               </label>
-              <input id="home-q" name="q" className="field" placeholder="Ask a question, or cite a passage (e.g. Hebrews 7, Q 3:67)" maxLength={500} />
+              <div className="ask__field">
+                <input
+                  id="home-q"
+                  name="q"
+                  className="field"
+                  placeholder=" "
+                  aria-describedby="home-q-hint"
+                  maxLength={500}
+                />
+                <span className="ask__hint ask__hint--long" id="home-q-hint" aria-hidden="true">
+                  Ask a question, or cite a passage (e.g. Hebrews 7, Q 3:67)
+                </span>
+                <span className="ask__hint ask__hint--short" aria-hidden="true">
+                  Ask a question or cite a passage
+                </span>
+              </div>
               <button className="button button--solid" type="submit">
                 Research
               </button>
