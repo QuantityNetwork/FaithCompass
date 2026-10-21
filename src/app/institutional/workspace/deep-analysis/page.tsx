@@ -17,7 +17,7 @@ export default function DeepAnalysisPage() {
         <header className="da-masthead">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="da-masthead__logo" src="/brand/deep-analysis/logo-deep-analysis.svg" alt="AbrahamMoses — Deep Analysis / Institutional" width={433} height={69} />
-          <p className="da-masthead__status">Preview</p>
+          <p className="da-masthead__status">Signed-in access</p>
         </header>
         <div className="da-intro">
           <h1>Deep Analysis</h1>

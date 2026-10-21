@@ -89,7 +89,7 @@ export default function AnatomyPage() {
         <p>
           Algorithm {sig.alg}, key <code>{sig.kid}</code>, issued <code>{sig.issued_at}</code>. The signed bytes are the UTF-8 string
         </p>
-        <pre className="dp-pre">{`AbrahamMoses Decision Passport issuance v2\n${sample.integrity.passport_sha256}\n${sig.kid}\n${sig.issued_at}`}</pre>
+        <pre className="dp-pre" tabIndex={0}>{`AbrahamMoses Decision Passport issuance v2\n${sample.integrity.passport_sha256}\n${sig.kid}\n${sig.issued_at}`}</pre>
         <p className="dp-muted">The prefix separates passport signatures from any other use of the key (revocation lists are signed under a different prefix).</p>
       </Section>
       <Disclaimer />

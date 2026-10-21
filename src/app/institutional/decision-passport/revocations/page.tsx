@@ -66,7 +66,7 @@ export default async function RevocationsPage() {
       </Section>
       <Section n={3} id="offline" title="Checking revocation offline">
         <p>Download the signed list and pass it to the offline verifier. The list is checked with the pinned keys; an unsigned or altered list can never establish &ldquo;not revoked&rdquo;.</p>
-        <pre className="dp-pre">{`curl -o revocations.json https://<this site>/api/passport/revocations
+        <pre className="dp-pre" tabIndex={0}>{`curl -o revocations.json https://<this site>/api/passport/revocations
 decision-verifier --keys production.json --engines engines.json --revocations revocations.json passport.bundle.json`}</pre>
         <h3>Policy</h3>
         <ol>{rules.rules.map((r) => <li key={r}>{r}</li>)}</ol>

@@ -431,8 +431,8 @@ export default function Home() {
             </h2>
             <p>
               The AbrahamMoses Decision Twin keeps a versioned record of why an institutional decision was justified, what
-              could invalidate it and who approved it. It is in development: today the Decision Room serves named workspace
-              members, and a public sample room shows one fictional private credit case with synthetic data. It has not been
+              could invalidate it and who approved it. Today the evidence workspace, the Decision Room, Deep Analysis and
+              Decision Passport issuing serve named workspace members, and a public sample room shows one fictional private credit case with synthetic data. It has not been
               reviewed, validated or used by any institution.
             </p>
             <p className="h-more">

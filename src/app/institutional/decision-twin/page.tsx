@@ -21,7 +21,7 @@ import { legalContact } from '@/lib/site/config';
 export const metadata: Metadata = {
   title: 'AbrahamMoses Decision Twin',
   description:
-    'A proposed institutional platform that keeps a versioned record of why a decision was justified, what could invalidate it and who approves it. What is demonstrated today, what is planned and what it is not.',
+    'An institutional platform that keeps a versioned record of why a decision was justified, what could invalidate it and who approves it. What works today, what is planned and what it is not.',
   alternates: { canonical: '/institutional/decision-twin' },
 };
 
@@ -46,7 +46,7 @@ export default function DecisionTwinPage() {
           <div className="dt-brand">
             <DecisionTwinLogo height={140} />
           </div>
-          <p className="am-eyebrow">Sagolik Institutional · In development</p>
+          <p className="am-eyebrow">Sagolik Institutional · Early access</p>
           <h1 className="am-h1">{PRODUCT.name}</h1>
           <p className="am-lede">
             {PRODUCT.tagline} {PRODUCT.positioning}
@@ -63,13 +63,13 @@ export default function DecisionTwinPage() {
           </div>
           <div className="am-example" role="note">
             <p>
-              The Decision Twin is <strong>in development</strong>, not a finished product. What works today: the{' '}
+              The Decision Twin is an <strong>early product</strong>, offered as a 90-day pilot. What works today: the{' '}
               <Link href="/institutional/decision-room">Decision Room</Link>, where named members of an evidence workspace open a
               room for each decision (cited evidence, Deep Analysis findings, contradictions, two-person review and an exportable
-              Decision Passport), and a public <Link href="/institutional/decision-room/sample">sample room</Link> on one fictional
+              Decision Passport), Deep Analysis with signed Decision Passports issued after a second person&apos;s review, and a public <Link href="/institutional/decision-room/sample">sample room</Link> on one fictional
               private credit case. Workspace access is granted by the operator to named accounts. There are no customers. No bank,
               fund or institution has reviewed, validated or used it, and it holds no certification. The only thing for sale is a
-              paid pilot reservation, on the Terms of Sale.
+              paid 90-day pilot, on the Terms of Sale.
             </p>
           </div>
           <p>
@@ -134,8 +134,12 @@ export default function DecisionTwinPage() {
             synthetic case, and every Decision Passport contains a snapshot.
           </p>
           <details className="dr-details">
-            <summary>Default workspace settings (planned for private workspaces; read-only)</summary>
-            <p className="am-tiny">No private workspace exists yet; these defaults are not in effect anywhere.</p>
+            <summary>Default workspace settings (reference; read-only)</summary>
+            <p className="am-tiny">
+              Reference defaults from the product brief. Private access for named members, two-person review and the
+              append-only audit log are enforced in workspaces today; the other settings are not yet configurable and are agreed
+              with each customer in writing.
+            </p>
             <dl className="dr-meta">
               {DEFAULT_WORKSPACE_SETTINGS.map((x) => (
                 <div key={x.setting} className="dr-meta__row">
@@ -155,9 +159,10 @@ export default function DecisionTwinPage() {
             </h2>
           </div>
           <p>
-            AbrahamMoses Scholarly is the public research record on this site. Sagolik Institutional, the proposed home of the
-            Decision Twin, would hold confidential data under governance, simulations, controlled integrations and contractual
-            service levels. They would share technology but keep access, data and editorial responsibility separate; religious
+            AbrahamMoses Scholarly is the public research record on this site. Sagolik Institutional, the home of the Decision
+            Twin, holds the private workspaces of named members under governance; controlled integrations and contractual service
+            levels are agreed with each customer in writing. The two share technology but keep access, data and editorial
+            responsibility separate; religious
             research can be sensitive, so public and institutional workspaces stay apart.{' '}
             <Link href="/institutional#decision-room">More on the difference</Link>.
           </p>
@@ -266,8 +271,8 @@ export default function DecisionTwinPage() {
             ))}
           </div>
           <p className="am-tiny">
-            {sellerText(sellerContact(legalContact().general))} A pilot is a paid reservation that starts once private
-            workspaces are available; payment is taken by Stripe, which issues the receipt. Decision support only: the customer
+            {sellerText(sellerContact(legalContact().general))} A pilot is paid in advance and starts on a date agreed
+            with you in writing; payment is taken by Stripe, which issues the receipt. Decision support only: the customer
             keeps responsibility for its decisions, and a Decision Passport is not a binding decision, audit opinion, regulatory
             approval or certification. No DORA assessment or regulatory approval is claimed; a written agreement is required
             before any client data is used.
