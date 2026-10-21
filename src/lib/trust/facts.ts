@@ -12,11 +12,11 @@ export const TRUST_VERSION = '1.0';
 /** The day the facts below were last checked against the live configuration. */
 export const TRUST_CHECKED = '21 October 2026';
 
-/** Where things run (checked 2026-10-21: Vercel deployment record, `firebase firestore:databases:get`, Firebase docs). */
+/** Where things run (checked 2026-10-21: `vercel.json` regions and the Vercel deployment record, `firebase firestore:databases:get`, Firebase docs). */
 export const HOSTING = {
   provider: 'Vercel Inc.',
-  functionsRegion: 'iad1',
-  functionsRegionName: 'Washington, D.C., United States (AWS us-east-1)',
+  functionsRegion: 'arn1',
+  functionsRegionName: 'Stockholm, Sweden (EU)',
   staticDelivery: 'Vercel’s global edge network',
   regionsDocs: 'https://vercel.com/docs/regions',
 };
@@ -30,8 +30,10 @@ export const FIRESTORE = {
   locationsDocs: 'https://firebase.google.com/docs/firestore/locations',
   encryptionDocs: 'https://cloud.google.com/firestore/docs/server-side-encryption',
   pointInTimeRecovery: false,
+  /** A daily schedule was attempted on 2026-10-21; Google refused it because the project has no billing account (Spark plan). */
   scheduledBackups: false,
-  deleteProtection: false,
+  /** Enabled 2026-10-21 (`firebase firestore:databases:update "(default)" --delete-protection ENABLED`). */
+  deleteProtection: true,
 };
 
 export const FIREBASE_AUTH = {
@@ -61,8 +63,7 @@ export const GAPS: { control: string; status: GapStatus; note: string }[] = [
   { control: 'ISO/IEC 27001 certification', status: 'not in place', note: 'No certification is held. The Decision Passport standards page is a mapping, not a certification.' },
   { control: 'SOC 2 report', status: 'not in place', note: 'No SOC 2 Type I or Type II report exists.' },
   { control: 'External penetration test', status: 'not in place', note: 'No external penetration test has been carried out. Automated security regression tests run in CI on every change.' },
-  { control: 'Point-in-time recovery and scheduled backups of Firestore', status: 'not in place', note: 'Neither is enabled on the database today.' },
-  { control: 'EU-only application servers', status: 'owner decision', note: 'Server functions run in Washington, D.C. (iad1). Moving them to Stockholm (arn1) or Frankfurt (fra1) is a configuration change.' },
+  { control: 'Point-in-time recovery and scheduled backups of Firestore', status: 'not in place', note: 'Neither is enabled. Scheduled backups require a billing account on the Google Cloud project, which it does not have today. Delete protection on the database is enabled.' },
   { control: 'Dedicated security and privacy contact', status: 'owner decision', note: 'Security and privacy questions go to the operator’s general contact address.' },
   { control: 'Business continuity', status: 'not in place', note: 'AbrahamMoses is run by a single operator; there is no second person on call.' },
 ];

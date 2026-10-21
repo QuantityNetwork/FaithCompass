@@ -95,7 +95,7 @@ def table(rows, head=None, widths=None):
 p = para(d['status'].upper(), size=9, bold=True, color=NAVY, after=10)
 p = para(d['title'], size=22, color=NAVY, after=2)
 p = para(d['subtitle'], size=11, color=GREY, after=2)
-p = para(f"Template version {d['version']}, {d['date']}. Square brackets mark what the parties complete or agree.", size=9, color=GREY, after=6)
+p = para(f"Template version {d['version']}, {d['date']}. Square brackets mark what the parties complete.", size=9, color=GREY, after=6)
 rule(p)
 
 heading('Parties')

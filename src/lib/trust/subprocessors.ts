@@ -26,7 +26,7 @@ export const SUBPROCESSORS: SubProcessor[] = [
     entity: 'Vercel Inc., United States',
     purpose: 'Hosting: serves every page and runs the server functions (API routes, Deep Analysis, passport issuing).',
     data: 'Every request: IP address, browser details, the address requested and the request body in transit (including document text sent to Deep Analysis). Runtime logs with security events (time, outcome, a one-way hash of the IP address; never request text).',
-    location: `Server functions: ${HOSTING.functionsRegion}, ${HOSTING.functionsRegionName}. Static pages: ${HOSTING.staticDelivery}.`,
+    location: `Server functions: ${HOSTING.functionsRegionName}, Vercel region ${HOSTING.functionsRegion}. Static pages: ${HOSTING.staticDelivery}.`,
     when: 'Always.',
     safeguard: 'Vercel Data Processing Addendum, with the EU standard contractual clauses.',
     links: [

@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "contentSha256": "1455a6aa646254d1c8b2cc2f1bd060ad926fa90a70a9336a33c764ebcbb57704",
+  "contentSha256": "63eb7b80c5b45ea6789a8f323abb20c47496d0a7b5dff42ed2d9387ffac062eb",
   "files": {
     "docx": {
       "path": "/trust/abrahammoses-dpa-template-v1.0.docx",
-      "sha256": "c458f6d49a47e9d59bdb484d524255978cbdbcbc4600c782e6fd1f5b3dfa44b7"
+      "sha256": "935ef39fa113a2be8ed2f421a16d8750386af75ea29e0c201e41266c9ecb1c76"
     },
     "pdf": {
       "path": "/trust/abrahammoses-dpa-template-v1.0.pdf",
-      "sha256": "6d43918c80dfc2572620a35fae7b2e5530035e27568c2e877ca8d595e48d6287"
+      "sha256": "e87f4f1f465a29db1478a50306421497d35d8a33416ed297dd555c7b3aa0893b"
     }
   }
 }

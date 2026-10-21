@@ -27,7 +27,7 @@ export default function DpaPage() {
       <article className="dp-section tr-doc" aria-labelledby="dpa-title">
         <p className="tr-stamp">{DPA_STATUS}</p>
         <h2 id="dpa-title">{DPA_TITLE}</h2>
-        <p className="dp-lede">{DPA_SUBTITLE} · Template version {DPA_VERSION}, {DPA_DATE}. Square brackets mark what the parties complete or agree.</p>
+        <p className="dp-lede">{DPA_SUBTITLE} · Template version {DPA_VERSION}, {DPA_DATE}. Square brackets mark what the parties complete.</p>
         <h3>Parties</h3>
         <table className="dp-table tr-kv"><tbody>{DPA_PARTIES.map(([k, v]) => <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody></table>
 

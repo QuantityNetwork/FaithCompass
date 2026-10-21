@@ -4,7 +4,7 @@
  * public/trust/). tests/trust.test.ts fails when the downloads are older than this text.
  *
  * A template only: it has not been reviewed by a lawyer and binds no one until both parties sign it. Square
- * brackets mark what the parties fill in or agree.
+ * brackets mark what the parties fill in.
  */
 import { createHash } from 'node:crypto';
 import { FIRESTORE, HOSTING } from './facts';
@@ -85,7 +85,7 @@ export const DPA_CLAUSES: DpaClause[] = [
     ref: 'Art. 28(2), 28(4), 28(3)(d)',
     paras: [
       'The Customer gives general written authorisation for the Processor to engage the sub-processors listed in Annex 3.',
-      'The Processor gives the Customer at least [30] days’ written notice before adding or replacing a sub-processor. The Customer may object on reasonable data-protection grounds within that period; if the parties cannot resolve the objection, the Customer may terminate the affected service and receive a pro-rata refund of prepaid fees for it.',
+      'The Processor gives the Customer at least 30 days’ written notice before adding or replacing a sub-processor. The Customer may object on reasonable data-protection grounds within that period; if the parties cannot resolve the objection, the Customer may terminate the affected service and receive a pro-rata refund of prepaid fees for it.',
       'The Processor imposes on each sub-processor data protection obligations that provide sufficient guarantees within the meaning of Article 28(4) GDPR, through that sub-processor’s published data processing terms, and remains responsible to the Customer for its sub-processors’ performance.',
     ],
   },
@@ -102,7 +102,7 @@ export const DPA_CLAUSES: DpaClause[] = [
     title: 'Personal data breaches and other assistance',
     ref: 'Art. 28(3)(f), Arts. 32–36',
     paras: [
-      'The Processor notifies the Customer without undue delay, and in any event within [48] hours, after becoming aware of a personal data breach affecting the Customer’s personal data. The notice describes, as far as then known, the nature of the breach, the categories and approximate number of data subjects and records concerned, the likely consequences and the measures taken or proposed. Information not available at first is provided in phases as it becomes available.',
+      'The Processor notifies the Customer without undue delay, and in any event within 48 hours, after becoming aware of a personal data breach affecting the Customer’s personal data. The notice describes, as far as then known, the nature of the breach, the categories and approximate number of data subjects and records concerned, the likely consequences and the measures taken or proposed. Information not available at first is provided in phases as it becomes available.',
       'Notices are sent by email to the Customer’s contact named in the signature block below.',
       'The Processor assists the Customer, taking into account the nature of the processing and the information available to it, with the Customer’s obligations on security, breach notification, data protection impact assessments and prior consultation.',
     ],
@@ -112,7 +112,7 @@ export const DPA_CLAUSES: DpaClause[] = [
     title: 'Deletion or return at the end of the services',
     ref: 'Art. 28(3)(g)',
     paras: [
-      'At the end of the services, at the Customer’s choice, the Processor returns the Customer’s personal data in a machine-readable format and deletes it, within [30] days, unless EU or Member State law requires storage. The Processor confirms the deletion in writing.',
+      'At the end of the services, at the Customer’s choice, the Processor returns the Customer’s personal data in a machine-readable format and deletes it, within 30 days, unless EU or Member State law requires storage. The Processor confirms the deletion in writing.',
       'The application keeps workspace records append-only by design, so that no user can alter or remove the evidence trail; deletion at the end of the services is therefore carried out by the Processor’s operator with project-administrator access to the database.',
       'Entries in the public Decision Passport registry and revocation list contain hashes, a key identifier, the workspace identifier and timestamps, but no document content and no names or email addresses. They are kept permanently so that issued passports stay verifiable. The Customer should choose a workspace identifier that does not identify a person.',
     ],
@@ -123,7 +123,7 @@ export const DPA_CLAUSES: DpaClause[] = [
     ref: 'Art. 28(3)(h)',
     paras: [
       'The Processor makes available to the Customer the information necessary to demonstrate compliance with Article 28 GDPR, including the security description on the AbrahamMoses Trust pages and answers to reasonable written questions.',
-      'The Processor allows for and contributes to audits, including inspections, by the Customer or an auditor it mandates who is bound by confidentiality, on at least [30] days’ written notice, during normal business hours, no more than once a year unless a personal data breach or a supervisory authority requires otherwise. Each party bears its own costs.',
+      'The Processor allows for and contributes to audits, including inspections, by the Customer or an auditor it mandates who is bound by confidentiality, on at least 30 days’ written notice, during normal business hours, no more than once a year unless a personal data breach or a supervisory authority requires otherwise. Each party bears its own costs.',
       'The Processor holds no ISO/IEC 27001 certification or SOC 2 report and has not commissioned an external penetration test. It does not offer these as evidence.',
     ],
   },
@@ -132,7 +132,7 @@ export const DPA_CLAUSES: DpaClause[] = [
     title: 'Transfers outside the EEA',
     ref: 'Chapter V GDPR',
     paras: [
-      `Some sub-processors in Annex 3 process personal data in the United States, including the hosting provider’s server functions (${HOSTING.functionsRegion}), Firebase Authentication and, when the Deep Analysis AI layer is used, OpenAI. The workspace database is located in the EEA (${FIRESTORE.location}).`,
+      `The hosting provider’s server functions run in ${HOSTING.functionsRegionName}, Vercel region ${HOSTING.functionsRegion}, and the workspace database is located in the EEA (${FIRESTORE.location}). Some sub-processors in Annex 3 process personal data in the United States: Firebase Authentication (account records) and, when the Deep Analysis AI layer is used, OpenAI. The hosting provider and Stripe are also established in or have affiliates in the United States.`,
       'Such transfers take place only under an adequacy decision of the European Commission, including the EU-U.S. Data Privacy Framework where the recipient is certified, or under the European Commission’s standard contractual clauses incorporated in the sub-processor’s data processing terms.',
     ],
   },
@@ -184,7 +184,7 @@ export const DPA_ANNEXES: DpaAnnex[] = [
       ['Encryption', 'In transit: TLS 1.2 or 1.3 only, HSTS for two years. At rest: the database is encrypted by Google by default.'],
       ['Data minimisation', 'Deep Analysis outside a workspace stores neither the document nor the report. AI requests are sent with provider-side storage turned off. Security logs record a one-way hash of the IP address, never request text.'],
       ['Application security', 'Content Security Policy, frame protection and other security headers on every page; request-size limits and rate limits on write routes; automated security regression tests, browser tests and database-rule tests in CI on every change.'],
-      ['Not in place', 'No ISO/IEC 27001 certification, no SOC 2 report, no external penetration test, no database backups or point-in-time recovery, and a single operator without a second person on call.'],
+      ['Not in place', 'No ISO/IEC 27001 certification, no SOC 2 report, no external penetration test, no database backups or point-in-time recovery (delete protection on the database is enabled), and a single operator without a second person on call.'],
     ],
   },
   {

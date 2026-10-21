@@ -16,7 +16,7 @@ export default function SubprocessorsPage() {
       <Intro kicker="Trust and security · Sub-processors" title="Sub-processors">
         <p>
           Every third party that processes personal data or customer content for AbrahamMoses, taken from the code and the production configuration on {TRUST_CHECKED}. Customers with a signed Data
-          Processing Agreement are told before a sub-processor is added or replaced (DPA template: at least [30] days) and may object.
+          Processing Agreement are told at least 30 days before a sub-processor is added or replaced and may object.
         </p>
       </Intro>
 

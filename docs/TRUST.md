@@ -11,9 +11,9 @@
 
 Every statement was checked on 2026-10-21 against the code and the live configuration:
 
-- Vercel deployment record: functions in `iad1`.
-- `firebase firestore:databases:get`: `(default)`, Standard, `eur3`, no PITR, no delete protection.
-- `firebase firestore:backups:schedules:list`: no backup schedules.
+- `vercel.json` `regions: ["arn1"]` and the Vercel deployment record: functions in `arn1` (Stockholm).
+- `firebase firestore:databases:get`: `(default)`, Standard, `eur3`, no PITR; delete protection enabled 2026-10-21.
+- `firebase firestore:backups:schedules:list`: no backup schedules. Creating a daily schedule (7-day retention) on 2026-10-21 failed: HTTP 403 "This API method requires billing to be enabled". Backups need a billing account (Blaze plan).
 - `openssl s_client`: TLS 1.2 and 1.3 only.
 - `next.config.mjs`: the security headers.
 

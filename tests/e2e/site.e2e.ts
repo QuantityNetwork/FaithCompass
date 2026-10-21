@@ -609,7 +609,9 @@ describe('decision room', () => {
     await p.locator('#pricing').getByRole('link', { name: 'Terms of Sale' }).first().click();
     await p.waitForURL(/\/institutional\/decision-twin\/terms$/);
     const text = (await p.locator('main').textContent())!;
-    expect(text).toContain('Version 1.0 · 21 October 2026 · In force');
+    expect(text).toContain('Version 1.1 · 21 October 2026 · In force');
+    expect(text).toContain('is processed only after you and the seller have signed a data processing agreement under Article 28 GDPR');
+    expect(text).not.toContain('No customer data is accepted until');
     expect(text).toContain('In force for pilot reservations.');
     expect(text).not.toMatch(/not in force|Draft/);
     expect(text).toContain('These terms have not been reviewed by a lawyer.');
@@ -718,7 +720,9 @@ describe('Trust and security pack', () => {
     const text = (await p.locator('main').textContent())!;
     expect(text).toContain('No ISO/IEC 27001 certificate, no SOC 2 report, no external penetration test.');
     expect(text).toContain('eur3');
-    expect(text).toContain('iad1');
+    expect(text).toContain('arn1');
+    expect(text).toContain('Stockholm, Sweden');
+    expect(text).not.toMatch(/\[(30|48)\]/);
     await p.goto(`${base}/institutional/trust/subprocessors`);
     for (const name of ['Vercel', 'Google Firebase', 'OpenAI', 'Stripe']) await expect(p.getByRole('heading', { name, exact: true }).count()).resolves.toBe(1);
     await p.goto(`${base}/institutional/trust/dpa`);

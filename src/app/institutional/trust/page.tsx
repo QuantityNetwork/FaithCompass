@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const AT_A_GLANCE: [string, string][] = [
   ['Operator', 'Sagolik, Halmstad, Sweden: a single operator, not a limited company.'],
-  ['Hosting', `${HOSTING.provider}; server functions in ${HOSTING.functionsRegion} (${HOSTING.functionsRegionName}); static pages from ${HOSTING.staticDelivery}.`],
+  ['Hosting', `${HOSTING.provider}; server functions in ${HOSTING.functionsRegionName}, Vercel region ${HOSTING.functionsRegion}; static pages from ${HOSTING.staticDelivery}.`],
   ['Database', `Google Cloud Firestore, project ${FIRESTORE.project}, location ${FIRESTORE.location} (${FIRESTORE.locationName}).`],
   ['Sign-in', `Firebase Authentication (Google), with Google accounts or verified email addresses. ${FIREBASE_AUTH.note}`],
   ['AI layer', 'Optional, per Deep Analysis run: the document text is sent to OpenAI with storage turned off, and nothing is stored by AbrahamMoses.'],
@@ -26,10 +26,10 @@ const DATA: [string, string, string, string][] = [
   ['Workspace documents, passages and their hashes', 'Cloud Firestore', FIRESTORE.location, 'Until deleted at the end of the agreement'],
   ['Decisions, reviews, passport drafts, audit events', 'Cloud Firestore', FIRESTORE.location, 'Life of the workspace; append-only'],
   ['Public passport registry and revocations (hashes, key ID, workspace ID, times)', 'Cloud Firestore', FIRESTORE.location, 'Permanent, so passports stay verifiable'],
-  ['Deep Analysis profile (organisation, role, optional pilot interest)', 'Cloud Firestore', FIRESTORE.location, 'Until the user removes it'],
+  ['Deep Analysis profile (organisation, role, optional pilot interest)', 'Cloud Firestore', FIRESTORE.location, 'Until the user removes it, or after 24 months without an update'],
   ['Accounts (email, account ID, sign-in method)', 'Firebase Authentication', FIREBASE_AUTH.location, 'Until the account is deleted'],
   ['Deep Analysis documents and reports outside a workspace', 'Not stored', 'Processed in memory', 'None: discarded after the request'],
-  ['Security events (time, outcome, hashed IP)', 'Vercel runtime logs', 'United States', 'The provider’s log period'],
+  ['Security events (time, outcome, hashed IP)', 'Vercel runtime logs', 'Vercel’s log storage (Vercel Inc., US company)', 'The provider’s log period'],
 ];
 
 export default function TrustOverview() {
@@ -61,7 +61,7 @@ export default function TrustOverview() {
         </div>
         <p className="dp-muted">
           Firestore and Firebase Authentication encrypt data at rest by default with Google-managed keys (<a href={FIRESTORE.encryptionDocs} rel="noopener noreferrer">Google’s documentation</a>). Database backups and
-          point-in-time recovery are not enabled; see section 8.
+          point-in-time recovery are not enabled; delete protection is. See section 8.
         </p>
       </Section>
 

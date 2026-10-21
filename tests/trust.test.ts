@@ -13,7 +13,7 @@ import { CONSENT_VERSION, ORG_MAX, ROLES, ROLE_IDS, checkProfile } from '@/lib/l
 import { NAV_SECTIONS, FOOTER_NAV } from '@/lib/site/nav';
 import { PRIVACY_VERSION } from '@/lib/site/privacy-version';
 import { DPA_FILES, DPA_PARTIES, DPA_STATUS, dpaDigest, dpaDocument } from '@/lib/trust/dpa';
-import { FIRESTORE, GAPS, SECURITY_HEADERS } from '@/lib/trust/facts';
+import { FIRESTORE, GAPS, HOSTING, SECURITY_HEADERS } from '@/lib/trust/facts';
 import { QUESTIONNAIRE } from '@/lib/trust/questionnaire';
 import { NON_PROCESSOR_HOSTS, NOT_SUBPROCESSORS, SUBPROCESSORS } from '@/lib/trust/subprocessors';
 
@@ -55,6 +55,21 @@ describe('security facts match the code', () => {
 
   it('holds no service-account or admin credential in the server code', () => {
     for (const f of files('src')) expect(read(f), f).not.toMatch(/firebase-admin|GOOGLE_APPLICATION_CREDENTIALS|private_key_id|SUPABASE_SERVICE_ROLE_KEY\s*=/);
+  });
+
+  it('states the functions region that vercel.json pins, in the EU', () => {
+    const cfg = JSON.parse(readFileSync('vercel.json', 'utf8'));
+    expect(cfg.regions).toEqual([HOSTING.functionsRegion]);
+    expect(HOSTING.functionsRegion).toBe('arn1');
+    expect(HOSTING.functionsRegionName).toBe('Stockholm, Sweden (EU)');
+    expect(GAPS.map((g) => g.control).join(' ')).not.toMatch(/EU-only/);
+  });
+
+  it('uses final DPA values, with brackets only for what the customer fills in', () => {
+    const text = JSON.stringify(dpaDocument());
+    expect(text).not.toMatch(/\[(30|48)\]/);
+    for (const v of ['at least 30 days’ written notice before adding', 'within 48 hours', 'within 30 days', 'no more than once a year']) expect(text).toContain(v);
+    expect(JSON.stringify(QUESTIONNAIRE)).not.toMatch(/\[(30|48)\]/);
   });
 
   it('names the real Firestore location', () => {
