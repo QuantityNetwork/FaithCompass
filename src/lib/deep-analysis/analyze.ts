@@ -172,6 +172,7 @@ export async function analyzeDocument(doc: ParsedDocument, opts: AnalyzeOptions 
     'A preview: no confidential client documents. Nothing is stored; the analysis runs in memory and is discarded.',
     doc.format === 'pdf' ? 'PDF text comes from the text layer only; tables, images and scanned pages are not read.' : null,
     ai.status === 'used' ? 'AI findings are proposals: their quotations are verified to exist verbatim, but their reading of what the passages mean is not. They need human review.' : 'Without the AI layer the analysis is pattern-based: it finds standard wording and misses terms phrased differently. Clause summaries, open questions and a reasoned assessment need the AI layer.',
+    doc.extraction === 'browser' ? 'This large file was read in your browser and only its text was sent; the file size and file hash are as your browser reported them.' : null,
     ai.truncated ? 'The AI layer read only the first part of this long document.' : null,
     'Absence findings mean no passage matched; the term may exist under other wording or in another document.',
   ].filter(Boolean) as string[];
@@ -237,7 +238,7 @@ export async function analyzeDocument(doc: ParsedDocument, opts: AnalyzeOptions 
     schema: REPORT_SCHEMA,
     disclaimer: DISCLAIMER,
     generatedAt: (opts.now ?? (() => new Date()))().toISOString(),
-    document: { filename: doc.filename, format: doc.format, bytes: doc.bytes, bytesSha256: doc.bytesSha256, textSha256: doc.textSha256, chars: text.length, pages: doc.pages, sample: !!opts.sample },
+    document: { filename: doc.filename, format: doc.format, bytes: doc.bytes, bytesSha256: doc.bytesSha256, textSha256: doc.textSha256, chars: text.length, pages: doc.pages, sample: !!opts.sample, ...(doc.extraction === 'browser' ? { extraction: 'browser' as const } : {}) },
     text,
     engine: { version: ENGINE_VERSION, ai },
     overview: {

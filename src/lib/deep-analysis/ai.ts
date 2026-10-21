@@ -4,17 +4,26 @@
  * document verbatim or the finding citing it is dropped. Nothing here holds a key: the OpenAI provider reads
  * OPENAI_API_KEY from the server environment at call time and never returns or logs it.
  *
+ * Model: DEEP_ANALYSIS_MODEL, default gpt-5.6-terra (mid-tier GPT-5.6 reasoning model, chosen for quality per
+ * dollar; 1.05M-token context). gpt-5.6-luna is the budget option, gpt-5.6-sol the costly flagship.
+ * Reasoning models (gpt-5*, o*) are called through the Responses API with reasoning effort
+ * DEEP_ANALYSIS_REASONING_EFFORT (default medium); older chat models (gpt-4.1 etc.) through Chat Completions.
+ *
  * Spend guard: input is capped at AI_MAX_INPUT_CHARS (the rest is analysed by the deterministic layer only and the
- * report says so), output at AI_MAX_OUTPUT_TOKENS (which also stops runaway generations), one call per analysis,
- * a 120-second timeout and no retries beyond one for a 429/5xx.
+ * report says so), output (reasoning included) at AI_MAX_OUTPUT_TOKENS, one call per analysis, a timeout that fits
+ * the route's maxDuration, and one retry for a 429/5xx only when there is time for it.
  */
 import { SECTIONS, SEVERITIES } from './schema';
 
-export const AI_PROMPT_VERSION = 'deep-analysis-prompt/2';
-export const AI_MAX_INPUT_CHARS = 60_000;
-export const AI_MAX_OUTPUT_TOKENS = 8_000;
+export const AI_PROMPT_VERSION = 'deep-analysis-prompt/3';
+export const DEFAULT_MODEL = 'gpt-5.6-terra';
+export const AI_MAX_INPUT_CHARS = 300_000;
+export const AI_MAX_OUTPUT_TOKENS = 32_000;
+/** One AI call may take this long; the route's maxDuration is 800 s (Vercel Pro with Fluid compute). */
+export const AI_TIMEOUT_MS = 690_000;
+const EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max'] as const;
 
-export interface AiUsage { inputTokens: number; outputTokens: number; usd: number }
+export interface AiUsage { inputTokens: number; outputTokens: number; usd: number; reasoningTokens?: number }
 export interface AiCompletion { text: string; usage: AiUsage | null; finishReason: string | null; model: string }
 
 export interface DeepAiProvider {
@@ -33,17 +42,65 @@ export const NO_AI: DeepAiProvider = {
   },
 };
 
-/** USD per 1M tokens (input, output), list prices; used only to report the cost of a run. */
+/** USD per 1M tokens (input, output), standard list prices for prompts up to 272k tokens; used only to report cost. */
 const PRICES: Record<string, [number, number]> = {
+  'gpt-5.6-sol': [4, 20],
+  'gpt-5.6-terra': [2, 12],
+  'gpt-5.6-luna': [0.2, 1.2],
+  'gpt-5.5': [5, 30],
+  'gpt-5.4': [2.5, 15],
   'gpt-4.1': [2, 8],
   'gpt-4.1-mini': [0.4, 1.6],
   'gpt-4o-mini': [0.15, 0.6],
   'gpt-4o': [2.5, 10],
 };
-const priceOf = (model: string) => PRICES[Object.keys(PRICES).sort((a, b) => b.length - a.length).find((k) => model.startsWith(k)) ?? ''] ?? [2, 8];
+const priceOf = (model: string) => PRICES[Object.keys(PRICES).sort((a, b) => b.length - a.length).find((k) => model.startsWith(k)) ?? ''] ?? [4, 20];
+export const isReasoningModel = (model: string) => /^(gpt-5|o\d)/.test(model);
+export const reasoningEffort = (env: Record<string, string | undefined> = process.env) => {
+  const e = (env.DEEP_ANALYSIS_REASONING_EFFORT ?? '').toLowerCase();
+  return (EFFORTS as readonly string[]).includes(e) ? e : 'medium';
+};
+
+type ResponsesAnswer = {
+  model?: string;
+  status?: string;
+  incomplete_details?: { reason?: string } | null;
+  output?: { type?: string; content?: { type?: string; text?: string }[] }[];
+  output_text?: string;
+  usage?: { input_tokens: number; output_tokens: number; output_tokens_details?: { reasoning_tokens?: number } };
+};
+type ChatAnswer = { model?: string; usage?: { prompt_tokens: number; completion_tokens: number }; choices?: { message?: { content?: string }; finish_reason?: string }[] };
+
+/** Request body and answer parser for the model's API. Exported for tests. */
+export function openAiRequest(model: string, prompt: string, effort: string) {
+  if (isReasoningModel(model))
+    return {
+      url: 'https://api.openai.com/v1/responses',
+      body: { model, store: false, instructions: AI_INSTRUCTIONS, input: prompt, reasoning: { effort }, max_output_tokens: AI_MAX_OUTPUT_TOKENS, text: { format: { type: 'json_object' } } },
+    };
+  return {
+    url: 'https://api.openai.com/v1/chat/completions',
+    body: { model, store: false, temperature: 0, seed: 20261021, max_completion_tokens: Math.min(AI_MAX_OUTPUT_TOKENS, 32_000), response_format: { type: 'json_object' }, messages: [{ role: 'system', content: AI_INSTRUCTIONS }, { role: 'user', content: prompt }] },
+  };
+}
+
+export function readOpenAiAnswer(model: string, j: unknown): AiCompletion {
+  const [pin, pout] = priceOf(model);
+  if (isReasoningModel(model)) {
+    const r = j as ResponsesAnswer;
+    const text = r.output_text ?? (r.output ?? []).filter((o) => o.type === 'message').flatMap((o) => o.content ?? []).filter((c) => c.type === 'output_text').map((c) => c.text ?? '').join('');
+    const u = r.usage;
+    const usage = u ? { inputTokens: u.input_tokens, outputTokens: u.output_tokens, reasoningTokens: u.output_tokens_details?.reasoning_tokens ?? 0, usd: (u.input_tokens * pin + u.output_tokens * pout) / 1e6 } : null;
+    const finishReason = r.status === 'incomplete' ? (r.incomplete_details?.reason === 'max_output_tokens' ? 'length' : r.incomplete_details?.reason ?? 'incomplete') : r.status === 'completed' ? 'stop' : r.status ?? null;
+    return { text, usage, finishReason, model: r.model ?? model };
+  }
+  const c = j as ChatAnswer;
+  const usage = c.usage ? { inputTokens: c.usage.prompt_tokens, outputTokens: c.usage.completion_tokens, usd: (c.usage.prompt_tokens * pin + c.usage.completion_tokens * pout) / 1e6 } : null;
+  return { text: String(c.choices?.[0]?.message?.content ?? ''), usage, finishReason: c.choices?.[0]?.finish_reason ?? null, model: c.model ?? model };
+}
 
 export function openAiProvider(env: Record<string, string | undefined> = process.env, fetchImpl: typeof fetch = fetch): DeepAiProvider {
-  const model = env.DEEP_ANALYSIS_MODEL || 'gpt-4.1';
+  const model = env.DEEP_ANALYSIS_MODEL || DEFAULT_MODEL;
   const configured = (env.AI_PROVIDER ?? 'openai').toLowerCase() === 'openai' && Boolean(env.OPENAI_API_KEY) && env.DEEP_ANALYSIS_AI !== 'off';
   return {
     id: 'openai',
@@ -52,28 +109,29 @@ export function openAiProvider(env: Record<string, string | undefined> = process
     async complete(prompt) {
       const key = env.OPENAI_API_KEY;
       if (!key) throw new Error('AI layer not configured');
+      const req = openAiRequest(model, prompt, reasoningEffort(env));
+      const started = Date.now();
       let res: Response | null = null;
       for (let attempt = 0; attempt < 2; attempt++) {
         const ctrl = new AbortController();
-        const timer = setTimeout(() => ctrl.abort(), 120_000);
+        const timer = setTimeout(() => ctrl.abort(), Math.max(10_000, AI_TIMEOUT_MS - (Date.now() - started)));
         try {
-          res = await fetchImpl('https://api.openai.com/v1/chat/completions', {
+          res = await fetchImpl(req.url, {
             method: 'POST',
             headers: { 'content-type': 'application/json', authorization: `Bearer ${key}` },
-            body: JSON.stringify({ model, store: false, temperature: 0, seed: 20261021, max_completion_tokens: AI_MAX_OUTPUT_TOKENS, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: AI_INSTRUCTIONS }, { role: 'user', content: prompt }] }),
+            body: JSON.stringify(req.body),
             signal: ctrl.signal,
           });
         } finally {
           clearTimeout(timer);
         }
+        // Retry once on 429/5xx, and only while most of the time budget is left.
         if (res.status !== 429 && res.status < 500) break;
+        if (Date.now() - started > AI_TIMEOUT_MS / 3) break;
         await new Promise((r) => setTimeout(r, 2500));
       }
       if (!res || !res.ok) throw new Error(`AI provider returned ${res?.status ?? 'no response'}`);
-      const j = (await res.json()) as { model?: string; usage?: { prompt_tokens: number; completion_tokens: number }; choices?: { message?: { content?: string }; finish_reason?: string }[] };
-      const [pin, pout] = priceOf(model);
-      const usage = j.usage ? { inputTokens: j.usage.prompt_tokens, outputTokens: j.usage.completion_tokens, usd: (j.usage.prompt_tokens * pin + j.usage.completion_tokens * pout) / 1e6 } : null;
-      return { text: String(j.choices?.[0]?.message?.content ?? ''), usage, finishReason: j.choices?.[0]?.finish_reason ?? null, model: j.model ?? model };
+      return readOpenAiAnswer(model, await res.json());
     },
   };
 }
@@ -96,14 +154,14 @@ export const AI_INSTRUCTIONS = [
   ` "findings":[{"section":"one of ${AI_SECTIONS.join('|')}","title":"short title","detail":"what it says and what it means","severity":"one of ${SEVERITIES.join('|')}","reasoning":"why this rating","party":"the party bound, for obligations","quotes":["..."]}],`,
   ' "contradictions":[{"quote_a":"...","quote_b":"...","explanation":"..."}],',
   ' "final_statement":{"overall":"a reasoned assessment in 4 to 8 sentences","overall_quotes":["..."],"rating":"one of acceptable|acceptable_with_changes|significant_concerns|insufficient_information","key_concerns":[{"title":"...","detail":"...","severity":"high|medium|low","quotes":["..."]}],"recommended_actions":[{"text":"...","quotes":["..."]}],"confidence":"high|moderate|low","confidence_reason":"..."}}',
-  'Be exhaustive and deep: cover every clause in "clauses" (use the clause ids given) and give typically 25 to 45 findings. In "findings" cover: each party\'s obligations; deadlines; renewal and termination; payment terms; liability, indemnity, intellectual property, confidentiality, governing law and dispute resolution; risks; unusual terms; missing terms; and open questions the reader should ask the other party. Put passages that contradict each other in "contradictions", not in "findings".',
+  'Be exhaustive and deep: cover every clause in "clauses" (use the clause ids given) and give typically 30 to 60 findings; reason carefully about how clauses interact (definitions, cross-references, exceptions, survival, order of precedence) before you answer. In "findings" cover: each party\'s obligations; deadlines; renewal and termination; payment terms; liability, indemnity, intellectual property, confidentiality, governing law and dispute resolution; risks; unusual terms; missing terms; and open questions the reader should ask the other party. Put passages that contradict each other in "contradictions", not in "findings".',
 ].join('\n');
 
 export function aiPrompt(text: string, clauses: { id: string; heading: string; start: number; end: number }[]): { prompt: string; truncated: boolean } {
   const truncated = text.length > AI_MAX_INPUT_CHARS;
   const body = truncated ? text.slice(0, AI_MAX_INPUT_CHARS) : text;
   const list = clauses.filter((c) => c.start < body.length).map((c) => `${c.id}: ${c.heading}`).join('\n');
-  return { prompt: `# Clause ids\n${list}\n\n# Document\n${body}${truncated ? '\n\n[The document continues; only the part above is given.]' : ''}`, truncated };
+  return { prompt: `Analyse the document below and answer with the single JSON object described in your instructions.\n\n# Clause ids\n${list}\n\n# Document\n${body}${truncated ? '\n\n[The document continues; only the part above is given.]' : ''}`, truncated };
 }
 
 /* ------------------------------------------------------------- parsing */

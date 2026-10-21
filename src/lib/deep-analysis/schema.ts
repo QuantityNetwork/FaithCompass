@@ -112,6 +112,8 @@ export const ReportSchema = z
         chars: z.number().int().nonnegative(),
         pages: z.number().int().positive().nullable(),
         sample: z.boolean(),
+        /** 'browser': a large file read in the user's browser; only its text reached the server. */
+        extraction: z.enum(['server', 'browser']).optional(),
       })
       .strict(),
     /** The normalised text all spans point into. */
@@ -130,7 +132,7 @@ export const ReportSchema = z
             dropped: z.number().int().nonnegative(),
             vetoed: z.number().int().nonnegative(),
             droppedExamples: z.array(z.string()),
-            usage: z.object({ inputTokens: z.number(), outputTokens: z.number(), usd: z.number() }).nullable(),
+            usage: z.object({ inputTokens: z.number(), outputTokens: z.number(), usd: z.number(), reasoningTokens: z.number().optional() }).nullable(),
             truncated: z.boolean(),
           })
           .strict(),

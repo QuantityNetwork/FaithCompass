@@ -113,8 +113,9 @@ export default function PrivacyPage() {
         <h3 id="deep-analysis">Deep Analysis</h3>
         <p>
           A document you submit to Deep Analysis is read and analysed in the server’s memory for that one request and then
-          discarded. {SITE_NAME} does not store the document, its text or the report in any database; the report exists only in
-          your browser until you export it. When you include the AI layer, the document’s text (up to about 60,000 characters)
+          discarded. Files larger than 3 MB (up to 15 MB) are read in your browser and only their text is sent; the file itself
+          does not leave your device. {SITE_NAME} does not store the document, its text or the report in any database; the report exists only in
+          your browser until you export it. When you include the AI layer, the document’s text (up to about 300,000 characters)
           is sent to OpenAI, L.L.C., which processes it on our behalf as a processor to produce the AI findings. Under
           OpenAI’s API terms, data sent through the API is not used to train its models, and it may be kept in OpenAI’s
           abuse-monitoring logs for up to 30 days. Without the AI layer, the text does not leave {SITE_NAME}. Do not submit

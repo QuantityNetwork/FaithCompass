@@ -297,9 +297,10 @@ export function ReportView({ report, onJson, recorded }: { report: Report; onJso
                 <tr><th scope="row">Engine</th><td>{report.engine.version}; contradiction engine with deterministic veto</td></tr>
                 <tr><th scope="row">AI layer</th><td>{ai.note}{ai.promptVersion ? ` Prompt ${ai.promptVersion}.` : ''}</td></tr>
                 {ai.status === 'used' ? <tr><th scope="row">AI verification</th><td>{ai.proposed} proposals; {ai.dropped} dropped because a quotation was not found verbatim or was malformed; {ai.vetoed} contradiction candidates vetoed by the deterministic layer.{ai.droppedExamples.length ? <ul className="da-plain da-dropped">{ai.droppedExamples.map((d) => <li key={d}>{d}</li>)}</ul> : null}</td></tr> : null}
-                {ai.usage ? <tr><th scope="row">AI usage</th><td>{ai.usage.inputTokens.toLocaleString('en')} input and {ai.usage.outputTokens.toLocaleString('en')} output tokens, about ${ai.usage.usd.toFixed(3)}</td></tr> : null}
+                {ai.usage ? <tr><th scope="row">AI usage</th><td>{ai.usage.inputTokens.toLocaleString('en')} input and {ai.usage.outputTokens.toLocaleString('en')} output tokens{ai.usage.reasoningTokens ? ` (of which ${ai.usage.reasoningTokens.toLocaleString('en')} reasoning)` : ''}, about ${ai.usage.usd.toFixed(3)}</td></tr> : null}
                 <tr><th scope="row">Spans</th><td>{report.spans.length} hash-anchored passages, each re-checkable against the text</td></tr>
                 <tr><th scope="row">File SHA-256</th><td className="ws-mono">{report.document.bytesSha256}</td></tr>
+                {report.document.extraction === 'browser' ? <tr><th scope="row">Extraction</th><td>Read in your browser (large file); only the text was sent. File size and file hash as reported by the browser.</td></tr> : null}
                 <tr><th scope="row">Text SHA-256</th><td className="ws-mono">{report.document.textSha256}</td></tr>
                 <tr><th scope="row">Report seal</th><td className="ws-mono">{report.seal.reportSha256}</td></tr>
               </tbody>
