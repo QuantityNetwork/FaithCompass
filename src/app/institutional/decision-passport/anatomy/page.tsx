@@ -43,7 +43,7 @@ export default function AnatomyPage() {
             <tbody>
               <tr><th scope="row">bundle</th><td><code>{sample.bundle}</code></td><td>Identifies the file as a passport bundle.</td></tr>
               <tr><th scope="row">schema_version</th><td><code>{sample.schema_version}</code></td><td>Bundle schema; verifiers refuse versions they do not know.</td></tr>
-              <tr><th scope="row">passport_id</th><td><code>{base.slice(0, 40)}…</code> <code>.S-{sig.value.slice(0, 10)}…</code></td><td><code>DP1-</code> + base64url(canonical JSON of the state), then <code>.S-</code> + base64url(signature). The ID alone names the state and carries the signature.</td></tr>
+              <tr><th scope="row">passport_id</th><td><code>{base.slice(0, 40)}…</code> <code className="dp-nowrap">.S-{sig.value.slice(0, 10)}…</code></td><td><code>DP1-</code> + base64url(canonical JSON of the state), then <code>.S-</code> + base64url(signature). The ID alone names the state and carries the signature.</td></tr>
               <tr><th scope="row">integrity.passport_sha256</th><td><code>{sample.integrity.passport_sha256}</code></td><td>SHA-256 over the canonical JSON (canonical-json/1, RFC 8785 style) of the passport artifact.</td></tr>
             </tbody>
           </table>

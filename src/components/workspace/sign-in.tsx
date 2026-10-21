@@ -14,6 +14,7 @@ import {
   watchUser,
 } from '@/lib/firebase/client';
 import { googleFailure, prefersRedirect, type GoogleFailure } from '@/lib/firebase/google';
+import { readNotice, saveNotice, verificationSender, type SendOutcome } from '@/lib/firebase/verification';
 
 type User = { email: string | null; emailVerified: boolean };
 type Mode = 'sign-in' | 'register' | 'reset';
@@ -23,6 +24,23 @@ const DEEP_ANALYSIS = '/institutional/workspace/deep-analysis';
 const DECISION_ROOM = '/institutional/decision-room';
 const SIGN_IN = '/institutional/workspace/sign-in';
 const NEXT_ALLOWED = [WORKSPACE, DEEP_ANALYSIS, DECISION_ROOM];
+const SENDER = verificationSender(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
+const NOTICE_EVENT = 'am-verify-notice';
+
+function session(): Storage | null {
+  try {
+    return typeof window === 'undefined' ? null : window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+/** What to tell the user after a verification email was (or was not) sent. */
+export function sentMessage(email: string | null, outcome: SendOutcome): string {
+  const to = email ?? 'your address';
+  const back = outcome === 'no-return-link' ? ' After confirming, come back to this page and select “I have verified”.' : '';
+  return `A verification link was sent to ${to} from ${SENDER}. If it is not in your inbox within a few minutes, check your spam or junk folder.${back}`;
+}
 
 /** Where to go after sign-in: `?next=` when it names one of this site's own pages, else the workspace. */
 export function nextTarget(search: string): string {
@@ -41,8 +59,11 @@ function friendly(e: unknown): string {
   if (code === 'auth/email-already-in-use') return 'An account with this email address already exists. Sign in, or reset the password.';
   if (code === 'auth/weak-password' || code === 'auth/password-does-not-meet-requirements') return 'Choose a longer password (at least 8 characters).';
   if (code === 'auth/too-many-requests') return 'Too many attempts. Wait a few minutes and try again.';
+  if (code === 'auth/network-request-failed') return 'No connection to the sign-in service. Check your connection and try again.';
+  if (code === 'auth/no-current-user') return 'You are signed out. Sign in again, then request a new link.';
+  if (code === 'auth/user-token-expired' || code === 'auth/requires-recent-login') return 'Your session has expired. Sign in again, then request a new link.';
   if (code === 'auth/missing-password') return 'Enter a password.';
-  return 'Sign-in failed. Try again.';
+  return code ? `That did not work (${code}). Try again.` : 'Sign-in failed. Try again.';
 }
 
 /** Google's standard four-colour "G" (branding guidelines: unmodified, on a neutral button). */
@@ -105,6 +126,20 @@ function continueUrl(): string {
 
 function SignedIn({ user }: { user: User }) {
   const [msg, setMsg] = useState<{ text: string; error?: boolean } | null>(null);
+  useEffect(() => {
+    if (user.emailVerified) return;
+    // Registration signs the user in before the verification email has been sent, so the outcome can arrive after
+    // this view mounts: read it now and again when the registration form announces it.
+    const show = () => {
+      const n = readNotice(session(), user.email);
+      if (!n) return;
+      if (n.outcome === 'failed') setMsg({ text: `Your account was created, but the verification email could not be sent: ${friendly({ code: n.code })} Use “Send the link again”.`, error: true });
+      else setMsg({ text: `Account created. ${sentMessage(user.email, n.outcome)}` });
+    };
+    show();
+    window.addEventListener(NOTICE_EVENT, show);
+    return () => window.removeEventListener(NOTICE_EVENT, show);
+  }, [user.email, user.emailVerified]);
   const [busy, setBusy] = useState(false);
   const next = typeof window === 'undefined' ? WORKSPACE : nextTarget(window.location.search);
   const run = async (f: () => Promise<void>) => {
@@ -126,8 +161,8 @@ function SignedIn({ user }: { user: User }) {
       {!user.emailVerified ? (
         <div className="ws-form">
           <p className="ws-hint">
-            Open the verification link we sent to your inbox, then select “I have verified”. Deep Analysis with the AI layer needs a verified address;
-            rule-based analysis does not.
+            Open the verification link we sent to {user.email ?? 'your address'}, then select “I have verified”. The email comes from {SENDER}; if it is
+            not in your inbox, check your spam or junk folder. Deep Analysis with the AI layer needs a verified address; rule-based analysis does not.
           </p>
           <div className="ws-row">
             <button
@@ -143,7 +178,7 @@ function SignedIn({ user }: { user: User }) {
             >
               I have verified
             </button>
-            <button className="button button--quiet" type="button" disabled={busy} onClick={() => run(async () => { await resendVerification(continueUrl()); setMsg({ text: `A new verification link was sent to ${user.email}.` }); })}>
+            <button className="button button--quiet" type="button" disabled={busy} onClick={() => run(async () => { const o = await resendVerification(continueUrl()); setMsg({ text: `New link sent. ${sentMessage(user.email, o)}` }); })}>
               Send the link again
             </button>
           </div>
@@ -178,8 +213,14 @@ function EmailPassword() {
         setMsg({ text: `If an account exists for ${addr}, a password-reset link has been sent to it.` });
       } else if (mode === 'register') {
         if (password.length < 8) throw Object.assign(new Error('weak'), { code: 'auth/weak-password' });
-        await registerWithEmail(addr, password, continueUrl());
-        setMsg({ text: `Account created. A verification link was sent to ${addr}; open it before using the AI layer.` });
+        const r = await registerWithEmail(addr, password, continueUrl());
+        saveNotice(session(), { email: addr, outcome: r.verification, code: r.code, at: Date.now() });
+        window.dispatchEvent(new Event(NOTICE_EVENT));
+        setMsg(
+          r.verification === 'failed'
+            ? { text: `Your account was created, but the verification email could not be sent: ${friendly({ code: r.code })}`, error: true }
+            : { text: `Account created. ${sentMessage(addr, r.verification)}` },
+        );
       } else {
         await signInWithEmail(addr, password);
         window.location.assign(nextTarget(window.location.search));
