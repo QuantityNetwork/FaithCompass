@@ -93,22 +93,28 @@ Production deployment `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (commit e3d876a, PR #25
   `INVALID_TOKEN` on every workspace route, 401 on the evidence write routes and Firestore 403 on all eight rule
   paths tried; the test user was deleted (11:45 CEST).
 
-**Owner run, 12:19 CEST** (Google account, browser, production): reload, one import, one proposal. Everything else was
-checked by the operator without the owner's token: reads with the Firebase CLI as markus@sagolik.com (read-only
-`runQuery` / `listCollectionIds` through the CLI's own authenticated client; no token handled or printed), the
-export rebuilt on the box from the stored data with the export API's code path, and the Go verifier offline.
+**Owner run, 12:19 CEST** (Google account, browser, production): reload, one import, one proposal.
+**Reviewer run, 12:32 CEST**: thefirstblockchain@gmail.com signed in with Google, was granted `am-e2e-a: editor`
+(12:29 CEST; owner kept as member), reloaded, and approved the pending decision.
+
+Everything else was checked by the operator without either person's token: reads with the Firebase CLI as
+markus@sagolik.com (read-only `runQuery` / `listCollectionIds` through the CLI's own authenticated client; no token
+handled or printed), the export rebuilt on the box from the stored data with the export API's code path, and the Go
+verifier offline. Test data then deleted (owner-approved after the run).
 
 | Step | Result | Observed |
 |---|---|---|
-| 1 Authentication | **PASS** | Google account `markus@sagolik.com` (uid `1Zaq3X…`), roles `am-e2e-a: member`, `am-e2e-b: member` picked up on reload |
-| 2 Import | **PASS** | `tenants/am-e2e-a/documents/doc_W8Hq4vCR17_5Ej1MVQVk`, 10:19:22Z: a 26,408-byte JSON file, 15 passages, file SHA-256 `2a1a0447…1682`, text SHA-256 `61ca913e…2663` (recomputed from the stored text: equal); `importedBy` = his uid; audit `aud_SIdiVb_-3_NmdDWea_MH` `IMPORTED`, written in the same commit (identical `createTime`) |
-| 3 Persistent decision | **PASS** | `tenants/am-e2e-a/decisions/dec_mEGJPVQHGUWQhNjNoYZa`, 10:19:53Z, status `proposed` (awaiting review), `proposedBy` = his uid, `decidedBy` null, 1 citation (document above, passage 1, passage SHA-256 `34557534…5b7c`); audit `aud_a_6_hZRX3_vFXU--xAJO` `PROPOSED`, same commit |
-| 4a Self-approval refused | **not exercised live** | he holds no editor role, so he cannot approve anything (the page shows no Approve; the route returns 403; the rules require `isTenantEditor` and `proposedBy != uid`). Self-approval by an editor is refused in the emulator suite (section A) |
-| 4b Two-person approval | **BLOCKED** | no second reviewer named yet |
-| 5 Isolation (data level) | **PASS** | `tenants/am-e2e-b` has no subcollections and no documents; `tenants/am-e2e-a` holds only `documents` (1), `decisions` (1), `audit` (2); nothing outside `tenants/` was written. Cross-tenant reads are refused by the rules (emulator suite, section A) and, live, an anonymous token got Firestore 403 reading `tenants/am-e2e-a/documents` |
-| 6 Export, Go verifier offline | **PASS** (unsigned rebuild) | Bundle rebuilt from the stored decision, cited document and audit (sorted as `listAudit`) with `buildWorkspaceBundle`, the function the export API calls: `passport_sha256` `148e122530cf55a41d8657bbd54b4d6a1b6b793236c91d7da8e11e3bd5952f69`. `decision-verifier --keys keys/production.json --engines conformance/engines.json --expected-sha256 148e1225…` under `unshare -rn` (no network): **VALID**, 19/19 checks, engine `am-workspace-record-1.0.0` pinned; a wrong `--expected-sha256` gives INVALID. The digest does not depend on the signature (same digest with an ephemeral in-memory signing key) and the build is deterministic (passport time = `proposedAt`), so the production export API, which signs, yields the same `passport_sha256` for this record as long as the audit log is unchanged; each export appends an `EXPORTED` event, which later exports include. No export was written to production (`passports` empty) |
-| 7 Retrieval | **PASS** | written under deployment `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (the latest), reloaded by the owner, read back at 12:23 CEST with unchanged `updateTime`s. Not yet repeated after a new deployment (none since the write) |
-| Clean-up | **kept** | test data stays until the two-person review has run |
+| 1 Authentication | **PASS** | Owner `markus@sagolik.com` (uid `1Zaq3X…`), roles `am-e2e-a: member`, `am-e2e-b: member`; reviewer `thefirstblockchain@gmail.com` (uid `tXx8qP…`), role `am-e2e-a: editor` |
+| 2 Import | **PASS** | `tenants/am-e2e-a/documents/doc_W8Hq4vCR17_5Ej1MVQVk`, 10:19:22Z: 26,408-byte file, 15 passages, file SHA-256 `2a1a0447…1682`, text SHA-256 `61ca913e…2663` (recomputed from stored text: equal); `importedBy` = owner; audit `IMPORTED` in the same commit |
+| 3 Persistent decision | **PASS** | `dec_mEGJPVQHGUWQhNjNoYZa`, proposed 10:19:53Z by owner, 1 citation; later approved (below) |
+| 4a Self-approval refused | **not exercised live** | proposer holds no editor role (page shows no Approve; route 403; rules require `isTenantEditor` and `proposedBy != uid`). Covered by the emulator suite (section A) |
+| 4b Two-person approval | **PASS** | Decision `status: approved` at 10:31:58Z; `decidedBy` = reviewer uid (`tXx8qP…`), ≠ `proposedBy` (owner); `decidedByEmail` = thefirstblockchain@gmail.com; review note `"Test"`; audit `aud_DP4kAITLoJJ0SUl_FFAK` `APPROVED` by the reviewer, same commit as the decision update. Chain: IMPORTED → PROPOSED → APPROVED |
+| 5 Isolation (data level) | **PASS** | `tenants/am-e2e-b` empty throughout; nothing outside `tenants/`. Cross-tenant reads refused by the rules (emulator) and, live, an anonymous token got Firestore 403 reading `tenants/am-e2e-a/documents` |
+| 6 Export, Go verifier offline | **PASS** (unsigned rebuild) | Proposed-state digest `148e122530cf…2f69` (VALID, earlier). After approval: rebuild from stored decision + cited document + audit (IMPORTED, PROPOSED, APPROVED) with `buildWorkspaceBundle` → `passport_sha256` `9251705cbde2df5b103ceff2c2341d68c126e960f8218958e016eed70ac8cc35`. `decision-verifier` under `unshare -rn` with `--expected-sha256 9251705c…`: **VALID**, 19/19 checks, signature `unsigned`, engine `am-workspace-record-1.0.0` pinned; reviewer id and email present in the review artifact. Digest independent of the signing key (same digest with an ephemeral in-memory key). No export was written to production (`passports` empty) |
+| 7 Retrieval | **PASS** (reload + same deployment) | Written under `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (latest throughout the run); survived owner reload; read back unchanged after approval. **Not** repeated after a *new* production deployment (none was made between write and clean-up); durability across deploys therefore rests on Firestore persistence plus the same-deployment re-reads |
+| Clean-up | **DONE** (after step 4b) | `firebase firestore:delete tenants/am-e2e-a --recursive` and `tenants/am-e2e-b`; test-workspace claims removed from both accounts; sensitive rebuilt bundles deleted from `/workspace/out/e2e/`. Read-back: both tenants absent / empty; claims empty of `am-e2e-*` |
+
+Non-sensitive summary kept: digests `148e1225…2f69` (proposed) and `9251705c…cc35` (approved), both VALID offline; actors by email only; business document content not retained.
 
 ## Why the live steps are blocked, and the minimal owner actions
 
