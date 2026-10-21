@@ -261,3 +261,62 @@ describe('recorded sample reports', () => {
     });
   }
 });
+
+describe('PDF line unwrapping (server and browser extraction)', () => {
+  it('re-joins wrapped lines, de-hyphenates, and keeps headings, clause and paragraph breaks', async () => {
+    const { unwrapPdfLines } = await import('@/lib/deep-analysis/text');
+    const page = [
+      'SUPPLY AGREEMENT',
+      'This Supply Agreement is made on 2 June 2026 between Nordkap Components AS, a company',
+      'registered in Norway (the "Supplier"), and Vireo Mobility AB, a company registered in Sweden',
+      '(the "Buyer").',
+      '1. Supply of Goods',
+      '1.1 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equiv-',
+      'alent goods from any other supplier during the initial term or any renewal term for a period of',
+      '30 days after the term.',
+      '(a) first item;',
+      '(b) second item.',
+      '',
+      'Annex A',
+    ].join('\n');
+    expect(unwrapPdfLines(page)).toBe([
+      'SUPPLY AGREEMENT',
+      'This Supply Agreement is made on 2 June 2026 between Nordkap Components AS, a company registered in Norway (the "Supplier"), and Vireo Mobility AB, a company registered in Sweden (the "Buyer").',
+      '1. Supply of Goods',
+      '1.1 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equivalent goods from any other supplier during the initial term or any renewal term for a period of 30 days after the term.',
+      '(a) first item;',
+      '(b) second item.',
+      '',
+      'Annex A',
+    ].join('\n'));
+  });
+
+  it('a 13.8 MB PDF with wrapped and hyphenated lines: browser extraction finds both parties (no AI call)', async () => {
+    const { buildPdf, wrapLines } = await import('./helpers/pdf-fixture');
+    const { extractInBrowser } = await import('@/components/deep-analysis/extract-client');
+    const { documentFromText } = await import('@/lib/deep-analysis/parse');
+    const md = readFileSync('public/deep-analysis/samples/sample-supplier-contract.md', 'utf8');
+    const lines = wrapLines(md, 88, true);
+    expect(lines.some((l) => l.endsWith('-'))).toBe(true);
+    const pdf = buildPdf(lines, { imageBytes: 14_400_000 });
+    expect(pdf.byteLength).toBeGreaterThan(13.5 * 1024 * 1024);
+    expect(pdf.byteLength).toBeLessThan(15 * 1024 * 1024);
+    const ex = await extractInBrowser('large-contract.pdf', pdf.buffer.slice(pdf.byteOffset, pdf.byteOffset + pdf.byteLength) as ArrayBuffer);
+    expect(ex.text).toContain('Nordkap Components AS, a company registered in Norway (the "Supplier"), and Vireo Mobility AB, a company registered in Sweden (the "Buyer").');
+    expect(ex.text).toContain('equivalent goods');
+    const r = await analyzeDocument(documentFromText({ filename: 'large-contract.pdf', ...ex }), {});
+    expect(r.engine.ai.status).not.toBe('used');
+    expect(r.overview.parties.map((p) => p.role)).toEqual(['Supplier', 'Buyer']);
+    expect(r.overview.parties.map((p) => p.name)).toEqual(['Nordkap Components AS', 'Vireo Mobility AB']);
+  }, 60_000);
+
+  it('server extraction (files up to 3 MB) gives the same text and both parties', async () => {
+    const { buildPdf, wrapLines } = await import('./helpers/pdf-fixture');
+    const md = readFileSync('public/deep-analysis/samples/sample-supplier-contract.md', 'utf8');
+    const doc = await parseDocument('contract.pdf', buildPdf(wrapLines(md, 88, true)));
+    expect(doc.extraction).toBe('server');
+    expect(doc.text).toContain('(the "Supplier"), and Vireo Mobility AB');
+    const r = await analyzeDocument(doc, {});
+    expect(r.overview.parties.map((p) => p.role)).toEqual(['Supplier', 'Buyer']);
+  }, 60_000);
+});
