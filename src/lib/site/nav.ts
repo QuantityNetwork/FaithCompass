@@ -95,6 +95,7 @@ export const NAV_SECTIONS: NavSection[] = [
       { href: '/institutional/workspace/deep-analysis', label: 'Deep Analysis' },
       // Decision Passport hub; shown while DECISION_PASSPORT_HUB.live is true.
       ...(DECISION_PASSPORT_HUB.live ? [{ href: DECISION_PASSPORT_HUB.href, label: DECISION_PASSPORT_HUB.label }] : []),
+      { href: '/institutional/trust', label: 'Trust and security' },
       { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },

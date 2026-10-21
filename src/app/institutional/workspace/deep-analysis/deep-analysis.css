@@ -194,3 +194,24 @@
 .da-gate p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--da-ink, #1d2430); }
 .da-gate a { color: var(--da-navy); }
 .da-gate a, .da-notice a { color: var(--da-navy); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Optional "About you" panel and the closing next steps (lead capture). Quiet: one rule, no fill, no colour. */
+.da-lead { display: grid; gap: 12px; padding: 18px 0 20px; border-top: 1px solid var(--da-rule-2); border-bottom: 1px solid var(--da-rule); }
+.da-lead__head h2 { margin: 0 0 4px; font: 400 20px/1.2 var(--serif); color: var(--da-navy); }
+.da-lead__opt { margin-left: 8px; font: 600 10px/1 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--da-grey); vertical-align: middle; }
+.da-lead__fields { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 12px 24px; max-width: 820px; }
+@media (max-width: 640px) { .da-lead__fields { grid-template-columns: 1fr; } }
+.da-page .da-lead input[type='text'], .da-page .da-lead select { border-radius: 0; border: 1px solid var(--da-rule-2); background: var(--da-paper); color: var(--da-ink); width: 100%; box-sizing: border-box; }
+.da-lead-line { margin: -12px 0 0; font: 400 13.5px/1.5 var(--sans); color: var(--da-ink); }
+.da-muted-inline { color: var(--da-grey); }
+
+.da-next { border-top: 2px solid var(--da-navy); padding-top: 18px; }
+.da-next > h2 { margin: 0 0 12px; font: 600 11px/1 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--da-grey); }
+.da-next__grid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--da-rule); }
+@media (max-width: 860px) { .da-next__grid { grid-template-columns: 1fr; } }
+.da-next__grid > div { padding: 0 26px 18px 0; }
+.da-next__grid > div + div { padding: 0 0 18px 26px; border-left: 1px solid var(--da-rule); }
+@media (max-width: 860px) { .da-next__grid > div, .da-next__grid > div + div { padding: 14px 0; border-left: 0; } .da-next__grid > div + div { border-top: 1px solid var(--da-rule); } }
+.da-next h3 { margin: 0 0 6px; font: 400 20px/1.25 var(--serif); color: var(--da-navy); }
+.da-next p { margin: 0 0 8px; font: 400 14px/1.55 var(--sans); color: var(--da-ink); max-width: 60ch; }
+.da-next a { color: var(--da-navy); font: 600 13.5px/1.4 var(--sans); text-underline-offset: 3px; }

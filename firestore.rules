@@ -124,6 +124,33 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Optional Deep Analysis profile (src/lib/leads/profile.ts): one document per signed-in user, at their own uid.
+    // Only that user can read, write or delete it; nobody can list other users' profiles through the app. The operator
+    // reads profiles with project IAM (scripts/export-leads.mjs), not through these rules. Every field is validated;
+    // the times come from the server clock; the email, when given, is the user's own verified address.
+    match /user_profiles/{u} {
+      function own() { return signedIn() && u == uid(); }
+      function validProfile() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['organisation', 'role', 'pilotInterest', 'consentVersion', 'privacyVersion', 'email', 'source', 'createdAt', 'updatedAt'])
+          && d.keys().hasAll(['organisation', 'role', 'pilotInterest', 'consentVersion', 'privacyVersion', 'email', 'source', 'createdAt', 'updatedAt'])
+          && d.organisation is string && d.organisation.size() >= 1 && d.organisation.size() <= 160
+          && d.role in ['credit_risk', 'model_risk_ai_governance', 'compliance', 'legal_gc', 'other']
+          && d.pilotInterest is bool
+          && d.consentVersion is string && d.consentVersion.size() >= 1 && d.consentVersion.size() <= 40
+          && d.privacyVersion is string && d.privacyVersion.size() >= 1 && d.privacyVersion.size() <= 20
+          && (d.email == null
+              || (d.email == request.auth.token.get('email', '') && request.auth.token.get('email_verified', false) == true))
+          && d.source == 'deep-analysis'
+          && d.updatedAt == request.time;
+      }
+      allow get: if own();
+      allow list: if false;
+      allow create: if own() && validProfile() && request.resource.data.createdAt == request.time;
+      allow update: if own() && validProfile() && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if own();
+    }
+
     // Private institutional workspaces (Decision Twin): members only. No client can write membership; the owner
     // manages it in the Firebase console (there is no admin key on the server).
     // Public Decision Passport registry and revocations (docs/PASSPORT_POLICY.md). Anyone can read; entries are created

@@ -24,8 +24,27 @@ async function load(): Promise<Sdk> {
   if (!cfg.ok) throw new Error(`Firebase web config missing: ${cfg.missing.join(', ')}`);
   const [{ initializeApp, getApps }, { getAuth }] = await Promise.all([import('firebase/app'), import('firebase/auth')]);
   const app = getApps()[0] ?? initializeApp(cfg.config);
-  return { app, auth: getAuth(app) };
+  const auth = getAuth(app);
+  const emu = localEmulators();
+  if (emu) {
+    const { connectAuthEmulator } = await import('firebase/auth');
+    connectAuthEmulator(auth, `http://${emu.auth}`, { disableWarnings: true });
+  }
+  return { app, auth };
 }
+
+/**
+ * Local testing only: NEXT_PUBLIC_FIREBASE_EMULATORS="host:authPort,host:firestorePort" points the SDK at the Firebase
+ * emulators, and only when the page itself is served from localhost. Never set on Vercel.
+ */
+function localEmulators(): { auth: string; firestore: string } | null {
+  const v = process.env.NEXT_PUBLIC_FIREBASE_EMULATORS;
+  if (!v || typeof window === 'undefined' || !['localhost', '127.0.0.1'].includes(window.location.hostname)) return null;
+  const [auth, firestore] = v.split(',').map((x) => x.trim());
+  return /^[\w.-]+:\d+$/.test(auth ?? '') && /^[\w.-]+:\d+$/.test(firestore ?? '') ? { auth, firestore } : null;
+}
+
+let firestoreEmulatorConnected = false;
 
 export function firebaseClient(): Promise<Sdk> {
   sdk ??= load().catch((e) => {
@@ -170,6 +189,13 @@ export async function authHeader(): Promise<{ authorization: string } | null> {
 /** The Firestore client, for direct reads (and writes the rules allow) from the browser. */
 export async function firestoreClient(): Promise<import('firebase/firestore').Firestore> {
   const { app } = await firebaseClient();
-  const { getFirestore } = await import('firebase/firestore');
-  return getFirestore(app);
+  const { getFirestore, connectFirestoreEmulator } = await import('firebase/firestore');
+  const db = getFirestore(app);
+  const emu = localEmulators();
+  if (emu && !firestoreEmulatorConnected) {
+    const [host, port] = emu.firestore.split(':');
+    connectFirestoreEmulator(db, host, Number(port));
+    firestoreEmulatorConnected = true;
+  }
+  return db;
 }

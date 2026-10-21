@@ -1,0 +1,62 @@
+/* Trust pages: the Decision Passport register (passport.css) plus a few parts of their own. Scoped under .tr-page. */
+.tr-mark { display: flex !important; align-items: center; gap: 14px; flex-wrap: wrap; line-height: 1.2 !important; text-decoration: none !important; }
+.tr-mark img { display: block; width: min(262px, 60vw); height: auto; }
+.tr-mark span { font: 400 22px/1.1 var(--serif); color: var(--dp-navy); padding-left: 14px; border-left: 1px solid var(--dp-rule-2); }
+@media (max-width: 520px) { .tr-mark span { padding-left: 0; border-left: 0; font-size: 19px; } }
+
+.tr-page .dp-table th, .tr-page .dp-table td { min-width: 7rem; }
+.tr-page .dp-table td:last-child { min-width: 12rem; }
+.tr-kv th { width: 30%; }
+@media (max-width: 640px) {
+  /* Two-column fact tables become stacked rows on phones: no sideways scroll, no squeezed columns. */
+  .tr-kv, .tr-kv tbody, .tr-kv tr, .tr-kv th, .tr-kv td { display: block; width: auto; min-width: 0 !important; }
+  .tr-kv th { padding-bottom: 2px; border-bottom: 0; }
+  .tr-kv td { padding-top: 0; }
+}
+
+.tr-status { display: inline-block; font: 600 9.5px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 7px; border: 1px solid var(--dp-rule-2); color: var(--dp-grey); white-space: nowrap; }
+.tr-status--yes { border-color: var(--dp-pass); color: var(--dp-pass); }
+.tr-status--no { border-color: var(--dp-fail); color: var(--dp-fail); }
+
+.tr-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--dp-navy); }
+.tr-cards > li { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 8px 28px; padding: 18px 0 20px; border-bottom: 1px solid var(--dp-rule); }
+@media (max-width: 860px) { .tr-cards > li { grid-template-columns: 1fr; } }
+.tr-cards h3 { margin: 0 !important; font: 400 21px/1.25 var(--serif) !important; color: var(--dp-navy); }
+.tr-cards .tr-entity { margin: 4px 0 0; font: 400 13px/1.45 var(--sans) !important; color: var(--dp-grey); }
+.tr-cards dl { margin: 0; display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 6px 18px; }
+@media (max-width: 640px) { .tr-cards dl { grid-template-columns: 1fr; gap: 2px; } .tr-cards dd { margin-bottom: 8px; } }
+.tr-cards dt { font: 600 11px/1.6 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dp-grey); }
+.tr-cards dd { margin: 0; font: 400 14.5px/1.55 var(--sans); }
+.tr-links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+
+.tr-qa { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--dp-rule-2); }
+.tr-qa > li { padding: 14px 0 16px; border-bottom: 1px solid var(--dp-rule); display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 6px 28px; scroll-margin-top: 90px; }
+@media (max-width: 860px) { .tr-qa > li { grid-template-columns: 1fr; } }
+.tr-qa h3 { margin: 0 !important; }
+.tr-qa .tr-short { display: block; margin-top: 6px; }
+
+.tr-doc { max-width: 86ch; }
+.tr-doc h2 { margin: 0 0 10px; font: 400 26px/1.2 var(--serif); color: var(--dp-navy); }
+.tr-doc h3 { margin: 24px 0 8px; font: 600 15px/1.35 var(--sans); color: var(--dp-navy); }
+.tr-doc .tr-ref { font: 400 12px/1 var(--sans); letter-spacing: 0.04em; color: var(--dp-grey); margin-left: 8px; }
+.tr-doc ol.tr-paras { margin: 0; padding-left: 0; list-style: none; counter-reset: para; display: grid; gap: 8px; }
+.tr-doc ol.tr-paras > li { counter-increment: para; display: grid; grid-template-columns: 3.2em minmax(0, 1fr); }
+.tr-doc ol.tr-paras > li::before { content: attr(data-n); font: 600 13px/1.62 var(--sans); color: var(--dp-grey); font-variant-numeric: tabular-nums; }
+.tr-stamp { display: inline-block; margin: 0 0 18px; padding: 8px 12px; border: 2px solid var(--dp-navy); font: 600 12px/1.2 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--dp-navy); }
+.tr-sign { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
+@media (max-width: 640px) { .tr-sign { grid-template-columns: 1fr; } }
+.tr-sign div { border-top: 1px solid var(--dp-navy); padding-top: 8px; font: 400 13px/1.5 var(--sans); color: var(--dp-grey); min-height: 64px; }
+
+@media print {
+  .tr-page .dp-masthead__status, .tr-noprint { display: none !important; }
+}
+
+/* Data tables become one block per row on phones, each value labelled: readable, nothing to scroll sideways. */
+@media (max-width: 640px) {
+  .tr-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tr-stack, .tr-stack tbody, .tr-stack tr, .tr-stack th, .tr-stack td { display: block; width: auto; min-width: 0 !important; }
+  .tr-stack tr { padding: 10px 0 12px; border-bottom: 1px solid var(--dp-rule); }
+  .tr-stack th, .tr-stack td { border-bottom: 0 !important; padding: 2px 0 !important; }
+  .tr-stack th { padding-bottom: 6px !important; }
+  .tr-stack td[data-label]::before { content: attr(data-label); display: block; font: 600 10px/1.6 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dp-grey); }
+}

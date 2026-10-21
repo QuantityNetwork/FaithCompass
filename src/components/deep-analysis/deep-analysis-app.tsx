@@ -8,6 +8,8 @@ import { firebaseClientAvailable, freshAuthHeader, watchUser } from '@/lib/fireb
 import type { Report } from '@/lib/deep-analysis/schema';
 import { ReportView } from './report-view';
 import { CreatePassportDraft } from '@/components/passport/create-draft';
+import { LeadCapture, type LeadUser } from './lead-capture';
+import { ReportNextSteps } from './next-steps';
 
 const SAMPLES = [
   { id: 'sample-service-agreement', file: 'sample-service-agreement.md', title: 'Service agreement' },
@@ -48,6 +50,7 @@ export function DeepAnalysisApp() {
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<{ report: Report; bundle: unknown; recorded?: string } | null>(null);
+  const [user, setUser] = useState<LeadUser | null>(null);
   const top = useRef<HTMLDivElement>(null);
 
   const loadStatus = async () => {
@@ -60,7 +63,12 @@ export function DeepAnalysisApp() {
       return;
     }
     let off: (() => void) | undefined;
-    watchUser(() => void loadStatus()).then((u) => (off = u)).catch(() => void loadStatus());
+    watchUser((u) => {
+      setUser(u && !u.anonymous ? { uid: u.uid, email: u.email, emailVerified: u.emailVerified } : null);
+      void loadStatus();
+    })
+      .then((u) => (off = u))
+      .catch(() => void loadStatus());
     return () => off?.();
   }, []);
 
@@ -122,7 +130,7 @@ export function DeepAnalysisApp() {
         <p className="da-notice__title">Important notice</p>
         <ol>
           <li><strong>Not legal advice; not reviewed by a lawyer.</strong> The report supports, and does not replace, professional review.</li>
-          <li>Confidential client documents may not be submitted yet; the security review for client data is not complete. Use your own or sample documents.</li>
+          <li>Do not submit confidential client documents here. Client data is accepted only in a private workspace under a signed data processing agreement; see <a href="/institutional/trust">Trust and security</a>. Use your own or sample documents.</li>
           <li>Nothing is stored. The document is analysed in memory and discarded; the report remains in this browser tab until exported.</li>
           <li>Accepted formats: PDF with a text layer, Word (.docx), plain text or Markdown, up to {MAX_MB} MB. Scanned PDFs without text are not supported. Files over {DIRECT_MB} MB are read in your browser and only their text is sent.</li>
           <li>
@@ -143,6 +151,8 @@ export function DeepAnalysisApp() {
           </li>
         </ol>
       </aside>
+
+      <LeadCapture user={user} />
 
       <div className="da-start">
         <form className="da-panel ws-form" onSubmit={async (e) => { e.preventDefault(); if (file) await analyse(file.name, await file.arrayBuffer()); }}>
@@ -205,6 +215,7 @@ export function DeepAnalysisApp() {
       <div ref={top} />
       {result ? <ReportView report={result.report} recorded={result.recorded} onJson={() => download(`deep-analysis-${result.report.seal.reportSha256.slice(0, 12)}.bundle.json`, result.bundle)} /> : null}
       {result && !result.recorded ? <CreatePassportDraft bundle={result.bundle} /> : null}
+      {result ? <ReportNextSteps /> : null}
     </div>
   );
 }
