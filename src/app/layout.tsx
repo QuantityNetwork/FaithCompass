@@ -9,6 +9,7 @@ import './globals.css';
 import './site.css';
 import './ds.css';
 import './theme-d.css';
+import './tables.css';
 import { FONT_VARIABLES, PRELOAD_FONTS } from './fonts';
 
 export const metadata: Metadata = {

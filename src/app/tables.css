@@ -1,0 +1,105 @@
+/* ---------------------------------------------------------------- *
+ * Tables, site-wide (loaded last).
+ * `main` sets overflow-wrap: anywhere so long URLs never widen a page; inside a table that lets the browser shrink
+ * a column to one character and break words letter by letter. Cells therefore wrap only between words, columns
+ * keep a readable minimum width, and a wide table scrolls sideways inside its bordered container (with shadows as
+ * a scroll cue and the first column kept in view) or, for .table--stack, becomes one card per row on phones.
+ * ---------------------------------------------------------------- */
+
+table th,
+table td {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+/* Readable minimum column widths; prose cells (paragraphs) get more room. */
+.table th,
+.table td,
+.h-table th,
+.h-table td,
+.ws-table th,
+.ws-table td,
+.da-clauses th,
+.da-clauses td {
+  min-width: 6.5rem;
+}
+.table td:has(p),
+.da-clauses td:last-child {
+  min-width: 15rem;
+}
+.table th:first-child,
+.table td:first-child,
+.h-table th:first-child,
+.h-table td:first-child {
+  min-width: 8.5rem;
+}
+
+/* Scroll containers: border, scroll shadows on the side that has more content. */
+.table-wrap,
+.h-tablewrap,
+.ws-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  background:
+    linear-gradient(to right, var(--bg, #fbf9f4) 30%, transparent) left center / 40px 100% no-repeat local,
+    linear-gradient(to left, var(--bg, #fbf9f4) 30%, transparent) right center / 40px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0)) left center / 12px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0)) right center / 12px 100% no-repeat scroll;
+}
+.table-wrap:focus-visible,
+.ws-scroll:focus-visible {
+  outline: 2px solid var(--focus, #b8892b);
+  outline-offset: 2px;
+}
+
+/* First column stays in view while the rest scrolls (not in the stacked phone layout). */
+.table-wrap .table th:first-child,
+.table-wrap .table td:first-child,
+.h-tablewrap .h-table th:first-child,
+.h-tablewrap .h-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--bg, #fbf9f4);
+  box-shadow: inset -1px 0 0 var(--rule, rgba(0, 0, 0, 0.12));
+}
+.table-wrap .table thead th:first-child {
+  background: var(--ground-inset, #f2efe7);
+}
+
+@media (max-width: 720px) {
+  /* Stacked tables become one card per row: no sticky column, no minimum widths. */
+  .table--stack th,
+  .table--stack td {
+    min-width: 0 !important;
+  }
+  .table-wrap .table--stack td:first-child {
+    position: static;
+    box-shadow: none;
+    background: none;
+  }
+  .table-wrap:has(.table--stack) {
+    background: none;
+  }
+  .table--stack td:first-child {
+    font-weight: 600;
+  }
+}
+
+@media print {
+  .table-wrap,
+  .h-tablewrap,
+  .ws-scroll {
+    overflow: visible;
+    background: none;
+  }
+  .table-wrap .table th:first-child,
+  .table-wrap .table td:first-child,
+  .h-tablewrap .h-table th:first-child,
+  .h-tablewrap .h-table td:first-child {
+    position: static;
+    box-shadow: none;
+  }
+}
