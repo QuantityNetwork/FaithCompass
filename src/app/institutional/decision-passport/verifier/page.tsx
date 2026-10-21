@@ -23,13 +23,13 @@ export default function VerifierPage() {
         </p>
       </Intro>
       <Section n={1} id="build" title="Build" lede="Requires Go 1.22 or later. No modules are downloaded.">
-        <pre className="dp-pre">{`git clone https://github.com/QuantityNetwork/FaithCompass.git
+        <pre className="dp-pre" tabIndex={0}>{`git clone https://github.com/QuantityNetwork/FaithCompass.git
 cd FaithCompass/packages/decision-verifier
 GOPROXY=off go build -o decision-verifier .
 ./decision-verifier --conformance conformance      # every shared fixture must pass (exit 0)`}</pre>
       </Section>
       <Section n={2} id="run" title="Verify a passport">
-        <pre className="dp-pre">{`./decision-verifier \\
+        <pre className="dp-pre" tabIndex={0}>{`./decision-verifier \\
   --keys production-keys.json \\
   --engines engines.json \\
   [--expected-sha256 <hash you obtained independently>] \\

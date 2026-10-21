@@ -136,9 +136,9 @@ export default function InstitutionalPage() {
             <div>
               <h3 className="am-h3">Sagolik Institutional: AbrahamMoses Decision Twin</h3>
               <p>
-                A commercial application of the same method to institutional decisions, in development as the{' '}
+                A commercial application of the same method to institutional decisions, offered as the{' '}
                 <Link href="/institutional/decision-twin">AbrahamMoses Decision Twin</Link>. Today it consists of the
-                Decision Room and Deep Analysis for named workspace members, and a public sample room on fictional data. It
+                evidence workspace, the Decision Room, Deep Analysis and Decision Passport issuing for named workspace members, and a public sample room on fictional data. It
                 has not been validated, reviewed or used by any bank, fund or institution, and client data is used only under
                 a written agreement.
               </p>

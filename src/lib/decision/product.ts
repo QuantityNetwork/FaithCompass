@@ -49,7 +49,7 @@ export function sellerContact(configured: string | null | undefined): string {
 export const PILOT_PAYMENT_LINK = 'https://buy.stripe.com/14AeVdabp5FnfMn8NMeEo0d';
 /** Pilot reservations are on sale (owner decision 2026-10-21, register item B10). */
 export const PILOT_CHECKOUT_ENABLED: boolean = true;
-export const PRICING_LABEL = `${VAT_NOTE}. The pilot is a paid reservation that starts once private workspaces are available`;
+export const PRICING_LABEL = `${VAT_NOTE}. The pilot is paid in advance and starts on a date agreed with you in writing`;
 export const PILOT_ENQUIRY_SUBJECT = 'Decision Twin pilot enquiry';
 /** A contact link from the configured contact (email or URL); null when none is configured. Never invents one. */
 export function contactHref(contact: string | null, subject?: string): string | null {
@@ -63,7 +63,7 @@ export function contactHref(contact: string | null, subject?: string): string | 
 export const SALES_STATUS = 'In force for pilot reservations';
 export const TERMS_REVIEW_NOTE = 'These terms have not been reviewed by a lawyer.';
 
-export const STATUS_LINE = 'Public institutional demonstration ready — private client onboarding not authorized';
+export const STATUS_LINE = 'Private workspaces available to named members — no customers yet, and client data only under a written agreement';
 
 export const PLANS = [
   {
@@ -74,7 +74,7 @@ export const PLANS = [
     includes: ['One private workspace', 'Up to 10 users', 'Onboarding'],
     action: 'pilot' as const,
     cta: 'Request a pilot',
-    note: 'Reservation: the 90-day pilot starts only when private institutional workspaces exist; the start date is agreed with you in writing.',
+    note: 'Private workspaces are available now; the 90-day pilot starts on a date agreed with you in writing.',
   },
   {
     id: 'institutional',
@@ -141,11 +141,11 @@ export const LAYERS: { n: number; name: string; does: string; status: LayerStatu
     name: 'Decision Passport',
     does: 'Reproducible record of sources, assumptions, calculations, review history and integrity metadata.',
     status: 'DEMONSTRATED',
-    now: 'Workspace decisions export a passport bundle with SHA-256 integrity that an independent verifier checks offline. The sample room issues stateless, synthetic passports with JSON, Markdown and print exports. Reviewer: none (simulated decision).',
+    now: 'Workspace decisions export a passport bundle with SHA-256 integrity that an independent verifier checks offline. Deep Analysis results can be issued as signed passports after review by a second editor, and can be revoked. The sample room issues stateless, synthetic passports with JSON, Markdown and print exports. Reviewer: none (simulated decision).',
   },
 ];
 
-/** Admin defaults for a private workspace, from the product brief. Planned: no private workspace exists yet. */
+/** Reference defaults for a private workspace, from the product brief. Only some are enforced as settings today (see the pages that show them). */
 export const DEFAULT_WORKSPACE_SETTINGS: { setting: string; value: string }[] = [
   { setting: 'Workspace visibility', value: 'Private' },
   { setting: 'Access control', value: 'Role-based, least privilege' },

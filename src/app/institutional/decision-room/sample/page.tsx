@@ -194,10 +194,11 @@ export default async function DecisionRoomPage({ searchParams }: { searchParams:
             </table>
           </div>
           <details className="dr-details">
-            <summary>Default workspace settings (planned for private workspaces; read-only)</summary>
+            <summary>Default workspace settings (reference; read-only)</summary>
             <p className="am-tiny">
-              Planned defaults for a private Decision Twin workspace. No private workspace exists yet; nothing here can be
-              changed and none of it is in effect on this public site.
+              Reference defaults for a private Decision Twin workspace. Private access for named members, two-person review and
+              the append-only audit log are enforced in workspaces today; the other settings are agreed with each customer in
+              writing. Nothing here can be changed, and none of it applies to this public sample room.
             </p>
             <dl className="dr-meta">
               {DEFAULT_WORKSPACE_SETTINGS.map((x) => (

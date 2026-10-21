@@ -582,7 +582,7 @@ describe('decision room', () => {
     expect(text).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
     const contact = process.env.ABRAHAMMOSES_CONTACT || 'markus@sagolik.com';
     expect(text).toContain(`Seller: Sagolik, Halmstad, Sweden. Contact: ${contact}. Prices exclude VAT; the seller is not VAT-registered.`);
-    expect(text).toContain('paid reservation that starts once private workspaces are available');
+    expect(text).toContain('The pilot is paid in advance and starts on a date agreed with you in writing');
     expect(text).toContain('Full refund on request if the pilot has not started within 90 days of payment.');
     expect(text).toContain('€9,500');
     // PILOT_CHECKOUT_ENABLED: exactly one Stripe link, the owner's payment link, labelled 'Reserve a pilot'

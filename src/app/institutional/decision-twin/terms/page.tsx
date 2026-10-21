@@ -7,7 +7,7 @@ import { legalContact } from '@/lib/site/config';
 export const metadata: Metadata = {
   title: 'Terms of Sale — Decision Twin',
   description:
-    'Terms of Sale for a paid reservation of a 90-day AbrahamMoses Decision Twin pilot, sold by Sagolik, Halmstad, Sweden, to businesses and organisations. The pilot starts once private workspaces are available.',
+    'Terms of Sale for a paid reservation of a 90-day AbrahamMoses Decision Twin pilot, sold by Sagolik, Halmstad, Sweden, to businesses and organisations. The pilot starts on a date agreed in writing.',
   alternates: { canonical: '/institutional/decision-twin/terms' },
 };
 
@@ -45,12 +45,13 @@ export default function DecisionTwinTermsPage() {
         <h2>3. What you buy</h2>
         <p>
           A reservation for a 90-day pilot of the AbrahamMoses Decision Twin: one private workspace, for up to 10 users, with
-          onboarding. You are paying for a reservation: private institutional workspaces are not yet available. The 90-day
-          pilot period starts only once they are available, on a start date agreed with you in writing. Until then, the public demonstration (the{' '}
+          onboarding. Private workspaces are available: the evidence workspace, the Decision Room, Deep Analysis and Decision
+          Passport issuing are open to the signed-in, named members of a workspace. The 90-day pilot period starts on a start
+          date agreed with you in writing. The public{' '}
           <Link className="link" href="/institutional/decision-room/sample">
             Decision Room sample room
-          </Link>
-          ) is the only part of the product available.
+          </Link>{' '}
+          shows the method on fictional data and is not part of your workspace.
         </p>
 
         <h2>4. Price, VAT and receipt</h2>

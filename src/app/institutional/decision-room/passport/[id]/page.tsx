@@ -125,7 +125,7 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
           </a>
           <PrintButton />
           <a className="am-btn" href={`/api/institutional/decision-room/passport/verify?id=${p.id}&sha256=${p.integrity.sha256}`}>
-            Verify hash
+            Check content hash (unsigned sample)
           </a>
           <Link className="am-btn" href="/institutional/decision-room/sample">
             Back to the sample room

@@ -41,7 +41,7 @@ export default async function StatusPage() {
       />
 
       <Section id="checks" title="Self-tests">
-        <div className="table-wrap">
+        <div className="table-wrap" tabIndex={0} role="region" aria-label="Status checks">
           <table className="table table--stack">
             <thead>
               <tr>

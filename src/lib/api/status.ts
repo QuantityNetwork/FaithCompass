@@ -197,7 +197,7 @@ export async function statusReport(
       PILOT_CHECKOUT_ENABLED
         ? {
             result: 'pass',
-            detail: `Pilot checkout enabled: 'Reserve a pilot' opens the Stripe payment link (${PILOT_PAYMENT_LINK}), a paid reservation that starts once private workspaces are available. ${sellerText(sellerContact(legalContact().general))} Terms of Sale: ${SALES_STATUS.toLowerCase()}; ${TERMS_REVIEW_NOTE.toLowerCase().replace(/\.$/, '')}. Whether the link is active in Stripe is not probed here (no Stripe keys).`,
+            detail: `Pilot checkout enabled: 'Reserve a pilot' opens the Stripe payment link (${PILOT_PAYMENT_LINK}), a paid 90-day pilot that starts on a date agreed in writing. ${sellerText(sellerContact(legalContact().general))} Terms of Sale: ${SALES_STATUS.toLowerCase()}; ${TERMS_REVIEW_NOTE.toLowerCase().replace(/\.$/, '')}. Whether the link is active in Stripe is not probed here (no Stripe keys).`,
           }
         : { result: 'pass', detail: 'Pilot checkout disabled: pilots are offered by email enquiry only.' },
     ),
