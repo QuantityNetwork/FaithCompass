@@ -47,7 +47,21 @@ Preview: see PR #23 (branch alias `abrahammoses-git-evidence-workflow-markus-and
 behind Vercel authentication). Preview env (branch-scoped): `AUTH_PROVIDER=firebase` and the public Firebase web
 config. No `EVIDENCE_STORE`, no write opt-in.
 
-LIVE_RESULTS_PLACEHOLDER
+Deployment `dpl_Fv1Fb1tTgNf48XuoSJAzx8DcWgR8` (commit cd35d5c), READY; checked 2026-10-21 10:22 CEST.
+
+| Step | Result | Observed |
+|---|---|---|
+| Deployment, pages | PASS | `/institutional/workspace` and `/sign-in` 200, `noindex`; CI green (unit, emulator, Go offline, e2e + axe incl. both pages) |
+| API gate | PASS | `GET /api/workspaces` without token → 401 `SIGN_IN_REQUIRED`; malformed token → 401 `INVALID_TOKEN`; import without token → 401; cross-origin import → 403 `FORBIDDEN_ORIGIN` |
+| 1 Authentication (real account) | **BLOCKED** | Email link is not enabled: the preview's sign-in form for markus@sagolik.com showed "Email-link sign-in is not enabled for this project yet." (10:22 CEST, `auth/operation-not-allowed`); REST `sendOobCode` → `OPERATION_NOT_ALLOWED` (10:15:33). Auth has 0 users. Owner action 1 |
+| 2 Document import | **BLOCKED** | needs step 1, the rules deploy (owner action 2) and a decision on where preview data may be written (owner action 3). Until then the preview refuses writes with 503 `PREVIEW_WRITES_DISABLED` |
+| 3 Persistent decision | **BLOCKED** | as step 2 |
+| 4 Two-person review | **BLOCKED** | as step 2, and a second real person is needed as editor (owner action 4). markus@sagolik.com will act as proposer only |
+| 5 Tenant isolation | **BLOCKED** | as step 2 (server-side refusal of a non-member is covered by the route tests; the live rules have not been deployed) |
+| 6 Export, Go verifier offline | **BLOCKED** live | needs steps 2–4; emulator export verified by Go (section A) |
+| 7 Retrieval after a redeploy | **BLOCKED** live | needs steps 2–6; emulator restart test passes (section A) |
+
+Nothing was written to Firestore and no Auth account was created during the live checks.
 
 ## Why the live steps are blocked, and the minimal owner actions
 
