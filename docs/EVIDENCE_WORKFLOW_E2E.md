@@ -83,7 +83,7 @@ Production deployment `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (commit e3d876a, PR #25
 * **Account.** The owner signed in with Google on https://abrahammoses.com/institutional/workspace/sign-in.
   `firebase auth:export` (CLI as markus@sagolik.com, export file deleted after use): 1 account, `markus@sagolik.com`,
   provider `google.com`, email verified, created 12:12:52 CEST, no claims.
-* **Roles (12:2x CEST).** `scripts/workspace-claims.mjs … --email markus@sagolik.com --tenant am-e2e-a=member
+* **Roles (12:14 CEST).** `scripts/workspace-claims.mjs … --email markus@sagolik.com --tenant am-e2e-a=member
   --tenant am-e2e-b=member`, then `firebase auth:import` (only that account; provider kept). Re-export shows
   `{"am_tenants":{"am-e2e-a":"member","am-e2e-b":"member"}}`, no `am_role`. He is not an editor anywhere, so he can
   import, propose and export but cannot approve, his own decision or anyone else's. The workspaces need no setup
