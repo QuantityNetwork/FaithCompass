@@ -7,12 +7,12 @@ import { OPERATOR, SITE_NAME, legalContact } from '@/lib/site/config';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'What AbrahamMoses processes when you use it, why, for how long, and your rights. Research history stays on your device; there are no accounts and no tracking.',
+    'What AbrahamMoses processes when you use it, why, for how long, and your rights. Research history stays on your device; accounts are optional; there is no tracking.',
   alternates: { canonical: '/privacy' },
 };
 
-const POLICY_VERSION = '1.1';
-const POLICY_EFFECTIVE = '20 October 2026';
+const POLICY_VERSION = '1.2';
+const POLICY_EFFECTIVE = '21 October 2026';
 
 export default function PrivacyPage() {
   const contact = legalContact();
@@ -24,13 +24,20 @@ export default function PrivacyPage() {
       <PageIntro
         eyebrow={`Legal · version ${POLICY_VERSION} · effective ${POLICY_EFFECTIVE}`}
         title="Privacy Policy"
-        lede="Research into religion can reveal what a person believes, and under the GDPR such data is a special category. AbrahamMoses is therefore built to collect as little as it can: no accounts, no tracking, and no research history on our servers."
+        lede="Research into religion can reveal what a person believes, and under the GDPR such data is a special category. AbrahamMoses is therefore built to collect as little as it can: optional accounts, no tracking, and no research history on our servers."
       />
       <div className="prose-block">
         <h2>In short</h2>
         <ul>
-          <li>You do not need an account. This version of {SITE_NAME} has none.</li>
+          <li>
+            You do not need an account to read or search. An account is needed only for private workspaces and for Deep Analysis
+            with the AI layer.
+          </li>
           <li>We set no cookies and use no analytics, advertising or tracking scripts.</li>
+          <li>
+            Deep Analysis does not store the documents you upload or the reports. With the AI layer, the document’s text is sent
+            to OpenAI for analysis.
+          </li>
           <li>
             Traces you save are kept in your own browser’s local storage, not on our servers. You can export or delete them on
             the <Link className="link" href="/research">research page</Link>.
@@ -103,6 +110,19 @@ export default function PrivacyPage() {
           one-way hash of your IP address, but not the text you sent; these lines stay in the hosting provider&rsquo;s
           logs for its operational log period.
         </p>
+        <h3 id="deep-analysis">Deep Analysis</h3>
+        <p>
+          A document you submit to Deep Analysis is read and analysed in the server’s memory for that one request and then
+          discarded. {SITE_NAME} does not store the document, its text or the report in any database; the report exists only in
+          your browser until you export it. When you include the AI layer, the document’s text (up to about 60,000 characters)
+          is sent to OpenAI, L.L.C., which processes it on our behalf as a processor to produce the AI findings. Under
+          OpenAI’s API terms, data sent through the API is not used to train its models, and it may be kept in OpenAI’s
+          abuse-monitoring logs for up to 30 days. Without the AI layer, the text does not leave {SITE_NAME}. Do not submit
+          confidential client documents or special-category personal data. The AI layer is available to signed-in accounts
+          with a verified email address; to limit abuse, the server counts AI analyses per account in memory for up to one
+          day (not written to disk). Each request is logged as a security event (time, outcome and a one-way hash of your IP
+          address, not the text). Lawful basis: performance of the service you request (Article 6(1)(b) GDPR).
+        </p>
         <h3>The API and MCP server</h3>
         <p>
           Machine access is public and read-only and needs no key. Requests are handled exactly as page requests are: processed
@@ -111,14 +131,20 @@ export default function PrivacyPage() {
 
         <h2>Accounts</h2>
         <p>
-          There are none in this version. If accounts are introduced — for example to sync saved research across devices — this
-          policy will be revised before they open, stating what is stored, the lawful basis (including explicit consent under
-          Article 9(2)(a) GDPR for any data revealing religious or philosophical beliefs), retention, export and deletion.
+          Accounts are optional and are used for private evidence workspaces and for Deep Analysis with the AI layer. You can
+          sign in with Google or register with an email address and a password. Accounts are managed by Firebase
+          Authentication (Google LLC) as our processor, which keeps your email address, an account identifier, the sign-in
+          method, whether the address is verified and, for Google sign-in, the name and profile picture Google provides.
+          Passwords are held by Firebase in hashed form; {SITE_NAME} never sees them. Firebase sends the verification and
+          password-reset emails. Your browser keeps the sign-in session in its own storage (not a cookie) until you sign out.
+          Lawful basis: performance of the service you request (Article 6(1)(b) GDPR). An account is kept until you ask us to
+          delete it, using the privacy contact above. Your research history is not linked to your account.
         </p>
 
         <h2>Processors and transfers</h2>
         <p>
-          The site is served by a cloud hosting provider, which processes requests on our behalf as a processor. Where a
+          The site is served by a cloud hosting provider, which processes requests on our behalf as a processor. Accounts are
+          handled by Firebase Authentication (Google LLC), and the Deep Analysis AI layer by OpenAI, L.L.C., both as processors. Where a
           processor is located outside the European Economic Area, transfers are made only with the safeguards the GDPR
           requires, such as an adequacy decision or the European Commission’s standard contractual clauses.
         </p>
@@ -126,7 +152,7 @@ export default function PrivacyPage() {
         <h2>Your rights</h2>
         <p>
           You have the right to access, rectify and erase personal data about you, to restrict or object to its processing, and to
-          data portability. Because {SITE_NAME} keeps no record linked to you, there is usually nothing for us to retrieve; your
+          data portability. Apart from an account, if you create one, {SITE_NAME} keeps no record linked to you; your
           saved traces are already on your device, where you can export or delete them. You may complain to the data protection
           authority where you live or work, or where the controller is established.
         </p>

@@ -60,7 +60,7 @@ export function openAiProvider(env: Record<string, string | undefined> = process
           res = await fetchImpl('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: { 'content-type': 'application/json', authorization: `Bearer ${key}` },
-            body: JSON.stringify({ model, temperature: 0, seed: 20261021, max_completion_tokens: AI_MAX_OUTPUT_TOKENS, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: AI_INSTRUCTIONS }, { role: 'user', content: prompt }] }),
+            body: JSON.stringify({ model, store: false, temperature: 0, seed: 20261021, max_completion_tokens: AI_MAX_OUTPUT_TOKENS, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: AI_INSTRUCTIONS }, { role: 'user', content: prompt }] }),
             signal: ctrl.signal,
           });
         } finally {

@@ -4,7 +4,7 @@
  * the server and nothing is stored; the report lives only in this browser tab until exported.
  */
 import { useEffect, useRef, useState } from 'react';
-import { firebaseClientAvailable, freshAuthHeader } from '@/lib/firebase/client';
+import { firebaseClientAvailable, freshAuthHeader, watchUser } from '@/lib/firebase/client';
 import type { Report } from '@/lib/deep-analysis/schema';
 import { ReportView } from './report-view';
 
@@ -15,7 +15,12 @@ const SAMPLES = [
 ] as const;
 const MAX_MB = 3;
 
-interface Status { ai: { configured: boolean; model: string | null; access: 'deployment-protected' | 'signed-in' | 'local' } }
+type ViewerState = 'signed-out' | 'eligible' | 'email-not-verified' | 'invalid';
+interface Status {
+  ai: { configured: boolean; model: string | null; access: 'deployment-protected' | 'signed-in' | 'local'; perUserDailyLimit?: number };
+  viewer?: { state: ViewerState; remainingToday?: number };
+}
+const SIGN_IN = '/institutional/workspace/sign-in?next=%2Finstitutional%2Fworkspace%2Fdeep-analysis';
 
 function toBase64(buf: ArrayBuffer): string {
   let s = '';
@@ -42,8 +47,18 @@ export function DeepAnalysisApp() {
   const [result, setResult] = useState<{ report: Report; bundle: unknown; recorded?: string } | null>(null);
   const top = useRef<HTMLDivElement>(null);
 
+  const loadStatus = async () => {
+    const auth = firebaseClientAvailable() ? await freshAuthHeader().catch(() => null) : null;
+    await fetch('/api/deep-analysis', { headers: auth ?? {} }).then((r) => r.json()).then(setStatus).catch(() => setStatus(null));
+  };
   useEffect(() => {
-    fetch('/api/deep-analysis').then((r) => r.json()).then(setStatus).catch(() => setStatus(null));
+    if (!firebaseClientAvailable()) {
+      void loadStatus();
+      return;
+    }
+    let off: (() => void) | undefined;
+    watchUser(() => void loadStatus()).then((u) => (off = u)).catch(() => void loadStatus());
+    return () => off?.();
   }, []);
 
   const show = (r: { report: Report; bundle: unknown; recorded?: string }) => {
@@ -54,15 +69,17 @@ export function DeepAnalysisApp() {
   async function analyse(name: string, buf: ArrayBuffer, sample = false) {
     setError(null);
     if (buf.byteLength > MAX_MB * 1024 * 1024) return setError(`Files up to ${MAX_MB} MB are accepted.`);
-    setBusy(status?.ai.configured && useAi ? 'Analysing with the rules and the AI layer; this takes up to a minute…' : 'Analysing…');
+    const withAi = aiAllowed && useAi;
+    setBusy(withAi ? 'Analysing with the rules and the AI layer; this takes up to a minute…' : 'Analysing…');
     try {
       const auth = firebaseClientAvailable() ? await freshAuthHeader().catch(() => null) : null;
       const res = await fetch('/api/deep-analysis', {
         method: 'POST',
         headers: { 'content-type': 'application/json', ...(auth ?? {}) },
-        body: JSON.stringify({ filename: name, contentBase64: toBase64(buf), sample, useAi }),
+        body: JSON.stringify({ filename: name, contentBase64: toBase64(buf), sample, useAi: withAi }),
       });
       const data = await res.json().catch(() => ({}));
+      if (res.status === 401 || res.status === 403) void loadStatus();
       if (!res.ok) throw new Error((data as { error?: string }).error ?? `The analysis failed (${res.status}).`);
       show(data as { report: Report; bundle: unknown });
     } catch (e) {
@@ -87,6 +104,8 @@ export function DeepAnalysisApp() {
   }
 
   const ai = status?.ai;
+  const viewer = status?.viewer?.state ?? 'signed-out';
+  const aiAllowed = !!ai?.configured && (ai.access !== 'signed-in' || viewer === 'eligible');
   return (
     <div className="da">
       <aside className="da-notice" aria-label="Terms of this preview">
@@ -98,7 +117,19 @@ export function DeepAnalysisApp() {
           <li>Accepted formats: PDF with a text layer, Word (.docx), plain text or Markdown, up to {MAX_MB} MB. Scanned PDFs without text are not supported.</li>
           <li>
             AI layer on this deployment:{' '}
-            {!status ? 'checking…' : ai?.configured ? <strong>available ({ai.model}){ai.access === 'signed-in' ? ' to signed-in, approved accounts' : ''}</strong> : <strong>not configured — rule-based analysis only</strong>}.
+            {!status ? 'checking…' : ai?.configured ? (
+              <>
+                <strong>available ({ai.model})</strong>
+                {ai.access === 'signed-in' ? ` to any signed-in account with a verified email address, up to ${ai.perUserDailyLimit ?? 10} analyses per account per day` : ''}
+              </>
+            ) : (
+              <strong>not configured — rule-based analysis only</strong>
+            )}
+            .
+          </li>
+          <li>
+            Privacy: with the AI layer, the text of the document is sent to OpenAI for analysis. AbrahamMoses does not store the document or the report.
+            Without the AI layer, the text does not leave AbrahamMoses. See the <a href="/privacy#deep-analysis">privacy notice</a>.
           </li>
         </ol>
       </aside>
@@ -110,8 +141,27 @@ export function DeepAnalysisApp() {
             Document
             <input type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
           </label>
-          {ai?.configured ? (
-            <label className="da-check"><input type="checkbox" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} /> Include the AI layer. Every AI finding must quote the document verbatim, or it is discarded.</label>
+          {ai?.configured && !aiAllowed ? (
+            <div className="da-gate" role="status">
+              {viewer === 'email-not-verified' ? (
+                <p>
+                  <strong>AI layer: verify your email address first.</strong> Open the link we sent you, or <a href={SIGN_IN}>send it again</a>. The rule-based
+                  analysis runs now without it.
+                </p>
+              ) : viewer === 'invalid' ? (
+                <p>
+                  <strong>AI layer: your sign-in has expired.</strong> <a href={SIGN_IN}>Sign in again</a>. The rule-based analysis runs without it.
+                </p>
+              ) : (
+                <p>
+                  <strong>AI layer: sign in to use it.</strong> <a href={SIGN_IN}>Sign in or create a free account</a> with Google or an email address. Without
+                  an account, the rule-based analysis runs.
+                </p>
+              )}
+            </div>
+          ) : null}
+          {aiAllowed ? (
+            <label className="da-check"><input type="checkbox" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} /> Include the AI layer. Every AI finding must quote the document verbatim, or it is discarded.{status?.viewer?.remainingToday !== undefined ? ` ${status.viewer.remainingToday} of ${ai?.perUserDailyLimit ?? 10} AI analyses left today.` : ''}</label>
           ) : null}
           <div><button type="submit" className="da-btn da-btn--primary" disabled={!file || !!busy}>Analyse document</button></div>
         </form>

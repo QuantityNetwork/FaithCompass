@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { DeepAiProvider } from '@/lib/deep-analysis/ai';
-import { aiAccess, resetAiLimits } from '@/lib/deep-analysis/access';
+import { aiAccess, aiAccessMode, aiDailyLimit, aiUserDailyLimit, resetAiLimits } from '@/lib/deep-analysis/access';
+import { setWorkspaceVerifier } from '@/lib/workspace/access';
 import { analyzeDocument } from '@/lib/deep-analysis/analyze';
 import { buildDeepBundle, verifyBundle } from '@/lib/deep-analysis/bundle';
 import { ParseError, parseDocument, MAX_UPLOAD_BYTES } from '@/lib/deep-analysis/parse';
@@ -150,17 +151,50 @@ describe('AI layer verification', () => {
 describe('AI access policy', () => {
   beforeEach(() => resetAiLimits());
   const req = (auth?: string) => new Request('https://x.test/api/deep-analysis', { method: 'POST', headers: auth ? { authorization: auth } : {} });
-  it('requires sign-in on production, even with the preview switch set', async () => {
-    expect(await aiAccess(req(), 'c', { VERCEL_ENV: 'production', DEEP_ANALYSIS_AI_ACCESS: 'deployment-protected' })).toMatch(/signed-in/);
-    expect(await aiAccess(req(), 'c', { VERCEL_ENV: 'preview' })).toMatch(/signed-in/);
+  const tok = `Bearer ${'t'.repeat(40)}`;
+  const prod = { VERCEL_ENV: 'production', DEEP_ANALYSIS_AI_ACCESS: 'signed-in' };
+  const saved = { ...process.env };
+  afterEach(() => {
+    setWorkspaceVerifier(null);
+    process.env = { ...saved };
+  });
+  const firebase = () => {
+    process.env.AUTH_PROVIDER = 'firebase';
+    process.env.FIREBASE_PROJECT_ID = 'abrahammoses-a0a26';
+  };
+  it('requires sign-in on production, even with the preview switch set (401 without a token)', async () => {
+    expect(aiAccessMode({ VERCEL_ENV: 'production', DEEP_ANALYSIS_AI_ACCESS: 'deployment-protected' })).toBe('signed-in');
+    expect(aiAccessMode({ VERCEL_ENV: 'preview' })).toBe('signed-in');
+    expect(await aiAccess(req(), 'c', prod)).toMatchObject({ ok: false, status: 401, code: 'SIGN_IN_REQUIRED' });
+  });
+  it('refuses invalid or anonymous tokens with 401 and unverified email with 403', async () => {
+    firebase();
+    setWorkspaceVerifier(async () => null); // the verifier returns null for anonymous sign-ins and bad tokens
+    expect(await aiAccess(req(tok), 'c', prod)).toMatchObject({ ok: false, status: 401, code: 'INVALID_TOKEN' });
+    setWorkspaceVerifier(async () => ({ id: 'u1', email: 'new@example.invalid', tenants: {}, emailVerified: false }));
+    expect(await aiAccess(req(tok), 'c', prod)).toMatchObject({ ok: false, status: 403, code: 'EMAIL_NOT_VERIFIED' });
+  });
+  it('allows any verified signed-in user, within the per-user and global daily limits', async () => {
+    firebase();
+    let uid = 'u1';
+    setWorkspaceVerifier(async () => ({ id: uid, email: `${uid}@example.invalid`, tenants: {}, emailVerified: true }));
+    const env = { ...prod, DEEP_ANALYSIS_AI_USER_DAILY_LIMIT: '2', DEEP_ANALYSIS_AI_DAILY_LIMIT: '3' };
+    expect(await aiAccess(req(tok), 'a', env)).toEqual({ ok: true, uid: 'u1' });
+    expect(await aiAccess(req(tok), 'b', env)).toEqual({ ok: true, uid: 'u1' });
+    expect(await aiAccess(req(tok), 'c', env)).toMatchObject({ ok: false, code: 'USER_DAILY_LIMIT' });
+    uid = 'u2';
+    expect(await aiAccess(req(tok), 'd', env)).toEqual({ ok: true, uid: 'u2' });
+    expect(await aiAccess(req(tok), 'e', env)).toMatchObject({ ok: false, code: 'DAILY_LIMIT' });
+    expect(aiDailyLimit({})).toBe(300);
+    expect(aiUserDailyLimit({})).toBe(10);
   });
   it('allows a protected preview, within the daily and per-client limits', async () => {
     const env = { VERCEL_ENV: 'preview', DEEP_ANALYSIS_AI_ACCESS: 'deployment-protected', DEEP_ANALYSIS_AI_DAILY_LIMIT: '8' };
-    for (let i = 0; i < 6; i++) expect(await aiAccess(req(), 'a', env)).toBeNull();
-    expect(await aiAccess(req(), 'a', env)).toMatch(/per 10 minutes/);
-    expect(await aiAccess(req(), 'b', env)).toBeNull();
-    expect(await aiAccess(req(), 'b', env)).toBeNull();
-    expect(await aiAccess(req(), 'c', env)).toMatch(/daily limit/);
+    for (let i = 0; i < 6; i++) expect((await aiAccess(req(), 'a', env)).ok).toBe(true);
+    expect(await aiAccess(req(), 'a', env)).toMatchObject({ ok: false, code: 'CLIENT_LIMIT' });
+    expect((await aiAccess(req(), 'b', env)).ok).toBe(true);
+    expect((await aiAccess(req(), 'b', env)).ok).toBe(true);
+    expect(await aiAccess(req(), 'c', env)).toMatchObject({ ok: false, code: 'DAILY_LIMIT' });
   });
 });
 

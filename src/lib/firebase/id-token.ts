@@ -16,6 +16,10 @@ export interface VerifiedFirebaseUser {
   email: string | null;
   /** Custom claim `am_tenants` (workspace memberships), set only by the project owner. */
   tenants: unknown;
+  /** `email_verified`: true for Google accounts and for email/password accounts after the verification link. */
+  emailVerified?: boolean;
+  /** `firebase.sign_in_provider`, e.g. google.com or password. */
+  provider?: string | null;
 }
 
 type Jwks = { keys: (JsonWebKey & { kid: string })[] };
@@ -63,5 +67,5 @@ export async function verifyFirebaseIdToken(
   if (typeof payload.sub !== 'string' || payload.sub.length === 0 || payload.sub.length > 128) return null;
   const provider = (payload.firebase as { sign_in_provider?: string } | undefined)?.sign_in_provider;
   if (provider === 'anonymous') return null;
-  return { id: payload.sub, appRole: payload.am_role, email: typeof payload.email === 'string' ? payload.email : null, tenants: payload.am_tenants };
+  return { id: payload.sub, appRole: payload.am_role, email: typeof payload.email === 'string' ? payload.email : null, tenants: payload.am_tenants, emailVerified: payload.email_verified === true, provider: typeof provider === 'string' ? provider : null };
 }

@@ -42,6 +42,47 @@ export async function signInWithEmail(email: string, password: string): Promise<
   return (await signInWithEmailAndPassword(auth, email, password)).user.uid;
 }
 
+/**
+ * Email/Password registration. Sends the verification email at once; the AI layer needs a verified address.
+ * `continueUrl` must be on an authorised domain.
+ */
+export async function registerWithEmail(email: string, password: string, continueUrl: string): Promise<string> {
+  const { auth } = await firebaseClient();
+  const { createUserWithEmailAndPassword, sendEmailVerification } = await import('firebase/auth');
+  const cred = await createUserWithEmailAndPassword(auth, email, password);
+  await sendEmailVerification(cred.user, { url: continueUrl });
+  return cred.user.uid;
+}
+
+/** Sends the verification email again to the signed-in user. */
+export async function resendVerification(continueUrl: string): Promise<void> {
+  const { auth } = await firebaseClient();
+  const { sendEmailVerification } = await import('firebase/auth');
+  if (auth.currentUser) await sendEmailVerification(auth.currentUser, { url: continueUrl });
+}
+
+/** Password-reset email. Resolves the same whether or not the account exists, so callers reveal nothing. */
+export async function sendPasswordReset(email: string, continueUrl: string): Promise<void> {
+  const { auth } = await firebaseClient();
+  const { sendPasswordResetEmail } = await import('firebase/auth');
+  try {
+    await sendPasswordResetEmail(auth, email, { url: continueUrl });
+  } catch (e) {
+    const code = (e as { code?: string })?.code ?? '';
+    if (code !== 'auth/user-not-found') throw e;
+  }
+}
+
+/** Reloads the user and refreshes the ID token, so a just-verified email shows in the token. True when verified. */
+export async function refreshVerification(): Promise<boolean> {
+  const { auth } = await firebaseClient();
+  const u = auth.currentUser;
+  if (!u) return false;
+  await u.reload();
+  await u.getIdToken(true);
+  return auth.currentUser?.emailVerified === true;
+}
+
 const LINK_EMAIL_KEY = 'am.signin.email';
 
 /**
@@ -100,10 +141,10 @@ export async function completeGoogleRedirect(): Promise<boolean> {
 }
 
 /** Calls back with the signed-in user (or null) whenever it changes. Returns an unsubscribe function. */
-export async function watchUser(cb: (u: { uid: string; email: string | null } | null) => void): Promise<() => void> {
+export async function watchUser(cb: (u: { uid: string; email: string | null; emailVerified: boolean; anonymous: boolean } | null) => void): Promise<() => void> {
   const { auth } = await firebaseClient();
   const { onAuthStateChanged } = await import('firebase/auth');
-  return onAuthStateChanged(auth, (u) => cb(u ? { uid: u.uid, email: u.email } : null));
+  return onAuthStateChanged(auth, (u) => cb(u ? { uid: u.uid, email: u.email, emailVerified: u.emailVerified, anonymous: u.isAnonymous } : null));
 }
 
 /** A fresh ID token (forced refresh picks up workspace roles assigned after sign-in). */

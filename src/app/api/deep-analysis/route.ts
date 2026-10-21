@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { openAiProvider } from '@/lib/deep-analysis/ai';
-import { aiAccess } from '@/lib/deep-analysis/access';
+import { aiAccess, aiAccessMode, aiIdentity, aiRemaining, aiUserDailyLimit } from '@/lib/deep-analysis/access';
 import { analyzeDocument } from '@/lib/deep-analysis/analyze';
 import { buildDeepBundle } from '@/lib/deep-analysis/bundle';
 import { MAX_UPLOAD_BYTES, ParseError, parseDocument } from '@/lib/deep-analysis/parse';
@@ -30,10 +30,21 @@ export async function POST(request: Request) {
   const parsed = Body.safeParse(gate.body);
   if (!parsed.success) return NextResponse.json({ error: 'Invalid request.', code: 'INVALID_REQUEST' }, { status: 400, headers: noStore });
   try {
+    const provider = openAiProvider();
+    const wantsAi = provider.configured && parsed.data.useAi !== false;
+    // Identity first (401/403 before any parsing or AI spend); limits only after the document parses.
+    if (wantsAi) {
+      const who = await aiIdentity(request);
+      if (!who.ok && who.status) return NextResponse.json({ error: who.message, code: who.code }, { status: who.status, headers: noStore });
+    }
     const bytes = new Uint8Array(Buffer.from(parsed.data.contentBase64, 'base64'));
     const doc = await parseDocument(parsed.data.filename, bytes);
-    const provider = openAiProvider();
-    const blocked = provider.configured && parsed.data.useAi !== false ? await aiAccess(request, gate.client) : provider.configured ? 'AI layer switched off for this run.' : null;
+    let blocked: string | null = provider.configured ? 'AI layer switched off for this run.' : null;
+    if (wantsAi) {
+      const decision = await aiAccess(request, gate.client);
+      if (!decision.ok && decision.status) return NextResponse.json({ error: decision.message, code: decision.code }, { status: decision.status, headers: noStore });
+      blocked = decision.ok ? null : decision.message;
+    }
     const report = await analyzeDocument(doc, { provider, aiBlockedReason: blocked, sample: !!parsed.data.sample });
     return NextResponse.json({ report, bundle: buildDeepBundle(report), stored: false }, { headers: noStore });
   } catch (e) {
@@ -43,11 +54,22 @@ export async function POST(request: Request) {
   }
 }
 
-/** What this deployment offers, for the page to show before an upload. */
-export async function GET() {
+/**
+ * What this deployment offers, for the page to show before an upload. With the caller's ID token it also says whether
+ * this account may use the AI layer (never who else may).
+ */
+export async function GET(request: Request) {
   const p = openAiProvider();
+  const access = aiAccessMode();
+  let viewer: { state: 'signed-out' | 'eligible' | 'email-not-verified' | 'invalid'; remainingToday?: number } = { state: 'signed-out' };
+  if (access === 'signed-in' && request.headers.get('authorization')) {
+    const who = await aiIdentity(request);
+    viewer = who.ok
+      ? { state: 'eligible', remainingToday: aiRemaining(who.uid) }
+      : { state: who.code === 'EMAIL_NOT_VERIFIED' ? 'email-not-verified' : 'invalid' };
+  }
   return NextResponse.json(
-    { ai: { configured: p.configured, model: p.configured ? p.model : null, access: process.env.VERCEL_ENV === 'preview' && process.env.DEEP_ANALYSIS_AI_ACCESS === 'deployment-protected' ? 'deployment-protected' : process.env.VERCEL_ENV ? 'signed-in' : 'local' }, maxBytes: MAX_UPLOAD_BYTES, stored: false },
+    { ai: { configured: p.configured, model: p.configured ? p.model : null, access, perUserDailyLimit: aiUserDailyLimit() }, viewer, maxBytes: MAX_UPLOAD_BYTES, stored: false },
     { headers: noStore },
   );
 }

@@ -18,12 +18,12 @@ Route: `/institutional/workspace/deep-analysis`; API: `POST /api/deep-analysis` 
 
 | Deployment | AI layer |
 | --- | --- |
-| Production | signed-in Firebase user in `DEEP_ANALYSIS_AI_ALLOWED_EMAILS` or a workspace member |
+| Production (`DEEP_ANALYSIS_AI_ACCESS=signed-in`) | any signed-in, non-anonymous Firebase user (Google or email/password) with a verified email address. No token or an invalid/anonymous token: 401. Unverified email: 403. |
 | Preview with `DEEP_ANALYSIS_AI_ACCESS=deployment-protected` | anyone who can reach the deployment (Vercel Authentication: team members and share-link holders) |
 | Other previews | as production |
 | Local (no `VERCEL_ENV`) | allowed |
 
-Plus `DEEP_ANALYSIS_AI_DAILY_LIMIT` (default 40) and 6 AI analyses per client per 10 minutes, per instance. Configuration: `OPENAI_API_KEY` (server only, Vercel type *sensitive*), optional `AI_PROVIDER=openai`, `DEEP_ANALYSIS_MODEL` (default `gpt-4.1`), `DEEP_ANALYSIS_AI=off`.
+Plus abuse brakes: `DEEP_ANALYSIS_AI_USER_DAILY_LIMIT` per user per day (default 10), `DEEP_ANALYSIS_AI_DAILY_LIMIT` in total per day (default 300) and 6 AI analyses per client per 10 minutes. The counters are per server instance: Firestore has no admin key here, and a counter the user's own token could write would be under the user's control unless firestore.rules made it increment-only, which is a rules change for the owner. Requests send `store: false` to OpenAI; the privacy notice (/privacy#deep-analysis) names OpenAI as processor. Configuration: `OPENAI_API_KEY` (server only, Vercel type *sensitive*), optional `AI_PROVIDER=openai`, `DEEP_ANALYSIS_MODEL` (default `gpt-4.1`), `DEEP_ANALYSIS_AI=off`.
 
 ## Samples
 

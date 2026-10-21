@@ -188,3 +188,8 @@
   .da-cite::after { content: ' “' attr(title) '”'; font-family: var(--serif); font-size: 10.5px; color: #333; }
   .da-cite.is-active { background: none; color: var(--da-grey); }
 }
+
+/* AI access gate (signed out / unverified). */
+.da-gate { border-left: 2px solid var(--da-navy); background: var(--da-paper-2, #f6f7f9); padding: 10px 14px; }
+.da-gate p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--da-ink, #1d2430); }
+.da-gate a { color: var(--da-navy); }
