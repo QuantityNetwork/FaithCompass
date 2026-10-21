@@ -5,7 +5,7 @@ import '../workspace.css';
 
 export const metadata: Metadata = {
   title: 'Sign in · Evidence workspace',
-  description: 'Sign in to a private evidence workspace with a one-time link sent by email.',
+  description: 'Sign in to a private evidence workspace with Google or with a one-time link sent by email.',
   alternates: { canonical: '/institutional/workspace/sign-in' },
   robots: { index: false, follow: false },
 };

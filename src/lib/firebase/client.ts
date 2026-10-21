@@ -5,6 +5,7 @@
  *
  * Loaded lazily, only when a feature needs it, so pages that do not sign in ship no Firebase code.
  */
+import { REDIRECT_CODES } from './google';
 import { firebaseWebConfig } from './web-config';
 
 type Sdk = {
@@ -64,6 +65,38 @@ export async function completeEmailLink(href: string, askEmail: () => string | n
   await signInWithEmailLink(auth, email, href);
   window.localStorage.removeItem(LINK_EMAIL_KEY);
   return { done: true, email };
+}
+
+/**
+ * Google sign-in. A pop-up by default; a full-page redirect where pop-ups cannot work (see ./google.ts) or when the
+ * caller asks for one after a blocked pop-up. Resolves 'done' after a pop-up sign-in; a redirect leaves the page.
+ */
+export async function signInWithGoogle(mode: 'popup' | 'redirect' = 'popup'): Promise<'done' | 'redirecting'> {
+  const { auth } = await firebaseClient();
+  const { GoogleAuthProvider, signInWithPopup, signInWithRedirect } = await import('firebase/auth');
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  if (mode === 'redirect') {
+    await signInWithRedirect(auth, provider);
+    return 'redirecting';
+  }
+  try {
+    await signInWithPopup(auth, provider);
+    return 'done';
+  } catch (e) {
+    if (REDIRECT_CODES.has((e as { code?: string })?.code ?? '')) {
+      await signInWithRedirect(auth, provider);
+      return 'redirecting';
+    }
+    throw e;
+  }
+}
+
+/** Completes a Google redirect sign-in on return. True when this page load finished one. */
+export async function completeGoogleRedirect(): Promise<boolean> {
+  const { auth } = await firebaseClient();
+  const { getRedirectResult } = await import('firebase/auth');
+  return Boolean(await getRedirectResult(auth));
 }
 
 /** Calls back with the signed-in user (or null) whenever it changes. Returns an unsubscribe function. */

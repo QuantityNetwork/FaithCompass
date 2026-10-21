@@ -142,7 +142,15 @@ export function WorkspaceApp() {
         </div>
         <div aria-live="polite">{message ? <p className={`ws-msg${message.error ? ' ws-msg--error' : ''}`}>{message.text}</p> : null}</div>
         {workspaces && workspaces.length === 0 ? (
-          <p className="ws-msg">This account has no workspace access yet. Access is granted by the operator; sign out and in again after it has been granted.</p>
+          <div className="ws-msg ws-noaccess" role="status">
+            <h2>Your account has no workspace access yet</h2>
+            <p>
+              You are signed in as <strong className="ws-mono">{user.email ?? 'an account without an email address'}</strong>. Signing in alone grants no
+              access: the operator grants a role in a named workspace to this address.
+            </p>
+            <p>Send this address to the operator. Once access has been granted, reload this page.</p>
+            {!user.email ? <p className="ws-hint">Account id: <span className="ws-mono">{user.uid}</span></p> : null}
+          </div>
         ) : null}
       </section>
 
