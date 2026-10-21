@@ -51,8 +51,10 @@ export async function analyzeDocument(doc: ParsedDocument, opts: AnalyzeOptions 
       ai = { ...ai, model: out.model, usage: out.usage, truncated };
       if (!answer) ai = { ...ai, status: 'failed', note: `The AI answer was not valid JSON${out.finishReason === 'length' ? ' (it hit the output limit)' : ''}; deterministic rules only.` };
       else ai.note = `AI layer used (${out.model}). Every AI finding was checked: each quotation must occur in the document verbatim, otherwise the finding was dropped.${truncated ? ' The document was longer than the AI input limit; the AI read only its first part.' : ''}${out.finishReason === 'length' ? ' The AI answer hit the output limit and may be incomplete.' : ''}`;
-    } catch {
-      ai = { ...ai, status: 'failed', note: 'The AI provider could not be reached; deterministic rules only.' };
+    } catch (e) {
+      // Only the provider's HTTP status is shown (never request details or the key).
+      const status = /returned (\d{3})/.exec(e instanceof Error ? e.message : '')?.[1];
+      ai = { ...ai, status: 'failed', note: `The AI provider could not be reached${status ? ` (HTTP ${status})` : ''}; deterministic rules only.` };
     }
   }
 
