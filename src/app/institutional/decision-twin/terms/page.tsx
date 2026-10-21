@@ -5,7 +5,7 @@ import { PILOT_PAYMENT_LINK, SALES_STATUS, SELLER_LINE, TERMS_REVIEW_NOTE, VAT_N
 import { legalContact } from '@/lib/site/config';
 
 export const metadata: Metadata = {
-  title: 'Terms of Sale — Decision Twin Pilot',
+  title: 'Terms of Sale — Decision Twin',
   description:
     'Terms of Sale for a paid reservation of a 90-day AbrahamMoses Decision Twin pilot, sold by Sagolik, Halmstad, Sweden, to businesses and organisations. The pilot starts once private workspaces are available.',
   alternates: { canonical: '/institutional/decision-twin/terms' },
@@ -17,7 +17,7 @@ export default function DecisionTwinTermsPage() {
   const contact = sellerContact(legalContact().general);
   return (
     <main id="main" className="shell shell--narrow page">
-      <PageIntro eyebrow={`Legal · ${TERMS_OF_SALE_VERSION} · In force`} title="Terms of Sale — Decision Twin Pilot" />
+      <PageIntro eyebrow={`Legal · ${TERMS_OF_SALE_VERSION} · In force`} title="Terms of Sale — Decision Twin" />
       <div className="prose-block">
         <p className="am-note" role="note">
           <strong>{SALES_STATUS}.</strong> {TERMS_REVIEW_NOTE} They apply to pilot reservations paid through the Stripe
@@ -47,8 +47,8 @@ export default function DecisionTwinTermsPage() {
           A reservation for a 90-day pilot of the AbrahamMoses Decision Twin: one private workspace, for up to 10 users, with
           onboarding. You are paying for a reservation: private institutional workspaces are not yet available. The 90-day
           pilot period starts only once they are available, on a start date agreed with you in writing. Until then, the public demonstration (the{' '}
-          <Link className="link" href="/institutional/decision-room">
-            Decision Room
+          <Link className="link" href="/institutional/decision-room/sample">
+            Decision Room sample room
           </Link>
           ) is the only part of the product available.
         </p>

@@ -39,7 +39,7 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
             {loaded.unsupported}
           </p>
           <p>
-            <Link href="/institutional/decision-room">Back to the Decision Room</Link>
+            <Link href="/institutional/decision-room/sample">Back to the sample room</Link>
           </p>
         </div>
       </main>
@@ -127,8 +127,8 @@ export default async function PassportPage({ params }: { params: Promise<{ id: s
           <a className="am-btn" href={`/api/institutional/decision-room/passport/verify?id=${p.id}&sha256=${p.integrity.sha256}`}>
             Verify hash
           </a>
-          <Link className="am-btn" href="/institutional/decision-room">
-            Back to the Decision Room
+          <Link className="am-btn" href="/institutional/decision-room/sample">
+            Back to the sample room
           </Link>
         </div>
 

@@ -11,6 +11,12 @@
  * routes, so a link to a page that does not exist fails the build.
  */
 
+/**
+ * The Decision Passport hub (/institutional/decision-passport) is being built separately. Its menu slot sits after
+ * Deep Analysis; set `live` to true in the change that adds the page (site-links.test.ts fails on a dead link).
+ */
+export const DECISION_PASSPORT_HUB: { href: string; label: string; live: boolean } = { href: '/institutional/decision-passport', label: 'Decision Passport', live: false };
+
 export interface NavLink {
   href: string;
   label: string;
@@ -84,12 +90,15 @@ export const NAV_SECTIONS: NavSection[] = [
     match: ['/institutional', '/about', '/privacy', '/terms'],
     pages: [
       { href: '/institutional', label: 'Institutional' },
-      { href: '/institutional/decision-twin', label: 'Decision Twin (proposed)' },
-      { href: '/institutional/decision-room', label: 'Decision Room (demo)' },
+      { href: '/institutional/decision-twin', label: 'Decision Twin' },
+      { href: '/institutional/decision-room', label: 'Decision Room' },
+      { href: '/institutional/workspace/deep-analysis', label: 'Deep Analysis' },
+      // Slot for the Decision Passport hub (built on its own branch); it appears once DECISION_PASSPORT_HUB.live is true.
+      ...(DECISION_PASSPORT_HUB.live ? [{ href: DECISION_PASSPORT_HUB.href, label: DECISION_PASSPORT_HUB.label }] : []),
       { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },
-      { href: '/institutional/decision-twin/terms', label: 'Terms of Sale (pilot)' },
+      { href: '/institutional/decision-twin/terms', label: 'Terms of Sale' },
     ],
   },
 ];
