@@ -193,3 +193,4 @@
 .da-gate { border-left: 2px solid var(--da-navy); background: var(--da-paper-2, #f6f7f9); padding: 10px 14px; }
 .da-gate p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--da-ink, #1d2430); }
 .da-gate a { color: var(--da-navy); }
+.da-gate a, .da-notice a { color: var(--da-navy); text-decoration: underline; text-underline-offset: 3px; }
