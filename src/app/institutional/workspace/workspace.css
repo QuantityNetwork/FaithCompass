@@ -32,3 +32,11 @@
 .ws-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .ws-cite { display: grid; grid-template-columns: minmax(0, 2fr) 90px minmax(0, 2fr) auto; gap: 8px; align-items: end; }
 @media (max-width: 600px) { .ws-cite { grid-template-columns: 1fr; } }
+/* Primary action: navy on ivory, as the home page's Research button (the legacy .button--solid colours are not
+   defined in this theme). */
+.ws .button--solid { background: var(--ink-strong); border-color: var(--ink-strong); color: var(--bg); }
+.ws .button--solid:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.ws .button:disabled { opacity: 0.55; cursor: not-allowed; }
+.ws a.button { display: inline-block; text-decoration: none; }
+.ws-steps { margin: 0 0 20px; padding-left: 1.4em; display: grid; gap: 6px; font: 400 15px/1.55 var(--sans); color: var(--ink-2); max-width: 62ch; }
+.ws-steps strong { color: var(--ink-strong); font-weight: 600; }

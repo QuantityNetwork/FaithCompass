@@ -112,7 +112,13 @@ export function WorkspaceApp() {
   if (user === null)
     return (
       <section className="ws-section">
-        <p>Workspaces are private to their members.</p>
+        <ol className="ws-steps">
+          <li><strong>Import</strong> source documents; each file is hashed on receipt and split into numbered passages.</li>
+          <li><strong>Propose</strong> a decision that cites those passages.</li>
+          <li><strong>Review</strong>: a second member with the editor role approves or rejects it; nobody approves their own proposal.</li>
+          <li><strong>Export</strong> the record as a passport bundle that can be verified offline.</li>
+        </ol>
+        <p className="ws-meta">Workspaces are private to their members. Access is granted by the operator to named accounts.</p>
         <a className="button button--solid" href="/institutional/workspace/sign-in">Sign in</a>
       </section>
     );

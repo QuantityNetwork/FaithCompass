@@ -28,7 +28,6 @@ import {
   type AssessmentChallenge,
   type AuditRecord,
   type ChallengeProposal,
-  type ProposalStatus,
 } from '../schema';
 import { MemoryEvidenceStore } from './memory-store';
 import type { DecisionCommit, EvidenceStore } from './types';
