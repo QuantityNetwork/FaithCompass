@@ -654,5 +654,10 @@
     margin-right: 14px;
     font-size: 14px;
     vertical-align: middle;
+  }  /* The date always on its own line, so every row reads the same however long the kind of claim is. */
+  .h-table td:nth-child(5) {
+    display: block;
+    margin-top: 2px;
+    color: var(--muted);
   }
 }
