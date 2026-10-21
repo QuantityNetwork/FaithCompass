@@ -114,6 +114,7 @@ const PAGES = [
   '/institutional/workspace',
   '/institutional/workspace/sign-in',
   PASSPORT_PATH,
+  ...['', '/anatomy', '/verify', '/keys', '/revocations', '/verifier', '/policy', '/standards', '/spec'].map((p) => `/institutional/decision-passport${p}`),
 ];
 
 describe('server-rendered content', () => {
@@ -680,6 +681,31 @@ describe('accessibility', () => {
     await p.getByRole('option').first().waitFor();
     await scan(p, 'palette', report);
     expect(report).toEqual([]);
+    await context.close();
+  });
+});
+
+describe('Decision Passport verification portal', () => {
+  it('verifies the sample draft as VALID and rejects the tampered and the test-key samples, explaining each check', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/decision-passport/verify`);
+    const verdict = p.locator('.dp-verdict__word');
+    await p.getByRole('button', { name: 'Approved draft (unsigned)' }).click();
+    await expect.poll(async () => (await p.locator('textarea').inputValue()).length).toBeGreaterThan(1000);
+    await p.getByRole('button', { name: 'Verify bundle' }).click();
+    await expect.poll(() => verdict.textContent()).toBe('VALID');
+    // No registry on this build: registry and revocation are "not checked", never "pass".
+    await expect(p.locator('tr', { hasText: 'registry' }).first().textContent()).resolves.toMatch(/not checked/);
+
+    await p.getByRole('button', { name: 'Tampered finding' }).click();
+    await p.getByRole('button', { name: 'Verify bundle' }).click();
+    await expect.poll(() => verdict.textContent()).toBe('INVALID');
+    await expect(p.locator('tr', { hasText: 'Ed25519' }).first().textContent()).resolves.toMatch(/fail/);
+
+    await p.getByRole('button', { name: 'Issued, test key' }).click();
+    await p.getByRole('button', { name: 'Verify bundle' }).click();
+    await expect.poll(() => p.locator('.dp-verdict').textContent()).toMatch(/not pinned/);
+    expect(errors).toEqual([]);
     await context.close();
   });
 });

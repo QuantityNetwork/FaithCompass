@@ -12,10 +12,10 @@
  */
 
 /**
- * The Decision Passport hub (/institutional/decision-passport) is being built separately. Its menu slot sits after
- * Deep Analysis; set `live` to true in the change that adds the page (site-links.test.ts fails on a dead link).
+ * The Decision Passport hub (/institutional/decision-passport). Its menu slot sits after Deep Analysis and is shown
+ * while `live` is true (site-links.test.ts fails on a dead link).
  */
-export const DECISION_PASSPORT_HUB: { href: string; label: string; live: boolean } = { href: '/institutional/decision-passport', label: 'Decision Passport', live: false };
+export const DECISION_PASSPORT_HUB: { href: string; label: string; live: boolean } = { href: '/institutional/decision-passport', label: 'Decision Passport', live: true };
 
 export interface NavLink {
   href: string;
@@ -93,7 +93,7 @@ export const NAV_SECTIONS: NavSection[] = [
       { href: '/institutional/decision-twin', label: 'Decision Twin' },
       { href: '/institutional/decision-room', label: 'Decision Room' },
       { href: '/institutional/workspace/deep-analysis', label: 'Deep Analysis' },
-      // Slot for the Decision Passport hub (built on its own branch); it appears once DECISION_PASSPORT_HUB.live is true.
+      // Decision Passport hub; shown while DECISION_PASSPORT_HUB.live is true.
       ...(DECISION_PASSPORT_HUB.live ? [{ href: DECISION_PASSPORT_HUB.href, label: DECISION_PASSPORT_HUB.label }] : []),
       { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },

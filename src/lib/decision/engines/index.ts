@@ -33,6 +33,12 @@ export const ENGINES: Record<string, EngineEntry> = {
     source: 'src/lib/workspace/record/v1',
     sha256: '8e0d87775778f6e6fd2d6e23266942397773b29ccc26509cf6d6309fd628f808',
   },
+  // Not a Decision Twin engine: the frozen builder of Deep Analysis Decision Passports (src/lib/passport/bundle.ts).
+  'deep-analysis-passport-1.0.0': {
+    version: 'am-da-passport-1.0.0',
+    source: 'src/lib/passport/record/v1',
+    sha256: 'e4aeeaee88bf75c5fdab40971bd6fa5162fe4614afe326ddf0b067b22ce12d1e',
+  },
 };
 
 /**

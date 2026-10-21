@@ -33,6 +33,50 @@ export interface VerifyOptions {
   engines: readonly PinnedEngine[];
   /** A hash obtained independently of the bundle (e.g. recorded at issuance). */
   expectedSha256?: string;
+  /**
+   * A revocation list (GET /api/passport/revocations), checked with the pinned keys. When given, a `revocation` check
+   * is added: fail if the passport is listed, pass if not listed in a validly signed list, uncheckable otherwise.
+   * Omitted: no revocation check (the bundle alone cannot say whether it was revoked later).
+   */
+  revocations?: unknown;
+}
+
+export const REVOCATION_LIST_KIND = 'abrahammoses-passport-revocations';
+export const REVOCATION_REASONS = ['superseded', 'withdrawn', 'error', 'key-compromise'] as const;
+export interface RevocationEntry {
+  passport_sha256: string;
+  revoked_at: string;
+  reason: (typeof REVOCATION_REASONS)[number];
+  superseded_by: string | null;
+}
+
+/** Bytes signed for a revocation list: domain-separated from passport issuance. */
+export function revocationListMessage(listSha: string, kid: string, issuedAt: string) {
+  return `AbrahamMoses revocation list v1\n${listSha.toLowerCase()}\n${kid}\n${issuedAt}`;
+}
+
+/** The digest a revocation list is signed over: canonical JSON of its object, version, generated_at and entries. */
+export function revocationListDigest(l: { object: unknown; version: unknown; generated_at: unknown; entries: unknown }) {
+  return sha256(canonicalJson({ object: l.object, version: l.version, generated_at: l.generated_at, entries: l.entries }));
+}
+
+export type RevocationListCheck = { status: 'valid' | 'unsigned' | 'invalid'; detail: string; entries: RevocationEntry[] };
+
+/** Check a revocation list's shape, digest and signature against pinned keys. */
+export function verifyRevocationList(list: unknown, keys: readonly PinnedKey[]): RevocationListCheck {
+  const entryOk = (e: unknown) =>
+    isObj(e) && typeof e.passport_sha256 === 'string' && /^[0-9a-f]{64}$/.test(e.passport_sha256) && typeof e.revoked_at === 'string' &&
+    (REVOCATION_REASONS as readonly string[]).includes(e.reason) && (e.superseded_by === null || (typeof e.superseded_by === 'string' && /^[0-9a-f]{64}$/.test(e.superseded_by)));
+  if (!isObj(list) || list.object !== REVOCATION_LIST_KIND || list.version !== 1 || typeof list.generated_at !== 'string' || !Array.isArray(list.entries) || !list.entries.every(entryOk))
+    return { status: 'invalid', detail: 'not a revocation list (version 1)', entries: [] };
+  const entries = list.entries as RevocationEntry[];
+  const d = revocationListDigest(list as never);
+  if (list.list_sha256 !== d) return { status: 'invalid', detail: 'list digest does not match its entries', entries };
+  if (list.signature === null || list.signature === undefined) return { status: 'unsigned', detail: `unsigned list (${entries.length} entries): authenticity not checked`, entries };
+  if (!isObj(list.signature)) return { status: 'invalid', detail: 'malformed list signature', entries };
+  if (list.signature.issued_at !== list.generated_at) return { status: 'invalid', detail: 'list signature time differs from generated_at', entries };
+  const res = checkSig(revocationListMessage(d, list.signature.kid, list.signature.issued_at), list.signature, keys);
+  return { status: res.ok ? 'valid' : 'invalid', detail: res.ok ? `signed list of ${entries.length} entries, ${res.detail}` : `list signature: ${res.detail}`, entries };
 }
 export interface Report {
   verifier: string;
@@ -210,6 +254,15 @@ export function verifyBundle(bundle: unknown, opts: VerifyOptions): Report {
       signature = res.ok ? 'valid' : 'invalid';
       add('signature', res.ok ? 'pass' : 'fail', res.detail);
     }
+  }
+
+  // 5. Revocation (only when a list is supplied)
+  if (opts.revocations !== undefined) {
+    const l = verifyRevocationList(opts.revocations, opts.keys);
+    const hit = l.entries.find((e) => e.passport_sha256 === sha);
+    if (hit) add('revocation', 'fail', `revoked ${hit.revoked_at} (${hit.reason}${hit.superseded_by ? `, superseded by ${hit.superseded_by.slice(0, 12)}…` : ''}); list ${l.status}`);
+    else if (l.status === 'valid') add('revocation', 'pass', `not revoked: ${l.detail}`);
+    else add('revocation', 'uncheckable', `revocation status not established: ${l.detail}`);
   }
   return finish(sha, schema);
 }

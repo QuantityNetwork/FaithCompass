@@ -39,6 +39,9 @@ type Options struct {
 	Keys           []PinnedKey
 	Engines        []PinnedEngine
 	ExpectedSha256 string
+	// Revocations is a decoded revocation list; it is checked only when HasRevocations is set.
+	Revocations    any
+	HasRevocations bool
 }
 
 type Check struct {
@@ -404,6 +407,12 @@ func Verify(bundle any, opts Options) Report {
 			}
 			add("signature", pass(good), detail)
 		}
+	}
+
+	// 5. Revocation (only when a list is supplied)
+	if opts.HasRevocations {
+		status, detail := revocationCheck(sha, opts.Revocations, opts.Keys)
+		add("revocation", status, detail)
 	}
 	return finish()
 }
