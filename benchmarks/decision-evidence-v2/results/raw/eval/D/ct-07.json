@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "f2d0e36b52b85f09dc84169bca1386a5f8f025912215314d0e29948e0516555a",
+    "prompt_chars": 2968
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s3\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s1\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D1#s4\", \"D3#s1\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s1\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D1#s4\", \"D3#s1\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 759,
+      "completion_tokens": 355
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 3021.41389299999,
+  "usd": 0.0008716,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Framework agreement\nFramework agreement: Pennant Foods (fictional, authored test material).\n[D1#s1] Pennant Foods had performance bond of SEK 11.7m in FY2024 (reported basis). [D1#s2] For Pennant Foods, total contract value in FY2024 was SEK 168.504m (reported basis). [D1#s3] Annual service charges at Pennant Foods stood at SEK 34000 thousand in FY2024 (reported basis). [D1#s4] Pennant Foods had incident response time of 5 hours in FY2025.\n\n## D2 Change order\nChange order: Pennant Foods (fictional, authored test material).\n[D2#s1] Pennant Foods had performance bond of approximately SEK 14.6m in FY2024 (reported basis). [D2#s2] For Pennant Foods, total contract value in FY2024 was SEK 168m (reported basis). [D2#s3] Warranty period at Pennant Foods stood at 12 months in FY2023. [D2#s4] Pennant Foods had payment terms of 100 days in FY2025.\n\n## D3 Procurement evaluation note\nProcurement evaluation note: Pennant Foods (fictional, authored test material).\n[D3#s1] Pennant Foods had annual service charges of SEK 34m in FY2024 (reported basis). [D3#s2] For Pennant Foods, incident response time in FY2025 was 5 hours. [D3#s3] Warranty period at Pennant Foods stood at 10 months in FY2025. [D3#s4] Pennant Foods had payment terms of 80 days in FY2023.\n\n# Conclusions\nC1: Performance bond and Total contract value of Pennant Foods are adequate for the award recommendation\nC2: Annual service charges and Incident response time of Pennant Foods are adequate for the award recommendation",
+  "extra": {
+    "sdep_sha256": "ebf24c231c517f013313842b306669036bcf5a8acf508371798a4dbdc4a52cd8"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "7ddb54b118058bc41cb6d45b943886aca82d43e26c3572645bb7eb4866eab4ce",
+    "prompt_chars": 2957
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D2#s3\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s4\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s1\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s2\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D3#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D2#s1\", \"D3#s2\", \"D2#s2\", \"D3#s3\"],\n    \"C2\": [\"D1#s2\", \"D2#s3\", \"D1#s4\", \"D3#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D2#s1\", \"D3#s2\", \"D2#s2\", \"D3#s3\"],\n    \"C2\": [\"D1#s2\", \"D2#s3\", \"D1#s4\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 730,
+      "completion_tokens": 322
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 3282.054746000096,
+  "usd": 0.0008072,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Framework agreement (retrieved excerpts)\n[D1#s1] Thornbury Software had incident response time of 23 hours in FY2023.\n[D1#s2] For Thornbury Software, delay penalty cap in FY2024 was 6.7%.\n[D1#s4] Thornbury Software had payment terms of around 54 days in FY2025.\n[D1#s5] The force majeure scope for Thornbury Software is understood as follows: includes supplier labour disputes.\n\n## D2 Change order (retrieved excerpts)\n[D2#s1] Thornbury Software had warranty period of 27 months in FY2025, as originally reported.\n[D2#s2] For Thornbury Software, performance bond in FY2025 was SEK 12.8m (reported basis), second issue (corrects the first issue).\n[D2#s3] Delay penalty cap at Thornbury Nordic, a subsidiary stood at 8.3% in FY2024.\n\n## D3 Procurement evaluation note (retrieved excerpts)\n[D3#s1] Thornbury Software had incident response time of 29 hours in FY2025.\n[D3#s2] For Thornbury Software, warranty period in FY2025 was 19 months, as restated in the latest accounts.\n[D3#s3] Performance bond at Thornbury Software stood at SEK 10.6m in FY2025 (reported basis), first issue.\n[D3#s4] Thornbury Software had payment terms of 55 days in FY2025.\n[D3#s5] The force majeure scope for Thornbury Software is understood as follows: excludes any labour dispute.\n\n# Conclusions\nC1: Warranty period and Performance bond of Thornbury Software are adequate for the award recommendation\nC2: Delay penalty cap and Payment terms of Thornbury Software are adequate for the award recommendation",
+  "extra": {
+    "retrieved": [
+      "D1#s1",
+      "D1#s2",
+      "D1#s4",
+      "D1#s5",
+      "D2#s1",
+      "D2#s2",
+      "D2#s3",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s4",
+      "D3#s5"
+    ]
+  }
+}

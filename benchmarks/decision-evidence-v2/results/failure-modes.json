@@ -1,0 +1,532 @@
+{
+  "label": "descriptive breakdown of the v2 eval outputs; no new model calls",
+  "systems": {
+    "A": {
+      "misses_by_plant": {
+        "interpretation": {
+          "n": 6,
+          "examples": [
+            "ct-02: \"The ownership of deliverables for Ivarsen Healthcare is understood as follows: all deliverables vest in the customer on payment.\" / \"The ownership of deliverables for Ivarsen Healthcare is understood as follows: the supplier keeps ownership and grants a perpetual licence.\"",
+            "ma-06: \"The scope of the tax warranty for Kalvik Energy is understood as follows: covers periods up to completion only.\" / \"The scope of the tax warranty for Kalvik Energy is understood as follows: covers periods up to completion and the following tax year.\"",
+            "ma-08: \"The earn-out trigger for Brennick Software is understood as follows: measured on reported EBITDA.\" / \"The earn-out trigger for Brennick Software is understood as follows: measured on EBITDA before integration costs.\""
+          ]
+        },
+        "potential": {
+          "n": 6,
+          "examples": [
+            "ct-05: \"For Ferrovane Software, payment terms in FY2025 was 55 days.\" / \"Payment terms at Ferrovane Software stood at 71 days.\"",
+            "ct-09: \"Total contract value at Hollins Energy stood at SEK 382.3m in FY2024 (reported basis).\" / \"For Hollins Energy, total contract value was SEK 315.5m (reported basis).\"",
+            "ma-04: \"Order backlog at Thornbury Software stood at €69.5m in FY2025 (reported basis).\" / \"For Thornbury Software, order backlog was €53.8m (reported basis).\""
+          ]
+        },
+        "confirmed": {
+          "n": 5,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, delay penalty cap in FY2024 was 14.8%.\" / \"For Ivarsen Healthcare, delay penalty cap in FY2024 was 10.4%.\"",
+            "ct-09: \"Warranty period at Hollins Energy stood at 19 months in FY2024.\" / \"Warranty period at Hollins Energy stood at 14 months in FY2024.\"",
+            "ma-04: \"Thornbury Software had pension deficit of €18.6m in FY2025 (reported basis).\" / \"Thornbury Software had pension deficit of €20.7m in FY2025 (reported basis).\""
+          ]
+        },
+        "exclusive": {
+          "n": 5,
+          "examples": [
+            "ct-02: \"As to Ivarsen Healthcare, the exclusivity is: the supplier is the exclusive provider for the term.\" / \"As to Ivarsen Healthcare, the exclusivity is: the customer may appoint other providers at any time.\"",
+            "ma-05: \"As to Ferrovane Energy, the deal structure is: share purchase of the whole group.\" / \"As to Ferrovane Energy, the deal structure is: asset purchase of the operating business only.\"",
+            "ma-08: \"As to Brennick Software, the deal structure is: share purchase of the whole group.\" / \"As to Brennick Software, the deal structure is: asset purchase of the operating business only.\""
+          ]
+        },
+        "basis": {
+          "n": 5,
+          "examples": [
+            "ct-05: \"For Ferrovane Software, warranty period in FY2024 was 11 months (reported basis).\" / \"Ferrovane Software had warranty period of 14 months in FY2024 (pro forma (including the planned acquisition) basis).\"",
+            "ct-09: \"Hollins Energy had performance bond of SEK 6.1m in FY2024 (reported basis).\" / \"Hollins Energy had performance bond of SEK 4.3m in FY2024 (pro forma (including the planned acquisition) basis).\"",
+            "ma-04: \"Thornbury Software had employees of 2013 in FY2024 (reported basis).\" / \"For Thornbury Software, employees in FY2024 was 1705 (pro forma (including the planned acquisition) basis).\""
+          ]
+        },
+        "alias_role": {
+          "n": 4,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, annual service charges in FY2025 was SEK 55.7m (reported basis).\" / \"For the Supplier, annual service charges in FY2025 was SEK 71.8m (reported basis).\"",
+            "ct-09: \"For Hollins Energy, volume rebate in FY2024 was 8.6%.\" / \"For the Supplier, volume rebate in FY2024 was 7.6%.\"",
+            "ma-08: \"Headline purchase price at Brennick Software stood at €217.1m in FY2024 (reported basis).\" / \"the Target had headline purchase price of €186.5m in FY2024 (reported basis).\""
+          ]
+        },
+        "alias_brand": {
+          "n": 4,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, payment terms in FY2024 was 90 days.\" / \"Payment terms at Fernhill stood at 65 days in FY2024.\"",
+            "ct-09: \"Annual service charges at Hollins Energy stood at SEK 27.4m in FY2024 (reported basis).\" / \"Annual service charges at Northstar stood at SEK 31.5m in FY2024 (reported basis).\"",
+            "ma-08: \"For Brennick Software, capex as share of sales in FY2024 was 13.2%.\" / \"Greywater had capex as share of sales of 10.2% in FY2024.\""
+          ]
+        },
+        "missing": {
+          "n": 4,
+          "examples": [
+            "ct-09: \"Incident response time at Hollins Energy stood at 18 hours in FY2024.\" / \"Incident response time of Hollins Energy in FY2024: to be confirmed; not included in this document.\"",
+            "ma-08: \"Brennick Software had order backlog of €494.8m in FY2025 (reported basis).\" / \"Order backlog of Brennick Software in FY2025: to be confirmed; not included in this document.\"",
+            "pc-03: \"Operating expenses at Nordvik Healthcare stood at $226.5m in FY2024 (reported basis).\" / \"Operating expenses of Nordvik Healthcare in FY2024: to be confirmed; not included in this document.\""
+          ]
+        },
+        "synonym_means": {
+          "n": 2,
+          "examples": [
+            "ct-02: \"Ivarsen Healthcare had incident response time of 1 hours in FY2025.\" / \"P1 reaction window at Ivarsen Healthcare stood at 0.5 hours in FY2025.\"",
+            "ma-08: \"For Brennick Software, run-rate EBITDA in FY2024 was €66m (reported basis).\" / \"For Brennick Software, annualised operating profit in FY2024 was €52.9m (reported basis).\""
+          ]
+        },
+        "unit_word_ccy": {
+          "n": 2,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, performance bond in FY2024 was SEK 18.6m (reported basis).\" / \"Ivarsen Healthcare had performance bond of SEK 14.3 million in FY2024 (reported basis).\"",
+            "pc-07: \"Free cash flow at Pennant Logistics stood at $12.1m in FY2025 (reported basis).\" / \"Free cash flow at Pennant Logistics stood at USD 10.7 million in FY2025 (reported basis).\""
+          ]
+        },
+        "legal_form_variant": {
+          "n": 2,
+          "examples": [
+            "ct-06: \"Volume rebate at Kalvik Limited stood at 2.9% in FY2024.\" / \"Volume rebate at Kalvik Ltd stood at 3.3% in FY2024.\"",
+            "sc-02: \"For Liber Limited, ruled columns per page in FY2024 was 1.\" / \"Liber Ltd had ruled columns per page of 0.5 in FY2024.\""
+          ]
+        },
+        "fye_march": {
+          "n": 1,
+          "examples": [
+            "ct-02: \"Total contract value at Ivarsen Healthcare stood at SEK 94.3m in FY2025 (reported basis).\" / \"Ivarsen Healthcare had total contract value of SEK 106.4m in the twelve months to 31 Mar 2025 (reported basis).\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:diff_year": {
+          "n": 12,
+          "examples": [
+            "ct-03 CONFIRMED_CONFLICT: \"Incident response time at Nordvik Foods stood at 23 hours in FY2023.\" / \"Incident response time at Nordvik Foods stood at 20 hours in FY2025.\"",
+            "ct-04 CONFIRMED_CONFLICT: \"Thornbury Software had incident response time of 23 hours in FY2023.\" / \"Thornbury Software had incident response time of 29 hours in FY2025.\"",
+            "ct-07 CONFIRMED_CONFLICT: \"Warranty period at Pennant Foods stood at 12 months in FY2023.\" / \"Warranty period at Pennant Foods stood at 10 months in FY2025.\""
+          ]
+        },
+        "planted:rounding_tight": {
+          "n": 10,
+          "examples": [
+            "ct-07 POTENTIAL_CONFLICT: \"For Pennant Foods, total contract value in FY2024 was SEK 168m (reported basis).\" / \"For Pennant Foods, total contract value in FY2024 was SEK 168.504m (reported basis).\"",
+            "ct-07 CONFIRMED_CONFLICT: \"Pennant Foods had incident response time of 5 hours in FY2025.\" / \"For Pennant Foods, incident response time in FY2025 was 5 hours.\"",
+            "ma-02 CONFIRMED_CONFLICT: \"For Ivarsen Healthcare, order backlog in FY2025 was €586.3m (reported basis).\" / \"Order backlog at Ivarsen Healthcare stood at €588.059m in FY2025 (reported basis).\""
+          ]
+        },
+        "planted:approx_near": {
+          "n": 9,
+          "examples": [
+            "ct-01 POTENTIAL_CONFLICT: \"Castellan Healthcare had annual service charges of SEK 20.4m in FY2024 (reported basis).\" / \"Castellan Healthcare had annual service charges of roughly SEK 20m in FY2024 (reported basis).\"",
+            "ct-04 POTENTIAL_CONFLICT: \"Thornbury Software had payment terms of 55 days in FY2025.\" / \"Thornbury Software had payment terms of around 54 days in FY2025.\"",
+            "ct-08 POTENTIAL_CONFLICT: \"For Brennick Logistics, volume rebate in FY2025 was 6.1%.\" / \"Brennick Logistics had volume rebate of roughly 5.9% in FY2025.\""
+          ]
+        },
+        "planted:restated": {
+          "n": 9,
+          "examples": [
+            "ct-04 CONFIRMED_CONFLICT: \"Thornbury Software had warranty period of 27 months in FY2025, as originally reported.\" / \"For Thornbury Software, warranty period in FY2025 was 19 months, as restated in the latest accounts.\"",
+            "ct-08 CONFIRMED_CONFLICT: \"For Brennick Logistics, warranty period in FY2025 was 11 months, as originally reported.\" / \"For Brennick Logistics, warranty period in FY2025 was 10 months, as restated in the latest accounts.\"",
+            "ma-03 CONFIRMED_CONFLICT: \"Employees at Nordvik Capital stood at 1265 in FY2025, as originally reported.\" / \"Employees at Nordvik Capital stood at 1022 in FY2025, as restated in the latest accounts.\""
+          ]
+        },
+        "planted:corrected": {
+          "n": 9,
+          "examples": [
+            "ct-04 CONFIRMED_CONFLICT: \"Performance bond at Thornbury Software stood at SEK 10.6m in FY2025 (reported basis), first issue.\" / \"For Thornbury Software, performance bond in FY2025 was SEK 12.8m (reported basis), second issue (corrects the first issue).\"",
+            "ct-08 CONFIRMED_CONFLICT: \"For Brennick Logistics, incident response time in FY2024 was 4 hours, first issue.\" / \"Incident response time at Brennick Logistics stood at 3 hours in FY2024, second issue (corrects the first issue).\"",
+            "ma-03 CONFIRMED_CONFLICT: \"Nordvik Capital had net revenue retention of 112.6% in FY2025, first issue.\" / \"Nordvik Capital had net revenue retention of 134.2% in FY2025, second issue (corrects the first issue).\""
+          ]
+        },
+        "planted:unit_scale_bn": {
+          "n": 7,
+          "examples": [
+            "ct-03 CONFIRMED_CONFLICT: \"Total contract value at Nordvik Foods stood at SEK 22.8m in FY2024 (reported basis).\" / \"Nordvik Foods had total contract value of SEK 22800 thousand in FY2024 (reported basis).\"",
+            "ct-07 POTENTIAL_CONFLICT: \"Pennant Foods had annual service charges of SEK 34m in FY2024 (reported basis).\" / \"Annual service charges at Pennant Foods stood at SEK 34000 thousand in FY2024 (reported basis).\"",
+            "ma-02 CONFIRMED_CONFLICT: \"Ivarsen Healthcare had headline purchase price of €371.9m in FY2025 (reported basis).\" / \"Headline purchase price at Ivarsen Healthcare stood at EUR 371900 thousand in FY2025 (reported basis).\""
+          ]
+        },
+        "planted:subsidiary": {
+          "n": 6,
+          "examples": [
+            "ct-04 POTENTIAL_CONFLICT: \"For Thornbury Software, delay penalty cap in FY2024 was 6.7%.\" / \"Delay penalty cap at Thornbury Nordic, a subsidiary stood at 8.3% in FY2024.\"",
+            "ct-08 POTENTIAL_CONFLICT: \"Brennick Logistics had performance bond of SEK 13.4m in FY2024 (reported basis).\" / \"Performance bond at Brennick Nordic, a subsidiary stood at SEK 17m in FY2024 (reported basis).\"",
+            "ma-07 CONFIRMED_CONFLICT: \"For Pennant Software, pension deficit in FY2025 was €51.5m (reported basis).\" / \"For Pennant Nordic, a subsidiary, pension deficit in FY2025 was €39.5m (reported basis).\""
+          ]
+        },
+        "unplanted:different_measures": {
+          "n": 6,
+          "examples": [
+            "ct-05 DIFFERENT_REPORTING_BASIS: \"Payment terms at Ferrovane Software stood at 71 days.\" / \"Ferrovane Software had warranty period of 14 months in FY2024 (pro forma (including the planned acquisition) basis).\"",
+            "ma-04 CONFIRMED_CONFLICT: \"For Thornbury Software, run-rate EBITDA in FY2024 was €20.6m (reported basis).\" / \"Thornbury Software had pension deficit of €20.7m in FY2025 (reported basis).\"",
+            "pc-03 MISSING_EVIDENCE: \"Nordvik Healthcare had debt service cover ratio of 2.11x in FY2025.\" / \"Operating expenses at Nordvik Healthcare stood at $226.5m in FY2024 (reported basis).\""
+          ]
+        },
+        "planted:effective_date": {
+          "n": 5,
+          "examples": [
+            "ct-08 POTENTIAL_CONFLICT: \"For Brennick Logistics, annual service charges with effect from 1 Jan 2025 was SEK 13.6m (reported basis).\" / \"For Brennick Logistics, annual service charges with effect from 1 Jul 2025 was SEK 17.3m (reported basis).\"",
+            "ma-07 CONFIRMED_CONFLICT: \"Headline purchase price at Pennant Software stood at €801.2m with effect from 1 Jan 2025 (reported basis).\" / \"Headline purchase price at Pennant Software stood at €941.2m with effect from 1 Jul 2025 (reported basis).\"",
+            "pc-02 POTENTIAL_CONFLICT: \"Ivarsen Software had receivables in arrears of 1.8% with effect from 1 Jan 2025.\" / \"Receivables in arrears at Ivarsen Software stood at 1.6% with effect from 1 Jul 2025.\""
+          ]
+        },
+        "planted:legal_entity_other": {
+          "n": 4,
+          "examples": [
+            "ma-07 CONFIRMED_CONFLICT: \"Pennant Oy had cost synergies of €22.9m in FY2024 (reported basis).\" / \"Cost synergies at Pennant GmbH stood at €27.9m in FY2024 (reported basis).\"",
+            "pc-02 CONFIRMED_CONFLICT: \"For Ivarsen Oy, operating expenses in FY2024 was $212.2m (reported basis).\" / \"For Ivarsen GmbH, operating expenses in FY2024 was $174.9m (reported basis).\"",
+            "pc-05 CONFIRMED_CONFLICT: \"For Ferrovane Oy, senior leverage in FY2024 was 2.76x.\" / \"For Ferrovane GmbH, senior leverage in FY2024 was 3.56x.\""
+          ]
+        },
+        "unplanted:different_entity_string": {
+          "n": 3,
+          "examples": [
+            "pc-07 CONFIRMED_CONFLICT: \"For Saltmarsh, recurring revenue share in FY2024 was 95.9%.\" / \"the Borrower had gross debt of $451.4m in FY2025 (reported basis).\"",
+            "sc-01 POTENTIAL_CONFLICT: \"Ardith Fragments had share of palimpsest leaves of 29.4% in FY2024.\" / \"Greywater had missing leaves of 11 in FY2025.\"",
+            "sc-05 MISSING_EVIDENCE: \"Missing leaves of Hesketh Breviary in FY2025: to be confirmed; not included in this document.\" / \"Marginal annotations at the Manuscript stood at 545 in FY2024.\""
+          ]
+        },
+        "planted:same_amount_other_wording": {
+          "n": 1,
+          "examples": [
+            "ma-06 CONFIRMED_CONFLICT: \"For Kalvik Energy, cost synergies in FY2024 was €58.1m (reported basis).\" / \"Kalvik Energy had cost synergies of EUR 58.1 million in FY2024 (reported basis).\""
+          ]
+        },
+        "planted:part_year": {
+          "n": 1,
+          "examples": [
+            "pc-01 CONFIRMED_CONFLICT: \"For Castellan Software, free cash flow in FY2025 was $49.1m (reported basis).\" / \"For Castellan Software, free cash flow in H1 2025 was $23.8m (reported basis).\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {
+        "potential: POTENTIAL_CONFLICT -> CONFIRMED_CONFLICT": 3,
+        "interpretation: UNRESOLVED_INTERPRETATION -> CONFIRMED_CONFLICT": 6,
+        "interpretation: UNRESOLVED_INTERPRETATION -> DIFFERENT_REPORTING_BASIS": 1,
+        "basis: DIFFERENT_REPORTING_BASIS -> POTENTIAL_CONFLICT": 1,
+        "alias_role: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 1,
+        "fye_march: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 1
+      },
+      "runaway_generations": [
+        "ct-02 (length, 32768 output tokens)",
+        "ct-09 (length, 32768 output tokens)",
+        "ma-08 (length, 32768 output tokens)",
+        "sc-08 (length, 32768 output tokens)"
+      ]
+    },
+    "B": {
+      "misses_by_plant": {
+        "synonym_means": {
+          "n": 5,
+          "examples": [
+            "ct-02: \"Ivarsen Healthcare had incident response time of 1 hours in FY2025.\" / \"P1 reaction window at Ivarsen Healthcare stood at 0.5 hours in FY2025.\"",
+            "ma-05: \"For Ferrovane Energy, run-rate EBITDA in FY2025 was €91.3m (reported basis).\" / \"For Ferrovane Energy, annualised operating profit in FY2025 was €70.3m (reported basis).\"",
+            "ma-08: \"For Brennick Software, run-rate EBITDA in FY2024 was €66m (reported basis).\" / \"For Brennick Software, annualised operating profit in FY2024 was €52.9m (reported basis).\""
+          ]
+        },
+        "alias_brand": {
+          "n": 4,
+          "examples": [
+            "ct-09: \"Annual service charges at Hollins Energy stood at SEK 27.4m in FY2024 (reported basis).\" / \"Annual service charges at Northstar stood at SEK 31.5m in FY2024 (reported basis).\"",
+            "ma-04: \"Thornbury Software had net revenue retention of 119.6% in FY2025.\" / \"Lumen had net revenue retention of 132.7% in FY2025.\"",
+            "ma-08: \"For Brennick Software, capex as share of sales in FY2024 was 13.2%.\" / \"Greywater had capex as share of sales of 10.2% in FY2024.\""
+          ]
+        },
+        "unit_word_ccy": {
+          "n": 3,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, performance bond in FY2024 was SEK 18.6m (reported basis).\" / \"Ivarsen Healthcare had performance bond of SEK 14.3 million in FY2024 (reported basis).\"",
+            "pc-03: \"Gross debt at Nordvik Healthcare stood at $436m in FY2025 (reported basis).\" / \"Gross debt at Nordvik Healthcare stood at USD 484.4 million in FY2025 (reported basis).\"",
+            "pc-07: \"Free cash flow at Pennant Logistics stood at $12.1m in FY2025 (reported basis).\" / \"Free cash flow at Pennant Logistics stood at USD 10.7 million in FY2025 (reported basis).\""
+          ]
+        },
+        "exclusive": {
+          "n": 3,
+          "examples": [
+            "ct-02: \"As to Ivarsen Healthcare, the exclusivity is: the supplier is the exclusive provider for the term.\" / \"As to Ivarsen Healthcare, the exclusivity is: the customer may appoint other providers at any time.\"",
+            "pc-02: \"As to Ivarsen Software, the security package is: first-lien security over all material subsidiaries.\" / \"As to Ivarsen Software, the security package is: unsecured, ranking pari passu with trade creditors.\"",
+            "sc-02: \"As to Liber Morvan, the place of production is: produced at the cathedral scriptorium.\" / \"As to Liber Morvan, the place of production is: produced in a lay urban workshop.\""
+          ]
+        },
+        "alias_role": {
+          "n": 3,
+          "examples": [
+            "ct-05: \"For Ferrovane Software, annual service charges in FY2024 was SEK 30.3m (reported basis).\" / \"For the Supplier, annual service charges in FY2024 was SEK 25.9m (reported basis).\"",
+            "ma-04: \"Thornbury Software had capex as share of sales of 10.6% in FY2025.\" / \"Capex as share of sales at the Target stood at 12.1% in FY2025.\"",
+            "sc-01: \"Marginal annotations at Ardith Fragments stood at 832 in FY2024.\" / \"Marginal annotations at the Manuscript stood at 719 in FY2024.\""
+          ]
+        },
+        "legal_form_variant": {
+          "n": 3,
+          "examples": [
+            "ct-06: \"Volume rebate at Kalvik Limited stood at 2.9% in FY2024.\" / \"Volume rebate at Kalvik Ltd stood at 3.3% in FY2024.\"",
+            "ma-01: \"Castellan Limited had net revenue retention of 90.8% in FY2024.\" / \"Castellan Ltd had net revenue retention of 66.6% in FY2024.\"",
+            "sc-02: \"For Liber Limited, ruled columns per page in FY2024 was 1.\" / \"Liber Ltd had ruled columns per page of 0.5 in FY2024.\""
+          ]
+        },
+        "potential": {
+          "n": 2,
+          "examples": [
+            "ct-01: \"Total contract value at Castellan Healthcare stood at SEK 23.3m in FY2025 (reported basis).\" / \"Total contract value at Castellan Healthcare stood at SEK 18m (reported basis).\"",
+            "ct-05: \"For Ferrovane Software, payment terms in FY2025 was 55 days.\" / \"Payment terms at Ferrovane Software stood at 71 days.\""
+          ]
+        },
+        "unit_word_unlisted": {
+          "n": 2,
+          "examples": [
+            "ct-06: \"Total contract value at Kalvik Foods stood at NZD 95.1m in FY2025 (reported basis).\" / \"For Kalvik Foods, total contract value in FY2025 was NZD 121.1 million (reported basis).\"",
+            "ma-01: \"Order backlog at Castellan Logistics stood at NZD 565.8m in FY2025 (reported basis).\" / \"Order backlog at Castellan Logistics stood at NZD 683.2 million in FY2025 (reported basis).\""
+          ]
+        },
+        "interpretation": {
+          "n": 2,
+          "examples": [
+            "ma-08: \"The earn-out trigger for Brennick Software is understood as follows: measured on reported EBITDA.\" / \"The earn-out trigger for Brennick Software is understood as follows: measured on EBITDA before integration costs.\"",
+            "sc-06: \"The identification of the main scribe for Lorne Chronicle is understood as follows: the scribe of the sister manuscript at Elsing.\" / \"The identification of the main scribe for Lorne Chronicle is understood as follows: an unidentified scribe trained in the same house.\""
+          ]
+        },
+        "confirmed": {
+          "n": 1,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, delay penalty cap in FY2024 was 14.8%.\" / \"For Ivarsen Healthcare, delay penalty cap in FY2024 was 10.4%.\""
+          ]
+        },
+        "approx_far": {
+          "n": 1,
+          "examples": [
+            "sc-06: \"Leaf height at Lorne Chronicle stood at 196 mm in FY2025.\" / \"For Lorne Chronicle, leaf height in FY2025 was approximately 245 mm.\""
+          ]
+        },
+        "fye_march": {
+          "n": 1,
+          "examples": [
+            "sc-09: \"Insured value at Elsing Gospels stood at $9m in FY2025 (reported basis).\" / \"Insured value at Elsing Gospels stood at $10.1m in the twelve months to 31 Mar 2025 (reported basis).\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:approx_near": {
+          "n": 10,
+          "examples": [
+            "ct-01 POTENTIAL_CONFLICT: \"Castellan Healthcare had annual service charges of SEK 20.4m in FY2024 (reported basis).\" / \"Castellan Healthcare had annual service charges of roughly SEK 20m in FY2024 (reported basis).\"",
+            "ct-04 POTENTIAL_CONFLICT: \"Thornbury Software had payment terms of 55 days in FY2025.\" / \"Thornbury Software had payment terms of around 54 days in FY2025.\"",
+            "ct-08 CONFIRMED_CONFLICT: \"For Brennick Logistics, volume rebate in FY2025 was 6.1%.\" / \"Brennick Logistics had volume rebate of roughly 5.9% in FY2025.\""
+          ]
+        },
+        "planted:restated": {
+          "n": 9,
+          "examples": [
+            "ct-04 CONFIRMED_CONFLICT: \"Thornbury Software had warranty period of 27 months in FY2025, as originally reported.\" / \"For Thornbury Software, warranty period in FY2025 was 19 months, as restated in the latest accounts.\"",
+            "ct-08 CONFIRMED_CONFLICT: \"For Brennick Logistics, warranty period in FY2025 was 11 months, as originally reported.\" / \"For Brennick Logistics, warranty period in FY2025 was 10 months, as restated in the latest accounts.\"",
+            "ma-03 CONFIRMED_CONFLICT: \"Employees at Nordvik Capital stood at 1265 in FY2025, as originally reported.\" / \"Employees at Nordvik Capital stood at 1022 in FY2025, as restated in the latest accounts.\""
+          ]
+        },
+        "planted:corrected": {
+          "n": 9,
+          "examples": [
+            "ct-04 CONFIRMED_CONFLICT: \"Performance bond at Thornbury Software stood at SEK 10.6m in FY2025 (reported basis), first issue.\" / \"For Thornbury Software, performance bond in FY2025 was SEK 12.8m (reported basis), second issue (corrects the first issue).\"",
+            "ct-08 CONFIRMED_CONFLICT: \"For Brennick Logistics, incident response time in FY2024 was 4 hours, first issue.\" / \"Incident response time at Brennick Logistics stood at 3 hours in FY2024, second issue (corrects the first issue).\"",
+            "ma-03 CONFIRMED_CONFLICT: \"Nordvik Capital had net revenue retention of 112.6% in FY2025, first issue.\" / \"Nordvik Capital had net revenue retention of 134.2% in FY2025, second issue (corrects the first issue).\""
+          ]
+        },
+        "planted:rounding_tight": {
+          "n": 8,
+          "examples": [
+            "ct-07 POTENTIAL_CONFLICT: \"For Pennant Foods, total contract value in FY2024 was SEK 168m (reported basis).\" / \"For Pennant Foods, total contract value in FY2024 was SEK 168.504m (reported basis).\"",
+            "ct-07 CONFIRMED_CONFLICT: \"Pennant Foods had incident response time of 5 hours in FY2025.\" / \"For Pennant Foods, incident response time in FY2025 was 5 hours.\"",
+            "ma-02 CONFIRMED_CONFLICT: \"For Ivarsen Healthcare, order backlog in FY2025 was €586.3m (reported basis).\" / \"Order backlog at Ivarsen Healthcare stood at €588.059m in FY2025 (reported basis).\""
+          ]
+        },
+        "planted:subsidiary": {
+          "n": 7,
+          "examples": [
+            "ct-04 POTENTIAL_CONFLICT: \"For Thornbury Software, delay penalty cap in FY2024 was 6.7%.\" / \"Delay penalty cap at Thornbury Nordic, a subsidiary stood at 8.3% in FY2024.\"",
+            "ct-08 CONFIRMED_CONFLICT: \"Brennick Logistics had performance bond of SEK 13.4m in FY2024 (reported basis).\" / \"Performance bond at Brennick Nordic, a subsidiary stood at SEK 17m in FY2024 (reported basis).\"",
+            "ma-07 POTENTIAL_CONFLICT: \"For Pennant Software, pension deficit in FY2025 was €51.5m (reported basis).\" / \"For Pennant Nordic, a subsidiary, pension deficit in FY2025 was €39.5m (reported basis).\""
+          ]
+        },
+        "planted:unit_scale_bn": {
+          "n": 4,
+          "examples": [
+            "ct-03 CONFIRMED_CONFLICT: \"Total contract value at Nordvik Foods stood at SEK 22.8m in FY2024 (reported basis).\" / \"Nordvik Foods had total contract value of SEK 22800 thousand in FY2024 (reported basis).\"",
+            "ct-07 POTENTIAL_CONFLICT: \"Pennant Foods had annual service charges of SEK 34m in FY2024 (reported basis).\" / \"Annual service charges at Pennant Foods stood at SEK 34000 thousand in FY2024 (reported basis).\"",
+            "ma-06 CONFIRMED_CONFLICT: \"Pension deficit at Kalvik Energy stood at €72.8m in FY2025 (reported basis).\" / \"Kalvik Energy had pension deficit of EUR 72800 thousand in FY2025 (reported basis).\""
+          ]
+        },
+        "planted:diff_year": {
+          "n": 3,
+          "examples": [
+            "ct-07 CONFIRMED_CONFLICT: \"Pennant Foods had payment terms of 80 days in FY2023.\" / \"Pennant Foods had payment terms of 100 days in FY2025.\"",
+            "ma-02 CONFIRMED_CONFLICT: \"For Ivarsen Healthcare, employees in FY2023 was 2478.\" / \"For Ivarsen Healthcare, employees in FY2025 was 1966.\"",
+            "sc-03 CONFIRMED_CONFLICT: \"For Codex Belmar, binding date (CE) in FY2023 was 1225.\" / \"For Codex Belmar, binding date (CE) in FY2025 was 1000.\""
+          ]
+        },
+        "unplanted:different_measures": {
+          "n": 1,
+          "examples": [
+            "ma-04 DIFFERENT_REPORTING_BASIS: \"For Thornbury Software, run-rate EBITDA in FY2024 was €20.6m (reported basis).\" / \"The earn-out trigger for Thornbury Software is understood as follows: measured on EBITDA before integration costs.\""
+          ]
+        },
+        "planted:part_year": {
+          "n": 1,
+          "examples": [
+            "pc-01 POTENTIAL_CONFLICT: \"For Castellan Software, free cash flow in FY2025 was $49.1m (reported basis).\" / \"For Castellan Software, free cash flow in H1 2025 was $23.8m (reported basis).\""
+          ]
+        },
+        "planted:legal_entity_other": {
+          "n": 1,
+          "examples": [
+            "pc-09 CONFIRMED_CONFLICT: \"For Hollins Oy, cash on balance sheet in FY2024 was $73.6m (reported basis).\" / \"For Hollins GmbH, cash on balance sheet in FY2024 was $59.1m (reported basis).\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {
+        "fye_march: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 1,
+        "interpretation: UNRESOLVED_INTERPRETATION -> CONFIRMED_CONFLICT": 8,
+        "potential: POTENTIAL_CONFLICT -> CONFIRMED_CONFLICT": 6,
+        "interpretation: UNRESOLVED_INTERPRETATION -> DIFFERENT_REPORTING_BASIS": 1,
+        "basis: DIFFERENT_REPORTING_BASIS -> CONFIRMED_CONFLICT": 3,
+        "confirmed: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 1
+      },
+      "runaway_generations": []
+    },
+    "C": {
+      "misses_by_plant": {
+        "alias_brand": {
+          "n": 11,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, payment terms in FY2024 was 90 days.\" / \"Payment terms at Fernhill stood at 65 days in FY2024.\"",
+            "ct-06: \"Payment terms at Kalvik Foods stood at 84 days in FY2024.\" / \"Payment terms at Copperline stood at 75 days in FY2024.\"",
+            "ct-09: \"Annual service charges at Hollins Energy stood at SEK 27.4m in FY2024 (reported basis).\" / \"Annual service charges at Northstar stood at SEK 31.5m in FY2024 (reported basis).\""
+          ]
+        },
+        "alias_role": {
+          "n": 10,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, annual service charges in FY2025 was SEK 55.7m (reported basis).\" / \"For the Supplier, annual service charges in FY2025 was SEK 71.8m (reported basis).\"",
+            "ct-05: \"For Ferrovane Software, annual service charges in FY2024 was SEK 30.3m (reported basis).\" / \"For the Supplier, annual service charges in FY2024 was SEK 25.9m (reported basis).\"",
+            "ct-09: \"For Hollins Energy, volume rebate in FY2024 was 8.6%.\" / \"For the Supplier, volume rebate in FY2024 was 7.6%.\""
+          ]
+        },
+        "synonym_means": {
+          "n": 10,
+          "examples": [
+            "ct-02: \"Ivarsen Healthcare had incident response time of 1 hours in FY2025.\" / \"P1 reaction window at Ivarsen Healthcare stood at 0.5 hours in FY2025.\"",
+            "ct-06: \"Annual service charges at Kalvik Foods stood at SEK 2.2m in FY2025 (reported basis).\" / \"Kalvik Foods had yearly fees of SEK 2.4m in FY2025 (reported basis).\"",
+            "ma-01: \"For Castellan Logistics, cost synergies in FY2024 was €48.4m (reported basis).\" / \"For Castellan Logistics, integration savings in FY2024 was €57.6m (reported basis).\""
+          ]
+        },
+        "fye_march": {
+          "n": 10,
+          "examples": [
+            "ct-02: \"Total contract value at Ivarsen Healthcare stood at SEK 94.3m in FY2025 (reported basis).\" / \"Ivarsen Healthcare had total contract value of SEK 106.4m in the twelve months to 31 Mar 2025 (reported basis).\"",
+            "ct-06: \"For Kalvik Foods, incident response time in FY2025 was 3 hours.\" / \"Kalvik Foods had incident response time of 2 hours in the twelve months to 31 Mar 2025.\"",
+            "ma-01: \"Castellan Logistics had run-rate EBITDA of €87.5m in FY2025 (reported basis).\" / \"Run-rate EBITDA at Castellan Logistics stood at €72.3m in the twelve months to 31 Mar 2025 (reported basis).\""
+          ]
+        },
+        "unit_word_ccy": {
+          "n": 9,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, performance bond in FY2024 was SEK 18.6m (reported basis).\" / \"Ivarsen Healthcare had performance bond of SEK 14.3 million in FY2024 (reported basis).\"",
+            "ct-06: \"Kalvik Foods had performance bond of SEK 25.2m in FY2025 (reported basis).\" / \"For Kalvik Foods, performance bond in FY2025 was SEK 28.4 million (reported basis).\"",
+            "ma-01: \"Castellan Logistics had pension deficit of €77.9m in FY2025 (reported basis).\" / \"For Castellan Logistics, pension deficit in FY2025 was EUR 92.4 million (reported basis).\""
+          ]
+        },
+        "unit_word_unlisted": {
+          "n": 5,
+          "examples": [
+            "ct-06: \"Total contract value at Kalvik Foods stood at NZD 95.1m in FY2025 (reported basis).\" / \"For Kalvik Foods, total contract value in FY2025 was NZD 121.1 million (reported basis).\"",
+            "ma-01: \"Order backlog at Castellan Logistics stood at NZD 565.8m in FY2025 (reported basis).\" / \"Order backlog at Castellan Logistics stood at NZD 683.2 million in FY2025 (reported basis).\"",
+            "ma-05: \"For Ferrovane Energy, pension deficit in FY2024 was NZD 48m (reported basis).\" / \"Pension deficit at Ferrovane Energy stood at NZD 34.3 million in FY2024 (reported basis).\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:approx_near": {
+          "n": 9,
+          "examples": [
+            "ct-01 CONFIRMED_CONFLICT: \"Castellan Healthcare had annual service charges of SEK 20.4m in FY2024 (reported basis).\" / \"Castellan Healthcare had annual service charges of roughly SEK 20m in FY2024 (reported basis).\"",
+            "ct-04 CONFIRMED_CONFLICT: \"Thornbury Software had payment terms of 55 days in FY2025.\" / \"Thornbury Software had payment terms of around 54 days in FY2025.\"",
+            "ct-08 CONFIRMED_CONFLICT: \"For Brennick Logistics, volume rebate in FY2025 was 6.1%.\" / \"Brennick Logistics had volume rebate of roughly 5.9% in FY2025.\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {}
+    },
+    "D": {
+      "misses_by_plant": {
+        "alias_role": {
+          "n": 4,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, annual service charges in FY2025 was SEK 55.7m (reported basis).\" / \"For the Supplier, annual service charges in FY2025 was SEK 71.8m (reported basis).\"",
+            "ma-08: \"Headline purchase price at Brennick Software stood at €217.1m in FY2024 (reported basis).\" / \"the Target had headline purchase price of €186.5m in FY2024 (reported basis).\"",
+            "pc-03: \"Nordvik Healthcare had debt service cover ratio of 2.11x in FY2025.\" / \"the Borrower had debt service cover ratio of 2.42x in FY2025.\""
+          ]
+        },
+        "alias_brand": {
+          "n": 3,
+          "examples": [
+            "ct-02: \"For Ivarsen Healthcare, payment terms in FY2024 was 90 days.\" / \"Payment terms at Fernhill stood at 65 days in FY2024.\"",
+            "ma-08: \"For Brennick Software, capex as share of sales in FY2024 was 13.2%.\" / \"Greywater had capex as share of sales of 10.2% in FY2024.\"",
+            "pc-07: \"For Pennant Logistics, recurring revenue share in FY2024 was 82.4%.\" / \"For Saltmarsh, recurring revenue share in FY2024 was 95.9%.\""
+          ]
+        },
+        "synonym_means": {
+          "n": 2,
+          "examples": [
+            "ct-02: \"Ivarsen Healthcare had incident response time of 1 hours in FY2025.\" / \"P1 reaction window at Ivarsen Healthcare stood at 0.5 hours in FY2025.\"",
+            "ma-08: \"For Brennick Software, run-rate EBITDA in FY2024 was €66m (reported basis).\" / \"For Brennick Software, annualised operating profit in FY2024 was €52.9m (reported basis).\""
+          ]
+        },
+        "fye_march": {
+          "n": 1,
+          "examples": [
+            "ct-02: \"Total contract value at Ivarsen Healthcare stood at SEK 94.3m in FY2025 (reported basis).\" / \"Ivarsen Healthcare had total contract value of SEK 106.4m in the twelve months to 31 Mar 2025 (reported basis).\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "unplanted:different_measures": {
+          "n": 9,
+          "examples": [
+            "ct-05 DIFFERENT_REPORTING_BASIS: \"Payment terms at Ferrovane Software stood at 71 days.\" / \"Ferrovane Software had warranty period of 14 months in FY2024 (pro forma (including the planned acquisition) basis).\"",
+            "ct-09 POTENTIAL_CONFLICT: \"Hollins Energy had performance bond of SEK 6.1m in FY2024 (reported basis).\" / \"Warranty period at Hollins Energy stood at 19 months in FY2024.\"",
+            "ct-09 DIFFERENT_REPORTING_BASIS: \"For Hollins Energy, volume rebate in FY2024 was 8.6%.\" / \"Hollins Energy had performance bond of SEK 4.3m in FY2024 (pro forma (including the planned acquisition) basis).\""
+          ]
+        },
+        "planted:subsidiary": {
+          "n": 7,
+          "examples": [
+            "ct-04 POTENTIAL_CONFLICT: \"For Thornbury Software, delay penalty cap in FY2024 was 6.7%.\" / \"Delay penalty cap at Thornbury Nordic, a subsidiary stood at 8.3% in FY2024.\"",
+            "ct-08 POTENTIAL_CONFLICT: \"Brennick Logistics had performance bond of SEK 13.4m in FY2024 (reported basis).\" / \"Performance bond at Brennick Nordic, a subsidiary stood at SEK 17m in FY2024 (reported basis).\"",
+            "ma-07 POTENTIAL_CONFLICT: \"For Pennant Software, pension deficit in FY2025 was €51.5m (reported basis).\" / \"For Pennant Nordic, a subsidiary, pension deficit in FY2025 was €39.5m (reported basis).\""
+          ]
+        },
+        "unplanted:different_entity_string": {
+          "n": 3,
+          "examples": [
+            "pc-03 POTENTIAL_CONFLICT: \"For Nordvik Healthcare, senior leverage in FY2025 was 4.08x.\" / \"the Borrower had debt service cover ratio of 2.42x in FY2025.\"",
+            "pc-07 POTENTIAL_CONFLICT: \"For Saltmarsh, recurring revenue share in FY2024 was 95.9%.\" / \"the Borrower had gross debt of $451.4m in FY2025 (reported basis).\"",
+            "sc-05 MISSING_EVIDENCE: \"Missing leaves of Hesketh Breviary in FY2025: to be confirmed; not included in this document.\" / \"Marginal annotations at the Manuscript stood at 545 in FY2024.\""
+          ]
+        },
+        "planted:part_year": {
+          "n": 2,
+          "examples": [
+            "ma-06 POTENTIAL_CONFLICT: \"Kalvik Energy had run-rate EBITDA of €72.2m in FY2025 (reported basis).\" / \"For Kalvik Energy, run-rate EBITDA in H1 2025 was €37.5m (reported basis).\"",
+            "pc-01 POTENTIAL_CONFLICT: \"For Castellan Software, free cash flow in FY2025 was $49.1m (reported basis).\" / \"For Castellan Software, free cash flow in H1 2025 was $23.8m (reported basis).\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {
+        "alias_role: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 6,
+        "alias_brand: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 8,
+        "synonym_means: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 8,
+        "fye_march: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 9,
+        "unit_word_unlisted: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 5
+      },
+      "runaway_generations": [
+        "ct-02 (length, 32768 output tokens)",
+        "ma-08 (length, 32768 output tokens)"
+      ]
+    }
+  }
+}

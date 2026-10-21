@@ -1,0 +1,37 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "9e7ce7738bc1900455f4c825bf9e20e55bd7bfe73ec9d7699b4211a4fc50215b",
+    "prompt_chars": 2797
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D3#s3\", \"D1#s3\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D3#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s3\", \"D2#s4\"],\n    \"C2\": [\"D1#s3\", \"D3#s3\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s3\", \"D2#s4\"],\n    \"C2\": [\"D1#s3\", \"D3#s3\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 720,
+      "completion_tokens": 261
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2250.9813319998793,
+  "usd": 0.0007056,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Annual report extract (retrieved excerpts)\n[D1#s1] For Ferrovane Foods, recurring revenue share in FY2024 was 70.1%, as originally reported.\n[D1#s2] Gross debt at Ferrovane Foods stood at $202.7m in FY2025 (reported basis), second issue (corrects the first issue).\n[D1#s3] Ferrovane Nordic, a subsidiary had debt service cover ratio of 1.94x in FY2025.\n\n## D2 Quarterly lender update (retrieved excerpts)\n[D2#s1] For Ferrovane Foods, free cash flow in FY2025 was $48.3m (reported basis).\n[D2#s3] Ferrovane Foods had recurring revenue share of 81.4% in FY2024, as restated in the latest accounts.\n[D2#s4] For Ferrovane Foods, gross debt in FY2025 was $228m (reported basis), first issue.\n[D2#s5] As to Ferrovane Foods, the security package is: first-lien security over all material subsidiaries.\n\n## D3 Independent business review (retrieved excerpts)\n[D3#s1] For Ferrovane Foods, free cash flow in H1 2025 was $22m (reported basis).\n[D3#s3] Ferrovane Foods had debt service cover ratio of 1.5x in FY2025.\n[D3#s5] As to Ferrovane Foods, the security package is: unsecured, ranking pari passu with trade creditors.\n\n# Conclusions\nC1: Recurring revenue share and Gross debt of Ferrovane Foods are adequate for the refinancing approval\nC2: Debt service cover ratio of Ferrovane Foods is adequate for the refinancing approval",
+  "extra": {
+    "retrieved": [
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D2#s1",
+      "D2#s3",
+      "D2#s4",
+      "D2#s5",
+      "D3#s1",
+      "D3#s3",
+      "D3#s5"
+    ]
+  }
+}

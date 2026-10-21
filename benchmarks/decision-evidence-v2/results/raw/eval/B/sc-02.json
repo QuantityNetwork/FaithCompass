@@ -1,0 +1,41 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "3009e6105947689afabbb4d6cb0f46b2c47ae01ff68d2cf564692bd912e20bea",
+    "prompt_chars": 3114
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s2\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D2#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D2#s1\"],\n    \"C2\": [\"D1#s3\", \"D1#s2\", \"D2#s2\", \"D2#s3\", \"D3#s2\", \"D3#s3\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D2#s1\"],\n    \"C2\": [\"D1#s3\", \"D1#s2\", \"D2#s2\", \"D2#s3\", \"D3#s2\", \"D3#s3\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 782,
+      "completion_tokens": 322
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2606.596050999826,
+  "usd": 0.000828,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Conservation report (retrieved excerpts)\n[D1#s2] Marginal annotations at Liber Morvan stood at 1078 in the twelve months to 31 Mar 2025.\n[D1#s3] Liber Morvan had insured value of $1.7m in FY2024 (reported basis).\n[D1#s4] For Liber Morvan, share of palimpsest leaves in FY2025 was 38%.\n[D1#s5] The identification of the main scribe for Liber Morvan is understood as follows: an unidentified scribe trained in the same house.\n\n## D2 Palaeographic study (retrieved excerpts)\n[D2#s1] For Liber Morvan, illuminated initials in FY2025 was 163.\n[D2#s2] Missing leaves at Liber Morvan stood at 26 in FY2025.\n[D2#s4] For Liber Morvan, share of palimpsest leaves in FY2025 was approximately 48%.\n[D2#s5] The identification of the main scribe for Liber Morvan is understood as follows: the scribe of the sister manuscript at Elsing.\nThroughout the documents of this review, \"decorated capitals\" means the same measure as illuminated initials.\n\n## D3 Edition apparatus notes (retrieved excerpts)\nEdition apparatus notes: Liber Morvan (fictional, authored test material).\n[D3#s1] For Liber Morvan, marginal annotations in FY2025 was 847.\n[D3#s2] Insured value at Liber Morvan stood at USD 1.4 million in FY2024 (reported basis).\n[D3#s3] Liber Morvan had missing leaves of 29 in FY2025.\n[D3#s5] As to Liber Morvan, the place of production is: produced at the cathedral scriptorium.\n\n# Conclusions\nC1: Illuminated initials and Marginal annotations of Liber Morvan are adequate for the dating and attribution argument of the edition\nC2: Insured value and Missing leaves of Liber Morvan are adequate for the dating and attribution argument of the edition",
+  "extra": {
+    "retrieved": [
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D2#s1",
+      "D2#s2",
+      "D2#s4",
+      "D2#s5",
+      "D2#ctx-2",
+      "D3#ctx-1",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s5"
+    ]
+  }
+}
