@@ -46,7 +46,7 @@ export default function DecisionTwinPage() {
           <div className="dt-brand">
             <DecisionTwinLogo height={140} />
           </div>
-          <p className="am-eyebrow">Sagolik Institutional · Proposed product</p>
+          <p className="am-eyebrow">Sagolik Institutional · In development</p>
           <h1 className="am-h1">{PRODUCT.name}</h1>
           <p className="am-lede">
             {PRODUCT.tagline} {PRODUCT.positioning}
@@ -63,11 +63,13 @@ export default function DecisionTwinPage() {
           </div>
           <div className="am-example" role="note">
             <p>
-              The Decision Twin is a <strong>proposed</strong> product. Today it exists only as a public demonstration on one
-              fictional private credit case: the <Link href="/institutional/decision-room">Decision Room</Link> and its
-              synthetic Decision Passports. There are no private workspaces, accounts, customers or customer data. No bank,
+              The Decision Twin is <strong>in development</strong>, not a finished product. What works today: the{' '}
+              <Link href="/institutional/decision-room">Decision Room</Link>, where named members of an evidence workspace open a
+              room for each decision (cited evidence, Deep Analysis findings, contradictions, two-person review and an exportable
+              Decision Passport), and a public <Link href="/institutional/decision-room/sample">sample room</Link> on one fictional
+              private credit case. Workspace access is granted by the operator to named accounts. There are no customers. No bank,
               fund or institution has reviewed, validated or used it, and it holds no certification. The only thing for sale is a
-              paid pilot reservation: the 90-day pilot starts once private workspaces are available.
+              paid pilot reservation, on the Terms of Sale.
             </p>
           </div>
           <p>
@@ -128,7 +130,7 @@ export default function DecisionTwinPage() {
             Each decision carries its own configuration: the objective, the evidence standard, which assumptions are fixed,
             adjustable or disputed, the approval policy (propose, review, reject, approve), escalation rules for missing or
             contradictory evidence and monitoring triggers. It is saved with every version so the decision can be
-            reproduced. The <Link href="/institutional/decision-room#configuration">Decision Room shows it</Link> for the
+            reproduced. The <Link href="/institutional/decision-room/sample#configuration">sample room shows it</Link> for the
             synthetic case, and every Decision Passport contains a snapshot.
           </p>
           <details className="dr-details">
@@ -274,7 +276,10 @@ export default function DecisionTwinPage() {
 
         <p>
           <Link className="am-btn am-btn--gold" href="/institutional/decision-room">
-            Open the Decision Room (synthetic demonstration)
+            Open the Decision Room
+          </Link>{' '}
+          <Link className="am-btn" href="/institutional/decision-room/sample">
+            Open the sample room
           </Link>
         </p>
       </div>

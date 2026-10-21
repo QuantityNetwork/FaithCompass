@@ -51,10 +51,10 @@ const WAYS_IN = [
   { who: 'Institutions', text: 'See who is responsible for the record, how it is governed and what review has and has not happened.', href: '/institutional', chips: ['Institutional', 'Methodology'] },
   { who: 'Developers', text: 'The same claims and review states through a REST API and an MCP server.', href: '/developers', chips: ['REST', 'MCP'] },
   {
-    who: 'Decision Room (demonstration)',
-    text: 'Sagolik Institutional, a proposed application of the same method: a fictional credit decision traced to a reproducible Decision Passport. Synthetic data; not validated by any institution.',
+    who: 'Decision Room',
+    text: 'Sagolik Institutional, the same method applied to decisions: a room per decision with its evidence, findings, review and passport, for named workspace members. A sample room on fictional data is public. Not validated by any institution.',
     href: '/institutional/decision-room',
-    chips: ['Institutional', 'Synthetic'],
+    chips: ['Institutional', 'Sample room'],
   },
   {
     who: 'Evidence workspace',
@@ -431,14 +431,16 @@ export default function Home() {
             </h2>
             <p>
               The AbrahamMoses Decision Twin keeps a versioned record of why an institutional decision was justified, what
-              could invalidate it and who approved it. Today it is a public demonstration on one fictional private credit
-              case, with synthetic data; it has not been reviewed, validated or used by any institution.
+              could invalidate it and who approved it. It is in development: today the Decision Room serves named workspace
+              members, and a public sample room shows one fictional private credit case with synthetic data. It has not been
+              reviewed, validated or used by any institution.
             </p>
             <p className="h-more">
               <Link href="/institutional/decision-room">
-                Open the Decision Room (synthetic demonstration) <span aria-hidden="true">→</span>
+                Open the Decision Room <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/institutional/decision-twin">The Decision Twin and pilot terms</Link>
+              <Link href="/institutional/decision-room/sample">The sample room (synthetic case)</Link>
+              <Link href="/institutional/decision-twin">The Decision Twin and its terms</Link>
             </p>
           </div>
         </div>

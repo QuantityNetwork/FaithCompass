@@ -272,8 +272,10 @@ describe('Decision Twin product facts', () => {
   });
   it('labels each of the six layers honestly: ingestion and governance are planned', () => {
     expect(LAYERS.map((l) => l.n)).toEqual([1, 2, 3, 4, 5, 6]);
-    expect(LAYERS.find((l) => l.name === 'Data ingestion')!.status).toBe('PLANNED');
-    expect(LAYERS.find((l) => l.name === 'Governance and approval')!.status).toBe('PLANNED');
+    // Partial since the evidence workspace and Decision Room exist; never more than partial (no connectors, no routing).
+    expect(LAYERS.find((l) => l.name === 'Data ingestion')!.status).toBe('PARTIAL');
+    expect(LAYERS.find((l) => l.name === 'Governance and approval')!.status).toBe('PARTIAL');
+    expect(LAYERS.find((l) => l.name === 'Data ingestion')!.now).toMatch(/No connectors/);
   });
   it('keeps automated decisions disabled in the planned workspace defaults', () => {
     expect(DEFAULT_WORKSPACE_SETTINGS.find((x) => x.setting === 'Automated decisions')!.value).toBe('Disabled');

@@ -109,7 +109,8 @@ const PAGES = [
   '/institutional/decision-twin',
   '/institutional/decision-twin/terms',
   '/institutional/decision-room',
-  '/institutional/decision-room?r=P1,P2&g=6',
+  '/institutional/decision-room/sample',
+  '/institutional/decision-room/sample?r=P1,P2&g=6',
   '/institutional/workspace',
   '/institutional/workspace/sign-in',
   PASSPORT_PATH,
@@ -520,9 +521,21 @@ describe('research workspace', () => {
 });
 
 describe('decision room', () => {
+  it('is a space for workspace decisions, with the synthetic case as a sample room; old scenario links still land on it', async () => {
+    const html = await (await fetch(`${base}/institutional/decision-room`)).text();
+    expect(html).toContain('/brand/decision-room/logo-decision-room.png');
+    expect(html).toContain('href="/institutional/decision-room/sample"');
+    expect(html).not.toMatch(/\((proposed|demo)\)/);
+    const old = await fetch(`${base}/institutional/decision-room?r=P3`, { redirect: 'manual' });
+    expect([303, 307, 308]).toContain(old.status);
+    expect(old.headers.get('location')).toMatch(/\/institutional\/decision-room\/sample\?r=P3$/);
+    const sample = await (await fetch(`${base}/institutional/decision-room/sample`)).text();
+    expect(sample).toContain('Sample room');
+  });
+
   it('recalculates from the form without JavaScript and shows the audit trace', async () => {
     const { context, page: p } = await page({ javaScriptEnabled: false });
-    await p.goto(`${base}/institutional/decision-room`);
+    await p.goto(`${base}/institutional/decision-room/sample`);
     expect(await p.locator('.dr-trace').textContent()).toContain('All inputs are at the case defaults.');
     await p.getByLabel(/Reject P1/).check();
     await p.getByLabel(/Reject P2/).check();
@@ -539,7 +552,7 @@ describe('decision room', () => {
 
   it('generates a passport that reloads identically and exports the same hash', async () => {
     const { context, page: p, errors } = await page();
-    await p.goto(`${base}/institutional/decision-room?r=P3`);
+    await p.goto(`${base}/institutional/decision-room/sample?r=P3`);
     await p.getByRole('link', { name: /Generate Decision Passport/ }).click();
     await p.waitForURL(/\/passport\/DP1-/);
     const hash = (await p.locator('.dr-meta').first().locator('dd').nth(7).textContent())!.trim();

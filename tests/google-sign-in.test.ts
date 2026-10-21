@@ -110,6 +110,7 @@ describe('Google sign-in: page', () => {
   it('returns only to this site\'s own pages after sign-in', async () => {
     const { nextTarget } = await import('@/components/workspace/sign-in');
     expect(nextTarget('?next=/institutional/workspace/deep-analysis')).toBe('/institutional/workspace/deep-analysis');
+    expect(nextTarget('?next=/institutional/decision-room')).toBe('/institutional/decision-room');
     expect(nextTarget('?next=https://evil.example/x')).toBe('/institutional/workspace');
     expect(nextTarget('?next=//evil.example')).toBe('/institutional/workspace');
     expect(nextTarget('')).toBe('/institutional/workspace');

@@ -1,0 +1,44 @@
+/* Decision Room: the Deep Analysis register (deep-analysis.css, .da-*) plus a few room-specific pieces. Scoped. */
+.rm-page .rm-logo { width: min(520px, 78vw); }
+.rm { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 28px; }
+.rm > * { min-width: 0; }
+.rm-account { display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; font: 400 14px/1.5 var(--sans); color: var(--da-grey); border-bottom: 1px solid var(--da-rule); padding-bottom: 10px; }
+.rm-account strong { color: var(--da-navy); }
+.rm-notice p { margin: 0 0 8px; font: 400 14.5px/1.55 var(--sans); }
+.rm-notice a, .rm-page .da-section a, .rm-sample a:not(.da-btn) { color: var(--da-navy); }
+.rm-steps { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; font: 400 14.5px/1.55 var(--sans); }
+.rm-steps strong { color: var(--da-navy); }
+.rm-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 16px 0 12px; }
+.rm-page a.da-btn { display: inline-block; text-decoration: none; }
+.rm-status { display: inline-block; font: 600 10px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 8px; border: 1px solid var(--da-rule-2); color: var(--da-grey); white-space: nowrap; }
+.rm-status--approved { background: var(--da-navy); border-color: var(--da-navy); color: #fff; }
+.rm-status--proposed { border-color: var(--da-navy); color: var(--da-navy); }
+.rm-tag { display: inline-block; margin-left: 8px; font: 600 9.5px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 7px; border: 1px solid var(--da-rule-2); color: var(--da-grey); vertical-align: middle; }
+.rm-tag--warn { border-color: var(--da-navy); color: var(--da-navy); }
+.rm-cites { list-style: none; margin: 0; padding: 0; counter-reset: rmc; }
+.rm-cites > li { border-top: 1px solid var(--da-rule); padding: 12px 0; }
+.rm-cites > li.is-withdrawn { opacity: 0.45; }
+.rm-cites > li.is-withdrawn .rm-passage { text-decoration: line-through; }
+.rm-cite__head { margin: 0 0 6px; font: 400 14.5px/1.5 var(--sans); color: var(--da-ink); }
+.rm-cite__head strong { color: var(--da-navy); }
+.rm-passage { margin: 6px 0; padding: 8px 0 8px 14px; border-left: 2px solid var(--da-navy); font: 400 15px/1.6 var(--serif); color: var(--da-ink); white-space: pre-wrap; max-height: 220px; overflow: auto; }
+.rm-analyses { display: grid; gap: 18px; }
+.rm-analysis { border-top: 1px solid var(--da-rule); padding-top: 10px; }
+.rm-rating { margin: 0 0 8px; font: 400 20px/1.3 var(--serif); color: var(--da-navy); }
+.rm-rating .da-muted { font-size: 13px; display: inline; }
+.rm-cf { border: 0; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; }
+.rm-cf__result { margin: 0; padding: 12px 16px; border-left: 3px solid var(--da-navy); background: var(--da-paper-2); font: 400 15px/1.55 var(--sans); color: var(--da-ink); }
+.rm-cf__result.is-unsupported { background: var(--da-navy); color: #fff; }
+.rm-gap { margin-top: 12px; }
+.rm-review { max-width: 560px; }
+.rm-page .ws-form input { border-radius: 0; }
+.rm-passports { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; font: 400 14px/1.5 var(--sans); }
+.rm-sample { margin-top: 48px; border-top: 2px solid var(--da-navy); padding-top: 22px; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 8px 32px; }
+.rm-sample h2 { margin: 0; font: 400 26px/1.2 var(--serif); color: var(--da-navy); grid-row: span 2; }
+.rm-sample p { margin: 0; max-width: 72ch; font: 400 15px/1.6 var(--sans); color: var(--da-ink); }
+@media (max-width: 860px) { .rm-sample { grid-template-columns: 1fr; } .rm-sample h2 { grid-row: auto; } }
+.rm-page .da-kv th { width: 170px; }
+@media (max-width: 600px) { .rm-page .da-kv th { width: 110px; white-space: normal; } }
+@media print { .rm-actions, .rm-account, .rm-sample, .da-nav { display: none; } }
+.rm-page .da-masthead__status { white-space: nowrap; }
+@media (max-width: 560px) { .rm-page .da-masthead__status { display: none; } }

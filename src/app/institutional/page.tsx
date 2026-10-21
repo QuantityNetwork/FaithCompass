@@ -120,7 +120,7 @@ export default function InstitutionalPage() {
 
         <section className="am-section" id="decision-room" aria-labelledby="dr-title">
           <div className="am-section__head">
-            <p className="am-eyebrow">Sagolik Institutional · Demonstration</p>
+            <p className="am-eyebrow">Sagolik Institutional</p>
             <h2 className="am-h2" id="dr-title">
               AbrahamMoses and Sagolik Institutional
             </h2>
@@ -134,12 +134,13 @@ export default function InstitutionalPage() {
               </p>
             </div>
             <div>
-              <h3 className="am-h3">Sagolik Institutional: AbrahamMoses Decision Twin (proposed)</h3>
+              <h3 className="am-h3">Sagolik Institutional: AbrahamMoses Decision Twin</h3>
               <p>
-                A proposed commercial application of the same method to institutional decisions, as the{' '}
-                <Link href="/institutional/decision-twin">AbrahamMoses Decision Twin</Link>. It exists today only as a
-                public demonstration on fictional data. It has not been validated, reviewed or used by any bank, fund or
-                institution, and no private client data is accepted.
+                A commercial application of the same method to institutional decisions, in development as the{' '}
+                <Link href="/institutional/decision-twin">AbrahamMoses Decision Twin</Link>. Today it consists of the
+                Decision Room and Deep Analysis for named workspace members, and a public sample room on fictional data. It
+                has not been validated, reviewed or used by any bank, fund or institution, and client data is used only under
+                a written agreement.
               </p>
             </div>
           </div>
@@ -147,7 +148,10 @@ export default function InstitutionalPage() {
             <Link className="am-btn am-btn--gold" href="/institutional/decision-room">
               Open the Decision Room
             </Link>{' '}
-            <span className="am-tiny">A synthetic $120M private credit facility, traced from ten documents to a reproducible Decision Passport.</span>
+            <Link className="am-btn" href="/institutional/decision-room/sample">
+              Sample room
+            </Link>{' '}
+            <span className="am-tiny">The sample room: a synthetic $120M private credit facility, traced from ten documents to a reproducible Decision Passport.</span>
           </p>
         </section>
 

@@ -20,8 +20,9 @@ type Mode = 'sign-in' | 'register' | 'reset';
 
 const WORKSPACE = '/institutional/workspace';
 const DEEP_ANALYSIS = '/institutional/workspace/deep-analysis';
+const DECISION_ROOM = '/institutional/decision-room';
 const SIGN_IN = '/institutional/workspace/sign-in';
-const NEXT_ALLOWED = [WORKSPACE, DEEP_ANALYSIS];
+const NEXT_ALLOWED = [WORKSPACE, DEEP_ANALYSIS, DECISION_ROOM];
 
 /** Where to go after sign-in: `?next=` when it names one of this site's own pages, else the workspace. */
 export function nextTarget(search: string): string {
