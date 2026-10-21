@@ -1,0 +1,1047 @@
+{
+  "bundle": "abrahammoses-decision-passport-bundle",
+  "schema_version": "1.0.0",
+  "redacted": false,
+  "passport_id": "DP1-eyJhIjp7fSwiZCI6InBkX3Rlc3QwMDAxIiwiayI6ImRlZXAtYW5hbHlzaXMtcGFzc3BvcnQiLCJzIjoiYXBwcm92ZWQiLCJ0IjoiMjAyNi0xMC0yMVQxMDozMDowMFoiLCJ0ZW5hbnQiOiJzYW1wbGUtdGVuYW50IiwidiI6IlAxIn0",
+  "artifacts": {
+    "passport": {
+      "id": "DP1-eyJhIjp7fSwiZCI6InBkX3Rlc3QwMDAxIiwiayI6ImRlZXAtYW5hbHlzaXMtcGFzc3BvcnQiLCJzIjoiYXBwcm92ZWQiLCJ0IjoiMjAyNi0xMC0yMVQxMDozMDowMFoiLCJ0ZW5hbnQiOiJzYW1wbGUtdGVuYW50IiwidiI6IlAxIn0",
+      "format": "deep-analysis-passport/1",
+      "title": "SERVICE AGREEMENT",
+      "generated_at": "2026-10-21T10:30:00Z",
+      "tenant": "sample-tenant",
+      "status": "approved",
+      "subject": {
+        "kind": "deep-analysis-report",
+        "report_sha256": "345e8f6937d845a071fba06600dabe8bb117d09dfc3c866aabc2711d81be2237",
+        "report_schema": "abrahammoses-deep-analysis/1.0.0",
+        "analysed_at": "2026-10-21T09:00:00.000Z",
+        "document": {
+          "filename": "sample-service-agreement.md",
+          "format": "md",
+          "bytes": 4414,
+          "file_sha256": "2a317bbeb1b49dbbe9b485603cffe99476162e8fb4aa803278b6c07749f4e054",
+          "text_sha256": "81bbb729a46f5f7d05c753fd33b616f06944c569351002573273f6d0966c5429",
+          "chars": 4409,
+          "pages": null,
+          "extraction": "server"
+        }
+      },
+      "analysis_engine": {
+        "version": "deep-analysis/1.0.0",
+        "ai": {
+          "status": "not_configured",
+          "provider": null,
+          "model": null,
+          "prompt_version": null
+        }
+      },
+      "outcome": {
+        "rating": "significant_concerns",
+        "confidence": "low",
+        "overall": "Rule-based reading of a service agreement of 14 clauses between Halvard Data Systems AB (Provider) and Brightwater Retail Ltd (Customer). The rules flag 2 high and 3 medium items, 1 internal inconsistency and 0 standard terms not found. The most serious: unilateral right to change terms; conflict: payment term. This is a checklist reading, not a judgement of the bargain: it cannot weigh commercial context.",
+        "overall_spans": [
+          "S1"
+        ],
+        "recommended_actions": [
+          {
+            "text": "Review unilateral right to change terms and agree the wording with the other party.",
+            "spans": [
+              "S21"
+            ]
+          },
+          {
+            "text": "Review conflict: payment term and agree the wording with the other party.",
+            "spans": [
+              "S23",
+              "S41"
+            ]
+          },
+          {
+            "text": "Review high late-payment interest and agree the wording with the other party.",
+            "spans": [
+              "S24"
+            ]
+          },
+          {
+            "text": "Review long notice to stop automatic renewal and agree the wording with the other party.",
+            "spans": [
+              "S28"
+            ]
+          },
+          {
+            "text": "Review broad indemnity and agree the wording with the other party.",
+            "spans": [
+              "S40"
+            ]
+          }
+        ]
+      },
+      "findings": [
+        {
+          "id": "F1",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Provider",
+          "detail": "2.1 The Provider shall provide the Services with reasonable skill and care and in accordance with Schedule 1.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S18"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F2",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Provider",
+          "detail": "2.2 The Provider shall make the platform available 99.5% of the time in each calendar month, measured as set out in Schedule 1.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S19"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F3",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Customer",
+          "detail": "2.3 The Customer shall provide the Provider with timely access to the information and personnel the Provider reasonably requires.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S20"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F4",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Right: Provider",
+          "detail": "2.4 The Provider may amend the scope of the Services at any time in its sole discretion by posting an updated service description.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S21"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F5",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Customer",
+          "detail": "3.1 The Customer shall pay a monthly fee of EUR 18,500 for the Services, invoiced monthly in advance.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S22"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F6",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Customer",
+          "detail": "3.2 The Customer shall pay each invoice within 30 days of the date of the invoice.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S23"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F7",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Right: Provider",
+          "detail": "3.4 The Provider may increase the fees once per year by giving the Customer 30 days' written notice.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S25"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F8",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Right: Both parties",
+          "detail": "5.1 Either party may terminate this Agreement with immediate effect by written notice if the other party commits a material breach and fails to remedy it within thirty (30) days of being notified of the breach.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S30"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F9",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Right: Provider",
+          "detail": "5.2 The Provider may terminate this Agreement for convenience on sixty (60) days' written notice.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S31"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F10",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Restriction: Customer",
+          "detail": "The Customer may not terminate this Agreement for convenience.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S32"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F11",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Provider",
+          "detail": "5.3 On termination, the Provider shall make the Customer Data available for export for fourteen (14) days, after which the Provider may delete it.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S33"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F12",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Both parties",
+          "detail": "7.1 Each party shall keep the other party's confidential information confidential and use it only to perform this Agreement.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S35"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F13",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Both parties",
+          "detail": "8.1 To the extent the Provider processes personal data on behalf of the Customer, the parties shall enter into a data processing agreement complying with the GDPR.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S37"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F14",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Restriction: Both parties",
+          "detail": "9.2 Neither party shall be liable for indirect or consequential loss, including loss of profit or data.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S39"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F15",
+          "section": "obligation",
+          "layer": "deterministic",
+          "title": "Obligation: Customer",
+          "detail": "9.3 The Customer shall indemnify the Provider against any and all losses, claims and damages arising from the Customer's use of the Services.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S40"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F16",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Payment deadline: 30 days",
+          "detail": "3.2 The Customer shall pay each invoice within 30 days of the date of the invoice.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S23"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F17",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Renewal notice: twelve (12) months",
+          "detail": "4.2 After the initial term, this Agreement renews automatically for successive periods of twelve (12) months unless either party gives notice of non-renewal at least one hundred and eighty days before the end of the then-current term.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S27"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F18",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Renewal notice: 180 days",
+          "detail": "Notice of non-renewal must be given at least 180 days before the end of the term.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S28"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F19",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Termination notice: thirty (30) days",
+          "detail": "5.1 Either party may terminate this Agreement with immediate effect by written notice if the other party commits a material breach and fails to remedy it within thirty (30) days of being notified of the breach.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S30"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F20",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Termination notice: fourteen (14) days",
+          "detail": "5.3 On termination, the Provider shall make the Customer Data available for export for fourteen (14) days, after which the Provider may delete it.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S33"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F21",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Time limit: three (3) years",
+          "detail": "7.2 The obligations in this clause 7 continue for three (3) years after the end of this Agreement.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S36"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F22",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Time limit: three (3) months",
+          "detail": "9.1 The Provider's aggregate liability under this Agreement shall not exceed the fees paid by the Customer in the three (3) months before the claim.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S38"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F23",
+          "section": "deadline",
+          "layer": "deterministic",
+          "title": "Payment deadline: 45 days",
+          "detail": "Invoices under this Agreement are payable within 45 days of receipt.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S41"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F24",
+          "section": "renewal_termination",
+          "layer": "deterministic",
+          "title": "Automatic renewal",
+          "detail": "4.2 After the initial term, this Agreement renews automatically for successive periods of twelve (12) months unless either party gives notice of non-renewal at least one hundred and eighty days before the end of the then-current term.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S27"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F25",
+          "section": "renewal_termination",
+          "layer": "deterministic",
+          "title": "Termination",
+          "detail": "Termination",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S29"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F26",
+          "section": "renewal_termination",
+          "layer": "deterministic",
+          "title": "Termination for cause",
+          "detail": "5.1 Either party may terminate this Agreement with immediate effect by written notice if the other party commits a material breach and fails to remedy it within thirty (30) days of being notified of the breach.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S30"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F27",
+          "section": "renewal_termination",
+          "layer": "deterministic",
+          "title": "Termination for convenience",
+          "detail": "5.2 The Provider may terminate this Agreement for convenience on sixty (60) days' written notice.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S31"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F28",
+          "section": "renewal_termination",
+          "layer": "deterministic",
+          "title": "Termination for convenience",
+          "detail": "The Customer may not terminate this Agreement for convenience.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S32"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F29",
+          "section": "renewal_termination",
+          "layer": "deterministic",
+          "title": "Termination",
+          "detail": "5.3 On termination, the Provider shall make the Customer Data available for export for fourteen (14) days, after which the Provider may delete it.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S33"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F30",
+          "section": "payment",
+          "layer": "deterministic",
+          "title": "Clause 3: Payment",
+          "detail": "3.1 The Customer shall pay a monthly fee of EUR 18,500 for the Services, invoiced monthly in advance.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S22"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F31",
+          "section": "payment",
+          "layer": "deterministic",
+          "title": "Clause 10: Payment",
+          "detail": "Invoices under this Agreement are payable within 45 days of receipt.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S41"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F32",
+          "section": "liability",
+          "layer": "deterministic",
+          "title": "Clause 9: Limitation of liability",
+          "detail": "9.1 The Provider's aggregate liability under this Agreement shall not exceed the fees paid by the Customer in the three (3) months before the claim.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S38"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F33",
+          "section": "ip",
+          "layer": "deterministic",
+          "title": "Clause 6: Intellectual property",
+          "detail": "6.1 All intellectual property rights in the platform remain with the Provider.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S42"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F34",
+          "section": "confidentiality",
+          "layer": "deterministic",
+          "title": "Clause 7: Confidentiality",
+          "detail": "7.1 Each party shall keep the other party's confidential information confidential and use it only to perform this Agreement.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S35"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F35",
+          "section": "governing_law",
+          "layer": "deterministic",
+          "title": "Clause 11: Governing law",
+          "detail": "11.1 This Agreement shall be governed by the laws of Sweden.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S17"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F36",
+          "section": "dispute_resolution",
+          "layer": "deterministic",
+          "title": "Clause 11: Dispute resolution",
+          "detail": "11.2 Any dispute shall be finally settled by arbitration administered by the SCC Arbitration Institute, seated in Stockholm.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S43"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F37",
+          "section": "data_protection",
+          "layer": "deterministic",
+          "title": "Clause 8: Data protection",
+          "detail": "8.1 To the extent the Provider processes personal data on behalf of the Customer, the parties shall enter into a data processing agreement complying with the GDPR.",
+          "severity": null,
+          "requires_human_review": false,
+          "spans": [
+            "S37"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F38",
+          "section": "risk",
+          "layer": "deterministic",
+          "title": "Unilateral right to change terms",
+          "detail": "2.4 The Provider may amend the scope of the Services at any time in its sole discretion by posting an updated service description.",
+          "severity": "high",
+          "requires_human_review": true,
+          "spans": [
+            "S21"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F39",
+          "section": "risk",
+          "layer": "deterministic",
+          "title": "High late-payment interest",
+          "detail": "3.3 Late payments carry interest at 2% per month from the due date until payment is made.",
+          "severity": "medium",
+          "requires_human_review": true,
+          "spans": [
+            "S24"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F40",
+          "section": "risk",
+          "layer": "deterministic",
+          "title": "Long notice to stop automatic renewal",
+          "detail": "Notice of non-renewal must be given at least 180 days before the end of the term.",
+          "severity": "medium",
+          "requires_human_review": true,
+          "spans": [
+            "S28"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F41",
+          "section": "risk",
+          "layer": "deterministic",
+          "title": "Broad indemnity",
+          "detail": "9.3 The Customer shall indemnify the Provider against any and all losses, claims and damages arising from the Customer's use of the Services.",
+          "severity": "medium",
+          "requires_human_review": true,
+          "spans": [
+            "S40"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F42",
+          "section": "contradiction",
+          "layer": "deterministic",
+          "title": "Conflict: payment term",
+          "detail": "“3.2 The Customer shall pay each invoice within 30 days of the date of the invoice.” against “Invoices under this Agreement are payable within 45 days of receipt.”.",
+          "severity": "high",
+          "requires_human_review": true,
+          "spans": [
+            "S23",
+            "S41"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F43",
+          "section": "unusual",
+          "layer": "deterministic",
+          "title": "“Sole discretion” wording",
+          "detail": "2.4 The Provider may amend the scope of the Services at any time in its sole discretion by posting an updated service description.",
+          "severity": "low",
+          "requires_human_review": true,
+          "spans": [
+            "S21"
+          ],
+          "absence": null
+        },
+        {
+          "id": "F44",
+          "section": "unusual",
+          "layer": "deterministic",
+          "title": "Perpetual obligation or licence",
+          "detail": "6.2 The Customer grants the Provider a perpetual, irrevocable licence to use anonymised Customer Data to improve the Provider's services.",
+          "severity": "low",
+          "requires_human_review": true,
+          "spans": [
+            "S34"
+          ],
+          "absence": null
+        }
+      ],
+      "spans": [
+        {
+          "id": "S1",
+          "start": 0,
+          "end": 17,
+          "sha256": "bace9d6ba16eb534d55eb1da3fccc5e3699036c1b083de53ca89350609294559",
+          "quote": "SERVICE AGREEMENT"
+        },
+        {
+          "id": "S18",
+          "start": 707,
+          "end": 816,
+          "sha256": "d5aecb2ee208d55ab8e436c312bc1b69fc9760559412e6873fe7721376f2dc1a",
+          "quote": "2.1 The Provider shall provide the Services with reasonable skill and care and in accordance with Schedule 1."
+        },
+        {
+          "id": "S19",
+          "start": 817,
+          "end": 944,
+          "sha256": "5af6395d75576aed007b0d0c8d2428722195603f95c12b6ba04c9b339316ba45",
+          "quote": "2.2 The Provider shall make the platform available 99.5% of the time in each calendar month, measured as set out in Schedule 1."
+        },
+        {
+          "id": "S20",
+          "start": 945,
+          "end": 1074,
+          "sha256": "6f85f7965415ce6542dd6889c1c4cbebe20370361ad5a3746c95f0acea4f7126",
+          "quote": "2.3 The Customer shall provide the Provider with timely access to the information and personnel the Provider reasonably requires."
+        },
+        {
+          "id": "S21",
+          "start": 1075,
+          "end": 1205,
+          "sha256": "8a0ad1ae68bb522599810ed8c2e14315b221f957824c9d4d38bdb04603be46ec",
+          "quote": "2.4 The Provider may amend the scope of the Services at any time in its sole discretion by posting an updated service description."
+        },
+        {
+          "id": "S22",
+          "start": 1227,
+          "end": 1328,
+          "sha256": "3e70d8c6239a6fa458305ecfeb1163080f3c435eb546b3700f9d2eeeafae2cac",
+          "quote": "3.1 The Customer shall pay a monthly fee of EUR 18,500 for the Services, invoiced monthly in advance."
+        },
+        {
+          "id": "S23",
+          "start": 1329,
+          "end": 1411,
+          "sha256": "9b6b2ecc3e9f150b80d25410a15cb0fde7343a5e6823589306a093c44136fefe",
+          "quote": "3.2 The Customer shall pay each invoice within 30 days of the date of the invoice."
+        },
+        {
+          "id": "S24",
+          "start": 1412,
+          "end": 1501,
+          "sha256": "5687bc8fdac85911b74b33032bb23ecaf3df15d11d3de90304675141bfd8473f",
+          "quote": "3.3 Late payments carry interest at 2% per month from the due date until payment is made."
+        },
+        {
+          "id": "S25",
+          "start": 1502,
+          "end": 1602,
+          "sha256": "5c3746e30214c71317761548e77568cec221e5cfc256e43a9507842e53848892",
+          "quote": "3.4 The Provider may increase the fees once per year by giving the Customer 30 days' written notice."
+        },
+        {
+          "id": "S27",
+          "start": 1731,
+          "end": 1965,
+          "sha256": "b820efd705c8e610a3dc6823d7d3dfe4776fc37631df072c225d1a41f42ab004",
+          "quote": "4.2 After the initial term, this Agreement renews automatically for successive periods of twelve (12) months unless either party gives notice of non-renewal at least one hundred and eighty days before the end of the then-current term."
+        },
+        {
+          "id": "S28",
+          "start": 1966,
+          "end": 2047,
+          "sha256": "ee6794280d3527381f934cfe37a65ccc9e4b868afd6f57d93094290cc194674f",
+          "quote": "Notice of non-renewal must be given at least 180 days before the end of the term."
+        },
+        {
+          "id": "S29",
+          "start": 2052,
+          "end": 2063,
+          "sha256": "91c986e5ad111b1ebe9421be25f49347b9757ae42eaac357e6efbd44e8d10f7e",
+          "quote": "Termination"
+        },
+        {
+          "id": "S30",
+          "start": 2064,
+          "end": 2274,
+          "sha256": "5ac656899bd5d6876330390fcea07b5cba4f9c0a3770c6f575e463db82220ed8",
+          "quote": "5.1 Either party may terminate this Agreement with immediate effect by written notice if the other party commits a material breach and fails to remedy it within thirty (30) days of being notified of the breach."
+        },
+        {
+          "id": "S31",
+          "start": 2275,
+          "end": 2372,
+          "sha256": "20932f55d5a33389cb8e91c57e797450b32393fa460b2399a4ea18a1979a6a62",
+          "quote": "5.2 The Provider may terminate this Agreement for convenience on sixty (60) days' written notice."
+        },
+        {
+          "id": "S32",
+          "start": 2373,
+          "end": 2435,
+          "sha256": "e8dec8166e180f5824b6aa5778125374803709ed522591306600b6771475e312",
+          "quote": "The Customer may not terminate this Agreement for convenience."
+        },
+        {
+          "id": "S33",
+          "start": 2436,
+          "end": 2582,
+          "sha256": "6700030405a7411a265e498b5034e1eec9b92623a306d588c1fa54a770fb4c1f",
+          "quote": "5.3 On termination, the Provider shall make the Customer Data available for export for fourteen (14) days, after which the Provider may delete it."
+        },
+        {
+          "id": "S42",
+          "start": 2609,
+          "end": 2687,
+          "sha256": "f80ff43610cb8a4a0006a276cef1fbd211613e56ca4da2a59d7251d8c23467ed",
+          "quote": "6.1 All intellectual property rights in the platform remain with the Provider."
+        },
+        {
+          "id": "S34",
+          "start": 2688,
+          "end": 2825,
+          "sha256": "301b62d9cd09d937ea36a1dc5eb186d08a01bccf508c1287c03c6c0da1fd8de7",
+          "quote": "6.2 The Customer grants the Provider a perpetual, irrevocable licence to use anonymised Customer Data to improve the Provider's services."
+        },
+        {
+          "id": "S35",
+          "start": 2846,
+          "end": 2970,
+          "sha256": "716e0f7a6fbe65d8ebaaf47b08992b489a2bb7a4087fe7a08608e37a79827811",
+          "quote": "7.1 Each party shall keep the other party's confidential information confidential and use it only to perform this Agreement."
+        },
+        {
+          "id": "S36",
+          "start": 2971,
+          "end": 3069,
+          "sha256": "d1091f886a8973e189f8c5d8f4a4323691408f9dc2db535dc8450e86e526ae51",
+          "quote": "7.2 The obligations in this clause 7 continue for three (3) years after the end of this Agreement."
+        },
+        {
+          "id": "S37",
+          "start": 3090,
+          "end": 3253,
+          "sha256": "d807c09279cee4b2a681a4884db03818f427b6c8156189a44da04fd22a600445",
+          "quote": "8.1 To the extent the Provider processes personal data on behalf of the Customer, the parties shall enter into a data processing agreement complying with the GDPR."
+        },
+        {
+          "id": "S38",
+          "start": 3282,
+          "end": 3430,
+          "sha256": "a52a80f30e5f11a16bce8396494e7989981dc486792f64ab112eb7d8b34866cf",
+          "quote": "9.1 The Provider's aggregate liability under this Agreement shall not exceed the fees paid by the Customer in the three (3) months before the claim."
+        },
+        {
+          "id": "S39",
+          "start": 3431,
+          "end": 3534,
+          "sha256": "9c90cc2509950cc5014bba63bbc6fd145c207fbdfabdd524b8d938b4f60ecc35",
+          "quote": "9.2 Neither party shall be liable for indirect or consequential loss, including loss of profit or data."
+        },
+        {
+          "id": "S40",
+          "start": 3535,
+          "end": 3676,
+          "sha256": "5b7e735afe2da7221add789d0daa911f35dcf9c1fc79828254eddecb860ab708",
+          "quote": "9.3 The Customer shall indemnify the Provider against any and all losses, claims and damages arising from the Customer's use of the Services."
+        },
+        {
+          "id": "S41",
+          "start": 3699,
+          "end": 3767,
+          "sha256": "3087e5dbc54678cab847b5eb8b08e8475552e560df0fb686cb40067a2eec17b7",
+          "quote": "Invoices under this Agreement are payable within 45 days of receipt."
+        },
+        {
+          "id": "S17",
+          "start": 3800,
+          "end": 3860,
+          "sha256": "d8bc7be72414165ed7c129227082afb60a894d9d72af7f271cf6762932b6f4d0",
+          "quote": "11.1 This Agreement shall be governed by the laws of Sweden."
+        },
+        {
+          "id": "S43",
+          "start": 3861,
+          "end": 3985,
+          "sha256": "34c385724dbee6de794588f8cc50fd3796d146d799bdeb63fbb9dea4a52f7684",
+          "quote": "11.2 Any dispute shall be finally settled by arbitration administered by the SCC Arbitration Institute, seated in Stockholm."
+        }
+      ],
+      "proposer": {
+        "role": "proposer",
+        "uid": "uid-proposer",
+        "email": null
+      },
+      "reviewer": {
+        "role": "editor",
+        "uid": "uid-editor",
+        "email": "editor@example.test"
+      },
+      "timeline": {
+        "drafted_at": "2026-10-21T10:00:00Z",
+        "submitted_at": "2026-10-21T10:05:00Z",
+        "reviewed_at": "2026-10-21T10:30:00Z",
+        "issued_at": null
+      },
+      "review_note": "Checked the cited passages against the contract.",
+      "review_rule": "Two-person rule: a passport draft is proposed by one workspace member and approved or rejected by a different member holding the workspace role editor. Only an approved draft can be issued, and only the server signs it.",
+      "policy": {
+        "version": "am-passport-policy/1.0.0",
+        "sha256": "04920df9e970ddd3dd5abbd23386eca92d1c4970eeccde2262ad3501e2fe0d7f"
+      },
+      "supersedes": null,
+      "attests": [
+        "The bound Deep Analysis report (identified by its SHA-256 seal) existed in this form when the draft was created.",
+        "Each finding listed here cites spans whose quotes hash to the recorded SHA-256 values.",
+        "The analysis engine, the AI model and prompt version (if any) and the passport policy version that applied.",
+        "Who proposed and who reviewed the passport (account ids; email addresses only with consent) and when.",
+        "That the review followed the two-person rule, and the order of events in the audit trail."
+      ],
+      "does_not_attest": [
+        "That the findings, the rating or any conclusion are legally or factually correct.",
+        "That the document is complete, authentic or binding, or that any party agreed to it.",
+        "Legal validity, a qualified electronic signature, certification or approval by any authority.",
+        "The identity of a person beyond the sign-in account (no identity proofing)."
+      ],
+      "sources": [
+        {
+          "id": "report",
+          "title": "SERVICE AGREEMENT",
+          "filename": "sample-service-agreement.md",
+          "text_sha256": "81bbb729a46f5f7d05c753fd33b616f06944c569351002573273f6d0966c5429",
+          "sha256": "8260ed14b5b44627e134ed386912064d164e98a3dcac4543a4db84f3a3a5c3b1"
+        }
+      ],
+      "audit": [
+        {
+          "id": "au_0",
+          "change": "DRAFTED",
+          "entity": "PASSPORT:pd_test0001",
+          "actor": "uid-proposer",
+          "at": "2026-10-21T10:00:00.000Z",
+          "detail": "drafted"
+        },
+        {
+          "id": "au_1",
+          "change": "SUBMITTED",
+          "entity": "PASSPORT:pd_test0001",
+          "actor": "uid-proposer",
+          "at": "2026-10-21T10:05:00.000Z",
+          "detail": "submitted"
+        },
+        {
+          "id": "au_2",
+          "change": "APPROVED",
+          "entity": "PASSPORT:pd_test0001",
+          "actor": "uid-editor",
+          "at": "2026-10-21T10:30:00.000Z",
+          "detail": "approved"
+        }
+      ],
+      "versions": {
+        "ruleset": "am-passport-issuance/1"
+      },
+      "case": {
+        "id": "pd_test0001",
+        "version": "1",
+        "content_sha256": "ff3ede90b4c11983a5692c391afa501b3bfa300da54ab1bd90764a6ab9804119"
+      },
+      "engine": {
+        "version": "am-da-passport-1.0.0",
+        "sha256": "e4aeeaee88bf75c5fdab40971bd6fa5162fe4614afe326ddf0b067b22ce12d1e",
+        "source": "src/lib/passport/record/v1"
+      },
+      "limits": [
+        "A passport attests to process and evidence integrity, not to legal or factual correctness.",
+        "Span offsets point into the analysed text, which the passport does not carry; check them against the Deep Analysis bundle. Quotes are checked by hash.",
+        "Identities are Firebase Auth accounts of this workspace; the review is internal to the workspace, not an external attestation.",
+        "Not issued: this is a draft record. It carries no signature and has no standing as an issued passport."
+      ]
+    },
+    "report_markdown": "# Decision Passport (DRAFT, not issued): SERVICE AGREEMENT\n\n- Status: approved\n- Workspace: sample-tenant\n- Bound report: SHA-256 `345e8f6937d845a071fba06600dabe8bb117d09dfc3c866aabc2711d81be2237` (abrahammoses-deep-analysis/1.0.0, analysed 2026-10-21T09:00:00.000Z)\n- Document: sample-service-agreement.md, md, 4414 bytes, file SHA-256 `2a317bbeb1b49dbbe9b485603cffe99476162e8fb4aa803278b6c07749f4e054`, text SHA-256 `81bbb729a46f5f7d05c753fd33b616f06944c569351002573273f6d0966c5429`\n- Analysis engine: deep-analysis/1.0.0; AI layer not_configured\n- Proposed by: uid-proposer at 2026-10-21T10:00:00Z\n- Reviewed by: editor@example.test at 2026-10-21T10:30:00Z\n- Issued: not issued\n- Policy: am-passport-policy/1.0.0 (SHA-256 `04920df9e970ddd3dd5abbd23386eca92d1c4970eeccde2262ad3501e2fe0d7f`)\n- Record engine: am-da-passport-1.0.0, source SHA-256 `e4aeeaee88bf75c5fdab40971bd6fa5162fe4614afe326ddf0b067b22ce12d1e`\n\n## Outcome\n\nRating: significant_concerns; confidence: low.\n\nRule-based reading of a service agreement of 14 clauses between Halvard Data Systems AB (Provider) and Brightwater Retail Ltd (Customer). The rules flag 2 high and 3 medium items, 1 internal inconsistency and 0 standard terms not found. The most serious: unilateral right to change terms; conflict: payment term. This is a checklist reading, not a judgement of the bargain: it cannot weigh commercial context.\n\n## Findings\n\n1. [obligation, deterministic] Obligation: Provider (spans S18)\n2. [obligation, deterministic] Obligation: Provider (spans S19)\n3. [obligation, deterministic] Obligation: Customer (spans S20)\n4. [obligation, deterministic] Right: Provider (spans S21)\n5. [obligation, deterministic] Obligation: Customer (spans S22)\n6. [obligation, deterministic] Obligation: Customer (spans S23)\n7. [obligation, deterministic] Right: Provider (spans S25)\n8. [obligation, deterministic] Right: Both parties (spans S30)\n9. [obligation, deterministic] Right: Provider (spans S31)\n10. [obligation, deterministic] Restriction: Customer (spans S32)\n11. [obligation, deterministic] Obligation: Provider (spans S33)\n12. [obligation, deterministic] Obligation: Both parties (spans S35)\n13. [obligation, deterministic] Obligation: Both parties (spans S37)\n14. [obligation, deterministic] Restriction: Both parties (spans S39)\n15. [obligation, deterministic] Obligation: Customer (spans S40)\n16. [deadline, deterministic] Payment deadline: 30 days (spans S23)\n17. [deadline, deterministic] Renewal notice: twelve (12) months (spans S27)\n18. [deadline, deterministic] Renewal notice: 180 days (spans S28)\n19. [deadline, deterministic] Termination notice: thirty (30) days (spans S30)\n20. [deadline, deterministic] Termination notice: fourteen (14) days (spans S33)\n21. [deadline, deterministic] Time limit: three (3) years (spans S36)\n22. [deadline, deterministic] Time limit: three (3) months (spans S38)\n23. [deadline, deterministic] Payment deadline: 45 days (spans S41)\n24. [renewal_termination, deterministic] Automatic renewal (spans S27)\n25. [renewal_termination, deterministic] Termination (spans S29)\n26. [renewal_termination, deterministic] Termination for cause (spans S30)\n27. [renewal_termination, deterministic] Termination for convenience (spans S31)\n28. [renewal_termination, deterministic] Termination for convenience (spans S32)\n29. [renewal_termination, deterministic] Termination (spans S33)\n30. [payment, deterministic] Clause 3: Payment (spans S22)\n31. [payment, deterministic] Clause 10: Payment (spans S41)\n32. [liability, deterministic] Clause 9: Limitation of liability (spans S38)\n33. [ip, deterministic] Clause 6: Intellectual property (spans S42)\n34. [confidentiality, deterministic] Clause 7: Confidentiality (spans S35)\n35. [governing_law, deterministic] Clause 11: Governing law (spans S17)\n36. [dispute_resolution, deterministic] Clause 11: Dispute resolution (spans S43)\n37. [data_protection, deterministic] Clause 8: Data protection (spans S37)\n38. [risk, high, deterministic] Unilateral right to change terms (spans S21)\n39. [risk, medium, deterministic] High late-payment interest (spans S24)\n40. [risk, medium, deterministic] Long notice to stop automatic renewal (spans S28)\n41. [risk, medium, deterministic] Broad indemnity (spans S40)\n42. [contradiction, high, deterministic] Conflict: payment term (spans S23, S41)\n43. [unusual, low, deterministic] “Sole discretion” wording (spans S21)\n44. [unusual, low, deterministic] Perpetual obligation or licence (spans S34)\n\n## Spans\n\n- S1 [0, 17) SHA-256 `bace9d6ba16eb534…`: SERVICE AGREEMENT\n- S18 [707, 816) SHA-256 `d5aecb2ee208d55a…`: 2.1 The Provider shall provide the Services with reasonable skill and care and in accordance with Schedule 1.\n- S19 [817, 944) SHA-256 `5af6395d75576aed…`: 2.2 The Provider shall make the platform available 99.5% of the time in each calendar month, measured as set out in Schedule 1.\n- S20 [945, 1074) SHA-256 `6f85f7965415ce65…`: 2.3 The Customer shall provide the Provider with timely access to the information and personnel the Provider reasonably requires.\n- S21 [1075, 1205) SHA-256 `8a0ad1ae68bb5225…`: 2.4 The Provider may amend the scope of the Services at any time in its sole discretion by posting an updated service description.\n- S22 [1227, 1328) SHA-256 `3e70d8c6239a6fa4…`: 3.1 The Customer shall pay a monthly fee of EUR 18,500 for the Services, invoiced monthly in advance.\n- S23 [1329, 1411) SHA-256 `9b6b2ecc3e9f150b…`: 3.2 The Customer shall pay each invoice within 30 days of the date of the invoice.\n- S24 [1412, 1501) SHA-256 `5687bc8fdac85911…`: 3.3 Late payments carry interest at 2% per month from the due date until payment is made.\n- S25 [1502, 1602) SHA-256 `5c3746e30214c713…`: 3.4 The Provider may increase the fees once per year by giving the Customer 30 days' written notice.\n- S27 [1731, 1965) SHA-256 `b820efd705c8e610…`: 4.2 After the initial term, this Agreement renews automatically for successive periods of twelve (12) months unless either party gives notice of non-renewal at least one hundred and eighty days before the end of the then-current term.\n- S28 [1966, 2047) SHA-256 `ee6794280d352738…`: Notice of non-renewal must be given at least 180 days before the end of the term.\n- S29 [2052, 2063) SHA-256 `91c986e5ad111b1e…`: Termination\n- S30 [2064, 2274) SHA-256 `5ac656899bd5d687…`: 5.1 Either party may terminate this Agreement with immediate effect by written notice if the other party commits a material breach and fails to remedy it within thirty (30) days of being notified of the breach.\n- S31 [2275, 2372) SHA-256 `20932f55d5a33389…`: 5.2 The Provider may terminate this Agreement for convenience on sixty (60) days' written notice.\n- S32 [2373, 2435) SHA-256 `e8dec8166e180f58…`: The Customer may not terminate this Agreement for convenience.\n- S33 [2436, 2582) SHA-256 `6700030405a7411a…`: 5.3 On termination, the Provider shall make the Customer Data available for export for fourteen (14) days, after which the Provider may delete it.\n- S42 [2609, 2687) SHA-256 `f80ff43610cb8a4a…`: 6.1 All intellectual property rights in the platform remain with the Provider.\n- S34 [2688, 2825) SHA-256 `301b62d9cd09d937…`: 6.2 The Customer grants the Provider a perpetual, irrevocable licence to use anonymised Customer Data to improve the Provider's services.\n- S35 [2846, 2970) SHA-256 `716e0f7a6fbe65d8…`: 7.1 Each party shall keep the other party's confidential information confidential and use it only to perform this Agreement.\n- S36 [2971, 3069) SHA-256 `d1091f886a8973e1…`: 7.2 The obligations in this clause 7 continue for three (3) years after the end of this Agreement.\n- S37 [3090, 3253) SHA-256 `d807c09279cee4b2…`: 8.1 To the extent the Provider processes personal data on behalf of the Customer, the parties shall enter into a data processing agreement complying with the GDPR.\n- S38 [3282, 3430) SHA-256 `a52a80f30e5f11a1…`: 9.1 The Provider's aggregate liability under this Agreement shall not exceed the fees paid by the Customer in the three (3) months before the claim.\n- S39 [3431, 3534) SHA-256 `9c90cc2509950cc5…`: 9.2 Neither party shall be liable for indirect or consequential loss, including loss of profit or data.\n- S40 [3535, 3676) SHA-256 `5b7e735afe2da722…`: 9.3 The Customer shall indemnify the Provider against any and all losses, claims and damages arising from the Customer's use of the Services.\n- S41 [3699, 3767) SHA-256 `3087e5dbc54678ca…`: Invoices under this Agreement are payable within 45 days of receipt.\n- S17 [3800, 3860) SHA-256 `d8bc7be72414165e…`: 11.1 This Agreement shall be governed by the laws of Sweden.\n- S43 [3861, 3985) SHA-256 `34c385724dbee6de…`: 11.2 Any dispute shall be finally settled by arbitration administered by the SCC Arbitration Institute, seated in Stockholm.\n\n## What this passport attests\n\n- The bound Deep Analysis report (identified by its SHA-256 seal) existed in this form when the draft was created.\n- Each finding listed here cites spans whose quotes hash to the recorded SHA-256 values.\n- The analysis engine, the AI model and prompt version (if any) and the passport policy version that applied.\n- Who proposed and who reviewed the passport (account ids; email addresses only with consent) and when.\n- That the review followed the two-person rule, and the order of events in the audit trail.\n\n## What it does not attest\n\n- That the findings, the rating or any conclusion are legally or factually correct.\n- That the document is complete, authentic or binding, or that any party agreed to it.\n- Legal validity, a qualified electronic signature, certification or approval by any authority.\n- The identity of a person beyond the sign-in account (no identity proofing).\n\n## Audit trail\n\n- 2026-10-21T10:00:00.000Z DRAFTED PASSPORT:pd_test0001 by uid-proposer\n- 2026-10-21T10:05:00.000Z SUBMITTED PASSPORT:pd_test0001 by uid-proposer\n- 2026-10-21T10:30:00.000Z APPROVED PASSPORT:pd_test0001 by uid-editor\n",
+    "state": {
+      "v": "P1",
+      "k": "deep-analysis-passport",
+      "tenant": "sample-tenant",
+      "d": "pd_test0001",
+      "s": "approved",
+      "t": "2026-10-21T10:30:00Z",
+      "a": {}
+    },
+    "sources": {
+      "inventory": [
+        {
+          "id": "report",
+          "title": "SERVICE AGREEMENT",
+          "filename": "sample-service-agreement.md",
+          "text_sha256": "81bbb729a46f5f7d05c753fd33b616f06944c569351002573273f6d0966c5429",
+          "sha256": "8260ed14b5b44627e134ed386912064d164e98a3dcac4543a4db84f3a3a5c3b1"
+        }
+      ],
+      "documents": [
+        {
+          "id": "report",
+          "kind": "deep-analysis-report",
+          "title": "SERVICE AGREEMENT",
+          "report_sha256": "345e8f6937d845a071fba06600dabe8bb117d09dfc3c866aabc2711d81be2237",
+          "report_schema": "abrahammoses-deep-analysis/1.0.0",
+          "filename": "sample-service-agreement.md",
+          "format": "md",
+          "bytes": 4414,
+          "file_sha256": "2a317bbeb1b49dbbe9b485603cffe99476162e8fb4aa803278b6c07749f4e054",
+          "text_sha256": "81bbb729a46f5f7d05c753fd33b616f06944c569351002573273f6d0966c5429",
+          "chars": 4409,
+          "pages": null,
+          "extraction": "server",
+          "analysed_at": "2026-10-21T09:00:00.000Z"
+        }
+      ]
+    },
+    "release": {
+      "case_id": "pd_test0001",
+      "case_version": "1",
+      "case_archive_sha256": "ff3ede90b4c11983a5692c391afa501b3bfa300da54ab1bd90764a6ab9804119",
+      "ruleset": "am-passport-issuance/1",
+      "engine": {
+        "version": "am-da-passport-1.0.0",
+        "sha256": "e4aeeaee88bf75c5fdab40971bd6fa5162fe4614afe326ddf0b067b22ce12d1e",
+        "source": "src/lib/passport/record/v1"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "reviewer": {
+        "role": "editor",
+        "uid": "uid-editor",
+        "email": "editor@example.test"
+      },
+      "attestations": []
+    },
+    "crypto": {
+      "signature": null,
+      "algorithm": null,
+      "keys_url": "/.well-known/abrahammoses-passport-keys.json",
+      "keys": [
+        {
+          "kid": "ed25519-15f5ad068b350fb4",
+          "x": "f26AuRWi1_MYScDXP5AiKDg5WMLL2HP8EQnyBSUBZOE",
+          "status": "active",
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": null
+        },
+        {
+          "kid": "ed25519-5195fbf4afb33a47",
+          "x": "jfzJuOFuNCd7OYuvgNBN9E-thfao7r2n86UDVI2KycA",
+          "status": "retired",
+          "not_before": "2025-01-01T00:00:00Z",
+          "not_after": "2026-06-30T00:00:00Z"
+        },
+        {
+          "kid": "ed25519-11ed04c34d9bf14f",
+          "x": "C61_Olw-sbnR6mKPszkddu8TQDY-ZPhfLHwkQ3Ge0bg",
+          "status": "revoked",
+          "not_before": "2025-06-01T00:00:00Z",
+          "not_after": null,
+          "revoked_at": "2026-09-01T00:00:00Z"
+        },
+        {
+          "kid": "ed25519-7e933737ff72e02a",
+          "x": "qTCFePAqG-94PDWkzEaHPH9wuaQBhDS50E0N97ofpUE",
+          "status": "active",
+          "not_before": "2026-10-01T00:00:00Z",
+          "not_after": null
+        }
+      ]
+    }
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalization": "canonical-json/1: object keys sorted by UTF-16 code units, no whitespace, strings and numbers as ECMAScript JSON.stringify (RFC 8785 JCS-compatible for these values), undefined members omitted",
+    "passport_sha256": "bb9091b803515aa162afdbcdfd2fe942ff726cfe6b4d87d2666769d9f27ee03c",
+    "artifacts": {
+      "passport": "bb9091b803515aa162afdbcdfd2fe942ff726cfe6b4d87d2666769d9f27ee03c",
+      "report_markdown": "2edd5e992bec04164abf88088d0f31d39941bfcd0de94450cf43f272fe88eb49",
+      "state": "77fd6fe47af18750201aba53957501e9e0fbf6e9a1a3f92bba0eba6f49d6545f",
+      "sources": "389e5a35d45099d3c89afaa14f7db3d6d1af92a428bee935fd737f2ced3f2186",
+      "release": "cf1280f0d93114897dd900da1570690b285ba01a39e88066ce3dd3025f19a972",
+      "review": "492f9bdb9b921908779fb3479fcd2c8dadacc44c027a9171a699611a55d3701d",
+      "crypto": "4d34f2ecbddee5082dd1ade1122a6ff08b120a2f09f36104485347742c78581f"
+    }
+  }
+}

@@ -177,6 +177,13 @@
           "not_before": "2025-06-01T00:00:00Z",
           "not_after": null,
           "revoked_at": "2026-09-01T00:00:00Z"
+        },
+        {
+          "kid": "ed25519-7e933737ff72e02a",
+          "x": "qTCFePAqG-94PDWkzEaHPH9wuaQBhDS50E0N97ofpUE",
+          "status": "active",
+          "not_before": "2026-10-01T00:00:00Z",
+          "not_after": null
         }
       ]
     }
@@ -192,7 +199,7 @@
       "sources": "d33e275e6c685030f6f2add7019aa6a69e2aa58d3d3246961c8b45ec1b5667d5",
       "release": "6180b5ff01b4015cba6135dcda447d846b58837210c053f4acf241e1ad15830d",
       "review": "93e9a23951a3db303c2549398aae418fff36919f70b5afe62c2a1cdd0e87fd3c",
-      "crypto": "a65c9c45e29d26e9d8470dfae7cdf6fb33b0c079ca32d0942600ba4ef6f56668"
+      "crypto": "4d34f2ecbddee5082dd1ade1122a6ff08b120a2f09f36104485347742c78581f"
     }
   }
 }

@@ -144,6 +144,50 @@ bundles of this same schema, so both verifiers check them unchanged:
 `ref:review` compares status and reviewer **by value** (canonical JSON). The TypeScript verifier compared them by
 reference until this was found with the workspace fixture (an object reviewer); the Go verifier already compared by value.
 
+## 5b. Deep Analysis passports (record engine `am-da-passport-1.0.0`)
+
+A Deep Analysis report (`/institutional/workspace/deep-analysis`) can be turned into a passport inside a private
+workspace. Same bundle schema; both verifiers check it unchanged. Policy: `docs/PASSPORT_POLICY.md`.
+
+* Lifecycle: `draft` → `submitted` (by the proposer) → `approved` | `rejected` (by a different workspace editor) →
+  `issued` (by the proposer or the reviewer; signed on the server) → `revoked` (by an editor). Stored in
+  `tenants/{t}/passport_drafts/{id}`; each step is one commit with its audit event (`entityType: PASSPORT`).
+* At drafting the server re-verifies the Deep Analysis bundle (report seal, every span against the text) and keeps
+  only the *binding*: report seal and schema, document hashes (file name only with consent), analysis engine and AI
+  provider/model/prompt version, Final Statement rating and text, findings, and the cited spans with quotes and
+  SHA-256. No document text.
+* `state` = `{v: "P1", k: "deep-analysis-passport", tenant, d: <draft id>, s: <status>, t, a: {}}`; `t` is the issue
+  time once issued, otherwise the time of the last step. Only `issued` passports are signed; `issued_at == state.t`.
+* `passport` (format `deep-analysis-passport/1`): `subject`, `analysis_engine`, `outcome`, `findings`, `spans`,
+  `proposer` and `reviewer` (`{role, uid, email}`; email `null` without that person's consent), `timeline`,
+  `review_note`, `review_rule`, `policy {version, sha256}`, `supersedes`, `attests`, `does_not_attest`, `audit`
+  (the draft's events up to and including `ISSUED`), `versions.ruleset` `am-passport-issuance/1`,
+  `case {id: draft id, version "1", content_sha256}`, `engine`, `limits`.
+* `sources.documents` is one metadata record of the report (no text); `release.engine` is the frozen builder
+  `src/lib/passport/record/v1` (source hash pinned in `src/lib/decision/engines` and `conformance/engines.json`).
+* Rebuild: an issued passport is rebuilt from the stored draft, the audit ids recorded at issue and the stored
+  signature; the rebuilt hash must equal the registered hash.
+* Public registry `issued_passports/{sha}`: `{sha256, passportId, kind, tenant, draftId, kid, issuedAt,
+  signatureValue, engineVersion, policyVersion, supersedes}`. Readers must check `signatureValue` (the issuance
+  signature over `sha256`, `kid`, `issuedAt`) with the pinned keys: the database rules cannot check Ed25519, so an
+  entry written around the server is detected only by its signature. `POST /api/passport/verify` does this.
+* Revocations `passport_revocations/{sha}`: `{sha256, reason (superseded | withdrawn | error | key-compromise),
+  supersededBy, revokedAt, draftId, tenant}`. `GET /api/passport/revocations` serves them as a signed list:
+
+  ```
+  {object: "abrahammoses-passport-revocations", version: 1, generated_at, entries: [{passport_sha256, revoked_at,
+   reason, superseded_by}], list_sha256, signature: {alg, kid, issued_at (= generated_at), value} | null}
+  list_sha256 = SHA-256(canonical JSON of {object, version, generated_at, entries})
+  signed bytes = "AbrahamMoses revocation list v1\n" + list_sha256 + "\n" + kid + "\n" + issued_at
+  ```
+
+  Given a list (TS `revocations` option, Go `--revocations FILE`), verifiers add a `revocation` check: `fail` if the
+  passport hash is listed, `pass` if not listed in a validly signed list, `uncheckable` otherwise (unsigned, forged or
+  malformed list). Without a list there is no revocation check.
+* Conformance: `valid-da-passport-draft`, `tampered-da-passport-span` (deterministic, `scripts/da-passport-fixtures.ts`),
+  `valid-da-passport-issued`, `tampered-da-passport-finding` (signed with test key D, private half discarded) and the
+  revocation cases in `conformance/revocations.json`.
+
 ## 6. Limits (stated honestly)
 
 * **Unsigned bundles prove consistency, not origin.** Someone who edits an unsigned bundle and recomputes every hash
@@ -154,4 +198,6 @@ reference until this was found with the workspace fixture (an object reviewer); 
   frozen engine sources.
 * A redacted bundle cannot prove the source documents' content; it reports `source_documents` as uncheckable.
 * One production signing key exists (kid `ed25519-e31c2d82da92a114`); none has been revoked. Revocation is tested with test keys only.
+* A passport attests to process and evidence integrity, not to legal or factual correctness. It is not a qualified
+  electronic signature or seal.
 * No standard certification is claimed. See `docs/STANDARDS_MAPPING.md`.

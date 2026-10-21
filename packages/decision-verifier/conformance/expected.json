@@ -121,6 +121,24 @@
       "uncheckable": []
     },
     {
+      "name": "valid-da-passport-issued",
+      "description": "Deep Analysis passport, issued after two-person review, signed (test key)",
+      "result": "VALID",
+      "signature": "valid",
+      "failed": [],
+      "uncheckable": []
+    },
+    {
+      "name": "tampered-da-passport-finding",
+      "description": "Issued Deep Analysis passport: a finding edited and every hash recomputed; the signature no longer matches",
+      "result": "INVALID",
+      "signature": "invalid",
+      "failed": [
+        "signature"
+      ],
+      "uncheckable": []
+    },
+    {
       "name": "valid-workspace-decision",
       "description": "Workspace decision record (am-workspace-record-1.0.0), approved by a second person, unsigned",
       "result": "VALID",
@@ -131,6 +149,25 @@
     {
       "name": "tampered-workspace-conclusion",
       "description": "Workspace decision: conclusion edited after export, hashes not recomputed",
+      "result": "INVALID",
+      "signature": "unsigned",
+      "failed": [
+        "artifact_hash:passport",
+        "passport_hash"
+      ],
+      "uncheckable": []
+    },
+    {
+      "name": "valid-da-passport-draft",
+      "description": "Deep Analysis passport (am-da-passport-1.0.0), approved draft, unsigned",
+      "result": "VALID",
+      "signature": "unsigned",
+      "failed": [],
+      "uncheckable": []
+    },
+    {
+      "name": "tampered-da-passport-span",
+      "description": "Deep Analysis passport draft: a cited quote edited, hashes not recomputed",
       "result": "INVALID",
       "signature": "unsigned",
       "failed": [

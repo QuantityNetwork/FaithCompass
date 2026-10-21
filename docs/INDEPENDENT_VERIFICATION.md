@@ -16,9 +16,10 @@ Both implementations are run against the **same** files in `packages/decision-ve
 
 | File | Content |
 |---|---|
-| `fixtures/*.json` | 14 bundles (below; two are workspace decision records) |
+| `fixtures/*.json` | 18 bundles (below; two are workspace decision records, four are Deep Analysis passports) |
 | `expected.json` | expected result, signature state, failed and uncheckable checks per fixture (written by hand, not recorded from either verifier) |
-| `keys.json` | pinned public test keys A (active), B (retired, historical), C (revoked). Private halves were generated in memory by `scripts/passport-fixtures.ts` and discarded |
+| `keys.json` | pinned public test keys A (active), B (retired, historical), C (revoked), D (active, Deep Analysis fixtures). Private halves were generated in memory by `scripts/passport-fixtures.ts` / `scripts/da-passport-fixtures.ts` and discarded |
+| `revocations.json`, `revocations/*.json` | revocation-list cases: a signed list without the passport (pass), a signed list with it (fail), an unsigned list and a list signed by an unpinned key (both uncheckable) |
 | `engines.json` | pinned engine releases `dt-engine-1.0.0` (`9e4eae8a…9241`) and `dt-engine-1.1.0` (`cc226a98…8230`); a test asserts it equals the app registry |
 | `canonical-vectors.json` | 25 canonical-JSON vectors (key order by UTF-16 units, escapes, number formatting) |
 
@@ -27,7 +28,7 @@ Both implementations are run against the **same** files in `packages/decision-ve
 ```sh
 cd packages/decision-verifier
 GOPROXY=off go build -o decision-verifier .          # no network needed
-./decision-verifier --keys keys.json --engines engines.json [--expected-sha256 <hex>] bundle.json
+./decision-verifier --keys keys.json --engines engines.json [--expected-sha256 <hex>] [--revocations list.json] bundle.json
 ./decision-verifier --conformance conformance           # run the shared fixtures
 ```
 
@@ -62,13 +63,17 @@ result `VALID`, signature `unsigned`, 19 checks, 0 failed, 0 uncheckable, exit 0
 | revoked-key | INVALID (signed by revoked key C) | signature | – |
 | valid-workspace-decision | VALID (unsigned workspace record, engine am-workspace-record-1.0.0) | – | – |
 | tampered-workspace-conclusion | INVALID | artifact_hash:passport, passport_hash | – |
+| valid-da-passport-draft | VALID (approved Deep Analysis passport draft, unsigned, engine am-da-passport-1.0.0) | – | – |
+| tampered-da-passport-span | INVALID (a cited quote edited) | artifact_hash:passport, passport_hash | – |
+| valid-da-passport-issued | VALID (issued after two-person review, signed with test key D) | – | – |
+| tampered-da-passport-finding | INVALID (finding edited, every hash recomputed) | signature | – |
 
 Results:
 
 | Verifier | Fixtures as expected | Where |
 |---|---|---|
-| TypeScript (`src/lib/passport-bundle/verify.ts`, vitest `tests/passport-bundle.test.ts`) | 14 / 14 | local; CI job "Typecheck, unit, …" |
-| Go (`decision-verifier --conformance`) | 14 / 14 | local with `unshare -rn` (no network); CI job "Independent passport verifier" under `sudo unshare --net` |
+| TypeScript (`src/lib/passport-bundle/verify.ts`, vitest `tests/passport-bundle.test.ts`) | 18 / 18 | local; CI job "Typecheck, unit, …" |
+| Go (`decision-verifier --conformance`) | 18 / 18 | local with `unshare -rn` (no network); CI job "Independent passport verifier" under `sudo unshare --net` |
 | Canonical vectors | 25 / 25 in both | `go test`, vitest |
 
 Timings (local, per fixture, ~61 KB bundles): TypeScript median over fixtures 1.09 ms (each fixture the median of

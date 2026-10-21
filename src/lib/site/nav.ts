@@ -86,6 +86,7 @@ export const NAV_SECTIONS: NavSection[] = [
       { href: '/institutional', label: 'Institutional' },
       { href: '/institutional/decision-twin', label: 'Decision Twin (proposed)' },
       { href: '/institutional/decision-room', label: 'Decision Room (demo)' },
+      { href: '/institutional/decision-passport', label: 'Decision Passport' },
       { href: '/about', label: 'About and governance' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },

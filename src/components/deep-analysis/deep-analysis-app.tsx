@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { firebaseClientAvailable, freshAuthHeader, watchUser } from '@/lib/firebase/client';
 import type { Report } from '@/lib/deep-analysis/schema';
 import { ReportView } from './report-view';
+import { CreatePassportDraft } from '@/components/passport/create-draft';
 
 const SAMPLES = [
   { id: 'sample-service-agreement', file: 'sample-service-agreement.md', title: 'Service agreement' },
@@ -203,6 +204,7 @@ export function DeepAnalysisApp() {
 
       <div ref={top} />
       {result ? <ReportView report={result.report} recorded={result.recorded} onJson={() => download(`deep-analysis-${result.report.seal.reportSha256.slice(0, 12)}.bundle.json`, result.bundle)} /> : null}
+      {result && !result.recorded ? <CreatePassportDraft bundle={result.bundle} /> : null}
     </div>
   );
 }

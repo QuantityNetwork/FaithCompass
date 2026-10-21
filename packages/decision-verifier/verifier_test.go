@@ -46,3 +46,49 @@ func conformanceQuiet(dir string) int {
 	defer func() { os.Stdout = stdout }()
 	return conformance(dir)
 }
+
+func TestRevocationCases(t *testing.T) {
+	var keys struct{ Keys []PinnedKey }
+	var engines struct{ Engines []PinnedEngine }
+	var rc struct {
+		Cases []struct{ Fixture, List, Revocation, Result string }
+	}
+	for p, into := range map[string]any{"conformance/keys.json": &keys, "conformance/engines.json": &engines, "conformance/revocations.json": &rc} {
+		data, err := os.ReadFile(p)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := json.Unmarshal(data, into); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if len(rc.Cases) < 4 {
+		t.Fatalf("only %d revocation cases", len(rc.Cases))
+	}
+	for _, c := range rc.Cases {
+		b, err := loadBundle("conformance/fixtures/" + c.Fixture + ".json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		l, err := loadBundle("conformance/revocations/" + c.List + ".json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		r := Verify(b, Options{Keys: keys.Keys, Engines: engines.Engines, Revocations: l, HasRevocations: true})
+		got := ""
+		for _, ch := range r.Checks {
+			if ch.ID == "revocation" {
+				got = ch.Status
+			}
+		}
+		if got != c.Revocation || r.Result != c.Result {
+			t.Errorf("%s with %s: revocation %q result %s, want %q %s", c.Fixture, c.List, got, r.Result, c.Revocation, c.Result)
+		}
+		without := Verify(b, Options{Keys: keys.Keys, Engines: engines.Engines})
+		for _, ch := range without.Checks {
+			if ch.ID == "revocation" {
+				t.Errorf("revocation check present without a list")
+			}
+		}
+	}
+}
