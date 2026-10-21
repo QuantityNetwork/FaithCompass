@@ -159,9 +159,10 @@ export default function DecisionTwinPage() {
             </h2>
           </div>
           <p>
-            AbrahamMoses Scholarly is the public research record on this site. Sagolik Institutional, the proposed home of the
-            Decision Twin, would hold confidential data under governance, simulations, controlled integrations and contractual
-            service levels. They would share technology but keep access, data and editorial responsibility separate; religious
+            AbrahamMoses Scholarly is the public research record on this site. Sagolik Institutional, the home of the Decision
+            Twin, holds the private workspaces of named members under governance; controlled integrations and contractual service
+            levels are agreed with each customer in writing. The two share technology but keep access, data and editorial
+            responsibility separate; religious
             research can be sensitive, so public and institutional workspaces stay apart.{' '}
             <Link href="/institutional#decision-room">More on the difference</Link>.
           </p>

@@ -577,7 +577,7 @@ describe('decision room', () => {
     await p.goto(`${base}/institutional/decision-twin`);
     await expect(p.getByRole('img', { name: /AbrahamMoses Decision Twin/ }).first().isVisible()).resolves.toBe(true);
     const text = (await p.locator('main').textContent())!;
-    expect(text).toContain('Public institutional demonstration ready — private client onboarding not authorized');
+    expect(text).toContain('Private workspaces available to named members — no customers yet, and client data only under a written agreement');
     expect(text).toContain('Evidence informs. Humans decide. The system preserves the reasoning.');
     expect(text).toMatch(/not a binding decision, an audit opinion, a regulatory approval or a certification/);
     const contact = process.env.ABRAHAMMOSES_CONTACT || 'markus@sagolik.com';
