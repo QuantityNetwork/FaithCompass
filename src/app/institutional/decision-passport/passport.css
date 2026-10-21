@@ -114,5 +114,3 @@
   .dp-section { break-inside: avoid-page; }
 }
 
-/* Long file paths and identifiers in table cells wrap instead of widening the table past a phone screen. */
-.dp-table a, .dp-table th { overflow-wrap: anywhere; }

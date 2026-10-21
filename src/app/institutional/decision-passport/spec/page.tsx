@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import type { Metadata } from 'next';
 import { ENGINES } from '@/lib/decision/engines';
 import { FORMAT, RULESET } from '@/lib/passport/record/v1/build';
@@ -26,7 +27,7 @@ export default function SpecPage() {
       </Intro>
       <Section n={1} id="docs" title="Documents">
         <table className="dp-table">
-          <tbody>{DOCS.map(([f, t]) => <tr key={f}><th scope="row"><a href={`${GITHUB}/${f}`}>{f}</a></th><td>{t}</td></tr>)}</tbody>
+          <tbody>{DOCS.map(([f, t]) => <tr key={f}><th scope="row"><a href={`${GITHUB}/${f}`}>{f.split('/').map((seg, i, all) => <Fragment key={i}>{seg}{i < all.length - 1 ? <>/<wbr /></> : null}</Fragment>)}</a></th><td>{t}</td></tr>)}</tbody>
         </table>
       </Section>
       <Section n={2} id="da" title="Deep Analysis passports (§5b)">
