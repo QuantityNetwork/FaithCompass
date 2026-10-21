@@ -76,6 +76,46 @@ Nothing was written to Firestore and no Auth account was created during the live
 * Preview gate: writes allowed only for `WORKSPACE_PREVIEW_WRITE_TENANTS=am-e2e-a,am-e2e-b` (branch-scoped Preview
   env on `evidence-workflow`; ids not starting with `am-e2e-` are never honoured). Production is not affected.
 
+### D. Production, 2026-10-21 from 12:13 CEST: first real account (Google)
+
+Production deployment `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (commit e3d876a, PR #25 "Sign in with Google").
+
+* **Account.** The owner signed in with Google on https://abrahammoses.com/institutional/workspace/sign-in.
+  `firebase auth:export` (CLI as markus@sagolik.com, export file deleted after use): 1 account, `markus@sagolik.com`,
+  provider `google.com`, email verified, created 12:12:52 CEST, no claims.
+* **Roles (12:14 CEST).** `scripts/workspace-claims.mjs … --email markus@sagolik.com --tenant am-e2e-a=member
+  --tenant am-e2e-b=member`, then `firebase auth:import` (only that account; provider kept). Re-export shows
+  `{"am_tenants":{"am-e2e-a":"member","am-e2e-b":"member"}}`, no `am_role`. He is not an editor anywhere, so he can
+  import, propose and export but cannot approve, his own decision or anyone else's. The workspaces need no setup
+  document: a workspace exists for whoever holds a role in it (`tenants/{t}` is not client-writable).
+* **Email link** is still off (`OPERATION_NOT_ALLOWED`, 11:45 CEST); Google is the working sign-in.
+* **Anonymous sign-in** (enabled in the console) is refused everywhere: a real anonymous token got 401
+  `INVALID_TOKEN` on every workspace route, 401 on the evidence write routes and Firestore 403 on all eight rule
+  paths tried; the test user was deleted (11:45 CEST).
+
+**Owner run, 12:19 CEST** (Google account, browser, production): reload, one import, one proposal.
+**Reviewer run, 12:32 CEST**: thefirstblockchain@gmail.com signed in with Google, was granted `am-e2e-a: editor`
+(12:29 CEST; owner kept as member), reloaded, and approved the pending decision.
+
+Everything else was checked by the operator without either person's token: reads with the Firebase CLI as
+markus@sagolik.com (read-only `runQuery` / `listCollectionIds` through the CLI's own authenticated client; no token
+handled or printed), the export rebuilt on the box from the stored data with the export API's code path, and the Go
+verifier offline. Test data then deleted (owner-approved after the run).
+
+| Step | Result | Observed |
+|---|---|---|
+| 1 Authentication | **PASS** | Owner `markus@sagolik.com` (uid `1Zaq3X…`), roles `am-e2e-a: member`, `am-e2e-b: member`; reviewer `thefirstblockchain@gmail.com` (uid `tXx8qP…`), role `am-e2e-a: editor` |
+| 2 Import | **PASS** | `tenants/am-e2e-a/documents/doc_W8Hq4vCR17_5Ej1MVQVk`, 10:19:22Z: 26,408-byte file, 15 passages, file SHA-256 `2a1a0447…1682`, text SHA-256 `61ca913e…2663` (recomputed from stored text: equal); `importedBy` = owner; audit `IMPORTED` in the same commit |
+| 3 Persistent decision | **PASS** | `dec_mEGJPVQHGUWQhNjNoYZa`, proposed 10:19:53Z by owner, 1 citation; later approved (below) |
+| 4a Self-approval refused | **not exercised live** | proposer holds no editor role (page shows no Approve; route 403; rules require `isTenantEditor` and `proposedBy != uid`). Covered by the emulator suite (section A) |
+| 4b Two-person approval | **PASS** | Decision `status: approved` at 10:31:58Z; `decidedBy` = reviewer uid (`tXx8qP…`), ≠ `proposedBy` (owner); `decidedByEmail` = thefirstblockchain@gmail.com; review note `"Test"`; audit `aud_DP4kAITLoJJ0SUl_FFAK` `APPROVED` by the reviewer, same commit as the decision update. Chain: IMPORTED → PROPOSED → APPROVED |
+| 5 Isolation (data level) | **PASS** | `tenants/am-e2e-b` empty throughout; nothing outside `tenants/`. Cross-tenant reads refused by the rules (emulator) and, live, an anonymous token got Firestore 403 reading `tenants/am-e2e-a/documents` |
+| 6 Export, Go verifier offline | **PASS** (unsigned rebuild) | Proposed-state digest `148e122530cf…2f69` (VALID, earlier). After approval: rebuild from stored decision + cited document + audit (IMPORTED, PROPOSED, APPROVED) with `buildWorkspaceBundle` → `passport_sha256` `9251705cbde2df5b103ceff2c2341d68c126e960f8218958e016eed70ac8cc35`. `decision-verifier` under `unshare -rn` with `--expected-sha256 9251705c…`: **VALID**, 19/19 checks, signature `unsigned`, engine `am-workspace-record-1.0.0` pinned; reviewer id and email present in the review artifact. Digest independent of the signing key (same digest with an ephemeral in-memory key). No export was written to production (`passports` empty) |
+| 7 Retrieval | **PASS** (reload + same deployment) | Written under `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (latest throughout the run); survived owner reload; read back unchanged after approval. **Not** repeated after a *new* production deployment (none was made between write and clean-up); durability across deploys therefore rests on Firestore persistence plus the same-deployment re-reads |
+| Clean-up | **DONE** (after step 4b) | `firebase firestore:delete tenants/am-e2e-a --recursive` and `tenants/am-e2e-b`; test-workspace claims removed from both accounts; sensitive rebuilt bundles deleted from `/workspace/out/e2e/`. Read-back: both tenants absent / empty; claims empty of `am-e2e-*` |
+
+Non-sensitive summary kept: digests `148e1225…2f69` (proposed) and `9251705c…cc35` (approved), both VALID offline; actors by email only; business document content not retained.
+
 ## Why the live steps are blocked, and the minimal owner actions
 
 1. **Enable Email link sign-in.** Firebase console → Authentication → Sign-in method → Email/Password → turn on
