@@ -312,6 +312,15 @@ textarea:focus-visible {
   white-space: nowrap;
   transition: border-color 0.15s, background 0.15s;
 }
+/* Long button labels wrap on narrow screens instead of widening the page. */
+@media (max-width: 600px) {
+  .am-btn {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+  }
+}
 .am-btn:hover {
   border-color: var(--accent);
   color: var(--gold-bright);

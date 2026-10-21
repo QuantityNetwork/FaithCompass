@@ -40,7 +40,8 @@ export default async function ProvenanceReport({ params, searchParams }: Props) 
       <h1 className="display" style={{ fontSize: 30 }}>
         {view.statement}
       </h1>
-      <table className="table" style={{ marginTop: 20 }}>
+      <div className="table-wrap" style={{ marginTop: 20 }}>
+      <table className="table">
         <tbody>
           <tr>
             <th scope="row">Claim</th>
@@ -96,6 +97,7 @@ export default async function ProvenanceReport({ params, searchParams }: Props) 
           </tr>
         </tbody>
       </table>
+      </div>
 
       <h2 className="subheading section--tight">Confidence</h2>
       <ConfidenceAxes confidence={view.confidence} />
