@@ -6,7 +6,7 @@
  * Loaded lazily, only when a feature needs it, so pages that do not sign in ship no Firebase code.
  */
 import { REDIRECT_CODES } from './google';
-import { errorCode, sendWithContinueFallback, type SendOutcome } from './verification';
+import { authorizedDomains, errorCode, sendWithContinueFallback, type SendOutcome } from './verification';
 import { firebaseWebConfig } from './web-config';
 
 type Sdk = {
@@ -62,6 +62,12 @@ export async function signInWithEmail(email: string, password: string): Promise<
   return (await signInWithEmailAndPassword(auth, email, password)).user.uid;
 }
 
+/** Authorised domains for the continue-URL check; none when running against the local emulator. */
+async function domainsFor(auth: import('firebase/auth').Auth): Promise<string[] | null> {
+  if (localEmulators()) return null;
+  return authorizedDomains(auth.app.options.apiKey ?? '');
+}
+
 /**
  * Email/Password registration. Creates the account, then sends the verification email (the AI layer needs a verified
  * address). The account exists even if the email cannot be sent, so a send failure is returned, not thrown: the
@@ -76,7 +82,7 @@ export async function registerWithEmail(
   const { createUserWithEmailAndPassword, sendEmailVerification } = await import('firebase/auth');
   const cred = await createUserWithEmailAndPassword(auth, email, password);
   try {
-    const verification = await sendWithContinueFallback((s) => sendEmailVerification(cred.user, s ?? null), continueUrl);
+    const verification = await sendWithContinueFallback((s) => sendEmailVerification(cred.user, s ?? null), continueUrl, await domainsFor(auth));
     return { uid: cred.user.uid, verification };
   } catch (e) {
     return { uid: cred.user.uid, verification: 'failed', code: errorCode(e) };
@@ -89,7 +95,7 @@ export async function resendVerification(continueUrl: string): Promise<SendOutco
   const { sendEmailVerification } = await import('firebase/auth');
   const u = auth.currentUser;
   if (!u) throw Object.assign(new Error('signed out'), { code: 'auth/no-current-user' });
-  return sendWithContinueFallback((s) => sendEmailVerification(u, s ?? null), continueUrl);
+  return sendWithContinueFallback((s) => sendEmailVerification(u, s ?? null), continueUrl, await domainsFor(auth));
 }
 
 /** Password-reset email. Resolves the same whether or not the account exists, so callers reveal nothing. */
@@ -97,7 +103,7 @@ export async function sendPasswordReset(email: string, continueUrl: string): Pro
   const { auth } = await firebaseClient();
   const { sendPasswordResetEmail } = await import('firebase/auth');
   try {
-    await sendWithContinueFallback((s) => sendPasswordResetEmail(auth, email, s), continueUrl);
+    await sendWithContinueFallback((s) => sendPasswordResetEmail(auth, email, s), continueUrl, await domainsFor(auth));
   } catch (e) {
     if (errorCode(e) !== 'auth/user-not-found') throw e;
   }

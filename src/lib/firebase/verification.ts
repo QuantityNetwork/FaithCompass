@@ -4,9 +4,9 @@
  * Firebase only accepts a continue URL (the "return to the site" link in the email) on a domain in the project's
  * authorised-domains list, and that list is matched exactly as entered. If the site's domain is missing or entered
  * differently (on 2026-10-21 the list held "AbrahamMoses.com", and Firebase refused https://abrahammoses.com with
- * UNAUTHORIZED_DOMAIN), the SDK throws auth/unauthorized-continue-uri and **no email is sent**. We then send the email
- * again without a continue URL: the link opens Firebase's own confirmation page, and the user returns to the site
- * themselves. The email always goes out; only the convenience link is lost.
+ * UNAUTHORIZED_DOMAIN), the SDK throws auth/unauthorized-continue-uri and **no email is sent**. We then send without a
+ * continue URL: the link opens Firebase's own confirmation page, and the user returns to the site themselves. The
+ * email goes out; only the convenience link is lost.
  */
 
 export type ContinueSettings = { url: string };
@@ -20,12 +20,62 @@ export function errorCode(e: unknown): string {
   return (e as { code?: string } | null)?.code ?? '';
 }
 
-export async function sendWithContinueFallback(send: (settings?: ContinueSettings) => Promise<void>, continueUrl: string): Promise<SendOutcome> {
+/**
+ * Firebase counts a refused request against the per-user email rate limit, so a retry straight after a refusal is
+ * itself refused (TOO_MANY_ATTEMPTS_TRY_LATER, seen on production 2026-10-21). We therefore check the project's
+ * authorised domains first, and use the continue URL only when its host is on the list exactly as entered. If the
+ * list cannot be read, the email goes without a continue URL. A refusal is remembered for the page's lifetime.
+ */
+let continueRefused = false;
+
+/** Tests only. */
+export function resetContinueRefusal(): void {
+  continueRefused = false;
+}
+
+/** True when Firebase will accept this continue URL: its host is on the authorised-domains list, exactly. */
+export function continueUrlAllowed(continueUrl: string, domains: readonly string[] | null): boolean {
+  if (!domains) return false;
+  try {
+    return domains.includes(new URL(continueUrl).hostname);
+  } catch {
+    return false;
+  }
+}
+
+let domainsCache: Promise<string[] | null> | null = null;
+
+/** The project's authorised domains, from the public project config (readable with the web API key). Null on failure. */
+export function authorizedDomains(apiKey: string, fetchImpl: typeof fetch = fetch): Promise<string[] | null> {
+  domainsCache ??= fetchImpl(`https://identitytoolkit.googleapis.com/v1/projects?key=${encodeURIComponent(apiKey)}`)
+    .then(async (r) => {
+      if (!r.ok) return null;
+      const j = (await r.json()) as { authorizedDomains?: unknown };
+      return Array.isArray(j.authorizedDomains) ? j.authorizedDomains.filter((d): d is string => typeof d === 'string') : null;
+    })
+    .catch(() => null)
+    .then((d) => {
+      if (!d) domainsCache = null;
+      return d;
+    });
+  return domainsCache;
+}
+
+export async function sendWithContinueFallback(
+  send: (settings?: ContinueSettings) => Promise<void>,
+  continueUrl: string,
+  domains: readonly string[] | null,
+): Promise<SendOutcome> {
+  if (continueRefused || !continueUrlAllowed(continueUrl, domains)) {
+    await send();
+    return 'no-return-link';
+  }
   try {
     await send({ url: continueUrl });
     return 'return-link';
   } catch (e) {
     if (!CONTINUE_URL_REFUSED.includes(errorCode(e))) throw e;
+    continueRefused = true;
   }
   await send();
   return 'no-return-link';

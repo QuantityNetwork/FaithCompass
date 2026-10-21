@@ -16,9 +16,14 @@ Email/password sign-ups on abrahammoses.com received no verification email.
 
 ## Code fix
 
-`src/lib/firebase/verification.ts`: if Firebase refuses the continue URL, the email is sent again without it (the
-link opens Firebase's own confirmation page). Registration reports a send failure instead of throwing, and the
-signed-in view shows the outcome, the sender address, a spam-folder hint and "Send the link again".
+`src/lib/firebase/verification.ts`. Before sending, the client reads the project's authorised domains from the
+public project config and passes the continue URL only when the site's host is on the list exactly. Otherwise the
+email goes without a continue URL, and the link opens Firebase's own confirmation page.
+
+A first version (PR #35) retried without the URL after a refusal. On production, Firebase rejected that retry with
+`TOO_MANY_ATTEMPTS_TRY_LATER`, because the refused request counts against the per-user limit; the follow-up (PR #36)
+checks first. Registration reports a send failure instead of throwing. The signed-in view shows the outcome, the
+sender address, a spam-folder hint and "Send the link again".
 
 ## Owner steps (Firebase console)
 
