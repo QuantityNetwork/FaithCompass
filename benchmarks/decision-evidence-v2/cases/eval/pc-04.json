@@ -1,0 +1,376 @@
+{
+  "id": "pc-04",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Thornbury Energy: private credit review (fictional)",
+  "entity": "Thornbury Energy",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Thornbury Energy (fictional, authored test material).\nThornbury Energy had cash on balance sheet of NZD 13.3m in FY2025 (reported basis). For Thornbury Energy, recurring revenue share in FY2024 was 78.2%. Free cash flow at Thornbury Energy stood at $47800k in FY2024 (reported basis). Thornbury Energy had debt service cover ratio of 2.798x in FY2025. The covenant cure mechanism for Thornbury Energy is understood as follows: cure by equity injection counted as EBITDA."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Thornbury Energy (fictional, authored test material).\nThornbury Limited had operating expenses of $267.6m in FY2025 (reported basis). For Thornbury Energy, gross debt in FY2025 was approximately $484m (reported basis). Recurring revenue share at Thornbury Energy stood at 78.435% in FY2024. Thornbury Energy had free cash flow of $47.8m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Thornbury Energy (fictional, authored test material).\nThornbury Energy had cash on balance sheet of NZD 17.2 million in FY2025 (reported basis). For Thornbury Ltd, operating expenses in FY2025 was $339.2m (reported basis). Gross debt at Thornbury Energy stood at $387.3m in FY2025 (reported basis). Thornbury Energy had debt service cover ratio of 2.79x in FY2025. The covenant cure mechanism for Thornbury Energy is understood as follows: cure by equity injection counted only as debt reduction."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 77,
+      "end": 160,
+      "text": "Thornbury Energy had cash on balance sheet of NZD 13.3m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 161,
+      "end": 227,
+      "text": "For Thornbury Energy, recurring revenue share in FY2024 was 78.2%."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 228,
+      "end": 307,
+      "text": "Free cash flow at Thornbury Energy stood at $47800k in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 308,
+      "end": 374,
+      "text": "Thornbury Energy had debt service cover ratio of 2.798x in FY2025."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 375,
+      "end": 493,
+      "text": "The covenant cure mechanism for Thornbury Energy is understood as follows: cure by equity injection counted as EBITDA."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 79,
+      "end": 158,
+      "text": "Thornbury Limited had operating expenses of $267.6m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 159,
+      "end": 243,
+      "text": "For Thornbury Energy, gross debt in FY2025 was approximately $484m (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 244,
+      "end": 315,
+      "text": "Recurring revenue share at Thornbury Energy stood at 78.435% in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 316,
+      "end": 389,
+      "text": "Thornbury Energy had free cash flow of $47.8m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 83,
+      "end": 173,
+      "text": "Thornbury Energy had cash on balance sheet of NZD 17.2 million in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 174,
+      "end": 251,
+      "text": "For Thornbury Ltd, operating expenses in FY2025 was $339.2m (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 252,
+      "end": 327,
+      "text": "Gross debt at Thornbury Energy stood at $387.3m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 328,
+      "end": 393,
+      "text": "Thornbury Energy had debt service cover ratio of 2.79x in FY2025."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 394,
+      "end": 525,
+      "text": "The covenant cure mechanism for Thornbury Energy is understood as follows: cure by equity injection counted only as debt reduction."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Thornbury Energy",
+      "concept": "cash_balance",
+      "value": 13.3,
+      "unit": "NZD m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Thornbury Energy",
+      "concept": "recurring_revenue_share",
+      "value": 78.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Thornbury Energy",
+      "concept": "free_cash_flow",
+      "value": 47800,
+      "unit": "$k",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Thornbury Energy",
+      "concept": "dscr",
+      "value": 2.798,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Thornbury Energy",
+      "concept": "cure_period",
+      "value": "cure by equity injection counted as EBITDA",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Thornbury Limited",
+      "concept": "opex",
+      "value": 267.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Thornbury Energy",
+      "concept": "gross_debt",
+      "value": 484,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Thornbury Energy",
+      "concept": "recurring_revenue_share",
+      "value": 78.435,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Thornbury Energy",
+      "concept": "free_cash_flow",
+      "value": 47.8,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Thornbury Energy",
+      "concept": "cash_balance",
+      "value": 17.2,
+      "unit": "NZD million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Thornbury Ltd",
+      "concept": "opex",
+      "value": 339.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Thornbury Energy",
+      "concept": "gross_debt",
+      "value": 387.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Thornbury Energy",
+      "concept": "dscr",
+      "value": 2.79,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Thornbury Energy",
+      "concept": "cure_period",
+      "value": "cure by equity injection counted only as debt reduction",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Cash on balance sheet and Operating expenses of Thornbury Energy are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Gross debt and Recurring revenue share of Thornbury Energy are adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D3#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_unlisted",
+        "note": "\"NZD million\" and \"NZD m\" are the same unit (a currency outside the deterministic unit table)"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale_bn",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D1#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D3#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "cash on balance sheet",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "operating expenses",
+          "acceptable": [
+            "D2#s1",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "gross debt",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "recurring revenue share",
+          "acceptable": [
+            "D1#s2",
+            "D2#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D2#s1",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s2",
+        "D2#s2",
+        "D2#s3",
+        "D3#s3"
+      ]
+    }
+  }
+}

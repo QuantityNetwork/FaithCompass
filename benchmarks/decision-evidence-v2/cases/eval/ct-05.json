@@ -1,0 +1,377 @@
+{
+  "id": "ct-05",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ferrovane Software: contract review (fictional)",
+  "entity": "Ferrovane Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Framework agreement",
+      "text": "Framework agreement: Ferrovane Software (fictional, authored test material).\nThroughout the documents of this review, the Supplier means Ferrovane Software. For Ferrovane Software, warranty period in FY2024 was 11 months (reported basis). Payment terms at Ferrovane Software stood at 71 days. Delay penalty cap of Ferrovane Software in FY2025: to be confirmed; not included in this document. For Ferrovane Software, annual service charges in FY2024 was SEK 30.3m (reported basis)."
+    },
+    {
+      "id": "D2",
+      "title": "Change order",
+      "text": "Change order: Ferrovane Software (fictional, authored test material).\nFor Ferrovane Software, volume rebate with effect from 1 Jan 2025 was 6.8%. Total contract value at Ferrovane Software stood at SEK 249.4m in FY2025 (reported basis). Ferrovane Software had warranty period of 14 months in FY2024 (pro forma (including the planned acquisition) basis). For Ferrovane Software, payment terms in FY2025 was 55 days. As to Ferrovane Software, the exclusivity is: the supplier is the exclusive provider for the term."
+    },
+    {
+      "id": "D3",
+      "title": "Procurement evaluation note",
+      "text": "Procurement evaluation note: Ferrovane Software (fictional, authored test material).\nFor Ferrovane Software, volume rebate with effect from 1 Jul 2025 was 8.8%. Total contract value at Ferrovane Software stood at SEK 287.2m in FY2025 (reported basis). Ferrovane Software had delay penalty cap of 5.3% in FY2025. For the Supplier, annual service charges in FY2024 was SEK 25.9m (reported basis). As to Ferrovane Software, the exclusivity is: the customer may appoint other providers at any time."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 157,
+      "end": 238,
+      "text": "For Ferrovane Software, warranty period in FY2024 was 11 months (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 239,
+      "end": 292,
+      "text": "Payment terms at Ferrovane Software stood at 71 days."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 293,
+      "end": 391,
+      "text": "Delay penalty cap of Ferrovane Software in FY2025: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 392,
+      "end": 480,
+      "text": "For Ferrovane Software, annual service charges in FY2024 was SEK 30.3m (reported basis)."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 70,
+      "end": 145,
+      "text": "For Ferrovane Software, volume rebate with effect from 1 Jan 2025 was 6.8%."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 146,
+      "end": 236,
+      "text": "Total contract value at Ferrovane Software stood at SEK 249.4m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 237,
+      "end": 353,
+      "text": "Ferrovane Software had warranty period of 14 months in FY2024 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 354,
+      "end": 414,
+      "text": "For Ferrovane Software, payment terms in FY2025 was 55 days."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 415,
+      "end": 513,
+      "text": "As to Ferrovane Software, the exclusivity is: the supplier is the exclusive provider for the term."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 85,
+      "end": 160,
+      "text": "For Ferrovane Software, volume rebate with effect from 1 Jul 2025 was 8.8%."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 161,
+      "end": 251,
+      "text": "Total contract value at Ferrovane Software stood at SEK 287.2m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 252,
+      "end": 311,
+      "text": "Ferrovane Software had delay penalty cap of 5.3% in FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 312,
+      "end": 394,
+      "text": "For the Supplier, annual service charges in FY2024 was SEK 25.9m (reported basis)."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 395,
+      "end": 494,
+      "text": "As to Ferrovane Software, the exclusivity is: the customer may appoint other providers at any time."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ferrovane Software",
+      "concept": "warranty_period",
+      "value": 11,
+      "unit": "months",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ferrovane Software",
+      "concept": "payment_terms",
+      "value": 71,
+      "unit": "days",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ferrovane Software",
+      "concept": "penalty_cap",
+      "value": null,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ferrovane Software",
+      "concept": "annual_charges",
+      "value": 30.3,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ferrovane Software",
+      "concept": "volume_rebate",
+      "value": 6.8,
+      "unit": "%",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jan 2025"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ferrovane Software",
+      "concept": "contract_value",
+      "value": 249.4,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ferrovane Software",
+      "concept": "warranty_period",
+      "value": 14,
+      "unit": "months",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ferrovane Software",
+      "concept": "payment_terms",
+      "value": 55,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ferrovane Software",
+      "concept": "exclusivity_a",
+      "value": true,
+      "exclusiveGroup": "exclusivity"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ferrovane Software",
+      "concept": "volume_rebate",
+      "value": 8.8,
+      "unit": "%",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jul 2025"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ferrovane Software",
+      "concept": "contract_value",
+      "value": 287.2,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ferrovane Software",
+      "concept": "penalty_cap",
+      "value": 5.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "the Supplier",
+      "concept": "annual_charges",
+      "value": 25.9,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Ferrovane Software",
+      "concept": "exclusivity_b",
+      "value": false,
+      "exclusiveGroup": "exclusivity"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Total contract value and Warranty period of Ferrovane Software are adequate for the award recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "Payment terms and Delay penalty cap of Ferrovane Software are adequate for the award recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s1"
+        ],
+        "class": "NONE",
+        "plant": "effective_date",
+        "note": "two values effective from different dates: a change over time, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s3"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D1#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Supplier\" is defined in the documents as Ferrovane Software"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D3#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "total contract value",
+          "acceptable": [
+            "D2#s2",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "warranty period",
+          "acceptable": [
+            "D1#s1",
+            "D2#s3"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "payment terms",
+          "acceptable": [
+            "D1#s2",
+            "D2#s4"
+          ]
+        },
+        {
+          "input": "delay penalty cap",
+          "acceptable": [
+            "D1#s3",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D2#s2",
+        "D2#s3",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s4",
+        "D3#s3"
+      ]
+    }
+  }
+}

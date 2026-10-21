@@ -1,0 +1,378 @@
+{
+  "id": "pc-06",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Kalvik Software: private credit review (fictional)",
+  "entity": "Kalvik Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Kalvik Software (fictional, authored test material).\nRecurring revenue share at Kalvik Software stood at 80.5% with effect from 1 Jan 2025. Kalvik Software had gross debt of $237.3m in FY2025 (reported basis). For Kalvik Software, senior leverage in FY2024 was 2.09x (pro forma (including the planned acquisition) basis). Cash on balance sheet at Kalvik Software stood at $53.7m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Kalvik Software (fictional, authored test material).\nOperating expenses at Kalvik Software stood at around $203m in FY2025 (reported basis). Kalvik Software had recurring revenue share of 58.7% with effect from 1 Jul 2025. For Kalvik Software, gross debt in FY2025 was $187.4m (reported basis). Debt service cover ratio at Kalvik Software stood at 1.38x in FY2024. The change of control definition for Kalvik Software is understood as follows: triggered by any transfer of more than 30% of economic interest."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Kalvik Software (fictional, authored test material).\nOperating expenses at Kalvik Software stood at $208.1m in FY2025 (reported basis). Kalvik Software had senior leverage of 2.42x in FY2024 (reported basis). For Kalvik Software, cash on balance sheet was $67.4m (reported basis). Debt service cover ratio of Kalvik Software in FY2024: to be confirmed; not included in this document. The change of control definition for Kalvik Software is understood as follows: triggered when the sponsor holds less than 50% of voting shares."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 76,
+      "end": 162,
+      "text": "Recurring revenue share at Kalvik Software stood at 80.5% with effect from 1 Jan 2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 163,
+      "end": 232,
+      "text": "Kalvik Software had gross debt of $237.3m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 233,
+      "end": 344,
+      "text": "For Kalvik Software, senior leverage in FY2024 was 2.09x (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 345,
+      "end": 429,
+      "text": "Cash on balance sheet at Kalvik Software stood at $53.7m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 78,
+      "end": 165,
+      "text": "Operating expenses at Kalvik Software stood at around $203m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 166,
+      "end": 247,
+      "text": "Kalvik Software had recurring revenue share of 58.7% with effect from 1 Jul 2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 248,
+      "end": 319,
+      "text": "For Kalvik Software, gross debt in FY2025 was $187.4m (reported basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 320,
+      "end": 389,
+      "text": "Debt service cover ratio at Kalvik Software stood at 1.38x in FY2024."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 390,
+      "end": 533,
+      "text": "The change of control definition for Kalvik Software is understood as follows: triggered by any transfer of more than 30% of economic interest."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 82,
+      "end": 164,
+      "text": "Operating expenses at Kalvik Software stood at $208.1m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 165,
+      "end": 237,
+      "text": "Kalvik Software had senior leverage of 2.42x in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 238,
+      "end": 309,
+      "text": "For Kalvik Software, cash on balance sheet was $67.4m (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 310,
+      "end": 412,
+      "text": "Debt service cover ratio of Kalvik Software in FY2024: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 413,
+      "end": 556,
+      "text": "The change of control definition for Kalvik Software is understood as follows: triggered when the sponsor holds less than 50% of voting shares."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Kalvik Software",
+      "concept": "recurring_revenue_share",
+      "value": 80.5,
+      "unit": "%",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jan 2025"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Kalvik Software",
+      "concept": "gross_debt",
+      "value": 237.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Kalvik Software",
+      "concept": "senior_leverage",
+      "value": 2.09,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Kalvik Software",
+      "concept": "cash_balance",
+      "value": 53.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Kalvik Software",
+      "concept": "opex",
+      "value": 203,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "around"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Kalvik Software",
+      "concept": "recurring_revenue_share",
+      "value": 58.7,
+      "unit": "%",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jul 2025"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Kalvik Software",
+      "concept": "gross_debt",
+      "value": 187.4,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Kalvik Software",
+      "concept": "dscr",
+      "value": 1.38,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Kalvik Software",
+      "concept": "change_of_control",
+      "value": "triggered by any transfer of more than 30% of economic interest",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Kalvik Software",
+      "concept": "opex",
+      "value": 208.1,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Kalvik Software",
+      "concept": "senior_leverage",
+      "value": 2.42,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Kalvik Software",
+      "concept": "cash_balance",
+      "value": 67.4,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Kalvik Software",
+      "concept": "dscr",
+      "value": null,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Kalvik Software",
+      "concept": "change_of_control",
+      "value": "triggered when the sponsor holds less than 50% of voting shares",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Operating expenses and Gross debt of Kalvik Software are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Senior leverage and Cash on balance sheet of Kalvik Software are adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "approx_near",
+        "note": "a stated approximation within 3% of the exact figure"
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s2"
+        ],
+        "class": "NONE",
+        "plant": "effective_date",
+        "note": "two values effective from different dates: a change over time, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D1#s3"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D3#s4"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "operating expenses",
+          "acceptable": [
+            "D2#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "gross debt",
+          "acceptable": [
+            "D1#s2",
+            "D2#s3"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "senior leverage",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "cash on balance sheet",
+          "acceptable": [
+            "D1#s4",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D2#s1",
+        "D2#s3",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s3",
+        "D1#s4",
+        "D3#s2",
+        "D3#s3"
+      ]
+    }
+  }
+}

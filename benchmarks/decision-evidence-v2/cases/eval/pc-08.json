@@ -1,0 +1,413 @@
+{
+  "id": "pc-08",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Brennick Healthcare: private credit review (fictional)",
+  "entity": "Brennick Healthcare",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Brennick Healthcare (fictional, authored test material).\nFor Brennick Ltd, cash on balance sheet in FY2024 was $49.7m (reported basis). Free cash flow at Brennick Healthcare stood at approximately $17.5m in FY2024 (reported basis). Brennick Healthcare had senior leverage of 5.3x in FY2024. For Brennick Healthcare, recurring revenue share in FY2023 was 86.3%. The covenant cure mechanism for Brennick Healthcare is understood as follows: cure by equity injection counted only as debt reduction. As to Brennick Healthcare, the security package is: unsecured, ranking pari passu with trade creditors."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Brennick Healthcare (fictional, authored test material).\nFor Brennick Limited, cash on balance sheet in FY2024 was $40.6m (reported basis). Operating expenses at Brennick Healthcare stood at $113.6m in FY2025 (reported basis). Brennick Healthcare had gross debt of USD 398.4 million in FY2024 (reported basis). For Brennick Healthcare, recurring revenue share in FY2025 was 61.2%. The covenant cure mechanism for Brennick Healthcare is understood as follows: cure by equity injection counted as EBITDA."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Brennick Healthcare (fictional, authored test material).\nFor Brennick Healthcare, free cash flow in FY2024 was $14m (reported basis). Senior leverage at Brennick Healthcare stood at 5.316x in FY2024. Brennick Healthcare had operating expenses of $113600k in FY2025 (reported basis). For Brennick Healthcare, gross debt in FY2024 was $398.4m (reported basis). As to Brennick Healthcare, the security package is: first-lien security over all material subsidiaries."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 80,
+      "end": 158,
+      "text": "For Brennick Ltd, cash on balance sheet in FY2024 was $49.7m (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 159,
+      "end": 254,
+      "text": "Free cash flow at Brennick Healthcare stood at approximately $17.5m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 255,
+      "end": 313,
+      "text": "Brennick Healthcare had senior leverage of 5.3x in FY2024."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 314,
+      "end": 383,
+      "text": "For Brennick Healthcare, recurring revenue share in FY2023 was 86.3%."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 384,
+      "end": 518,
+      "text": "The covenant cure mechanism for Brennick Healthcare is understood as follows: cure by equity injection counted only as debt reduction."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 519,
+      "end": 622,
+      "text": "As to Brennick Healthcare, the security package is: unsecured, ranking pari passu with trade creditors."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 82,
+      "end": 164,
+      "text": "For Brennick Limited, cash on balance sheet in FY2024 was $40.6m (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 165,
+      "end": 251,
+      "text": "Operating expenses at Brennick Healthcare stood at $113.6m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 252,
+      "end": 335,
+      "text": "Brennick Healthcare had gross debt of USD 398.4 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 336,
+      "end": 405,
+      "text": "For Brennick Healthcare, recurring revenue share in FY2025 was 61.2%."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 406,
+      "end": 527,
+      "text": "The covenant cure mechanism for Brennick Healthcare is understood as follows: cure by equity injection counted as EBITDA."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 86,
+      "end": 162,
+      "text": "For Brennick Healthcare, free cash flow in FY2024 was $14m (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 163,
+      "end": 228,
+      "text": "Senior leverage at Brennick Healthcare stood at 5.316x in FY2024."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 229,
+      "end": 311,
+      "text": "Brennick Healthcare had operating expenses of $113600k in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 312,
+      "end": 387,
+      "text": "For Brennick Healthcare, gross debt in FY2024 was $398.4m (reported basis)."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 388,
+      "end": 491,
+      "text": "As to Brennick Healthcare, the security package is: first-lien security over all material subsidiaries."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Brennick Ltd",
+      "concept": "cash_balance",
+      "value": 49.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Brennick Healthcare",
+      "concept": "free_cash_flow",
+      "value": 17.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Brennick Healthcare",
+      "concept": "senior_leverage",
+      "value": 5.3,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Brennick Healthcare",
+      "concept": "recurring_revenue_share",
+      "value": 86.3,
+      "unit": "%",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Brennick Healthcare",
+      "concept": "cure_period",
+      "value": "cure by equity injection counted only as debt reduction",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Brennick Healthcare",
+      "concept": "security_package_b",
+      "value": false,
+      "exclusiveGroup": "security_package"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Brennick Limited",
+      "concept": "cash_balance",
+      "value": 40.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Brennick Healthcare",
+      "concept": "opex",
+      "value": 113.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Brennick Healthcare",
+      "concept": "gross_debt",
+      "value": 398.4,
+      "unit": "USD million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Brennick Healthcare",
+      "concept": "recurring_revenue_share",
+      "value": 61.2,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Brennick Healthcare",
+      "concept": "cure_period",
+      "value": "cure by equity injection counted as EBITDA",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Brennick Healthcare",
+      "concept": "free_cash_flow",
+      "value": 14,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Brennick Healthcare",
+      "concept": "senior_leverage",
+      "value": 5.316,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Brennick Healthcare",
+      "concept": "opex",
+      "value": 113600,
+      "unit": "$k",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Brennick Healthcare",
+      "concept": "gross_debt",
+      "value": 398.4,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Brennick Healthcare",
+      "concept": "security_package_a",
+      "value": true,
+      "exclusiveGroup": "security_package"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Cash on balance sheet and Free cash flow of Brennick Healthcare are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Senior leverage and Operating expenses of Brennick Healthcare are adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale_bn",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "same_amount_other_wording",
+        "note": "the same amount, written with \"USD million\""
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "cash on balance sheet",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "free cash flow",
+          "acceptable": [
+            "D1#s2",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "senior leverage",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "operating expenses",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s3",
+        "D2#s2",
+        "D3#s2",
+        "D3#s3"
+      ]
+    }
+  }
+}

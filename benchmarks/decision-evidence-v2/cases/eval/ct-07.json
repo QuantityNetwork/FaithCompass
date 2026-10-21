@@ -1,0 +1,339 @@
+{
+  "id": "ct-07",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Pennant Foods: contract review (fictional)",
+  "entity": "Pennant Foods",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Framework agreement",
+      "text": "Framework agreement: Pennant Foods (fictional, authored test material).\nPennant Foods had performance bond of SEK 11.7m in FY2024 (reported basis). For Pennant Foods, total contract value in FY2024 was SEK 168.504m (reported basis). Annual service charges at Pennant Foods stood at SEK 34000 thousand in FY2024 (reported basis). Pennant Foods had incident response time of 5 hours in FY2025."
+    },
+    {
+      "id": "D2",
+      "title": "Change order",
+      "text": "Change order: Pennant Foods (fictional, authored test material).\nPennant Foods had performance bond of approximately SEK 14.6m in FY2024 (reported basis). For Pennant Foods, total contract value in FY2024 was SEK 168m (reported basis). Warranty period at Pennant Foods stood at 12 months in FY2023. Pennant Foods had payment terms of 100 days in FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Procurement evaluation note",
+      "text": "Procurement evaluation note: Pennant Foods (fictional, authored test material).\nPennant Foods had annual service charges of SEK 34m in FY2024 (reported basis). For Pennant Foods, incident response time in FY2025 was 5 hours. Warranty period at Pennant Foods stood at 10 months in FY2025. Pennant Foods had payment terms of 80 days in FY2023."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 72,
+      "end": 147,
+      "text": "Pennant Foods had performance bond of SEK 11.7m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 148,
+      "end": 232,
+      "text": "For Pennant Foods, total contract value in FY2024 was SEK 168.504m (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 233,
+      "end": 328,
+      "text": "Annual service charges at Pennant Foods stood at SEK 34000 thousand in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 329,
+      "end": 391,
+      "text": "Pennant Foods had incident response time of 5 hours in FY2025."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 65,
+      "end": 154,
+      "text": "Pennant Foods had performance bond of approximately SEK 14.6m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 155,
+      "end": 235,
+      "text": "For Pennant Foods, total contract value in FY2024 was SEK 168m (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 236,
+      "end": 298,
+      "text": "Warranty period at Pennant Foods stood at 12 months in FY2023."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 299,
+      "end": 353,
+      "text": "Pennant Foods had payment terms of 100 days in FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 80,
+      "end": 159,
+      "text": "Pennant Foods had annual service charges of SEK 34m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 160,
+      "end": 224,
+      "text": "For Pennant Foods, incident response time in FY2025 was 5 hours."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 225,
+      "end": 287,
+      "text": "Warranty period at Pennant Foods stood at 10 months in FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 288,
+      "end": 341,
+      "text": "Pennant Foods had payment terms of 80 days in FY2023."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Pennant Foods",
+      "concept": "performance_bond",
+      "value": 11.7,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Pennant Foods",
+      "concept": "contract_value",
+      "value": 168.504,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Pennant Foods",
+      "concept": "annual_charges",
+      "value": 34000,
+      "unit": "SEK thousand",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Pennant Foods",
+      "concept": "response_time",
+      "value": 5,
+      "unit": "hours",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Pennant Foods",
+      "concept": "performance_bond",
+      "value": 14.6,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Pennant Foods",
+      "concept": "contract_value",
+      "value": 168,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Pennant Foods",
+      "concept": "warranty_period",
+      "value": 12,
+      "unit": "months",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Pennant Foods",
+      "concept": "payment_terms",
+      "value": 100,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Pennant Foods",
+      "concept": "annual_charges",
+      "value": 34,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Pennant Foods",
+      "concept": "response_time",
+      "value": 5,
+      "unit": "hours",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Pennant Foods",
+      "concept": "warranty_period",
+      "value": 10,
+      "unit": "months",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Pennant Foods",
+      "concept": "payment_terms",
+      "value": 80,
+      "unit": "days",
+      "period": "FY2023",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Performance bond and Total contract value of Pennant Foods are adequate for the award recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "Annual service charges and Incident response time of Pennant Foods are adequate for the award recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale_bn",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "performance bond",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "total contract value",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "annual service charges",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "incident response time",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D1#s4",
+        "D3#s1",
+        "D3#s2"
+      ]
+    }
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "id": "sc-07",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Caddow Letters: scholarly review (fictional)",
+  "entity": "Caddow Letters",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Caddow Letters (fictional, authored test material).\nCaddow Letters had insured value of $4.8m in FY2025 (reported basis). For Caddow Letters, marginal annotations in FY2025 was 649. Illuminated initials at Caddow Letters stood at 132 in FY2025. Caddow Letters had leaf height of 344 mm in FY2023."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Caddow Letters (fictional, authored test material).\nCaddow Letters had insured value of $4800k in FY2025 (reported basis). For Caddow Letters, marginal annotations in FY2025 was 647. Share of palimpsest leaves at Caddow Letters stood at 33.2% in FY2024, as originally reported. Caddow Letters had binding date (CE) of 1422 in FY2024, second issue (corrects the first issue)."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Caddow Letters (fictional, authored test material).\nCaddow Letters had illuminated initials of 113 in FY2023. For Caddow Letters, leaf height in FY2025 was 255 mm. Share of palimpsest leaves at Caddow Letters stood at 39.3% in FY2024, as restated in the latest accounts. Caddow Letters had binding date (CE) of 1675 in FY2024, first issue."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 73,
+      "end": 142,
+      "text": "Caddow Letters had insured value of $4.8m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 143,
+      "end": 202,
+      "text": "For Caddow Letters, marginal annotations in FY2025 was 649."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 203,
+      "end": 265,
+      "text": "Illuminated initials at Caddow Letters stood at 132 in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 266,
+      "end": 317,
+      "text": "Caddow Letters had leaf height of 344 mm in FY2023."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 73,
+      "end": 143,
+      "text": "Caddow Letters had insured value of $4800k in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 144,
+      "end": 203,
+      "text": "For Caddow Letters, marginal annotations in FY2025 was 647."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 204,
+      "end": 298,
+      "text": "Share of palimpsest leaves at Caddow Letters stood at 33.2% in FY2024, as originally reported."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 299,
+      "end": 395,
+      "text": "Caddow Letters had binding date (CE) of 1422 in FY2024, second issue (corrects the first issue)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 77,
+      "end": 134,
+      "text": "Caddow Letters had illuminated initials of 113 in FY2023."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 135,
+      "end": 188,
+      "text": "For Caddow Letters, leaf height in FY2025 was 255 mm."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 189,
+      "end": 295,
+      "text": "Share of palimpsest leaves at Caddow Letters stood at 39.3% in FY2024, as restated in the latest accounts."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 296,
+      "end": 364,
+      "text": "Caddow Letters had binding date (CE) of 1675 in FY2024, first issue."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Caddow Letters",
+      "concept": "insurance_value",
+      "value": 4.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Caddow Letters",
+      "concept": "marginal_notes",
+      "value": 649,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Caddow Letters",
+      "concept": "illuminated_initials",
+      "value": 132,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Caddow Letters",
+      "concept": "leaf_height",
+      "value": 344,
+      "unit": "mm",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Caddow Letters",
+      "concept": "insurance_value",
+      "value": 4800,
+      "unit": "$k",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Caddow Letters",
+      "concept": "marginal_notes",
+      "value": 647,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Caddow Letters",
+      "concept": "palimpsest_share",
+      "value": 33.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as originally reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Caddow Letters",
+      "concept": "binding_date",
+      "value": 1422,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null,
+      "version": "second issue (corrects the first issue)"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Caddow Letters",
+      "concept": "illuminated_initials",
+      "value": 113,
+      "unit": "count",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Caddow Letters",
+      "concept": "leaf_height",
+      "value": 255,
+      "unit": "mm",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Caddow Letters",
+      "concept": "palimpsest_share",
+      "value": 39.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as restated in the latest accounts"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Caddow Letters",
+      "concept": "binding_date",
+      "value": 1675,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null,
+      "version": "first issue"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Insured value and Marginal annotations of Caddow Letters are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Share of palimpsest leaves and Binding date (CE) of Caddow Letters are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale_bn",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "restated",
+        "note": "a restatement replaces the original figure"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "corrected",
+        "note": "a corrected issue replaces the first"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "marginal annotations",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "share of palimpsest leaves",
+          "acceptable": [
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "binding date (CE)",
+          "acceptable": [
+            "D2#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D2#s4",
+        "D3#s3"
+      ]
+    }
+  }
+}

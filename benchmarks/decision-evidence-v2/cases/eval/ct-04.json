@@ -1,0 +1,374 @@
+{
+  "id": "ct-04",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Thornbury Software: contract review (fictional)",
+  "entity": "Thornbury Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Framework agreement",
+      "text": "Framework agreement: Thornbury Software (fictional, authored test material).\nThornbury Software had incident response time of 23 hours in FY2023. For Thornbury Software, delay penalty cap in FY2024 was 6.7%. Total contract value at Thornbury GmbH stood at SEK 231.3m in FY2024 (reported basis). Thornbury Software had payment terms of around 54 days in FY2025. The force majeure scope for Thornbury Software is understood as follows: includes supplier labour disputes."
+    },
+    {
+      "id": "D2",
+      "title": "Change order",
+      "text": "Change order: Thornbury Software (fictional, authored test material).\nThornbury Software had warranty period of 27 months in FY2025, as originally reported. For Thornbury Software, performance bond in FY2025 was SEK 12.8m (reported basis), second issue (corrects the first issue). Delay penalty cap at Thornbury Nordic, a subsidiary stood at 8.3% in FY2024. Thornbury Oy had total contract value of SEK 294.6m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3",
+      "title": "Procurement evaluation note",
+      "text": "Procurement evaluation note: Thornbury Software (fictional, authored test material).\nThornbury Software had incident response time of 29 hours in FY2025. For Thornbury Software, warranty period in FY2025 was 19 months, as restated in the latest accounts. Performance bond at Thornbury Software stood at SEK 10.6m in FY2025 (reported basis), first issue. Thornbury Software had payment terms of 55 days in FY2025. The force majeure scope for Thornbury Software is understood as follows: excludes any labour dispute."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 77,
+      "end": 145,
+      "text": "Thornbury Software had incident response time of 23 hours in FY2023."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 146,
+      "end": 207,
+      "text": "For Thornbury Software, delay penalty cap in FY2024 was 6.7%."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 208,
+      "end": 294,
+      "text": "Total contract value at Thornbury GmbH stood at SEK 231.3m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 295,
+      "end": 360,
+      "text": "Thornbury Software had payment terms of around 54 days in FY2025."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 361,
+      "end": 468,
+      "text": "The force majeure scope for Thornbury Software is understood as follows: includes supplier labour disputes."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 70,
+      "end": 156,
+      "text": "Thornbury Software had warranty period of 27 months in FY2025, as originally reported."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 157,
+      "end": 280,
+      "text": "For Thornbury Software, performance bond in FY2025 was SEK 12.8m (reported basis), second issue (corrects the first issue)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 281,
+      "end": 357,
+      "text": "Delay penalty cap at Thornbury Nordic, a subsidiary stood at 8.3% in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 358,
+      "end": 437,
+      "text": "Thornbury Oy had total contract value of SEK 294.6m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 85,
+      "end": 153,
+      "text": "Thornbury Software had incident response time of 29 hours in FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 154,
+      "end": 254,
+      "text": "For Thornbury Software, warranty period in FY2025 was 19 months, as restated in the latest accounts."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 255,
+      "end": 353,
+      "text": "Performance bond at Thornbury Software stood at SEK 10.6m in FY2025 (reported basis), first issue."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 354,
+      "end": 412,
+      "text": "Thornbury Software had payment terms of 55 days in FY2025."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 413,
+      "end": 514,
+      "text": "The force majeure scope for Thornbury Software is understood as follows: excludes any labour dispute."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Thornbury Software",
+      "concept": "response_time",
+      "value": 23,
+      "unit": "hours",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Thornbury Software",
+      "concept": "penalty_cap",
+      "value": 6.7,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Thornbury GmbH",
+      "concept": "contract_value",
+      "value": 231.3,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Thornbury Software",
+      "concept": "payment_terms",
+      "value": 54,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "around"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Thornbury Software",
+      "concept": "force_majeure",
+      "value": "includes supplier labour disputes",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Thornbury Software",
+      "concept": "warranty_period",
+      "value": 27,
+      "unit": "months",
+      "period": "FY2025",
+      "basis": null,
+      "version": "as originally reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Thornbury Software",
+      "concept": "performance_bond",
+      "value": 12.8,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "second issue (corrects the first issue)"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Thornbury Nordic, a subsidiary",
+      "concept": "penalty_cap",
+      "value": 8.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Thornbury Oy",
+      "concept": "contract_value",
+      "value": 294.6,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Thornbury Software",
+      "concept": "response_time",
+      "value": 29,
+      "unit": "hours",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Thornbury Software",
+      "concept": "warranty_period",
+      "value": 19,
+      "unit": "months",
+      "period": "FY2025",
+      "basis": null,
+      "version": "as restated in the latest accounts"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Thornbury Software",
+      "concept": "performance_bond",
+      "value": 10.6,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "first issue"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Thornbury Software",
+      "concept": "payment_terms",
+      "value": 55,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Thornbury Software",
+      "concept": "force_majeure",
+      "value": "excludes any labour dispute",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Warranty period and Performance bond of Thornbury Software are adequate for the award recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "Delay penalty cap and Payment terms of Thornbury Software are adequate for the award recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D3#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "restated",
+        "note": "a restatement replaces the original figure"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D2#s2"
+        ],
+        "class": "NONE",
+        "plant": "corrected",
+        "note": "a corrected issue replaces the first"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "subsidiary",
+        "note": "a subsidiary, not the group"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity_other",
+        "note": "two different legal entities (Finnish Oy and German GmbH)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D1#s4"
+        ],
+        "class": "NONE",
+        "plant": "approx_near",
+        "note": "a stated approximation within 3% of the exact figure"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D3#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "warranty period",
+          "acceptable": [
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "performance bond",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "delay penalty cap",
+          "acceptable": [
+            "D1#s2"
+          ]
+        },
+        {
+          "input": "payment terms",
+          "acceptable": [
+            "D1#s4",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s2",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s2",
+        "D1#s4",
+        "D3#s4"
+      ]
+    }
+  }
+}

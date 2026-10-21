@@ -1,0 +1,415 @@
+{
+  "id": "pc-02",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ivarsen Software: private credit review (fictional)",
+  "entity": "Ivarsen Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Ivarsen Software (fictional, authored test material).\nFor Ivarsen GmbH, operating expenses in FY2024 was $174.9m (reported basis). Gross debt at Ivarsen Software stood at roughly $170m in FY2025 (reported basis). Ivarsen Software had receivables in arrears of 1.8% with effect from 1 Jan 2025. For Ivarsen Software, cash on balance sheet in FY2024 was $70.2m (reported basis). The change of control definition for Ivarsen Software is understood as follows: triggered by any transfer of more than 30% of economic interest. As to Ivarsen Software, the security package is: unsecured, ranking pari passu with trade creditors."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Ivarsen Software (fictional, authored test material).\nFor Ivarsen Oy, operating expenses in FY2024 was $212.2m (reported basis). Free cash flow at Ivarsen Software stood at $18.3m in FY2025 (reported basis). Ivarsen Software had senior leverage of 3.89x in FY2025 (pro forma (including the planned acquisition) basis). For Ivarsen Software, cash on balance sheet was $52.6m (reported basis). The change of control definition for Ivarsen Software is understood as follows: triggered when the sponsor holds less than 50% of voting shares."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Ivarsen Software (fictional, authored test material).\nFor Ivarsen Software, gross debt in FY2025 was $173.9m (reported basis). Receivables in arrears at Ivarsen Software stood at 1.6% with effect from 1 Jul 2025. Ivarsen Software had free cash flow of $15.6m in FY2025 (reported basis). For Ivarsen Software, senior leverage in FY2025 was 5.41x (reported basis). As to Ivarsen Software, the security package is: first-lien security over all material subsidiaries."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 77,
+      "end": 153,
+      "text": "For Ivarsen GmbH, operating expenses in FY2024 was $174.9m (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 154,
+      "end": 235,
+      "text": "Gross debt at Ivarsen Software stood at roughly $170m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 236,
+      "end": 316,
+      "text": "Ivarsen Software had receivables in arrears of 1.8% with effect from 1 Jan 2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 317,
+      "end": 399,
+      "text": "For Ivarsen Software, cash on balance sheet in FY2024 was $70.2m (reported basis)."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 400,
+      "end": 544,
+      "text": "The change of control definition for Ivarsen Software is understood as follows: triggered by any transfer of more than 30% of economic interest."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 545,
+      "end": 645,
+      "text": "As to Ivarsen Software, the security package is: unsecured, ranking pari passu with trade creditors."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 79,
+      "end": 153,
+      "text": "For Ivarsen Oy, operating expenses in FY2024 was $212.2m (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 154,
+      "end": 232,
+      "text": "Free cash flow at Ivarsen Software stood at $18.3m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 233,
+      "end": 343,
+      "text": "Ivarsen Software had senior leverage of 3.89x in FY2025 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 344,
+      "end": 416,
+      "text": "For Ivarsen Software, cash on balance sheet was $52.6m (reported basis)."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 417,
+      "end": 561,
+      "text": "The change of control definition for Ivarsen Software is understood as follows: triggered when the sponsor holds less than 50% of voting shares."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 83,
+      "end": 155,
+      "text": "For Ivarsen Software, gross debt in FY2025 was $173.9m (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 156,
+      "end": 241,
+      "text": "Receivables in arrears at Ivarsen Software stood at 1.6% with effect from 1 Jul 2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 242,
+      "end": 315,
+      "text": "Ivarsen Software had free cash flow of $15.6m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 316,
+      "end": 391,
+      "text": "For Ivarsen Software, senior leverage in FY2025 was 5.41x (reported basis)."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 392,
+      "end": 492,
+      "text": "As to Ivarsen Software, the security package is: first-lien security over all material subsidiaries."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ivarsen GmbH",
+      "concept": "opex",
+      "value": 174.9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ivarsen Software",
+      "concept": "gross_debt",
+      "value": 170,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "roughly"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ivarsen Software",
+      "concept": "arrears_rate",
+      "value": 1.8,
+      "unit": "%",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jan 2025"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ivarsen Software",
+      "concept": "cash_balance",
+      "value": 70.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Ivarsen Software",
+      "concept": "change_of_control",
+      "value": "triggered by any transfer of more than 30% of economic interest",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Ivarsen Software",
+      "concept": "security_package_b",
+      "value": false,
+      "exclusiveGroup": "security_package"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ivarsen Oy",
+      "concept": "opex",
+      "value": 212.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ivarsen Software",
+      "concept": "free_cash_flow",
+      "value": 18.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ivarsen Software",
+      "concept": "senior_leverage",
+      "value": 3.89,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ivarsen Software",
+      "concept": "cash_balance",
+      "value": 52.6,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ivarsen Software",
+      "concept": "change_of_control",
+      "value": "triggered when the sponsor holds less than 50% of voting shares",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ivarsen Software",
+      "concept": "gross_debt",
+      "value": 173.9,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ivarsen Software",
+      "concept": "arrears_rate",
+      "value": 1.6,
+      "unit": "%",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jul 2025"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ivarsen Software",
+      "concept": "free_cash_flow",
+      "value": 15.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ivarsen Software",
+      "concept": "senior_leverage",
+      "value": 5.41,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Ivarsen Software",
+      "concept": "security_package_a",
+      "value": true,
+      "exclusiveGroup": "security_package"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Gross debt and Free cash flow of Ivarsen Software are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Senior leverage and Cash on balance sheet of Ivarsen Software are adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity_other",
+        "note": "two different legal entities (Finnish Oy and German GmbH)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "approx_near",
+        "note": "a stated approximation within 3% of the exact figure"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "effective_date",
+        "note": "two values effective from different dates: a change over time, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "gross debt",
+          "acceptable": [
+            "D1#s2",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "free cash flow",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "senior leverage",
+          "acceptable": [
+            "D2#s3",
+            "D3#s4"
+          ]
+        },
+        {
+          "input": "cash on balance sheet",
+          "acceptable": [
+            "D1#s4",
+            "D2#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D2#s2",
+        "D3#s1",
+        "D3#s3"
+      ],
+      "C2": [
+        "D1#s4",
+        "D2#s3",
+        "D2#s4",
+        "D3#s4"
+      ]
+    }
+  }
+}

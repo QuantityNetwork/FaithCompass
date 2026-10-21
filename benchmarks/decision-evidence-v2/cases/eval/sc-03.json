@@ -1,0 +1,338 @@
+{
+  "id": "sc-03",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Codex Belmar: scholarly review (fictional)",
+  "entity": "Codex Belmar",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Codex Belmar (fictional, authored test material).\nMissing leaves at Codex Belmar stood at 30 in FY2024. Codex Belmar had insured value of $2.7m in FY2024 (reported basis). For Codex Belmar, binding date (CE) in FY2023 was 1225. Share of palimpsest leaves at Codex Belmar stood at 26.9% in FY2024, as restated in the latest accounts."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Codex Belmar (fictional, authored test material).\nMarginal annotations at Codex Belmar stood at 278 in FY2024. Codex Belmar had leaf height of 270 mm in FY2025. For Codex Belmar, binding date (CE) in FY2025 was 1000. Share of palimpsest leaves at Codex Belmar stood at 38.4% in FY2024, as originally reported."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Codex Belmar (fictional, authored test material).\nMissing leaves at Codex Belmar stood at 30 in FY2024. Codex Belmar had insured value of $2700k in FY2024 (reported basis). For Codex Belmar, marginal annotations in FY2024 was 279. Leaf height at Codex Belmar stood at 236 mm in FY2023."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 71,
+      "end": 124,
+      "text": "Missing leaves at Codex Belmar stood at 30 in FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 125,
+      "end": 192,
+      "text": "Codex Belmar had insured value of $2.7m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 193,
+      "end": 248,
+      "text": "For Codex Belmar, binding date (CE) in FY2023 was 1225."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 249,
+      "end": 353,
+      "text": "Share of palimpsest leaves at Codex Belmar stood at 26.9% in FY2024, as restated in the latest accounts."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 71,
+      "end": 131,
+      "text": "Marginal annotations at Codex Belmar stood at 278 in FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 132,
+      "end": 181,
+      "text": "Codex Belmar had leaf height of 270 mm in FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 182,
+      "end": 237,
+      "text": "For Codex Belmar, binding date (CE) in FY2025 was 1000."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 238,
+      "end": 330,
+      "text": "Share of palimpsest leaves at Codex Belmar stood at 38.4% in FY2024, as originally reported."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 75,
+      "end": 128,
+      "text": "Missing leaves at Codex Belmar stood at 30 in FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 129,
+      "end": 197,
+      "text": "Codex Belmar had insured value of $2700k in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 198,
+      "end": 255,
+      "text": "For Codex Belmar, marginal annotations in FY2024 was 279."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 256,
+      "end": 310,
+      "text": "Leaf height at Codex Belmar stood at 236 mm in FY2023."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Codex Belmar",
+      "concept": "missing_leaves",
+      "value": 30,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Codex Belmar",
+      "concept": "insurance_value",
+      "value": 2.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Codex Belmar",
+      "concept": "binding_date",
+      "value": 1225,
+      "unit": "year",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Codex Belmar",
+      "concept": "palimpsest_share",
+      "value": 26.9,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as restated in the latest accounts"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Codex Belmar",
+      "concept": "marginal_notes",
+      "value": 278,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Codex Belmar",
+      "concept": "leaf_height",
+      "value": 270,
+      "unit": "mm",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Codex Belmar",
+      "concept": "binding_date",
+      "value": 1000,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Codex Belmar",
+      "concept": "palimpsest_share",
+      "value": 38.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as originally reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Codex Belmar",
+      "concept": "missing_leaves",
+      "value": 30,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Codex Belmar",
+      "concept": "insurance_value",
+      "value": 2700,
+      "unit": "$k",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Codex Belmar",
+      "concept": "marginal_notes",
+      "value": 279,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Codex Belmar",
+      "concept": "leaf_height",
+      "value": 236,
+      "unit": "mm",
+      "period": "FY2023",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Missing leaves and Insured value of Codex Belmar are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Marginal annotations and Share of palimpsest leaves of Codex Belmar are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s1"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale_bn",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s4"
+        ],
+        "class": "NONE",
+        "plant": "restated",
+        "note": "a restatement replaces the original figure"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "missing leaves",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D1#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "marginal annotations",
+          "acceptable": [
+            "D2#s1",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "share of palimpsest leaves",
+          "acceptable": [
+            "D1#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s4",
+        "D2#s1",
+        "D3#s3"
+      ]
+    }
+  }
+}
