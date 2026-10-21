@@ -188,9 +188,14 @@ describe('workspace routes (no database needed)', async () => {
     expect(pv.status).toBe(503);
     expect((await pv.json()).code).toBe('PREVIEW_WRITES_DISABLED');
     const { previewWriteBlock } = await import('@/lib/workspace/access');
-    expect(previewWriteBlock({ VERCEL_ENV: 'preview', WORKSPACE_PREVIEW_WRITES: 'default-db' })).toBeNull();
-    expect(previewWriteBlock({ VERCEL_ENV: 'preview', FIRESTORE_DATABASE_ID: 'preview' })).toBeNull();
-    expect(previewWriteBlock({ VERCEL_ENV: 'production' })).toBeNull();
+    const allow = { VERCEL_ENV: 'preview', WORKSPACE_PREVIEW_WRITE_TENANTS: 'am-e2e-a, am-e2e-b,ws-a,am-e2e-BAD' };
+    expect(previewWriteBlock('am-e2e-a', allow)).toBeNull();
+    expect(previewWriteBlock('am-e2e-b', allow)).toBeNull();
+    expect(previewWriteBlock('ws-a', allow)).not.toBeNull(); // not labelled as a test workspace: never honoured
+    expect(previewWriteBlock('am-e2e-c', allow)).not.toBeNull();
+    expect(previewWriteBlock(null, allow)).not.toBeNull();
+    expect(previewWriteBlock('ws-a', { VERCEL_ENV: 'preview', FIRESTORE_DATABASE_ID: 'preview' })).toBeNull();
+    expect(previewWriteBlock('ws-a', { VERCEL_ENV: 'production' })).toBeNull();
     setWorkspaceVerifier(null);
     process.env = env;
   });

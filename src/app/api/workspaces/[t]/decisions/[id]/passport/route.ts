@@ -25,6 +25,6 @@ export async function POST(request: Request, { params }: { params: Promise<{ t: 
         'x-first-export': String(firstExport),
       });
     },
-    { write: true, maxBytes: 256, perMinute: 20 },
+    { tenant: t, write: true, maxBytes: 256, perMinute: 20 },
   );
 }

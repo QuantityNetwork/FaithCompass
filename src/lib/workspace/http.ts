@@ -40,7 +40,7 @@ export async function handle(
   request: Request,
   action: string,
   fn: (ctx: Ctx) => Promise<Response>,
-  opts: { write?: boolean; maxBytes?: number; perMinute?: number } = {},
+  opts: { write?: boolean; maxBytes?: number; perMinute?: number; tenant?: string } = {},
 ): Promise<Response> {
   const requestId = newRequestId();
   const client = hashClient(clientKey(request));
@@ -58,7 +58,7 @@ export async function handle(
       if (ctype !== 'application/json') return json({ error: 'Send the request body as application/json.', code: 'UNSUPPORTED_MEDIA_TYPE' }, 415);
     }
     const actor = await workspaceActor(request);
-    const blocked = opts.write ? previewWriteBlock() : null;
+    const blocked = opts.write ? previewWriteBlock(opts.tenant ?? null) : null;
     if (blocked) {
       actorId = actor.uid;
       log(503, 'denied', 'preview_writes_disabled');

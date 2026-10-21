@@ -14,6 +14,7 @@ export async function GET(request: Request, { params }: P) {
 export async function POST(request: Request, { params }: P) {
   const { t } = await params;
   return handle(request, 'workspace.decisions.propose', async ({ actor, body }) => json({ decision: await proposeDecision(actor, t, ProposeSchema.parse(body)) }, 201), {
+    tenant: t,
     write: true,
     maxBytes: 32_768,
   });

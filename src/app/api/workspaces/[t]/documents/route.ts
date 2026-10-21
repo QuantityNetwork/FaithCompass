@@ -31,6 +31,6 @@ export async function POST(request: Request, { params }: P) {
       const doc = await importDocument(actor, t, parsed);
       return json({ document: documentSummary(doc) }, 201);
     },
-    { write: true, maxBytes: Math.ceil((MAX_IMPORT_BYTES * 4) / 3) + 2_048, perMinute: 20 },
+    { tenant: t, write: true, maxBytes: Math.ceil((MAX_IMPORT_BYTES * 4) / 3) + 2_048, perMinute: 20 },
   );
 }

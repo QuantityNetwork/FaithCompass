@@ -63,6 +63,19 @@ Deployment `dpl_Fv1Fb1tTgNf48XuoSJAzx8DcWgR8` (commit cd35d5c), READY; checked 2
 
 Nothing was written to Firestore and no Auth account was created during the live checks.
 
+### C. Owner approval 2026-10-21 10:33 CEST: rules deployed, labelled test workspaces allowed
+
+* Rules deployed 10:33:45 CEST with `firebase deploy --only firestore:rules --project abrahammoses-a0a26` (CLI as
+  markus@sagolik.com). Previous release: ruleset `55438dab-078d-4f33-99ce-eb84fe8ec87f` (the Oct 20 deploy of
+  `firestore.rules` SHA-256 `c98342fc…ab09`, backed up at `/workspace/out/firestore.rules.backup-c98342fc-20261021`).
+  New release: ruleset `6114cd61-9995-4795-b7cc-0158aa8ce2df`, content SHA-256 `aaf53296…e72d` (this branch); a
+  second deploy at 10:34 reported "latest version already up to date", i.e. the live ruleset equals the file.
+* Production checked 10:34 CEST: home, /claims, /institutional, Decision Room, Decision Twin, /status, /terms,
+  /evidence and the Decision Room passport bundle API all 200; `/api/v1/status` overall ok (persistence: "Durable
+  store: Firestore"). No rollback needed. Rollback: `firebase deploy --only firestore:rules` with the backup file.
+* Preview gate: writes allowed only for `WORKSPACE_PREVIEW_WRITE_TENANTS=am-e2e-a,am-e2e-b` (branch-scoped Preview
+  env on `evidence-workflow`; ids not starting with `am-e2e-` are never honoured). Production is not affected.
+
 ## Why the live steps are blocked, and the minimal owner actions
 
 1. **Enable Email link sign-in.** Firebase console → Authentication → Sign-in method → Email/Password → turn on
@@ -76,7 +89,7 @@ Nothing was written to Firestore and no Auth account was created during the live
    console-only and the claim is not recognised).
 3. **Decide where preview test data may go.** Preview and production share the (default) database (a named database
    needs billing, which is terminated). Either allow labelled test data in the production database
-   (`WORKSPACE_PREVIEW_WRITES=default-db` on this branch, tenants `am-e2e-a` / `am-e2e-b`, removed afterwards with
+   (`WORKSPACE_PREVIEW_WRITE_TENANTS=am-e2e-a,am-e2e-b` on this branch, tenants `am-e2e-a` / `am-e2e-b`, removed afterwards with
    `firebase firestore:delete tenants/am-e2e-a --recursive` and the same for `am-e2e-b`), or re-enable billing and create a database `preview`
    (`FIRESTORE_DATABASE_ID=preview`).
 4. **Name the second person** (editor). Give the email of a real colleague who agrees to act as editor. Nothing is

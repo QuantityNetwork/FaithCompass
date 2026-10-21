@@ -4,7 +4,7 @@
  */
 import { firebaseProjectId, firestoreConfigFromEnv, FirestoreRest } from '@/lib/firebase/firestore-rest';
 import { verifyFirebaseIdToken, type VerifiedFirebaseUser } from '@/lib/firebase/id-token';
-import { tenantRoles, type TenantRole } from './model';
+import { TENANT_ID as TENANT_ID_RE, tenantRoles, type TenantRole } from './model';
 
 export interface WorkspaceActor {
   uid: string;
@@ -38,14 +38,24 @@ export function workspacesEnabled(env: Record<string, string | undefined> = proc
 
 /**
  * Previews and production share the project's (default) database unless FIRESTORE_DATABASE_ID names another one.
- * A preview therefore writes nothing unless the owner opts in with WORKSPACE_PREVIEW_WRITES=default-db (test data
- * in the production database is an owner decision), or a separate database is configured.
+ * A preview therefore writes only to labelled test workspaces the owner has listed in WORKSPACE_PREVIEW_WRITE_TENANTS
+ * (comma-separated; only ids starting with `am-e2e-` are honoured), or anywhere when a separate database is configured.
+ * Production (VERCEL_ENV=production) is not affected.
  */
-export function previewWriteBlock(env: Record<string, string | undefined> = process.env): string | null {
+export const PREVIEW_TEST_PREFIX = 'am-e2e-';
+
+export function previewWriteTenants(env: Record<string, string | undefined> = process.env): string[] {
+  return (env.WORKSPACE_PREVIEW_WRITE_TENANTS ?? '')
+    .split(',')
+    .map((t) => t.trim())
+    .filter((t) => t.startsWith(PREVIEW_TEST_PREFIX) && TENANT_ID_RE.test(t));
+}
+
+export function previewWriteBlock(tenant: string | null, env: Record<string, string | undefined> = process.env): string | null {
   if (env.VERCEL_ENV !== 'preview') return null;
   if (env.FIRESTORE_DATABASE_ID && env.FIRESTORE_DATABASE_ID !== '(default)') return null;
-  if (env.WORKSPACE_PREVIEW_WRITES === 'default-db') return null;
-  return 'This preview shares the production database; workspace writes are disabled here until the owner allows them (WORKSPACE_PREVIEW_WRITES=default-db) or a separate database is configured (FIRESTORE_DATABASE_ID).';
+  if (tenant && previewWriteTenants(env).includes(tenant)) return null;
+  return 'This preview shares the production database: workspace writes are allowed here only for the labelled test workspaces the owner listed (WORKSPACE_PREVIEW_WRITE_TENANTS).';
 }
 
 export async function workspaceActor(request: Request): Promise<WorkspaceActor> {
