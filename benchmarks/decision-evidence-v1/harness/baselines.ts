@@ -3,13 +3,13 @@
  * without a key they report BLOCKED and make no network call. The key is never written anywhere. D needs human reviewers; none have been recruited, so it is BLOCKED. Nothing is ever estimated.
  */
 import { performance } from 'node:perf_hooks';
-import { detectDeterministic } from '@/lib/contradiction/detect';
-import type { Fact } from '@/lib/contradiction/normalize';
+import { detectDeterministic } from './frozen-c/detect';
+import type { Fact } from './frozen-c/normalize';
 import type { Baseline, BenchCase, SystemOutput } from './types';
 
 /* ------------------------------------------------------------------ C */
 
-/** C: the previous Decision Twin's deterministic contradiction layer (src/lib/contradiction, unchanged since cad6e95). */
+/** C: the previous Decision Twin's deterministic contradiction layer (byte-for-byte copy of src/lib/contradiction/{detect,normalize}.ts at cad6e95 in ./frozen-c, so later product changes cannot alter C). */
 export const baselineC: Baseline = {
   id: 'C',
   name: 'Previous Decision Twin: deterministic contradiction layer over the structured facts',
