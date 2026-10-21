@@ -22,6 +22,13 @@
       "not_before": "2025-06-01T00:00:00Z",
       "not_after": null,
       "revoked_at": "2026-09-01T00:00:00Z"
+    },
+    {
+      "kid": "ed25519-7e933737ff72e02a",
+      "x": "qTCFePAqG-94PDWkzEaHPH9wuaQBhDS50E0N97ofpUE",
+      "status": "active",
+      "not_before": "2026-10-01T00:00:00Z",
+      "not_after": null
     }
   ]
 }

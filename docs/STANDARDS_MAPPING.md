@@ -40,3 +40,28 @@ converter exists yet; **unsupported** = not provided. No conformance certificati
 `RunEvent(eventType=COMPLETE)`: `job.name = "decision-passport-issuance"`, `run.runId` = UUID derived from the passport
 hash, `inputs` = source inventory entries (dataset name = source id, a facet carrying the sha256), `outputs` = the
 passport (dataset name = passport ID), `producer` = the engine release.
+
+<!-- passport-mapping:begin (generated from src/lib/passport/standards.ts) -->
+## Decision Passport: framework mapping (mapping, not certification)
+
+> Mapping, not certification. This table relates passport mechanisms to concepts and controls of the frameworks named. No audit, assessment or certification against any of them has taken place, and no compliance, legal effect or regulatory approval is claimed.
+
+| Framework | Reference | Concept | Passport mechanism | Gap / limit |
+|---|---|---|---|---|
+| eIDAS (Reg. (EU) No 910/2014, as amended) | Art. 3 definitions; Arts. 25–26, 35–36 | Electronic signature / seal; advanced signature requirements (linked to signatory, detects changes) | Ed25519 signature over the passport hash, key id and issue time; any change breaks hash and signature | Not a qualified signature or seal; no qualified certificate, no QSCD, no trust service provider; the operator is not supervised. Art. 25(1) only prevents denial of legal effect solely because a signature is electronic; no further effect is claimed. |
+| eIDAS | Art. 3(33)–(34), Art. 41–42 | Electronic time stamp | Issue time recorded in the signed message and in the registry | Not a qualified time stamp; the time is the operator’s server clock. |
+| eIDAS | Art. 3 (validation), Arts. 32–33 | Validation of signatures | Two independent verifiers (TypeScript, Go) with pinned keys and published conformance fixtures | Not a qualified validation service. |
+| ISO/IEC 27001:2022 Annex A | A.8.24 Use of cryptography | Rules for the effective use of cryptography, including key management | Ed25519 signing; key ids derived from public keys; Policy §7 key management (rotation, retirement, compromise) | Key held as a deployment environment secret, not in an HSM. |
+| ISO/IEC 27001:2022 Annex A | A.8.15 Logging; A.5.28 Collection of evidence | Logs that record activities; preserving evidence | Append-only workspace audit (rules forbid update/delete), written atomically with each step; audit included in the signed passport | Logs live in the same database project as the data; no external log sealing. |
+| ISO/IEC 27001:2022 Annex A | A.5.3 Segregation of duties; A.5.15 Access control; A.8.3 Information access restriction | Conflicting duties separated; access by role | Two-person rule (proposer ≠ reviewer, reviewer must be an editor), enforced by server and database rules; tenant isolation | Roles are assigned by the project owner; no periodic access review process is documented yet. |
+| ISO/IEC 27001:2022 Annex A | A.5.24–A.5.27 Incident management | Planning, assessing, responding to and learning from incidents | Policy §8 incident process; revocation with reason key-compromise | Not exercised; no incident has occurred. |
+| ISO/IEC 27001:2022 Annex A | A.8.32 Change management; A.8.25 Secure development | Controlled changes to systems | Frozen, hash-pinned engines; CI runs both verifiers and the rules emulator on every change | — |
+| EU AI Act (Reg. (EU) 2024/1689) | Art. 12 Record-keeping | Automatic logging of events over a system’s lifetime (obligation for high-risk systems) | Every passport records engine version, AI provider, model and prompt version, and the audit trail of the review | Deep Analysis is not assessed as a high-risk system; the mapping shows a comparable practice, not that Art. 12 applies or is met. |
+| EU AI Act | Art. 13 Transparency and provision of information to deployers | Information on capabilities, limitations and output interpretation | Each finding labelled deterministic or AI; attests / does-not-attest and limits written into each passport | As for Art. 12. |
+| EU AI Act | Art. 14 Human oversight | Natural persons can oversee, interpret and override output | No passport without a human proposer and a different human reviewer; reviewer note recorded | As for Art. 12. |
+| EU AI Act | Art. 50 Transparency obligations | Disclosure that content is AI-generated | AI-layer findings marked as such in the report and the passport, with the model named | Mapping only; no assessment of which Art. 50 obligations apply. |
+| SOC 2 (AICPA Trust Services Criteria 2017, rev. 2022) | CC6.1–CC6.3 | Logical access: restricted, role-based, authorised | Signed-in, verified accounts; workspace roles; database rules deny by default | No SOC 2 examination has been performed. |
+| SOC 2 | CC7.2–CC7.4 | Monitoring, evaluating and responding to security events | Structured security events for every write; incident process; revocation | As above. |
+| SOC 2 | CC8.1 | Change management | Frozen engines, pinned hashes, CI gates | As above. |
+| SOC 2 | PI1.1–PI1.5 Processing integrity | Complete, valid, accurate, timely and authorised processing | Re-verification of the report seal and every span at drafting; deterministic rebuild of the passport from the stored record; hash and signature checks | As above. |
+<!-- passport-mapping:end -->

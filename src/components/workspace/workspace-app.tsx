@@ -5,6 +5,7 @@
  */
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { firebaseClientAvailable, freshAuthHeader, signOutUser, watchUser } from '@/lib/firebase/client';
+import { PassportDrafts } from '@/components/passport/drafts-panel';
 
 type Role = 'member' | 'editor';
 interface DocSummary { id: string; title: string; filename: string; bytes: number; passages: number; textSha256: string; importedByEmail: string | null; importedBy: string; importedAt: string }
@@ -199,6 +200,8 @@ export function WorkspaceApp() {
               return `Proposed "${r.decision.title}". It now needs review by another editor.`;
             })} tenant={tenant} />
           </section>
+
+          <PassportDrafts tenant={tenant} uid={user.uid} role={role} />
 
           <section className="ws-section" aria-labelledby="ws-audit">
             <h2 id="ws-audit">Audit trail</h2>

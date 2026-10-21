@@ -1,0 +1,10 @@
+{
+  "object": "abrahammoses-passport-revocations",
+  "version": 1,
+  "generated_at": "2026-10-21T12:00:00Z",
+  "entries": [],
+  "list_sha256": "b99e1db0c72b17f83c3be4740a76bf4ce00661703fb664bf1f02cece350f8639",
+  "signature": null,
+  "signed_message": "UTF-8 bytes of \"AbrahamMoses revocation list v1\\n\" + list_sha256 + \"\\n\" + kid + \"\\n\" + issued_at",
+  "keys_url": "/.well-known/abrahammoses-passport-keys.json"
+}

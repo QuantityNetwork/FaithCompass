@@ -126,6 +126,38 @@ service cloud.firestore {
 
     // Private institutional workspaces (Decision Twin): members only. No client can write membership; the owner
     // manages it in the Firebase console (there is no admin key on the server).
+    // Public Decision Passport registry and revocations (docs/PASSPORT_POLICY.md). Anyone can read; entries are created
+    // only together with the issuing / revoking step of a workspace passport draft, and never change or disappear.
+    match /issued_passports/{sha} {
+      allow read: if true;
+      allow create: if signedIn()
+        && sha.matches('^[0-9a-f]{64}$')
+        && request.resource.data.sha256 == sha
+        && request.resource.data.kind == 'deep-analysis'
+        && isMember(request.resource.data.tenant)
+        && request.resource.data.kid.matches('^ed25519-[0-9a-f]{16}$')
+        && request.resource.data.signatureValue is string
+        && get(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.status == 'approved'
+        && getAfter(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.status == 'issued'
+        && getAfter(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.passportSha256 == sha
+        && getAfter(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.issuedBy == uid()
+        && getAfter(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.issuedAt == request.resource.data.issuedAt;
+      allow update, delete: if false;
+    }
+    match /passport_revocations/{sha} {
+      allow read: if true;
+      allow create: if signedIn()
+        && request.resource.data.sha256 == sha
+        && request.resource.data.reason in ['superseded', 'withdrawn', 'error', 'key-compromise']
+        && (request.resource.data.reason == 'superseded') == (request.resource.data.supersededBy != null)
+        && get(/databases/$(database)/documents/issued_passports/$(sha)).data.tenant == request.resource.data.tenant
+        && get(/databases/$(database)/documents/issued_passports/$(sha)).data.draftId == request.resource.data.draftId
+        && isTenantEditor(request.resource.data.tenant)
+        && getAfter(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.status == 'revoked'
+        && getAfter(/databases/$(database)/documents/tenants/$(request.resource.data.tenant)/passport_drafts/$(request.resource.data.draftId)).data.revokedBy == uid();
+      allow update, delete: if false;
+    }
+
     match /tenants/{t} {
       allow read: if isMember(t);
       allow write: if false;
@@ -134,6 +166,12 @@ service cloud.firestore {
         allow write: if false;
       }
       function ws(sub, id) { return /databases/$(database)/documents/tenants/$(t)/$(sub)/$(id); }
+      // The audit event `a` of change `c` is referenced by the passport draft `pid` after the batch.
+      function passportStep(pid, c, a) {
+        return getAfter(ws('passport_drafts', pid)).data.get(
+          c == 'DRAFTED' ? 'draftAuditId' : c == 'SUBMITTED' ? 'submitAuditId' : c == 'ISSUED' ? 'issueAuditId' : c == 'REVOKED' ? 'revokeAuditId' : 'reviewAuditId', '') == a
+          && (c == 'DRAFTED' ? !exists(ws('passport_drafts', pid)) : exists(ws('passport_drafts', pid)));
+      }
 
       // Evidence workflow (docs/EVIDENCE_WORKFLOW_E2E.md). Imported documents are immutable; each import is written
       // with its audit event in one batch.
@@ -196,6 +234,10 @@ service cloud.firestore {
             || (request.resource.data.changeType == 'EXPORTED' && request.resource.data.entityType == 'DECISION'
               && exists(ws('decisions', request.resource.data.entityId))
               && existsAfter(ws('passports', request.resource.data.passportSha256)))
+            // Passport lifecycle events: valid only together with the draft change they record (checked there).
+            || (request.resource.data.entityType == 'PASSPORT'
+              && request.resource.data.changeType in ['DRAFTED', 'SUBMITTED', 'APPROVED', 'REJECTED', 'ISSUED', 'REVOKED']
+              && passportStep(request.resource.data.entityId, request.resource.data.changeType, a))
           );
         allow update, delete: if false;
       }
@@ -210,10 +252,82 @@ service cloud.firestore {
         allow update, delete: if false;
       }
 
+      // Decision Passport drafts (src/lib/passport/store.ts, docs/PASSPORT_POLICY.md). draft → submitted (by the
+      // proposer) → approved | rejected (by a different workspace editor) → issued (by the proposer or reviewer, with
+      // the public registry entry in the same batch) → revoked (by an editor, with the public revocation). Every step
+      // writes its audit event in the same batch; only the fields of that step may change; nothing is deleted.
+      // The rules cannot verify Ed25519: an "issued" record written around the server has no valid signature by the
+      // published key and fails every verifier.
+      match /passport_drafts/{id} {
+        function pAudit(aid, change) {
+          return getAfter(ws('audit', aid)).data.entityId == id
+            && getAfter(ws('audit', aid)).data.entityType == 'PASSPORT'
+            && getAfter(ws('audit', aid)).data.changeType == change;
+        }
+        function ownEmail(e) {
+          return e == null || (e == request.auth.token.get('email', '') && request.auth.token.get('email_verified', false) == true);
+        }
+        function only(keys) { return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys); }
+        allow read: if isMember(t);
+        allow create: if isMember(t)
+          && request.resource.data.id == id
+          && request.resource.data.tenant == t
+          && request.resource.data.kind == 'deep-analysis'
+          && request.resource.data.createdBy == uid()
+          && ownEmail(request.resource.data.createdByEmail)
+          && request.resource.data.status == 'draft'
+          && request.resource.data.bindingJson is string
+          && request.resource.data.bindingSha256.matches('^[0-9a-f]{64}$')
+          && request.resource.data.reviewedBy == null
+          && request.resource.data.issuedAt == null
+          && request.resource.data.passportSha256 == null
+          && request.resource.data.signatureJson == null
+          && request.resource.data.revokedAt == null
+          && (request.resource.data.supersedes == null
+              || get(/databases/$(database)/documents/issued_passports/$(request.resource.data.supersedes)).data.tenant == t)
+          && pAudit(request.resource.data.draftAuditId, 'DRAFTED');
+        allow update: if (
+            // Submit: the proposer only.
+            isMember(t)
+            && resource.data.status == 'draft' && request.resource.data.status == 'submitted'
+            && resource.data.createdBy == uid()
+            && only(['status', 'submittedAt', 'submitAuditId'])
+            && pAudit(request.resource.data.submitAuditId, 'SUBMITTED')
+          ) || (
+            // Review: a workspace editor who is not the proposer (two-person rule).
+            isTenantEditor(t)
+            && resource.data.status == 'submitted' && request.resource.data.status in ['approved', 'rejected']
+            && resource.data.createdBy != uid()
+            && request.resource.data.reviewedBy == uid()
+            && ownEmail(request.resource.data.reviewedByEmail)
+            && only(['status', 'reviewedBy', 'reviewedByEmail', 'reviewerShowEmail', 'reviewedAt', 'reviewNote', 'reviewAuditId'])
+            && pAudit(request.resource.data.reviewAuditId, request.resource.data.status == 'approved' ? 'APPROVED' : 'REJECTED')
+          ) || (
+            // Issue: an approved draft, by its proposer or reviewer, with its registry entry in the same batch.
+            isMember(t)
+            && resource.data.status == 'approved' && request.resource.data.status == 'issued'
+            && resource.data.reviewedBy != null && resource.data.reviewedBy != resource.data.createdBy
+            && (resource.data.createdBy == uid() || resource.data.reviewedBy == uid())
+            && request.resource.data.issuedBy == uid()
+            && only(['status', 'issuedAt', 'issuedBy', 'issueAuditId', 'passportSha256', 'passportAuditIds', 'signatureJson', 'kid'])
+            && existsAfter(/databases/$(database)/documents/issued_passports/$(request.resource.data.passportSha256))
+            && pAudit(request.resource.data.issueAuditId, 'ISSUED')
+          ) || (
+            // Revoke: a workspace editor, with the public revocation in the same batch.
+            isTenantEditor(t)
+            && resource.data.status == 'issued' && request.resource.data.status == 'revoked'
+            && request.resource.data.revokedBy == uid()
+            && only(['status', 'revokedAt', 'revokedBy', 'revocationReason', 'revokeAuditId'])
+            && existsAfter(/databases/$(database)/documents/passport_revocations/$(resource.data.passportSha256))
+            && pAudit(request.resource.data.revokeAuditId, 'REVOKED')
+          );
+        allow delete: if false;
+      }
+
       // Every other subcollection; `members` and the evidence-workflow collections above are excluded, so a member
       // cannot add members, change roles or bypass the workflow rules.
       match /{sub}/{doc=**} {
-        allow read, write: if isMember(t) && !(sub in ['members', 'documents', 'decisions', 'audit', 'passports']);
+        allow read, write: if isMember(t) && !(sub in ['members', 'documents', 'decisions', 'audit', 'passports', 'passport_drafts']);
       }
     }
   }

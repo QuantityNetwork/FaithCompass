@@ -1,0 +1,12 @@
+{
+  "comment": "Pinned production Decision Passport public key(s). Public data; the private key exists only as the sensitive Vercel env var PASSPORT_SIGNING_KEY. Compare with /.well-known/abrahammoses-passport-keys.json obtained over HTTPS.",
+  "keys": [
+    {
+      "kid": "ed25519-e31c2d82da92a114",
+      "x": "HLvxNqISBr_AJlCdpAPCYcvUYH0qRaqte0cyeabuEWs",
+      "status": "active",
+      "not_before": "2026-10-20T21:30:00Z",
+      "not_after": null
+    }
+  ]
+}

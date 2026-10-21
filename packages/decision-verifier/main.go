@@ -1,6 +1,6 @@
 // Command decision-verifier checks an AbrahamMoses Decision Passport bundle offline and prints a JSON report.
 //
-//	decision-verifier --keys keys.json --engines engines.json [--expected-sha256 HEX] bundle.json
+//	decision-verifier --keys keys.json --engines engines.json [--expected-sha256 HEX] [--revocations list.json] bundle.json
 //	decision-verifier --conformance DIR      (runs DIR/fixtures against DIR/expected.json)
 //
 // Exit codes: 0 VALID (or all conformance fixtures as expected), 1 INVALID, 2 UNSUPPORTED, 3 usage or I/O error,
@@ -98,12 +98,13 @@ func main() {
 	enginesPath := flag.String("engines", "", "pinned engine releases (JSON {engines:[...]})")
 	expected := flag.String("expected-sha256", "", "passport hash obtained independently of the bundle")
 	conf := flag.String("conformance", "", "run the conformance fixtures in this directory")
+	revs := flag.String("revocations", "", "revocation list (JSON from /api/passport/revocations), checked with the pinned keys")
 	flag.Parse()
 	if *conf != "" {
 		os.Exit(conformance(*conf))
 	}
 	if flag.NArg() != 1 || *keysPath == "" || *enginesPath == "" {
-		fail("usage: decision-verifier --keys keys.json --engines engines.json [--expected-sha256 HEX] bundle.json")
+		fail("usage: decision-verifier --keys keys.json --engines engines.json [--expected-sha256 HEX] [--revocations list.json] bundle.json")
 	}
 	var keys struct{ Keys []PinnedKey }
 	var engines struct{ Engines []PinnedEngine }
@@ -117,7 +118,15 @@ func main() {
 	if err != nil {
 		fail("cannot read bundle: %v", err)
 	}
-	r := Verify(b, Options{Keys: keys.Keys, Engines: engines.Engines, ExpectedSha256: *expected})
+	opts := Options{Keys: keys.Keys, Engines: engines.Engines, ExpectedSha256: *expected}
+	if *revs != "" {
+		list, err := loadBundle(*revs)
+		if err != nil {
+			fail("cannot read revocations: %v", err)
+		}
+		opts.Revocations, opts.HasRevocations = list, true
+	}
+	r := Verify(b, opts)
 	emit(r)
 	switch r.Result {
 	case "VALID":

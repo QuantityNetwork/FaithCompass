@@ -16,6 +16,7 @@
  * not a third-party attestation.
  */
 import { HISTORICAL_KEYS, type PublishedKey } from './keys';
+import { revocationListMessage } from '@/lib/passport-bundle/verify';
 import { createHash, createPrivateKey, createPublicKey, sign, verify, type KeyObject } from 'node:crypto';
 
 export const UNSIGNED = 'unsigned: integrity hash only';
@@ -40,6 +41,8 @@ export interface PassportSigner {
   publicKeyPem: string;
   /** Signs the issuance message for this hash and issue time. */
   signIssuance(sha256Hex: string, issuedAt: string): string;
+  /** Signs the revocation-list message (domain-separated) for a list digest and time. Optional for test signers. */
+  signRevocationList?(listSha256Hex: string, issuedAt: string): string;
   /** Start of this key's validity window, from PASSPORT_SIGNING_KEY_NOT_BEFORE (ISO time), if set. */
   notBefore: string | null;
 }
@@ -72,6 +75,7 @@ export function signerFrom(raw: string | undefined, notBefore: string | null = n
       publicKeyPem: pub.export({ format: 'pem', type: 'spki' }).toString(),
       notBefore,
       signIssuance: (sha256Hex, issuedAt) => sign(null, Buffer.from(issuanceMessage(sha256Hex, keyId, issuedAt), 'utf8'), key).toString('base64url'),
+      signRevocationList: (listSha, issuedAt) => sign(null, Buffer.from(revocationListMessage(listSha, keyId, issuedAt), 'utf8'), key).toString('base64url'),
     },
   };
 }

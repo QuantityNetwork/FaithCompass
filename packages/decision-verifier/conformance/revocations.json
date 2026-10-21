@@ -1,0 +1,30 @@
+{
+  "note": "Revocation-list cases: verify fixtures/<fixture>.json with revocations/<list>.json; the revocation check must have the given status.",
+  "signing_kid": "ed25519-7e933737ff72e02a",
+  "cases": [
+    {
+      "fixture": "valid-da-passport-issued",
+      "list": "signed-not-listed",
+      "revocation": "pass",
+      "result": "VALID"
+    },
+    {
+      "fixture": "valid-da-passport-issued",
+      "list": "signed-revoked",
+      "revocation": "fail",
+      "result": "INVALID"
+    },
+    {
+      "fixture": "valid-da-passport-issued",
+      "list": "unsigned",
+      "revocation": "uncheckable",
+      "result": "VALID"
+    },
+    {
+      "fixture": "valid-da-passport-issued",
+      "list": "forged",
+      "revocation": "uncheckable",
+      "result": "VALID"
+    }
+  ]
+}

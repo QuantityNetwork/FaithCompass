@@ -1,0 +1,22 @@
+{
+  "object": "abrahammoses-passport-revocations",
+  "version": 1,
+  "generated_at": "2026-10-21T12:00:00Z",
+  "entries": [
+    {
+      "passport_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "revoked_at": "2026-10-21T11:00:00Z",
+      "reason": "withdrawn",
+      "superseded_by": null
+    }
+  ],
+  "list_sha256": "9d2a261537268d53aa29f7a7bdfbd23f8c1cbbc13eb52907d901e7857d56a48d",
+  "signature": {
+    "alg": "Ed25519",
+    "kid": "ed25519-7e933737ff72e02a",
+    "issued_at": "2026-10-21T12:00:00Z",
+    "value": "j8J4p3z__FmWugkiXVSBpPrsoWQt9G54utGaUoWDWRBPVkcZ9b-0xUAWxO4mmylczVm-Ul1MbUbY5PS0SlXfDQ"
+  },
+  "signed_message": "UTF-8 bytes of \"AbrahamMoses revocation list v1\\n\" + list_sha256 + \"\\n\" + kid + \"\\n\" + issued_at",
+  "keys_url": "/.well-known/abrahammoses-passport-keys.json"
+}
