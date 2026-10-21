@@ -13,7 +13,9 @@ const SAMPLES = [
   { id: 'sample-nda', file: 'sample-nda.md', title: 'Mutual non-disclosure agreement' },
   { id: 'sample-supplier-contract', file: 'sample-supplier-contract.md', title: 'Supply agreement' },
 ] as const;
-const MAX_MB = 3;
+const MAX_MB = 15;
+/** Larger files are read in the browser and only their text is sent (the server's request body is capped). */
+const DIRECT_MB = 3;
 
 type ViewerState = 'signed-out' | 'eligible' | 'email-not-verified' | 'invalid';
 interface Status {
@@ -70,13 +72,20 @@ export function DeepAnalysisApp() {
     setError(null);
     if (buf.byteLength > MAX_MB * 1024 * 1024) return setError(`Files up to ${MAX_MB} MB are accepted.`);
     const withAi = aiAllowed && useAi;
-    setBusy(withAi ? 'Analysing with the rules and the AI layer; this takes up to a minute…' : 'Analysing…');
+    setBusy(withAi ? 'Analysing with the rules and the AI layer; with a long document this can take several minutes…' : 'Analysing…');
     try {
+      let payload: Record<string, unknown> = { filename: name, contentBase64: '' };
+      if (buf.byteLength > DIRECT_MB * 1024 * 1024) {
+        setBusy('Reading the file in your browser…');
+        const { extractInBrowser } = await import('./extract-client');
+        payload = { filename: name, extracted: await extractInBrowser(name, buf) };
+        setBusy(withAi ? 'Analysing with the rules and the AI layer; with a long document this can take several minutes…' : 'Analysing…');
+      } else payload.contentBase64 = toBase64(buf);
       const auth = firebaseClientAvailable() ? await freshAuthHeader().catch(() => null) : null;
       const res = await fetch('/api/deep-analysis', {
         method: 'POST',
         headers: { 'content-type': 'application/json', ...(auth ?? {}) },
-        body: JSON.stringify({ filename: name, contentBase64: toBase64(buf), sample, useAi: withAi }),
+        body: JSON.stringify({ ...payload, sample, useAi: withAi }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.status === 401 || res.status === 403) void loadStatus();
@@ -114,7 +123,7 @@ export function DeepAnalysisApp() {
           <li><strong>Not legal advice; not reviewed by a lawyer.</strong> The report supports, and does not replace, professional review.</li>
           <li>Confidential client documents may not be submitted yet; the security review for client data is not complete. Use your own or sample documents.</li>
           <li>Nothing is stored. The document is analysed in memory and discarded; the report remains in this browser tab until exported.</li>
-          <li>Accepted formats: PDF with a text layer, Word (.docx), plain text or Markdown, up to {MAX_MB} MB. Scanned PDFs without text are not supported.</li>
+          <li>Accepted formats: PDF with a text layer, Word (.docx), plain text or Markdown, up to {MAX_MB} MB. Scanned PDFs without text are not supported. Files over {DIRECT_MB} MB are read in your browser and only their text is sent.</li>
           <li>
             AI layer on this deployment:{' '}
             {!status ? 'checking…' : ai?.configured ? (

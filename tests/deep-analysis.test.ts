@@ -148,6 +148,57 @@ describe('AI layer verification', () => {
   });
 });
 
+describe('large files (read in the browser, text only)', () => {
+  it('the server refuses raw files over 3 MB and accepts their extracted text, re-normalised and hashed server-side', async () => {
+    const { documentFromText, MAX_FILE_BYTES } = await import('@/lib/deep-analysis/parse');
+    expect(MAX_FILE_BYTES).toBe(15 * 1024 * 1024);
+    await expect(parseDocument('big.pdf', new Uint8Array(MAX_UPLOAD_BYTES + 1))).rejects.toMatchObject({ code: 'TOO_LARGE', status: 413 });
+    const text = readFileSync('public/deep-analysis/samples/sample-nda.md', 'utf8');
+    const doc = documentFromText({ filename: 'big.pdf', format: 'pdf', text: text.replace(/\n/g, '\r\n') + '\u200b', pages: 8, bytes: 14_000_000, bytesSha256: 'a'.repeat(64) });
+    expect(doc.extraction).toBe('browser');
+    expect(doc.text).toBe((await sample('sample-nda')).text);
+    expect(doc.textSha256).toBe(sha256Hex(doc.text));
+    const r = await analyzeDocument(doc, {});
+    expect(r.document.extraction).toBe('browser');
+    expect(ReportSchema.parse(r).document.bytes).toBe(14_000_000);
+    expect(() => documentFromText({ filename: 'e.pdf', format: 'pdf', text: '   ', pages: 1, bytes: 10, bytesSha256: 'a'.repeat(64) })).toThrow(ParseError);
+  });
+  it('the route accepts an extracted-text body without the file', async () => {
+    const route = await import('@/app/api/deep-analysis/route');
+    const text = readFileSync('public/deep-analysis/samples/sample-supplier-contract.md', 'utf8');
+    const res = await route.POST(new Request('https://abrahammoses.test/api/deep-analysis', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ filename: 'large.pdf', useAi: false, extracted: { format: 'pdf', text, pages: 8, bytes: 14_474_000, bytesSha256: 'b'.repeat(64) } }) }));
+    expect(res.status).toBe(200);
+    const j = await res.json();
+    expect(j.report.document).toMatchObject({ filename: 'large.pdf', format: 'pdf', bytes: 14_474_000, extraction: 'browser' });
+    expect(j.stored).toBe(false);
+  });
+});
+
+describe('OpenAI provider requests', () => {
+  it('defaults to gpt-5.6-terra through the Responses API with medium reasoning effort and a JSON answer', async () => {
+    const { openAiProvider, openAiRequest, readOpenAiAnswer, DEFAULT_MODEL, AI_MAX_OUTPUT_TOKENS, reasoningEffort } = await import('@/lib/deep-analysis/ai');
+    expect(DEFAULT_MODEL).toBe('gpt-5.6-terra');
+    expect(openAiProvider({ OPENAI_API_KEY: 'x' }).model).toBe('gpt-5.6-terra');
+    expect(openAiProvider({ OPENAI_API_KEY: 'x', DEEP_ANALYSIS_MODEL: 'gpt-5.6-luna' }).model).toBe('gpt-5.6-luna');
+    expect(openAiProvider({ OPENAI_API_KEY: 'x', DEEP_ANALYSIS_MODEL: 'gpt-4.1' }).model).toBe('gpt-4.1');
+    expect(reasoningEffort({})).toBe('medium');
+    expect(reasoningEffort({ DEEP_ANALYSIS_REASONING_EFFORT: 'xhigh' })).toBe('xhigh');
+    expect(reasoningEffort({ DEEP_ANALYSIS_REASONING_EFFORT: 'bogus' })).toBe('medium');
+    const r = openAiRequest('gpt-5.6-sol', 'Analyse … JSON', 'high');
+    expect(r.url).toBe('https://api.openai.com/v1/responses');
+    expect(r.body).toMatchObject({ model: 'gpt-5.6-sol', store: false, reasoning: { effort: 'high' }, max_output_tokens: AI_MAX_OUTPUT_TOKENS, text: { format: { type: 'json_object' } } });
+    expect(openAiRequest('gpt-4.1', 'p', 'high').url).toBe('https://api.openai.com/v1/chat/completions');
+    const done = readOpenAiAnswer('gpt-5.6-sol', { model: 'gpt-5.6-sol', status: 'completed', output: [{ type: 'reasoning' }, { type: 'message', content: [{ type: 'output_text', text: '{"a":1}' }] }], usage: { input_tokens: 1000, output_tokens: 2000, output_tokens_details: { reasoning_tokens: 1500 } } });
+    expect(done).toMatchObject({ text: '{"a":1}', finishReason: 'stop', usage: { inputTokens: 1000, outputTokens: 2000, reasoningTokens: 1500 } });
+    expect(done.usage!.usd).toBeCloseTo((1000 * 4 + 2000 * 20) / 1e6);
+    expect(readOpenAiAnswer('gpt-5.6-sol', { status: 'incomplete', incomplete_details: { reason: 'max_output_tokens' }, output: [] }).finishReason).toBe('length');
+  });
+  it('puts the word JSON in the input, as json_object mode requires', async () => {
+    const { aiPrompt } = await import('@/lib/deep-analysis/ai');
+    expect(aiPrompt('Some text.', []).prompt).toMatch(/JSON/);
+  });
+});
+
 describe('AI access policy', () => {
   beforeEach(() => resetAiLimits());
   const req = (auth?: string) => new Request('https://x.test/api/deep-analysis', { method: 'POST', headers: auth ? { authorization: auth } : {} });
@@ -209,4 +260,63 @@ describe('recorded sample reports', () => {
       expect(r.document.textSha256).toBe((await sample(s.id)).textSha256);
     });
   }
+});
+
+describe('PDF line unwrapping (server and browser extraction)', () => {
+  it('re-joins wrapped lines, de-hyphenates, and keeps headings, clause and paragraph breaks', async () => {
+    const { unwrapPdfLines } = await import('@/lib/deep-analysis/text');
+    const page = [
+      'SUPPLY AGREEMENT',
+      'This Supply Agreement is made on 2 June 2026 between Nordkap Components AS, a company',
+      'registered in Norway (the "Supplier"), and Vireo Mobility AB, a company registered in Sweden',
+      '(the "Buyer").',
+      '1. Supply of Goods',
+      '1.1 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equiv-',
+      'alent goods from any other supplier during the initial term or any renewal term for a period of',
+      '30 days after the term.',
+      '(a) first item;',
+      '(b) second item.',
+      '',
+      'Annex A',
+    ].join('\n');
+    expect(unwrapPdfLines(page)).toBe([
+      'SUPPLY AGREEMENT',
+      'This Supply Agreement is made on 2 June 2026 between Nordkap Components AS, a company registered in Norway (the "Supplier"), and Vireo Mobility AB, a company registered in Sweden (the "Buyer").',
+      '1. Supply of Goods',
+      '1.1 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equivalent goods from any other supplier during the initial term or any renewal term for a period of 30 days after the term.',
+      '(a) first item;',
+      '(b) second item.',
+      '',
+      'Annex A',
+    ].join('\n'));
+  });
+
+  it('a 13.8 MB PDF with wrapped and hyphenated lines: browser extraction finds both parties (no AI call)', async () => {
+    const { buildPdf, wrapLines } = await import('./helpers/pdf-fixture');
+    const { extractInBrowser } = await import('@/components/deep-analysis/extract-client');
+    const { documentFromText } = await import('@/lib/deep-analysis/parse');
+    const md = readFileSync('public/deep-analysis/samples/sample-supplier-contract.md', 'utf8');
+    const lines = wrapLines(md, 88, true);
+    expect(lines.some((l) => l.endsWith('-'))).toBe(true);
+    const pdf = buildPdf(lines, { imageBytes: 14_400_000 });
+    expect(pdf.byteLength).toBeGreaterThan(13.5 * 1024 * 1024);
+    expect(pdf.byteLength).toBeLessThan(15 * 1024 * 1024);
+    const ex = await extractInBrowser('large-contract.pdf', pdf.buffer.slice(pdf.byteOffset, pdf.byteOffset + pdf.byteLength) as ArrayBuffer);
+    expect(ex.text).toContain('Nordkap Components AS, a company registered in Norway (the "Supplier"), and Vireo Mobility AB, a company registered in Sweden (the "Buyer").');
+    expect(ex.text).toContain('equivalent goods');
+    const r = await analyzeDocument(documentFromText({ filename: 'large-contract.pdf', ...ex }), {});
+    expect(r.engine.ai.status).not.toBe('used');
+    expect(r.overview.parties.map((p) => p.role)).toEqual(['Supplier', 'Buyer']);
+    expect(r.overview.parties.map((p) => p.name)).toEqual(['Nordkap Components AS', 'Vireo Mobility AB']);
+  }, 60_000);
+
+  it('server extraction (files up to 3 MB) gives the same text and both parties', async () => {
+    const { buildPdf, wrapLines } = await import('./helpers/pdf-fixture');
+    const md = readFileSync('public/deep-analysis/samples/sample-supplier-contract.md', 'utf8');
+    const doc = await parseDocument('contract.pdf', buildPdf(wrapLines(md, 88, true)));
+    expect(doc.extraction).toBe('server');
+    expect(doc.text).toContain('(the "Supplier"), and Vireo Mobility AB');
+    const r = await analyzeDocument(doc, {});
+    expect(r.overview.parties.map((p) => p.role)).toEqual(['Supplier', 'Buyer']);
+  }, 60_000);
 });
