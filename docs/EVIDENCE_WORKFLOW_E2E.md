@@ -76,6 +76,37 @@ Nothing was written to Firestore and no Auth account was created during the live
 * Preview gate: writes allowed only for `WORKSPACE_PREVIEW_WRITE_TENANTS=am-e2e-a,am-e2e-b` (branch-scoped Preview
   env on `evidence-workflow`; ids not starting with `am-e2e-` are never honoured). Production is not affected.
 
+### D. Production, 2026-10-21 from 12:13 CEST: first real account (Google)
+
+Production deployment `dpl_9PP4FxdiSNJVB1YQeqsqwsgcveMK` (commit e3d876a, PR #25 "Sign in with Google").
+
+* **Account.** The owner signed in with Google on https://abrahammoses.com/institutional/workspace/sign-in.
+  `firebase auth:export` (CLI as markus@sagolik.com, export file deleted after use): 1 account, `markus@sagolik.com`,
+  provider `google.com`, email verified, created 12:12:52 CEST, no claims.
+* **Roles (12:2x CEST).** `scripts/workspace-claims.mjs … --email markus@sagolik.com --tenant am-e2e-a=member
+  --tenant am-e2e-b=member`, then `firebase auth:import` (only that account; provider kept). Re-export shows
+  `{"am_tenants":{"am-e2e-a":"member","am-e2e-b":"member"}}`, no `am_role`. He is not an editor anywhere, so he can
+  import, propose and export but cannot approve, his own decision or anyone else's. The workspaces need no setup
+  document: a workspace exists for whoever holds a role in it (`tenants/{t}` is not client-writable).
+* **Email link** is still off (`OPERATION_NOT_ALLOWED`, 11:45 CEST); Google is the working sign-in.
+* **Anonymous sign-in** (enabled in the console) is refused everywhere: a real anonymous token got 401
+  `INVALID_TOKEN` on every workspace route, 401 on the evidence write routes and Firestore 403 on all eight rule
+  paths tried; the test user was deleted (11:45 CEST).
+
+The operator cannot sign in as the owner, so the steps that need his token are done by him in the browser:
+
+| Step | Who / how | Status |
+|---|---|---|
+| 1 Authentication | owner, Google | **PASS** (account above; unauthenticated writes 401) |
+| 2 Import into `am-e2e-a` | owner: reload the workspace page, choose any short `.txt`, Import | pending owner |
+| 3 Propose a decision citing a passage | owner: fill the form, Propose for review | pending owner |
+| 4a Self-approval refused | the page offers no Approve to the proposer or to a member; the route answers 403 and the rules refuse (`proposedBy != uid`, editor role); emulator-tested (section A) | not exercisable live without an editor token |
+| 4b Two-person approval | second real person as editor of `am-e2e-a` | **BLOCKED**: no second reviewer named |
+| 5 Isolation | owner: switch the workspace selector to `am-e2e-b`; it must show no documents, decisions or audit entries from `am-e2e-a` | pending owner |
+| 6 Export, Go verifier offline | owner: Export on the decision (a proposed decision exports with status `proposed`); the downloaded bundle is verified with `decision-verifier` under `unshare -rn` | pending owner (bundle file needed) |
+| 7 Retrieval in a fresh session | owner: Sign out, sign in with Google again; the same document, decision, audit trail and passport SHA-256 are listed | pending owner |
+| Clean-up | `firebase firestore:delete tenants/am-e2e-a --recursive` (and `am-e2e-b`); remove claims | after the run |
+
 ## Why the live steps are blocked, and the minimal owner actions
 
 1. **Enable Email link sign-in.** Firebase console → Authentication → Sign-in method → Email/Password → turn on
