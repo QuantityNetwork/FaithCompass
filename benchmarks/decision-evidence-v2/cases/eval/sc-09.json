@@ -1,0 +1,338 @@
+{
+  "id": "sc-09",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Elsing Gospels: scholarly review (fictional)",
+  "entity": "Elsing Gospels",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Elsing Gospels (fictional, authored test material).\nThroughout the documents of this review, the Manuscript means Elsing Gospels. Marginal annotations at Elsing Gospels stood at 418. Elsing Gospels had share of palimpsest leaves of 13.4% in FY2024. For Elsing Gospels, missing leaves in FY2025 was 34. Insured value at Elsing Gospels stood at $10.1m in the twelve months to 31 Mar 2025 (reported basis)."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Elsing Gospels (fictional, authored test material).\nElsing Gospels trades under the name Lumen. Ruled columns per page at Elsing Gospels stood at 2 in FY2025. Lumen had binding date (CE) of 1747 in FY2025. For Elsing Gospels, lost folios in FY2025 was 40. Insured value at Elsing Gospels stood at $9m in FY2025 (reported basis). Throughout the documents of this review, \"lost folios\" means the same measure as missing leaves."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Elsing Gospels (fictional, authored test material).\nElsing Gospels has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. Marginal annotations at Elsing Gospels stood at 367 in FY2024. Share of palimpsest leaves of Elsing Gospels in FY2024: to be confirmed; not included in this document. For the Manuscript, ruled columns per page in FY2025 was 1. Binding date (CE) at Elsing Gospels stood at 1405 in FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 151,
+      "end": 203,
+      "text": "Marginal annotations at Elsing Gospels stood at 418."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 204,
+      "end": 269,
+      "text": "Elsing Gospels had share of palimpsest leaves of 13.4% in FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 270,
+      "end": 322,
+      "text": "For Elsing Gospels, missing leaves in FY2025 was 34."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 323,
+      "end": 424,
+      "text": "Insured value at Elsing Gospels stood at $10.1m in the twelve months to 31 Mar 2025 (reported basis)."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 117,
+      "end": 179,
+      "text": "Ruled columns per page at Elsing Gospels stood at 2 in FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 180,
+      "end": 226,
+      "text": "Lumen had binding date (CE) of 1747 in FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 227,
+      "end": 276,
+      "text": "For Elsing Gospels, lost folios in FY2025 was 40."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 277,
+      "end": 349,
+      "text": "Insured value at Elsing Gospels stood at $9m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 173,
+      "end": 235,
+      "text": "Marginal annotations at Elsing Gospels stood at 367 in FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 236,
+      "end": 339,
+      "text": "Share of palimpsest leaves of Elsing Gospels in FY2024: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 340,
+      "end": 399,
+      "text": "For the Manuscript, ruled columns per page in FY2025 was 1."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 400,
+      "end": 460,
+      "text": "Binding date (CE) at Elsing Gospels stood at 1405 in FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Elsing Gospels",
+      "concept": "marginal_notes",
+      "value": 418,
+      "unit": "count",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Elsing Gospels",
+      "concept": "palimpsest_share",
+      "value": 13.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Elsing Gospels",
+      "concept": "missing_leaves",
+      "value": 34,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Elsing Gospels",
+      "concept": "insurance_value",
+      "value": 10.1,
+      "unit": "$m",
+      "period": "LTM to 31 Mar 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Elsing Gospels",
+      "concept": "ruled_columns",
+      "value": 2,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Lumen",
+      "concept": "binding_date",
+      "value": 1747,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Elsing Gospels",
+      "concept": "lost_folios",
+      "value": 40,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Elsing Gospels",
+      "concept": "insurance_value",
+      "value": 9,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Elsing Gospels",
+      "concept": "marginal_notes",
+      "value": 367,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Elsing Gospels",
+      "concept": "palimpsest_share",
+      "value": null,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "the Manuscript",
+      "concept": "ruled_columns",
+      "value": 1,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Elsing Gospels",
+      "concept": "binding_date",
+      "value": 1405,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Marginal annotations and Share of palimpsest leaves of Elsing Gospels are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Ruled columns per page and Binding date (CE) of Elsing Gospels are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s1"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D3#s2"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Manuscript\" is defined in the documents as Elsing Gospels"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Elsing Gospels is stated to trade as \"Lumen\""
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"lost folios\" is defined as the same measure as \"missing leaves\""
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "marginal annotations",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "share of palimpsest leaves",
+          "acceptable": [
+            "D1#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "ruled columns per page",
+          "acceptable": [
+            "D2#s1",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "binding date (CE)",
+          "acceptable": [
+            "D2#s2",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D2#s1",
+        "D2#s2",
+        "D3#s3",
+        "D3#s4"
+      ]
+    }
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "id": "ma-03",
+  "domain": "m_and_a",
+  "split": "dev",
+  "fictional": true,
+  "title": "Kestrel Point Group: m and a review (fictional)",
+  "entity": "Kestrel Point Group",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Kestrel Point Group (fictional).\nIn this document \"KPGH\" means Kestrel Point Group. Kestrel Point Group reports annual customer churn of 12.1% for FY2024 on a reported basis. Kestrel Point Group reports enterprise value of $900.3m on a reported basis. Kestrel Point Group: employees for FY2025 — not provided. Kestrel Point Group reports revenue of $458.5m for FY2024 on a reported basis. For Kestrel Point Group, the material adverse change clause is read as: excludes general market downturns."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Kestrel Point Group (fictional).\nKestrel Point Group reports annual customer churn of 14.8% for FY2024 on a adjusted (management definition) basis. Kestrel Point Group reports enterprise value of $1030.8m for FY2025 on a reported basis. Kestrel Point Group reports EBITDA of $25m for FY2025 on a reported basis. Kestrel Point Group reports gross margin of 38.377% for FY2025. For Kestrel Point Group, the material adverse change clause is read as: covers any event reducing EBITDA by more than 10%."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Kestrel Point Group (fictional).\nKestrel Point Group reports headcount of 2253 for FY2025. Kestrel Point Group reports revenue of $511.5m for FY2025 on a reported basis. Kestrel Point Group reports EBITDA of $25000k for FY2025 on a reported basis. Kestrel Point Group reports gross margin of 38.3% for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 109,
+      "end": 199,
+      "text": "Kestrel Point Group reports annual customer churn of 12.1% for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 200,
+      "end": 276,
+      "text": "Kestrel Point Group reports enterprise value of $900.3m on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 277,
+      "end": 334,
+      "text": "Kestrel Point Group: employees for FY2025 — not provided."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 335,
+      "end": 413,
+      "text": "Kestrel Point Group reports revenue of $458.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 414,
+      "end": 520,
+      "text": "For Kestrel Point Group, the material adverse change clause is read as: excludes general market downturns."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 66,
+      "end": 180,
+      "text": "Kestrel Point Group reports annual customer churn of 14.8% for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 181,
+      "end": 269,
+      "text": "Kestrel Point Group reports enterprise value of $1030.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 270,
+      "end": 344,
+      "text": "Kestrel Point Group reports EBITDA of $25m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 345,
+      "end": 408,
+      "text": "Kestrel Point Group reports gross margin of 38.377% for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 409,
+      "end": 531,
+      "text": "For Kestrel Point Group, the material adverse change clause is read as: covers any event reducing EBITDA by more than 10%."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 66,
+      "end": 123,
+      "text": "Kestrel Point Group reports headcount of 2253 for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 124,
+      "end": 202,
+      "text": "Kestrel Point Group reports revenue of $511.5m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 203,
+      "end": 280,
+      "text": "Kestrel Point Group reports EBITDA of $25000k for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 281,
+      "end": 342,
+      "text": "Kestrel Point Group reports gross margin of 38.3% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Kestrel Point Group",
+      "concept": "customer_churn",
+      "value": 12.1,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Kestrel Point Group",
+      "concept": "enterprise_value",
+      "value": 900.3,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Kestrel Point Group",
+      "concept": "headcount",
+      "value": null,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Kestrel Point Group",
+      "concept": "revenue",
+      "value": 458.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Kestrel Point Group",
+      "concept": "mac_clause",
+      "value": "excludes general market downturns",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Kestrel Point Group",
+      "concept": "customer_churn",
+      "value": 14.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Kestrel Point Group",
+      "concept": "enterprise_value",
+      "value": 1030.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Kestrel Point Group",
+      "concept": "ebitda",
+      "value": 25,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Kestrel Point Group",
+      "concept": "gross_margin",
+      "value": 38.377,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Kestrel Point Group",
+      "concept": "mac_clause",
+      "value": "covers any event reducing EBITDA by more than 10%",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Kestrel Point Group",
+      "concept": "headcount",
+      "value": 2253,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Kestrel Point Group",
+      "concept": "revenue",
+      "value": 511.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Kestrel Point Group",
+      "concept": "ebitda",
+      "value": 25000,
+      "unit": "$k",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Kestrel Point Group",
+      "concept": "gross_margin",
+      "value": 38.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The annual customer churn and enterprise value of Kestrel Point Group support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The employees of Kestrel Point Group supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "annual customer churn",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "enterprise value",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

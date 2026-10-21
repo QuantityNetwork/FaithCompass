@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "ac895f42525b40d2b56f2d2dde84be62a7d7c59ded46fd36c42034340049e12b",
+    "prompt_chars": 3340
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s1\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s5\", \"D3#s5\"],\n      \"class\": \"UNRESOLVED_INTERPRETATION\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D2#s2\", \"D2#s1\", \"D3#s1\"],\n    \"C2\": [\"D1#s2\", \"D2#s3\", \"D2#s4\", \"D3#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D2#s2\", \"D2#s1\", \"D3#s1\"],\n    \"C2\": [\"D1#s2\", \"D2#s3\", \"D2#s4\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 874,
+      "completion_tokens": 358
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2694.800962000154,
+  "usd": 0.0009224000000000001,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Vendor due diligence summary\nVendor due diligence summary: Kalvik Energy (fictional, authored test material).\n[D1#s1] Pension deficit at Kalvik Energy stood at €72.8m in FY2025 (reported basis). [D1#s2] Kalvik Energy had cost synergies of EUR 58.1 million in FY2024 (reported basis). [D1#s3] For Kalvik Energy, run-rate EBITDA in H1 2025 was €37.5m (reported basis). [D1#s4] Capex as share of sales at Kalvik Energy stood at 10% in FY2023.\n\n## D2 Management presentation\nManagement presentation: Kalvik Energy (fictional, authored test material).\n[D2#s1] Net revenue retention at Kalvik Energy stood at 122.165% in FY2024. [D2#s2] Kalvik Energy had pension deficit of EUR 72800 thousand in FY2025 (reported basis). [D2#s3] For Kalvik Energy, cost synergies in FY2024 was €58.1m (reported basis). [D2#s4] Order backlog at Kalvik Energy stood at €327.1m in FY2025 (reported basis), as originally reported. [D2#s5] The scope of the tax warranty for Kalvik Energy is understood as follows: covers periods up to completion and the following tax year.\n\n## D3 Buyer quality-of-earnings memo\nBuyer quality-of-earnings memo: Kalvik Energy (fictional, authored test material).\n[D3#s1] Net revenue retention at Kalvik Energy stood at 121.8% in FY2024. [D3#s2] Kalvik Energy had run-rate EBITDA of €72.2m in FY2025 (reported basis). [D3#s3] For Kalvik Energy, capex as share of sales in FY2025 was 7.9%. [D3#s4] Order backlog at Kalvik Energy stood at €239.3m in FY2025 (reported basis), as restated in the latest accounts. [D3#s5] The scope of the tax warranty for Kalvik Energy is understood as follows: covers periods up to completion only.\n\n# Conclusions\nC1: Net revenue retention and Pension deficit of Kalvik Energy are adequate for the board recommendation to sign\nC2: Cost synergies and Order backlog of Kalvik Energy are adequate for the board recommendation to sign",
+  "extra": {
+    "sdep_sha256": "89692911c83f5321d0f3b60e0cdb886fd9b913e965758b28462e3a8c6e1c00f1"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "9aa4d1b6200e1e4bb186e59b82bc49c9785b3d7e83e89b0cc4e17e93f98d8303",
+    "prompt_chars": 3144
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s2\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D2#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D2#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D2#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s2\", \"D3#s4\"],\n      \"class\": \"MISSING_EVIDENCE\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D3#s1\", \"D1#s3\", \"D3#s2\"],\n    \"C2\": [\"D2#s1\", \"D3#s3\", \"D2#s2\", \"D3#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D3#s1\", \"D1#s3\", \"D3#s2\"],\n    \"C2\": [\"D2#s1\", \"D3#s3\", \"D2#s2\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 801,
+      "completion_tokens": 358
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 3010.4577419999987,
+  "usd": 0.0008932,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Framework agreement\nFramework agreement: Hollins Energy (fictional, authored test material).\nThroughout the documents of this review, the Supplier means Hollins Energy. [D1#s1] Warranty period at Hollins Energy stood at 14 months in FY2024. [D1#s2] Hollins Energy had performance bond of SEK 6.1m in FY2024 (reported basis). [D1#s3] For Hollins Energy, volume rebate in FY2024 was 8.6%. [D1#s4] Annual service charges at Northstar stood at SEK 31.5m in FY2024 (reported basis).\n\n## D2 Change order\nChange order: Hollins Energy (fictional, authored test material).\nHollins Energy trades under the name Northstar. [D2#s1] Total contract value at Hollins Energy stood at SEK 382.3m in FY2024 (reported basis). [D2#s2] Incident response time of Hollins Energy in FY2024: to be confirmed; not included in this document. [D2#s3] For the Supplier, volume rebate in FY2024 was 7.6%. [D2#s4] Annual service charges at Hollins Energy stood at SEK 27.4m in FY2024 (reported basis).\n\n## D3 Procurement evaluation note\nProcurement evaluation note: Hollins Energy (fictional, authored test material).\n[D3#s1] Warranty period at Hollins Energy stood at 19 months in FY2024. [D3#s2] Hollins Energy had performance bond of SEK 4.3m in FY2024 (pro forma (including the planned acquisition) basis). [D3#s3] For Hollins Energy, total contract value was SEK 315.5m (reported basis). [D3#s4] Incident response time at Hollins Energy stood at 18 hours in FY2024.\n\n# Conclusions\nC1: Warranty period and Performance bond of Hollins Energy are adequate for the award recommendation\nC2: Total contract value and Incident response time of Hollins Energy are adequate for the award recommendation",
+  "extra": {
+    "sdep_sha256": "7e8e87e3fdbe78206cce6c71d0e86e39ba2da1c3f1498830878a818709adf03d"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "f4b3fd1f68616eb7640c905f01c71a49fe31f75850e4f95cfabb8634c49a7223",
+    "prompt_chars": 3401
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D3#s1\"],\n      \"class\": \"MISSING_EVIDENCE\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D2#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s3\", \"D1#s3\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s1\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s2\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D3#s1\", \"D1#s2\", \"D1#s3\", \"D3#s2\"],\n    \"C2\": [\"D2#s1\", \"D3#s3\", \"D2#s2\", \"D3#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D3#s1\", \"D1#s2\", \"D1#s3\", \"D3#s2\"],\n    \"C2\": [\"D2#s1\", \"D3#s3\", \"D2#s2\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 867,
+      "completion_tokens": 355
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2622.5803819999564,
+  "usd": 0.0009147999999999999,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Annual report extract\nAnnual report extract: Nordvik Healthcare (fictional, authored test material).\nThroughout the documents of this review, the Borrower means Nordvik Healthcare. [D1#s1] Operating expenses of Nordvik Healthcare in FY2024: to be confirmed; not included in this document. [D1#s2] Nordvik Healthcare had debt service cover ratio of 2.11x in FY2025. [D1#s3] For Nordvik Healthcare, senior leverage in FY2025 was 4.08x. [D1#s4] Gross debt at Nordvik Healthcare stood at USD 484.4 million in FY2025 (reported basis).\n\n## D2 Quarterly lender update\nQuarterly lender update: Nordvik Healthcare (fictional, authored test material).\nNordvik Healthcare trades under the name Fernhill. [D2#s1] Recurring revenue share at Nordvik Healthcare stood at 51.8% in FY2025. [D2#s2] Nordvik Healthcare had overdue receivables share of 12.5% in FY2024. [D2#s3] For Nordvik Healthcare, senior leverage in the twelve months to 31 Mar 2025 was 5.1x. [D2#s4] Gross debt at Nordvik Healthcare stood at $436m in FY2025 (reported basis). Throughout the documents of this review, \"overdue receivables share\" means the same measure as receivables in arrears.\n\n## D3 Independent business review\nIndependent business review: Nordvik Healthcare (fictional, authored test material).\nNordvik Healthcare has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. [D3#s1] Operating expenses at Nordvik Healthcare stood at $226.5m in FY2024 (reported basis). [D3#s2] the Borrower had debt service cover ratio of 2.42x in FY2025. [D3#s3] For Fernhill, recurring revenue share in FY2025 was 59.9%. [D3#s4] Receivables in arrears at Nordvik Healthcare stood at 10% in FY2024.\n\n# Conclusions\nC1: Operating expenses and Debt service cover ratio of Nordvik Healthcare are adequate for the refinancing approval\nC2: Recurring revenue share and Receivables in arrears of Nordvik Healthcare are adequate for the refinancing approval",
+  "extra": {
+    "sdep_sha256": "d459768e32b4cc6b8d8d653634ea95884ecdef51bf9a7fed4c4a0216e51529be"
+  }
+}

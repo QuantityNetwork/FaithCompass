@@ -1,0 +1,328 @@
+{
+  "id": "ma-06",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "title": "Brightwater Industries: m and a review (fictional)",
+  "entity": "Brightwater Industries",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Brightwater Industries (fictional).\nIn this document \"BIH\" means Brightwater Industries. Brightwater Industries reports normalised net working capital of $23.7m for FY2024 on a reported basis. Brightwater Industries reports annual customer churn of 3.307% for FY2024. Brightwater Industries reports headcount of 257.514 for FY2025. Brightwater Industries reports enterprise value of $816.5m for FY2025 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Brightwater Industries (fictional).\nBrightwater Industries reports normalised net working capital of $27.5m for FY2025 on a reported basis. Brightwater Industries reports annual customer churn of 3.3% for FY2024. Brightwater Industries reports gross margin of 43.8% for FY2024. BIH reports earn out of $46.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Brightwater Industries (fictional).\nBrightwater Industries reports headcount of 257 for FY2025. Brightwater Industries reports enterprise value of $677.8m for FY2025 on a reported basis under the amendment no. 1 (supersedes). Brightwater Logistics subsidiary reports gross margin of 39.7% for FY2024. Brightwater Industries reports earn out of $42.7m for FY2024 on a reported basis."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 114,
+      "end": 217,
+      "text": "Brightwater Industries reports normalised net working capital of $23.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 218,
+      "end": 292,
+      "text": "Brightwater Industries reports annual customer churn of 3.307% for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 293,
+      "end": 356,
+      "text": "Brightwater Industries reports headcount of 257.514 for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 357,
+      "end": 476,
+      "text": "Brightwater Industries reports enterprise value of $816.5m for FY2025 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 69,
+      "end": 172,
+      "text": "Brightwater Industries reports normalised net working capital of $27.5m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 173,
+      "end": 245,
+      "text": "Brightwater Industries reports annual customer churn of 3.3% for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 246,
+      "end": 310,
+      "text": "Brightwater Industries reports gross margin of 43.8% for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 311,
+      "end": 373,
+      "text": "BIH reports earn out of $46.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 69,
+      "end": 128,
+      "text": "Brightwater Industries reports headcount of 257 for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 129,
+      "end": 258,
+      "text": "Brightwater Industries reports enterprise value of $677.8m for FY2025 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 259,
+      "end": 333,
+      "text": "Brightwater Logistics subsidiary reports gross margin of 39.7% for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 334,
+      "end": 415,
+      "text": "Brightwater Industries reports earn out of $42.7m for FY2024 on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Brightwater Industries",
+      "concept": "net_working_capital",
+      "value": 23.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Brightwater Industries",
+      "concept": "customer_churn",
+      "value": 3.307,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Brightwater Industries",
+      "concept": "headcount",
+      "value": 257.514,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Brightwater Industries",
+      "concept": "enterprise_value",
+      "value": 816.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Brightwater Industries",
+      "concept": "net_working_capital",
+      "value": 27.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Brightwater Industries",
+      "concept": "customer_churn",
+      "value": 3.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Brightwater Industries",
+      "concept": "gross_margin",
+      "value": 43.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "BIH",
+      "concept": "earn_out",
+      "value": 46.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Brightwater Industries",
+      "concept": "headcount",
+      "value": 257,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Brightwater Industries",
+      "concept": "enterprise_value",
+      "value": 677.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Brightwater Logistics subsidiary",
+      "concept": "gross_margin",
+      "value": 39.7,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Brightwater Industries",
+      "concept": "earn_out",
+      "value": 42.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The annual customer churn and employees of Brightwater Industries support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The enterprise value of Brightwater Industries supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"BIH\" is defined in the documents as Brightwater Industries"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "annual customer churn",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "enterprise value",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D3#s2"
+      ]
+    }
+  }
+}

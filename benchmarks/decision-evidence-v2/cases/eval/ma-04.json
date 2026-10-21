@@ -1,0 +1,375 @@
+{
+  "id": "ma-04",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Thornbury Software: m and a review (fictional)",
+  "entity": "Thornbury Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Vendor due diligence summary",
+      "text": "Vendor due diligence summary: Thornbury Software (fictional, authored test material).\nThroughout the documents of this review, the Target means Thornbury Software. Thornbury Software had pension deficit of €18.6m in FY2025 (reported basis). For Thornbury Software, run-rate EBITDA in FY2024 was €20.6m (reported basis). Capex as share of sales at the Target stood at 12.1% in FY2025. Lumen had net revenue retention of 132.7% in FY2025. The earn-out trigger for Thornbury Software is understood as follows: measured on reported EBITDA."
+    },
+    {
+      "id": "D2",
+      "title": "Management presentation",
+      "text": "Management presentation: Thornbury Software (fictional, authored test material).\nThornbury Software trades under the name Lumen. Thornbury Software had employees of 2013 in FY2024 (reported basis). For Thornbury Software, order backlog was €53.8m (reported basis). Run-rate EBITDA of Thornbury Software in FY2024: to be confirmed; not included in this document. Thornbury Software had capex as share of sales of 10.6% in FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Buyer quality-of-earnings memo",
+      "text": "Buyer quality-of-earnings memo: Thornbury Software (fictional, authored test material).\nThornbury Software had pension deficit of €20.7m in FY2025 (reported basis). For Thornbury Software, employees in FY2024 was 1705 (pro forma (including the planned acquisition) basis). Order backlog at Thornbury Software stood at €69.5m in FY2025 (reported basis). Thornbury Software had net revenue retention of 119.6% in FY2025. The earn-out trigger for Thornbury Software is understood as follows: measured on EBITDA before integration costs."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 164,
+      "end": 240,
+      "text": "Thornbury Software had pension deficit of €18.6m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 241,
+      "end": 319,
+      "text": "For Thornbury Software, run-rate EBITDA in FY2024 was €20.6m (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 320,
+      "end": 383,
+      "text": "Capex as share of sales at the Target stood at 12.1% in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 384,
+      "end": 436,
+      "text": "Lumen had net revenue retention of 132.7% in FY2025."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 437,
+      "end": 535,
+      "text": "The earn-out trigger for Thornbury Software is understood as follows: measured on reported EBITDA."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 129,
+      "end": 197,
+      "text": "Thornbury Software had employees of 2013 in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 198,
+      "end": 264,
+      "text": "For Thornbury Software, order backlog was €53.8m (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 265,
+      "end": 361,
+      "text": "Run-rate EBITDA of Thornbury Software in FY2024: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 362,
+      "end": 428,
+      "text": "Thornbury Software had capex as share of sales of 10.6% in FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 88,
+      "end": 164,
+      "text": "Thornbury Software had pension deficit of €20.7m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 165,
+      "end": 272,
+      "text": "For Thornbury Software, employees in FY2024 was 1705 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 273,
+      "end": 352,
+      "text": "Order backlog at Thornbury Software stood at €69.5m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 353,
+      "end": 418,
+      "text": "Thornbury Software had net revenue retention of 119.6% in FY2025."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 419,
+      "end": 533,
+      "text": "The earn-out trigger for Thornbury Software is understood as follows: measured on EBITDA before integration costs."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Thornbury Software",
+      "concept": "pension_deficit",
+      "value": 18.6,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Thornbury Software",
+      "concept": "run_rate_ebitda",
+      "value": 20.6,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "the Target",
+      "concept": "capex_intensity",
+      "value": 12.1,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Lumen",
+      "concept": "net_retention",
+      "value": 132.7,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Thornbury Software",
+      "concept": "earnout_trigger",
+      "value": "measured on reported EBITDA",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Thornbury Software",
+      "concept": "employees",
+      "value": 2013,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Thornbury Software",
+      "concept": "order_backlog",
+      "value": 53.8,
+      "unit": "€m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Thornbury Software",
+      "concept": "run_rate_ebitda",
+      "value": null,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Thornbury Software",
+      "concept": "capex_intensity",
+      "value": 10.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Thornbury Software",
+      "concept": "pension_deficit",
+      "value": 20.7,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Thornbury Software",
+      "concept": "employees",
+      "value": 1705,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Thornbury Software",
+      "concept": "order_backlog",
+      "value": 69.5,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Thornbury Software",
+      "concept": "net_retention",
+      "value": 119.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Thornbury Software",
+      "concept": "earnout_trigger",
+      "value": "measured on EBITDA before integration costs",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Pension deficit and Employees of Thornbury Software are adequate for the board recommendation to sign"
+    },
+    {
+      "id": "C2",
+      "text": "Order backlog and Run-rate EBITDA of Thornbury Software are adequate for the board recommendation to sign"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D3#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D2#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D2#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Target\" is defined in the documents as Thornbury Software"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D1#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Thornbury Software is stated to trade as \"Lumen\""
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D3#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "pension deficit",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "employees",
+          "acceptable": [
+            "D2#s1",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "order backlog",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "run-rate EBITDA",
+          "acceptable": [
+            "D1#s2",
+            "D2#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D2#s1",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s2",
+        "D2#s2",
+        "D2#s3",
+        "D3#s3"
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "2551ca48a3837607589f836d4b6c7691d2df34075d5091af7e2f3e2dd1f88815",
+    "prompt_chars": 3024
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s1\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D1#s4\", \"D3#s1\", \"D3#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\", \"D2#s1\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D1#s4\", \"D3#s1\", \"D3#s2\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 769,
+      "completion_tokens": 322
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2455.4508289999794,
+  "usd": 0.0008228,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Annual report extract (retrieved excerpts)\nThroughout the documents of this review, the Borrower means Pennant Logistics.\n[D1#s1] Pennant Logistics had gross debt of $377.5m in FY2025 (reported basis).\n[D1#s2] For Saltmarsh, recurring revenue share in FY2024 was 95.9%.\n[D1#s3] Operating costs at Pennant Logistics stood at $235.3m in FY2024 (reported basis).\n[D1#s4] Pennant Logistics had cash on balance sheet of $13.4m in FY2025 (reported basis).\n\n## D2 Quarterly lender update (retrieved excerpts)\nPennant Logistics trades under the name Saltmarsh.\n[D2#s1] the Borrower had gross debt of $451.4m in FY2025 (reported basis).\n[D2#s2] For Pennant Logistics, recurring revenue share in FY2024 was 82.4%.\n[D2#s4] Pennant Logistics had receivables in arrears of 10.1% in FY2024.\nThroughout the documents of this review, \"operating costs\" means the same measure as operating expenses.\n\n## D3 Independent business review (retrieved excerpts)\nPennant Logistics has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025.\n[D3#s1] Pennant Logistics had operating expenses of $206.9m in FY2024 (reported basis).\n[D3#s2] For Pennant Logistics, cash on balance sheet in the twelve months to 31 Mar 2025 was $15.6m (reported basis).\n[D3#s4] Pennant Logistics had receivables in arrears of 8.1% in FY2024.\n\n# Conclusions\nC1: Gross debt and Recurring revenue share of Pennant Logistics are adequate for the refinancing approval\nC2: Operating expenses and Cash on balance sheet of Pennant Logistics are adequate for the refinancing approval",
+  "extra": {
+    "retrieved": [
+      "D1#ctx-2",
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D2#ctx-2",
+      "D2#s1",
+      "D2#s2",
+      "D2#s4",
+      "D2#ctx-3",
+      "D3#ctx-2",
+      "D3#s1",
+      "D3#s2",
+      "D3#s4"
+    ]
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "id": "sc-05",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Hesketh Breviary: scholarly review (fictional)",
+  "entity": "Hesketh Breviary",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Hesketh Breviary (fictional, authored test material).\nThroughout the documents of this review, the Manuscript means Hesketh Breviary. For Hesketh Breviary, missing leaves in FY2025 was 4. Marginal annotations at the Manuscript stood at 545 in FY2024. Copperline had binding date (CE) of 1774 in FY2025. For Hesketh Breviary, share of palimpsest leaves in FY2025 was 32.3%."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Hesketh Breviary (fictional, authored test material).\nHesketh Breviary trades under the name Copperline. For Hesketh Breviary, illuminated initials in FY2024 was 204 (reported basis). Insured value at Hesketh Breviary stood at $5.4m (reported basis). Missing leaves of Hesketh Breviary in FY2025: to be confirmed; not included in this document. For Hesketh Breviary, marginal annotations in FY2024 was 660. As to Hesketh Breviary, the place of production is: produced at the cathedral scriptorium. Throughout the documents of this review, \"reused parchment ratio\" means the same measure as share of palimpsest leaves."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Hesketh Breviary (fictional, authored test material).\nFor Hesketh Breviary, illuminated initials in FY2024 was 241 (pro forma (including the planned acquisition) basis). Insured value at Hesketh Breviary stood at $6.7m in FY2025 (reported basis). Hesketh Breviary had binding date (CE) of 1408 in FY2025. For Hesketh Breviary, reused parchment ratio in FY2025 was 28.4%. As to Hesketh Breviary, the place of production is: produced in a lay urban workshop."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 155,
+      "end": 208,
+      "text": "For Hesketh Breviary, missing leaves in FY2025 was 4."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 209,
+      "end": 271,
+      "text": "Marginal annotations at the Manuscript stood at 545 in FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 272,
+      "end": 323,
+      "text": "Copperline had binding date (CE) of 1774 in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 324,
+      "end": 393,
+      "text": "For Hesketh Breviary, share of palimpsest leaves in FY2025 was 32.3%."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 126,
+      "end": 204,
+      "text": "For Hesketh Breviary, illuminated initials in FY2024 was 204 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 205,
+      "end": 271,
+      "text": "Insured value at Hesketh Breviary stood at $5.4m (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 272,
+      "end": 365,
+      "text": "Missing leaves of Hesketh Breviary in FY2025: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 366,
+      "end": 427,
+      "text": "For Hesketh Breviary, marginal annotations in FY2024 was 660."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 428,
+      "end": 518,
+      "text": "As to Hesketh Breviary, the place of production is: produced at the cathedral scriptorium."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 79,
+      "end": 194,
+      "text": "For Hesketh Breviary, illuminated initials in FY2024 was 241 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 195,
+      "end": 271,
+      "text": "Insured value at Hesketh Breviary stood at $6.7m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 272,
+      "end": 329,
+      "text": "Hesketh Breviary had binding date (CE) of 1408 in FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 330,
+      "end": 395,
+      "text": "For Hesketh Breviary, reused parchment ratio in FY2025 was 28.4%."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 396,
+      "end": 481,
+      "text": "As to Hesketh Breviary, the place of production is: produced in a lay urban workshop."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Hesketh Breviary",
+      "concept": "missing_leaves",
+      "value": 4,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "the Manuscript",
+      "concept": "marginal_notes",
+      "value": 545,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Copperline",
+      "concept": "binding_date",
+      "value": 1774,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Hesketh Breviary",
+      "concept": "palimpsest_share",
+      "value": 32.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Hesketh Breviary",
+      "concept": "illuminated_initials",
+      "value": 204,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Hesketh Breviary",
+      "concept": "insurance_value",
+      "value": 5.4,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Hesketh Breviary",
+      "concept": "missing_leaves",
+      "value": null,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Hesketh Breviary",
+      "concept": "marginal_notes",
+      "value": 660,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Hesketh Breviary",
+      "concept": "origin_a",
+      "value": true,
+      "exclusiveGroup": "origin"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Hesketh Breviary",
+      "concept": "illuminated_initials",
+      "value": 241,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Hesketh Breviary",
+      "concept": "insurance_value",
+      "value": 6.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Hesketh Breviary",
+      "concept": "binding_date",
+      "value": 1408,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Hesketh Breviary",
+      "concept": "reused_parchment_ratio",
+      "value": 28.4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Hesketh Breviary",
+      "concept": "origin_b",
+      "value": false,
+      "exclusiveGroup": "origin"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Illuminated initials and Insured value of Hesketh Breviary are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Missing leaves and Marginal annotations of Hesketh Breviary are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D2#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Manuscript\" is defined in the documents as Hesketh Breviary"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Hesketh Breviary is stated to trade as \"Copperline\""
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"reused parchment ratio\" is defined as the same measure as \"share of palimpsest leaves\""
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D3#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "illuminated initials",
+          "acceptable": [
+            "D2#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D2#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "missing leaves",
+          "acceptable": [
+            "D1#s1",
+            "D2#s3"
+          ]
+        },
+        {
+          "input": "marginal annotations",
+          "acceptable": [
+            "D1#s2",
+            "D2#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s3",
+        "D2#s4"
+      ]
+    }
+  }
+}

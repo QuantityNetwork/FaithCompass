@@ -1,0 +1,347 @@
+{
+  "label": "POST-HOC analyses, not preregistered",
+  "generated_at": "2026-10-20T22:42:38Z",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261021,
+    "unit": "case (28 eval cases), paired",
+    "differences": {
+      "A-C:conflict_recall": {
+        "observed": 0.1681,
+        "ci95": [
+          0.0379,
+          0.3058
+        ]
+      },
+      "A-C:hard_negative_fpr": {
+        "observed": 0.443,
+        "ci95": [
+          0.2051,
+          0.6353
+        ]
+      },
+      "A-C:conflict_precision": {
+        "observed": -0.1461,
+        "ci95": [
+          -0.2681,
+          -0.0382
+        ]
+      },
+      "B-C:conflict_recall": {
+        "observed": 0.0177,
+        "ci95": [
+          -0.0917,
+          0.1296
+        ]
+      },
+      "B-C:hard_negative_fpr": {
+        "observed": 0.2152,
+        "ci95": [
+          -0.0385,
+          0.4205
+        ]
+      },
+      "B-C:conflict_precision": {
+        "observed": -0.11,
+        "ci95": [
+          -0.2492,
+          0.0136
+        ]
+      }
+    }
+  },
+  "hybrid": {
+    "H-A": {
+      "label": "POST-HOC, not preregistered",
+      "definition": "C findings unchanged; A findings on pairs C did not flag added as human-review candidates (class capped at POTENTIAL_CONFLICT)",
+      "flagged_conflict_recall": {
+        "k": 110,
+        "n": 113,
+        "value": 0.9735,
+        "ci95": [
+          0.9248,
+          0.9909
+        ]
+      },
+      "flagged_precision": {
+        "k": 110,
+        "n": 177,
+        "value": 0.6215,
+        "ci95": [
+          0.5482,
+          0.6896
+        ]
+      },
+      "false_positive_rate_hard_negatives": {
+        "k": 67,
+        "n": 79,
+        "value": 0.8481,
+        "ci95": [
+          0.753,
+          0.9109
+        ]
+      },
+      "false_positive_rate_all_pairs": {
+        "k": 67,
+        "n": 2351,
+        "value": 0.0285,
+        "ci95": [
+          0.0225,
+          0.036
+        ]
+      },
+      "class_agreement_on_found": {
+        "k": 80,
+        "n": 110,
+        "value": 0.7273,
+        "ci95": [
+          0.6374,
+          0.8018
+        ]
+      },
+      "review_candidates": {
+        "total": 74,
+        "per_case": 2.64,
+        "true_conflicts_among_candidates": 30
+      },
+      "per_plant": {
+        "alias": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 10,
+          "correct": 10
+        },
+        "approximation": {
+          "gold": "NONE",
+          "n": 12,
+          "correct": 1
+        },
+        "basis": {
+          "gold": "DIFFERENT_REPORTING_BASIS",
+          "n": 12,
+          "correct": 12
+        },
+        "confirmed": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 20,
+          "correct": 20
+        },
+        "diff_entity": {
+          "gold": "NONE",
+          "n": 11,
+          "correct": 5
+        },
+        "diff_period": {
+          "gold": "NONE",
+          "n": 11,
+          "correct": 3
+        },
+        "exclusive": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 12,
+          "correct": 12
+        },
+        "fiscal_year_end": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 11,
+          "correct": 10
+        },
+        "interpretation": {
+          "gold": "UNRESOLVED_INTERPRETATION",
+          "n": 12,
+          "correct": 12
+        },
+        "legal_entity": {
+          "gold": "NONE",
+          "n": 12,
+          "correct": 0
+        },
+        "missing": {
+          "gold": "MISSING_EVIDENCE",
+          "n": 12,
+          "correct": 12
+        },
+        "potential": {
+          "gold": "POTENTIAL_CONFLICT",
+          "n": 12,
+          "correct": 12
+        },
+        "rounding": {
+          "gold": "NONE",
+          "n": 19,
+          "correct": 3
+        },
+        "superseded": {
+          "gold": "NONE",
+          "n": 11,
+          "correct": 0
+        },
+        "synonym": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 10,
+          "correct": 8
+        },
+        "unit_scale": {
+          "gold": "NONE",
+          "n": 3,
+          "correct": 0
+        },
+        "unit_word": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 2,
+          "correct": 2
+        }
+      },
+      "cost_per_case": {
+        "usd_total": 0.023146000000000003,
+        "ms_p50": 2047.9929060000022,
+        "ms_p95": 2531.850104999994
+      }
+    },
+    "H-B": {
+      "label": "POST-HOC, not preregistered",
+      "definition": "C findings unchanged; B findings on pairs C did not flag added as human-review candidates (class capped at POTENTIAL_CONFLICT)",
+      "flagged_conflict_recall": {
+        "k": 98,
+        "n": 113,
+        "value": 0.8673,
+        "ci95": [
+          0.7925,
+          0.9179
+        ]
+      },
+      "flagged_precision": {
+        "k": 98,
+        "n": 156,
+        "value": 0.6282,
+        "ci95": [
+          0.5501,
+          0.7001
+        ]
+      },
+      "false_positive_rate_hard_negatives": {
+        "k": 57,
+        "n": 79,
+        "value": 0.7215,
+        "ci95": [
+          0.6142,
+          0.8083
+        ]
+      },
+      "false_positive_rate_all_pairs": {
+        "k": 58,
+        "n": 2351,
+        "value": 0.0247,
+        "ci95": [
+          0.0191,
+          0.0318
+        ]
+      },
+      "class_agreement_on_found": {
+        "k": 80,
+        "n": 98,
+        "value": 0.8163,
+        "ci95": [
+          0.7283,
+          0.8805
+        ]
+      },
+      "review_candidates": {
+        "total": 53,
+        "per_case": 1.89,
+        "true_conflicts_among_candidates": 18
+      },
+      "per_plant": {
+        "alias": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 10,
+          "correct": 6
+        },
+        "approximation": {
+          "gold": "NONE",
+          "n": 12,
+          "correct": 0
+        },
+        "basis": {
+          "gold": "DIFFERENT_REPORTING_BASIS",
+          "n": 12,
+          "correct": 12
+        },
+        "confirmed": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 20,
+          "correct": 20
+        },
+        "diff_entity": {
+          "gold": "NONE",
+          "n": 11,
+          "correct": 6
+        },
+        "diff_period": {
+          "gold": "NONE",
+          "n": 11,
+          "correct": 7
+        },
+        "exclusive": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 12,
+          "correct": 12
+        },
+        "fiscal_year_end": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 11,
+          "correct": 4
+        },
+        "interpretation": {
+          "gold": "UNRESOLVED_INTERPRETATION",
+          "n": 12,
+          "correct": 12
+        },
+        "legal_entity": {
+          "gold": "NONE",
+          "n": 12,
+          "correct": 0
+        },
+        "missing": {
+          "gold": "MISSING_EVIDENCE",
+          "n": 12,
+          "correct": 12
+        },
+        "potential": {
+          "gold": "POTENTIAL_CONFLICT",
+          "n": 12,
+          "correct": 12
+        },
+        "rounding": {
+          "gold": "NONE",
+          "n": 19,
+          "correct": 8
+        },
+        "superseded": {
+          "gold": "NONE",
+          "n": 11,
+          "correct": 1
+        },
+        "synonym": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 10,
+          "correct": 7
+        },
+        "unit_scale": {
+          "gold": "NONE",
+          "n": 3,
+          "correct": 0
+        },
+        "unit_word": {
+          "gold": "CONFIRMED_CONFLICT",
+          "n": 2,
+          "correct": 1
+        }
+      },
+      "cost_per_case": {
+        "usd_total": 0.019645199999999998,
+        "ms_p50": 1894.258842999991,
+        "ms_p95": 2292.9148550000023
+      }
+    }
+  }
+}

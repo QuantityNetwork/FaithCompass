@@ -1,0 +1,403 @@
+{
+  "id": "pc-07",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "title": "Esker Industries: private credit review (fictional)",
+  "entity": "Esker Industries",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Esker Industries (fictional).\nIn this document \"EIH\" means Esker Industries. Esker AB reports net debt of $373.5m for FY2024 on a reported basis. Esker Industries reports approximately capex of $37m for FY2025 on a reported basis. Esker Industries reports cash margin of 4.5% for FY2025. Esker Industries reports revenue of $716m for FY2025 on a reported basis. For Esker Industries, the treatment of restructuring add-backs is read as: add-backs limited to costs incurred within 12 months. For Esker Industries, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Esker Industries (fictional).\nEsker Ltd reports net debt of $427.2m for FY2024 on a reported basis. Esker Industries reports capex of $38.4m for FY2025 on a reported basis. Esker Industries reports available liquidity of $47.8m for FY2025 on a reported basis. Esker Industries: interest cover for FY2024 — not provided. For Esker Industries, the treatment of restructuring add-backs is read as: add-backs include expected future synergies. For Esker Industries, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Esker Industries (fictional).\nEsker Industries reports cash margin of 5% for FY2025. Esker Industries reports revenue of $852.5m for FY2025 on a adjusted (management definition) basis. Esker Industries reports available liquidity of $53.3m on a reported basis. Esker Industries reports interest cover of 2.5x for FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 108,
+      "end": 176,
+      "text": "Esker AB reports net debt of $373.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 177,
+      "end": 261,
+      "text": "Esker Industries reports approximately capex of $37m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 262,
+      "end": 318,
+      "text": "Esker Industries reports cash margin of 4.5% for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 319,
+      "end": 392,
+      "text": "Esker Industries reports revenue of $716m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 393,
+      "end": 521,
+      "text": "For Esker Industries, the treatment of restructuring add-backs is read as: add-backs limited to costs incurred within 12 months."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 522,
+      "end": 593,
+      "text": "For Esker Industries, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 52,
+      "end": 121,
+      "text": "Esker Ltd reports net debt of $427.2m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 122,
+      "end": 194,
+      "text": "Esker Industries reports capex of $38.4m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 195,
+      "end": 281,
+      "text": "Esker Industries reports available liquidity of $47.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 282,
+      "end": 341,
+      "text": "Esker Industries: interest cover for FY2024 — not provided."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 342,
+      "end": 461,
+      "text": "For Esker Industries, the treatment of restructuring add-backs is read as: add-backs include expected future synergies."
+    },
+    {
+      "id": "D2#s6",
+      "doc": "D2",
+      "start": 462,
+      "end": 570,
+      "text": "For Esker Industries, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 55,
+      "end": 109,
+      "text": "Esker Industries reports cash margin of 5% for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 110,
+      "end": 209,
+      "text": "Esker Industries reports revenue of $852.5m for FY2025 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 210,
+      "end": 285,
+      "text": "Esker Industries reports available liquidity of $53.3m on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 286,
+      "end": 345,
+      "text": "Esker Industries reports interest cover of 2.5x for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Esker AB",
+      "concept": "net_debt",
+      "value": 373.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Esker Industries",
+      "concept": "capex",
+      "value": 37,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Esker Industries",
+      "concept": "cash_margin",
+      "value": 4.5,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Esker Industries",
+      "concept": "revenue",
+      "value": 716,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Esker Industries",
+      "concept": "ebitda_addbacks",
+      "value": "add-backs limited to costs incurred within 12 months",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Esker Industries",
+      "concept": "sponsor_support_b",
+      "value": false,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Esker Ltd",
+      "concept": "net_debt",
+      "value": 427.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Esker Industries",
+      "concept": "capex",
+      "value": 38.4,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Esker Industries",
+      "concept": "liquidity",
+      "value": 47.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Esker Industries",
+      "concept": "interest_cover",
+      "value": null,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Esker Industries",
+      "concept": "ebitda_addbacks",
+      "value": "add-backs include expected future synergies",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s6",
+      "entity": "Esker Industries",
+      "concept": "sponsor_support_a",
+      "value": true,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Esker Industries",
+      "concept": "cash_margin",
+      "value": 5,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Esker Industries",
+      "concept": "revenue",
+      "value": 852.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Esker Industries",
+      "concept": "liquidity",
+      "value": 53.3,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Esker Industries",
+      "concept": "interest_cover",
+      "value": 2.5,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The capital expenditure and cash interest margin of Esker Industries support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The revenue of Esker Industries supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      },
+      {
+        "facts": [
+          "D2#s6",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "cash interest margin",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "revenue",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

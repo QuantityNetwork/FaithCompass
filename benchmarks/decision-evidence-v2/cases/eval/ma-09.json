@@ -1,0 +1,339 @@
+{
+  "id": "ma-09",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Hollins Software: m and a review (fictional)",
+  "entity": "Hollins Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Vendor due diligence summary",
+      "text": "Vendor due diligence summary: Hollins Software (fictional, authored test material).\nRun-rate EBITDA at Hollins Software stood at €80.6m in the twelve months to 31 Mar 2025 (reported basis). Hollins Software had pension deficit of €75.7m in FY2024 (reported basis). For Hollins Software, capex as share of sales in FY2024 was 10.1%. Net revenue retention at Hollins Software stood at 100.701% in FY2025."
+    },
+    {
+      "id": "D2",
+      "title": "Management presentation",
+      "text": "Management presentation: Hollins Software (fictional, authored test material).\nHeadline purchase price at Hollins Software stood at NZD 801.2m in FY2024 (reported basis). Hollins Ltd had employees of 1159 in FY2024. For Hollins Software, capex as share of sales in FY2024 was approximately 12.6%. Net revenue retention at Hollins Software stood at 100.4% in FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Buyer quality-of-earnings memo",
+      "text": "Buyer quality-of-earnings memo: Hollins Software (fictional, authored test material).\nHollins Software has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. Run-rate EBITDA at Hollins Software stood at €96.1m in FY2025 (reported basis). Hollins Software had pension deficit of EUR 95.1 million in FY2024 (reported basis). For Hollins Software, headline purchase price in FY2024 was NZD 578.9 million (reported basis). Employees at Hollins Limited stood at 1029 in FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 84,
+      "end": 189,
+      "text": "Run-rate EBITDA at Hollins Software stood at €80.6m in the twelve months to 31 Mar 2025 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 190,
+      "end": 264,
+      "text": "Hollins Software had pension deficit of €75.7m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 265,
+      "end": 331,
+      "text": "For Hollins Software, capex as share of sales in FY2024 was 10.1%."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 332,
+      "end": 402,
+      "text": "Net revenue retention at Hollins Software stood at 100.701% in FY2025."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 79,
+      "end": 170,
+      "text": "Headline purchase price at Hollins Software stood at NZD 801.2m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 171,
+      "end": 215,
+      "text": "Hollins Ltd had employees of 1159 in FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 216,
+      "end": 296,
+      "text": "For Hollins Software, capex as share of sales in FY2024 was approximately 12.6%."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 297,
+      "end": 365,
+      "text": "Net revenue retention at Hollins Software stood at 100.4% in FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 184,
+      "end": 263,
+      "text": "Run-rate EBITDA at Hollins Software stood at €96.1m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 264,
+      "end": 348,
+      "text": "Hollins Software had pension deficit of EUR 95.1 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 349,
+      "end": 444,
+      "text": "For Hollins Software, headline purchase price in FY2024 was NZD 578.9 million (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 445,
+      "end": 498,
+      "text": "Employees at Hollins Limited stood at 1029 in FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Hollins Software",
+      "concept": "run_rate_ebitda",
+      "value": 80.6,
+      "unit": "€m",
+      "period": "LTM to 31 Mar 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Hollins Software",
+      "concept": "pension_deficit",
+      "value": 75.7,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Hollins Software",
+      "concept": "capex_intensity",
+      "value": 10.1,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Hollins Software",
+      "concept": "net_retention",
+      "value": 100.701,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Hollins Software",
+      "concept": "purchase_price",
+      "value": 801.2,
+      "unit": "NZD m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Hollins Ltd",
+      "concept": "employees",
+      "value": 1159,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Hollins Software",
+      "concept": "capex_intensity",
+      "value": 12.6,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Hollins Software",
+      "concept": "net_retention",
+      "value": 100.4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Hollins Software",
+      "concept": "run_rate_ebitda",
+      "value": 96.1,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Hollins Software",
+      "concept": "pension_deficit",
+      "value": 95.1,
+      "unit": "EUR million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Hollins Software",
+      "concept": "purchase_price",
+      "value": 578.9,
+      "unit": "NZD million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Hollins Limited",
+      "concept": "employees",
+      "value": 1029,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Run-rate EBITDA and Pension deficit of Hollins Software are adequate for the board recommendation to sign"
+    },
+    {
+      "id": "C2",
+      "text": "Headline purchase price and Employees of Hollins Software are adequate for the board recommendation to sign"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"EUR million\" is the same unit as €m"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_unlisted",
+        "note": "\"NZD million\" and \"NZD m\" are the same unit (a currency outside the deterministic unit table)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "run-rate EBITDA",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "pension deficit",
+          "acceptable": [
+            "D1#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "headline purchase price",
+          "acceptable": [
+            "D2#s1",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "employees",
+          "acceptable": [
+            "D2#s2",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D2#s1",
+        "D2#s2",
+        "D3#s3",
+        "D3#s4"
+      ]
+    }
+  }
+}

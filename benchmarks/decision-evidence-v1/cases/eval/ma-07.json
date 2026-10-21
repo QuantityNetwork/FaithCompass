@@ -1,0 +1,404 @@
+{
+  "id": "ma-07",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "title": "Esker Holdings: m and a review (fictional)",
+  "entity": "Esker Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Esker Holdings (fictional).\nIn this document \"EHH\" means Esker Holdings. Esker Holdings reports headcount of 877 for FY2024. Esker Holdings reports enterprise value of USD 1544.7 million for FY2025 on a reported basis. Esker Holdings reports normalised net working capital of $15.3m for LTM to 30 Jun 2025 on a reported basis. Esker AB reports EBITDA of $67.8m for FY2025 on a reported basis. For Esker Holdings, the material adverse change clause is read as: excludes general market downturns. For Esker Holdings, the form of consideration is: part-share consideration with a 12-month lock-up. The fiscal year of Esker Holdings ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Esker Holdings (fictional).\nEsker Holdings reports fte of 994 for FY2024. Esker Holdings reports enterprise value of $1399.3m for FY2025 on a reported basis. Esker Holdings reports gross margin of 56.8% for FY2025. Esker Holdings reports annual customer churn of 12.3% for FY2025. For Esker Holdings, the material adverse change clause is read as: covers any event reducing EBITDA by more than 10%. For Esker Holdings, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Esker Holdings (fictional).\nEsker Holdings reports normalised net working capital of $12.8m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. Esker Ltd reports EBITDA of $50.8m for FY2025 on a reported basis. Esker Holdings reports approximately gross margin of 55% for FY2025. Esker Holdings reports annual customer churn of 16.7% for FY2025. \"fte\" has the same meaning as \"headcount\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 98,
+      "end": 149,
+      "text": "Esker Holdings reports headcount of 877 for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 150,
+      "end": 243,
+      "text": "Esker Holdings reports enterprise value of USD 1544.7 million for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 244,
+      "end": 351,
+      "text": "Esker Holdings reports normalised net working capital of $15.3m for LTM to 30 Jun 2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 352,
+      "end": 417,
+      "text": "Esker AB reports EBITDA of $67.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 418,
+      "end": 519,
+      "text": "For Esker Holdings, the material adverse change clause is read as: excludes general market downturns."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 520,
+      "end": 619,
+      "text": "For Esker Holdings, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 61,
+      "end": 106,
+      "text": "Esker Holdings reports fte of 994 for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 107,
+      "end": 190,
+      "text": "Esker Holdings reports enterprise value of $1399.3m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 191,
+      "end": 247,
+      "text": "Esker Holdings reports gross margin of 56.8% for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 248,
+      "end": 313,
+      "text": "Esker Holdings reports annual customer churn of 12.3% for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 314,
+      "end": 431,
+      "text": "For Esker Holdings, the material adverse change clause is read as: covers any event reducing EBITDA by more than 10%."
+    },
+    {
+      "id": "D2#s6",
+      "doc": "D2",
+      "start": 432,
+      "end": 505,
+      "text": "For Esker Holdings, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 61,
+      "end": 190,
+      "text": "Esker Holdings reports normalised net working capital of $12.8m for FY2025 (fiscal year ending 30 June 2025) on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 191,
+      "end": 257,
+      "text": "Esker Ltd reports EBITDA of $50.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 258,
+      "end": 326,
+      "text": "Esker Holdings reports approximately gross margin of 55% for FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 327,
+      "end": 392,
+      "text": "Esker Holdings reports annual customer churn of 16.7% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Esker Holdings",
+      "concept": "headcount",
+      "value": 877,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Esker Holdings",
+      "concept": "enterprise_value",
+      "value": 1544.7,
+      "unit": "USD million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Esker Holdings",
+      "concept": "net_working_capital",
+      "value": 15.3,
+      "unit": "$m",
+      "period": "LTM to 30 Jun 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Esker AB",
+      "concept": "ebitda",
+      "value": 67.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Esker Holdings",
+      "concept": "mac_clause",
+      "value": "excludes general market downturns",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Esker Holdings",
+      "concept": "consideration_form_b",
+      "value": false,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Esker Holdings",
+      "concept": "fte",
+      "value": 994,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Esker Holdings",
+      "concept": "enterprise_value",
+      "value": 1399.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Esker Holdings",
+      "concept": "gross_margin",
+      "value": 56.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Esker Holdings",
+      "concept": "customer_churn",
+      "value": 12.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Esker Holdings",
+      "concept": "mac_clause",
+      "value": "covers any event reducing EBITDA by more than 10%",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s6",
+      "entity": "Esker Holdings",
+      "concept": "consideration_form_a",
+      "value": true,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Esker Holdings",
+      "concept": "net_working_capital",
+      "value": 12.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "definition": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Esker Ltd",
+      "concept": "ebitda",
+      "value": 50.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Esker Holdings",
+      "concept": "gross_margin",
+      "value": 55,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Esker Holdings",
+      "concept": "customer_churn",
+      "value": 16.7,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The employees and enterprise value of Esker Holdings support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The normalised net working capital of Esker Holdings supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"fte\" is defined as the same measure as \"headcount\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word",
+        "note": "\"USD million\" is the same unit as $m"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      },
+      {
+        "facts": [
+          "D2#s6",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "enterprise value",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "normalised net working capital",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

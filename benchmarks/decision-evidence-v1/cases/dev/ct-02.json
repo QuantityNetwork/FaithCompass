@@ -1,0 +1,328 @@
+{
+  "id": "ct-02",
+  "domain": "contract",
+  "split": "dev",
+  "fictional": true,
+  "title": "Pellwood Holdings: contract review (fictional)",
+  "entity": "Pellwood Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Pellwood Holdings (fictional).\nIn this document \"PHH\" means Pellwood Holdings. Pellwood Holdings reports annual price escalator of 6.2% for FY2025. Pellwood Holdings reports uptime commitment of 91.05% for FY2025 on a adjusted (management definition) basis. Pellwood Holdings reports insurance cover of $23.1m on a reported basis. Pellwood Holdings reports maximum service credit of 18.7% for FY2025."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Pellwood Holdings (fictional).\nPellwood Holdings reports annual price escalator of 5.6% for FY2025. Pellwood Holdings reports uptime commitment of 99.83% for FY2025 on a reported basis. Pellwood Holdings reports liability cap of $14.3m for FY2024 on a reported basis. Pellwood Holdings reports term years of 3.006 years for FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Pellwood Holdings (fictional).\nPellwood Holdings reports insurance cover of $18.8m for FY2025 on a reported basis. Pellwood Holdings: maximum service credit for FY2025 — not provided. Pellwood Holdings reports liability cap of $16.5m for FY2025 on a reported basis. Pellwood Holdings reports term years of 3 years for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 107,
+      "end": 175,
+      "text": "Pellwood Holdings reports annual price escalator of 6.2% for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 176,
+      "end": 285,
+      "text": "Pellwood Holdings reports uptime commitment of 91.05% for FY2025 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 286,
+      "end": 358,
+      "text": "Pellwood Holdings reports insurance cover of $23.1m on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 359,
+      "end": 428,
+      "text": "Pellwood Holdings reports maximum service credit of 18.7% for FY2025."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 50,
+      "end": 118,
+      "text": "Pellwood Holdings reports annual price escalator of 5.6% for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 119,
+      "end": 204,
+      "text": "Pellwood Holdings reports uptime commitment of 99.83% for FY2025 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 205,
+      "end": 286,
+      "text": "Pellwood Holdings reports liability cap of $14.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 287,
+      "end": 350,
+      "text": "Pellwood Holdings reports term years of 3.006 years for FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 55,
+      "end": 138,
+      "text": "Pellwood Holdings reports insurance cover of $18.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 139,
+      "end": 207,
+      "text": "Pellwood Holdings: maximum service credit for FY2025 — not provided."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 208,
+      "end": 289,
+      "text": "Pellwood Holdings reports liability cap of $16.5m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 290,
+      "end": 349,
+      "text": "Pellwood Holdings reports term years of 3 years for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Pellwood Holdings",
+      "concept": "price_escalator",
+      "value": 6.2,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Pellwood Holdings",
+      "concept": "uptime_commitment",
+      "value": 91.05,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Pellwood Holdings",
+      "concept": "insurance_cover",
+      "value": 23.1,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Pellwood Holdings",
+      "concept": "service_credit",
+      "value": 18.7,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Pellwood Holdings",
+      "concept": "price_escalator",
+      "value": 5.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Pellwood Holdings",
+      "concept": "uptime_commitment",
+      "value": 99.83,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Pellwood Holdings",
+      "concept": "liability_cap",
+      "value": 14.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Pellwood Holdings",
+      "concept": "term_years",
+      "value": 3.006,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Pellwood Holdings",
+      "concept": "insurance_cover",
+      "value": 18.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Pellwood Holdings",
+      "concept": "service_credit",
+      "value": null,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Pellwood Holdings",
+      "concept": "liability_cap",
+      "value": 16.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Pellwood Holdings",
+      "concept": "term_years",
+      "value": 3,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The annual price escalator and availability commitment of Pellwood Holdings support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The professional indemnity cover of Pellwood Holdings supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "annual price escalator",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "availability commitment",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "professional indemnity cover",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "id": "pc-05",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ferrovane Foods: private credit review (fictional)",
+  "entity": "Ferrovane Foods",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Ferrovane Foods (fictional, authored test material).\nFor Ferrovane Foods, recurring revenue share in FY2024 was 70.1%, as originally reported. Gross debt at Ferrovane Foods stood at $202.7m in FY2025 (reported basis), second issue (corrects the first issue). Ferrovane Nordic, a subsidiary had debt service cover ratio of 1.94x in FY2025. For Ferrovane Oy, senior leverage in FY2024 was 2.76x."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Ferrovane Foods (fictional, authored test material).\nFor Ferrovane Foods, free cash flow in FY2025 was $48.3m (reported basis). Cash on balance sheet at Ferrovane Foods stood at $10.3m in FY2025 (reported basis). Ferrovane Foods had recurring revenue share of 81.4% in FY2024, as restated in the latest accounts. For Ferrovane Foods, gross debt in FY2025 was $228m (reported basis), first issue. As to Ferrovane Foods, the security package is: first-lien security over all material subsidiaries."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Ferrovane Foods (fictional, authored test material).\nFor Ferrovane Foods, free cash flow in H1 2025 was $22m (reported basis). Cash on balance sheet at Ferrovane Foods stood at $12.9m in FY2023 (reported basis). Ferrovane Foods had debt service cover ratio of 1.5x in FY2025. For Ferrovane GmbH, senior leverage in FY2024 was 3.56x. As to Ferrovane Foods, the security package is: unsecured, ranking pari passu with trade creditors."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 76,
+      "end": 165,
+      "text": "For Ferrovane Foods, recurring revenue share in FY2024 was 70.1%, as originally reported."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 166,
+      "end": 281,
+      "text": "Gross debt at Ferrovane Foods stood at $202.7m in FY2025 (reported basis), second issue (corrects the first issue)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 282,
+      "end": 361,
+      "text": "Ferrovane Nordic, a subsidiary had debt service cover ratio of 1.94x in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 362,
+      "end": 416,
+      "text": "For Ferrovane Oy, senior leverage in FY2024 was 2.76x."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 78,
+      "end": 152,
+      "text": "For Ferrovane Foods, free cash flow in FY2025 was $48.3m (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 153,
+      "end": 237,
+      "text": "Cash on balance sheet at Ferrovane Foods stood at $10.3m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 238,
+      "end": 337,
+      "text": "Ferrovane Foods had recurring revenue share of 81.4% in FY2024, as restated in the latest accounts."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 338,
+      "end": 420,
+      "text": "For Ferrovane Foods, gross debt in FY2025 was $228m (reported basis), first issue."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 421,
+      "end": 520,
+      "text": "As to Ferrovane Foods, the security package is: first-lien security over all material subsidiaries."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 82,
+      "end": 155,
+      "text": "For Ferrovane Foods, free cash flow in H1 2025 was $22m (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 156,
+      "end": 240,
+      "text": "Cash on balance sheet at Ferrovane Foods stood at $12.9m in FY2023 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 241,
+      "end": 304,
+      "text": "Ferrovane Foods had debt service cover ratio of 1.5x in FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 305,
+      "end": 361,
+      "text": "For Ferrovane GmbH, senior leverage in FY2024 was 3.56x."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 362,
+      "end": 461,
+      "text": "As to Ferrovane Foods, the security package is: unsecured, ranking pari passu with trade creditors."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ferrovane Foods",
+      "concept": "recurring_revenue_share",
+      "value": 70.1,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as originally reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ferrovane Foods",
+      "concept": "gross_debt",
+      "value": 202.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "second issue (corrects the first issue)"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ferrovane Nordic, a subsidiary",
+      "concept": "dscr",
+      "value": 1.94,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ferrovane Oy",
+      "concept": "senior_leverage",
+      "value": 2.76,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ferrovane Foods",
+      "concept": "free_cash_flow",
+      "value": 48.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ferrovane Foods",
+      "concept": "cash_balance",
+      "value": 10.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ferrovane Foods",
+      "concept": "recurring_revenue_share",
+      "value": 81.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as restated in the latest accounts"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ferrovane Foods",
+      "concept": "gross_debt",
+      "value": 228,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "first issue"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ferrovane Foods",
+      "concept": "security_package_a",
+      "value": true,
+      "exclusiveGroup": "security_package"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ferrovane Foods",
+      "concept": "free_cash_flow",
+      "value": 22,
+      "unit": "$m",
+      "period": "H1 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ferrovane Foods",
+      "concept": "cash_balance",
+      "value": 12.9,
+      "unit": "$m",
+      "period": "FY2023",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ferrovane Foods",
+      "concept": "dscr",
+      "value": 1.5,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ferrovane GmbH",
+      "concept": "senior_leverage",
+      "value": 3.56,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Ferrovane Foods",
+      "concept": "security_package_b",
+      "value": false,
+      "exclusiveGroup": "security_package"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Recurring revenue share and Gross debt of Ferrovane Foods are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Debt service cover ratio of Ferrovane Foods is adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s1"
+        ],
+        "class": "NONE",
+        "plant": "part_year",
+        "note": "a half-year figure and a full-year figure: different periods"
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D2#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "restated",
+        "note": "a restatement replaces the original figure"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "corrected",
+        "note": "a corrected issue replaces the first"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "subsidiary",
+        "note": "a subsidiary, not the group"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s4"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity_other",
+        "note": "two different legal entities (Finnish Oy and German GmbH)"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D3#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "recurring revenue share",
+          "acceptable": [
+            "D2#s3"
+          ]
+        },
+        {
+          "input": "gross debt",
+          "acceptable": [
+            "D1#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "debt service cover ratio",
+          "acceptable": [
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D2#s3"
+      ],
+      "C2": [
+        "D3#s3"
+      ]
+    }
+  }
+}

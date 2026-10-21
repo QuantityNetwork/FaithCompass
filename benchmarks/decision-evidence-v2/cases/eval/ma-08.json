@@ -1,0 +1,412 @@
+{
+  "id": "ma-08",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Brennick Software: m and a review (fictional)",
+  "entity": "Brennick Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Vendor due diligence summary",
+      "text": "Vendor due diligence summary: Brennick Software (fictional, authored test material).\nThroughout the documents of this review, the Target means Brennick Software. For Brennick Software, employees in FY2024 was 2322 (pro forma (including the planned acquisition) basis). Net revenue retention at Brennick Software stood at 141.6%. Brennick Software had order backlog of €494.8m in FY2025 (reported basis). For Brennick Software, run-rate EBITDA in FY2024 was €66m (reported basis). The earn-out trigger for Brennick Software is understood as follows: measured on EBITDA before integration costs. As to Brennick Software, the deal structure is: asset purchase of the operating business only."
+    },
+    {
+      "id": "D2",
+      "title": "Management presentation",
+      "text": "Management presentation: Brennick Software (fictional, authored test material).\nBrennick Software trades under the name Greywater. For Brennick Software, employees in FY2024 was 3195 (reported basis). Headline purchase price at Brennick Software stood at €217.1m in FY2024 (reported basis). Greywater had capex as share of sales of 10.2% in FY2024. For Brennick Software, annualised operating profit in FY2024 was €52.9m (reported basis). The earn-out trigger for Brennick Software is understood as follows: measured on reported EBITDA. Throughout the documents of this review, \"annualised operating profit\" means the same measure as run-rate EBITDA."
+    },
+    {
+      "id": "D3",
+      "title": "Buyer quality-of-earnings memo",
+      "text": "Buyer quality-of-earnings memo: Brennick Software (fictional, authored test material).\nFor Brennick Software, net revenue retention in FY2025 was 123.6%. Order backlog of Brennick Software in FY2025: to be confirmed; not included in this document. the Target had headline purchase price of €186.5m in FY2024 (reported basis). For Brennick Software, capex as share of sales in FY2024 was 13.2%. As to Brennick Software, the deal structure is: share purchase of the whole group."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 162,
+      "end": 268,
+      "text": "For Brennick Software, employees in FY2024 was 2322 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 269,
+      "end": 328,
+      "text": "Net revenue retention at Brennick Software stood at 141.6%."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 329,
+      "end": 403,
+      "text": "Brennick Software had order backlog of €494.8m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 404,
+      "end": 479,
+      "text": "For Brennick Software, run-rate EBITDA in FY2024 was €66m (reported basis)."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 480,
+      "end": 593,
+      "text": "The earn-out trigger for Brennick Software is understood as follows: measured on EBITDA before integration costs."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 594,
+      "end": 688,
+      "text": "As to Brennick Software, the deal structure is: asset purchase of the operating business only."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 131,
+      "end": 200,
+      "text": "For Brennick Software, employees in FY2024 was 3195 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 201,
+      "end": 290,
+      "text": "Headline purchase price at Brennick Software stood at €217.1m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 291,
+      "end": 348,
+      "text": "Greywater had capex as share of sales of 10.2% in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 349,
+      "end": 438,
+      "text": "For Brennick Software, annualised operating profit in FY2024 was €52.9m (reported basis)."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 439,
+      "end": 536,
+      "text": "The earn-out trigger for Brennick Software is understood as follows: measured on reported EBITDA."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 87,
+      "end": 153,
+      "text": "For Brennick Software, net revenue retention in FY2025 was 123.6%."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 154,
+      "end": 247,
+      "text": "Order backlog of Brennick Software in FY2025: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 248,
+      "end": 325,
+      "text": "the Target had headline purchase price of €186.5m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 326,
+      "end": 393,
+      "text": "For Brennick Software, capex as share of sales in FY2024 was 13.2%."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 394,
+      "end": 476,
+      "text": "As to Brennick Software, the deal structure is: share purchase of the whole group."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Brennick Software",
+      "concept": "employees",
+      "value": 2322,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Brennick Software",
+      "concept": "net_retention",
+      "value": 141.6,
+      "unit": "%",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Brennick Software",
+      "concept": "order_backlog",
+      "value": 494.8,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Brennick Software",
+      "concept": "run_rate_ebitda",
+      "value": 66,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Brennick Software",
+      "concept": "earnout_trigger",
+      "value": "measured on EBITDA before integration costs",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Brennick Software",
+      "concept": "deal_structure_b",
+      "value": false,
+      "exclusiveGroup": "deal_structure"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Brennick Software",
+      "concept": "employees",
+      "value": 3195,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Brennick Software",
+      "concept": "purchase_price",
+      "value": 217.1,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Greywater",
+      "concept": "capex_intensity",
+      "value": 10.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Brennick Software",
+      "concept": "annualised_operating_profit",
+      "value": 52.9,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Brennick Software",
+      "concept": "earnout_trigger",
+      "value": "measured on reported EBITDA",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Brennick Software",
+      "concept": "net_retention",
+      "value": 123.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Brennick Software",
+      "concept": "order_backlog",
+      "value": null,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "the Target",
+      "concept": "purchase_price",
+      "value": 186.5,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Brennick Software",
+      "concept": "capex_intensity",
+      "value": 13.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Brennick Software",
+      "concept": "deal_structure_a",
+      "value": true,
+      "exclusiveGroup": "deal_structure"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Employees and Net revenue retention of Brennick Software are adequate for the board recommendation to sign"
+    },
+    {
+      "id": "C2",
+      "text": "Order backlog and Headline purchase price of Brennick Software are adequate for the board recommendation to sign"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Target\" is defined in the documents as Brennick Software"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Brennick Software is stated to trade as \"Greywater\""
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"annualised operating profit\" is defined as the same measure as \"run-rate EBITDA\""
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "net revenue retention",
+          "acceptable": [
+            "D1#s2",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "order backlog",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "headline purchase price",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s3",
+        "D2#s2",
+        "D3#s2",
+        "D3#s3"
+      ]
+    }
+  }
+}

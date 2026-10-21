@@ -1,0 +1,330 @@
+{
+  "id": "sc-06",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "title": "Tellmar Fragments: scholarly review (fictional)",
+  "entity": "Tellmar Fragments",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Tellmar Fragments (fictional).\nIn this document \"TF-MS\" means Tellmar Fragments. Tellmar Fragments reports radiocarbon median date (CE) of 849 year for FY2025. Tellmar Fragments reports quire count of 7 for FY2025. Tellmar Fragments reports number of scribal hands of 4 for LTM to 30 Jun 2025. Tellmar AB reports folio count of 61 for FY2024. The fiscal year of Tellmar Fragments ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Tellmar Fragments (fictional).\nTellmar Fragments reports c14 median of 957 year for FY2025. Tellmar Fragments reports quire count of 6 for FY2025. Tellmar Fragments reports line count of 34 for FY2024. Tellmar Fragments reports recorded variant readings of 2000 for FY2024."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Tellmar Fragments (fictional).\nTellmar Fragments reports number of scribal hands of 5 for FY2025 (fiscal year ending 30 June 2025). Tellmar Ltd reports folio count of 68 for FY2024. Tellmar Fragments reports approximately line count of 33 for FY2024. Tellmar Fragments reports recorded variant readings of 1580 for FY2024. \"c14 median\" has the same meaning as \"radiocarbon median\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 113,
+      "end": 191,
+      "text": "Tellmar Fragments reports radiocarbon median date (CE) of 849 year for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 192,
+      "end": 246,
+      "text": "Tellmar Fragments reports quire count of 7 for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 247,
+      "end": 325,
+      "text": "Tellmar Fragments reports number of scribal hands of 4 for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 326,
+      "end": 374,
+      "text": "Tellmar AB reports folio count of 61 for FY2024."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 49,
+      "end": 109,
+      "text": "Tellmar Fragments reports c14 median of 957 year for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 110,
+      "end": 164,
+      "text": "Tellmar Fragments reports quire count of 6 for FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 165,
+      "end": 219,
+      "text": "Tellmar Fragments reports line count of 34 for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 220,
+      "end": 291,
+      "text": "Tellmar Fragments reports recorded variant readings of 2000 for FY2024."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 48,
+      "end": 148,
+      "text": "Tellmar Fragments reports number of scribal hands of 5 for FY2025 (fiscal year ending 30 June 2025)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 149,
+      "end": 198,
+      "text": "Tellmar Ltd reports folio count of 68 for FY2024."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 199,
+      "end": 267,
+      "text": "Tellmar Fragments reports approximately line count of 33 for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 268,
+      "end": 339,
+      "text": "Tellmar Fragments reports recorded variant readings of 1580 for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Tellmar Fragments",
+      "concept": "radiocarbon_median",
+      "value": 849,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Tellmar Fragments",
+      "concept": "quire_count",
+      "value": 7,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Tellmar Fragments",
+      "concept": "scribal_hands",
+      "value": 4,
+      "unit": "count",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Tellmar AB",
+      "concept": "folio_count",
+      "value": 61,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Tellmar Fragments",
+      "concept": "c14_median",
+      "value": 957,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Tellmar Fragments",
+      "concept": "quire_count",
+      "value": 6,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Tellmar Fragments",
+      "concept": "line_count",
+      "value": 34,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Tellmar Fragments",
+      "concept": "variant_readings",
+      "value": 2000,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Tellmar Fragments",
+      "concept": "scribal_hands",
+      "value": 5,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Tellmar Ltd",
+      "concept": "folio_count",
+      "value": 68,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Tellmar Fragments",
+      "concept": "line_count",
+      "value": 33,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Tellmar Fragments",
+      "concept": "variant_readings",
+      "value": 1580,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The radiocarbon median date (CE) and number of quires of Tellmar Fragments support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The number of scribal hands of Tellmar Fragments supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"c14_median\" is defined as the same measure as \"radiocarbon_median\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "radiocarbon median date (CE)",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "number of quires",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "number of scribal hands",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

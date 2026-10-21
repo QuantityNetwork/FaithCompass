@@ -1,0 +1,365 @@
+{
+  "id": "sc-05",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "title": "Liber Quandos: scholarly review (fictional)",
+  "entity": "Liber Quandos",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Liber Quandos (fictional).\nIn this document \"LQ-MS\" means Liber Quandos. Liber Quandos reports folio count of 360 for FY2025. Liber Quandos reports witness count of 46.092 for FY2024. Liber Quandos reports quire count of 26.052 for FY2025. Liber Quandos reports line count of 19 for FY2024 under the original agreement. For Liber Quandos, the reading of the colophon is read as: names the scribe as a monk of the house."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Liber Quandos (fictional).\nLiber Quandos reports folio count of 458 for FY2024. Liber Quandos reports witness count of 46 for FY2024. Liber Quandos reports lacunae share of 17.2% for FY2024. LQ-MS reports number of scribal hands of 4 for FY2025. For Liber Quandos, the reading of the colophon is read as: names the scribe as a lay copyist hired by the house."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Liber Quandos (fictional).\nLiber Quandos reports quire count of 26 for FY2025. Liber Quandos reports line count of 22 for FY2024 under the amendment no. 1 (supersedes). Liber Logistics subsidiary reports lacunae share of 20% for FY2024. Liber Quandos reports number of scribal hands of 5 for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 105,
+      "end": 157,
+      "text": "Liber Quandos reports folio count of 360 for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 158,
+      "end": 215,
+      "text": "Liber Quandos reports witness count of 46.092 for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 216,
+      "end": 271,
+      "text": "Liber Quandos reports quire count of 26.052 for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 272,
+      "end": 351,
+      "text": "Liber Quandos reports line count of 19 for FY2024 under the original agreement."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 352,
+      "end": 451,
+      "text": "For Liber Quandos, the reading of the colophon is read as: names the scribe as a monk of the house."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 45,
+      "end": 97,
+      "text": "Liber Quandos reports folio count of 458 for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 98,
+      "end": 151,
+      "text": "Liber Quandos reports witness count of 46 for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 152,
+      "end": 208,
+      "text": "Liber Quandos reports lacunae share of 17.2% for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 209,
+      "end": 263,
+      "text": "LQ-MS reports number of scribal hands of 4 for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 264,
+      "end": 376,
+      "text": "For Liber Quandos, the reading of the colophon is read as: names the scribe as a lay copyist hired by the house."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 44,
+      "end": 95,
+      "text": "Liber Quandos reports quire count of 26 for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 96,
+      "end": 185,
+      "text": "Liber Quandos reports line count of 22 for FY2024 under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 186,
+      "end": 253,
+      "text": "Liber Logistics subsidiary reports lacunae share of 20% for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 254,
+      "end": 316,
+      "text": "Liber Quandos reports number of scribal hands of 5 for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Liber Quandos",
+      "concept": "folio_count",
+      "value": 360,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Liber Quandos",
+      "concept": "witness_count",
+      "value": 46.092,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Liber Quandos",
+      "concept": "quire_count",
+      "value": 26.052,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Liber Quandos",
+      "concept": "line_count",
+      "value": 19,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Liber Quandos",
+      "concept": "colophon_reading",
+      "value": "names the scribe as a monk of the house",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Liber Quandos",
+      "concept": "folio_count",
+      "value": 458,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Liber Quandos",
+      "concept": "witness_count",
+      "value": 46,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Liber Quandos",
+      "concept": "lacunae_share",
+      "value": 17.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "LQ-MS",
+      "concept": "scribal_hands",
+      "value": 4,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Liber Quandos",
+      "concept": "colophon_reading",
+      "value": "names the scribe as a lay copyist hired by the house",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Liber Quandos",
+      "concept": "quire_count",
+      "value": 26,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Liber Quandos",
+      "concept": "line_count",
+      "value": 22,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Liber Logistics subsidiary",
+      "concept": "lacunae_share",
+      "value": 20,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Liber Quandos",
+      "concept": "scribal_hands",
+      "value": 5,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The number of known witnesses and number of quires of Liber Quandos support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The lines per page of Liber Quandos supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"LQ-MS\" is defined in the documents as Liber Quandos"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "number of known witnesses",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "number of quires",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "lines per page",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D3#s2"
+      ]
+    }
+  }
+}

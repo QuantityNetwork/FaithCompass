@@ -1,0 +1,412 @@
+{
+  "id": "ct-02",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ivarsen Healthcare: contract review (fictional)",
+  "entity": "Ivarsen Healthcare",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Framework agreement",
+      "text": "Framework agreement: Ivarsen Healthcare (fictional, authored test material).\nThroughout the documents of this review, the Supplier means Ivarsen Healthcare. For the Supplier, annual service charges in FY2025 was SEK 71.8m (reported basis). Payment terms at Fernhill stood at 65 days in FY2024. Ivarsen Healthcare had incident response time of 1 hours in FY2025. For Ivarsen Healthcare, delay penalty cap in FY2024 was 14.8%. The ownership of deliverables for Ivarsen Healthcare is understood as follows: the supplier keeps ownership and grants a perpetual licence. As to Ivarsen Healthcare, the exclusivity is: the customer may appoint other providers at any time."
+    },
+    {
+      "id": "D2",
+      "title": "Change order",
+      "text": "Change order: Ivarsen Healthcare (fictional, authored test material).\nIvarsen Healthcare trades under the name Fernhill. For Ivarsen Healthcare, annual service charges in FY2025 was SEK 55.7m (reported basis). Total contract value at Ivarsen Healthcare stood at SEK 94.3m in FY2025 (reported basis). Ivarsen Healthcare had performance bond of SEK 14.3 million in FY2024 (reported basis). For Ivarsen Healthcare, delay penalty cap in FY2024 was 10.4%. The ownership of deliverables for Ivarsen Healthcare is understood as follows: all deliverables vest in the customer on payment. Throughout the documents of this review, \"p1 reaction window\" means the same measure as incident response time."
+    },
+    {
+      "id": "D3",
+      "title": "Procurement evaluation note",
+      "text": "Procurement evaluation note: Ivarsen Healthcare (fictional, authored test material).\nIvarsen Healthcare has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. For Ivarsen Healthcare, payment terms in FY2024 was 90 days. P1 reaction window at Ivarsen Healthcare stood at 0.5 hours in FY2025. Ivarsen Healthcare had total contract value of SEK 106.4m in the twelve months to 31 Mar 2025 (reported basis). For Ivarsen Healthcare, performance bond in FY2024 was SEK 18.6m (reported basis). As to Ivarsen Healthcare, the exclusivity is: the supplier is the exclusive provider for the term."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 157,
+      "end": 239,
+      "text": "For the Supplier, annual service charges in FY2025 was SEK 71.8m (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 240,
+      "end": 293,
+      "text": "Payment terms at Fernhill stood at 65 days in FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 294,
+      "end": 361,
+      "text": "Ivarsen Healthcare had incident response time of 1 hours in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 362,
+      "end": 424,
+      "text": "For Ivarsen Healthcare, delay penalty cap in FY2024 was 14.8%."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 425,
+      "end": 564,
+      "text": "The ownership of deliverables for Ivarsen Healthcare is understood as follows: the supplier keeps ownership and grants a perpetual licence."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 565,
+      "end": 664,
+      "text": "As to Ivarsen Healthcare, the exclusivity is: the customer may appoint other providers at any time."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 121,
+      "end": 209,
+      "text": "For Ivarsen Healthcare, annual service charges in FY2025 was SEK 55.7m (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 210,
+      "end": 299,
+      "text": "Total contract value at Ivarsen Healthcare stood at SEK 94.3m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 300,
+      "end": 387,
+      "text": "Ivarsen Healthcare had performance bond of SEK 14.3 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 388,
+      "end": 450,
+      "text": "For Ivarsen Healthcare, delay penalty cap in FY2024 was 10.4%."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 451,
+      "end": 579,
+      "text": "The ownership of deliverables for Ivarsen Healthcare is understood as follows: all deliverables vest in the customer on payment."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 185,
+      "end": 245,
+      "text": "For Ivarsen Healthcare, payment terms in FY2024 was 90 days."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 246,
+      "end": 316,
+      "text": "P1 reaction window at Ivarsen Healthcare stood at 0.5 hours in FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 317,
+      "end": 428,
+      "text": "Ivarsen Healthcare had total contract value of SEK 106.4m in the twelve months to 31 Mar 2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 429,
+      "end": 511,
+      "text": "For Ivarsen Healthcare, performance bond in FY2024 was SEK 18.6m (reported basis)."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 512,
+      "end": 610,
+      "text": "As to Ivarsen Healthcare, the exclusivity is: the supplier is the exclusive provider for the term."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "the Supplier",
+      "concept": "annual_charges",
+      "value": 71.8,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Fernhill",
+      "concept": "payment_terms",
+      "value": 65,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ivarsen Healthcare",
+      "concept": "response_time",
+      "value": 1,
+      "unit": "hours",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ivarsen Healthcare",
+      "concept": "penalty_cap",
+      "value": 14.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Ivarsen Healthcare",
+      "concept": "ip_ownership",
+      "value": "the supplier keeps ownership and grants a perpetual licence",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Ivarsen Healthcare",
+      "concept": "exclusivity_b",
+      "value": false,
+      "exclusiveGroup": "exclusivity"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ivarsen Healthcare",
+      "concept": "annual_charges",
+      "value": 55.7,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ivarsen Healthcare",
+      "concept": "contract_value",
+      "value": 94.3,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ivarsen Healthcare",
+      "concept": "performance_bond",
+      "value": 14.3,
+      "unit": "SEK million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ivarsen Healthcare",
+      "concept": "penalty_cap",
+      "value": 10.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ivarsen Healthcare",
+      "concept": "ip_ownership",
+      "value": "all deliverables vest in the customer on payment",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ivarsen Healthcare",
+      "concept": "payment_terms",
+      "value": 90,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ivarsen Healthcare",
+      "concept": "p1_reaction_window",
+      "value": 0.5,
+      "unit": "hours",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ivarsen Healthcare",
+      "concept": "contract_value",
+      "value": 106.4,
+      "unit": "SEK m",
+      "period": "LTM to 31 Mar 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ivarsen Healthcare",
+      "concept": "performance_bond",
+      "value": 18.6,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Ivarsen Healthcare",
+      "concept": "exclusivity_a",
+      "value": true,
+      "exclusiveGroup": "exclusivity"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Annual service charges and Payment terms of Ivarsen Healthcare are adequate for the award recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "Incident response time and Total contract value of Ivarsen Healthcare are adequate for the award recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Supplier\" is defined in the documents as Ivarsen Healthcare"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Ivarsen Healthcare is stated to trade as \"Fernhill\""
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"p1 reaction window\" is defined as the same measure as \"incident response time\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"SEK million\" is the same unit as SEK m"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "annual service charges",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "payment terms",
+          "acceptable": [
+            "D1#s2",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "incident response time",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "total contract value",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s3",
+        "D2#s2",
+        "D3#s2",
+        "D3#s3"
+      ]
+    }
+  }
+}

@@ -1,0 +1,830 @@
+{
+  "benchmark": "decision-evidence-v1",
+  "spent_usd": 0.018906,
+  "generated_at": "2026-10-20T22:39:56Z",
+  "manifest": {
+    "ok": true,
+    "eval_set_sha256": "0d69dc2e51f9a74dc0322eedacb7fb20fd4e46bfbaf6b6742a88c07ea7418524",
+    "recomputed": "0d69dc2e51f9a74dc0322eedacb7fb20fd4e46bfbaf6b6742a88c07ea7418524",
+    "mismatched": [],
+    "files": 28
+  },
+  "splits": [
+    "dev"
+  ],
+  "baselines": {
+    "A": {
+      "name": "Plain LLM (gpt-4.1-mini-2025-04-14): all raw documents, span-labelled, in one prompt",
+      "status": "RAN",
+      "produces": {
+        "findings": true,
+        "citations": true,
+        "dependencies": true
+      },
+      "prompt_version": "dev-validated-2",
+      "llm": {
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "temperature": 0,
+        "seed": 20261020,
+        "response_format": "json_object",
+        "usd_per_1m_input": 0.4,
+        "usd_per_1m_output": 1.6
+      },
+      "results": {
+        "dev": {
+          "cases": 12,
+          "conflict_recall": {
+            "k": 44,
+            "n": 51,
+            "value": 0.8627,
+            "ci95": [
+              0.7428,
+              0.9319
+            ]
+          },
+          "conflict_precision": {
+            "k": 44,
+            "n": 70,
+            "value": 0.6286,
+            "ci95": [
+              0.5115,
+              0.7323
+            ]
+          },
+          "false_positive_rate_all_pairs": {
+            "k": 26,
+            "n": 1057,
+            "value": 0.0246,
+            "ci95": [
+              0.0168,
+              0.0358
+            ]
+          },
+          "false_positive_rate_hard_negatives": {
+            "k": 26,
+            "n": 33,
+            "value": 0.7879,
+            "ci95": [
+              0.6225,
+              0.8932
+            ]
+          },
+          "class_agreement_on_found": {
+            "k": 38,
+            "n": 44,
+            "value": 0.8636,
+            "ci95": [
+              0.7329,
+              0.936
+            ]
+          },
+          "citation_precision": {
+            "k": 53,
+            "n": 61,
+            "value": 0.8689,
+            "ci95": [
+              0.762,
+              0.932
+            ]
+          },
+          "evidence_recall": {
+            "k": 34,
+            "n": 36,
+            "value": 0.9444,
+            "ci95": [
+              0.8186,
+              0.9846
+            ]
+          },
+          "dependency_accuracy": {
+            "k": 15,
+            "n": 24,
+            "value": 0.625,
+            "ci95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "per_plant": {
+            "alias": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 6,
+              "correct": 5
+            },
+            "approximation": {
+              "gold": "NONE",
+              "n": 4,
+              "correct": 1
+            },
+            "basis": {
+              "gold": "DIFFERENT_REPORTING_BASIS",
+              "n": 4,
+              "correct": 4
+            },
+            "confirmed": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 9,
+              "correct": 8
+            },
+            "diff_entity": {
+              "gold": "NONE",
+              "n": 5,
+              "correct": 2
+            },
+            "diff_period": {
+              "gold": "NONE",
+              "n": 5,
+              "correct": 2
+            },
+            "exclusive": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 4,
+              "correct": 4
+            },
+            "fiscal_year_end": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 5,
+              "correct": 4
+            },
+            "interpretation": {
+              "gold": "UNRESOLVED_INTERPRETATION",
+              "n": 8,
+              "correct": 7
+            },
+            "legal_entity": {
+              "gold": "NONE",
+              "n": 4,
+              "correct": 2
+            },
+            "missing": {
+              "gold": "MISSING_EVIDENCE",
+              "n": 4,
+              "correct": 4
+            },
+            "potential": {
+              "gold": "POTENTIAL_CONFLICT",
+              "n": 4,
+              "correct": 2
+            },
+            "rounding": {
+              "gold": "NONE",
+              "n": 8,
+              "correct": 0
+            },
+            "superseded": {
+              "gold": "NONE",
+              "n": 5,
+              "correct": 0
+            },
+            "synonym": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 6,
+              "correct": 6
+            },
+            "unit_scale": {
+              "gold": "NONE",
+              "n": 2,
+              "correct": 0
+            },
+            "unit_word": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 1,
+              "correct": 0
+            }
+          },
+          "per_domain": {
+            "contract": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 14,
+                "n": 14,
+                "value": 1,
+                "ci95": [
+                  0.7847,
+                  1
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 6,
+                "n": 7,
+                "value": 0.8571,
+                "ci95": [
+                  0.4869,
+                  0.9743
+                ]
+              }
+            },
+            "m_and_a": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 10,
+                "n": 11,
+                "value": 0.9091,
+                "ci95": [
+                  0.6226,
+                  0.9838
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 8,
+                "n": 10,
+                "value": 0.8,
+                "ci95": [
+                  0.4902,
+                  0.9433
+                ]
+              }
+            },
+            "private_credit": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 8,
+                "n": 12,
+                "value": 0.6667,
+                "ci95": [
+                  0.3906,
+                  0.8619
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 7,
+                "n": 9,
+                "value": 0.7778,
+                "ci95": [
+                  0.4526,
+                  0.9368
+                ]
+              }
+            },
+            "scholarly": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 12,
+                "n": 14,
+                "value": 0.8571,
+                "ci95": [
+                  0.6006,
+                  0.9599
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 5,
+                "n": 7,
+                "value": 0.7143,
+                "ci95": [
+                  0.3589,
+                  0.9178
+                ]
+              }
+            }
+          },
+          "cost_per_case": {
+            "usd_total": 0.0101448,
+            "ms_p50": 2265.0675109999997,
+            "ms_p95": 3032.890435000001
+          },
+          "cases_detail": [
+            {
+              "id": "ct-01",
+              "tp": 6,
+              "p": 6,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2739,
+              "usd": 0.0009467999999999999
+            },
+            {
+              "id": "ct-02",
+              "tp": 4,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2265,
+              "usd": 0.0008344000000000001
+            },
+            {
+              "id": "ct-03",
+              "tp": 4,
+              "p": 4,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 2469,
+              "usd": 0.0009256000000000001
+            },
+            {
+              "id": "ma-01",
+              "tp": 3,
+              "p": 3,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 2200,
+              "usd": 0.0008828000000000001
+            },
+            {
+              "id": "ma-02",
+              "tp": 4,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 3033,
+              "usd": 0.0008472
+            },
+            {
+              "id": "ma-03",
+              "tp": 3,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2426,
+              "usd": 0.0008204000000000001
+            },
+            {
+              "id": "pc-01",
+              "tp": 4,
+              "p": 6,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2505,
+              "usd": 0.0009116000000000001
+            },
+            {
+              "id": "pc-02",
+              "tp": 3,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2211,
+              "usd": 0.0007796000000000001
+            },
+            {
+              "id": "pc-03",
+              "tp": 1,
+              "p": 2,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1724,
+              "usd": 0.0007084000000000001
+            },
+            {
+              "id": "sc-01",
+              "tp": 5,
+              "p": 6,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 2084,
+              "usd": 0.0008024000000000001
+            },
+            {
+              "id": "sc-02",
+              "tp": 2,
+              "p": 3,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 2135,
+              "usd": 0.0007516000000000002
+            },
+            {
+              "id": "sc-03",
+              "tp": 5,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2428,
+              "usd": 0.0009340000000000002
+            }
+          ]
+        }
+      }
+    },
+    "B": {
+      "name": "RAG (gpt-4.1-mini-2025-04-14): BM25 top-10 sentence chunks of the raw documents per conclusion, then the LLM with citations",
+      "status": "RAN",
+      "produces": {
+        "findings": true,
+        "citations": true,
+        "dependencies": true
+      },
+      "prompt_version": "dev-validated-2",
+      "llm": {
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "temperature": 0,
+        "seed": 20261020,
+        "response_format": "json_object",
+        "usd_per_1m_input": 0.4,
+        "usd_per_1m_output": 1.6
+      },
+      "results": {
+        "dev": {
+          "cases": 12,
+          "conflict_recall": {
+            "k": 34,
+            "n": 51,
+            "value": 0.6667,
+            "ci95": [
+              0.5297,
+              0.7803
+            ]
+          },
+          "conflict_precision": {
+            "k": 34,
+            "n": 55,
+            "value": 0.6182,
+            "ci95": [
+              0.4861,
+              0.7348
+            ]
+          },
+          "false_positive_rate_all_pairs": {
+            "k": 21,
+            "n": 1057,
+            "value": 0.0199,
+            "ci95": [
+              0.013,
+              0.0302
+            ]
+          },
+          "false_positive_rate_hard_negatives": {
+            "k": 21,
+            "n": 33,
+            "value": 0.6364,
+            "ci95": [
+              0.4662,
+              0.7781
+            ]
+          },
+          "class_agreement_on_found": {
+            "k": 26,
+            "n": 34,
+            "value": 0.7647,
+            "ci95": [
+              0.6,
+              0.8756
+            ]
+          },
+          "citation_precision": {
+            "k": 54,
+            "n": 61,
+            "value": 0.8852,
+            "ci95": [
+              0.7816,
+              0.9433
+            ]
+          },
+          "evidence_recall": {
+            "k": 35,
+            "n": 36,
+            "value": 0.9722,
+            "ci95": [
+              0.8583,
+              0.9951
+            ]
+          },
+          "dependency_accuracy": {
+            "k": 12,
+            "n": 24,
+            "value": 0.5,
+            "ci95": [
+              0.3143,
+              0.6857
+            ]
+          },
+          "per_plant": {
+            "alias": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 6,
+              "correct": 3
+            },
+            "approximation": {
+              "gold": "NONE",
+              "n": 4,
+              "correct": 2
+            },
+            "basis": {
+              "gold": "DIFFERENT_REPORTING_BASIS",
+              "n": 4,
+              "correct": 4
+            },
+            "confirmed": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 9,
+              "correct": 6
+            },
+            "diff_entity": {
+              "gold": "NONE",
+              "n": 5,
+              "correct": 2
+            },
+            "diff_period": {
+              "gold": "NONE",
+              "n": 5,
+              "correct": 2
+            },
+            "exclusive": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 4,
+              "correct": 4
+            },
+            "fiscal_year_end": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 5,
+              "correct": 3
+            },
+            "interpretation": {
+              "gold": "UNRESOLVED_INTERPRETATION",
+              "n": 8,
+              "correct": 7
+            },
+            "legal_entity": {
+              "gold": "NONE",
+              "n": 4,
+              "correct": 4
+            },
+            "missing": {
+              "gold": "MISSING_EVIDENCE",
+              "n": 4,
+              "correct": 2
+            },
+            "potential": {
+              "gold": "POTENTIAL_CONFLICT",
+              "n": 4,
+              "correct": 2
+            },
+            "rounding": {
+              "gold": "NONE",
+              "n": 8,
+              "correct": 1
+            },
+            "superseded": {
+              "gold": "NONE",
+              "n": 5,
+              "correct": 0
+            },
+            "synonym": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 6,
+              "correct": 3
+            },
+            "unit_scale": {
+              "gold": "NONE",
+              "n": 2,
+              "correct": 1
+            },
+            "unit_word": {
+              "gold": "CONFIRMED_CONFLICT",
+              "n": 1,
+              "correct": 0
+            }
+          },
+          "per_domain": {
+            "contract": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 10,
+                "n": 14,
+                "value": 0.7143,
+                "ci95": [
+                  0.4535,
+                  0.8828
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 5,
+                "n": 7,
+                "value": 0.7143,
+                "ci95": [
+                  0.3589,
+                  0.9178
+                ]
+              }
+            },
+            "m_and_a": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 8,
+                "n": 11,
+                "value": 0.7273,
+                "ci95": [
+                  0.4344,
+                  0.9025
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 5,
+                "n": 10,
+                "value": 0.5,
+                "ci95": [
+                  0.2366,
+                  0.7634
+                ]
+              }
+            },
+            "private_credit": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 7,
+                "n": 12,
+                "value": 0.5833,
+                "ci95": [
+                  0.3195,
+                  0.8067
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 6,
+                "n": 9,
+                "value": 0.6667,
+                "ci95": [
+                  0.3542,
+                  0.8794
+                ]
+              }
+            },
+            "scholarly": {
+              "cases": 3,
+              "conflict_recall": {
+                "k": 9,
+                "n": 14,
+                "value": 0.6429,
+                "ci95": [
+                  0.3876,
+                  0.8366
+                ]
+              },
+              "hard_negative_fp": {
+                "k": 5,
+                "n": 7,
+                "value": 0.7143,
+                "ci95": [
+                  0.3589,
+                  0.9178
+                ]
+              }
+            }
+          },
+          "cost_per_case": {
+            "usd_total": 0.0087612,
+            "ms_p50": 1984.1699630000003,
+            "ms_p95": 2299.612788000006
+          },
+          "cases_detail": [
+            {
+              "id": "ct-01",
+              "tp": 6,
+              "p": 6,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 2211,
+              "usd": 0.0008352
+            },
+            {
+              "id": "ct-02",
+              "tp": 3,
+              "p": 4,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2038,
+              "usd": 0.0007556000000000002
+            },
+            {
+              "id": "ct-03",
+              "tp": 1,
+              "p": 4,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 2096,
+              "usd": 0.0007064
+            },
+            {
+              "id": "ma-01",
+              "tp": 2,
+              "p": 3,
+              "fp": 4,
+              "hard_fp": 4,
+              "ms": 2165,
+              "usd": 0.000832
+            },
+            {
+              "id": "ma-02",
+              "tp": 4,
+              "p": 4,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 2145,
+              "usd": 0.0007536
+            },
+            {
+              "id": "ma-03",
+              "tp": 2,
+              "p": 4,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1221,
+              "usd": 0.000562
+            },
+            {
+              "id": "pc-01",
+              "tp": 4,
+              "p": 6,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 2300,
+              "usd": 0.0008468000000000001
+            },
+            {
+              "id": "pc-02",
+              "tp": 2,
+              "p": 4,
+              "fp": 1,
+              "hard_fp": 1,
+              "ms": 1746,
+              "usd": 0.0006384000000000001
+            },
+            {
+              "id": "pc-03",
+              "tp": 1,
+              "p": 2,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1816,
+              "usd": 0.0007216
+            },
+            {
+              "id": "sc-01",
+              "tp": 4,
+              "p": 6,
+              "fp": 0,
+              "hard_fp": 0,
+              "ms": 1659,
+              "usd": 0.0006576000000000002
+            },
+            {
+              "id": "sc-02",
+              "tp": 3,
+              "p": 3,
+              "fp": 3,
+              "hard_fp": 3,
+              "ms": 1984,
+              "usd": 0.0007676
+            },
+            {
+              "id": "sc-03",
+              "tp": 2,
+              "p": 5,
+              "fp": 2,
+              "hard_fp": 2,
+              "ms": 1769,
+              "usd": 0.0006844
+            }
+          ]
+        }
+      }
+    }
+  },
+  "system": {
+    "replay_fidelity": {
+      "k": 4,
+      "n": 4,
+      "value": 1,
+      "ci95": [
+        0.5101,
+        1
+      ],
+      "statuses": [
+        "REPRODUCED",
+        "REPRODUCED",
+        "REPRODUCED",
+        "REPRODUCED"
+      ]
+    },
+    "passport_integrity": {
+      "tamper_detection": {
+        "k": 7,
+        "n": 7,
+        "value": 1,
+        "ci95": [
+          0.6457,
+          1
+        ]
+      },
+      "valid_accepted": {
+        "k": 5,
+        "n": 5,
+        "value": 1,
+        "ci95": [
+          0.5655,
+          1
+        ]
+      }
+    },
+    "unauthorized_access_failures": {
+      "status": "NOT_MEASURED_HERE",
+      "reason": "per-tenant access is tested by tests/security*.test.ts, tests/evidence-graph.test.ts and the Firestore rules suite in CI, not by this benchmark"
+    },
+    "review_time": {
+      "status": "BLOCKED",
+      "reason": "needs baseline D (human reviewers)"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "78857191cd1f8d300ec7f0b25fa0906bad4c72c6544687f7f20c1c4459ce017c",
+    "prompt_chars": 3095
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s3\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D3#s1\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D3#s1\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 787,
+      "completion_tokens": 327
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2808.9846560000005,
+  "usd": 0.000838,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things. Use definitions stated in the documents (abbreviations, terms with the same meaning, fiscal year ends).\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Information memorandum\nInformation memorandum — Pellwood Industries (fictional).\nIn this document \"PIH\" means Pellwood Industries. [D1#s1] Pellwood Industries reports gross margin of 44.9% for FY2024. [D1#s2] Pellwood Industries reports headcount of 2027 for FY2025. [D1#s3] Pellwood Industries reports earn out of $36.1m for LTM to 30 Jun 2025 on a reported basis. [D1#s4] Pellwood AB reports normalised net working capital of $83.7m for FY2024 on a reported basis. The fiscal year of Pellwood Industries ends on 30 June.\n\n## D2 Financial due diligence report\nFinancial due diligence report — Pellwood Industries (fictional).\n[D2#s1] Pellwood Industries reports gross profit margin of 40.4% for FY2024. [D2#s2] Pellwood Industries reports headcount of 1792 for FY2025. [D2#s3] Pellwood Industries reports enterprise value of $818.2m for FY2025 on a reported basis. [D2#s4] Pellwood Industries reports annual customer churn of 5% for FY2024.\n\n## D3 Draft share purchase agreement\nDraft share purchase agreement — Pellwood Industries (fictional).\n[D3#s1] Pellwood Industries reports earn out of $30.3m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. [D3#s2] Pellwood Ltd reports normalised net working capital of $68m for FY2024 on a reported basis. [D3#s3] Pellwood Industries reports approximately enterprise value of $794m for FY2025 on a reported basis. [D3#s4] Pellwood Industries reports annual customer churn of 4.2% for FY2024. \"gross profit margin\" has the same meaning as \"gross margin\".\n\n# Conclusions\nC1: The gross margin and employees of Pellwood Industries support the investment committee bid recommendation\nC2: The maximum earn-out of Pellwood Industries supports the investment committee bid recommendation"
+}

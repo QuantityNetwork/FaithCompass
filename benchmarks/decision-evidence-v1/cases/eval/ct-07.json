@@ -1,0 +1,402 @@
+{
+  "id": "ct-07",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "title": "Esker Partners: contract review (fictional)",
+  "entity": "Esker Partners",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Esker Partners (fictional).\nIn this document \"EPH\" means Esker Partners. Esker Partners reports annual price escalator of 6.8% for FY2025. Esker Partners reports uptime commitment of 82.57% for FY2024 on a adjusted (management definition) basis. Esker Partners reports term years of 6 years. Esker Partners reports insurance cover of $8.3m for FY2025 on a reported basis. For Esker Partners, the data residency obligation is read as: customer data stays within the EEA. For Esker Partners, the renewal is: expires at the end of the initial term unless renewed in writing."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Esker Partners (fictional).\nEsker Partners reports annual price escalator of 5.5% for FY2025. Esker Partners reports uptime commitment of 99.58% for FY2024 on a reported basis. Esker Partners reports liability cap of $1.9m for FY2024 on a reported basis. Esker Partners reports termination notice period of 77.154 days for FY2025. For Esker Partners, the data residency obligation is read as: customer data may be processed by approved sub-processors worldwide. For Esker Partners, the renewal is: renews automatically for successive 12-month terms."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Esker Partners (fictional).\nEsker Partners reports term years of 7 years for FY2024. Esker Partners: professional indemnity cover for FY2025 on a reported basis — not provided. Esker Partners reports liability cap of $1.7m for FY2025 on a reported basis. Esker Partners reports termination notice period of 77 days for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 101,
+      "end": 166,
+      "text": "Esker Partners reports annual price escalator of 6.8% for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 167,
+      "end": 273,
+      "text": "Esker Partners reports uptime commitment of 82.57% for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 274,
+      "end": 319,
+      "text": "Esker Partners reports term years of 6 years."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 320,
+      "end": 399,
+      "text": "Esker Partners reports insurance cover of $8.3m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 400,
+      "end": 497,
+      "text": "For Esker Partners, the data residency obligation is read as: customer data stays within the EEA."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 498,
+      "end": 599,
+      "text": "For Esker Partners, the renewal is: expires at the end of the initial term unless renewed in writing."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 47,
+      "end": 112,
+      "text": "Esker Partners reports annual price escalator of 5.5% for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 113,
+      "end": 195,
+      "text": "Esker Partners reports uptime commitment of 99.58% for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 196,
+      "end": 273,
+      "text": "Esker Partners reports liability cap of $1.9m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 274,
+      "end": 349,
+      "text": "Esker Partners reports termination notice period of 77.154 days for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 350,
+      "end": 480,
+      "text": "For Esker Partners, the data residency obligation is read as: customer data may be processed by approved sub-processors worldwide."
+    },
+    {
+      "id": "D2#s6",
+      "doc": "D2",
+      "start": 481,
+      "end": 568,
+      "text": "For Esker Partners, the renewal is: renews automatically for successive 12-month terms."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 52,
+      "end": 108,
+      "text": "Esker Partners reports term years of 7 years for FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 109,
+      "end": 200,
+      "text": "Esker Partners: professional indemnity cover for FY2025 on a reported basis — not provided."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 201,
+      "end": 278,
+      "text": "Esker Partners reports liability cap of $1.7m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 279,
+      "end": 350,
+      "text": "Esker Partners reports termination notice period of 77 days for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Esker Partners",
+      "concept": "price_escalator",
+      "value": 6.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Esker Partners",
+      "concept": "uptime_commitment",
+      "value": 82.57,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Esker Partners",
+      "concept": "term_years",
+      "value": 6,
+      "unit": "years",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Esker Partners",
+      "concept": "insurance_cover",
+      "value": 8.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Esker Partners",
+      "concept": "data_location",
+      "value": "customer data stays within the EEA",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Esker Partners",
+      "concept": "renewal_b",
+      "value": false,
+      "exclusiveGroup": "renewal"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Esker Partners",
+      "concept": "price_escalator",
+      "value": 5.5,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Esker Partners",
+      "concept": "uptime_commitment",
+      "value": 99.58,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Esker Partners",
+      "concept": "liability_cap",
+      "value": 1.9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Esker Partners",
+      "concept": "notice_period",
+      "value": 77.154,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Esker Partners",
+      "concept": "data_location",
+      "value": "customer data may be processed by approved sub-processors worldwide",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s6",
+      "entity": "Esker Partners",
+      "concept": "renewal_a",
+      "value": true,
+      "exclusiveGroup": "renewal"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Esker Partners",
+      "concept": "term_years",
+      "value": 7,
+      "unit": "years",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Esker Partners",
+      "concept": "insurance_cover",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Esker Partners",
+      "concept": "liability_cap",
+      "value": 1.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Esker Partners",
+      "concept": "notice_period",
+      "value": 77,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The annual price escalator and availability commitment of Esker Partners support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The initial term of Esker Partners supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      },
+      {
+        "facts": [
+          "D2#s6",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "annual price escalator",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "availability commitment",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "initial term",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

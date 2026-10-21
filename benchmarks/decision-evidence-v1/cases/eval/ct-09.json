@@ -1,0 +1,367 @@
+{
+  "id": "ct-09",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "title": "Meridian Vale Systems: contract review (fictional)",
+  "entity": "Meridian Vale Systems",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Meridian Vale Systems (fictional).\nIn this document \"MVSH\" means Meridian Vale Systems. Meridian Vale Systems reports maximum service credit of 18.3% for FY2025 (fiscal year ending 30 June 2025). Meridian Ltd reports termination notice period of 97 days for FY2024. Meridian Vale Systems reports approximately annual fee of $6m for FY2025 on a reported basis. Meridian Vale Systems reports insurance cover of $2.9m for FY2024 on a reported basis. For Meridian Vale Systems, the governing law is read as: English law, London-seated arbitration. The fiscal year of Meridian Vale Systems ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Meridian Vale Systems (fictional).\nMeridian Vale Systems reports maximum service credit of 13.4% for LTM to 30 Jun 2025. Meridian AB reports termination notice period of 120 days for FY2024. Meridian Vale Systems reports term years of 6 years for FY2024 on a reported basis. Meridian Vale Systems reports uptime commitment of 127.51%. For Meridian Vale Systems, the governing law is read as: Swedish law, Stockholm courts."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Meridian Vale Systems (fictional).\nMeridian Vale Systems reports annual fee of $6.2m for FY2025 on a reported basis. Meridian Vale Systems reports insurance cover of $3.5m for FY2024 on a reported basis. Meridian Vale Systems reports term years of 7 years for FY2024 on a adjusted (management definition) basis. Meridian Vale Systems reports uptime commitment of 99.67% for FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 116,
+      "end": 223,
+      "text": "Meridian Vale Systems reports maximum service credit of 18.3% for FY2025 (fiscal year ending 30 June 2025)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 224,
+      "end": 293,
+      "text": "Meridian Ltd reports termination notice period of 97 days for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 294,
+      "end": 387,
+      "text": "Meridian Vale Systems reports approximately annual fee of $6m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 388,
+      "end": 474,
+      "text": "Meridian Vale Systems reports insurance cover of $2.9m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 475,
+      "end": 571,
+      "text": "For Meridian Vale Systems, the governing law is read as: English law, London-seated arbitration."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 54,
+      "end": 139,
+      "text": "Meridian Vale Systems reports maximum service credit of 13.4% for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 140,
+      "end": 209,
+      "text": "Meridian AB reports termination notice period of 120 days for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 210,
+      "end": 293,
+      "text": "Meridian Vale Systems reports term years of 6 years for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 294,
+      "end": 353,
+      "text": "Meridian Vale Systems reports uptime commitment of 127.51%."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 354,
+      "end": 441,
+      "text": "For Meridian Vale Systems, the governing law is read as: Swedish law, Stockholm courts."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 59,
+      "end": 140,
+      "text": "Meridian Vale Systems reports annual fee of $6.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 141,
+      "end": 227,
+      "text": "Meridian Vale Systems reports insurance cover of $3.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 228,
+      "end": 335,
+      "text": "Meridian Vale Systems reports term years of 7 years for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 336,
+      "end": 405,
+      "text": "Meridian Vale Systems reports uptime commitment of 99.67% for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Meridian Vale Systems",
+      "concept": "service_credit",
+      "value": 18.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Meridian Ltd",
+      "concept": "notice_period",
+      "value": 97,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Meridian Vale Systems",
+      "concept": "annual_fee",
+      "value": 6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Meridian Vale Systems",
+      "concept": "insurance_cover",
+      "value": 2.9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Meridian Vale Systems",
+      "concept": "governing_law",
+      "value": "English law, London-seated arbitration",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Meridian Vale Systems",
+      "concept": "service_credit",
+      "value": 13.4,
+      "unit": "%",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Meridian AB",
+      "concept": "notice_period",
+      "value": 120,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Meridian Vale Systems",
+      "concept": "term_years",
+      "value": 6,
+      "unit": "years",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Meridian Vale Systems",
+      "concept": "uptime_commitment",
+      "value": 127.51,
+      "unit": "%",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Meridian Vale Systems",
+      "concept": "governing_law",
+      "value": "Swedish law, Stockholm courts",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Meridian Vale Systems",
+      "concept": "annual_fee",
+      "value": 6.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Meridian Vale Systems",
+      "concept": "insurance_cover",
+      "value": 3.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Meridian Vale Systems",
+      "concept": "term_years",
+      "value": 7,
+      "unit": "years",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Meridian Vale Systems",
+      "concept": "uptime_commitment",
+      "value": 99.67,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The maximum service credit and annual fee of Meridian Vale Systems support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The professional indemnity cover of Meridian Vale Systems supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "maximum service credit",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "annual fee",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "professional indemnity cover",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s3",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

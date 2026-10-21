@@ -1,0 +1,364 @@
+{
+  "id": "ma-04",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "title": "Tamsin Systems: m and a review (fictional)",
+  "entity": "Tamsin Systems",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Tamsin Systems (fictional).\nIn this document \"TSH\" means Tamsin Systems. Tamsin Systems reports headcount of 1640 for FY2024 under the original agreement. Tamsin Logistics subsidiary reports normalised net working capital of $87.7m for FY2024 on a reported basis. TSH reports earn out of $29m for FY2025 on a reported basis. Tamsin Systems reports enterprise value of $1083.5m for FY2024 on a reported basis. For Tamsin Systems, the form of consideration is: all-cash consideration. The fiscal year of Tamsin Systems ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Tamsin Systems (fictional).\nTamsin Systems reports headcount of 2034 for FY2024 under the amendment no. 1 (supersedes). Tamsin Systems reports normalised net working capital of $74.2m for FY2024 on a reported basis. Tamsin Systems reports gross margin of 59.4% for FY2024. Tamsin Systems reports EBITDA of $83.3m for LTM to 30 Jun 2025 on a reported basis. For Tamsin Systems, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Tamsin Systems (fictional).\nTamsin Systems reports earn out of $23m for FY2025 on a reported basis. Tamsin Systems reports headline valuation of $922.6m for FY2024 on a reported basis. Tamsin Systems reports gross margin of 48.2% for FY2024. Tamsin Systems reports EBITDA of $72.9m for FY2025 (fiscal year ending 30 June 2025) on a reported basis. \"headline valuation\" has the same meaning as \"enterprise value\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 98,
+      "end": 179,
+      "text": "Tamsin Systems reports headcount of 1640 for FY2024 under the original agreement."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 180,
+      "end": 288,
+      "text": "Tamsin Logistics subsidiary reports normalised net working capital of $87.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 289,
+      "end": 349,
+      "text": "TSH reports earn out of $29m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 350,
+      "end": 433,
+      "text": "Tamsin Systems reports enterprise value of $1083.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 434,
+      "end": 507,
+      "text": "For Tamsin Systems, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 61,
+      "end": 152,
+      "text": "Tamsin Systems reports headcount of 2034 for FY2024 under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 153,
+      "end": 248,
+      "text": "Tamsin Systems reports normalised net working capital of $74.2m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 249,
+      "end": 305,
+      "text": "Tamsin Systems reports gross margin of 59.4% for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 306,
+      "end": 389,
+      "text": "Tamsin Systems reports EBITDA of $83.3m for LTM to 30 Jun 2025 on a reported basis."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 390,
+      "end": 489,
+      "text": "For Tamsin Systems, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 61,
+      "end": 132,
+      "text": "Tamsin Systems reports earn out of $23m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 133,
+      "end": 217,
+      "text": "Tamsin Systems reports headline valuation of $922.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 218,
+      "end": 274,
+      "text": "Tamsin Systems reports gross margin of 48.2% for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 275,
+      "end": 380,
+      "text": "Tamsin Systems reports EBITDA of $72.9m for FY2025 (fiscal year ending 30 June 2025) on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Tamsin Systems",
+      "concept": "headcount",
+      "value": 1640,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Tamsin Logistics subsidiary",
+      "concept": "net_working_capital",
+      "value": 87.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "TSH",
+      "concept": "earn_out",
+      "value": 29,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Tamsin Systems",
+      "concept": "enterprise_value",
+      "value": 1083.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Tamsin Systems",
+      "concept": "consideration_form_a",
+      "value": true,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Tamsin Systems",
+      "concept": "headcount",
+      "value": 2034,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Tamsin Systems",
+      "concept": "net_working_capital",
+      "value": 74.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Tamsin Systems",
+      "concept": "gross_margin",
+      "value": 59.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Tamsin Systems",
+      "concept": "ebitda",
+      "value": 83.3,
+      "unit": "$m",
+      "period": "LTM to 30 Jun 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Tamsin Systems",
+      "concept": "consideration_form_b",
+      "value": false,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Tamsin Systems",
+      "concept": "earn_out",
+      "value": 23,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Tamsin Systems",
+      "concept": "headline_valuation",
+      "value": 922.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Tamsin Systems",
+      "concept": "gross_margin",
+      "value": 48.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Tamsin Systems",
+      "concept": "ebitda",
+      "value": 72.9,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "definition": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The employees and normalised net working capital of Tamsin Systems support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The maximum earn-out of Tamsin Systems supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"TSH\" is defined in the documents as Tamsin Systems"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"headline_valuation\" is defined as the same measure as \"enterprise_value\""
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "normalised net working capital",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "maximum earn-out",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

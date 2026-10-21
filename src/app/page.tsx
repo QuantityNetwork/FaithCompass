@@ -5,10 +5,12 @@ import { Cite, Footnotes } from '@/components/ds/footnotes';
 import { CovenantWord } from '@/components/home/covenant-word';
 import { FocusTabs } from '@/components/home/focus-tabs';
 import { LiveChecks, type LiveCheck } from '@/components/home/live-record';
+import { DecisionTwinLogo } from '@/components/decision/brand';
 import { PaletteButton } from '@/components/shell/palette-button';
 import { checkRecord } from '@/lib/record/integrity';
 import { getRecord } from '@/lib/record/record';
 import { CLASSIFICATION_META, isEditorVerified } from '@/lib/record/taxonomy';
+import './home.css';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -92,121 +94,196 @@ export default function Home() {
   const drv = derivations.find((d) => d.code === 'AM-DRV-0014');
   const cm = counterModels.find((m) => m.code === 'AM-CM-005');
 
-  const feed = record.history().slice(0, 5);
+  const latest = record.history().filter(({ revision }) => revision.status !== 'draft').slice(0, 6);
+
+  const register: Array<{ n: number; label: string; href: string }> = [
+    { n: claims.length, label: 'Claims', href: '/claims' },
+    { n: record.data.works.length, label: 'Works cited', href: '/corpus' },
+    { n: record.data.traditions.length, label: 'Traditions', href: '/traditions' },
+    { n: derivations.length, label: 'Derivations', href: '/hermeneutics' },
+    { n: publicRevisions.length, label: 'Public revisions, hash-locked', href: '/changelog' },
+    { n: editorVerified, label: 'Verified by a named editor', href: '/about#editorial' },
+    { n: externallyReviewed, label: 'Externally reviewed', href: '/status' },
+  ];
 
   return (
-    <main id="main" className="d-home">
-      <section className="d-hero am-wrap" aria-labelledby="hero-title">
-        <div className="d-hero__text">
-          <p className="d-over">Structured Theological Intelligence</p>
-          <h1 id="hero-title" className="d-h1">
-            Ask a question. <em>Trace every answer to its source.</em>
-          </h1>
-          <p className="d-lead">
-            A research record of the Abrahamic traditions, built claim by claim. Every statement names its passage and
-            edition, says what kind of claim it is, and shows who holds it, who disputes it and what it depends on.
-          </p>
-          <form className="d-ask" action="/research/ask" method="post" role="search" aria-label="Research the record">
-            <label className="am-sr" htmlFor="home-q">
-              Research question
-            </label>
-            <input id="home-q" name="q" type="search" autoComplete="off" placeholder="Ask the record…" required />
-            <button type="submit">
-              Research <span aria-hidden="true">→</span>
-            </button>
-          </form>
-          <p className="d-try">
-            Try{' '}
-            {cases.slice(0, 3).map((c, n) => (
-              <span key={c.slug}>
-                {n ? ' · ' : ''}
-                <Link href={`/research?case=${c.slug}`}>{c.title}</Link>
-              </span>
-            ))}
-            {' · '}
-            <PaletteButton>search everything</PaletteButton>
-          </p>
-        </div>
-        <CovenantWord />
-      </section>
-
-      <section className="d-nums" aria-label="State of the record">
-        <div className="am-wrap d-nums__in">
-          <dl>
-            <div>
-              <dd>{claims.length}</dd>
-              <dt>claims</dt>
-            </div>
-            <div>
-              <dd>{record.data.works.length}</dd>
-              <dt>works</dt>
-            </div>
-            <div>
-              <dd>{record.data.traditions.length}</dd>
-              <dt>traditions</dt>
-            </div>
-            <div>
-              <dd>{editorVerified}</dd>
-              <dt>editor-verified</dt>
-            </div>
-            <div>
-              <dd>{externallyReviewed}</dd>
-              <dt>externally reviewed</dt>
-            </div>
-          </dl>
-          <p className="d-nums__note">
-            Named editors and reviewers are not yet published; no external review has taken place.{' '}
-            <Link href="/status">Status</Link>
-          </p>
+    <main id="main" className="d-home h-home">
+      <section className="h-hero" aria-labelledby="hero-title">
+        <div className="am-wrap h-hero__in">
+          <div className="h-hero__text">
+            <p className="h-kicker">AbrahamMoses · Structured Theological Intelligence</p>
+            <h1 id="hero-title" className="h-title">
+              The Abrahamic traditions, set out claim by claim and <em>traced to their sources.</em>
+            </h1>
+            <p className="h-lead">
+              A research record in which every statement names its passage and edition, says what kind of claim it is,
+              and shows who holds it, who disputes it and what it depends on.
+            </p>
+            <form className="h-ask" action="/research/ask" method="post" role="search" aria-label="Research the record">
+              <label className="h-ask__label" htmlFor="home-q">
+                Research question
+              </label>
+              <div className="h-ask__row">
+                <input id="home-q" name="q" type="search" autoComplete="off" placeholder="Ask the record…" required />
+                <button type="submit">Research</button>
+              </div>
+            </form>
+            <p className="h-try">
+              <span className="h-try__k">Studies in the record:</span>{' '}
+              {cases.slice(0, 3).map((c, n) => (
+                <span key={c.slug}>
+                  {n ? ' · ' : ''}
+                  <Link href={`/research?case=${c.slug}`}>{c.title}</Link>
+                </span>
+              ))}
+              {' · '}
+              <PaletteButton>search everything</PaletteButton>
+            </p>
+          </div>
+          <figure className="h-plate" aria-label="The word covenant in three scripts">
+            <CovenantWord />
+          </figure>
         </div>
       </section>
 
-      <section className="d-sec am-wrap" aria-labelledby="coverage-title">
-        <div className="d-sec__side">
-          <p className="d-over">Start from real coverage</p>
-          <h2 className="d-h2" id="coverage-title">
+      <section className="h-register" aria-labelledby="register-title">
+        <div className="am-wrap">
+          <div className="h-register__head">
+            <h2 id="register-title" className="h-label">
+              State of the record
+            </h2>
+            <p className="h-register__as">Counted from the record as built, {builtAt}</p>
+          </div>
+          <table className="h-figures">
+            <caption className="am-sr">State of the record: counts of claims, sources, revisions and review</caption>
+            <thead>
+              <tr>
+                {register.map((r) => (
+                  <th key={r.label} scope="col">
+                    <Link href={r.href}>{r.label}</Link>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {register.map((r) => (
+                  <td key={r.label} data-label={r.label}>
+                    {r.n}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+          <p className="h-note">
+            Named editors and reviewers are not yet published, and no external review has taken place. Records carried over
+            from the earlier Claim Ledger are not counted as verified, because no reviewer was recorded for them. See the{' '}
+            <Link href="/status">service status</Link> and <Link href="/about#editorial">editorial responsibility</Link>.
+          </p>
+        </div>
+      </section>
+
+      <section className="h-sec am-wrap" aria-labelledby="ledger-title">
+        <header className="h-sec__head">
+          <p className="h-label">I · The claims register</p>
+          <h2 className="h-h2" id="ledger-title">
+            Latest public revisions
+          </h2>
+          <p className="h-sec__intro">
+            Each claim is revisioned and hash-locked; a correction is a new revision, never an overwrite.
+          </p>
+        </header>
+        <div>
+        <div className="h-tablewrap" role="region" aria-labelledby="ledger-title" tabIndex={0}>
+          <table className="h-table">
+            <thead>
+              <tr>
+                <th scope="col">Claim</th>
+                <th scope="col">Statement</th>
+                <th scope="col">Kind of claim</th>
+                <th scope="col">Review</th>
+                <th scope="col" className="h-num">
+                  Published
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {latest.map(({ code, revision }) => (
+                <tr key={`${code}@${revision.rev}`}>
+                  <th scope="row">
+                    <Link className="h-code" href={`/claims/${code}`}>
+                      {code}
+                    </Link>
+                    <span className="h-rev">r{revision.rev}</span>
+                  </th>
+                  <td className="h-stmt">{short(revision.statement, 150)}</td>
+                  <td>{CLASSIFICATION_META[revision.classification]?.label ?? revision.classification}</td>
+                  <td>
+                    <ReviewChip status={revision.status} short />
+                  </td>
+                  <td className="h-num">{formatDate(revision.publishedAt)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="h-more">
+          <Link href="/claims">
+            Open the Claim Ledger: all {claims.length} claims <span aria-hidden="true">→</span>
+          </Link>
+          <Link href="/changelog">Full changelog</Link>
+        </p>
+        </div>
+      </section>
+
+      <section className="h-sec am-wrap" aria-labelledby="coverage-title">
+        <header className="h-sec__head">
+          <p className="h-label">II · Studies</p>
+          <h2 className="h-h2" id="coverage-title">
             Questions the record can already answer
           </h2>
-          <p>Four studies, each asked in the terms of its own tradition.</p>
-        </div>
-        <ul className="d-list">
+          <p className="h-sec__intro">Four studies, each asked in the terms of its own tradition.</p>
+        </header>
+        <ol className="h-studies">
           {cases.map((c) => {
             const g = FIELD_GLYPH[c.field];
             return (
               <li key={c.slug}>
                 <Link href={`/research/${c.slug}`}>
-                  <span className={`d-list__g ${g?.cls ?? 'en'}`} aria-hidden="true">
+                  <span className={`h-studies__g d-list__g ${g?.cls ?? 'en'}`} aria-hidden="true">
                     <span lang={g?.lang}>{g?.text ?? '§'}</span>
                   </span>
-                  <span className="d-list__b">
-                    <span className="d-list__f">{FIELD_LABEL[c.field] ?? c.title}</span>
-                    <span className="d-list__t">{c.title}</span>
-                    <span className="d-list__p">{c.question}</span>
-                    <span className="d-list__m">
-                      {record.claimsInCase(c.slug).length} claims · {c.positions.length} positions ·{' '}
-                      <ReviewChip status={c.status} short />
-                    </span>
+                  <span className="h-studies__b">
+                    <span className="h-studies__f">{FIELD_LABEL[c.field] ?? c.title}</span>
+                    <span className="h-studies__t">{c.title}</span>
+                    <span className="h-studies__q">{c.question}</span>
                   </span>
-                  <span className="d-list__ar" aria-hidden="true">
-                    →
+                  <span className="h-studies__m">
+                    <span>
+                      <b>{record.claimsInCase(c.slug).length}</b> claims
+                    </span>
+                    <span>
+                      <b>{c.positions.length}</b> positions
+                    </span>
+                    <ReviewChip status={c.status} short />
                   </span>
                 </Link>
               </li>
             );
           })}
-        </ul>
+        </ol>
       </section>
 
-      <section className="d-sec am-wrap" aria-labelledby="separation-title">
-        <div className="d-sec__side">
-          <p className="d-over">Research dossier</p>
-          <h2 className="d-h2" id="separation-title">
+      <section className="h-sec am-wrap" aria-labelledby="separation-title">
+        <header className="h-sec__head">
+          <p className="h-label">III · Method</p>
+          <h2 className="h-h2" id="separation-title">
             What every answer separates
           </h2>
-          <p>Evidence, interpretation and inference are never blended.</p>
-        </div>
+          <p className="h-sec__intro">Evidence, interpretation and inference are never blended.</p>
+        </header>
         <div>
-          <p className="d-dq">{JOURNEY_Q}</p>
+          <p className="d-dq h-dq">{JOURNEY_Q}</p>
           <FocusTabs>
             <section className="d-col c1" aria-labelledby="sep-direct">
               <h3 id="sep-direct">Direct evidence</h3>
@@ -274,7 +351,7 @@ export default function Home() {
               ) : null}
             </section>
           </FocusTabs>
-          <p className="d-more">
+          <p className="h-more">
             <Link href="/research?dossier=covenants">
               Open the covenant dossier <span aria-hidden="true">→</span>
             </Link>
@@ -282,55 +359,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="d-sec am-wrap" aria-labelledby="journey-title">
-        <div className="d-sec__side">
-          <p className="d-over">The research journey</p>
-          <h2 className="d-h2" id="journey-title">
+      <section className="h-sec am-wrap" aria-labelledby="journey-title">
+        <header className="h-sec__head">
+          <p className="h-label">IV · Procedure</p>
+          <h2 className="h-h2" id="journey-title">
             From a question to an accountable dossier
           </h2>
-          <p>Each step opens the part of the record that does that work today.</p>
-        </div>
-        <ol className="d-steps">
+          <p className="h-sec__intro">Each step opens the part of the record that does that work today.</p>
+        </header>
+        <ol className="h-steps">
           {JOURNEY.map((j, n) => (
             <li key={j.step}>
               <a href={j.href}>
-                <span className="d-steps__n" aria-hidden="true">
+                <span className="h-steps__n" aria-hidden="true">
                   {String(n + 1).padStart(2, '0')}
                 </span>
-                <span>
-                  <b>{j.step}</b>
-                  <span className="d-steps__t">{j.text}</span>
-                </span>
-                <span className="d-steps__w">{j.where} →</span>
+                <span className="h-steps__s">{j.step}</span>
+                <span className="h-steps__t">{j.text}</span>
+                <span className="h-steps__w">{j.where}</span>
               </a>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className="d-sec am-wrap" aria-labelledby="state-title">
-        <div className="d-sec__side">
-          <p className="d-over">State of the record</p>
-          <h2 className="d-h2" id="state-title">
-            Honest numbers, including the unfinished ones
+      <section className="h-sec am-wrap" aria-labelledby="state-title">
+        <header className="h-sec__head">
+          <p className="h-label">V · Accountability</p>
+          <h2 className="h-h2" id="state-title">
+            The service checks itself
           </h2>
-          <dl className="d-mini">
-            <div>
-              <dt>Public revisions, hash-locked</dt>
-              <dd>{publicRevisions.length}</dd>
-            </div>
-            <div>
-              <dt>
-                Revisions verified by an editor
-                <Cite n={1} scope="state" />
-              </dt>
-              <dd>{editorVerified}</dd>
-            </div>
-            <div>
-              <dt>Externally reviewed</dt>
-              <dd>{externallyReviewed}</dd>
-            </div>
-          </dl>
+          <p className="h-sec__intro">
+            Live self-tests run on every visit. The counts above are taken from the record, including the unfinished
+            ones.
+            <Cite n={1} scope="state" />
+          </p>
           <Footnotes
             scope="state"
             notes={[
@@ -341,46 +404,54 @@ export default function Home() {
               </>,
             ]}
           />
-        </div>
-        <div className="d-card">
+        </header>
+        <div className="h-panel">
           <LiveChecks initial={initialChecks} builtAt={builtAt} />
-          <h3 className="d-h3">Latest changes</h3>
-          <ul className="d-feed">
-            {feed.map(({ code, revision }) => (
-              <li key={`${code}@${revision.rev}`}>
-                <Link className="d-code" href={`/claims/${code}`}>
-                  {code} r{revision.rev}
-                </Link>
-                <span className="d-feed__s">{short(revision.statement, 110)}</span>
-                <span className="d-feed__d">{formatDate(revision.publishedAt)}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="d-it__m">
+          <p className="h-panel__links">
             <Link href="/changelog">Full changelog</Link> · <Link href="/status">Service status</Link>
           </p>
         </div>
       </section>
 
-      <section className="d-sec am-wrap" aria-labelledby="ways-title">
-        <div className="d-sec__side">
-          <p className="d-over">Ways in</p>
-          <h2 className="d-h2" id="ways-title">
+      <section className="h-inst" aria-labelledby="inst-title">
+        <div className="am-wrap h-inst__in">
+          <div className="h-inst__mark">
+            <DecisionTwinLogo height={92} />
+          </div>
+          <div>
+            <p className="h-label">VI · Institutional application</p>
+            <h2 className="h-h2" id="inst-title">
+              Sagolik Institutional: the same method, applied to decisions
+            </h2>
+            <p>
+              The AbrahamMoses Decision Twin keeps a versioned record of why an institutional decision was justified, what
+              could invalidate it and who approved it. Today it is a public demonstration on one fictional private credit
+              case, with synthetic data; it has not been reviewed, validated or used by any institution.
+            </p>
+            <p className="h-more">
+              <Link href="/institutional/decision-room">
+                Open the Decision Room (synthetic demonstration) <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/institutional/decision-twin">The Decision Twin and pilot terms</Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="h-sec am-wrap" aria-labelledby="ways-title">
+        <header className="h-sec__head">
+          <p className="h-label">VII · Ways in</p>
+          <h2 className="h-h2" id="ways-title">
             For readers, researchers, institutions and builders
           </h2>
-        </div>
-        <ul className="d-list d-list--plain">
+        </header>
+        <ul className="h-ways">
           {WAYS_IN.map((w) => (
             <li key={w.who}>
               <Link href={w.href}>
-                <span className="d-list__b">
-                  <span className="d-list__f">{w.chips.join(' · ')}</span>
-                  <span className="d-list__t">{w.who}</span>
-                  <span className="d-list__p">{w.text}</span>
-                </span>
-                <span className="d-list__ar" aria-hidden="true">
-                  →
-                </span>
+                <span className="h-ways__f">{w.chips.join(' · ')}</span>
+                <span className="h-ways__t">{w.who}</span>
+                <span className="h-ways__p">{w.text}</span>
               </Link>
             </li>
           ))}

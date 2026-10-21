@@ -1,0 +1,413 @@
+{
+  "id": "ma-02",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ivarsen Healthcare: m and a review (fictional)",
+  "entity": "Ivarsen Healthcare",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Vendor due diligence summary",
+      "text": "Vendor due diligence summary: Ivarsen Healthcare (fictional, authored test material).\nFor Ivarsen Healthcare, cost synergies in FY2025 was approximately €39m (reported basis). Order backlog at Ivarsen Healthcare stood at €588.059m in FY2025 (reported basis). Ivarsen Healthcare had headline purchase price of €371.9m in FY2025 (reported basis). For Ivarsen Healthcare, employees in FY2023 was 2478. The scope of the tax warranty for Ivarsen Healthcare is understood as follows: covers periods up to completion and the following tax year. As to Ivarsen Healthcare, the deal structure is: asset purchase of the operating business only."
+    },
+    {
+      "id": "D2",
+      "title": "Management presentation",
+      "text": "Management presentation: Ivarsen Healthcare (fictional, authored test material).\nFor Ivarsen Healthcare, cost synergies in FY2025 was €31m (reported basis). Pension deficit at Ivarsen Healthcare stood at €24.8m in FY2024 (reported basis). Ivarsen Healthcare had run-rate EBITDA of €18.9m in H1 2025 (reported basis). For Ivarsen Healthcare, employees in FY2025 was 1966. The scope of the tax warranty for Ivarsen Healthcare is understood as follows: covers periods up to completion only."
+    },
+    {
+      "id": "D3",
+      "title": "Buyer quality-of-earnings memo",
+      "text": "Buyer quality-of-earnings memo: Ivarsen Healthcare (fictional, authored test material).\nFor Ivarsen Healthcare, order backlog in FY2025 was €586.3m (reported basis). Headline purchase price at Ivarsen Healthcare stood at EUR 371900 thousand in FY2025 (reported basis). Ivarsen Healthcare had pension deficit of EUR 24.8 million in FY2024 (reported basis). For Ivarsen Healthcare, run-rate EBITDA in FY2025 was €38.7m (reported basis). As to Ivarsen Healthcare, the deal structure is: share purchase of the whole group."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 86,
+      "end": 175,
+      "text": "For Ivarsen Healthcare, cost synergies in FY2025 was approximately €39m (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 176,
+      "end": 258,
+      "text": "Order backlog at Ivarsen Healthcare stood at €588.059m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 259,
+      "end": 344,
+      "text": "Ivarsen Healthcare had headline purchase price of €371.9m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 345,
+      "end": 398,
+      "text": "For Ivarsen Healthcare, employees in FY2023 was 2478."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 399,
+      "end": 537,
+      "text": "The scope of the tax warranty for Ivarsen Healthcare is understood as follows: covers periods up to completion and the following tax year."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 538,
+      "end": 633,
+      "text": "As to Ivarsen Healthcare, the deal structure is: asset purchase of the operating business only."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 81,
+      "end": 156,
+      "text": "For Ivarsen Healthcare, cost synergies in FY2025 was €31m (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 157,
+      "end": 238,
+      "text": "Pension deficit at Ivarsen Healthcare stood at €24.8m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 239,
+      "end": 316,
+      "text": "Ivarsen Healthcare had run-rate EBITDA of €18.9m in H1 2025 (reported basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 317,
+      "end": 370,
+      "text": "For Ivarsen Healthcare, employees in FY2025 was 1966."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 371,
+      "end": 487,
+      "text": "The scope of the tax warranty for Ivarsen Healthcare is understood as follows: covers periods up to completion only."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 88,
+      "end": 165,
+      "text": "For Ivarsen Healthcare, order backlog in FY2025 was €586.3m (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 166,
+      "end": 268,
+      "text": "Headline purchase price at Ivarsen Healthcare stood at EUR 371900 thousand in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 269,
+      "end": 355,
+      "text": "Ivarsen Healthcare had pension deficit of EUR 24.8 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 356,
+      "end": 434,
+      "text": "For Ivarsen Healthcare, run-rate EBITDA in FY2025 was €38.7m (reported basis)."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 435,
+      "end": 518,
+      "text": "As to Ivarsen Healthcare, the deal structure is: share purchase of the whole group."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ivarsen Healthcare",
+      "concept": "synergies",
+      "value": 39,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ivarsen Healthcare",
+      "concept": "order_backlog",
+      "value": 588.059,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ivarsen Healthcare",
+      "concept": "purchase_price",
+      "value": 371.9,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ivarsen Healthcare",
+      "concept": "employees",
+      "value": 2478,
+      "unit": "count",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Ivarsen Healthcare",
+      "concept": "warranty_scope",
+      "value": "covers periods up to completion and the following tax year",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Ivarsen Healthcare",
+      "concept": "deal_structure_b",
+      "value": false,
+      "exclusiveGroup": "deal_structure"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ivarsen Healthcare",
+      "concept": "synergies",
+      "value": 31,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ivarsen Healthcare",
+      "concept": "pension_deficit",
+      "value": 24.8,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ivarsen Healthcare",
+      "concept": "run_rate_ebitda",
+      "value": 18.9,
+      "unit": "€m",
+      "period": "H1 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ivarsen Healthcare",
+      "concept": "employees",
+      "value": 1966,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ivarsen Healthcare",
+      "concept": "warranty_scope",
+      "value": "covers periods up to completion only",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ivarsen Healthcare",
+      "concept": "order_backlog",
+      "value": 586.3,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ivarsen Healthcare",
+      "concept": "purchase_price",
+      "value": 371900,
+      "unit": "EUR thousand",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ivarsen Healthcare",
+      "concept": "pension_deficit",
+      "value": 24.8,
+      "unit": "EUR million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ivarsen Healthcare",
+      "concept": "run_rate_ebitda",
+      "value": 38.7,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Ivarsen Healthcare",
+      "concept": "deal_structure_a",
+      "value": true,
+      "exclusiveGroup": "deal_structure"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Cost synergies and Order backlog of Ivarsen Healthcare are adequate for the board recommendation to sign"
+    },
+    {
+      "id": "C2",
+      "text": "Headline purchase price and Pension deficit of Ivarsen Healthcare are adequate for the board recommendation to sign"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale_bn",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "same_amount_other_wording",
+        "note": "the same amount, written with \"EUR million\""
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "part_year",
+        "note": "a half-year figure and a full-year figure: different periods"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "cost synergies",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "order backlog",
+          "acceptable": [
+            "D1#s2",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "headline purchase price",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "pension deficit",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s3",
+        "D2#s2",
+        "D3#s2",
+        "D3#s3"
+      ]
+    }
+  }
+}

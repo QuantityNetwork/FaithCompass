@@ -1,0 +1,367 @@
+{
+  "id": "ct-05",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "title": "Sorrel Holdings: contract review (fictional)",
+  "entity": "Sorrel Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Sorrel Holdings (fictional).\nIn this document \"SHH\" means Sorrel Holdings. Sorrel Holdings reports termination notice period of 144 days for FY2025. Sorrel Holdings reports maximum service credit of 12.8% for FY2025. Sorrel Holdings reports uptime commitment of 99.509% for FY2025. Sorrel Holdings reports annual price escalator of 6.4% for FY2025. For Sorrel Holdings, the governing law is read as: English law, London-seated arbitration."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Sorrel Holdings (fictional).\nSorrel Holdings: termination notice period for FY2025 — not provided. Sorrel Holdings reports maximum service credit of 16.4% for FY2024. Sorrel Holdings reports term years of 2 years for FY2025 under the original agreement. Sorrel Logistics subsidiary reports annual fee of $4.3m for FY2024 on a reported basis. For Sorrel Holdings, the governing law is read as: Swedish law, Stockholm courts."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Sorrel Holdings (fictional).\nSorrel Holdings reports uptime commitment of 99.31% for FY2025. Sorrel Holdings reports annual price escalator of 6.413% for FY2025. Sorrel Holdings reports term years of 1 years for FY2025 under the amendment no. 1 (supersedes). Sorrel Holdings reports annual fee of $3.5m for FY2024 on a reported basis."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 103,
+      "end": 176,
+      "text": "Sorrel Holdings reports termination notice period of 144 days for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 177,
+      "end": 244,
+      "text": "Sorrel Holdings reports maximum service credit of 12.8% for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 245,
+      "end": 309,
+      "text": "Sorrel Holdings reports uptime commitment of 99.509% for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 310,
+      "end": 376,
+      "text": "Sorrel Holdings reports annual price escalator of 6.4% for FY2025."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 377,
+      "end": 467,
+      "text": "For Sorrel Holdings, the governing law is read as: English law, London-seated arbitration."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 48,
+      "end": 117,
+      "text": "Sorrel Holdings: termination notice period for FY2025 — not provided."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 118,
+      "end": 185,
+      "text": "Sorrel Holdings reports maximum service credit of 16.4% for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 186,
+      "end": 272,
+      "text": "Sorrel Holdings reports term years of 2 years for FY2025 under the original agreement."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 273,
+      "end": 360,
+      "text": "Sorrel Logistics subsidiary reports annual fee of $4.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 361,
+      "end": 442,
+      "text": "For Sorrel Holdings, the governing law is read as: Swedish law, Stockholm courts."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 53,
+      "end": 116,
+      "text": "Sorrel Holdings reports uptime commitment of 99.31% for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 117,
+      "end": 185,
+      "text": "Sorrel Holdings reports annual price escalator of 6.413% for FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 186,
+      "end": 282,
+      "text": "Sorrel Holdings reports term years of 1 years for FY2025 under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 283,
+      "end": 358,
+      "text": "Sorrel Holdings reports annual fee of $3.5m for FY2024 on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Sorrel Holdings",
+      "concept": "notice_period",
+      "value": 144,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Sorrel Holdings",
+      "concept": "service_credit",
+      "value": 12.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Sorrel Holdings",
+      "concept": "uptime_commitment",
+      "value": 99.509,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Sorrel Holdings",
+      "concept": "price_escalator",
+      "value": 6.4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Sorrel Holdings",
+      "concept": "governing_law",
+      "value": "English law, London-seated arbitration",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Sorrel Holdings",
+      "concept": "notice_period",
+      "value": null,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Sorrel Holdings",
+      "concept": "service_credit",
+      "value": 16.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Sorrel Holdings",
+      "concept": "term_years",
+      "value": 2,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null,
+      "version": "original agreement"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Sorrel Logistics subsidiary",
+      "concept": "annual_fee",
+      "value": 4.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Sorrel Holdings",
+      "concept": "governing_law",
+      "value": "Swedish law, Stockholm courts",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Sorrel Holdings",
+      "concept": "uptime_commitment",
+      "value": 99.31,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Sorrel Holdings",
+      "concept": "price_escalator",
+      "value": 6.413,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Sorrel Holdings",
+      "concept": "term_years",
+      "value": 1,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null,
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Sorrel Holdings",
+      "concept": "annual_fee",
+      "value": 3.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The termination notice period and availability commitment of Sorrel Holdings support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The annual price escalator of Sorrel Holdings supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "termination notice period",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "availability commitment",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "annual price escalator",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s3",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

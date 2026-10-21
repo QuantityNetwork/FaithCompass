@@ -1,0 +1,365 @@
+{
+  "id": "pc-10",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "title": "Quillon Industries: private credit review (fictional)",
+  "entity": "Quillon Industries",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Quillon Industries (fictional).\nIn this document \"QIH\" means Quillon Industries. Quillon Industries reports capex of $5.6m for FY2025 on a reported basis. Quillon Industries reports interest cover of 6.4x. Quillon Industries: net debt for FY2024 on a reported basis — not provided. Quillon Industries reports EBITDA of $59.2m for FY2025 on a reported basis. For Quillon Industries, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Quillon Industries (fictional).\nQuillon Industries reports capex of $4.2m for FY2025 on a adjusted (management definition) basis. Quillon Industries reports interest cover of 5.8x for FY2024. Quillon Industries reports customer concentration of 15.9% for FY2025. Quillon Industries reports available liquidity of $21.242m for FY2024 on a reported basis. For Quillon Industries, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Quillon Industries (fictional).\nQuillon Industries reports net debt of $221.4m for FY2024 on a reported basis. Quillon Industries reports EBITDA of $46.3m for FY2024 on a reported basis. Quillon Industries reports customer concentration of 15.932% for FY2025. Quillon Industries reports available liquidity of $21.2m for FY2024 on a reported basis."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 112,
+      "end": 185,
+      "text": "Quillon Industries reports capex of $5.6m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 186,
+      "end": 236,
+      "text": "Quillon Industries reports interest cover of 6.4x."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 237,
+      "end": 312,
+      "text": "Quillon Industries: net debt for FY2024 on a reported basis — not provided."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 313,
+      "end": 388,
+      "text": "Quillon Industries reports EBITDA of $59.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 389,
+      "end": 499,
+      "text": "For Quillon Industries, the sponsor equity cure is: equity cure available twice over the life of the facility."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 54,
+      "end": 151,
+      "text": "Quillon Industries reports capex of $4.2m for FY2025 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 152,
+      "end": 213,
+      "text": "Quillon Industries reports interest cover of 5.8x for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 214,
+      "end": 284,
+      "text": "Quillon Industries reports customer concentration of 15.9% for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 285,
+      "end": 375,
+      "text": "Quillon Industries reports available liquidity of $21.242m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 376,
+      "end": 449,
+      "text": "For Quillon Industries, the sponsor equity cure is: no equity cure right."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 57,
+      "end": 135,
+      "text": "Quillon Industries reports net debt of $221.4m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 136,
+      "end": 211,
+      "text": "Quillon Industries reports EBITDA of $46.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 212,
+      "end": 284,
+      "text": "Quillon Industries reports customer concentration of 15.932% for FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 285,
+      "end": 373,
+      "text": "Quillon Industries reports available liquidity of $21.2m for FY2024 on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Quillon Industries",
+      "concept": "capex",
+      "value": 5.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Quillon Industries",
+      "concept": "interest_cover",
+      "value": 6.4,
+      "unit": "x",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Quillon Industries",
+      "concept": "net_debt",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Quillon Industries",
+      "concept": "ebitda",
+      "value": 59.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Quillon Industries",
+      "concept": "sponsor_support_a",
+      "value": true,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Quillon Industries",
+      "concept": "capex",
+      "value": 4.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Quillon Industries",
+      "concept": "interest_cover",
+      "value": 5.8,
+      "unit": "x",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Quillon Industries",
+      "concept": "customer_concentration",
+      "value": 15.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Quillon Industries",
+      "concept": "liquidity",
+      "value": 21.242,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Quillon Industries",
+      "concept": "sponsor_support_b",
+      "value": false,
+      "exclusiveGroup": "sponsor_support"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Quillon Industries",
+      "concept": "net_debt",
+      "value": 221.4,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Quillon Industries",
+      "concept": "ebitda",
+      "value": 46.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Quillon Industries",
+      "concept": "customer_concentration",
+      "value": 15.932,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Quillon Industries",
+      "concept": "liquidity",
+      "value": 21.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The capital expenditure and interest cover of Quillon Industries support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The net debt of Quillon Industries supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "interest cover",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "net debt",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

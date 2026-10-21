@@ -1,0 +1,23 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "58f3e9790acd1f8671e40aace2fadbd8ad89d55c27e08a708d7e927c6d93ddcb",
+    "prompt_chars": 3131
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s3\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\", \"D2#s4\", \"D3#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D1#s4\", \"D3#s2\", \"D2#s4\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 816,
+      "completion_tokens": 355
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2848.7228069999837,
+  "usd": 0.0008944000000000001,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Vendor due diligence summary\nVendor due diligence summary: Pennant Software (fictional, authored test material).\n[D1#s1] Pennant Software had run-rate EBITDA of €44.9m in FY2024 (reported basis), first issue. [D1#s2] For Pennant Nordic, a subsidiary, pension deficit in FY2025 was €39.5m (reported basis). [D1#s3] Cost synergies at Pennant GmbH stood at €27.9m in FY2024 (reported basis). [D1#s4] Pennant Software had employees of 1651 in FY2024.\n\n## D2 Management presentation\nManagement presentation: Pennant Software (fictional, authored test material).\n[D2#s1] Pennant Software had run-rate EBITDA of €57.4m in FY2024 (reported basis), second issue (corrects the first issue). [D2#s2] For Pennant Software, pension deficit in FY2025 was €51.5m (reported basis). [D2#s3] Headline purchase price at Pennant Software stood at €801.2m with effect from 1 Jan 2025 (reported basis). [D2#s4] Pennant Software had order backlog of €175.2m in FY2025 (reported basis).\n\n## D3 Buyer quality-of-earnings memo\nBuyer quality-of-earnings memo: Pennant Software (fictional, authored test material).\n[D3#s1] Pennant Oy had cost synergies of €22.9m in FY2024 (reported basis). [D3#s2] For Pennant Software, employees in FY2024 was roughly 1610. [D3#s3] Headline purchase price at Pennant Software stood at €941.2m with effect from 1 Jul 2025 (reported basis). [D3#s4] Pennant Software had order backlog of €135.3m in FY2025 (reported basis).\n\n# Conclusions\nC1: Run-rate EBITDA and Pension deficit of Pennant Software are adequate for the board recommendation to sign\nC2: Employees and Order backlog of Pennant Software are adequate for the board recommendation to sign"
+}

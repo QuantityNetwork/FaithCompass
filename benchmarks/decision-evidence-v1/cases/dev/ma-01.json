@@ -1,0 +1,402 @@
+{
+  "id": "ma-01",
+  "domain": "m_and_a",
+  "split": "dev",
+  "fictional": true,
+  "title": "Osprey Partners: m and a review (fictional)",
+  "entity": "Osprey Partners",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Osprey Partners (fictional).\nIn this document \"OPH\" means Osprey Partners. Osprey Partners reports annual customer churn of 17.3% for FY2024. Osprey Partners reports headcount of 2400.792 for FY2024. Osprey Partners reports earn out of $65.731m for FY2025 on a reported basis. Osprey Partners reports normalised net working capital of $81.6m for FY2025 on a reported basis under the original agreement. For Osprey Partners, the leakage definition is read as: permitted leakage excludes management bonuses. For Osprey Partners, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Osprey Partners (fictional).\nOsprey Partners reports annual customer churn of 21.8% for FY2025. Osprey Partners reports headcount of 2396 for FY2024. Osprey Partners reports revenue of $468.7m for FY2024 on a reported basis. OPH reports enterprise value of $1290.7m for FY2024 on a reported basis. For Osprey Partners, the leakage definition is read as: management bonuses are permitted leakage up to $2m. For Osprey Partners, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Osprey Partners (fictional).\nOsprey Partners reports earn out of $65.6m for FY2025 on a reported basis. Osprey Partners reports normalised net working capital of $65m for FY2025 on a reported basis under the amendment no. 1 (supersedes). Osprey Logistics subsidiary reports revenue of $595.1m for FY2024 on a reported basis. Osprey Partners reports enterprise value of $1486.2m for FY2024 on a reported basis."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 100,
+      "end": 166,
+      "text": "Osprey Partners reports annual customer churn of 17.3% for FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 167,
+      "end": 224,
+      "text": "Osprey Partners reports headcount of 2400.792 for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 225,
+      "end": 301,
+      "text": "Osprey Partners reports earn out of $65.731m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 302,
+      "end": 427,
+      "text": "Osprey Partners reports normalised net working capital of $81.6m for FY2025 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 428,
+      "end": 530,
+      "text": "For Osprey Partners, the leakage definition is read as: permitted leakage excludes management bonuses."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 531,
+      "end": 631,
+      "text": "For Osprey Partners, the form of consideration is: part-share consideration with a 12-month lock-up."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 62,
+      "end": 128,
+      "text": "Osprey Partners reports annual customer churn of 21.8% for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 129,
+      "end": 182,
+      "text": "Osprey Partners reports headcount of 2396 for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 183,
+      "end": 257,
+      "text": "Osprey Partners reports revenue of $468.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 258,
+      "end": 330,
+      "text": "OPH reports enterprise value of $1290.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 331,
+      "end": 438,
+      "text": "For Osprey Partners, the leakage definition is read as: management bonuses are permitted leakage up to $2m."
+    },
+    {
+      "id": "D2#s6",
+      "doc": "D2",
+      "start": 439,
+      "end": 513,
+      "text": "For Osprey Partners, the form of consideration is: all-cash consideration."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 62,
+      "end": 136,
+      "text": "Osprey Partners reports earn out of $65.6m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 137,
+      "end": 270,
+      "text": "Osprey Partners reports normalised net working capital of $65m for FY2025 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 271,
+      "end": 357,
+      "text": "Osprey Logistics subsidiary reports revenue of $595.1m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 358,
+      "end": 442,
+      "text": "Osprey Partners reports enterprise value of $1486.2m for FY2024 on a reported basis."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Osprey Partners",
+      "concept": "customer_churn",
+      "value": 17.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Osprey Partners",
+      "concept": "headcount",
+      "value": 2400.792,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Osprey Partners",
+      "concept": "earn_out",
+      "value": 65.731,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Osprey Partners",
+      "concept": "net_working_capital",
+      "value": 81.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Osprey Partners",
+      "concept": "locked_box",
+      "value": "permitted leakage excludes management bonuses",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Osprey Partners",
+      "concept": "consideration_form_b",
+      "value": false,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Osprey Partners",
+      "concept": "customer_churn",
+      "value": 21.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Osprey Partners",
+      "concept": "headcount",
+      "value": 2396,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Osprey Partners",
+      "concept": "revenue",
+      "value": 468.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "OPH",
+      "concept": "enterprise_value",
+      "value": 1290.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Osprey Partners",
+      "concept": "locked_box",
+      "value": "management bonuses are permitted leakage up to $2m",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s6",
+      "entity": "Osprey Partners",
+      "concept": "consideration_form_a",
+      "value": true,
+      "exclusiveGroup": "consideration_form"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Osprey Partners",
+      "concept": "earn_out",
+      "value": 65.6,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Osprey Partners",
+      "concept": "net_working_capital",
+      "value": 65,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Osprey Logistics subsidiary",
+      "concept": "revenue",
+      "value": 595.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Osprey Partners",
+      "concept": "enterprise_value",
+      "value": 1486.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The employees and maximum earn-out of Osprey Partners support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The normalised net working capital of Osprey Partners supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"OPH\" is defined in the documents as Osprey Partners"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      },
+      {
+        "facts": [
+          "D2#s6",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "maximum earn-out",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "normalised net working capital",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D3#s2"
+      ]
+    }
+  }
+}

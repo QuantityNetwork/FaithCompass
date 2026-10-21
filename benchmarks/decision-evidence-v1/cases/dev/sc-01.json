@@ -1,0 +1,404 @@
+{
+  "id": "sc-01",
+  "domain": "scholarly",
+  "split": "dev",
+  "fictional": true,
+  "title": "Ostrava Chronicle: scholarly review (fictional)",
+  "entity": "Ostrava Chronicle",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Ostrava Chronicle (fictional).\nIn this document \"OC-MS\" means Ostrava Chronicle. Ostrava Chronicle reports radiocarbon median date (CE) of 781 year for FY2025. Ostrava Chronicle reports lacunae share of 2.8% for FY2024. Ostrava Chronicle reports quire count of 28 for LTM to 30 Jun 2025. Ostrava AB reports witness count of 5 for FY2025. For Ostrava Chronicle, the reading of the colophon is read as: names the scribe as a monk of the house. For Ostrava Chronicle, the place of origin is: copied in the southern scriptorium. The fiscal year of Ostrava Chronicle ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Ostrava Chronicle (fictional).\nOstrava Chronicle reports c14 median of 999 year for FY2025. Ostrava Chronicle reports lacunae share of 3.8% for FY2024. Ostrava Chronicle reports number of scribal hands of 7 for FY2025. Ostrava Chronicle reports line count of 25 for FY2025. For Ostrava Chronicle, the reading of the colophon is read as: names the scribe as a lay copyist hired by the house. For Ostrava Chronicle, the place of origin is: copied in the northern scriptorium."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Ostrava Chronicle (fictional).\nOstrava Chronicle reports quire count of 22 for FY2025 (fiscal year ending 30 June 2025). Ostrava Ltd reports witness count of 6 for FY2025. Ostrava Chronicle reports approximately number of scribal hands of 7 for FY2025. Ostrava Chronicle reports line count of 34 for FY2025. \"c14 median\" has the same meaning as \"radiocarbon median\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 113,
+      "end": 191,
+      "text": "Ostrava Chronicle reports radiocarbon median date (CE) of 781 year for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 192,
+      "end": 251,
+      "text": "Ostrava Chronicle reports lacunae share of 2.8% for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 252,
+      "end": 319,
+      "text": "Ostrava Chronicle reports quire count of 28 for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 320,
+      "end": 369,
+      "text": "Ostrava AB reports witness count of 5 for FY2025."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 370,
+      "end": 473,
+      "text": "For Ostrava Chronicle, the reading of the colophon is read as: names the scribe as a monk of the house."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 474,
+      "end": 556,
+      "text": "For Ostrava Chronicle, the place of origin is: copied in the southern scriptorium."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 49,
+      "end": 109,
+      "text": "Ostrava Chronicle reports c14 median of 999 year for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 110,
+      "end": 169,
+      "text": "Ostrava Chronicle reports lacunae share of 3.8% for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 170,
+      "end": 236,
+      "text": "Ostrava Chronicle reports number of scribal hands of 7 for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 237,
+      "end": 291,
+      "text": "Ostrava Chronicle reports line count of 25 for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 292,
+      "end": 408,
+      "text": "For Ostrava Chronicle, the reading of the colophon is read as: names the scribe as a lay copyist hired by the house."
+    },
+    {
+      "id": "D2#s6",
+      "doc": "D2",
+      "start": 409,
+      "end": 491,
+      "text": "For Ostrava Chronicle, the place of origin is: copied in the northern scriptorium."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 48,
+      "end": 137,
+      "text": "Ostrava Chronicle reports quire count of 22 for FY2025 (fiscal year ending 30 June 2025)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 138,
+      "end": 188,
+      "text": "Ostrava Ltd reports witness count of 6 for FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 189,
+      "end": 269,
+      "text": "Ostrava Chronicle reports approximately number of scribal hands of 7 for FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 270,
+      "end": 324,
+      "text": "Ostrava Chronicle reports line count of 34 for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ostrava Chronicle",
+      "concept": "radiocarbon_median",
+      "value": 781,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ostrava Chronicle",
+      "concept": "lacunae_share",
+      "value": 2.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ostrava Chronicle",
+      "concept": "quire_count",
+      "value": 28,
+      "unit": "count",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ostrava AB",
+      "concept": "witness_count",
+      "value": 5,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Ostrava Chronicle",
+      "concept": "colophon_reading",
+      "value": "names the scribe as a monk of the house",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Ostrava Chronicle",
+      "concept": "provenance_b",
+      "value": false,
+      "exclusiveGroup": "provenance"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ostrava Chronicle",
+      "concept": "c14_median",
+      "value": 999,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ostrava Chronicle",
+      "concept": "lacunae_share",
+      "value": 3.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ostrava Chronicle",
+      "concept": "scribal_hands",
+      "value": 7,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ostrava Chronicle",
+      "concept": "line_count",
+      "value": 25,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ostrava Chronicle",
+      "concept": "colophon_reading",
+      "value": "names the scribe as a lay copyist hired by the house",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s6",
+      "entity": "Ostrava Chronicle",
+      "concept": "provenance_a",
+      "value": true,
+      "exclusiveGroup": "provenance"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ostrava Chronicle",
+      "concept": "quire_count",
+      "value": 22,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ostrava Ltd",
+      "concept": "witness_count",
+      "value": 6,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ostrava Chronicle",
+      "concept": "scribal_hands",
+      "value": 7,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ostrava Chronicle",
+      "concept": "line_count",
+      "value": 34,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The radiocarbon median date (CE) and share of text lost to lacunae of Ostrava Chronicle support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The number of quires of Ostrava Chronicle supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"c14_median\" is defined as the same measure as \"radiocarbon_median\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      },
+      {
+        "facts": [
+          "D2#s6",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "radiocarbon median date (CE)",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "share of text lost to lacunae",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "number of quires",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

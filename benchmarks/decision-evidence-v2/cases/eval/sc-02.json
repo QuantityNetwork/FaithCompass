@@ -1,0 +1,413 @@
+{
+  "id": "sc-02",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Liber Morvan: scholarly review (fictional)",
+  "entity": "Liber Morvan",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Liber Morvan (fictional, authored test material).\nFor Liber Morvan, decorated capitals in FY2025 was 126. Marginal annotations at Liber Morvan stood at 1078 in the twelve months to 31 Mar 2025. Liber Morvan had insured value of $1.7m in FY2024 (reported basis). For Liber Morvan, share of palimpsest leaves in FY2025 was 38%. The identification of the main scribe for Liber Morvan is understood as follows: an unidentified scribe trained in the same house. As to Liber Morvan, the place of production is: produced in a lay urban workshop."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Liber Morvan (fictional, authored test material).\nFor Liber Morvan, illuminated initials in FY2025 was 163. Missing leaves at Liber Morvan stood at 26 in FY2025. Liber Ltd had ruled columns per page of 0.5 in FY2024. For Liber Morvan, share of palimpsest leaves in FY2025 was approximately 48%. The identification of the main scribe for Liber Morvan is understood as follows: the scribe of the sister manuscript at Elsing. Throughout the documents of this review, \"decorated capitals\" means the same measure as illuminated initials."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Liber Morvan (fictional, authored test material).\nLiber Morvan has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. For Liber Morvan, marginal annotations in FY2025 was 847. Insured value at Liber Morvan stood at USD 1.4 million in FY2024 (reported basis). Liber Morvan had missing leaves of 29 in FY2025. For Liber Limited, ruled columns per page in FY2024 was 1. As to Liber Morvan, the place of production is: produced at the cathedral scriptorium."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 71,
+      "end": 126,
+      "text": "For Liber Morvan, decorated capitals in FY2025 was 126."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 127,
+      "end": 214,
+      "text": "Marginal annotations at Liber Morvan stood at 1078 in the twelve months to 31 Mar 2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 215,
+      "end": 282,
+      "text": "Liber Morvan had insured value of $1.7m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 283,
+      "end": 346,
+      "text": "For Liber Morvan, share of palimpsest leaves in FY2025 was 38%."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 347,
+      "end": 477,
+      "text": "The identification of the main scribe for Liber Morvan is understood as follows: an unidentified scribe trained in the same house."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 478,
+      "end": 559,
+      "text": "As to Liber Morvan, the place of production is: produced in a lay urban workshop."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 71,
+      "end": 128,
+      "text": "For Liber Morvan, illuminated initials in FY2025 was 163."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 129,
+      "end": 182,
+      "text": "Missing leaves at Liber Morvan stood at 26 in FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 183,
+      "end": 237,
+      "text": "Liber Ltd had ruled columns per page of 0.5 in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 238,
+      "end": 315,
+      "text": "For Liber Morvan, share of palimpsest leaves in FY2025 was approximately 48%."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 316,
+      "end": 443,
+      "text": "The identification of the main scribe for Liber Morvan is understood as follows: the scribe of the sister manuscript at Elsing."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 169,
+      "end": 226,
+      "text": "For Liber Morvan, marginal annotations in FY2025 was 847."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 227,
+      "end": 309,
+      "text": "Insured value at Liber Morvan stood at USD 1.4 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 310,
+      "end": 358,
+      "text": "Liber Morvan had missing leaves of 29 in FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 359,
+      "end": 417,
+      "text": "For Liber Limited, ruled columns per page in FY2024 was 1."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 418,
+      "end": 504,
+      "text": "As to Liber Morvan, the place of production is: produced at the cathedral scriptorium."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Liber Morvan",
+      "concept": "decorated_capitals",
+      "value": 126,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Liber Morvan",
+      "concept": "marginal_notes",
+      "value": 1078,
+      "unit": "count",
+      "period": "LTM to 31 Mar 2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Liber Morvan",
+      "concept": "insurance_value",
+      "value": 1.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Liber Morvan",
+      "concept": "palimpsest_share",
+      "value": 38,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Liber Morvan",
+      "concept": "scribe_identity",
+      "value": "an unidentified scribe trained in the same house",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Liber Morvan",
+      "concept": "origin_b",
+      "value": false,
+      "exclusiveGroup": "origin"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Liber Morvan",
+      "concept": "illuminated_initials",
+      "value": 163,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Liber Morvan",
+      "concept": "missing_leaves",
+      "value": 26,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Liber Ltd",
+      "concept": "ruled_columns",
+      "value": 0.5,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Liber Morvan",
+      "concept": "palimpsest_share",
+      "value": 48,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Liber Morvan",
+      "concept": "scribe_identity",
+      "value": "the scribe of the sister manuscript at Elsing",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Liber Morvan",
+      "concept": "marginal_notes",
+      "value": 847,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Liber Morvan",
+      "concept": "insurance_value",
+      "value": 1.4,
+      "unit": "USD million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Liber Morvan",
+      "concept": "missing_leaves",
+      "value": 29,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Liber Limited",
+      "concept": "ruled_columns",
+      "value": 1,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Liber Morvan",
+      "concept": "origin_a",
+      "value": true,
+      "exclusiveGroup": "origin"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Illuminated initials and Marginal annotations of Liber Morvan are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Insured value and Missing leaves of Liber Morvan are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"decorated capitals\" is defined as the same measure as \"illuminated initials\""
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"USD million\" is the same unit as $m"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "illuminated initials",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "marginal annotations",
+          "acceptable": [
+            "D1#s2",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "missing leaves",
+          "acceptable": [
+            "D2#s2",
+            "D3#s3"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s3",
+        "D2#s2",
+        "D3#s2",
+        "D3#s3"
+      ]
+    }
+  }
+}

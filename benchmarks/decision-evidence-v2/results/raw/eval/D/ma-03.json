@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "20e219fe1a08c95a0508010201c4dbb63860a77e1c444d73ff2982661c9d0f09",
+    "prompt_chars": 3166
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D2#s3\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D2#s4\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D3#s1\", \"D1#s2\", \"D3#s2\"],\n    \"C2\": [\"D1#s3\", \"D2#s3\", \"D2#s1\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D3#s1\", \"D1#s2\", \"D3#s2\"],\n    \"C2\": [\"D1#s3\", \"D2#s3\", \"D2#s1\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 830,
+      "completion_tokens": 275
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2238.9805209999904,
+  "usd": 0.000772,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Vendor due diligence summary\nVendor due diligence summary: Nordvik Capital (fictional, authored test material).\n[D1#s1] Employees at Nordvik Capital stood at 1022 in FY2025, as restated in the latest accounts. [D1#s2] Nordvik Capital had net revenue retention of 112.6% in FY2025, first issue. [D1#s3] For Nordvik Capital, capex as share of sales in FY2024 was 3.9%. [D1#s4] Order backlog at Nordvik Capital stood at €553.9m with effect from 1 Jul 2025 (reported basis).\n\n## D2 Management presentation\nManagement presentation: Nordvik Capital (fictional, authored test material).\n[D2#s1] Run-rate EBITDA at Nordvik Capital stood at €62.5m in FY2024 (reported basis). [D2#s2] Nordvik GmbH had headline purchase price of €850.3m in FY2025 (reported basis). [D2#s3] For Nordvik Capital, capex as share of sales in FY2024 was around 3.8%. [D2#s4] Order backlog at Nordvik Capital stood at €501.9m with effect from 1 Jan 2025 (reported basis).\n\n## D3 Buyer quality-of-earnings memo\nBuyer quality-of-earnings memo: Nordvik Capital (fictional, authored test material).\n[D3#s1] Employees at Nordvik Capital stood at 1265 in FY2025, as originally reported. [D3#s2] Nordvik Capital had net revenue retention of 134.2% in FY2025, second issue (corrects the first issue). [D3#s3] For Nordvik Nordic, a subsidiary, run-rate EBITDA in FY2024 was €68.8m (reported basis). [D3#s4] Headline purchase price at Nordvik Oy stood at €1056.1m in FY2025 (reported basis).\n\n# Conclusions\nC1: Employees and Net revenue retention of Nordvik Capital are adequate for the board recommendation to sign\nC2: Run-rate EBITDA and Capex as share of sales of Nordvik Capital are adequate for the board recommendation to sign",
+  "extra": {
+    "sdep_sha256": "3d9a86cb2045f196d481a010bffb7d9680f0a1b3cf04da891fc4cce4c223f615"
+  }
+}
