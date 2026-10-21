@@ -18,6 +18,9 @@ export default function WorkspacePage() {
         title="Evidence workspace"
         lede="Import source documents, propose a decision that cites their passages, have a second person review it, and export the record as a passport bundle that can be verified offline."
       />
+      <p className="ws-msg">
+        New, in preview: <a href="/institutional/workspace/deep-analysis">Deep Analysis</a> — upload a contract or business document and receive a cited, clause-by-clause analysis and a final statement.
+      </p>
       <WorkspaceApp />
     </main>
   );

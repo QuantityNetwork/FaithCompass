@@ -9,6 +9,8 @@ import { TENANT_ID as TENANT_ID_RE, tenantRoles, type TenantRole } from './model
 export interface WorkspaceActor {
   uid: string;
   email: string | null;
+  /** Firebase `email_verified` claim. */
+  emailVerified?: boolean;
   tenants: Record<string, TenantRole>;
   db: FirestoreRest;
 }
@@ -24,7 +26,7 @@ export class WorkspaceAccessError extends Error {
   }
 }
 
-type Verifier = (token: string) => Promise<Pick<VerifiedFirebaseUser, 'id' | 'email' | 'tenants'> | null>;
+type Verifier = (token: string) => Promise<Pick<VerifiedFirebaseUser, 'id' | 'email' | 'tenants' | 'emailVerified'> | null>;
 let override: Verifier | null = null;
 
 /** Test seam: replaces ID token verification (the emulator's unsigned tokens). */
@@ -69,7 +71,7 @@ export async function workspaceActor(request: Request): Promise<WorkspaceActor> 
     user = null;
   }
   if (!user) throw new WorkspaceAccessError(401, 'INVALID_TOKEN', 'The sign-in token is invalid or expired. Sign in again.');
-  return { uid: user.id, email: user.email, tenants: tenantRoles(user.tenants), db: new FirestoreRest(firestoreConfigFromEnv(), m[1]) };
+  return { uid: user.id, email: user.email, emailVerified: user.emailVerified === true, tenants: tenantRoles(user.tenants), db: new FirestoreRest(firestoreConfigFromEnv(), m[1]) };
 }
 
 /** The caller's role in workspace `t`; refuses non-members before any database call (the rules refuse them too). */

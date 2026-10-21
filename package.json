@@ -2,7 +2,7 @@
   "name": "abrahammoses",
   "version": "0.1.0",
   "private": true,
-  "description": "AbrahamMoses \u2014 Structured Theological Intelligence",
+  "description": "AbrahamMoses — Structured Theological Intelligence",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -26,9 +26,11 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
     "firebase": "^12.19.0",
+    "mammoth": "^1.13.0",
     "next": "15.5.28",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "unpdf": "^1.9.1",
     "zod": "3.25.76"
   },
   "devDependencies": {

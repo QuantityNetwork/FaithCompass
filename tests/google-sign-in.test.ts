@@ -97,11 +97,22 @@ describe('Google sign-in: page', () => {
   const signIn = readFileSync('src/components/workspace/sign-in.tsx', 'utf8');
   const app = readFileSync('src/components/workspace/workspace-app.tsx', 'utf8');
 
-  it('offers Google next to the email link, with the unmodified four-colour G hidden from assistive technology', () => {
+  it('offers Google next to email and password (sign-in, registration with verification, reset), with the unmodified four-colour G hidden from assistive technology', () => {
     expect(signIn).toContain('Sign in with Google');
-    expect(signIn).toContain('Email me a sign-in link');
+    expect(signIn).toContain('Create account');
+    expect(signIn).toContain('registerWithEmail(');
+    expect(signIn).toContain('sendPasswordReset(');
+    expect(signIn).toContain('Forgot your password?');
     for (const c of ['#EA4335', '#4285F4', '#FBBC05', '#34A853']) expect(signIn).toContain(c);
     expect(signIn).toMatch(/<svg[^>]*aria-hidden="true"/);
+  });
+
+  it('returns only to this site\'s own pages after sign-in', async () => {
+    const { nextTarget } = await import('@/components/workspace/sign-in');
+    expect(nextTarget('?next=/institutional/workspace/deep-analysis')).toBe('/institutional/workspace/deep-analysis');
+    expect(nextTarget('?next=https://evil.example/x')).toBe('/institutional/workspace');
+    expect(nextTarget('?next=//evil.example')).toBe('/institutional/workspace');
+    expect(nextTarget('')).toBe('/institutional/workspace');
   });
 
   it('announces failures in a focusable alert', () => {

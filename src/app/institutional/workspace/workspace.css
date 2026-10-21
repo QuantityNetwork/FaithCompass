@@ -63,3 +63,11 @@
 .ws-or::before, .ws-or::after { content: ''; flex: 1; border-top: 1px solid var(--line); }
 .ws-noaccess h2 { margin-bottom: 8px; }
 .ws-noaccess p { margin: 0 0 8px; font: 400 15px/1.55 var(--sans); color: var(--ink); }
+
+/* Sign-in: formal variant (shared with Deep Analysis). */
+.ws-signin--formal { border-radius: 0; border-top: 2px solid var(--ink-strong); }
+.ws-signin__title { font: 400 20px/1.25 var(--serif, Georgia, serif); color: var(--ink-strong); margin: 0 0 4px; }
+.ws-modes { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.ws-linkbutton { background: none; border: 0; padding: 0; font: inherit; color: var(--ink-strong); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.ws-linkbutton:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ws-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 14px/1.4 var(--sans); }
