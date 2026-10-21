@@ -89,42 +89,43 @@ export function DeepAnalysisApp() {
   const ai = status?.ai;
   return (
     <div className="da">
-      <div className="da-notice" role="note">
-        <p><strong>Preview. Not legal advice; not reviewed by a lawyer.</strong></p>
-        <ul>
-          <li>Do not upload confidential client documents yet: the security review for client data is not complete. Use your own or sample documents.</li>
-          <li>Nothing is stored. The file is analysed in memory and discarded; the report stays in this tab until you export it.</li>
-          <li>Accepted: PDF with a text layer, Word (.docx), plain text or Markdown, up to {MAX_MB} MB. Scanned PDFs without text are not supported.</li>
+      <aside className="da-notice" aria-label="Terms of this preview">
+        <p className="da-notice__title">Important notice</p>
+        <ol>
+          <li><strong>Not legal advice; not reviewed by a lawyer.</strong> The report supports, and does not replace, professional review.</li>
+          <li>Confidential client documents may not be submitted yet; the security review for client data is not complete. Use your own or sample documents.</li>
+          <li>Nothing is stored. The document is analysed in memory and discarded; the report remains in this browser tab until exported.</li>
+          <li>Accepted formats: PDF with a text layer, Word (.docx), plain text or Markdown, up to {MAX_MB} MB. Scanned PDFs without text are not supported.</li>
           <li>
             AI layer on this deployment:{' '}
-            {!status ? 'checking…' : ai?.configured ? <strong>available ({ai.model}){ai.access === 'signed-in' ? ' for signed-in, approved accounts' : ''}</strong> : <strong>not configured — rule-based analysis only</strong>}.
+            {!status ? 'checking…' : ai?.configured ? <strong>available ({ai.model}){ai.access === 'signed-in' ? ' to signed-in, approved accounts' : ''}</strong> : <strong>not configured — rule-based analysis only</strong>}.
           </li>
-        </ul>
-      </div>
+        </ol>
+      </aside>
 
-      <div className="ws-grid da-start">
-        <form className="ws-panel ws-form" onSubmit={async (e) => { e.preventDefault(); if (file) await analyse(file.name, await file.arrayBuffer()); }}>
-          <h2>Analyse a document</h2>
+      <div className="da-start">
+        <form className="da-panel ws-form" onSubmit={async (e) => { e.preventDefault(); if (file) await analyse(file.name, await file.arrayBuffer()); }}>
+          <h2><span className="da-num">A.</span>Submit a document</h2>
           <label>
             Document
             <input type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
           </label>
           {ai?.configured ? (
-            <label className="da-check"><input type="checkbox" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} /> Use the AI layer (every AI finding must quote the document verbatim or it is dropped)</label>
+            <label className="da-check"><input type="checkbox" checked={useAi} onChange={(e) => setUseAi(e.target.checked)} /> Include the AI layer. Every AI finding must quote the document verbatim, or it is discarded.</label>
           ) : null}
-          <div className="ws-row"><button type="submit" className="button button--solid" disabled={!file || !!busy}>Analyse</button></div>
+          <div><button type="submit" className="da-btn da-btn--primary" disabled={!file || !!busy}>Analyse document</button></div>
         </form>
-        <div className="ws-panel">
-          <h2>Try a sample</h2>
-          <p className="ws-hint">Three fictional documents written for this demonstration, each with deliberate problems.</p>
-          <table className="ws-table da-samples">
+        <div className="da-panel">
+          <h2><span className="da-num">B.</span>Sample documents</h2>
+          <p className="da-muted">Three fictional documents prepared for this demonstration, each containing deliberate defects.</p>
+          <table className="da-table da-samples">
             <tbody>
               {SAMPLES.map((s) => (
                 <tr key={s.id}>
                   <th scope="row">{s.title}</th>
                   <td>
-                    <div className="ws-row">
-                      <button type="button" className="button" disabled={!!busy} onClick={() => runSample(s)}>Analyse now</button>
+                    <div className="da-row">
+                      <button type="button" className="da-btn" disabled={!!busy} onClick={() => runSample(s)}>Analyse</button>
                       <button type="button" className="da-linkish" onClick={() => openRecorded(s)}>Recorded AI report</button>
                       <a className="da-linkish" href={`/deep-analysis/samples/${s.file}`} download>Text</a>
                     </div>
