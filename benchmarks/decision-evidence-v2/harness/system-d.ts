@@ -30,12 +30,12 @@ export function toOutput(r: CaseResult, ms: number, usd: number): SystemOutput {
 }
 
 /** Details kept per case besides the scored output. */
-export const DETAIL: Record<string, { sha256: string; integrity_ok: boolean; integrity_codes: Record<string, number>; vetoed: { facts: string[]; class: string; reason: string }[]; impact: Record<string, string[]>; ai: CaseResult['ai'] }> = {};
+export const DETAIL: Record<string, { deterministic: number; candidates: number; candidatePairs: string[]; sha256: string; integrity_ok: boolean; integrity_codes: Record<string, number>; vetoed: { facts: string[]; class: string; reason: string }[]; impact: Record<string, string[]>; ai: CaseResult['ai'] }> = {};
 
 export function remember(id: string, r: CaseResult) {
   const codes: Record<string, number> = {};
   for (const f of r.integrity.findings) codes[`${f.severity}:${f.code}`] = (codes[`${f.severity}:${f.code}`] ?? 0) + 1;
-  DETAIL[id] = { sha256: r.sha256, integrity_ok: r.integrity.ok, integrity_codes: codes, vetoed: r.layers.vetoed.map((v) => ({ facts: v.facts, class: v.class, reason: v.vetoReason })), impact: r.impact, ai: r.ai };
+  DETAIL[id] = { deterministic: r.layers.deterministic.length, candidates: r.layers.candidates.length, candidatePairs: r.layers.candidates.map((x) => [...x.facts].sort().join('|')), sha256: r.sha256, integrity_ok: r.integrity.ok, integrity_codes: codes, vetoed: r.layers.vetoed.map((v) => ({ facts: v.facts, class: v.class, reason: v.vetoReason })), impact: r.impact, ai: r.ai };
 }
 
 /** Replay D from a stored model answer (no network): used by tests and to re-derive results from committed raw outputs. */
