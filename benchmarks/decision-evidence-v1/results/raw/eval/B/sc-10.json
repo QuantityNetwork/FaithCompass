@@ -1,0 +1,37 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "4e3a9fa59ac90cf454dde3827177aa00efb56e6e9c393ddb2d8bf4737f5f0cb8",
+    "prompt_chars": 2684
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\"],\n    \"C2\": [\"D1#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D1#s3\"],\n    \"C2\": [\"D1#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 680,
+      "completion_tokens": 219
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 1603.4944679999899,
+  "usd": 0.0006224000000000001,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Critical edition introduction (retrieved excerpts)\nCritical edition introduction — Corrin Gospel-book (fictional).\n[D1#s1] Corrin Gospel-book reports folio count of 268 for FY2025.\n[D1#s2] Corrin Gospel-book reports lacunae share of 7.214% for FY2024.\n[D1#s3] Corrin Gospel-book reports quire count of 23.046 for FY2025.\n[D1#s4] Corrin Gospel-book reports recorded variant readings of 2215 for FY2025 under the original agreement.\n[D1#s5] For Corrin Gospel-book, the place of origin is: copied in the northern scriptorium.\n\n## D2 Catalogue entry (retrieved excerpts)\n[D2#s1] Corrin Gospel-book reports folio count of 220 for FY2024.\n[D2#s2] Corrin Gospel-book reports lacunae share of 7.2% for FY2024.\n[D2#s5] For Corrin Gospel-book, the place of origin is: copied in the southern scriptorium.\n\n## D3 Review article (retrieved excerpts)\n[D3#s2] Corrin Gospel-book reports recorded variant readings of 2755 for FY2025 under the amendment no. 1 (supersedes).\n\n# Conclusions\nC1: The share of text lost to lacunae and number of quires of Corrin Gospel-book support the edition's dating and stemma argument\nC2: The recorded variant readings of Corrin Gospel-book supports the edition's dating and stemma argument",
+  "extra": {
+    "retrieved": [
+      "D1#ctx-1",
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D1#s5",
+      "D2#s1",
+      "D2#s2",
+      "D2#s5",
+      "D3#s2"
+    ]
+  }
+}

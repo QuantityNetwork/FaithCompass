@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "f5c65b251f18308807a383b272ada57406b9fea13ec5b80453cad9d50ce970e0",
+    "prompt_chars": 3012
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s3\", \"D3#s3\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D2#s3\", \"D3#s3\", \"D2#s4\", \"D3#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D2#s3\", \"D3#s3\", \"D2#s4\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 811,
+      "completion_tokens": 355
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 3337.326898999978,
+  "usd": 0.0008924000000000001,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Conservation report\nConservation report: Caddow Letters (fictional, authored test material).\n[D1#s1] Caddow Letters had insured value of $4.8m in FY2025 (reported basis). [D1#s2] For Caddow Letters, marginal annotations in FY2025 was 649. [D1#s3] Illuminated initials at Caddow Letters stood at 132 in FY2025. [D1#s4] Caddow Letters had leaf height of 344 mm in FY2023.\n\n## D2 Palaeographic study\nPalaeographic study: Caddow Letters (fictional, authored test material).\n[D2#s1] Caddow Letters had insured value of $4800k in FY2025 (reported basis). [D2#s2] For Caddow Letters, marginal annotations in FY2025 was 647. [D2#s3] Share of palimpsest leaves at Caddow Letters stood at 33.2% in FY2024, as originally reported. [D2#s4] Caddow Letters had binding date (CE) of 1422 in FY2024, second issue (corrects the first issue).\n\n## D3 Edition apparatus notes\nEdition apparatus notes: Caddow Letters (fictional, authored test material).\n[D3#s1] Caddow Letters had illuminated initials of 113 in FY2023. [D3#s2] For Caddow Letters, leaf height in FY2025 was 255 mm. [D3#s3] Share of palimpsest leaves at Caddow Letters stood at 39.3% in FY2024, as restated in the latest accounts. [D3#s4] Caddow Letters had binding date (CE) of 1675 in FY2024, first issue.\n\n# Conclusions\nC1: Insured value and Marginal annotations of Caddow Letters are adequate for the dating and attribution argument of the edition\nC2: Share of palimpsest leaves and Binding date (CE) of Caddow Letters are adequate for the dating and attribution argument of the edition",
+  "extra": {
+    "sdep_sha256": "76a4d6873cda5fd3a68f7f5144367a38e99aa09cc1137f94e670757245005c52"
+  }
+}

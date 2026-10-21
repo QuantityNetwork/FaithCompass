@@ -1,0 +1,376 @@
+{
+  "id": "sc-04",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Sunder Roll: scholarly review (fictional)",
+  "entity": "Sunder Roll",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Sunder Roll (fictional, authored test material).\nSunder Roll had share of palimpsest leaves of 31.1% in FY2025, first issue. For Sunder Roll, leaf height in FY2024 was 236 mm. Illuminated initials at Sunder Roll stood at 34 with effect from 1 Jul 2025. Sunder Roll had insured value of $13m in FY2024 (reported basis). The meaning of the rubric \"de gradibus\" for Sunder Roll is understood as follows: a reference to the gradual psalms."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Sunder Roll (fictional, authored test material).\nSunder Roll had marginal annotations of 474 in FY2024. For Sunder GmbH, binding date (CE) in FY2024 was 1418. Leaf height at Sunder Roll stood at roughly 230 mm in FY2024. Sunder Roll had illuminated initials of 27 with effect from 1 Jan 2025."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Sunder Roll (fictional, authored test material).\nSunder Roll had share of palimpsest leaves of 38% in FY2025, second issue (corrects the first issue). For Sunder Nordic, a subsidiary, marginal annotations in FY2024 was 579. Binding date (CE) at Sunder Oy stood at 1621 in FY2024. Sunder Roll had insured value of $10.1m in FY2024 (reported basis). The meaning of the rubric \"de gradibus\" for Sunder Roll is understood as follows: a reference to ranks of the clergy."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 70,
+      "end": 145,
+      "text": "Sunder Roll had share of palimpsest leaves of 31.1% in FY2025, first issue."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 146,
+      "end": 196,
+      "text": "For Sunder Roll, leaf height in FY2024 was 236 mm."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 197,
+      "end": 273,
+      "text": "Illuminated initials at Sunder Roll stood at 34 with effect from 1 Jul 2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 274,
+      "end": 339,
+      "text": "Sunder Roll had insured value of $13m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 340,
+      "end": 456,
+      "text": "The meaning of the rubric \"de gradibus\" for Sunder Roll is understood as follows: a reference to the gradual psalms."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 70,
+      "end": 124,
+      "text": "Sunder Roll had marginal annotations of 474 in FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 125,
+      "end": 179,
+      "text": "For Sunder GmbH, binding date (CE) in FY2024 was 1418."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 180,
+      "end": 241,
+      "text": "Leaf height at Sunder Roll stood at roughly 230 mm in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 242,
+      "end": 313,
+      "text": "Sunder Roll had illuminated initials of 27 with effect from 1 Jan 2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 74,
+      "end": 175,
+      "text": "Sunder Roll had share of palimpsest leaves of 38% in FY2025, second issue (corrects the first issue)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 176,
+      "end": 248,
+      "text": "For Sunder Nordic, a subsidiary, marginal annotations in FY2024 was 579."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 249,
+      "end": 304,
+      "text": "Binding date (CE) at Sunder Oy stood at 1621 in FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 305,
+      "end": 372,
+      "text": "Sunder Roll had insured value of $10.1m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 373,
+      "end": 490,
+      "text": "The meaning of the rubric \"de gradibus\" for Sunder Roll is understood as follows: a reference to ranks of the clergy."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Sunder Roll",
+      "concept": "palimpsest_share",
+      "value": 31.1,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null,
+      "version": "first issue"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Sunder Roll",
+      "concept": "leaf_height",
+      "value": 236,
+      "unit": "mm",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Sunder Roll",
+      "concept": "illuminated_initials",
+      "value": 34,
+      "unit": "count",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jul 2025"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Sunder Roll",
+      "concept": "insurance_value",
+      "value": 13,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Sunder Roll",
+      "concept": "rubric_meaning",
+      "value": "a reference to the gradual psalms",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Sunder Roll",
+      "concept": "marginal_notes",
+      "value": 474,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Sunder GmbH",
+      "concept": "binding_date",
+      "value": 1418,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Sunder Roll",
+      "concept": "leaf_height",
+      "value": 230,
+      "unit": "mm",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "roughly"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Sunder Roll",
+      "concept": "illuminated_initials",
+      "value": 27,
+      "unit": "count",
+      "period": null,
+      "basis": null,
+      "effectiveDate": "1 Jan 2025"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Sunder Roll",
+      "concept": "palimpsest_share",
+      "value": 38,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null,
+      "version": "second issue (corrects the first issue)"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Sunder Nordic, a subsidiary",
+      "concept": "marginal_notes",
+      "value": 579,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Sunder Oy",
+      "concept": "binding_date",
+      "value": 1621,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Sunder Roll",
+      "concept": "insurance_value",
+      "value": 10.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Sunder Roll",
+      "concept": "rubric_meaning",
+      "value": "a reference to ranks of the clergy",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Share of palimpsest leaves and Marginal annotations of Sunder Roll are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Leaf height and Insured value of Sunder Roll are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D3#s1"
+        ],
+        "class": "NONE",
+        "plant": "corrected",
+        "note": "a corrected issue replaces the first"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "subsidiary",
+        "note": "a subsidiary, not the group"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D2#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity_other",
+        "note": "two different legal entities (Finnish Oy and German GmbH)"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D2#s3"
+        ],
+        "class": "NONE",
+        "plant": "approx_near",
+        "note": "a stated approximation within 3% of the exact figure"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "effective_date",
+        "note": "two values effective from different dates: a change over time, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D1#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D3#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "share of palimpsest leaves",
+          "acceptable": [
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "marginal annotations",
+          "acceptable": [
+            "D2#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "leaf height",
+          "acceptable": [
+            "D1#s2",
+            "D2#s3"
+          ]
+        },
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D1#s4",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s2",
+        "D1#s4",
+        "D2#s3",
+        "D3#s4"
+      ]
+    }
+  }
+}

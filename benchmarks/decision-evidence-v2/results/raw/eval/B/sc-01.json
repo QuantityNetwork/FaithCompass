@@ -1,0 +1,41 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "ef0c5112e9064bcdbf4fca367ff10cdef062707ec64fd626a54b2c06ff32b724",
+    "prompt_chars": 2985
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D3#s1\"],\n      \"class\": \"POTENTIAL_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s2\"],\n      \"class\": \"MISSING_EVIDENCE\"\n    },\n    {\n      \"facts\": [\"D2#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D1#s4\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D2#s1\", \"D1#s2\", \"D2#s2\"],\n    \"C2\": [\"D1#s3\", \"D1#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 769,
+      "completion_tokens": 294
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2578.747315000044,
+  "usd": 0.000778,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Conservation report (retrieved excerpts)\nThroughout the documents of this review, the Manuscript means Ardith Fragments.\n[D1#s1] Ardith Fragments had binding date (CE) of 1595 in FY2024.\n[D1#s2] For Ardith Fragments, illuminated initials in FY2025 was 185 (pro forma (including the planned acquisition) basis).\n[D1#s3] Insured value at Ardith Fragments stood at $7.7m (reported basis).\n[D1#s4] Ardith Fragments had share of palimpsest leaves of 29.4% in FY2024.\n\n## D2 Palaeographic study (retrieved excerpts)\nArdith Fragments trades under the name Greywater.\n[D2#s1] Ardith Fragments had binding date (CE) of 1346 in FY2024.\n[D2#s2] For Ardith Fragments, illuminated initials in FY2025 was 245 (reported basis).\n[D2#s4] Greywater had missing leaves of 11 in FY2025.\n\n## D3 Edition apparatus notes (retrieved excerpts)\nEdition apparatus notes: Ardith Fragments (fictional, authored test material).\n[D3#s1] Ardith Fragments had insured value of $9m in FY2025 (reported basis).\n[D3#s2] Share of palimpsest leaves of Ardith Fragments in FY2024: to be confirmed; not included in this document.\n[D3#s3] Marginal annotations at the Manuscript stood at 719 in FY2024.\n[D3#s4] Ardith Fragments had missing leaves of 14 in FY2025.\n\n# Conclusions\nC1: Binding date (CE) and Illuminated initials of Ardith Fragments are adequate for the dating and attribution argument of the edition\nC2: Insured value and Share of palimpsest leaves of Ardith Fragments are adequate for the dating and attribution argument of the edition",
+  "extra": {
+    "retrieved": [
+      "D1#ctx-2",
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D1#s4",
+      "D2#ctx-2",
+      "D2#s1",
+      "D2#s2",
+      "D2#s4",
+      "D3#ctx-1",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s4"
+    ]
+  }
+}

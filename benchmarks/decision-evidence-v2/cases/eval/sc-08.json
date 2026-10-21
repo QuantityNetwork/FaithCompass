@@ -1,0 +1,413 @@
+{
+  "id": "sc-08",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Wexcombe Psalter: scholarly review (fictional)",
+  "entity": "Wexcombe Psalter",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Wexcombe Psalter (fictional, authored test material).\nFor Wexcombe Nordic, a subsidiary, share of palimpsest leaves in FY2024 was 23.2%. Marginal annotations at Wexcombe GmbH stood at 652 in FY2024. Wexcombe Psalter had missing leaves of 8 in FY2025. For Wexcombe Psalter, ruled columns per page in FY2024 was 2 (reported basis). The meaning of the rubric \"de gradibus\" for Wexcombe Psalter is understood as follows: a reference to ranks of the clergy. As to Wexcombe Psalter, the place of production is: produced in a lay urban workshop."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Wexcombe Psalter (fictional, authored test material).\nFor Wexcombe Psalter, share of palimpsest leaves in FY2024 was 31.8%. Insured value at Wexcombe Psalter stood at $6.3m with effect from 1 Jan 2025 (reported basis). Wexcombe Psalter had binding date (CE) of 1767 in FY2024. For Wexcombe Psalter, ruled columns per page in FY2024 was 1 (pro forma (including the planned acquisition) basis). The meaning of the rubric \"de gradibus\" for Wexcombe Psalter is understood as follows: a reference to the gradual psalms."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Wexcombe Psalter (fictional, authored test material).\nFor Wexcombe Oy, marginal annotations in FY2024 was 521. Missing leaves at Wexcombe Psalter stood at around 8 in FY2025. Wexcombe Psalter had insured value of $7m with effect from 1 Jul 2025 (reported basis). For Wexcombe Psalter, binding date (CE) in FY2024 was 1366. As to Wexcombe Psalter, the place of production is: produced at the cathedral scriptorium."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 75,
+      "end": 157,
+      "text": "For Wexcombe Nordic, a subsidiary, share of palimpsest leaves in FY2024 was 23.2%."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 158,
+      "end": 219,
+      "text": "Marginal annotations at Wexcombe GmbH stood at 652 in FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 220,
+      "end": 271,
+      "text": "Wexcombe Psalter had missing leaves of 8 in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 272,
+      "end": 350,
+      "text": "For Wexcombe Psalter, ruled columns per page in FY2024 was 2 (reported basis)."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 351,
+      "end": 473,
+      "text": "The meaning of the rubric \"de gradibus\" for Wexcombe Psalter is understood as follows: a reference to ranks of the clergy."
+    },
+    {
+      "id": "D1#s6",
+      "doc": "D1",
+      "start": 474,
+      "end": 559,
+      "text": "As to Wexcombe Psalter, the place of production is: produced in a lay urban workshop."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 75,
+      "end": 144,
+      "text": "For Wexcombe Psalter, share of palimpsest leaves in FY2024 was 31.8%."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 145,
+      "end": 239,
+      "text": "Insured value at Wexcombe Psalter stood at $6.3m with effect from 1 Jan 2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 240,
+      "end": 297,
+      "text": "Wexcombe Psalter had binding date (CE) of 1767 in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 298,
+      "end": 413,
+      "text": "For Wexcombe Psalter, ruled columns per page in FY2024 was 1 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 414,
+      "end": 535,
+      "text": "The meaning of the rubric \"de gradibus\" for Wexcombe Psalter is understood as follows: a reference to the gradual psalms."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 79,
+      "end": 135,
+      "text": "For Wexcombe Oy, marginal annotations in FY2024 was 521."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 136,
+      "end": 199,
+      "text": "Missing leaves at Wexcombe Psalter stood at around 8 in FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 200,
+      "end": 287,
+      "text": "Wexcombe Psalter had insured value of $7m with effect from 1 Jul 2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 288,
+      "end": 347,
+      "text": "For Wexcombe Psalter, binding date (CE) in FY2024 was 1366."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 348,
+      "end": 438,
+      "text": "As to Wexcombe Psalter, the place of production is: produced at the cathedral scriptorium."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Wexcombe Nordic, a subsidiary",
+      "concept": "palimpsest_share",
+      "value": 23.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Wexcombe GmbH",
+      "concept": "marginal_notes",
+      "value": 652,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Wexcombe Psalter",
+      "concept": "missing_leaves",
+      "value": 8,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Wexcombe Psalter",
+      "concept": "ruled_columns",
+      "value": 2,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Wexcombe Psalter",
+      "concept": "rubric_meaning",
+      "value": "a reference to ranks of the clergy",
+      "unit": "text"
+    },
+    {
+      "id": "D1#s6",
+      "entity": "Wexcombe Psalter",
+      "concept": "origin_b",
+      "value": false,
+      "exclusiveGroup": "origin"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Wexcombe Psalter",
+      "concept": "palimpsest_share",
+      "value": 31.8,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Wexcombe Psalter",
+      "concept": "insurance_value",
+      "value": 6.3,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported",
+      "effectiveDate": "1 Jan 2025"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Wexcombe Psalter",
+      "concept": "binding_date",
+      "value": 1767,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Wexcombe Psalter",
+      "concept": "ruled_columns",
+      "value": 1,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Wexcombe Psalter",
+      "concept": "rubric_meaning",
+      "value": "a reference to the gradual psalms",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Wexcombe Oy",
+      "concept": "marginal_notes",
+      "value": 521,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Wexcombe Psalter",
+      "concept": "missing_leaves",
+      "value": 8,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "around"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Wexcombe Psalter",
+      "concept": "insurance_value",
+      "value": 7,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported",
+      "effectiveDate": "1 Jul 2025"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Wexcombe Psalter",
+      "concept": "binding_date",
+      "value": 1366,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Wexcombe Psalter",
+      "concept": "origin_a",
+      "value": true,
+      "exclusiveGroup": "origin"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Share of palimpsest leaves and Missing leaves of Wexcombe Psalter are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Binding date (CE) and Ruled columns per page of Wexcombe Psalter are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D1#s1"
+        ],
+        "class": "NONE",
+        "plant": "subsidiary",
+        "note": "a subsidiary, not the group"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity_other",
+        "note": "two different legal entities (Finnish Oy and German GmbH)"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "approx_near",
+        "note": "a stated approximation within 3% of the exact figure"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "effective_date",
+        "note": "two values effective from different dates: a change over time, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D2#s4"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D1#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D1#s6"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "share of palimpsest leaves",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "missing leaves",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "binding date (CE)",
+          "acceptable": [
+            "D2#s3",
+            "D3#s4"
+          ]
+        },
+        {
+          "input": "ruled columns per page",
+          "acceptable": [
+            "D1#s4",
+            "D2#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s3",
+        "D2#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s4",
+        "D2#s3",
+        "D2#s4",
+        "D3#s4"
+      ]
+    }
+  }
+}

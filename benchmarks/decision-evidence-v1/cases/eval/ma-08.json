@@ -1,0 +1,328 @@
+{
+  "id": "ma-08",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "title": "Elmbrook Partners: m and a review (fictional)",
+  "entity": "Elmbrook Partners",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Information memorandum",
+      "text": "Information memorandum — Elmbrook Partners (fictional).\nIn this document \"EPH\" means Elmbrook Partners. Elmbrook Partners reports annual customer churn of 13% for FY2024 on a reported basis. Elmbrook Partners reports revenue of $219.6m on a reported basis. Elmbrook Partners: EBITDA for FY2025 on a reported basis — not provided. Elmbrook Partners reports normalised net working capital of $58.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2",
+      "title": "Financial due diligence report",
+      "text": "Financial due diligence report — Elmbrook Partners (fictional).\nElmbrook Partners reports annual customer churn of 15.3% for FY2024 on a adjusted (management definition) basis. Elmbrook Partners reports revenue of $261.3m for FY2024 on a reported basis. Elmbrook Partners reports enterprise value of $737.8m for FY2024 on a reported basis. Elmbrook Partners reports gross margin of 38.978% for FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Draft share purchase agreement",
+      "text": "Draft share purchase agreement — Elmbrook Partners (fictional).\nElmbrook Partners reports EBITDA of $46.8m for FY2025 on a reported basis. Elmbrook Partners reports normalised net working capital of $45.5m for FY2025 on a reported basis. Elmbrook Partners reports enterprise value of $737800k for FY2024 on a reported basis. Elmbrook Partners reports gross margin of 38.9% for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 104,
+      "end": 190,
+      "text": "Elmbrook Partners reports annual customer churn of 13% for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 191,
+      "end": 256,
+      "text": "Elmbrook Partners reports revenue of $219.6m on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 257,
+      "end": 329,
+      "text": "Elmbrook Partners: EBITDA for FY2025 on a reported basis — not provided."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 330,
+      "end": 428,
+      "text": "Elmbrook Partners reports normalised net working capital of $58.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 64,
+      "end": 176,
+      "text": "Elmbrook Partners reports annual customer churn of 15.3% for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 177,
+      "end": 253,
+      "text": "Elmbrook Partners reports revenue of $261.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 254,
+      "end": 339,
+      "text": "Elmbrook Partners reports enterprise value of $737.8m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 340,
+      "end": 401,
+      "text": "Elmbrook Partners reports gross margin of 38.978% for FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 64,
+      "end": 138,
+      "text": "Elmbrook Partners reports EBITDA of $46.8m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 139,
+      "end": 237,
+      "text": "Elmbrook Partners reports normalised net working capital of $45.5m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 238,
+      "end": 324,
+      "text": "Elmbrook Partners reports enterprise value of $737800k for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 325,
+      "end": 384,
+      "text": "Elmbrook Partners reports gross margin of 38.9% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Elmbrook Partners",
+      "concept": "customer_churn",
+      "value": 13,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Elmbrook Partners",
+      "concept": "revenue",
+      "value": 219.6,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Elmbrook Partners",
+      "concept": "ebitda",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Elmbrook Partners",
+      "concept": "net_working_capital",
+      "value": 58.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Elmbrook Partners",
+      "concept": "customer_churn",
+      "value": 15.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Elmbrook Partners",
+      "concept": "revenue",
+      "value": 261.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Elmbrook Partners",
+      "concept": "enterprise_value",
+      "value": 737.8,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Elmbrook Partners",
+      "concept": "gross_margin",
+      "value": 38.978,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Elmbrook Partners",
+      "concept": "ebitda",
+      "value": 46.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Elmbrook Partners",
+      "concept": "net_working_capital",
+      "value": 45.5,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Elmbrook Partners",
+      "concept": "enterprise_value",
+      "value": 737800,
+      "unit": "$k",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Elmbrook Partners",
+      "concept": "gross_margin",
+      "value": 38.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The annual customer churn and revenue of Elmbrook Partners support the investment committee bid recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The EBITDA of Elmbrook Partners supports the investment committee bid recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "annual customer churn",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "revenue",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "EBITDA",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

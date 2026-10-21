@@ -1,0 +1,420 @@
+{
+  "label": "descriptive analysis of the stored v1 eval outputs; no new model calls",
+  "eval_set_sha256": "0d69dc2e51f9a74dc0322eedacb7fb20fd4e46bfbaf6b6742a88c07ea7418524",
+  "systems": {
+    "A": {
+      "conflicts_missed": 14,
+      "false_alarms_total": 58,
+      "misses_by_plant": {
+        "potential": {
+          "n": 6,
+          "examples": [
+            "ct-04 D3#s4 vs D2#s4: \"Tamsin Partners reports maximum service credit of 17.5% for FY2024.\" / \"Tamsin Partners reports maximum service credit of 21.2%.\"",
+            "ct-09 D3#s4 vs D2#s4: \"Meridian Vale Systems reports uptime commitment of 99.67% for FY2024.\" / \"Meridian Vale Systems reports uptime commitment of 127.51%.\"",
+            "ma-05 D2#s3 vs D3#s3: \"Sorrel Industries reports normalised net working capital of $28.6m for FY2024 on a reported basis.\" / \"Sorrel Industries reports normalised net working capital of $32.2m on a reported basis.\""
+          ]
+        },
+        "synonym": {
+          "n": 2,
+          "examples": [
+            "ct-08 D2#s3 vs D3#s3: \"Elmbrook Systems reports annual fee of $0.9m for FY2025 on a reported basis.\" / \"Elmbrook Systems reports yearly charges of $1.1m for FY2025 on a reported basis.\"",
+            "pc-06 D1#s4 vs D3#s2: \"Brightwater Holdings reports EBITDA of $83.4m for FY2024 on a reported basis.\" / \"Brightwater Holdings reports operating cash earnings of $92.5m for FY2024 on a reported basis.\""
+          ]
+        },
+        "missing": {
+          "n": 2,
+          "examples": [
+            "ma-10 D3#s4 vs D2#s4: \"Quillon Industries reports revenue of $307.2m for FY2024 on a reported basis.\" / \"Quillon Industries: revenue for FY2024 on a reported basis — not provided.\"",
+            "sc-09 D3#s4 vs D2#s4: \"Varro Glosses reports line count of 31 for FY2025.\" / \"Varro Glosses: lines per page for FY2025 — not provided.\""
+          ]
+        },
+        "confirmed": {
+          "n": 2,
+          "examples": [
+            "pc-04 D3#s4 vs D2#s4: \"Tamsin Partners reports customer concentration of 24.7% for FY2025.\" / \"Tamsin Partners reports customer concentration of 21.8% for FY2025.\"",
+            "pc-09 D3#s4 vs D2#s4: \"Meridian Vale Partners reports customer concentration of 17.2% for FY2025.\" / \"Meridian Vale Partners reports customer concentration of 21.4% for FY2025.\""
+          ]
+        },
+        "fiscal_year_end": {
+          "n": 1,
+          "examples": [
+            "ma-09 D3#s4 vs D2#s4: \"Meridian Vale Industries reports headcount of 711 for FY2025 (fiscal year ending 30 June 2025).\" / \"Meridian Vale Industries reports headcount of 581 for LTM to 30 Jun 2025.\""
+          ]
+        },
+        "interpretation": {
+          "n": 1,
+          "examples": [
+            "pc-09 D1#s5 vs D2#s5: \"For Meridian Vale Partners, the permitted acquisitions basket is read as: capped at the greater of $15m and 20% of EBITDA.\" / \"For Meridian Vale Partners, the permitted acquisitions basket is read as: uncapped where pro forma leverage stays below 4.0x.\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:rounding": {
+          "n": 16,
+          "examples": [
+            "ct-05 flagged CONFIRMED_CONFLICT: \"Sorrel Holdings reports uptime commitment of 99.31% for FY2025.\" / \"Sorrel Holdings reports uptime commitment of 99.509% for FY2025.\"",
+            "ct-05 flagged POTENTIAL_CONFLICT: \"Sorrel Holdings reports annual price escalator of 6.4% for FY2025.\" / \"Sorrel Holdings reports annual price escalator of 6.413% for FY2025.\"",
+            "ct-07 flagged POTENTIAL_CONFLICT: \"Esker Partners reports termination notice period of 77 days for FY2025.\" / \"Esker Partners reports termination notice period of 77.154 days for FY2025.\""
+          ]
+        },
+        "planted:superseded": {
+          "n": 11,
+          "examples": [
+            "ct-05 flagged CONFIRMED_CONFLICT: \"Sorrel Holdings reports term years of 2 years for FY2025 under the original agreement.\" / \"Sorrel Holdings reports term years of 1 years for FY2025 under the amendment no. 1 (supersedes).\"",
+            "ct-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Systems reports insurance cover of $10.8m for FY2024 on a reported basis under the original agreement.\" / \"Elmbrook Systems reports insurance cover of $8.3m for FY2024 on a reported basis under the amendment no. 1 (supersedes).\"",
+            "ct-10 flagged CONFIRMED_CONFLICT: \"Quillon Holdings reports uptime commitment of 99.61% for FY2024 under the original agreement.\" / \"Quillon Holdings reports uptime commitment of 109.47% for FY2024 under the amendment no. 1 (supersedes).\""
+          ]
+        },
+        "planted:approximation": {
+          "n": 9,
+          "examples": [
+            "ct-04 flagged CONFIRMED_CONFLICT: \"Tamsin Partners reports liability cap of $2.7m for FY2024 on a reported basis.\" / \"Tamsin Partners reports approximately liability cap of $3m for FY2024 on a reported basis.\"",
+            "ct-09 flagged CONFIRMED_CONFLICT: \"Meridian Vale Systems reports annual fee of $6.2m for FY2025 on a reported basis.\" / \"Meridian Vale Systems reports approximately annual fee of $6m for FY2025 on a reported basis.\"",
+            "ma-05 flagged CONFIRMED_CONFLICT: \"Sorrel Industries reports EBITDA of $44.6m for FY2024 on a reported basis.\" / \"Sorrel Industries reports approximately EBITDA of $43m for FY2024 on a reported basis.\""
+          ]
+        },
+        "planted:diff_period": {
+          "n": 8,
+          "examples": [
+            "ct-05 flagged CONFIRMED_CONFLICT: \"Sorrel Holdings reports maximum service credit of 16.4% for FY2024.\" / \"Sorrel Holdings reports maximum service credit of 12.8% for FY2025.\"",
+            "ct-10 flagged POTENTIAL_CONFLICT: \"Quillon Holdings reports annual price escalator of 4.7% for FY2025.\" / \"Quillon Holdings reports annual price escalator of 5.3% for FY2024.\"",
+            "ma-06 flagged CONFIRMED_CONFLICT: \"Brightwater Industries reports normalised net working capital of $23.7m for FY2024 on a reported basis.\" / \"Brightwater Industries reports normalised net working capital of $27.5m for FY2025 on a reported basis.\""
+          ]
+        },
+        "planted:diff_entity": {
+          "n": 6,
+          "examples": [
+            "ct-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Systems reports term years of 5 years for FY2025.\" / \"Elmbrook Logistics subsidiary reports term years of 6 years for FY2025.\"",
+            "ct-10 flagged CONFIRMED_CONFLICT: \"Quillon Holdings reports term years of 6 years for FY2025.\" / \"Quillon Logistics subsidiary reports term years of 5 years for FY2025.\"",
+            "ma-04 flagged CONFIRMED_CONFLICT: \"Tamsin Systems reports normalised net working capital of $74.2m for FY2024 on a reported basis.\" / \"Tamsin Logistics subsidiary reports normalised net working capital of $87.7m for FY2024 on a reported basis.\""
+          ]
+        },
+        "planted:legal_entity": {
+          "n": 5,
+          "examples": [
+            "ct-09 flagged CONFIRMED_CONFLICT: \"Meridian AB reports termination notice period of 120 days for FY2024.\" / \"Meridian Ltd reports termination notice period of 97 days for FY2024.\"",
+            "ma-07 flagged POTENTIAL_CONFLICT: \"Esker AB reports EBITDA of $67.8m for FY2025 on a reported basis.\" / \"Esker Ltd reports EBITDA of $50.8m for FY2025 on a reported basis.\"",
+            "ma-10 flagged CONFIRMED_CONFLICT: \"Quillon AB reports normalised net working capital of $35.4m for FY2025 on a reported basis.\" / \"Quillon Ltd reports normalised net working capital of $45.2m for FY2025 on a reported basis.\""
+          ]
+        },
+        "planted:unit_scale": {
+          "n": 3,
+          "examples": [
+            "ct-10 flagged CONFIRMED_CONFLICT: \"Quillon Holdings reports insurance cover of $10.7m for FY2025 on a reported basis.\" / \"Quillon Holdings reports insurance cover of $10700k for FY2025 on a reported basis.\"",
+            "ma-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Partners reports enterprise value of $737.8m for FY2024 on a reported basis.\" / \"Elmbrook Partners reports enterprise value of $737800k for FY2024 on a reported basis.\"",
+            "pc-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Group reports available liquidity of $19.6m for FY2024 on a reported basis.\" / \"Elmbrook Group reports available liquidity of $19600k for FY2024 on a reported basis.\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {
+        "interpretation: UNRESOLVED_INTERPRETATION -> CONFIRMED_CONFLICT": 8,
+        "fiscal_year_end: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 5,
+        "potential: POTENTIAL_CONFLICT -> CONFIRMED_CONFLICT": 4,
+        "missing: MISSING_EVIDENCE -> CONFIRMED_CONFLICT": 1
+      },
+      "dependency_errors_by_plant": {
+        "extra:superseded": 9,
+        "missing:rounding": 6,
+        "extra:diff_entity": 5,
+        "missing:missing": 3,
+        "missing:superseded": 3,
+        "missing:fiscal_year_end": 1,
+        "missing:unit_scale": 1,
+        "extra:confirmed": 1,
+        "missing:diff_entity": 1,
+        "missing:alias": 1
+      },
+      "parse_failures": 0,
+      "findings_dropped_invalid": 0
+    },
+    "B": {
+      "conflicts_missed": 31,
+      "false_alarms_total": 41,
+      "misses_by_plant": {
+        "fiscal_year_end": {
+          "n": 7,
+          "examples": [
+            "ct-06 D1#s4 vs D3#s2: \"Brightwater Partners reports liability cap of $3.6m for FY2025 (fiscal year ending 30 June 2025) on a reported basis.\" / \"Brightwater Partners reports liability cap of $4.2m for LTM to 30 Jun 2025 on a reported basis.\"",
+            "ma-04 D3#s4 vs D2#s4: \"Tamsin Systems reports EBITDA of $72.9m for FY2025 (fiscal year ending 30 June 2025) on a reported basis.\" / \"Tamsin Systems reports EBITDA of $83.3m for LTM to 30 Jun 2025 on a reported basis.\"",
+            "ma-09 D3#s4 vs D2#s4: \"Meridian Vale Industries reports headcount of 711 for FY2025 (fiscal year ending 30 June 2025).\" / \"Meridian Vale Industries reports headcount of 581 for LTM to 30 Jun 2025.\""
+          ]
+        },
+        "missing": {
+          "n": 5,
+          "examples": [
+            "ct-07 D1#s4 vs D3#s2: \"Esker Partners reports insurance cover of $8.3m for FY2025 on a reported basis.\" / \"Esker Partners: professional indemnity cover for FY2025 on a reported basis — not provided.\"",
+            "ma-05 D3#s4 vs D2#s4: \"Sorrel Industries reports enterprise value of $866.1m for FY2025 on a reported basis.\" / \"Sorrel Industries: enterprise value for FY2025 on a reported basis — not provided.\"",
+            "ma-10 D3#s4 vs D2#s4: \"Quillon Industries reports revenue of $307.2m for FY2024 on a reported basis.\" / \"Quillon Industries: revenue for FY2024 on a reported basis — not provided.\""
+          ]
+        },
+        "potential": {
+          "n": 5,
+          "examples": [
+            "ma-05 D2#s3 vs D3#s3: \"Sorrel Industries reports normalised net working capital of $28.6m for FY2024 on a reported basis.\" / \"Sorrel Industries reports normalised net working capital of $32.2m on a reported basis.\"",
+            "ma-10 D2#s3 vs D3#s3: \"Quillon Industries reports annual customer churn of 8.7% for FY2025.\" / \"Quillon Industries reports annual customer churn of 9.8%.\"",
+            "pc-07 D2#s3 vs D3#s3: \"Esker Industries reports available liquidity of $47.8m for FY2025 on a reported basis.\" / \"Esker Industries reports available liquidity of $53.3m on a reported basis.\""
+          ]
+        },
+        "alias": {
+          "n": 4,
+          "examples": [
+            "ct-08 D1#s4 vs D3#s2: \"Elmbrook Systems reports liability cap of $21m for FY2024 on a reported basis.\" / \"ESH reports liability cap of $24.5m for FY2024 on a reported basis.\"",
+            "ma-06 D3#s4 vs D2#s4: \"Brightwater Industries reports earn out of $42.7m for FY2024 on a reported basis.\" / \"BIH reports earn out of $46.5m for FY2024 on a reported basis.\"",
+            "pc-08 D3#s4 vs D2#s4: \"Elmbrook Group reports cash margin of 4% for FY2025.\" / \"EGH reports cash margin of 4.8% for FY2025.\""
+          ]
+        },
+        "synonym": {
+          "n": 3,
+          "examples": [
+            "ct-08 D2#s3 vs D3#s3: \"Elmbrook Systems reports annual fee of $0.9m for FY2025 on a reported basis.\" / \"Elmbrook Systems reports yearly charges of $1.1m for FY2025 on a reported basis.\"",
+            "ma-04 D1#s4 vs D3#s2: \"Tamsin Systems reports enterprise value of $1083.5m for FY2024 on a reported basis.\" / \"Tamsin Systems reports headline valuation of $922.6m for FY2024 on a reported basis.\"",
+            "pc-06 D1#s4 vs D3#s2: \"Brightwater Holdings reports EBITDA of $83.4m for FY2024 on a reported basis.\" / \"Brightwater Holdings reports operating cash earnings of $92.5m for FY2024 on a reported basis.\""
+          ]
+        },
+        "basis": {
+          "n": 3,
+          "examples": [
+            "ct-09 D2#s3 vs D3#s3: \"Meridian Vale Systems reports term years of 6 years for FY2024 on a reported basis.\" / \"Meridian Vale Systems reports term years of 7 years for FY2024 on a adjusted (management definition) basis.\"",
+            "pc-10 D1#s1 vs D2#s1: \"Quillon Industries reports capex of $5.6m for FY2025 on a reported basis.\" / \"Quillon Industries reports capex of $4.2m for FY2025 on a adjusted (management definition) basis.\"",
+            "sc-07 D1#s1 vs D2#s1: \"Pelham Annals reports witness count of 49 for FY2024 on a reported basis.\" / \"Pelham Annals reports witness count of 58 for FY2024 on a adjusted (management definition) basis.\""
+          ]
+        },
+        "confirmed": {
+          "n": 3,
+          "examples": [
+            "ma-07 D3#s4 vs D2#s4: \"Esker Holdings reports annual customer churn of 16.7% for FY2025.\" / \"Esker Holdings reports annual customer churn of 12.3% for FY2025.\"",
+            "sc-06 D3#s4 vs D2#s4: \"Tellmar Fragments reports recorded variant readings of 1580 for FY2024.\" / \"Tellmar Fragments reports recorded variant readings of 2000 for FY2024.\"",
+            "sc-08 D2#s3 vs D3#s3: \"Book of Hessin reports line count of 34 for FY2024.\" / \"Book of Hessin reports line count of 30 for FY2024.\""
+          ]
+        },
+        "unit_word": {
+          "n": 1,
+          "examples": [
+            "ma-09 D2#s3 vs D3#s3: \"Meridian Vale Industries reports earn out of $70.1m for FY2024 on a reported basis.\" / \"Meridian Vale Industries reports earn out of USD 80.7 million for FY2024 on a reported basis.\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:rounding": {
+          "n": 11,
+          "examples": [
+            "ct-05 flagged CONFIRMED_CONFLICT: \"Sorrel Holdings reports uptime commitment of 99.31% for FY2025.\" / \"Sorrel Holdings reports uptime commitment of 99.509% for FY2025.\"",
+            "ct-05 flagged POTENTIAL_CONFLICT: \"Sorrel Holdings reports annual price escalator of 6.4% for FY2025.\" / \"Sorrel Holdings reports annual price escalator of 6.413% for FY2025.\"",
+            "ct-07 flagged POTENTIAL_CONFLICT: \"Esker Partners reports termination notice period of 77 days for FY2025.\" / \"Esker Partners reports termination notice period of 77.154 days for FY2025.\""
+          ]
+        },
+        "planted:superseded": {
+          "n": 10,
+          "examples": [
+            "ct-05 flagged CONFIRMED_CONFLICT: \"Sorrel Holdings reports term years of 2 years for FY2025 under the original agreement.\" / \"Sorrel Holdings reports term years of 1 years for FY2025 under the amendment no. 1 (supersedes).\"",
+            "ct-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Systems reports insurance cover of $10.8m for FY2024 on a reported basis under the original agreement.\" / \"Elmbrook Systems reports insurance cover of $8.3m for FY2024 on a reported basis under the amendment no. 1 (supersedes).\"",
+            "ma-04 flagged CONFIRMED_CONFLICT: \"Tamsin Systems reports headcount of 1640 for FY2024 under the original agreement.\" / \"Tamsin Systems reports headcount of 2034 for FY2024 under the amendment no. 1 (supersedes).\""
+          ]
+        },
+        "planted:approximation": {
+          "n": 6,
+          "examples": [
+            "ct-04 flagged CONFIRMED_CONFLICT: \"Tamsin Partners reports liability cap of $2.7m for FY2024 on a reported basis.\" / \"Tamsin Partners reports approximately liability cap of $3m for FY2024 on a reported basis.\"",
+            "ct-06 flagged CONFIRMED_CONFLICT: \"Brightwater Partners reports maximum service credit of 10% for FY2025.\" / \"Brightwater Partners reports approximately maximum service credit of 10% for FY2025.\"",
+            "ct-09 flagged POTENTIAL_CONFLICT: \"Meridian Vale Systems reports annual fee of $6.2m for FY2025 on a reported basis.\" / \"Meridian Vale Systems reports approximately annual fee of $6m for FY2025 on a reported basis.\""
+          ]
+        },
+        "planted:diff_entity": {
+          "n": 5,
+          "examples": [
+            "ct-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Systems reports term years of 5 years for FY2025.\" / \"Elmbrook Logistics subsidiary reports term years of 6 years for FY2025.\"",
+            "ma-04 flagged CONFIRMED_CONFLICT: \"Tamsin Systems reports normalised net working capital of $74.2m for FY2024 on a reported basis.\" / \"Tamsin Logistics subsidiary reports normalised net working capital of $87.7m for FY2024 on a reported basis.\"",
+            "ma-09 flagged CONFIRMED_CONFLICT: \"Meridian Vale Industries reports EBITDA of $99.3m for FY2024 on a reported basis.\" / \"Meridian Logistics subsidiary reports EBITDA of $108m for FY2024 on a reported basis.\""
+          ]
+        },
+        "planted:diff_period": {
+          "n": 4,
+          "examples": [
+            "ct-10 flagged CONFIRMED_CONFLICT: \"Quillon Holdings reports annual price escalator of 4.7% for FY2025.\" / \"Quillon Holdings reports annual price escalator of 5.3% for FY2024.\"",
+            "pc-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Group reports capex of $10.3m for FY2025 on a reported basis.\" / \"Elmbrook Group reports capex of $9m for FY2024 on a reported basis.\"",
+            "sc-05 flagged CONFIRMED_CONFLICT: \"Liber Quandos reports folio count of 360 for FY2025.\" / \"Liber Quandos reports folio count of 458 for FY2024.\""
+          ]
+        },
+        "planted:unit_scale": {
+          "n": 3,
+          "examples": [
+            "ct-10 flagged DIFFERENT_REPORTING_BASIS: \"Quillon Holdings reports insurance cover of $10.7m for FY2025 on a reported basis.\" / \"Quillon Holdings reports insurance cover of $10700k for FY2025 on a reported basis.\"",
+            "ma-08 flagged CONFIRMED_CONFLICT: \"Elmbrook Partners reports enterprise value of $737.8m for FY2024 on a reported basis.\" / \"Elmbrook Partners reports enterprise value of $737800k for FY2024 on a reported basis.\"",
+            "pc-08 flagged POTENTIAL_CONFLICT: \"Elmbrook Group reports available liquidity of $19.6m for FY2024 on a reported basis.\" / \"Elmbrook Group reports available liquidity of $19600k for FY2024 on a reported basis.\""
+          ]
+        },
+        "unplanted:different_measures": {
+          "n": 1,
+          "examples": [
+            "sc-07 flagged MISSING_EVIDENCE: \"Pelham Annals: number of surviving folios for FY2024 — not provided.\" / \"Pelham Annals reports lacunae share of 15.832% for FY2024.\""
+          ]
+        },
+        "planted:legal_entity": {
+          "n": 1,
+          "examples": [
+            "sc-09 flagged CONFIRMED_CONFLICT: \"Varro AB reports number of scribal hands of 2 for FY2024.\" / \"Varro Ltd reports number of scribal hands of 3 for FY2024.\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {
+        "interpretation: UNRESOLVED_INTERPRETATION -> CONFIRMED_CONFLICT": 7,
+        "potential: POTENTIAL_CONFLICT -> CONFIRMED_CONFLICT": 5,
+        "missing: MISSING_EVIDENCE -> CONFIRMED_CONFLICT": 1,
+        "fiscal_year_end: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 1,
+        "confirmed: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 1
+      },
+      "dependency_errors_by_plant": {
+        "extra:superseded": 9,
+        "missing:rounding": 6,
+        "extra:diff_entity": 5,
+        "missing:fiscal_year_end": 4,
+        "missing:approximation": 4,
+        "missing:missing": 3,
+        "missing:basis": 3,
+        "missing:confirmed": 1,
+        "missing:superseded": 1
+      },
+      "parse_failures": 0,
+      "findings_dropped_invalid": 0
+    },
+    "C": {
+      "conflicts_missed": 33,
+      "false_alarms_total": 23,
+      "misses_by_plant": {
+        "fiscal_year_end": {
+          "n": 11,
+          "examples": [
+            "ct-04 D1#s1 vs D2#s1: \"Tamsin Partners reports term years of 4 years for FY2025 (fiscal year ending 30 June 2025).\" / \"Tamsin Partners reports term years of 5 years for LTM to 30 Jun 2025.\"",
+            "ct-06 D1#s4 vs D3#s2: \"Brightwater Partners reports liability cap of $3.6m for FY2025 (fiscal year ending 30 June 2025) on a reported basis.\" / \"Brightwater Partners reports liability cap of $4.2m for LTM to 30 Jun 2025 on a reported basis.\"",
+            "ct-09 D1#s1 vs D2#s1: \"Meridian Vale Systems reports maximum service credit of 18.3% for FY2025 (fiscal year ending 30 June 2025).\" / \"Meridian Vale Systems reports maximum service credit of 13.4% for LTM to 30 Jun 2025.\""
+          ]
+        },
+        "alias": {
+          "n": 10,
+          "examples": [
+            "ct-06 D1#s1 vs D2#s1: \"Brightwater Partners reports termination notice period of 93 days for FY2024.\" / \"BPH reports termination notice period of 111 days for FY2024.\"",
+            "ct-08 D1#s4 vs D3#s2: \"Elmbrook Systems reports liability cap of $21m for FY2024 on a reported basis.\" / \"ESH reports liability cap of $24.5m for FY2024 on a reported basis.\"",
+            "ma-04 D3#s1 vs D1#s3: \"Tamsin Systems reports earn out of $23m for FY2025 on a reported basis.\" / \"TSH reports earn out of $29m for FY2025 on a reported basis.\""
+          ]
+        },
+        "synonym": {
+          "n": 10,
+          "examples": [
+            "ct-06 D2#s2 vs D1#s2: \"Brightwater Partners reports uptime commitment of 99.66% for FY2025.\" / \"Brightwater Partners reports availability sla of 88.17% for FY2025.\"",
+            "ct-08 D2#s3 vs D3#s3: \"Elmbrook Systems reports annual fee of $0.9m for FY2025 on a reported basis.\" / \"Elmbrook Systems reports yearly charges of $1.1m for FY2025 on a reported basis.\"",
+            "ma-04 D1#s4 vs D3#s2: \"Tamsin Systems reports enterprise value of $1083.5m for FY2024 on a reported basis.\" / \"Tamsin Systems reports headline valuation of $922.6m for FY2024 on a reported basis.\""
+          ]
+        },
+        "unit_word": {
+          "n": 2,
+          "examples": [
+            "ma-07 D2#s2 vs D1#s2: \"Esker Holdings reports enterprise value of $1399.3m for FY2025 on a reported basis.\" / \"Esker Holdings reports enterprise value of USD 1544.7 million for FY2025 on a reported basis.\"",
+            "ma-09 D2#s3 vs D3#s3: \"Meridian Vale Industries reports earn out of $70.1m for FY2024 on a reported basis.\" / \"Meridian Vale Industries reports earn out of USD 80.7 million for FY2024 on a reported basis.\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:legal_entity": {
+          "n": 12,
+          "examples": [
+            "ct-04 flagged CONFIRMED_CONFLICT: \"Tamsin AB reports termination notice period of 119 days for FY2025.\" / \"Tamsin Ltd reports termination notice period of 97 days for FY2025.\"",
+            "ct-06 flagged CONFIRMED_CONFLICT: \"Brightwater AB reports annual price escalator of 3.9% for FY2025.\" / \"Brightwater Ltd reports annual price escalator of 4.5% for FY2025.\"",
+            "ct-09 flagged CONFIRMED_CONFLICT: \"Meridian AB reports termination notice period of 120 days for FY2024.\" / \"Meridian Ltd reports termination notice period of 97 days for FY2024.\""
+          ]
+        },
+        "planted:approximation": {
+          "n": 11,
+          "examples": [
+            "ct-04 flagged CONFIRMED_CONFLICT: \"Tamsin Partners reports liability cap of $2.7m for FY2024 on a reported basis.\" / \"Tamsin Partners reports approximately liability cap of $3m for FY2024 on a reported basis.\"",
+            "ct-09 flagged CONFIRMED_CONFLICT: \"Meridian Vale Systems reports annual fee of $6.2m for FY2025 on a reported basis.\" / \"Meridian Vale Systems reports approximately annual fee of $6m for FY2025 on a reported basis.\"",
+            "ma-05 flagged CONFIRMED_CONFLICT: \"Sorrel Industries reports EBITDA of $44.6m for FY2024 on a reported basis.\" / \"Sorrel Industries reports approximately EBITDA of $43m for FY2024 on a reported basis.\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {}
+    },
+    "H-A": {
+      "conflicts_missed": 3,
+      "false_alarms_total": 67,
+      "misses_by_plant": {
+        "synonym": {
+          "n": 2,
+          "examples": [
+            "ct-08 D2#s3 vs D3#s3: \"Elmbrook Systems reports annual fee of $0.9m for FY2025 on a reported basis.\" / \"Elmbrook Systems reports yearly charges of $1.1m for FY2025 on a reported basis.\"",
+            "pc-06 D1#s4 vs D3#s2: \"Brightwater Holdings reports EBITDA of $83.4m for FY2024 on a reported basis.\" / \"Brightwater Holdings reports operating cash earnings of $92.5m for FY2024 on a reported basis.\""
+          ]
+        },
+        "fiscal_year_end": {
+          "n": 1,
+          "examples": [
+            "ma-09 D3#s4 vs D2#s4: \"Meridian Vale Industries reports headcount of 711 for FY2025 (fiscal year ending 30 June 2025).\" / \"Meridian Vale Industries reports headcount of 581 for LTM to 30 Jun 2025.\""
+          ]
+        }
+      },
+      "false_alarms_by_kind": {
+        "planted:rounding": {
+          "n": 16,
+          "examples": [
+            "ct-05 flagged POTENTIAL_CONFLICT: \"Sorrel Holdings reports uptime commitment of 99.31% for FY2025.\" / \"Sorrel Holdings reports uptime commitment of 99.509% for FY2025.\"",
+            "ct-05 flagged POTENTIAL_CONFLICT: \"Sorrel Holdings reports annual price escalator of 6.4% for FY2025.\" / \"Sorrel Holdings reports annual price escalator of 6.413% for FY2025.\"",
+            "ct-07 flagged POTENTIAL_CONFLICT: \"Esker Partners reports termination notice period of 77 days for FY2025.\" / \"Esker Partners reports termination notice period of 77.154 days for FY2025.\""
+          ]
+        },
+        "planted:legal_entity": {
+          "n": 12,
+          "examples": [
+            "ct-04 flagged CONFIRMED_CONFLICT: \"Tamsin AB reports termination notice period of 119 days for FY2025.\" / \"Tamsin Ltd reports termination notice period of 97 days for FY2025.\"",
+            "ct-06 flagged CONFIRMED_CONFLICT: \"Brightwater AB reports annual price escalator of 3.9% for FY2025.\" / \"Brightwater Ltd reports annual price escalator of 4.5% for FY2025.\"",
+            "ct-09 flagged CONFIRMED_CONFLICT: \"Meridian AB reports termination notice period of 120 days for FY2024.\" / \"Meridian Ltd reports termination notice period of 97 days for FY2024.\""
+          ]
+        },
+        "planted:approximation": {
+          "n": 11,
+          "examples": [
+            "ct-04 flagged CONFIRMED_CONFLICT: \"Tamsin Partners reports liability cap of $2.7m for FY2024 on a reported basis.\" / \"Tamsin Partners reports approximately liability cap of $3m for FY2024 on a reported basis.\"",
+            "ct-09 flagged CONFIRMED_CONFLICT: \"Meridian Vale Systems reports annual fee of $6.2m for FY2025 on a reported basis.\" / \"Meridian Vale Systems reports approximately annual fee of $6m for FY2025 on a reported basis.\"",
+            "ma-05 flagged CONFIRMED_CONFLICT: \"Sorrel Industries reports EBITDA of $44.6m for FY2024 on a reported basis.\" / \"Sorrel Industries reports approximately EBITDA of $43m for FY2024 on a reported basis.\""
+          ]
+        },
+        "planted:superseded": {
+          "n": 11,
+          "examples": [
+            "ct-05 flagged POTENTIAL_CONFLICT: \"Sorrel Holdings reports term years of 2 years for FY2025 under the original agreement.\" / \"Sorrel Holdings reports term years of 1 years for FY2025 under the amendment no. 1 (supersedes).\"",
+            "ct-08 flagged POTENTIAL_CONFLICT: \"Elmbrook Systems reports insurance cover of $10.8m for FY2024 on a reported basis under the original agreement.\" / \"Elmbrook Systems reports insurance cover of $8.3m for FY2024 on a reported basis under the amendment no. 1 (supersedes).\"",
+            "ct-10 flagged POTENTIAL_CONFLICT: \"Quillon Holdings reports uptime commitment of 99.61% for FY2024 under the original agreement.\" / \"Quillon Holdings reports uptime commitment of 109.47% for FY2024 under the amendment no. 1 (supersedes).\""
+          ]
+        },
+        "planted:diff_period": {
+          "n": 8,
+          "examples": [
+            "ct-05 flagged POTENTIAL_CONFLICT: \"Sorrel Holdings reports maximum service credit of 16.4% for FY2024.\" / \"Sorrel Holdings reports maximum service credit of 12.8% for FY2025.\"",
+            "ct-10 flagged POTENTIAL_CONFLICT: \"Quillon Holdings reports annual price escalator of 4.7% for FY2025.\" / \"Quillon Holdings reports annual price escalator of 5.3% for FY2024.\"",
+            "ma-06 flagged POTENTIAL_CONFLICT: \"Brightwater Industries reports normalised net working capital of $23.7m for FY2024 on a reported basis.\" / \"Brightwater Industries reports normalised net working capital of $27.5m for FY2025 on a reported basis.\""
+          ]
+        },
+        "planted:diff_entity": {
+          "n": 6,
+          "examples": [
+            "ct-08 flagged POTENTIAL_CONFLICT: \"Elmbrook Systems reports term years of 5 years for FY2025.\" / \"Elmbrook Logistics subsidiary reports term years of 6 years for FY2025.\"",
+            "ct-10 flagged POTENTIAL_CONFLICT: \"Quillon Holdings reports term years of 6 years for FY2025.\" / \"Quillon Logistics subsidiary reports term years of 5 years for FY2025.\"",
+            "ma-04 flagged POTENTIAL_CONFLICT: \"Tamsin Systems reports normalised net working capital of $74.2m for FY2024 on a reported basis.\" / \"Tamsin Logistics subsidiary reports normalised net working capital of $87.7m for FY2024 on a reported basis.\""
+          ]
+        },
+        "planted:unit_scale": {
+          "n": 3,
+          "examples": [
+            "ct-10 flagged POTENTIAL_CONFLICT: \"Quillon Holdings reports insurance cover of $10.7m for FY2025 on a reported basis.\" / \"Quillon Holdings reports insurance cover of $10700k for FY2025 on a reported basis.\"",
+            "ma-08 flagged POTENTIAL_CONFLICT: \"Elmbrook Partners reports enterprise value of $737.8m for FY2024 on a reported basis.\" / \"Elmbrook Partners reports enterprise value of $737800k for FY2024 on a reported basis.\"",
+            "pc-08 flagged POTENTIAL_CONFLICT: \"Elmbrook Group reports available liquidity of $19.6m for FY2024 on a reported basis.\" / \"Elmbrook Group reports available liquidity of $19600k for FY2024 on a reported basis.\""
+          ]
+        }
+      },
+      "class_confusions_on_found": {
+        "fiscal_year_end: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 10,
+        "alias: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 10,
+        "synonym: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 8,
+        "unit_word: CONFIRMED_CONFLICT -> POTENTIAL_CONFLICT": 2
+      }
+    }
+  }
+}

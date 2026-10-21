@@ -1,0 +1,376 @@
+{
+  "id": "sc-06",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Lorne Chronicle: scholarly review (fictional)",
+  "entity": "Lorne Chronicle",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Lorne Chronicle (fictional, authored test material).\nInsured value at Lorne Chronicle stood at $10.9m in FY2024 (reported basis). Lorne Chronicle had missing leaves of 39 in FY2024. For Lorne Ltd, binding date (CE) in FY2025 was 1271. Leaf height at Lorne Chronicle stood at 196 mm in FY2025."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Lorne Chronicle (fictional, authored test material).\nRuled columns per page at Lorne Chronicle stood at 3 in the twelve months to 31 Mar 2025. Lorne Chronicle had insured value of USD 9.5 million in FY2024 (reported basis). For Lorne Chronicle, missing leaves in FY2024 was 44. Illuminated initials at Lorne Chronicle stood at 96 in FY2025. The identification of the main scribe for Lorne Chronicle is understood as follows: an unidentified scribe trained in the same house."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Lorne Chronicle (fictional, authored test material).\nLorne Chronicle has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. Ruled columns per page at Lorne Chronicle stood at 2 in FY2025. Lorne Limited had binding date (CE) of 1503 in FY2025. For Lorne Chronicle, leaf height in FY2025 was approximately 245 mm. Illuminated initials at Lorne Chronicle stood at 96 in FY2025. The identification of the main scribe for Lorne Chronicle is understood as follows: the scribe of the sister manuscript at Elsing."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 74,
+      "end": 150,
+      "text": "Insured value at Lorne Chronicle stood at $10.9m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 151,
+      "end": 202,
+      "text": "Lorne Chronicle had missing leaves of 39 in FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 203,
+      "end": 255,
+      "text": "For Lorne Ltd, binding date (CE) in FY2025 was 1271."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 256,
+      "end": 313,
+      "text": "Leaf height at Lorne Chronicle stood at 196 mm in FY2025."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 74,
+      "end": 163,
+      "text": "Ruled columns per page at Lorne Chronicle stood at 3 in the twelve months to 31 Mar 2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 164,
+      "end": 244,
+      "text": "Lorne Chronicle had insured value of USD 9.5 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 245,
+      "end": 298,
+      "text": "For Lorne Chronicle, missing leaves in FY2024 was 44."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 299,
+      "end": 361,
+      "text": "Illuminated initials at Lorne Chronicle stood at 96 in FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 362,
+      "end": 495,
+      "text": "The identification of the main scribe for Lorne Chronicle is understood as follows: an unidentified scribe trained in the same house."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 175,
+      "end": 238,
+      "text": "Ruled columns per page at Lorne Chronicle stood at 2 in FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 239,
+      "end": 293,
+      "text": "Lorne Limited had binding date (CE) of 1503 in FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 294,
+      "end": 362,
+      "text": "For Lorne Chronicle, leaf height in FY2025 was approximately 245 mm."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 363,
+      "end": 425,
+      "text": "Illuminated initials at Lorne Chronicle stood at 96 in FY2025."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 426,
+      "end": 556,
+      "text": "The identification of the main scribe for Lorne Chronicle is understood as follows: the scribe of the sister manuscript at Elsing."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Lorne Chronicle",
+      "concept": "insurance_value",
+      "value": 10.9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Lorne Chronicle",
+      "concept": "missing_leaves",
+      "value": 39,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Lorne Ltd",
+      "concept": "binding_date",
+      "value": 1271,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Lorne Chronicle",
+      "concept": "leaf_height",
+      "value": 196,
+      "unit": "mm",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Lorne Chronicle",
+      "concept": "ruled_columns",
+      "value": 3,
+      "unit": "count",
+      "period": "LTM to 31 Mar 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Lorne Chronicle",
+      "concept": "insurance_value",
+      "value": 9.5,
+      "unit": "USD million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Lorne Chronicle",
+      "concept": "missing_leaves",
+      "value": 44,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Lorne Chronicle",
+      "concept": "illuminated_initials",
+      "value": 96,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Lorne Chronicle",
+      "concept": "scribe_identity",
+      "value": "an unidentified scribe trained in the same house",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Lorne Chronicle",
+      "concept": "ruled_columns",
+      "value": 2,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Lorne Limited",
+      "concept": "binding_date",
+      "value": 1503,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Lorne Chronicle",
+      "concept": "leaf_height",
+      "value": 245,
+      "unit": "mm",
+      "period": "FY2025",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Lorne Chronicle",
+      "concept": "illuminated_initials",
+      "value": 96,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Lorne Chronicle",
+      "concept": "scribe_identity",
+      "value": "the scribe of the sister manuscript at Elsing",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Ruled columns per page and Insured value of Lorne Chronicle are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Missing leaves and Binding date (CE) of Lorne Chronicle are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"USD million\" is the same unit as $m"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D3#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding_tight",
+        "note": "difference within rounding (0.3% or less)"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "ruled columns per page",
+          "acceptable": [
+            "D2#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D1#s1",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "missing leaves",
+          "acceptable": [
+            "D1#s2",
+            "D2#s3"
+          ]
+        },
+        {
+          "input": "binding date (CE)",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D2#s1",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s3",
+        "D3#s2"
+      ]
+    }
+  }
+}

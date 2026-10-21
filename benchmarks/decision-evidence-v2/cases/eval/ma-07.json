@@ -1,0 +1,339 @@
+{
+  "id": "ma-07",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Pennant Software: m and a review (fictional)",
+  "entity": "Pennant Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Vendor due diligence summary",
+      "text": "Vendor due diligence summary: Pennant Software (fictional, authored test material).\nPennant Software had run-rate EBITDA of €44.9m in FY2024 (reported basis), first issue. For Pennant Nordic, a subsidiary, pension deficit in FY2025 was €39.5m (reported basis). Cost synergies at Pennant GmbH stood at €27.9m in FY2024 (reported basis). Pennant Software had employees of 1651 in FY2024."
+    },
+    {
+      "id": "D2",
+      "title": "Management presentation",
+      "text": "Management presentation: Pennant Software (fictional, authored test material).\nPennant Software had run-rate EBITDA of €57.4m in FY2024 (reported basis), second issue (corrects the first issue). For Pennant Software, pension deficit in FY2025 was €51.5m (reported basis). Headline purchase price at Pennant Software stood at €801.2m with effect from 1 Jan 2025 (reported basis). Pennant Software had order backlog of €175.2m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3",
+      "title": "Buyer quality-of-earnings memo",
+      "text": "Buyer quality-of-earnings memo: Pennant Software (fictional, authored test material).\nPennant Oy had cost synergies of €22.9m in FY2024 (reported basis). For Pennant Software, employees in FY2024 was roughly 1610. Headline purchase price at Pennant Software stood at €941.2m with effect from 1 Jul 2025 (reported basis). Pennant Software had order backlog of €135.3m in FY2025 (reported basis)."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 84,
+      "end": 171,
+      "text": "Pennant Software had run-rate EBITDA of €44.9m in FY2024 (reported basis), first issue."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 172,
+      "end": 260,
+      "text": "For Pennant Nordic, a subsidiary, pension deficit in FY2025 was €39.5m (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 261,
+      "end": 335,
+      "text": "Cost synergies at Pennant GmbH stood at €27.9m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 336,
+      "end": 385,
+      "text": "Pennant Software had employees of 1651 in FY2024."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 79,
+      "end": 194,
+      "text": "Pennant Software had run-rate EBITDA of €57.4m in FY2024 (reported basis), second issue (corrects the first issue)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 195,
+      "end": 271,
+      "text": "For Pennant Software, pension deficit in FY2025 was €51.5m (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 272,
+      "end": 378,
+      "text": "Headline purchase price at Pennant Software stood at €801.2m with effect from 1 Jan 2025 (reported basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 379,
+      "end": 452,
+      "text": "Pennant Software had order backlog of €175.2m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 86,
+      "end": 153,
+      "text": "Pennant Oy had cost synergies of €22.9m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 154,
+      "end": 213,
+      "text": "For Pennant Software, employees in FY2024 was roughly 1610."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 214,
+      "end": 320,
+      "text": "Headline purchase price at Pennant Software stood at €941.2m with effect from 1 Jul 2025 (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 321,
+      "end": 394,
+      "text": "Pennant Software had order backlog of €135.3m in FY2025 (reported basis)."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Pennant Software",
+      "concept": "run_rate_ebitda",
+      "value": 44.9,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "first issue"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Pennant Nordic, a subsidiary",
+      "concept": "pension_deficit",
+      "value": 39.5,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Pennant GmbH",
+      "concept": "synergies",
+      "value": 27.9,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Pennant Software",
+      "concept": "employees",
+      "value": 1651,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Pennant Software",
+      "concept": "run_rate_ebitda",
+      "value": 57.4,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "second issue (corrects the first issue)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Pennant Software",
+      "concept": "pension_deficit",
+      "value": 51.5,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Pennant Software",
+      "concept": "purchase_price",
+      "value": 801.2,
+      "unit": "€m",
+      "period": null,
+      "basis": "reported",
+      "effectiveDate": "1 Jan 2025"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Pennant Software",
+      "concept": "order_backlog",
+      "value": 175.2,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Pennant Oy",
+      "concept": "synergies",
+      "value": 22.9,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Pennant Software",
+      "concept": "employees",
+      "value": 1610,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "roughly"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Pennant Software",
+      "concept": "purchase_price",
+      "value": 941.2,
+      "unit": "€m",
+      "period": null,
+      "basis": "reported",
+      "effectiveDate": "1 Jul 2025"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Pennant Software",
+      "concept": "order_backlog",
+      "value": 135.3,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Run-rate EBITDA and Pension deficit of Pennant Software are adequate for the board recommendation to sign"
+    },
+    {
+      "id": "C2",
+      "text": "Employees and Order backlog of Pennant Software are adequate for the board recommendation to sign"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "corrected",
+        "note": "a corrected issue replaces the first"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "subsidiary",
+        "note": "a subsidiary, not the group"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity_other",
+        "note": "two different legal entities (Finnish Oy and German GmbH)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "approx_near",
+        "note": "a stated approximation within 3% of the exact figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "effective_date",
+        "note": "two values effective from different dates: a change over time, not a conflict"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "run-rate EBITDA",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "pension deficit",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "employees",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        },
+        {
+          "input": "order backlog",
+          "acceptable": [
+            "D2#s4",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s4",
+        "D2#s4",
+        "D3#s2",
+        "D3#s4"
+      ]
+    }
+  }
+}

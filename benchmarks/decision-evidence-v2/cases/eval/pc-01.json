@@ -1,0 +1,336 @@
+{
+  "id": "pc-01",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Castellan Software: private credit review (fictional)",
+  "entity": "Castellan Software",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Castellan Software (fictional, authored test material).\nCastellan Software had gross debt of $292.8m in FY2025 (reported basis). For Castellan Software, free cash flow in H1 2025 was $23.8m (reported basis). Senior leverage at Castellan Software stood at 2.46x in FY2025. Castellan Software had receivables in arrears of 5.1% in FY2024, as originally reported."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Castellan Software (fictional, authored test material).\nCastellan Software had gross debt of USD 292.8 million in FY2025 (reported basis). For Castellan Software, free cash flow in FY2025 was $49.1m (reported basis). Cash on balance sheet at Castellan Software stood at $10.1m in FY2024 (reported basis), first issue. Castellan Nordic, a subsidiary had debt service cover ratio of 1.07x in FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Castellan Software (fictional, authored test material).\nCastellan Software had senior leverage of 3.08x in FY2023. For Castellan Software, receivables in arrears in FY2024 was 3.7%, as restated in the latest accounts. Cash on balance sheet at Castellan Software stood at $8.2m in FY2024 (reported basis), second issue (corrects the first issue). Castellan Software had debt service cover ratio of 1.42x in FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 79,
+      "end": 151,
+      "text": "Castellan Software had gross debt of $292.8m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 152,
+      "end": 230,
+      "text": "For Castellan Software, free cash flow in H1 2025 was $23.8m (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 231,
+      "end": 294,
+      "text": "Senior leverage at Castellan Software stood at 2.46x in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 295,
+      "end": 383,
+      "text": "Castellan Software had receivables in arrears of 5.1% in FY2024, as originally reported."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 81,
+      "end": 163,
+      "text": "Castellan Software had gross debt of USD 292.8 million in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 164,
+      "end": 241,
+      "text": "For Castellan Software, free cash flow in FY2025 was $49.1m (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 242,
+      "end": 342,
+      "text": "Cash on balance sheet at Castellan Software stood at $10.1m in FY2024 (reported basis), first issue."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 343,
+      "end": 422,
+      "text": "Castellan Nordic, a subsidiary had debt service cover ratio of 1.07x in FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 85,
+      "end": 143,
+      "text": "Castellan Software had senior leverage of 3.08x in FY2023."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 144,
+      "end": 246,
+      "text": "For Castellan Software, receivables in arrears in FY2024 was 3.7%, as restated in the latest accounts."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 247,
+      "end": 374,
+      "text": "Cash on balance sheet at Castellan Software stood at $8.2m in FY2024 (reported basis), second issue (corrects the first issue)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 375,
+      "end": 442,
+      "text": "Castellan Software had debt service cover ratio of 1.42x in FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Castellan Software",
+      "concept": "gross_debt",
+      "value": 292.8,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Castellan Software",
+      "concept": "free_cash_flow",
+      "value": 23.8,
+      "unit": "$m",
+      "period": "H1 2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Castellan Software",
+      "concept": "senior_leverage",
+      "value": 2.46,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Castellan Software",
+      "concept": "arrears_rate",
+      "value": 5.1,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as originally reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Castellan Software",
+      "concept": "gross_debt",
+      "value": 292.8,
+      "unit": "USD million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Castellan Software",
+      "concept": "free_cash_flow",
+      "value": 49.1,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Castellan Software",
+      "concept": "cash_balance",
+      "value": 10.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "first issue"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Castellan Nordic, a subsidiary",
+      "concept": "dscr",
+      "value": 1.07,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Castellan Software",
+      "concept": "senior_leverage",
+      "value": 3.08,
+      "unit": "x",
+      "period": "FY2023",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Castellan Software",
+      "concept": "arrears_rate",
+      "value": 3.7,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null,
+      "version": "as restated in the latest accounts"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Castellan Software",
+      "concept": "cash_balance",
+      "value": 8.2,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "second issue (corrects the first issue)"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Castellan Software",
+      "concept": "dscr",
+      "value": 1.42,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Gross debt and Receivables in arrears of Castellan Software are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Cash on balance sheet and Debt service cover ratio of Castellan Software are adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "same_amount_other_wording",
+        "note": "the same amount, written with \"USD million\""
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "part_year",
+        "note": "a half-year figure and a full-year figure: different periods"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_year",
+        "note": "different fiscal years"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "restated",
+        "note": "a restatement replaces the original figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "corrected",
+        "note": "a corrected issue replaces the first"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "subsidiary",
+        "note": "a subsidiary, not the group"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "gross debt",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "receivables in arrears",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "cash on balance sheet",
+          "acceptable": [
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "debt service cover ratio",
+          "acceptable": [
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D2#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D3#s3",
+        "D3#s4"
+      ]
+    }
+  }
+}

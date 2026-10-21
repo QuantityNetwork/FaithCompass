@@ -1,0 +1,376 @@
+{
+  "id": "ma-05",
+  "domain": "m_and_a",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ferrovane Energy: m and a review (fictional)",
+  "entity": "Ferrovane Energy",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Vendor due diligence summary",
+      "text": "Vendor due diligence summary: Ferrovane Energy (fictional, authored test material).\nFor Ferrovane Energy, order backlog in FY2024 was €263.4m (reported basis). Pension deficit at Ferrovane Energy stood at NZD 34.3 million in FY2024 (reported basis). Ferrovane Ltd had capex as share of sales of 1.6% in FY2025. For Ferrovane Energy, employees in FY2024 was 3136."
+    },
+    {
+      "id": "D2",
+      "title": "Management presentation",
+      "text": "Management presentation: Ferrovane Energy (fictional, authored test material).\nFor Ferrovane Energy, run-rate EBITDA in FY2025 was €91.3m (reported basis). Net revenue retention at Ferrovane Energy stood at 107.7% in the twelve months to 31 Mar 2025. Ferrovane Energy had order backlog of EUR 195.2 million in FY2024 (reported basis). For Ferrovane Energy, pension deficit in FY2024 was NZD 48m (reported basis). As to Ferrovane Energy, the deal structure is: share purchase of the whole group. Throughout the documents of this review, \"annualised operating profit\" means the same measure as run-rate EBITDA."
+    },
+    {
+      "id": "D3",
+      "title": "Buyer quality-of-earnings memo",
+      "text": "Buyer quality-of-earnings memo: Ferrovane Energy (fictional, authored test material).\nFerrovane Energy has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. For Ferrovane Energy, annualised operating profit in FY2025 was €70.3m (reported basis). Net revenue retention at Ferrovane Energy stood at 96.6% in FY2025. Ferrovane Limited had capex as share of sales of 2.3% in FY2025. For Ferrovane Energy, employees in FY2024 was approximately 3920. As to Ferrovane Energy, the deal structure is: asset purchase of the operating business only."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 84,
+      "end": 159,
+      "text": "For Ferrovane Energy, order backlog in FY2024 was €263.4m (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 160,
+      "end": 249,
+      "text": "Pension deficit at Ferrovane Energy stood at NZD 34.3 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 250,
+      "end": 310,
+      "text": "Ferrovane Ltd had capex as share of sales of 1.6% in FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 311,
+      "end": 362,
+      "text": "For Ferrovane Energy, employees in FY2024 was 3136."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 79,
+      "end": 155,
+      "text": "For Ferrovane Energy, run-rate EBITDA in FY2025 was €91.3m (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 156,
+      "end": 250,
+      "text": "Net revenue retention at Ferrovane Energy stood at 107.7% in the twelve months to 31 Mar 2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 251,
+      "end": 334,
+      "text": "Ferrovane Energy had order backlog of EUR 195.2 million in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 335,
+      "end": 412,
+      "text": "For Ferrovane Energy, pension deficit in FY2024 was NZD 48m (reported basis)."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 413,
+      "end": 494,
+      "text": "As to Ferrovane Energy, the deal structure is: share purchase of the whole group."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 184,
+      "end": 272,
+      "text": "For Ferrovane Energy, annualised operating profit in FY2025 was €70.3m (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 273,
+      "end": 340,
+      "text": "Net revenue retention at Ferrovane Energy stood at 96.6% in FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 341,
+      "end": 405,
+      "text": "Ferrovane Limited had capex as share of sales of 2.3% in FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 406,
+      "end": 471,
+      "text": "For Ferrovane Energy, employees in FY2024 was approximately 3920."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 472,
+      "end": 565,
+      "text": "As to Ferrovane Energy, the deal structure is: asset purchase of the operating business only."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ferrovane Energy",
+      "concept": "order_backlog",
+      "value": 263.4,
+      "unit": "€m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ferrovane Energy",
+      "concept": "pension_deficit",
+      "value": 34.3,
+      "unit": "NZD million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ferrovane Ltd",
+      "concept": "capex_intensity",
+      "value": 1.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ferrovane Energy",
+      "concept": "employees",
+      "value": 3136,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ferrovane Energy",
+      "concept": "run_rate_ebitda",
+      "value": 91.3,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ferrovane Energy",
+      "concept": "net_retention",
+      "value": 107.7,
+      "unit": "%",
+      "period": "LTM to 31 Mar 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ferrovane Energy",
+      "concept": "order_backlog",
+      "value": 195.2,
+      "unit": "EUR million",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Ferrovane Energy",
+      "concept": "pension_deficit",
+      "value": 48,
+      "unit": "NZD m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Ferrovane Energy",
+      "concept": "deal_structure_a",
+      "value": true,
+      "exclusiveGroup": "deal_structure"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ferrovane Energy",
+      "concept": "annualised_operating_profit",
+      "value": 70.3,
+      "unit": "€m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ferrovane Energy",
+      "concept": "net_retention",
+      "value": 96.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Ferrovane Limited",
+      "concept": "capex_intensity",
+      "value": 2.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ferrovane Energy",
+      "concept": "employees",
+      "value": 3920,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Ferrovane Energy",
+      "concept": "deal_structure_b",
+      "value": false,
+      "exclusiveGroup": "deal_structure"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Run-rate EBITDA and Net revenue retention of Ferrovane Energy are adequate for the board recommendation to sign"
+    },
+    {
+      "id": "C2",
+      "text": "Order backlog and Pension deficit of Ferrovane Energy are adequate for the board recommendation to sign"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"annualised operating profit\" is defined as the same measure as \"run-rate EBITDA\""
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"EUR million\" is the same unit as €m"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_unlisted",
+        "note": "\"NZD million\" and \"NZD m\" are the same unit (a currency outside the deterministic unit table)"
+      },
+      {
+        "facts": [
+          "D3#s3",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "approx_far",
+        "note": "a stated approximation 25% away from the exact figure: not consistent"
+      },
+      {
+        "facts": [
+          "D2#s5",
+          "D3#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "run-rate EBITDA",
+          "acceptable": [
+            "D2#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "net revenue retention",
+          "acceptable": [
+            "D2#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "order backlog",
+          "acceptable": [
+            "D1#s1",
+            "D2#s3"
+          ]
+        },
+        {
+          "input": "pension deficit",
+          "acceptable": [
+            "D1#s2",
+            "D2#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s3",
+        "D2#s4"
+      ]
+    }
+  }
+}

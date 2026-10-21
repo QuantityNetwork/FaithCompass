@@ -1,0 +1,338 @@
+{
+  "id": "ct-09",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Hollins Energy: contract review (fictional)",
+  "entity": "Hollins Energy",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Framework agreement",
+      "text": "Framework agreement: Hollins Energy (fictional, authored test material).\nThroughout the documents of this review, the Supplier means Hollins Energy. Warranty period at Hollins Energy stood at 14 months in FY2024. Hollins Energy had performance bond of SEK 6.1m in FY2024 (reported basis). For Hollins Energy, volume rebate in FY2024 was 8.6%. Annual service charges at Northstar stood at SEK 31.5m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2",
+      "title": "Change order",
+      "text": "Change order: Hollins Energy (fictional, authored test material).\nHollins Energy trades under the name Northstar. Total contract value at Hollins Energy stood at SEK 382.3m in FY2024 (reported basis). Incident response time of Hollins Energy in FY2024: to be confirmed; not included in this document. For the Supplier, volume rebate in FY2024 was 7.6%. Annual service charges at Hollins Energy stood at SEK 27.4m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3",
+      "title": "Procurement evaluation note",
+      "text": "Procurement evaluation note: Hollins Energy (fictional, authored test material).\nWarranty period at Hollins Energy stood at 19 months in FY2024. Hollins Energy had performance bond of SEK 4.3m in FY2024 (pro forma (including the planned acquisition) basis). For Hollins Energy, total contract value was SEK 315.5m (reported basis). Incident response time at Hollins Energy stood at 18 hours in FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 149,
+      "end": 212,
+      "text": "Warranty period at Hollins Energy stood at 14 months in FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 213,
+      "end": 288,
+      "text": "Hollins Energy had performance bond of SEK 6.1m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 289,
+      "end": 342,
+      "text": "For Hollins Energy, volume rebate in FY2024 was 8.6%."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 343,
+      "end": 425,
+      "text": "Annual service charges at Northstar stood at SEK 31.5m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 114,
+      "end": 200,
+      "text": "Total contract value at Hollins Energy stood at SEK 382.3m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 201,
+      "end": 300,
+      "text": "Incident response time of Hollins Energy in FY2024: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 301,
+      "end": 352,
+      "text": "For the Supplier, volume rebate in FY2024 was 7.6%."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 353,
+      "end": 440,
+      "text": "Annual service charges at Hollins Energy stood at SEK 27.4m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 81,
+      "end": 144,
+      "text": "Warranty period at Hollins Energy stood at 19 months in FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 145,
+      "end": 257,
+      "text": "Hollins Energy had performance bond of SEK 4.3m in FY2024 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 258,
+      "end": 331,
+      "text": "For Hollins Energy, total contract value was SEK 315.5m (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 332,
+      "end": 401,
+      "text": "Incident response time at Hollins Energy stood at 18 hours in FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Hollins Energy",
+      "concept": "warranty_period",
+      "value": 14,
+      "unit": "months",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Hollins Energy",
+      "concept": "performance_bond",
+      "value": 6.1,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Hollins Energy",
+      "concept": "volume_rebate",
+      "value": 8.6,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Northstar",
+      "concept": "annual_charges",
+      "value": 31.5,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Hollins Energy",
+      "concept": "contract_value",
+      "value": 382.3,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Hollins Energy",
+      "concept": "response_time",
+      "value": null,
+      "unit": "hours",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "the Supplier",
+      "concept": "volume_rebate",
+      "value": 7.6,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Hollins Energy",
+      "concept": "annual_charges",
+      "value": 27.4,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Hollins Energy",
+      "concept": "warranty_period",
+      "value": 19,
+      "unit": "months",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Hollins Energy",
+      "concept": "performance_bond",
+      "value": 4.3,
+      "unit": "SEK m",
+      "period": "FY2024",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Hollins Energy",
+      "concept": "contract_value",
+      "value": 315.5,
+      "unit": "SEK m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Hollins Energy",
+      "concept": "response_time",
+      "value": 18,
+      "unit": "hours",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Warranty period and Performance bond of Hollins Energy are adequate for the award recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "Total contract value and Incident response time of Hollins Energy are adequate for the award recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D3#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s2"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Supplier\" is defined in the documents as Hollins Energy"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Hollins Energy is stated to trade as \"Northstar\""
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "warranty period",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "performance bond",
+          "acceptable": [
+            "D1#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "total contract value",
+          "acceptable": [
+            "D2#s1",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "incident response time",
+          "acceptable": [
+            "D2#s2",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D2#s1",
+        "D2#s2",
+        "D3#s3",
+        "D3#s4"
+      ]
+    }
+  }
+}

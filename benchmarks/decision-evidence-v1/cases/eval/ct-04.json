@@ -1,0 +1,367 @@
+{
+  "id": "ct-04",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "title": "Tamsin Partners: contract review (fictional)",
+  "entity": "Tamsin Partners",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Tamsin Partners (fictional).\nIn this document \"TPH\" means Tamsin Partners. Tamsin Partners reports term years of 4 years for FY2025 (fiscal year ending 30 June 2025). Tamsin Ltd reports termination notice period of 97 days for FY2025. Tamsin Partners reports approximately liability cap of $3m for FY2024 on a reported basis. Tamsin Partners reports annual fee of $9m for FY2024 on a reported basis. For Tamsin Partners, the renewal is: renews automatically for successive 12-month terms. The fiscal year of Tamsin Partners ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Tamsin Partners (fictional).\nTamsin Partners reports term years of 5 years for LTM to 30 Jun 2025. Tamsin AB reports termination notice period of 119 days for FY2025. Tamsin Partners reports annual price escalator of 2.3% for FY2024 on a reported basis. Tamsin Partners reports maximum service credit of 21.2%. For Tamsin Partners, the renewal is: expires at the end of the initial term unless renewed in writing."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Tamsin Partners (fictional).\nTamsin Partners reports liability cap of $2.7m for FY2024 on a reported basis. Tamsin Partners reports annual fee of $7.6m for FY2024 on a reported basis. Tamsin Partners reports annual price escalator of 2.7% for FY2024 on a adjusted (management definition) basis. Tamsin Partners reports maximum service credit of 17.5% for FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 103,
+      "end": 194,
+      "text": "Tamsin Partners reports term years of 4 years for FY2025 (fiscal year ending 30 June 2025)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 195,
+      "end": 262,
+      "text": "Tamsin Ltd reports termination notice period of 97 days for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 263,
+      "end": 353,
+      "text": "Tamsin Partners reports approximately liability cap of $3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 354,
+      "end": 427,
+      "text": "Tamsin Partners reports annual fee of $9m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 428,
+      "end": 516,
+      "text": "For Tamsin Partners, the renewal is: renews automatically for successive 12-month terms."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 48,
+      "end": 117,
+      "text": "Tamsin Partners reports term years of 5 years for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 118,
+      "end": 185,
+      "text": "Tamsin AB reports termination notice period of 119 days for FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 186,
+      "end": 272,
+      "text": "Tamsin Partners reports annual price escalator of 2.3% for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 273,
+      "end": 329,
+      "text": "Tamsin Partners reports maximum service credit of 21.2%."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 330,
+      "end": 432,
+      "text": "For Tamsin Partners, the renewal is: expires at the end of the initial term unless renewed in writing."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 53,
+      "end": 131,
+      "text": "Tamsin Partners reports liability cap of $2.7m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 132,
+      "end": 207,
+      "text": "Tamsin Partners reports annual fee of $7.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 208,
+      "end": 318,
+      "text": "Tamsin Partners reports annual price escalator of 2.7% for FY2024 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 319,
+      "end": 386,
+      "text": "Tamsin Partners reports maximum service credit of 17.5% for FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Tamsin Partners",
+      "concept": "term_years",
+      "value": 4,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Tamsin Ltd",
+      "concept": "notice_period",
+      "value": 97,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Tamsin Partners",
+      "concept": "liability_cap",
+      "value": 3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "qualifier": "approximately"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Tamsin Partners",
+      "concept": "annual_fee",
+      "value": 9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Tamsin Partners",
+      "concept": "renewal_a",
+      "value": true,
+      "exclusiveGroup": "renewal"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Tamsin Partners",
+      "concept": "term_years",
+      "value": 5,
+      "unit": "years",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Tamsin AB",
+      "concept": "notice_period",
+      "value": 119,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Tamsin Partners",
+      "concept": "price_escalator",
+      "value": 2.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Tamsin Partners",
+      "concept": "service_credit",
+      "value": 21.2,
+      "unit": "%",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Tamsin Partners",
+      "concept": "renewal_b",
+      "value": false,
+      "exclusiveGroup": "renewal"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Tamsin Partners",
+      "concept": "liability_cap",
+      "value": 2.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Tamsin Partners",
+      "concept": "annual_fee",
+      "value": 7.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Tamsin Partners",
+      "concept": "price_escalator",
+      "value": 2.7,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Tamsin Partners",
+      "concept": "service_credit",
+      "value": 17.5,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The initial term and liability cap of Tamsin Partners support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The annual fee of Tamsin Partners supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "legal_entity",
+        "note": "two different legal entities (Swedish AB and UK Ltd) in one group"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "approximation",
+        "note": "a stated approximation consistent with the exact figure (3%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "initial term",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "liability cap",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "annual fee",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s3",
+        "D2#s1",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s4",
+        "D3#s2"
+      ]
+    }
+  }
+}

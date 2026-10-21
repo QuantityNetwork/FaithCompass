@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "ab39af8ea946e9c4bd1f8f5313e386a21b9e6d778d603c48362e89ea44e56819",
+    "prompt_chars": 3416
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s2\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s3\", \"D2#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s4\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s3\", \"D1#s2\"],\n      \"class\": \"MISSING_EVIDENCE\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D3#s5\"],\n      \"class\": \"DIFFERENT_REPORTING_BASIS\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s2\", \"D3#s1\", \"D1#s1\", \"D2#s1\", \"D3#s2\"],\n    \"C2\": [\"D2#s2\", \"D3#s3\", \"D1#s2\", \"D2#s3\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s2\", \"D3#s1\", \"D1#s1\", \"D2#s1\", \"D3#s2\"],\n    \"C2\": [\"D2#s2\", \"D3#s3\", \"D1#s2\", \"D2#s3\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 867,
+      "completion_tokens": 339
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2608.8968190001324,
+  "usd": 0.0008892,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Vendor due diligence summary\nVendor due diligence summary: Thornbury Software (fictional, authored test material).\nThroughout the documents of this review, the Target means Thornbury Software. [D1#s1] Thornbury Software had pension deficit of €18.6m in FY2025 (reported basis). [D1#s2] For Thornbury Software, run-rate EBITDA in FY2024 was €20.6m (reported basis). [D1#s3] Capex as share of sales at the Target stood at 12.1% in FY2025. [D1#s4] Lumen had net revenue retention of 132.7% in FY2025. [D1#s5] The earn-out trigger for Thornbury Software is understood as follows: measured on reported EBITDA.\n\n## D2 Management presentation\nManagement presentation: Thornbury Software (fictional, authored test material).\nThornbury Software trades under the name Lumen. [D2#s1] Thornbury Software had employees of 2013 in FY2024 (reported basis). [D2#s2] For Thornbury Software, order backlog was €53.8m (reported basis). [D2#s3] Run-rate EBITDA of Thornbury Software in FY2024: to be confirmed; not included in this document. [D2#s4] Thornbury Software had capex as share of sales of 10.6% in FY2025.\n\n## D3 Buyer quality-of-earnings memo\nBuyer quality-of-earnings memo: Thornbury Software (fictional, authored test material).\n[D3#s1] Thornbury Software had pension deficit of €20.7m in FY2025 (reported basis). [D3#s2] For Thornbury Software, employees in FY2024 was 1705 (pro forma (including the planned acquisition) basis). [D3#s3] Order backlog at Thornbury Software stood at €69.5m in FY2025 (reported basis). [D3#s4] Thornbury Software had net revenue retention of 119.6% in FY2025. [D3#s5] The earn-out trigger for Thornbury Software is understood as follows: measured on EBITDA before integration costs.\n\n# Conclusions\nC1: Pension deficit and Employees of Thornbury Software are adequate for the board recommendation to sign\nC2: Order backlog and Run-rate EBITDA of Thornbury Software are adequate for the board recommendation to sign",
+  "extra": {
+    "sdep_sha256": "d153cdd79f4f2aa44d918c26e278e98aad4611c81c48a62d68c0d24ae1c745ee"
+  }
+}

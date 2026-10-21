@@ -1,0 +1,375 @@
+{
+  "id": "ct-06",
+  "domain": "contract",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Kalvik Foods: contract review (fictional)",
+  "entity": "Kalvik Foods",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Framework agreement",
+      "text": "Framework agreement: Kalvik Foods (fictional, authored test material).\nAnnual service charges at Kalvik Foods stood at SEK 2.2m in FY2025 (reported basis). Kalvik Foods had incident response time of 2 hours in the twelve months to 31 Mar 2025. For Kalvik Foods, performance bond in FY2025 was SEK 28.4 million (reported basis). Total contract value at Kalvik Foods stood at NZD 95.1m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2",
+      "title": "Change order",
+      "text": "Change order: Kalvik Foods (fictional, authored test material).\nKalvik Foods trades under the name Copperline. Payment terms at Copperline stood at 75 days in FY2024. Kalvik Foods had yearly fees of SEK 2.4m in FY2025 (reported basis). For Kalvik Foods, incident response time in FY2025 was 3 hours. Volume rebate at Kalvik Limited stood at 2.9% in FY2024. The ownership of deliverables for Kalvik Foods is understood as follows: the supplier keeps ownership and grants a perpetual licence. Throughout the documents of this review, \"yearly fees\" means the same measure as annual service charges."
+    },
+    {
+      "id": "D3",
+      "title": "Procurement evaluation note",
+      "text": "Procurement evaluation note: Kalvik Foods (fictional, authored test material).\nKalvik Foods has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. Payment terms at Kalvik Foods stood at 84 days in FY2024. Kalvik Foods had performance bond of SEK 25.2m in FY2025 (reported basis). For Kalvik Foods, total contract value in FY2025 was NZD 121.1 million (reported basis). Volume rebate at Kalvik Ltd stood at 3.3% in FY2024. The ownership of deliverables for Kalvik Foods is understood as follows: all deliverables vest in the customer on payment."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 71,
+      "end": 155,
+      "text": "Annual service charges at Kalvik Foods stood at SEK 2.2m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 156,
+      "end": 243,
+      "text": "Kalvik Foods had incident response time of 2 hours in the twelve months to 31 Mar 2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 244,
+      "end": 327,
+      "text": "For Kalvik Foods, performance bond in FY2025 was SEK 28.4 million (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 328,
+      "end": 411,
+      "text": "Total contract value at Kalvik Foods stood at NZD 95.1m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 111,
+      "end": 166,
+      "text": "Payment terms at Copperline stood at 75 days in FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 167,
+      "end": 235,
+      "text": "Kalvik Foods had yearly fees of SEK 2.4m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 236,
+      "end": 299,
+      "text": "For Kalvik Foods, incident response time in FY2025 was 3 hours."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 300,
+      "end": 356,
+      "text": "Volume rebate at Kalvik Limited stood at 2.9% in FY2024."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 357,
+      "end": 490,
+      "text": "The ownership of deliverables for Kalvik Foods is understood as follows: the supplier keeps ownership and grants a perpetual licence."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 173,
+      "end": 230,
+      "text": "Payment terms at Kalvik Foods stood at 84 days in FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 231,
+      "end": 305,
+      "text": "Kalvik Foods had performance bond of SEK 25.2m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 306,
+      "end": 394,
+      "text": "For Kalvik Foods, total contract value in FY2025 was NZD 121.1 million (reported basis)."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 395,
+      "end": 447,
+      "text": "Volume rebate at Kalvik Ltd stood at 3.3% in FY2024."
+    },
+    {
+      "id": "D3#s5",
+      "doc": "D3",
+      "start": 448,
+      "end": 570,
+      "text": "The ownership of deliverables for Kalvik Foods is understood as follows: all deliverables vest in the customer on payment."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Kalvik Foods",
+      "concept": "annual_charges",
+      "value": 2.2,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Kalvik Foods",
+      "concept": "response_time",
+      "value": 2,
+      "unit": "hours",
+      "period": "LTM to 31 Mar 2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Kalvik Foods",
+      "concept": "performance_bond",
+      "value": 28.4,
+      "unit": "SEK million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Kalvik Foods",
+      "concept": "contract_value",
+      "value": 95.1,
+      "unit": "NZD m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Copperline",
+      "concept": "payment_terms",
+      "value": 75,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Kalvik Foods",
+      "concept": "yearly_fees",
+      "value": 2.4,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Kalvik Foods",
+      "concept": "response_time",
+      "value": 3,
+      "unit": "hours",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Kalvik Limited",
+      "concept": "volume_rebate",
+      "value": 2.9,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Kalvik Foods",
+      "concept": "ip_ownership",
+      "value": "the supplier keeps ownership and grants a perpetual licence",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Kalvik Foods",
+      "concept": "payment_terms",
+      "value": 84,
+      "unit": "days",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Kalvik Foods",
+      "concept": "performance_bond",
+      "value": 25.2,
+      "unit": "SEK m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Kalvik Foods",
+      "concept": "contract_value",
+      "value": 121.1,
+      "unit": "NZD million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Kalvik Ltd",
+      "concept": "volume_rebate",
+      "value": 3.3,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s5",
+      "entity": "Kalvik Foods",
+      "concept": "ip_ownership",
+      "value": "all deliverables vest in the customer on payment",
+      "unit": "text"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Payment terms and Annual service charges of Kalvik Foods are adequate for the award recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "Incident response time and Performance bond of Kalvik Foods are adequate for the award recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Kalvik Foods is stated to trade as \"Copperline\""
+      },
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"yearly fees\" is defined as the same measure as \"annual service charges\""
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D1#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D3#s2",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"SEK million\" is the same unit as SEK m"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_unlisted",
+        "note": "\"NZD million\" and \"NZD m\" are the same unit (a currency outside the deterministic unit table)"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D3#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "legal_form_variant",
+        "note": "\"Ltd\" abbreviates \"Limited\": one legal entity"
+      },
+      {
+        "facts": [
+          "D3#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "payment terms",
+          "acceptable": [
+            "D2#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "annual service charges",
+          "acceptable": [
+            "D1#s1",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "incident response time",
+          "acceptable": [
+            "D1#s2",
+            "D2#s3"
+          ]
+        },
+        {
+          "input": "performance bond",
+          "acceptable": [
+            "D1#s3",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D2#s1",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s3",
+        "D3#s2"
+      ]
+    }
+  }
+}

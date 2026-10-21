@@ -1,0 +1,41 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "9f431445b41ebd54eaf235e76efb9f902cc3da3e0b63597aff45eb174905e153",
+    "prompt_chars": 2871
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_02efa0628f",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D2#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D2#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s5\", \"D2#s5\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s6\", \"D2#s6\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\"],\n    \"C2\": [\"D1#s3\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\"],\n    \"C2\": [\"D1#s3\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 745,
+      "completion_tokens": 219
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 1854.470945000001,
+  "usd": 0.0006484,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things. Use definitions stated in the documents (abbreviations, terms with the same meaning, fiscal year ends).\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Critical edition introduction (retrieved excerpts)\nCritical edition introduction — Ostrava Chronicle (fictional).\n[D1#s1] Ostrava Chronicle reports radiocarbon median date (CE) of 781 year for FY2025.\n[D1#s2] Ostrava Chronicle reports lacunae share of 2.8% for FY2024.\n[D1#s3] Ostrava Chronicle reports quire count of 28 for LTM to 30 Jun 2025.\n[D1#s5] For Ostrava Chronicle, the reading of the colophon is read as: names the scribe as a monk of the house.\n[D1#s6] For Ostrava Chronicle, the place of origin is: copied in the southern scriptorium.\nThe fiscal year of Ostrava Chronicle ends on 30 June.\n\n## D2 Catalogue entry (retrieved excerpts)\n[D2#s1] Ostrava Chronicle reports c14 median of 999 year for FY2025.\n[D2#s2] Ostrava Chronicle reports lacunae share of 3.8% for FY2024.\n[D2#s3] Ostrava Chronicle reports number of scribal hands of 7 for FY2025.\n[D2#s5] For Ostrava Chronicle, the reading of the colophon is read as: names the scribe as a lay copyist hired by the house.\n[D2#s6] For Ostrava Chronicle, the place of origin is: copied in the northern scriptorium.\n\n## D3 Review article (retrieved excerpts)\n[D3#s3] Ostrava Chronicle reports approximately number of scribal hands of 7 for FY2025.\n\"c14 median\" has the same meaning as \"radiocarbon median\".\n\n# Conclusions\nC1: The radiocarbon median date (CE) and share of text lost to lacunae of Ostrava Chronicle support the edition's dating and stemma argument\nC2: The number of quires of Ostrava Chronicle supports the edition's dating and stemma argument",
+  "extra": {
+    "retrieved": [
+      "D1#ctx-1",
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D1#s5",
+      "D1#s6",
+      "D1#ctx-3",
+      "D2#s1",
+      "D2#s2",
+      "D2#s3",
+      "D2#s5",
+      "D2#s6",
+      "D3#s3",
+      "D3#ctx-2"
+    ]
+  }
+}

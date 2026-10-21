@@ -1,0 +1,327 @@
+{
+  "id": "sc-08",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "title": "Book of Hessin: scholarly review (fictional)",
+  "entity": "Book of Hessin",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Book of Hessin (fictional).\nIn this document \"BOH-MS\" means Book of Hessin. Book of Hessin reports quire count of 15 for FY2024 under the original agreement. Book Logistics subsidiary reports lacunae share of 30.1% for FY2025. BOH-MS reports recorded variant readings of 793 for FY2024. Book of Hessin reports number of scribal hands of 6 for FY2025. The fiscal year of Book of Hessin ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Book of Hessin (fictional).\nBook of Hessin reports quire count of 11 for FY2024 under the amendment no. 1 (supersedes). Book of Hessin reports lacunae share of 25.4% for FY2025. Book of Hessin reports line count of 34 for FY2024. Book of Hessin reports radiocarbon median date (CE) of 1175 year for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Book of Hessin (fictional).\nBook of Hessin reports recorded variant readings of 1068 for FY2024. Book of Hessin reports copyists of 5 for FY2025. Book of Hessin reports line count of 30 for FY2024. Book of Hessin reports radiocarbon median date (CE) of 993 year for FY2025 (fiscal year ending 30 June 2025). \"copyists\" has the same meaning as \"scribal hands\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 108,
+      "end": 189,
+      "text": "Book of Hessin reports quire count of 15 for FY2024 under the original agreement."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 190,
+      "end": 258,
+      "text": "Book Logistics subsidiary reports lacunae share of 30.1% for FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 259,
+      "end": 318,
+      "text": "BOH-MS reports recorded variant readings of 793 for FY2024."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 319,
+      "end": 382,
+      "text": "Book of Hessin reports number of scribal hands of 6 for FY2025."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 46,
+      "end": 137,
+      "text": "Book of Hessin reports quire count of 11 for FY2024 under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 138,
+      "end": 195,
+      "text": "Book of Hessin reports lacunae share of 25.4% for FY2025."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 196,
+      "end": 247,
+      "text": "Book of Hessin reports line count of 34 for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 248,
+      "end": 336,
+      "text": "Book of Hessin reports radiocarbon median date (CE) of 1175 year for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 45,
+      "end": 113,
+      "text": "Book of Hessin reports recorded variant readings of 1068 for FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 114,
+      "end": 162,
+      "text": "Book of Hessin reports copyists of 5 for FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 163,
+      "end": 214,
+      "text": "Book of Hessin reports line count of 30 for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 215,
+      "end": 324,
+      "text": "Book of Hessin reports radiocarbon median date (CE) of 993 year for FY2025 (fiscal year ending 30 June 2025)."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Book of Hessin",
+      "concept": "quire_count",
+      "value": 15,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Book Logistics subsidiary",
+      "concept": "lacunae_share",
+      "value": 30.1,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "BOH-MS",
+      "concept": "variant_readings",
+      "value": 793,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Book of Hessin",
+      "concept": "scribal_hands",
+      "value": 6,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Book of Hessin",
+      "concept": "quire_count",
+      "value": 11,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null,
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Book of Hessin",
+      "concept": "lacunae_share",
+      "value": 25.4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Book of Hessin",
+      "concept": "line_count",
+      "value": 34,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Book of Hessin",
+      "concept": "radiocarbon_median",
+      "value": 1175,
+      "unit": "year",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Book of Hessin",
+      "concept": "variant_readings",
+      "value": 1068,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Book of Hessin",
+      "concept": "copyists",
+      "value": 5,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Book of Hessin",
+      "concept": "line_count",
+      "value": 30,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Book of Hessin",
+      "concept": "radiocarbon_median",
+      "value": 993,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The number of quires and share of text lost to lacunae of Book of Hessin support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The recorded variant readings of Book of Hessin supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"BOH-MS\" is defined in the documents as Book of Hessin"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"copyists\" is defined as the same measure as \"scribal_hands\""
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "number of quires",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "share of text lost to lacunae",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "recorded variant readings",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

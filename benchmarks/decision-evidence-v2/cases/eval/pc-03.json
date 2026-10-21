@@ -1,0 +1,338 @@
+{
+  "id": "pc-03",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Nordvik Healthcare: private credit review (fictional)",
+  "entity": "Nordvik Healthcare",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Annual report extract",
+      "text": "Annual report extract: Nordvik Healthcare (fictional, authored test material).\nThroughout the documents of this review, the Borrower means Nordvik Healthcare. Operating expenses of Nordvik Healthcare in FY2024: to be confirmed; not included in this document. Nordvik Healthcare had debt service cover ratio of 2.11x in FY2025. For Nordvik Healthcare, senior leverage in FY2025 was 4.08x. Gross debt at Nordvik Healthcare stood at USD 484.4 million in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2",
+      "title": "Quarterly lender update",
+      "text": "Quarterly lender update: Nordvik Healthcare (fictional, authored test material).\nNordvik Healthcare trades under the name Fernhill. Recurring revenue share at Nordvik Healthcare stood at 51.8% in FY2025. Nordvik Healthcare had overdue receivables share of 12.5% in FY2024. For Nordvik Healthcare, senior leverage in the twelve months to 31 Mar 2025 was 5.1x. Gross debt at Nordvik Healthcare stood at $436m in FY2025 (reported basis). Throughout the documents of this review, \"overdue receivables share\" means the same measure as receivables in arrears."
+    },
+    {
+      "id": "D3",
+      "title": "Independent business review",
+      "text": "Independent business review: Nordvik Healthcare (fictional, authored test material).\nNordvik Healthcare has a financial year ending on 31 March; FY2025 is the year ended 31 March 2025. Operating expenses at Nordvik Healthcare stood at $226.5m in FY2024 (reported basis). the Borrower had debt service cover ratio of 2.42x in FY2025. For Fernhill, recurring revenue share in FY2025 was 59.9%. Receivables in arrears at Nordvik Healthcare stood at 10% in FY2024."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 159,
+      "end": 258,
+      "text": "Operating expenses of Nordvik Healthcare in FY2024: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 259,
+      "end": 326,
+      "text": "Nordvik Healthcare had debt service cover ratio of 2.11x in FY2025."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 327,
+      "end": 387,
+      "text": "For Nordvik Healthcare, senior leverage in FY2025 was 4.08x."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 388,
+      "end": 475,
+      "text": "Gross debt at Nordvik Healthcare stood at USD 484.4 million in FY2025 (reported basis)."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 132,
+      "end": 203,
+      "text": "Recurring revenue share at Nordvik Healthcare stood at 51.8% in FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 204,
+      "end": 272,
+      "text": "Nordvik Healthcare had overdue receivables share of 12.5% in FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 273,
+      "end": 358,
+      "text": "For Nordvik Healthcare, senior leverage in the twelve months to 31 Mar 2025 was 5.1x."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 359,
+      "end": 434,
+      "text": "Gross debt at Nordvik Healthcare stood at $436m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 185,
+      "end": 270,
+      "text": "Operating expenses at Nordvik Healthcare stood at $226.5m in FY2024 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 271,
+      "end": 332,
+      "text": "the Borrower had debt service cover ratio of 2.42x in FY2025."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 333,
+      "end": 391,
+      "text": "For Fernhill, recurring revenue share in FY2025 was 59.9%."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 392,
+      "end": 460,
+      "text": "Receivables in arrears at Nordvik Healthcare stood at 10% in FY2024."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Nordvik Healthcare",
+      "concept": "opex",
+      "value": null,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Nordvik Healthcare",
+      "concept": "dscr",
+      "value": 2.11,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Nordvik Healthcare",
+      "concept": "senior_leverage",
+      "value": 4.08,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Nordvik Healthcare",
+      "concept": "gross_debt",
+      "value": 484.4,
+      "unit": "USD million",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Nordvik Healthcare",
+      "concept": "recurring_revenue_share",
+      "value": 51.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Nordvik Healthcare",
+      "concept": "overdue_receivables_share",
+      "value": 12.5,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Nordvik Healthcare",
+      "concept": "senior_leverage",
+      "value": 5.1,
+      "unit": "x",
+      "period": "LTM to 31 Mar 2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Nordvik Healthcare",
+      "concept": "gross_debt",
+      "value": 436,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Nordvik Healthcare",
+      "concept": "opex",
+      "value": 226.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "the Borrower",
+      "concept": "dscr",
+      "value": 2.42,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Fernhill",
+      "concept": "recurring_revenue_share",
+      "value": 59.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Nordvik Healthcare",
+      "concept": "arrears_rate",
+      "value": 10,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Operating expenses and Debt service cover ratio of Nordvik Healthcare are adequate for the refinancing approval"
+    },
+    {
+      "id": "C2",
+      "text": "Recurring revenue share and Receivables in arrears of Nordvik Healthcare are adequate for the refinancing approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s1"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D1#s2",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Borrower\" is defined in the documents as Nordvik Healthcare"
+      },
+      {
+        "facts": [
+          "D2#s1",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Nordvik Healthcare is stated to trade as \"Fernhill\""
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym_means",
+        "note": "\"overdue receivables share\" is defined as the same measure as \"receivables in arrears\""
+      },
+      {
+        "facts": [
+          "D1#s3",
+          "D2#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fye_march",
+        "note": "the fiscal year ends 31 March (stated), so FY2025 and the twelve months to 31 March 2025 are the same period"
+      },
+      {
+        "facts": [
+          "D2#s4",
+          "D1#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "unit_word_ccy",
+        "note": "\"USD million\" is the same unit as $m"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "operating expenses",
+          "acceptable": [
+            "D1#s1",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "debt service cover ratio",
+          "acceptable": [
+            "D1#s2",
+            "D3#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "recurring revenue share",
+          "acceptable": [
+            "D2#s1",
+            "D3#s3"
+          ]
+        },
+        {
+          "input": "receivables in arrears",
+          "acceptable": [
+            "D2#s2",
+            "D3#s4"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D3#s1",
+        "D3#s2"
+      ],
+      "C2": [
+        "D2#s1",
+        "D2#s2",
+        "D3#s3",
+        "D3#s4"
+      ]
+    }
+  }
+}

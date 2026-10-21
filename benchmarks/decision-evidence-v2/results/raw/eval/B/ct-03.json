@@ -1,0 +1,39 @@
+{
+  "request": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0,
+    "seed": 20261020,
+    "response_format": "json_object",
+    "prompt_sha256": "0d3fa61e2576b90effd63348c94f1c59e642b847680788336122e9296b227103",
+    "prompt_chars": 2802
+  },
+  "response": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "system_fingerprint": "fp_1e8a793b2d",
+    "content": "{\n  \"findings\": [\n    {\n      \"facts\": [\"D1#s1\", \"D3#s1\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D1#s2\", \"D3#s2\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    },\n    {\n      \"facts\": [\"D2#s2\", \"D3#s4\"],\n      \"class\": \"CONFIRMED_CONFLICT\"\n    }\n  ],\n  \"citations\": {\n    \"C1\": [\"D1#s1\", \"D1#s2\"],\n    \"C2\": [\"D2#s1\", \"D2#s2\"]\n  },\n  \"dependencies\": {\n    \"C1\": [\"D1#s1\", \"D3#s1\", \"D1#s2\", \"D3#s2\"],\n    \"C2\": [\"D2#s1\", \"D3#s3\", \"D2#s2\", \"D3#s4\"]\n  }\n}",
+    "usage": {
+      "prompt_tokens": 705,
+      "completion_tokens": 228
+    },
+    "finish_reason": "stop"
+  },
+  "ms": 2033.9446350000799,
+  "usd": 0.0006468,
+  "prompt": "You review documents for a decision. Every statement that can be cited is labelled [Dn#sm] immediately before it.\nTask 1. List every pair of labelled statements that are in tension, each with exactly one class:\n- CONFIRMED_CONFLICT: the same measure for the same entity and period, with different values; or two mutually exclusive options both asserted.\n- POTENTIAL_CONFLICT: values differ but one statement lacks context (e.g. no period), so it may or may not be a conflict.\n- DIFFERENT_REPORTING_BASIS: the same measure stated on a different basis or definition (e.g. reported vs adjusted).\n- MISSING_EVIDENCE: one document gives a value that another document says is not provided.\n- UNRESOLVED_INTERPRETATION: two different readings of the same term.\nDo not list pairs that are consistent or about different things: different periods, a figure replaced by a later version or amendment, the same amount in different units or scales, differences within rounding (under 0.5%), or different entities. Use any definitions stated in the documents.\nTask 2. For each conclusion, cite the labelled statements that are evidence for it, and list every labelled statement it depends on (the statements of each figure it relies on, excluding superseded figures and figures of other entities).\nAnswer with one JSON object only: {\"findings\":[{\"facts\":[\"D1#s1\",\"D2#s3\"],\"class\":\"CONFIRMED_CONFLICT\"}],\"citations\":{\"C1\":[\"D1#s1\"]},\"dependencies\":{\"C1\":[\"D1#s1\",\"D2#s3\"]}}\n\n# Documents\n## D1 Framework agreement (retrieved excerpts)\nFramework agreement: Nordvik Foods (fictional, authored test material).\n[D1#s1] Warranty period at Nordvik Ltd stood at 19 months in FY2024.\n[D1#s2] Nordvik Foods had annual service charges of SEK 51.8m in FY2024 (reported basis).\n[D1#s3] For Nordvik Foods, performance bond in FY2025 was SEK 12.8m (reported basis).\n\n## D2 Change order (retrieved excerpts)\nChange order: Nordvik Foods (fictional, authored test material).\n[D2#s1] Volume rebate at Nordvik Foods stood at 4% in FY2024.\n[D2#s2] Nordvik Foods had total contract value of SEK 22800 thousand in FY2024 (reported basis).\n[D2#s3] For Nordvik Foods, performance bond in FY2025 was SEK 12.8 million (reported basis).\n\n## D3 Procurement evaluation note (retrieved excerpts)\n[D3#s1] Warranty period at Nordvik Limited stood at 17 months in FY2024.\n[D3#s2] Nordvik Foods had annual service charges of approximately SEK 65m in FY2024 (reported basis).\n[D3#s3] For Nordvik Foods, volume rebate in FY2024 was 4.012%.\n[D3#s4] Total contract value at Nordvik Foods stood at SEK 22.8m in FY2024 (reported basis).\n\n# Conclusions\nC1: Warranty period and Annual service charges of Nordvik Foods are adequate for the award recommendation\nC2: Volume rebate and Total contract value of Nordvik Foods are adequate for the award recommendation",
+  "extra": {
+    "retrieved": [
+      "D1#ctx-1",
+      "D1#s1",
+      "D1#s2",
+      "D1#s3",
+      "D2#ctx-1",
+      "D2#s1",
+      "D2#s2",
+      "D2#s3",
+      "D3#s1",
+      "D3#s2",
+      "D3#s3",
+      "D3#s4"
+    ]
+  }
+}

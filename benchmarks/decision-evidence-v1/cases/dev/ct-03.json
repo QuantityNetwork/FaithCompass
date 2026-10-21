@@ -1,0 +1,363 @@
+{
+  "id": "ct-03",
+  "domain": "contract",
+  "split": "dev",
+  "fictional": true,
+  "title": "Kestrel Point Holdings: contract review (fictional)",
+  "entity": "Kestrel Point Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Master services agreement",
+      "text": "Master services agreement — Kestrel Point Holdings (fictional).\nIn this document \"KPHH\" means Kestrel Point Holdings. Kestrel Point Holdings reports uptime commitment of 99.84% for FY2025. Kestrel Point Holdings reports termination notice period of 37 days for FY2025 under the amendment no. 1 (supersedes). Kestrel Logistics subsidiary reports term years of 5 years for FY2025. Kestrel Point Holdings reports annual fee of $9.8m for FY2024 on a reported basis. For Kestrel Point Holdings, the data residency obligation is read as: customer data stays within the EEA."
+    },
+    {
+      "id": "D2",
+      "title": "Amendment letter",
+      "text": "Amendment letter — Kestrel Point Holdings (fictional).\nKestrel Point Holdings reports uptime commitment of 100.04% for FY2025. Kestrel Point Holdings reports termination notice period of 48 days for FY2025 under the original agreement. Kestrel Point Holdings reports maximum service credit of 16.9% for FY2025. Kestrel Point Holdings reports annual price escalator of 3.2% for FY2025. For Kestrel Point Holdings, the data residency obligation is read as: customer data may be processed by approved sub-processors worldwide."
+    },
+    {
+      "id": "D3",
+      "title": "Supplier summary memo",
+      "text": "Supplier summary memo — Kestrel Point Holdings (fictional).\nKestrel Point Holdings reports term years of 4 years for FY2025. KPHH reports annual fee of $12.3m for FY2024 on a reported basis. Kestrel Point Holdings reports sla credit cap of 14.4% for FY2025. Kestrel Point Holdings reports annual price escalator of 2.6% for FY2025. \"sla credit cap\" has the same meaning as \"service credit\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 118,
+      "end": 188,
+      "text": "Kestrel Point Holdings reports uptime commitment of 99.84% for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 189,
+      "end": 307,
+      "text": "Kestrel Point Holdings reports termination notice period of 37 days for FY2025 under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 308,
+      "end": 378,
+      "text": "Kestrel Logistics subsidiary reports term years of 5 years for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 379,
+      "end": 461,
+      "text": "Kestrel Point Holdings reports annual fee of $9.8m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 462,
+      "end": 567,
+      "text": "For Kestrel Point Holdings, the data residency obligation is read as: customer data stays within the EEA."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 55,
+      "end": 126,
+      "text": "Kestrel Point Holdings reports uptime commitment of 100.04% for FY2025."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 127,
+      "end": 235,
+      "text": "Kestrel Point Holdings reports termination notice period of 48 days for FY2025 under the original agreement."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 236,
+      "end": 310,
+      "text": "Kestrel Point Holdings reports maximum service credit of 16.9% for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 311,
+      "end": 384,
+      "text": "Kestrel Point Holdings reports annual price escalator of 3.2% for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 385,
+      "end": 523,
+      "text": "For Kestrel Point Holdings, the data residency obligation is read as: customer data may be processed by approved sub-processors worldwide."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 60,
+      "end": 124,
+      "text": "Kestrel Point Holdings reports term years of 4 years for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 125,
+      "end": 190,
+      "text": "KPHH reports annual fee of $12.3m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 191,
+      "end": 257,
+      "text": "Kestrel Point Holdings reports sla credit cap of 14.4% for FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 258,
+      "end": 331,
+      "text": "Kestrel Point Holdings reports annual price escalator of 2.6% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Kestrel Point Holdings",
+      "concept": "uptime_commitment",
+      "value": 99.84,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Kestrel Point Holdings",
+      "concept": "notice_period",
+      "value": 37,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null,
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Kestrel Logistics subsidiary",
+      "concept": "term_years",
+      "value": 5,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Kestrel Point Holdings",
+      "concept": "annual_fee",
+      "value": 9.8,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Kestrel Point Holdings",
+      "concept": "data_location",
+      "value": "customer data stays within the EEA",
+      "unit": "text"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Kestrel Point Holdings",
+      "concept": "uptime_commitment",
+      "value": 100.04,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Kestrel Point Holdings",
+      "concept": "notice_period",
+      "value": 48,
+      "unit": "days",
+      "period": "FY2025",
+      "basis": null,
+      "version": "original agreement"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Kestrel Point Holdings",
+      "concept": "service_credit",
+      "value": 16.9,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Kestrel Point Holdings",
+      "concept": "price_escalator",
+      "value": 3.2,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Kestrel Point Holdings",
+      "concept": "data_location",
+      "value": "customer data may be processed by approved sub-processors worldwide",
+      "unit": "text"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Kestrel Point Holdings",
+      "concept": "term_years",
+      "value": 4,
+      "unit": "years",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "KPHH",
+      "concept": "annual_fee",
+      "value": 12.3,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Kestrel Point Holdings",
+      "concept": "sla_credit_cap",
+      "value": 14.4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Kestrel Point Holdings",
+      "concept": "price_escalator",
+      "value": 2.6,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The availability commitment and termination notice period of Kestrel Point Holdings support the contract signature recommendation"
+    },
+    {
+      "id": "C2",
+      "text": "The initial term of Kestrel Point Holdings supports the contract signature recommendation"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"KPHH\" is defined in the documents as Kestrel Point Holdings"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"sla_credit_cap\" is defined as the same measure as \"service_credit\""
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "UNRESOLVED_INTERPRETATION",
+        "plant": "interpretation",
+        "note": "two readings of one term; needs a human reading"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "availability commitment",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "termination notice period",
+          "acceptable": [
+            "D1#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "initial term",
+          "acceptable": [
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1"
+      ],
+      "C2": [
+        "D3#s1"
+      ]
+    }
+  }
+}

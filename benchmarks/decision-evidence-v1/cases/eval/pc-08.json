@@ -1,0 +1,328 @@
+{
+  "id": "pc-08",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "title": "Elmbrook Group: private credit review (fictional)",
+  "entity": "Elmbrook Group",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Elmbrook Group (fictional).\nIn this document \"EGH\" means Elmbrook Group. Elmbrook Group reports capex of $10.3m for FY2025 on a reported basis. Elmbrook Group reports available liquidity of $19600k for FY2024 on a reported basis. Elmbrook Group reports revenue of $599.396m for FY2025 on a reported basis. Elmbrook Group reports EBITDA of $42m for FY2025 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Elmbrook Group (fictional).\nElmbrook Group reports capex of $9m for FY2024 on a reported basis. Elmbrook Group reports available liquidity of $19.6m for FY2024 on a reported basis. Elmbrook Group reports customer concentration of 22.4% for FY2024. EGH reports cash margin of 4.8% for FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Elmbrook Group (fictional).\nElmbrook Group reports revenue of $598.2m for FY2025 on a reported basis. Elmbrook Group reports EBITDA of $34.7m for FY2025 on a reported basis under the amendment no. 1 (supersedes). Elmbrook Logistics subsidiary reports customer concentration of 27.6% for FY2024. Elmbrook Group reports cash margin of 4% for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 104,
+      "end": 174,
+      "text": "Elmbrook Group reports capex of $10.3m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 175,
+      "end": 260,
+      "text": "Elmbrook Group reports available liquidity of $19600k for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 261,
+      "end": 336,
+      "text": "Elmbrook Group reports revenue of $599.396m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 337,
+      "end": 435,
+      "text": "Elmbrook Group reports EBITDA of $42m for FY2025 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 50,
+      "end": 117,
+      "text": "Elmbrook Group reports capex of $9m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 118,
+      "end": 202,
+      "text": "Elmbrook Group reports available liquidity of $19.6m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 203,
+      "end": 269,
+      "text": "Elmbrook Group reports customer concentration of 22.4% for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 270,
+      "end": 313,
+      "text": "EGH reports cash margin of 4.8% for FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 53,
+      "end": 126,
+      "text": "Elmbrook Group reports revenue of $598.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 127,
+      "end": 237,
+      "text": "Elmbrook Group reports EBITDA of $34.7m for FY2025 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 238,
+      "end": 319,
+      "text": "Elmbrook Logistics subsidiary reports customer concentration of 27.6% for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 320,
+      "end": 372,
+      "text": "Elmbrook Group reports cash margin of 4% for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Elmbrook Group",
+      "concept": "capex",
+      "value": 10.3,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Elmbrook Group",
+      "concept": "liquidity",
+      "value": 19600,
+      "unit": "$k",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Elmbrook Group",
+      "concept": "revenue",
+      "value": 599.396,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Elmbrook Group",
+      "concept": "ebitda",
+      "value": 42,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Elmbrook Group",
+      "concept": "capex",
+      "value": 9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Elmbrook Group",
+      "concept": "liquidity",
+      "value": 19.6,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Elmbrook Group",
+      "concept": "customer_concentration",
+      "value": 22.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "EGH",
+      "concept": "cash_margin",
+      "value": 4.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Elmbrook Group",
+      "concept": "revenue",
+      "value": 598.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Elmbrook Group",
+      "concept": "ebitda",
+      "value": 34.7,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Elmbrook Logistics subsidiary",
+      "concept": "customer_concentration",
+      "value": 27.6,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Elmbrook Group",
+      "concept": "cash_margin",
+      "value": 4,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The available liquidity and revenue of Elmbrook Group support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The EBITDA of Elmbrook Group supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "unit_scale",
+        "note": "the same amount in thousands"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"EGH\" is defined in the documents as Elmbrook Group"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "available liquidity",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "revenue",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "EBITDA",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D3#s2"
+      ]
+    }
+  }
+}

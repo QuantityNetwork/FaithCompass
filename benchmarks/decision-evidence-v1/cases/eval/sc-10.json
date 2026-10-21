@@ -1,0 +1,365 @@
+{
+  "id": "sc-10",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "title": "Corrin Gospel-book: scholarly review (fictional)",
+  "entity": "Corrin Gospel-book",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Corrin Gospel-book (fictional).\nIn this document \"CG-MS\" means Corrin Gospel-book. Corrin Gospel-book reports folio count of 268 for FY2025. Corrin Gospel-book reports lacunae share of 7.214% for FY2024. Corrin Gospel-book reports quire count of 23.046 for FY2025. Corrin Gospel-book reports recorded variant readings of 2215 for FY2025 under the original agreement. For Corrin Gospel-book, the place of origin is: copied in the northern scriptorium."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Corrin Gospel-book (fictional).\nCorrin Gospel-book reports folio count of 220 for FY2024. Corrin Gospel-book reports lacunae share of 7.2% for FY2024. Corrin Gospel-book reports line count of 21 for FY2024. CG-MS reports radiocarbon median date (CE) of 1157 year for FY2025. For Corrin Gospel-book, the place of origin is: copied in the southern scriptorium."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Corrin Gospel-book (fictional).\nCorrin Gospel-book reports quire count of 23 for FY2025. Corrin Gospel-book reports recorded variant readings of 2755 for FY2025 under the amendment no. 1 (supersedes). Corrin Logistics subsidiary reports line count of 17 for FY2024. Corrin Gospel-book reports radiocarbon median date (CE) of 933 year for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 115,
+      "end": 172,
+      "text": "Corrin Gospel-book reports folio count of 268 for FY2025."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 173,
+      "end": 235,
+      "text": "Corrin Gospel-book reports lacunae share of 7.214% for FY2024."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 236,
+      "end": 296,
+      "text": "Corrin Gospel-book reports quire count of 23.046 for FY2025."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 297,
+      "end": 398,
+      "text": "Corrin Gospel-book reports recorded variant readings of 2215 for FY2025 under the original agreement."
+    },
+    {
+      "id": "D1#s5",
+      "doc": "D1",
+      "start": 399,
+      "end": 482,
+      "text": "For Corrin Gospel-book, the place of origin is: copied in the northern scriptorium."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 50,
+      "end": 107,
+      "text": "Corrin Gospel-book reports folio count of 220 for FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 108,
+      "end": 168,
+      "text": "Corrin Gospel-book reports lacunae share of 7.2% for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 169,
+      "end": 224,
+      "text": "Corrin Gospel-book reports line count of 21 for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 225,
+      "end": 292,
+      "text": "CG-MS reports radiocarbon median date (CE) of 1157 year for FY2025."
+    },
+    {
+      "id": "D2#s5",
+      "doc": "D2",
+      "start": 293,
+      "end": 376,
+      "text": "For Corrin Gospel-book, the place of origin is: copied in the southern scriptorium."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 49,
+      "end": 105,
+      "text": "Corrin Gospel-book reports quire count of 23 for FY2025."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 106,
+      "end": 217,
+      "text": "Corrin Gospel-book reports recorded variant readings of 2755 for FY2025 under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 218,
+      "end": 282,
+      "text": "Corrin Logistics subsidiary reports line count of 17 for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 283,
+      "end": 362,
+      "text": "Corrin Gospel-book reports radiocarbon median date (CE) of 933 year for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Corrin Gospel-book",
+      "concept": "folio_count",
+      "value": 268,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Corrin Gospel-book",
+      "concept": "lacunae_share",
+      "value": 7.214,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Corrin Gospel-book",
+      "concept": "quire_count",
+      "value": 23.046,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Corrin Gospel-book",
+      "concept": "variant_readings",
+      "value": 2215,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s5",
+      "entity": "Corrin Gospel-book",
+      "concept": "provenance_a",
+      "value": true,
+      "exclusiveGroup": "provenance"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Corrin Gospel-book",
+      "concept": "folio_count",
+      "value": 220,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Corrin Gospel-book",
+      "concept": "lacunae_share",
+      "value": 7.2,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Corrin Gospel-book",
+      "concept": "line_count",
+      "value": 21,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "CG-MS",
+      "concept": "radiocarbon_median",
+      "value": 1157,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s5",
+      "entity": "Corrin Gospel-book",
+      "concept": "provenance_b",
+      "value": false,
+      "exclusiveGroup": "provenance"
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Corrin Gospel-book",
+      "concept": "quire_count",
+      "value": 23,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Corrin Gospel-book",
+      "concept": "variant_readings",
+      "value": 2755,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null,
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Corrin Logistics subsidiary",
+      "concept": "line_count",
+      "value": 17,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Corrin Gospel-book",
+      "concept": "radiocarbon_median",
+      "value": 933,
+      "unit": "year",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The share of text lost to lacunae and number of quires of Corrin Gospel-book support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The recorded variant readings of Corrin Gospel-book supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"CG-MS\" is defined in the documents as Corrin Gospel-book"
+      },
+      {
+        "facts": [
+          "D1#s5",
+          "D2#s5"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "exclusive",
+        "note": "mutually exclusive options both asserted"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "share of text lost to lacunae",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        },
+        {
+          "input": "number of quires",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "recorded variant readings",
+          "acceptable": [
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s2",
+        "D1#s3",
+        "D2#s2",
+        "D3#s1"
+      ],
+      "C2": [
+        "D3#s2"
+      ]
+    }
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "id": "pc-06",
+  "domain": "private_credit",
+  "split": "eval",
+  "fictional": true,
+  "title": "Brightwater Holdings: private credit review (fictional)",
+  "entity": "Brightwater Holdings",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Audited financial statements",
+      "text": "Audited financial statements — Brightwater Holdings (fictional).\nIn this document \"BHH\" means Brightwater Holdings. Brightwater Holdings reports capex of $29.7m for FY2024 on a reported basis under the original agreement. Brightwater Logistics subsidiary reports net debt of $217.9m for FY2024 on a reported basis. BHH reports available liquidity of $35.2m for FY2025 on a reported basis. Brightwater Holdings reports EBITDA of $83.4m for FY2024 on a reported basis. The fiscal year of Brightwater Holdings ends on 30 June."
+    },
+    {
+      "id": "D2",
+      "title": "Lender presentation",
+      "text": "Lender presentation — Brightwater Holdings (fictional).\nBrightwater Holdings reports capex of $23.7m for FY2024 on a reported basis under the amendment no. 1 (supersedes). Brightwater Holdings reports net debt of $184.1m for FY2024 on a reported basis. Brightwater Holdings reports customer concentration of 22.3% for FY2025. Brightwater Holdings reports interest cover of 3.7x for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D3",
+      "title": "Compliance certificate",
+      "text": "Compliance certificate — Brightwater Holdings (fictional).\nBrightwater Holdings reports available liquidity of $29m for FY2025 on a reported basis. Brightwater Holdings reports operating cash earnings of $92.5m for FY2024 on a reported basis. Brightwater Holdings reports customer concentration of 25.1% for FY2025. Brightwater Holdings reports interest cover of 3x for FY2025 (fiscal year ending 30 June 2025). \"operating cash earnings\" has the same meaning as \"ebitda\"."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 116,
+      "end": 221,
+      "text": "Brightwater Holdings reports capex of $29.7m for FY2024 on a reported basis under the original agreement."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 222,
+      "end": 314,
+      "text": "Brightwater Logistics subsidiary reports net debt of $217.9m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 315,
+      "end": 388,
+      "text": "BHH reports available liquidity of $35.2m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 389,
+      "end": 466,
+      "text": "Brightwater Holdings reports EBITDA of $83.4m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 56,
+      "end": 171,
+      "text": "Brightwater Holdings reports capex of $23.7m for FY2024 on a reported basis under the amendment no. 1 (supersedes)."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 172,
+      "end": 252,
+      "text": "Brightwater Holdings reports net debt of $184.1m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 253,
+      "end": 325,
+      "text": "Brightwater Holdings reports customer concentration of 22.3% for FY2025."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 326,
+      "end": 401,
+      "text": "Brightwater Holdings reports interest cover of 3.7x for LTM to 30 Jun 2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 59,
+      "end": 147,
+      "text": "Brightwater Holdings reports available liquidity of $29m for FY2025 on a reported basis."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 148,
+      "end": 242,
+      "text": "Brightwater Holdings reports operating cash earnings of $92.5m for FY2024 on a reported basis."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 243,
+      "end": 315,
+      "text": "Brightwater Holdings reports customer concentration of 25.1% for FY2025."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 316,
+      "end": 411,
+      "text": "Brightwater Holdings reports interest cover of 3x for FY2025 (fiscal year ending 30 June 2025)."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Brightwater Holdings",
+      "concept": "capex",
+      "value": 29.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "original agreement"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Brightwater Logistics subsidiary",
+      "concept": "net_debt",
+      "value": 217.9,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "BHH",
+      "concept": "liquidity",
+      "value": 35.2,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Brightwater Holdings",
+      "concept": "ebitda",
+      "value": 83.4,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Brightwater Holdings",
+      "concept": "capex",
+      "value": 23.7,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported",
+      "version": "amendment no. 1 (supersedes)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Brightwater Holdings",
+      "concept": "net_debt",
+      "value": 184.1,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Brightwater Holdings",
+      "concept": "customer_concentration",
+      "value": 22.3,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Brightwater Holdings",
+      "concept": "interest_cover",
+      "value": 3.7,
+      "unit": "x",
+      "period": "LTM to 30 Jun 2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Brightwater Holdings",
+      "concept": "liquidity",
+      "value": 29,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Brightwater Holdings",
+      "concept": "operating_cash_earnings",
+      "value": 92.5,
+      "unit": "$m",
+      "period": "FY2024",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Brightwater Holdings",
+      "concept": "customer_concentration",
+      "value": 25.1,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Brightwater Holdings",
+      "concept": "interest_cover",
+      "value": 3,
+      "unit": "x",
+      "period": "FY2025",
+      "basis": null,
+      "definition": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The capital expenditure and net debt of Brightwater Holdings support the credit committee approval"
+    },
+    {
+      "id": "C2",
+      "text": "The available liquidity of Brightwater Holdings supports the credit committee approval"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "NONE",
+        "plant": "superseded",
+        "note": "a later version replaces the earlier figure"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_entity",
+        "note": "a subsidiary, not the same entity"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias",
+        "note": "\"BHH\" is defined in the documents as Brightwater Holdings"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "synonym",
+        "note": "\"operating_cash_earnings\" is defined as the same measure as \"ebitda\""
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, concept, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "fiscal_year_end",
+        "note": "the fiscal year ends 30 June, so FY2025 and LTM to 30 June 2025 are the same twelve months"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "capital expenditure",
+          "acceptable": [
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "net debt",
+          "acceptable": [
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "available liquidity",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

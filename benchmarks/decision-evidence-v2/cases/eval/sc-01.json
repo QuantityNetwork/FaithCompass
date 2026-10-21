@@ -1,0 +1,338 @@
+{
+  "id": "sc-01",
+  "domain": "scholarly",
+  "split": "eval",
+  "fictional": true,
+  "authored_test_material": true,
+  "title": "Ardith Fragments: scholarly review (fictional)",
+  "entity": "Ardith Fragments",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Conservation report",
+      "text": "Conservation report: Ardith Fragments (fictional, authored test material).\nThroughout the documents of this review, the Manuscript means Ardith Fragments. Ardith Fragments had binding date (CE) of 1595 in FY2024. For Ardith Fragments, illuminated initials in FY2025 was 185 (pro forma (including the planned acquisition) basis). Insured value at Ardith Fragments stood at $7.7m (reported basis). Ardith Fragments had share of palimpsest leaves of 29.4% in FY2024."
+    },
+    {
+      "id": "D2",
+      "title": "Palaeographic study",
+      "text": "Palaeographic study: Ardith Fragments (fictional, authored test material).\nArdith Fragments trades under the name Greywater. Ardith Fragments had binding date (CE) of 1346 in FY2024. For Ardith Fragments, illuminated initials in FY2025 was 245 (reported basis). Marginal annotations at Ardith Fragments stood at 832 in FY2024. Greywater had missing leaves of 11 in FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Edition apparatus notes",
+      "text": "Edition apparatus notes: Ardith Fragments (fictional, authored test material).\nArdith Fragments had insured value of $9m in FY2025 (reported basis). Share of palimpsest leaves of Ardith Fragments in FY2024: to be confirmed; not included in this document. Marginal annotations at the Manuscript stood at 719 in FY2024. Ardith Fragments had missing leaves of 14 in FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 155,
+      "end": 212,
+      "text": "Ardith Fragments had binding date (CE) of 1595 in FY2024."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 213,
+      "end": 328,
+      "text": "For Ardith Fragments, illuminated initials in FY2025 was 185 (pro forma (including the planned acquisition) basis)."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 329,
+      "end": 395,
+      "text": "Insured value at Ardith Fragments stood at $7.7m (reported basis)."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 396,
+      "end": 463,
+      "text": "Ardith Fragments had share of palimpsest leaves of 29.4% in FY2024."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 125,
+      "end": 182,
+      "text": "Ardith Fragments had binding date (CE) of 1346 in FY2024."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 183,
+      "end": 261,
+      "text": "For Ardith Fragments, illuminated initials in FY2025 was 245 (reported basis)."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 262,
+      "end": 326,
+      "text": "Marginal annotations at Ardith Fragments stood at 832 in FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 327,
+      "end": 372,
+      "text": "Greywater had missing leaves of 11 in FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 79,
+      "end": 148,
+      "text": "Ardith Fragments had insured value of $9m in FY2025 (reported basis)."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 149,
+      "end": 254,
+      "text": "Share of palimpsest leaves of Ardith Fragments in FY2024: to be confirmed; not included in this document."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 255,
+      "end": 317,
+      "text": "Marginal annotations at the Manuscript stood at 719 in FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 318,
+      "end": 370,
+      "text": "Ardith Fragments had missing leaves of 14 in FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Ardith Fragments",
+      "concept": "binding_date",
+      "value": 1595,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Ardith Fragments",
+      "concept": "illuminated_initials",
+      "value": 185,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": "pro forma (including the planned acquisition)"
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Ardith Fragments",
+      "concept": "insurance_value",
+      "value": 7.7,
+      "unit": "$m",
+      "period": null,
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Ardith Fragments",
+      "concept": "palimpsest_share",
+      "value": 29.4,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Ardith Fragments",
+      "concept": "binding_date",
+      "value": 1346,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Ardith Fragments",
+      "concept": "illuminated_initials",
+      "value": 245,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Ardith Fragments",
+      "concept": "marginal_notes",
+      "value": 832,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Greywater",
+      "concept": "missing_leaves",
+      "value": 11,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Ardith Fragments",
+      "concept": "insurance_value",
+      "value": 9,
+      "unit": "$m",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Ardith Fragments",
+      "concept": "palimpsest_share",
+      "value": null,
+      "unit": "%",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "the Manuscript",
+      "concept": "marginal_notes",
+      "value": 719,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Ardith Fragments",
+      "concept": "missing_leaves",
+      "value": 14,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "Binding date (CE) and Illuminated initials of Ardith Fragments are adequate for the dating and attribution argument of the edition"
+    },
+    {
+      "id": "C2",
+      "text": "Insured value and Share of palimpsest leaves of Ardith Fragments are adequate for the dating and attribution argument of the edition"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "confirmed",
+        "note": "same entity, measure, period, unit and basis; values differ beyond rounding"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same measure stated on a different basis"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; one statement gives no period"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document states a value, the other says it is not provided"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_role",
+        "note": "\"the Manuscript\" is defined in the documents as Ardith Fragments"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "CONFIRMED_CONFLICT",
+        "plant": "alias_brand",
+        "note": "Ardith Fragments is stated to trade as \"Greywater\""
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "binding date (CE)",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "illuminated initials",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "insured value",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        },
+        {
+          "input": "share of palimpsest leaves",
+          "acceptable": [
+            "D1#s4",
+            "D3#s2"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D1#s4",
+        "D3#s1",
+        "D3#s2"
+      ]
+    }
+  }
+}

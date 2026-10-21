@@ -1,0 +1,328 @@
+{
+  "id": "sc-02",
+  "domain": "scholarly",
+  "split": "dev",
+  "fictional": true,
+  "title": "Odran Hymnal: scholarly review (fictional)",
+  "entity": "Odran Hymnal",
+  "documents": [
+    {
+      "id": "D1",
+      "title": "Critical edition introduction",
+      "text": "Critical edition introduction — Odran Hymnal (fictional).\nIn this document \"OH-MS\" means Odran Hymnal. Odran Hymnal reports lacunae share of 20.8% for FY2025 on a reported basis. Odran Hymnal reports radiocarbon median date (CE) of 919 year. Odran Hymnal: number of scribal hands for FY2024 — not provided. Odran Hymnal reports quire count of 38 for FY2025."
+    },
+    {
+      "id": "D2",
+      "title": "Catalogue entry",
+      "text": "Catalogue entry — Odran Hymnal (fictional).\nOdran Hymnal reports lacunae share of 25.1% for FY2025 on a adjusted (management definition) basis. Odran Hymnal reports radiocarbon median date (CE) of 1130 year for FY2024. Odran Hymnal reports folio count of 272 for FY2024. Odran Hymnal reports witness count of 29.058 for FY2025."
+    },
+    {
+      "id": "D3",
+      "title": "Review article",
+      "text": "Review article — Odran Hymnal (fictional).\nOdran Hymnal reports number of scribal hands of 8 for FY2024. Odran Hymnal reports quire count of 31 for FY2024. Odran Hymnal reports folio count of 272.544 for FY2024. Odran Hymnal reports witness count of 29 for FY2025."
+    }
+  ],
+  "spans": [
+    {
+      "id": "D1#s1",
+      "doc": "D1",
+      "start": 103,
+      "end": 178,
+      "text": "Odran Hymnal reports lacunae share of 20.8% for FY2025 on a reported basis."
+    },
+    {
+      "id": "D1#s2",
+      "doc": "D1",
+      "start": 179,
+      "end": 241,
+      "text": "Odran Hymnal reports radiocarbon median date (CE) of 919 year."
+    },
+    {
+      "id": "D1#s3",
+      "doc": "D1",
+      "start": 242,
+      "end": 306,
+      "text": "Odran Hymnal: number of scribal hands for FY2024 — not provided."
+    },
+    {
+      "id": "D1#s4",
+      "doc": "D1",
+      "start": 307,
+      "end": 357,
+      "text": "Odran Hymnal reports quire count of 38 for FY2025."
+    },
+    {
+      "id": "D2#s1",
+      "doc": "D2",
+      "start": 44,
+      "end": 143,
+      "text": "Odran Hymnal reports lacunae share of 25.1% for FY2025 on a adjusted (management definition) basis."
+    },
+    {
+      "id": "D2#s2",
+      "doc": "D2",
+      "start": 144,
+      "end": 218,
+      "text": "Odran Hymnal reports radiocarbon median date (CE) of 1130 year for FY2024."
+    },
+    {
+      "id": "D2#s3",
+      "doc": "D2",
+      "start": 219,
+      "end": 270,
+      "text": "Odran Hymnal reports folio count of 272 for FY2024."
+    },
+    {
+      "id": "D2#s4",
+      "doc": "D2",
+      "start": 271,
+      "end": 327,
+      "text": "Odran Hymnal reports witness count of 29.058 for FY2025."
+    },
+    {
+      "id": "D3#s1",
+      "doc": "D3",
+      "start": 43,
+      "end": 104,
+      "text": "Odran Hymnal reports number of scribal hands of 8 for FY2024."
+    },
+    {
+      "id": "D3#s2",
+      "doc": "D3",
+      "start": 105,
+      "end": 155,
+      "text": "Odran Hymnal reports quire count of 31 for FY2024."
+    },
+    {
+      "id": "D3#s3",
+      "doc": "D3",
+      "start": 156,
+      "end": 211,
+      "text": "Odran Hymnal reports folio count of 272.544 for FY2024."
+    },
+    {
+      "id": "D3#s4",
+      "doc": "D3",
+      "start": 212,
+      "end": 264,
+      "text": "Odran Hymnal reports witness count of 29 for FY2025."
+    }
+  ],
+  "facts": [
+    {
+      "id": "D1#s1",
+      "entity": "Odran Hymnal",
+      "concept": "lacunae_share",
+      "value": 20.8,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": "reported"
+    },
+    {
+      "id": "D1#s2",
+      "entity": "Odran Hymnal",
+      "concept": "radiocarbon_median",
+      "value": 919,
+      "unit": "year",
+      "period": null,
+      "basis": null
+    },
+    {
+      "id": "D1#s3",
+      "entity": "Odran Hymnal",
+      "concept": "scribal_hands",
+      "value": null,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D1#s4",
+      "entity": "Odran Hymnal",
+      "concept": "quire_count",
+      "value": 38,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D2#s1",
+      "entity": "Odran Hymnal",
+      "concept": "lacunae_share",
+      "value": 25.1,
+      "unit": "%",
+      "period": "FY2025",
+      "basis": "adjusted (management definition)"
+    },
+    {
+      "id": "D2#s2",
+      "entity": "Odran Hymnal",
+      "concept": "radiocarbon_median",
+      "value": 1130,
+      "unit": "year",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s3",
+      "entity": "Odran Hymnal",
+      "concept": "folio_count",
+      "value": 272,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D2#s4",
+      "entity": "Odran Hymnal",
+      "concept": "witness_count",
+      "value": 29.058,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    },
+    {
+      "id": "D3#s1",
+      "entity": "Odran Hymnal",
+      "concept": "scribal_hands",
+      "value": 8,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s2",
+      "entity": "Odran Hymnal",
+      "concept": "quire_count",
+      "value": 31,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s3",
+      "entity": "Odran Hymnal",
+      "concept": "folio_count",
+      "value": 272.544,
+      "unit": "count",
+      "period": "FY2024",
+      "basis": null
+    },
+    {
+      "id": "D3#s4",
+      "entity": "Odran Hymnal",
+      "concept": "witness_count",
+      "value": 29,
+      "unit": "count",
+      "period": "FY2025",
+      "basis": null
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "C1",
+      "text": "The share of text lost to lacunae and radiocarbon median date (CE) of Odran Hymnal support the edition's dating and stemma argument"
+    },
+    {
+      "id": "C2",
+      "text": "The number of scribal hands of Odran Hymnal supports the edition's dating and stemma argument"
+    }
+  ],
+  "gold": {
+    "pairs": [
+      {
+        "facts": [
+          "D1#s1",
+          "D2#s1"
+        ],
+        "class": "DIFFERENT_REPORTING_BASIS",
+        "plant": "basis",
+        "note": "the same quantity on a stated different basis"
+      },
+      {
+        "facts": [
+          "D2#s2",
+          "D1#s2"
+        ],
+        "class": "POTENTIAL_CONFLICT",
+        "plant": "potential",
+        "note": "values differ; the second statement gives no period"
+      },
+      {
+        "facts": [
+          "D3#s1",
+          "D1#s3"
+        ],
+        "class": "MISSING_EVIDENCE",
+        "plant": "missing",
+        "note": "one document is silent where the other states a value"
+      },
+      {
+        "facts": [
+          "D1#s4",
+          "D3#s2"
+        ],
+        "class": "NONE",
+        "plant": "diff_period",
+        "note": "different fiscal years: two facts, not a conflict"
+      },
+      {
+        "facts": [
+          "D2#s3",
+          "D3#s3"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      },
+      {
+        "facts": [
+          "D3#s4",
+          "D2#s4"
+        ],
+        "class": "NONE",
+        "plant": "rounding",
+        "note": "difference within rounding (0.2%)"
+      }
+    ],
+    "inputs": {
+      "C1": [
+        {
+          "input": "share of text lost to lacunae",
+          "acceptable": [
+            "D1#s1",
+            "D2#s1"
+          ]
+        },
+        {
+          "input": "radiocarbon median date (CE)",
+          "acceptable": [
+            "D1#s2",
+            "D2#s2"
+          ]
+        }
+      ],
+      "C2": [
+        {
+          "input": "number of scribal hands",
+          "acceptable": [
+            "D1#s3",
+            "D3#s1"
+          ]
+        }
+      ]
+    },
+    "dependencies": {
+      "C1": [
+        "D1#s1",
+        "D1#s2",
+        "D2#s1",
+        "D2#s2"
+      ],
+      "C2": [
+        "D1#s3",
+        "D3#s1"
+      ]
+    }
+  }
+}

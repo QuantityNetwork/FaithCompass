@@ -6,6 +6,7 @@
  * duplicate evidence, shared ancestry (one source counted twice is not corroboration), unrecorded contradictions and
  * use of superseded nodes. Also answers "every conclusion depending on this node".
  */
+import { APPROX_TOLERANCE, TOLERANCE } from '@/lib/contradiction/detect';
 import { canonicalJson, hashOf } from '@/lib/decision/canonical';
 import { EDGE_RULES, SDEP_QUESTIONS, SUPPORTED_VERSIONS, SdepDocumentSchema, type NodeKind, type QuestionId, type SdepDocument, type SdepNode } from './schema';
 
@@ -176,6 +177,7 @@ const REQUIRED: Partial<Record<NodeKind, (n: SdepNode) => string | null>> = {
 
 /** Context keys that must all match for two values to be the same measure. */
 const SAME_MEASURE = ['entity', 'measure', 'period', 'unit', 'basis'] as const;
+const VERSIONED = ['version', 'effectiveDate'] as const;
 
 export function checkIntegrity(input: unknown): IntegrityReport {
   const parsed = parseSdep(input);
@@ -308,6 +310,7 @@ export function checkIntegrity(input: unknown): IntegrityReport {
       for (const u of targets) if (u.id !== t.id) contradicted.get(t.id)!.add(u.id);
     }
   }
+  const supersession = new Set(doc.edges.filter((e) => e.type === 'Supersedes').map((e) => `${e.from}|${e.to}`));
   const measured = doc.nodes.filter((n) => n.context && SAME_MEASURE.every((k) => n.context![k]) && n.value !== undefined && n.value !== null);
   for (let i = 0; i < measured.length; i++) {
     for (let j = i + 1; j < measured.length; j++) {
@@ -316,6 +319,14 @@ export function checkIntegrity(input: unknown): IntegrityReport {
       if (!SAME_MEASURE.every((k) => a.context![k] === b.context![k])) continue;
       if (canonicalJson(a.value) === canonicalJson(b.value)) continue;
       if (contradicted.get(a.id)?.has(b.id)) continue;
+      // Not a conflict by the deterministic layer's own rules: a recorded supersession, another version or effective
+      // date, or numbers within the rounding tolerance (wider when either side is marked approximate).
+      if (supersession.has(`${a.id}|${b.id}`) || supersession.has(`${b.id}|${a.id}`)) continue;
+      if (VERSIONED.some((k) => a.context![k] && b.context![k] && a.context![k] !== b.context![k])) continue;
+      if (typeof a.value === 'number' && typeof b.value === 'number') {
+        const tol = a.context!.approximate === 'true' || b.context!.approximate === 'true' ? APPROX_TOLERANCE : TOLERANCE;
+        if (Math.abs(a.value - b.value) <= tol * Math.max(Math.abs(a.value), Math.abs(b.value))) continue;
+      }
       add('UNRECORDED_CONTRADICTION', 'error', `${a.id} (${a.value}) and ${b.id} (${b.value}) report the same measure in the same context with different values, and no Contradiction records it.`, [a.id, b.id]);
     }
   }
