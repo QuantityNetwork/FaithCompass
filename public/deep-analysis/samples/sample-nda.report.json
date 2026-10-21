@@ -1,0 +1,1304 @@
+{
+ "schema": "abrahammoses-deep-analysis/1.0.0",
+ "disclaimer": "Not legal advice; not reviewed by a lawyer.",
+ "generatedAt": "2026-10-21T10:23:10.730Z",
+ "document": {
+  "filename": "sample-nda.md",
+  "format": "md",
+  "bytes": 2739,
+  "bytesSha256": "187e344987d524a0991d49a030f32bf5a441726a1c07b90245e1a94a62681d51",
+  "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c",
+  "chars": 2736,
+  "pages": null,
+  "sample": true
+ },
+ "text": "MUTUAL NON-DISCLOSURE AGREEMENT\n\nSAMPLE DOCUMENT — fictional, written by AbrahamMoses for demonstration. The parties and terms are invented.\n\nThis Mutual Non-Disclosure Agreement is entered into on 15 May 2026 between Lindqvist Biotech AB, a company registered in Sweden (the \"Discloser\"), and Orrin Capital Partners LLP, a limited liability partnership registered in England (the \"Recipient\"). The Discloser and the Recipient may each disclose and receive information under this Agreement.\n\n1. Purpose\nThe parties wish to evaluate a possible investment by the Recipient in the Discloser (the \"Purpose\") and will exchange confidential information for that Purpose only.\n\n2. Confidential Information\n\"Confidential Information\" means all information disclosed by one party to the other in connection with the Purpose, whether written or oral, including business plans, clinical data, financial forecasts and know-how. Confidential Information does not include information that (a) is or becomes public other than through a breach of this Agreement, (b) was lawfully known to the receiving party before disclosure, or (c) is independently developed by the receiving party.\n\n3. Obligations\n3.1 The receiving party shall keep the Confidential Information strictly confidential and shall not disclose it to any third party without the prior written consent of the disclosing party.\n3.2 The receiving party may disclose Confidential Information to its directors, employees and professional advisers who need to know it for the Purpose and are bound by obligations of confidentiality no less strict than these.\n3.3 The Recipient shall not use the Confidential Information to make any investment in a competitor of the Discloser.\n3.4 The Recipient shall not, for a period of two (2) years from the date of this Agreement, solicit or employ any employee of the Discloser.\n\n4. Term\n4.1 This Agreement applies to information disclosed during a period of twelve (12) months from the date of this Agreement.\n4.2 The confidentiality obligations in this Agreement shall survive indefinitely.\n\n5. Return of Information\nOn written request, the receiving party shall return or destroy all Confidential Information within ten (10) Business Days, except copies it must keep by law.\n\n6. Remedies\nEach party acknowledges that damages may not be an adequate remedy for a breach and that the other party may seek injunctive relief. A party that breaches this Agreement shall pay liquidated damages of EUR 250,000 for each breach.\n\n7. Governing Law\nThis Agreement shall be governed by the laws of England and Wales.\n\n8. Jurisdiction\nThe parties submit to the exclusive jurisdiction of the courts of Sweden. This Agreement shall be governed by the laws of Sweden.",
+ "engine": {
+  "version": "deep-analysis/1.0.0",
+  "ai": {
+   "status": "used",
+   "note": "AI layer used (gpt-4.1-2025-04-14). Every AI finding was checked: each quotation must occur in the document verbatim, otherwise the finding was dropped.",
+   "provider": "openai",
+   "model": "gpt-4.1-2025-04-14",
+   "promptVersion": "deep-analysis-prompt/2",
+   "proposed": 53,
+   "dropped": 3,
+   "vetoed": 0,
+   "droppedExamples": [
+    "no quotation: No License Granted",
+    "no quotation: No Carve-Out for Legally Required Disclosures",
+    "no quotation: No Explicit Carve-Out for Residuals"
+   ],
+   "usage": {
+    "inputTokens": 1253,
+    "outputTokens": 5438,
+    "usd": 0.04601
+   },
+   "truncated": false
+  }
+ },
+ "overview": {
+  "title": "MUTUAL NON-DISCLOSURE AGREEMENT",
+  "type": {
+   "value": "Non-disclosure agreement",
+   "spans": [
+    "S1"
+   ],
+   "layer": "deterministic"
+  },
+  "parties": [
+   {
+    "name": "Lindqvist Biotech AB",
+    "role": "Discloser",
+    "spans": [
+     "S2"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "name": "Orrin Capital Partners LLP",
+    "role": "Recipient",
+    "spans": [
+     "S3"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "dates": [
+   {
+    "value": "15 May 2026",
+    "spans": [
+     "S4"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "amounts": [
+   {
+    "value": "EUR 250,000",
+    "spans": [
+     "S5"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "durations": [
+   {
+    "value": "two (2) years",
+    "spans": [
+     "S6"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "twelve (12) months",
+    "spans": [
+     "S7"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "ten (10) Business Days",
+    "spans": [
+     "S8"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "governingLaw": {
+   "value": "England",
+   "spans": [
+    "S9"
+   ],
+   "layer": "deterministic"
+  }
+ },
+ "clauses": [
+  {
+   "id": "C1",
+   "number": null,
+   "heading": "Preamble",
+   "start": 0,
+   "end": 490,
+   "sha256": "bf972357fa4c81e9e396173af42951ebdcd5a7b961f98144bb5e70b023067998",
+   "topics": [],
+   "keyTerms": [
+    "15 May 2026"
+   ],
+   "summary": {
+    "text": "Identifies the parties and the date of the agreement.",
+    "spans": [
+     "S22"
+    ]
+   }
+  },
+  {
+   "id": "C2",
+   "number": "1",
+   "heading": "Purpose",
+   "start": 492,
+   "end": 669,
+   "sha256": "7e43c0e9b00e1f9a354b3c0b3b23a55d1504f5eb9a615621aa78bd6335c24a27",
+   "topics": [],
+   "keyTerms": [],
+   "summary": {
+    "text": "States the purpose: evaluating a possible investment by the Recipient in the Discloser.",
+    "spans": [
+     "S23"
+    ]
+   }
+  },
+  {
+   "id": "C3",
+   "number": "2",
+   "heading": "Confidential Information",
+   "start": 671,
+   "end": 1169,
+   "sha256": "c2144ff9c2f4029f60db47eb507438ba22ced0d2bc4eb52ec8a005566e046f58",
+   "topics": [
+    "Confidentiality"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "Defines Confidential Information and exceptions.",
+    "spans": [
+     "S24"
+    ]
+   }
+  },
+  {
+   "id": "C4",
+   "number": "3",
+   "heading": "Obligations",
+   "start": 1171,
+   "end": 1861,
+   "sha256": "ce38d8322bac17fecb498d5a23fbae0b0dc641b9aa8dd67c80fa9457315f0683",
+   "topics": [
+    "Confidentiality"
+   ],
+   "keyTerms": [
+    "two (2) years"
+   ],
+   "summary": {
+    "text": "Sets out obligations of confidentiality, use, and non-solicitation.",
+    "spans": [
+     "S20"
+    ]
+   }
+  },
+  {
+   "id": "C5",
+   "number": "4",
+   "heading": "Term",
+   "start": 1863,
+   "end": 2075,
+   "sha256": "7ecd1812765425bb80088f5d94a425c2a2b8f580cdb6271e4e72d77dcf5d954d",
+   "topics": [
+    "Term and renewal"
+   ],
+   "keyTerms": [
+    "twelve (12) months"
+   ],
+   "summary": {
+    "text": "Defines the term for disclosure and survival of confidentiality obligations.",
+    "spans": [
+     "S25"
+    ]
+   }
+  },
+  {
+   "id": "C6",
+   "number": "5",
+   "heading": "Return of Information",
+   "start": 2077,
+   "end": 2260,
+   "sha256": "3bdb52cb4b243d28e5020839964255b75590139d3eac8791d3f0de8c6b15fe86",
+   "topics": [],
+   "keyTerms": [
+    "ten (10) Business Days"
+   ],
+   "summary": {
+    "text": "Obligation to return or destroy Confidential Information upon request.",
+    "spans": [
+     "S17"
+    ]
+   }
+  },
+  {
+   "id": "C7",
+   "number": "6",
+   "heading": "Remedies",
+   "start": 2262,
+   "end": 2504,
+   "sha256": "71729cac887de1a55dc9d760ad2996ba2ddb4497c1f7de9a0cc3d9af4bb23540",
+   "topics": [],
+   "keyTerms": [
+    "EUR 250,000"
+   ],
+   "summary": {
+    "text": "Provides for injunctive relief and liquidated damages for breach.",
+    "spans": [
+     "S26"
+    ]
+   }
+  },
+  {
+   "id": "C8",
+   "number": "7",
+   "heading": "Governing Law",
+   "start": 2506,
+   "end": 2589,
+   "sha256": "94edb8a1e99c5592530ee89eb6daeaa0458f490d93e558bc963f8db68f42b028",
+   "topics": [
+    "Governing law"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "States the governing law as England and Wales.",
+    "spans": [
+     "S9"
+    ]
+   }
+  },
+  {
+   "id": "C9",
+   "number": "8",
+   "heading": "Jurisdiction",
+   "start": 2591,
+   "end": 2736,
+   "sha256": "0986aaec5c7313d400b4826d6cfbde2c58f71441225be69a9e6af47ff26ee64d",
+   "topics": [
+    "Dispute resolution"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "States exclusive jurisdiction of Swedish courts and governing law as Sweden.",
+    "spans": [
+     "S27"
+    ]
+   }
+  }
+ ],
+ "spans": [
+  {
+   "id": "S1",
+   "start": 0,
+   "end": 31,
+   "quote": "MUTUAL NON-DISCLOSURE AGREEMENT",
+   "sha256": "bd21318333f18b865d5c753ce426819380134b796e4bcee8ca2537faafe6b929",
+   "clause": "C1"
+  },
+  {
+   "id": "S2",
+   "start": 218,
+   "end": 288,
+   "quote": "Lindqvist Biotech AB, a company registered in Sweden (the \"Discloser\")",
+   "sha256": "b350b3dd6116c84c17374b6a820f58d0ef85146618280587bca1e8142e17960e",
+   "clause": "C1"
+  },
+  {
+   "id": "S3",
+   "start": 294,
+   "end": 393,
+   "quote": "Orrin Capital Partners LLP, a limited liability partnership registered in England (the \"Recipient\")",
+   "sha256": "597f5e7750e493303cd1c399180af2300d7cd86cacef3dadb8c1acab7ae840ff",
+   "clause": "C1"
+  },
+  {
+   "id": "S4",
+   "start": 198,
+   "end": 209,
+   "quote": "15 May 2026",
+   "sha256": "2c513a05d4ef05a05fd9f32dd9b4c2cfb76a2845d34df64612b37d511b11e187",
+   "clause": "C1"
+  },
+  {
+   "id": "S5",
+   "start": 2476,
+   "end": 2487,
+   "quote": "EUR 250,000",
+   "sha256": "f758d13b5e1b13c1fa8575646d2a18602d102dbcebe1df2a478fc2b539930f3e",
+   "clause": "C7"
+  },
+  {
+   "id": "S6",
+   "start": 1766,
+   "end": 1779,
+   "quote": "two (2) years",
+   "sha256": "1a7b378c599516ab91fd80dc3e8a634373b2373f1fa66270620214bdcf9b7f5d",
+   "clause": "C4"
+  },
+  {
+   "id": "S7",
+   "start": 1942,
+   "end": 1960,
+   "quote": "twelve (12) months",
+   "sha256": "f305755aee243349c65aa7467cf78d2e27e03d7cda15ca4e5b53c66714891f18",
+   "clause": "C5"
+  },
+  {
+   "id": "S8",
+   "start": 2202,
+   "end": 2224,
+   "quote": "ten (10) Business Days",
+   "sha256": "dce0f9aa7a122b5d537a59d24a0741f439c880d761b691c2a411c25d5822a364",
+   "clause": "C6"
+  },
+  {
+   "id": "S9",
+   "start": 2523,
+   "end": 2589,
+   "quote": "This Agreement shall be governed by the laws of England and Wales.",
+   "sha256": "b2e8ff59c81b129cd6d8c1a966f8691d0d63290654883ed44e887318264a168d",
+   "clause": "C8"
+  },
+  {
+   "id": "S10",
+   "start": 2681,
+   "end": 2736,
+   "quote": "This Agreement shall be governed by the laws of Sweden.",
+   "sha256": "a41fda677cbe436994093ee81ebcaec2b8983023429ef9f7ecc2b27814a2f0f6",
+   "clause": "C9"
+  },
+  {
+   "id": "S11",
+   "start": 2607,
+   "end": 2680,
+   "quote": "The parties submit to the exclusive jurisdiction of the courts of Sweden.",
+   "sha256": "ca13ecdd0d94147fa4537c456211b4db0e7a71952f0f8bc10a49a4b2265f4e33",
+   "clause": "C9"
+  },
+  {
+   "id": "S12",
+   "start": 395,
+   "end": 490,
+   "quote": "The Discloser and the Recipient may each disclose and receive information under this Agreement.",
+   "sha256": "b0f3fefd9ec984159b9172dd3dab850c3f42f86986e5f31fa491c61da8eebefa",
+   "clause": "C1"
+  },
+  {
+   "id": "S13",
+   "start": 1603,
+   "end": 1720,
+   "quote": "3.3 The Recipient shall not use the Confidential Information to make any investment in a competitor of the Discloser.",
+   "sha256": "48e59e673c209aa05cab794cd4cffe7ae1d57dee812da29a20633583027486a3",
+   "clause": "C4"
+  },
+  {
+   "id": "S14",
+   "start": 1721,
+   "end": 1861,
+   "quote": "3.4 The Recipient shall not, for a period of two (2) years from the date of this Agreement, solicit or employ any employee of the Discloser.",
+   "sha256": "1666201834cfd5b37bc2abbd7079ab289834d778e4b8f06dc263eb2b1a53bdf8",
+   "clause": "C4"
+  },
+  {
+   "id": "S15",
+   "start": 1871,
+   "end": 1993,
+   "quote": "4.1 This Agreement applies to information disclosed during a period of twelve (12) months from the date of this Agreement.",
+   "sha256": "ea37333fe44d8d10efdc753a459a327c826c77b394ca08328cb238496aba90a8",
+   "clause": "C5"
+  },
+  {
+   "id": "S16",
+   "start": 1994,
+   "end": 2075,
+   "quote": "4.2 The confidentiality obligations in this Agreement shall survive indefinitely.",
+   "sha256": "66ad747bed0ec8fba1447108aabf8af00e1a60d0cada96428f596275d12ea142",
+   "clause": "C5"
+  },
+  {
+   "id": "S17",
+   "start": 2102,
+   "end": 2260,
+   "quote": "On written request, the receiving party shall return or destroy all Confidential Information within ten (10) Business Days, except copies it must keep by law.",
+   "sha256": "65c14babbb1d207f28d00f3d9b738e01da766cfe39b1230a8267da9d58b60fe9",
+   "clause": "C6"
+  },
+  {
+   "id": "S18",
+   "start": 2407,
+   "end": 2504,
+   "quote": "A party that breaches this Agreement shall pay liquidated damages of EUR 250,000 for each breach.",
+   "sha256": "061caaed6d7a7534126b154f9bab7dda618c6be4c0964a97c04f35c50ae02e4b",
+   "clause": "C7"
+  },
+  {
+   "id": "S19",
+   "start": 699,
+   "end": 915,
+   "quote": "\"Confidential Information\" means all information disclosed by one party to the other in connection with the Purpose, whether written or oral, including business plans, clinical data, financial forecasts and know-how.",
+   "sha256": "e43854e89d8352059dd0cc9b168b6696de8979b418a26c3951a0781b6d81b93a",
+   "clause": "C3"
+  },
+  {
+   "id": "S20",
+   "start": 1186,
+   "end": 1375,
+   "quote": "3.1 The receiving party shall keep the Confidential Information strictly confidential and shall not disclose it to any third party without the prior written consent of the disclosing party.",
+   "sha256": "6b37e9af66c14459533ff6d2948c758c51b36a18fc2790063b560eec0dacd388",
+   "clause": "C4"
+  },
+  {
+   "id": "S21",
+   "start": 142,
+   "end": 209,
+   "quote": "This Mutual Non-Disclosure Agreement is entered into on 15 May 2026",
+   "sha256": "84fed72cc0da744bd122faef414ee058cb93aaefc0831336427a390d3a4e37ca",
+   "clause": "C1"
+  },
+  {
+   "id": "S22",
+   "start": 142,
+   "end": 394,
+   "quote": "This Mutual Non-Disclosure Agreement is entered into on 15 May 2026 between Lindqvist Biotech AB, a company registered in Sweden (the \"Discloser\"), and Orrin Capital Partners LLP, a limited liability partnership registered in England (the \"Recipient\").",
+   "sha256": "3bd6a62e8016145fff0a533b802ec3226bd79c0782be7ca577b71f6c5e4df6f7",
+   "clause": "C1"
+  },
+  {
+   "id": "S23",
+   "start": 503,
+   "end": 669,
+   "quote": "The parties wish to evaluate a possible investment by the Recipient in the Discloser (the \"Purpose\") and will exchange confidential information for that Purpose only.",
+   "sha256": "e7d234aff1d7061458d64fe1dfd302d981a902a7a238117e143879dcf9f05fc2",
+   "clause": "C2"
+  },
+  {
+   "id": "S24",
+   "start": 700,
+   "end": 1169,
+   "quote": "Confidential Information\" means all information disclosed by one party to the other in connection with the Purpose, whether written or oral, including business plans, clinical data, financial forecasts and know-how. Confidential Information does not include information that (a) is or becomes public other than through a breach of this Agreement, (b) was lawfully known to the receiving party before disclosure, or (c) is independently developed by the receiving party.",
+   "sha256": "4d452116615c4338594bde6f81313bb69adcfa9002caa55e287fb30130b78e73",
+   "clause": "C3"
+  },
+  {
+   "id": "S25",
+   "start": 1871,
+   "end": 2075,
+   "quote": "4.1 This Agreement applies to information disclosed during a period of twelve (12) months from the date of this Agreement.\n4.2 The confidentiality obligations in this Agreement shall survive indefinitely.",
+   "sha256": "3b0f8f3d9d2d823ec4fd0fda1e2a116f86d1dd83ac0b41fe1182c4a6e97ddd80",
+   "clause": "C5"
+  },
+  {
+   "id": "S26",
+   "start": 2274,
+   "end": 2504,
+   "quote": "Each party acknowledges that damages may not be an adequate remedy for a breach and that the other party may seek injunctive relief. A party that breaches this Agreement shall pay liquidated damages of EUR 250,000 for each breach.",
+   "sha256": "c5411ca0b4ebc2168bcf52a409a8efcfd25fce91388ab937d5a7321548d160ce",
+   "clause": "C7"
+  },
+  {
+   "id": "S27",
+   "start": 2607,
+   "end": 2736,
+   "quote": "The parties submit to the exclusive jurisdiction of the courts of Sweden. This Agreement shall be governed by the laws of Sweden.",
+   "sha256": "819855930fb9c3570e5f28d5fa2f2091c83ffbdbd8746d9e72c44a7aa2323800",
+   "clause": "C9"
+  },
+  {
+   "id": "S28",
+   "start": 1376,
+   "end": 1602,
+   "quote": "3.2 The receiving party may disclose Confidential Information to its directors, employees and professional advisers who need to know it for the Purpose and are bound by obligations of confidentiality no less strict than these.",
+   "sha256": "6c970ff183e232ae03e71ba76324e355b6b8d3a34970f7712979b2b3cddd3be0",
+   "clause": "C4"
+  },
+  {
+   "id": "S29",
+   "start": 2274,
+   "end": 2406,
+   "quote": "Each party acknowledges that damages may not be an adequate remedy for a breach and that the other party may seek injunctive relief.",
+   "sha256": "95dd8cb59f889af2fc41a56597ceb0228273c91a16d0aaafae8d96f3fac001cb",
+   "clause": "C7"
+  },
+  {
+   "id": "S30",
+   "start": 1998,
+   "end": 2075,
+   "quote": "The confidentiality obligations in this Agreement shall survive indefinitely.",
+   "sha256": "f5a5adc014f3b10d9b6f29a9e0cbc6325704ce242be5b9cf62505a1ad540622d",
+   "clause": "C5"
+  },
+  {
+   "id": "S31",
+   "start": 2195,
+   "end": 2224,
+   "quote": "within ten (10) Business Days",
+   "sha256": "24c8beef51ba89714a9d040798899d7d347373a56d40befeef20c17d01079b0e",
+   "clause": "C6"
+  }
+ ],
+ "findings": [
+  {
+   "id": "F1",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Mutual Confidentiality",
+   "detail": "Both parties must keep Confidential Information strictly confidential and not disclose it to third parties without prior written consent.",
+   "severity": "high",
+   "reasoning": "Strict confidentiality is central to the agreement; breach triggers severe consequences.",
+   "party": "receiving party",
+   "spans": [
+    "S20"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F2",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Non-Use for Competitor Investment",
+   "detail": "The Recipient is prohibited from using Confidential Information to invest in a competitor of the Discloser.",
+   "severity": "high",
+   "reasoning": "Restricts Recipient's business activities and could have significant commercial impact.",
+   "party": "Recipient",
+   "spans": [
+    "S13"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F3",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Permitted Disclosure to Representatives",
+   "detail": "The receiving party may disclose Confidential Information to directors, employees, and professional advisers who need to know for the Purpose and are bound by similar confidentiality obligations.",
+   "severity": "medium",
+   "reasoning": "Permits necessary internal sharing but requires equivalent confidentiality, reducing risk.",
+   "party": "receiving party",
+   "spans": [
+    "S28"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F4",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Non-Solicitation of Employees",
+   "detail": "Recipient may not solicit or employ any employee of the Discloser for two years from the date of the Agreement.",
+   "severity": "medium",
+   "reasoning": "Restricts Recipient's hiring practices for a significant period.",
+   "party": "Recipient",
+   "spans": [
+    "S14"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F5",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Right: Recipient",
+   "detail": "The Discloser and the Recipient may each disclose and receive information under this Agreement.",
+   "party": "Recipient",
+   "spans": [
+    "S12"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F6",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Restriction: Recipient",
+   "detail": "3.3 The Recipient shall not use the Confidential Information to make any investment in a competitor of the Discloser.",
+   "party": "Recipient",
+   "spans": [
+    "S13"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F7",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Restriction: Recipient",
+   "detail": "3.4 The Recipient shall not, for a period of two (2) years from the date of this Agreement, solicit or employ any employee of the Discloser.",
+   "party": "Recipient",
+   "spans": [
+    "S14"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F8",
+   "section": "deadline",
+   "layer": "ai",
+   "title": "Return or Destruction of Information",
+   "detail": "Upon written request, the receiving party must return or destroy all Confidential Information within 10 Business Days, except legally required copies.",
+   "severity": "medium",
+   "reasoning": "Short timeline for compliance; risk if unable to comply quickly.",
+   "party": "receiving party",
+   "spans": [
+    "S17"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F9",
+   "section": "deadline",
+   "layer": "ai",
+   "title": "Disclosure Period",
+   "detail": "Agreement applies to information disclosed within 12 months from the date of the Agreement.",
+   "severity": "low",
+   "reasoning": "Defines the window for protected disclosures; standard for NDAs.",
+   "spans": [
+    "S15"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F10",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Time limit: two (2) years",
+   "detail": "3.4 The Recipient shall not, for a period of two (2) years from the date of this Agreement, solicit or employ any employee of the Discloser.",
+   "spans": [
+    "S14"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F11",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Time limit: twelve (12) months",
+   "detail": "4.1 This Agreement applies to information disclosed during a period of twelve (12) months from the date of this Agreement.",
+   "spans": [
+    "S15"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F12",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Time limit: ten (10) Business Days",
+   "detail": "On written request, the receiving party shall return or destroy all Confidential Information within ten (10) Business Days, except copies it must keep by law.",
+   "spans": [
+    "S17"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F13",
+   "section": "renewal_termination",
+   "layer": "ai",
+   "title": "Survival of Confidentiality Obligations",
+   "detail": "Confidentiality obligations survive indefinitely, even after the Agreement ends.",
+   "severity": "high",
+   "reasoning": "Indefinite survival is strict and may be burdensome for the Recipient.",
+   "party": "receiving party",
+   "spans": [
+    "S16"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F14",
+   "section": "payment",
+   "layer": "ai",
+   "title": "Liquidated Damages for Breach",
+   "detail": "A party that breaches the Agreement must pay EUR 250,000 for each breach.",
+   "severity": "high",
+   "reasoning": "High financial exposure for any breach, regardless of actual loss.",
+   "party": "breaching party",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F15",
+   "section": "liability",
+   "layer": "ai",
+   "title": "Injunctive Relief",
+   "detail": "Non-breaching party may seek injunctive relief in addition to damages.",
+   "severity": "high",
+   "reasoning": "Allows for court orders to prevent further breaches, increasing risk for breaching party.",
+   "party": "breaching party",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F16",
+   "section": "liability",
+   "layer": "ai",
+   "title": "No Limitation of Liability",
+   "detail": "No clause limits liability for breach; liquidated damages are set but do not cap liability for injunctive relief.",
+   "severity": "high",
+   "reasoning": "Exposure to both liquidated damages and injunctive relief; no cap on total liability.",
+   "party": "breaching party",
+   "spans": [
+    "S18",
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F17",
+   "section": "confidentiality",
+   "layer": "ai",
+   "title": "Definition of Confidential Information",
+   "detail": "Covers all information disclosed in connection with the Purpose, with standard exceptions.",
+   "severity": "low",
+   "reasoning": "Broad but standard definition; exceptions protect recipient.",
+   "party": "receiving party",
+   "spans": [
+    "S24"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F18",
+   "section": "confidentiality",
+   "layer": "deterministic",
+   "title": "Clause 2: Confidentiality",
+   "detail": "\"Confidential Information\" means all information disclosed by one party to the other in connection with the Purpose, whether written or oral, including business plans, clinical data, financial forecasts and know-how.",
+   "spans": [
+    "S19"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F19",
+   "section": "confidentiality",
+   "layer": "deterministic",
+   "title": "Clause 3: Confidentiality",
+   "detail": "3.1 The receiving party shall keep the Confidential Information strictly confidential and shall not disclose it to any third party without the prior written consent of the disclosing party.",
+   "spans": [
+    "S20"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F20",
+   "section": "governing_law",
+   "layer": "ai",
+   "title": "Conflicting Governing Law Clauses",
+   "detail": "Clause 7 states England and Wales law; Clause 8 states Sweden law.",
+   "severity": "high",
+   "reasoning": "Creates uncertainty about which law applies; may render the agreement unenforceable or lead to disputes.",
+   "spans": [
+    "S9",
+    "S10"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F21",
+   "section": "governing_law",
+   "layer": "deterministic",
+   "title": "Clause 7: Governing law",
+   "detail": "This Agreement shall be governed by the laws of England and Wales.",
+   "spans": [
+    "S9"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F22",
+   "section": "dispute_resolution",
+   "layer": "ai",
+   "title": "Jurisdiction Clause",
+   "detail": "Parties submit to exclusive jurisdiction of Swedish courts.",
+   "severity": "medium",
+   "reasoning": "May be inconvenient for the Recipient (UK-based); combined with conflicting law clause, increases risk.",
+   "spans": [
+    "S11"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F23",
+   "section": "dispute_resolution",
+   "layer": "deterministic",
+   "title": "Clause 8: Dispute resolution",
+   "detail": "The parties submit to the exclusive jurisdiction of the courts of Sweden.",
+   "spans": [
+    "S11"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F24",
+   "section": "risk",
+   "layer": "ai",
+   "title": "Conflicting Governing Law and Jurisdiction",
+   "detail": "Agreement contains two different governing law clauses and a jurisdiction clause, creating ambiguity.",
+   "severity": "high",
+   "reasoning": "Ambiguity may make enforcement difficult and increase litigation risk.",
+   "spans": [
+    "S9",
+    "S10",
+    "S11"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F25",
+   "section": "risk",
+   "layer": "ai",
+   "title": "High Liquidated Damages",
+   "detail": "EUR 250,000 per breach is a significant financial risk, especially for minor or technical breaches.",
+   "severity": "high",
+   "reasoning": "Could be disproportionate to actual harm; may be unenforceable if deemed a penalty.",
+   "party": "breaching party",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F26",
+   "section": "risk",
+   "layer": "ai",
+   "title": "Indefinite Confidentiality",
+   "detail": "Obligation to keep information confidential survives indefinitely.",
+   "severity": "high",
+   "reasoning": "Long-term compliance burden; may be difficult to monitor and enforce.",
+   "party": "receiving party",
+   "spans": [
+    "S30"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F27",
+   "section": "risk",
+   "layer": "ai",
+   "title": "No Limitation on Number of Breaches",
+   "detail": "Each breach triggers EUR 250,000; multiple breaches could multiply liability.",
+   "severity": "high",
+   "reasoning": "No aggregate cap; risk of excessive liability.",
+   "party": "breaching party",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F28",
+   "section": "contradiction",
+   "layer": "deterministic",
+   "title": "Conflict: governing law",
+   "detail": "“This Agreement shall be governed by the laws of England and Wales.” against “This Agreement shall be governed by the laws of Sweden.”.",
+   "severity": "high",
+   "reasoning": "Two passages of the same document state different values for the same term; which one applies is unclear.",
+   "contradictionClass": "CONFIRMED_CONFLICT",
+   "rule": "mutually exclusive options asserted together",
+   "spans": [
+    "S9",
+    "S10"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F29",
+   "section": "contradiction",
+   "layer": "ai",
+   "title": "Possible internal inconsistency",
+   "detail": "The governing law and jurisdiction clauses refer to different countries, which is unusual and may cause enforcement issues.",
+   "severity": "medium",
+   "contradictionClass": "POTENTIAL_CONFLICT",
+   "rule": "AI candidate, capped at POTENTIAL_CONFLICT; not vetoed by the deterministic layer",
+   "spans": [
+    "S9",
+    "S11"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F30",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Limitation of Liability Clause",
+   "detail": "No clause limiting the types or amount of damages recoverable.",
+   "severity": "high",
+   "reasoning": "Exposes parties to unlimited liability beyond liquidated damages.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F31",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Assignment Clause",
+   "detail": "No provision addressing assignment or transfer of rights/obligations.",
+   "severity": "medium",
+   "reasoning": "Could allow assignment without consent; may be problematic if parties change.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F32",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Notice Clause",
+   "detail": "No clause specifying how notices must be given.",
+   "severity": "medium",
+   "reasoning": "Could lead to disputes about whether notice was properly given.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F33",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Entire Agreement Clause",
+   "detail": "No clause stating this is the complete agreement between the parties.",
+   "severity": "medium",
+   "reasoning": "Risk of parties relying on prior statements or side agreements.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F34",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Severability Clause",
+   "detail": "No provision stating that invalid terms do not affect the rest of the agreement.",
+   "severity": "medium",
+   "reasoning": "If one clause is invalid, entire agreement could be at risk.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F35",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Carve-Out for Legally Required Disclosures",
+   "detail": "No explicit exception for disclosures required by law or court order.",
+   "severity": "medium",
+   "reasoning": "Could expose recipient to liability for complying with legal obligations.",
+   "party": "receiving party",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F36",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Amendment Clause",
+   "detail": "No clause specifying how the agreement can be amended.",
+   "severity": "medium",
+   "reasoning": "Could allow informal or disputed amendments.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F37",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Force Majeure Clause",
+   "detail": "No provision excusing performance for events beyond control.",
+   "severity": "medium",
+   "reasoning": "Could expose parties to liability for breaches caused by unforeseen events.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F38",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Warranty or Accuracy of Information Clause",
+   "detail": "No statement about accuracy or completeness of disclosed information.",
+   "severity": "medium",
+   "reasoning": "Recipient may rely on inaccurate information without recourse.",
+   "party": "Recipient",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F39",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Definition of Business Days",
+   "detail": "No definition of 'Business Days' provided.",
+   "severity": "low",
+   "reasoning": "Could cause confusion if parties are in different countries.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F40",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Counterparts Clause",
+   "detail": "No provision allowing execution in counterparts.",
+   "severity": "low",
+   "reasoning": "Could complicate execution if parties sign separately.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F41",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No Return/Destruction Certification Requirement",
+   "detail": "No requirement for recipient to certify destruction or return of information.",
+   "severity": "low",
+   "reasoning": "May make enforcement of return/destruction obligation harder.",
+   "party": "receiving party",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "44fcae2962e31655030e6c94834a564631f6518a973a403c72115ed7fc75f62c"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F42",
+   "section": "unusual",
+   "layer": "ai",
+   "title": "Indefinite Confidentiality",
+   "detail": "Obligation to keep information confidential survives indefinitely.",
+   "severity": "high",
+   "reasoning": "Most NDAs limit confidentiality to a set period.",
+   "party": "receiving party",
+   "spans": [
+    "S30"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F43",
+   "section": "unusual",
+   "layer": "ai",
+   "title": "High Liquidated Damages",
+   "detail": "EUR 250,000 per breach is unusually high for an NDA.",
+   "severity": "high",
+   "reasoning": "Could be seen as a penalty and unenforceable.",
+   "party": "breaching party",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F44",
+   "section": "unusual",
+   "layer": "ai",
+   "title": "Conflicting Governing Law and Jurisdiction",
+   "detail": "Agreement contains two different governing law clauses and a jurisdiction clause.",
+   "severity": "high",
+   "reasoning": "Rare and problematic; creates uncertainty.",
+   "spans": [
+    "S9",
+    "S10",
+    "S11"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F45",
+   "section": "unusual",
+   "layer": "deterministic",
+   "title": "Liquidated damages or penalties",
+   "detail": "A party that breaches this Agreement shall pay liquidated damages of EUR 250,000 for each breach.",
+   "severity": "medium",
+   "reasoning": "A fixed payment on breach or delay; check the amount, the trigger and whether it is the sole remedy.",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F46",
+   "section": "unusual",
+   "layer": "deterministic",
+   "title": "Perpetual obligation or licence",
+   "detail": "4.2 The confidentiality obligations in this Agreement shall survive indefinitely.",
+   "severity": "low",
+   "reasoning": "An obligation or licence without an end date; confirm that this is intended.",
+   "spans": [
+    "S16"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F47",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "Which Governing Law Applies?",
+   "detail": "Unclear whether England and Wales or Sweden law governs.",
+   "severity": "high",
+   "reasoning": "Critical for enforcement and interpretation.",
+   "spans": [
+    "S9",
+    "S10"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F48",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "Which Court Has Jurisdiction?",
+   "detail": "Unclear if Swedish courts will apply Swedish or English law.",
+   "severity": "high",
+   "reasoning": "Could lead to procedural and substantive confusion.",
+   "spans": [
+    "S11",
+    "S9",
+    "S10"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F49",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "Definition of Business Days",
+   "detail": "No definition; unclear if UK or Swedish business days apply.",
+   "severity": "low",
+   "reasoning": "Could cause minor confusion in deadlines.",
+   "spans": [
+    "S31"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F50",
+   "section": "concern",
+   "layer": "ai",
+   "title": "Conflicting Governing Law and Jurisdiction",
+   "detail": "Unclear which law applies and which court has authority.",
+   "severity": "high",
+   "spans": [
+    "S9",
+    "S10",
+    "S11"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F51",
+   "section": "concern",
+   "layer": "ai",
+   "title": "High Liquidated Damages",
+   "detail": "EUR 250,000 per breach is excessive and may be unenforceable.",
+   "severity": "high",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F52",
+   "section": "concern",
+   "layer": "ai",
+   "title": "Indefinite Confidentiality",
+   "detail": "Obligation to keep information confidential survives indefinitely.",
+   "severity": "high",
+   "spans": [
+    "S30"
+   ],
+   "requiresHumanReview": true
+  }
+ ],
+ "finalStatement": {
+  "overall": "This NDA contains standard confidentiality and non-solicitation obligations, but several high-risk issues. The most serious is the direct contradiction between the governing law and jurisdiction clauses, which could make enforcement uncertain or impossible. The liquidated damages amount is unusually high and applies per breach, exposing the parties (especially the Recipient) to significant financial risk. The indefinite confidentiality obligation is stricter than industry norms. Several standard clauses are missing, including assignment, notice, and severability. The Recipient should seek clarification and negotiation on these points before signing.",
+  "overallSpans": [
+   "S9",
+   "S10",
+   "S11",
+   "S18",
+   "S30"
+  ],
+  "rating": "significant_concerns",
+  "keyConcerns": [
+   "F50",
+   "F51",
+   "F52"
+  ],
+  "recommendedActions": [
+   {
+    "text": "Clarify and correct the governing law and jurisdiction clauses to ensure consistency.",
+    "spans": [
+     "S9",
+     "S10",
+     "S11"
+    ]
+   },
+   {
+    "text": "Negotiate a lower, more reasonable liquidated damages amount and/or a cap on total liability.",
+    "spans": [
+     "S18"
+    ]
+   },
+   {
+    "text": "Limit the survival period of confidentiality obligations to a defined term (e.g., 3-5 years).",
+    "spans": [
+     "S30"
+    ]
+   },
+   {
+    "text": "Add missing standard clauses: assignment, notice, severability, limitation of liability, and carve-out for legally required disclosures.",
+    "spans": []
+   }
+  ],
+  "confidence": "moderate",
+  "confidenceReason": "All findings are based on direct quotes from the document; the issues identified are clear and significant. (Capped at moderate: no human or lawyer has reviewed this statement.)",
+  "limitations": [
+   "Not legal advice; not reviewed by a lawyer.",
+   "A preview: no confidential client documents. Nothing is stored; the analysis runs in memory and is discarded.",
+   "AI findings are proposals: their quotations are verified to exist verbatim, but their reading of what the passages mean is not. They need human review.",
+   "Absence findings mean no passage matched; the term may exist under other wording or in another document."
+  ],
+  "layer": "ai"
+ },
+ "seal": {
+  "algorithm": "SHA-256",
+  "canonicalization": "canonical-json/1: object keys sorted by UTF-16 code units, no whitespace, strings and numbers as ECMAScript JSON.stringify (RFC 8785 JCS-compatible for these values), undefined members omitted",
+  "reportSha256": "6403f7229f50c62943843d234d44e41037efb87a2a893bd2dface508407ae66d"
+ }
+}

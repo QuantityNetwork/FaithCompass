@@ -1,0 +1,1816 @@
+{
+ "schema": "abrahammoses-deep-analysis/1.0.0",
+ "disclaimer": "Not legal advice; not reviewed by a lawyer.",
+ "generatedAt": "2026-10-21T10:23:34.674Z",
+ "document": {
+  "filename": "sample-supplier-contract.md",
+  "format": "md",
+  "bytes": 2901,
+  "bytesSha256": "6684769914c14930427f38b393cd59c301d31586eeef1053da17b69c552c9be1",
+  "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496",
+  "chars": 2895,
+  "pages": null,
+  "sample": true
+ },
+ "text": "SUPPLY AGREEMENT\n\nSAMPLE DOCUMENT — fictional, written by AbrahamMoses for demonstration. The parties, products and figures are invented.\n\nThis Supply Agreement is made on 2 June 2026 between Nordkap Components AS, a company registered in Norway (the \"Supplier\"), and Vireo Mobility AB, a company registered in Sweden (the \"Buyer\").\n\n1. Supply of Goods\n1.1 The Supplier shall manufacture and deliver to the Buyer the battery enclosures described in Annex A (the \"Goods\") in the quantities stated in each purchase order accepted by the Supplier.\n1.2 The Buyer shall purchase at least 40,000 units of the Goods in each contract year.\n1.3 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equivalent goods from any other supplier during the term.\n\n2. Orders and Delivery\n2.1 The Buyer shall place purchase orders at least eight (8) weeks before the requested delivery date.\n2.2 The Supplier shall deliver the Goods DAP Buyer's plant in Trollhättan (Incoterms 2020).\n2.3 If the Supplier delivers late, the Supplier shall pay liquidated damages of 0.5% of the value of the late Goods per week of delay, up to 5% of that value.\n\n3. Prices and Payment\n3.1 The price per unit is EUR 212.00, fixed until 31 December 2026.\n3.2 From 1 January 2027 the Supplier may adjust prices in its sole discretion to reflect changes in raw material costs.\n3.3 The Buyer shall pay each invoice within ninety (90) days of the date of the invoice.\n\n4. Quality and Warranty\n4.1 The Supplier warrants that the Goods will conform to the specifications in Annex A and be free from defects in materials and workmanship for twenty-four (24) months from delivery.\n4.2 The Buyer shall inspect the Goods within five (5) Business Days of delivery and notify the Supplier of any visible defect.\n\n5. Liability\n5.1 The Supplier shall have unlimited liability for any defect in the Goods.\n5.2 The Supplier's total liability under this Agreement shall not exceed EUR 500,000 in any contract year.\n\n6. Intellectual Property\n6.1 All tooling paid for by the Buyer is the property of the Buyer.\n6.2 The Supplier assigns to the Buyer all intellectual property in the Goods, including any pre-existing intellectual property of the Supplier used in the Goods.\n\n7. Term and Termination\n7.1 This Agreement commences on 1 July 2026 and has an initial term of three (3) years.\n7.2 Either party may terminate this Agreement for material breach that is not remedied within thirty (30) days of notice.\n\n8. Force Majeure\nNeither party is liable for failure to perform caused by events beyond its reasonable control, provided it notifies the other party promptly.\n\n9. Governing Law\nThis Agreement shall be governed by the laws of Sweden, and disputes shall be resolved by the courts of Sweden.\n\nAnnex A — Specifications\nBattery enclosure type VB-7, aluminium alloy 6061-T6, dimensions 820 x 540 x 130 mm, IP67 rated.",
+ "engine": {
+  "version": "deep-analysis/1.0.0",
+  "ai": {
+   "status": "used",
+   "note": "AI layer used (gpt-4.1-2025-04-14). Every AI finding was checked: each quotation must occur in the document verbatim, otherwise the finding was dropped.",
+   "provider": "openai",
+   "model": "gpt-4.1-2025-04-14",
+   "promptVersion": "deep-analysis-prompt/2",
+   "proposed": 64,
+   "dropped": 2,
+   "vetoed": 0,
+   "droppedExamples": [
+    "unknown section \"force_majeure\": Force majeure"
+   ],
+   "usage": {
+    "inputTokens": 1392,
+    "outputTokens": 6601,
+    "usd": 0.055592
+   },
+   "truncated": false
+  }
+ },
+ "overview": {
+  "title": "SUPPLY AGREEMENT",
+  "type": {
+   "value": "Supply agreement",
+   "spans": [
+    "S1"
+   ],
+   "layer": "deterministic"
+  },
+  "parties": [
+   {
+    "name": "Nordkap Components AS",
+    "role": "Supplier",
+    "spans": [
+     "S2"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "name": "Vireo Mobility AB",
+    "role": "Buyer",
+    "spans": [
+     "S3"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "dates": [
+   {
+    "value": "2 June 2026",
+    "spans": [
+     "S4"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "31 December 2026",
+    "spans": [
+     "S5"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "1 January 2027",
+    "spans": [
+     "S6"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "1 July 2026",
+    "spans": [
+     "S7"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "amounts": [
+   {
+    "value": "EUR 212.00",
+    "spans": [
+     "S8"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "EUR 500,000",
+    "spans": [
+     "S9"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "durations": [
+   {
+    "value": "eight (8) weeks",
+    "spans": [
+     "S10"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "ninety (90) days",
+    "spans": [
+     "S11"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "four (24) months",
+    "spans": [
+     "S12"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "five (5) Business Days",
+    "spans": [
+     "S13"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "three (3) years",
+    "spans": [
+     "S14"
+    ],
+    "layer": "deterministic"
+   },
+   {
+    "value": "thirty (30) days",
+    "spans": [
+     "S15"
+    ],
+    "layer": "deterministic"
+   }
+  ],
+  "governingLaw": {
+   "value": "Sweden",
+   "spans": [
+    "S16"
+   ],
+   "layer": "deterministic"
+  }
+ },
+ "clauses": [
+  {
+   "id": "C1",
+   "number": null,
+   "heading": "Preamble",
+   "start": 0,
+   "end": 332,
+   "sha256": "1a86040136907eb67a93635ae732b070c6f51074e78d3fa9da65c781914bca39",
+   "topics": [],
+   "keyTerms": [
+    "2 June 2026"
+   ],
+   "summary": {
+    "text": "Preamble: Identifies the parties, date, and nature of the agreement.",
+    "spans": [
+     "S34"
+    ]
+   }
+  },
+  {
+   "id": "C2",
+   "number": "1",
+   "heading": "Supply of Goods",
+   "start": 334,
+   "end": 779,
+   "sha256": "a2b20c5d250bf312dc4801d217900ba22803dfd24bbb66ff86c94e586bfc3a51",
+   "topics": [
+    "Scope and services"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "Supplier must manufacture and deliver battery enclosures; Buyer must purchase minimum quantities and buy exclusively.",
+    "spans": [
+     "S17"
+    ]
+   }
+  },
+  {
+   "id": "C3",
+   "number": "2",
+   "heading": "Orders and Delivery",
+   "start": 781,
+   "end": 1157,
+   "sha256": "e2f29254f92fbe6d8db4e6e83ecc38c82a2771f2363136017b53285ca8f71997",
+   "topics": [
+    "Scope and services"
+   ],
+   "keyTerms": [
+    "eight (8) weeks",
+    "0.5%",
+    "5%"
+   ],
+   "summary": {
+    "text": "Buyer must order 8 weeks in advance; Supplier delivers DAP; late delivery triggers liquidated damages.",
+    "spans": [
+     "S20"
+    ]
+   }
+  },
+  {
+   "id": "C4",
+   "number": "3",
+   "heading": "Prices and Payment",
+   "start": 1159,
+   "end": 1457,
+   "sha256": "694e8377f3f3416afc42b160e3975ac075764d0c3d7981d86a1c9b82babd5912",
+   "topics": [
+    "Payment"
+   ],
+   "keyTerms": [
+    "EUR 212.00",
+    "ninety (90) days",
+    "31 December 2026",
+    "1 January 2027"
+   ],
+   "summary": {
+    "text": "Unit price is fixed until end 2026; Supplier can adjust price after; Buyer pays within 90 days.",
+    "spans": [
+     "S33"
+    ]
+   }
+  },
+  {
+   "id": "C5",
+   "number": "4",
+   "heading": "Quality and Warranty",
+   "start": 1459,
+   "end": 1793,
+   "sha256": "b666dc269ce15f5732ea09015ab061a176ddc63bd9e47dfaa59f0d595f9a6119",
+   "topics": [
+    "Warranties"
+   ],
+   "keyTerms": [
+    "four (24) months",
+    "five (5) Business Days"
+   ],
+   "summary": {
+    "text": "Supplier warrants conformity and defect-free goods for 24 months; Buyer must inspect within 5 days.",
+    "spans": [
+     "S25"
+    ]
+   }
+  },
+  {
+   "id": "C6",
+   "number": "5",
+   "heading": "Liability",
+   "start": 1795,
+   "end": 1991,
+   "sha256": "f1311e6901317d26b3f58a1a0be4f7633ae057361c2ba0137859a7eb5eb7b158",
+   "topics": [
+    "Limitation of liability"
+   ],
+   "keyTerms": [
+    "EUR 500,000"
+   ],
+   "summary": {
+    "text": "Supplier has unlimited liability for defects, but total liability is capped at EUR 500,000 per year.",
+    "spans": [
+     "S27"
+    ]
+   }
+  },
+  {
+   "id": "C7",
+   "number": "6",
+   "heading": "Intellectual Property",
+   "start": 1993,
+   "end": 2247,
+   "sha256": "09e227cf21bcb8bee9e73ed62bb9b9675d93fde69532f40eda7af7d2b6016c7b",
+   "topics": [
+    "Intellectual property"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "Buyer owns all tooling it pays for; Supplier assigns all IP in the Goods to Buyer.",
+    "spans": [
+     "S35"
+    ]
+   }
+  },
+  {
+   "id": "C8",
+   "number": "7",
+   "heading": "Term and Termination",
+   "start": 2249,
+   "end": 2482,
+   "sha256": "01257f23c959961629339345d5771cfa2ea301a6e6b2000f2a8b084cc3c47a29",
+   "topics": [
+    "Term and renewal",
+    "Termination"
+   ],
+   "keyTerms": [
+    "three (3) years",
+    "thirty (30) days",
+    "1 July 2026"
+   ],
+   "summary": {
+    "text": "Agreement runs 3 years from July 2026; either party can terminate for unremedied material breach after 30 days' notice.",
+    "spans": [
+     "S31"
+    ]
+   }
+  },
+  {
+   "id": "C9",
+   "number": "8",
+   "heading": "Force Majeure",
+   "start": 2484,
+   "end": 2642,
+   "sha256": "a3d04066f9caeb358f1ee3ecd3938f666c3fcf949fa4c2fde6cdd95f33829389",
+   "topics": [
+    "Force majeure"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "Neither party is liable for failures caused by force majeure if prompt notice is given.",
+    "spans": [
+     "S36"
+    ]
+   }
+  },
+  {
+   "id": "C10",
+   "number": "9",
+   "heading": "Governing Law",
+   "start": 2644,
+   "end": 2772,
+   "sha256": "401acf8ab2eb95ffd1cba095dd5a378615461e0aa74550a1120851e73e6ef830",
+   "topics": [
+    "Governing law"
+   ],
+   "keyTerms": [],
+   "summary": {
+    "text": "Swedish law applies; Swedish courts have jurisdiction.",
+    "spans": [
+     "S16"
+    ]
+   }
+  },
+  {
+   "id": "C11",
+   "number": null,
+   "heading": "Annex A — Specifications",
+   "start": 2774,
+   "end": 2895,
+   "sha256": "576f0973e71b5a3b0025f0782abec25875d4824b4229e0c5d33ba3abc68b86d6",
+   "topics": [],
+   "keyTerms": [],
+   "summary": {
+    "text": "Annex A specifies the technical requirements for the battery enclosures.",
+    "spans": [
+     "S37"
+    ]
+   }
+  }
+ ],
+ "spans": [
+  {
+   "id": "S1",
+   "start": 0,
+   "end": 16,
+   "quote": "SUPPLY AGREEMENT",
+   "sha256": "0c61c46213d3673f1df04e983e6ccebcbb1e4da82f5ae962692b00b76ae9463c",
+   "clause": "C1"
+  },
+  {
+   "id": "S2",
+   "start": 192,
+   "end": 262,
+   "quote": "Nordkap Components AS, a company registered in Norway (the \"Supplier\")",
+   "sha256": "1da71c4ea0a566a51e8daaf5e41cda92ee5a64bdf8001f771a8a6eb1d487def4",
+   "clause": "C1"
+  },
+  {
+   "id": "S3",
+   "start": 268,
+   "end": 331,
+   "quote": "Vireo Mobility AB, a company registered in Sweden (the \"Buyer\")",
+   "sha256": "835b159c175bcaf6eb6ec0dcc9b4d5f3aff3861e5f83cb7480f5400efcae4b18",
+   "clause": "C1"
+  },
+  {
+   "id": "S4",
+   "start": 172,
+   "end": 183,
+   "quote": "2 June 2026",
+   "sha256": "633f1c70fc0dc41b7e17fe0137882daf2f75b63011de523d69ea6b56bfc6b5da",
+   "clause": "C1"
+  },
+  {
+   "id": "S5",
+   "start": 1231,
+   "end": 1247,
+   "quote": "31 December 2026",
+   "sha256": "c690ef734d456b42b03511d46cde46c1521d1875d578d427e28514f52e9b0cc7",
+   "clause": "C4"
+  },
+  {
+   "id": "S6",
+   "start": 1258,
+   "end": 1272,
+   "quote": "1 January 2027",
+   "sha256": "23fd473d2c7d7f39c26815198ec6864d3eb93e9b8d9d4891d59777170e14408a",
+   "clause": "C4"
+  },
+  {
+   "id": "S7",
+   "start": 2305,
+   "end": 2316,
+   "quote": "1 July 2026",
+   "sha256": "7301af2c2431417cae77d3ffe8aae5298ab943555b169704494e7817d688f111",
+   "clause": "C8"
+  },
+  {
+   "id": "S8",
+   "start": 1207,
+   "end": 1217,
+   "quote": "EUR 212.00",
+   "sha256": "77249f2a5601ba9b3a0897fda82b860ff99c5d11db19658e89e27516436f8d8d",
+   "clause": "C4"
+  },
+  {
+   "id": "S9",
+   "start": 1958,
+   "end": 1969,
+   "quote": "EUR 500,000",
+   "sha256": "e6aa213654d18879f69d6c3114a5db5612fa2544c16ff03c3a793922f3ada002",
+   "clause": "C6"
+  },
+  {
+   "id": "S10",
+   "start": 855,
+   "end": 870,
+   "quote": "eight (8) weeks",
+   "sha256": "0732c1d85eec015bdd4b54aa75570fd36910b2ccb131f40bd40ff840f065fee7",
+   "clause": "C3"
+  },
+  {
+   "id": "S11",
+   "start": 1413,
+   "end": 1429,
+   "quote": "ninety (90) days",
+   "sha256": "2f2231b94583da3a8d7d88523df4d9558a48f5f14120c94580eaa3fd05903136",
+   "clause": "C4"
+  },
+  {
+   "id": "S12",
+   "start": 1635,
+   "end": 1651,
+   "quote": "four (24) months",
+   "sha256": "a03d1c107da98e7b6867648902f8a8d0b0574bba3bf7f8424a6b5861ff53d7c2",
+   "clause": "C5"
+  },
+  {
+   "id": "S13",
+   "start": 1712,
+   "end": 1734,
+   "quote": "five (5) Business Days",
+   "sha256": "5f195c8fd968e4ada257080ee1c1d1ced1f9d6fb78cf6e70d0ef70a59456a156",
+   "clause": "C5"
+  },
+  {
+   "id": "S14",
+   "start": 2344,
+   "end": 2359,
+   "quote": "three (3) years",
+   "sha256": "c116bd444f727bd61844c8a6b144aceb1333f44bd413eb004338d5cbfdb852d2",
+   "clause": "C8"
+  },
+  {
+   "id": "S15",
+   "start": 2455,
+   "end": 2471,
+   "quote": "thirty (30) days",
+   "sha256": "52a6e6494d3564d9e08f97e97ef914f9f0c2253d1208ebeef025cdc2ea684e49",
+   "clause": "C8"
+  },
+  {
+   "id": "S16",
+   "start": 2661,
+   "end": 2772,
+   "quote": "This Agreement shall be governed by the laws of Sweden, and disputes shall be resolved by the courts of Sweden.",
+   "sha256": "9b8ed227fd369084aeb0e7e76437be0d0c8e500648ed5aee5cb3de8735892464",
+   "clause": "C10"
+  },
+  {
+   "id": "S17",
+   "start": 353,
+   "end": 544,
+   "quote": "1.1 The Supplier shall manufacture and deliver to the Buyer the battery enclosures described in Annex A (the \"Goods\") in the quantities stated in each purchase order accepted by the Supplier.",
+   "sha256": "5faf99adb854717e446956a39fbc4f6ca5748da2c4887855e623aa6eabe2a01e",
+   "clause": "C2"
+  },
+  {
+   "id": "S18",
+   "start": 545,
+   "end": 631,
+   "quote": "1.2 The Buyer shall purchase at least 40,000 units of the Goods in each contract year.",
+   "sha256": "0c35e3874586d25d802de56dc6300ce5899b2f5a017860e431e9ff47a700a0f4",
+   "clause": "C2"
+  },
+  {
+   "id": "S19",
+   "start": 632,
+   "end": 779,
+   "quote": "1.3 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equivalent goods from any other supplier during the term.",
+   "sha256": "5456509cfd3072870ef094a8f857e966ddd89a1911d78cd25c50da1f9557f787",
+   "clause": "C2"
+  },
+  {
+   "id": "S20",
+   "start": 804,
+   "end": 906,
+   "quote": "2.1 The Buyer shall place purchase orders at least eight (8) weeks before the requested delivery date.",
+   "sha256": "a2426b89a0bffa99aeada0e33e30e41124317711684c77c8b1b89512b30855f5",
+   "clause": "C3"
+  },
+  {
+   "id": "S21",
+   "start": 907,
+   "end": 998,
+   "quote": "2.2 The Supplier shall deliver the Goods DAP Buyer's plant in Trollhättan (Incoterms 2020).",
+   "sha256": "5f74fb111e0df6161a03c17cf879f6dcabcbee918cefc0613414a5473e24fcc4",
+   "clause": "C3"
+  },
+  {
+   "id": "S22",
+   "start": 999,
+   "end": 1157,
+   "quote": "2.3 If the Supplier delivers late, the Supplier shall pay liquidated damages of 0.5% of the value of the late Goods per week of delay, up to 5% of that value.",
+   "sha256": "d257038bd11f868270e82e06f4726b9b7cafad439268f1eaa89893580ff521ab",
+   "clause": "C3"
+  },
+  {
+   "id": "S23",
+   "start": 1249,
+   "end": 1368,
+   "quote": "3.2 From 1 January 2027 the Supplier may adjust prices in its sole discretion to reflect changes in raw material costs.",
+   "sha256": "212c7716f5dbca1d7bb116ae0cff0ad48e3ac17f592d2704a872d4a29adef318",
+   "clause": "C4"
+  },
+  {
+   "id": "S24",
+   "start": 1369,
+   "end": 1457,
+   "quote": "3.3 The Buyer shall pay each invoice within ninety (90) days of the date of the invoice.",
+   "sha256": "de73945ac1c26cea2287de4fc79f4033e30eba364ac0f4987dfb46081e4f00dd",
+   "clause": "C4"
+  },
+  {
+   "id": "S25",
+   "start": 1483,
+   "end": 1666,
+   "quote": "4.1 The Supplier warrants that the Goods will conform to the specifications in Annex A and be free from defects in materials and workmanship for twenty-four (24) months from delivery.",
+   "sha256": "396ffbd1b472f9149728a2a23904a6af0daec6adc2e83177eca086084d56b3bc",
+   "clause": "C5"
+  },
+  {
+   "id": "S26",
+   "start": 1667,
+   "end": 1793,
+   "quote": "4.2 The Buyer shall inspect the Goods within five (5) Business Days of delivery and notify the Supplier of any visible defect.",
+   "sha256": "7c2d96c1a2e418a30a26548057288d31c6375056ae9eb5512432b82199f5b247",
+   "clause": "C5"
+  },
+  {
+   "id": "S27",
+   "start": 1808,
+   "end": 1884,
+   "quote": "5.1 The Supplier shall have unlimited liability for any defect in the Goods.",
+   "sha256": "63dbdbc9ec65c3c33b51bdee30dc8120711b1e81850bea514d4ca77d05e1b5a0",
+   "clause": "C6"
+  },
+  {
+   "id": "S28",
+   "start": 1885,
+   "end": 1991,
+   "quote": "5.2 The Supplier's total liability under this Agreement shall not exceed EUR 500,000 in any contract year.",
+   "sha256": "ea6210832126c1ba19945afad87de3d71b8c0648046df8e8ee41c473c74d24c3",
+   "clause": "C6"
+  },
+  {
+   "id": "S29",
+   "start": 2086,
+   "end": 2247,
+   "quote": "6.2 The Supplier assigns to the Buyer all intellectual property in the Goods, including any pre-existing intellectual property of the Supplier used in the Goods.",
+   "sha256": "04872ceaf9e9769d4f10df71d32e2dee52b0555052714fcf36b8ee2a92a67abb",
+   "clause": "C7"
+  },
+  {
+   "id": "S30",
+   "start": 2252,
+   "end": 2272,
+   "quote": "Term and Termination",
+   "sha256": "1d80db939f19a5946e9671ff26a351f37fe916ef42958dda919cfaaf1eeb4bb1",
+   "clause": "C8"
+  },
+  {
+   "id": "S31",
+   "start": 2273,
+   "end": 2360,
+   "quote": "7.1 This Agreement commences on 1 July 2026 and has an initial term of three (3) years.",
+   "sha256": "57ce9da92cb1fb57a8fb074f05bd12b933ffa5f8bf0110097141196543084a5f",
+   "clause": "C8"
+  },
+  {
+   "id": "S32",
+   "start": 2361,
+   "end": 2482,
+   "quote": "7.2 Either party may terminate this Agreement for material breach that is not remedied within thirty (30) days of notice.",
+   "sha256": "127b3c947f295cd82ae6a8653c6cbb75507653ebf22fb41a93bc0fcc61bf7bae",
+   "clause": "C8"
+  },
+  {
+   "id": "S33",
+   "start": 1181,
+   "end": 1248,
+   "quote": "3.1 The price per unit is EUR 212.00, fixed until 31 December 2026.",
+   "sha256": "6fda1143b0da98ae1560c6cc3981f21ce34b66d37a9facec643797874723eaf3",
+   "clause": "C4"
+  },
+  {
+   "id": "S34",
+   "start": 139,
+   "end": 332,
+   "quote": "This Supply Agreement is made on 2 June 2026 between Nordkap Components AS, a company registered in Norway (the \"Supplier\"), and Vireo Mobility AB, a company registered in Sweden (the \"Buyer\").",
+   "sha256": "7af2571a17f11b3eee16e344c8c7818ffc571914e345135e69fcfcbeb3c3646a",
+   "clause": "C1"
+  },
+  {
+   "id": "S35",
+   "start": 2018,
+   "end": 2085,
+   "quote": "6.1 All tooling paid for by the Buyer is the property of the Buyer.",
+   "sha256": "d9200270de915de3a598fcd3741acf01335c4ba2b80614ea9092cd7a615a397e",
+   "clause": "C7"
+  },
+  {
+   "id": "S36",
+   "start": 2501,
+   "end": 2642,
+   "quote": "Neither party is liable for failure to perform caused by events beyond its reasonable control, provided it notifies the other party promptly.",
+   "sha256": "e45e8a85d63990d5f5ab30476882b3b87c27e5b20424f1517b53d35c3f2875c3",
+   "clause": "C9"
+  },
+  {
+   "id": "S37",
+   "start": 2774,
+   "end": 2895,
+   "quote": "Annex A — Specifications\nBattery enclosure type VB-7, aluminium alloy 6061-T6, dimensions 820 x 540 x 130 mm, IP67 rated.",
+   "sha256": "576f0973e71b5a3b0025f0782abec25875d4824b4229e0c5d33ba3abc68b86d6",
+   "clause": "C11"
+  }
+ ],
+ "findings": [
+  {
+   "id": "F1",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Supplier must manufacture and deliver Goods",
+   "detail": "Supplier is required to manufacture and deliver battery enclosures as described in Annex A in quantities per accepted purchase orders.",
+   "severity": "high",
+   "reasoning": "Core supply obligation; failure exposes Supplier to liability and damages.",
+   "party": "Supplier",
+   "spans": [
+    "S17"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F2",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Buyer must purchase minimum quantity",
+   "detail": "Buyer must purchase at least 40,000 units per contract year.",
+   "severity": "high",
+   "reasoning": "Creates a significant financial commitment for Buyer; failure may be breach.",
+   "party": "Buyer",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F3",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Buyer must purchase exclusively from Supplier",
+   "detail": "Buyer cannot source equivalent goods from other suppliers during the term.",
+   "severity": "high",
+   "reasoning": "Restricts Buyer's flexibility and may impact supply chain risk.",
+   "party": "Buyer",
+   "spans": [
+    "S19"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F4",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Supplier must warrant goods for 24 months",
+   "detail": "Supplier warrants conformity and defect-free goods for 24 months from delivery.",
+   "severity": "high",
+   "reasoning": "Long warranty period; significant for Buyer if defects arise.",
+   "party": "Supplier",
+   "spans": [
+    "S25"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F5",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Supplier has unlimited liability for defects",
+   "detail": "Supplier's liability for any defect in the Goods is unlimited.",
+   "severity": "high",
+   "reasoning": "Significant risk for Supplier; may be financially exposed.",
+   "party": "Supplier",
+   "spans": [
+    "S27"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F6",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Buyer must place orders 8 weeks in advance",
+   "detail": "Buyer must submit purchase orders at least 8 weeks before requested delivery.",
+   "severity": "medium",
+   "reasoning": "Operational planning requirement; late orders may not be fulfilled.",
+   "party": "Buyer",
+   "spans": [
+    "S20"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F7",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Supplier must deliver DAP Buyer's plant",
+   "detail": "Supplier delivers goods DAP (Incoterms 2020) to Buyer's plant in Trollhättan.",
+   "severity": "medium",
+   "reasoning": "Supplier bears transport risk and cost until delivery at Buyer's site.",
+   "party": "Supplier",
+   "spans": [
+    "S21"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F8",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Supplier pays liquidated damages for late delivery",
+   "detail": "Supplier pays 0.5% of value of late goods per week, up to 5%.",
+   "severity": "medium",
+   "reasoning": "Caps Supplier's exposure for late delivery but creates a predictable penalty.",
+   "party": "Supplier",
+   "spans": [
+    "S22"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F9",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Buyer must pay within 90 days",
+   "detail": "Buyer must pay each invoice within 90 days of invoice date.",
+   "severity": "medium",
+   "reasoning": "Long payment term; Supplier bears credit risk.",
+   "party": "Buyer",
+   "spans": [
+    "S24"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F10",
+   "section": "obligation",
+   "layer": "ai",
+   "title": "Buyer must inspect goods within 5 business days",
+   "detail": "Buyer must inspect and notify Supplier of visible defects within 5 business days.",
+   "severity": "medium",
+   "reasoning": "Short window; Buyer may lose rights if not prompt.",
+   "party": "Buyer",
+   "spans": [
+    "S26"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F11",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Supplier",
+   "detail": "1.1 The Supplier shall manufacture and deliver to the Buyer the battery enclosures described in Annex A (the \"Goods\") in the quantities stated in each purchase order accepted by the Supplier.",
+   "party": "Supplier",
+   "spans": [
+    "S17"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F12",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Buyer",
+   "detail": "1.2 The Buyer shall purchase at least 40,000 units of the Goods in each contract year.",
+   "party": "Buyer",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F13",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Buyer",
+   "detail": "1.3 The Buyer shall purchase the Goods exclusively from the Supplier and shall not source equivalent goods from any other supplier during the term.",
+   "party": "Buyer",
+   "spans": [
+    "S19"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F14",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Buyer",
+   "detail": "2.1 The Buyer shall place purchase orders at least eight (8) weeks before the requested delivery date.",
+   "party": "Buyer",
+   "spans": [
+    "S20"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F15",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Supplier",
+   "detail": "2.2 The Supplier shall deliver the Goods DAP Buyer's plant in Trollhättan (Incoterms 2020).",
+   "party": "Supplier",
+   "spans": [
+    "S21"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F16",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Supplier",
+   "detail": "2.3 If the Supplier delivers late, the Supplier shall pay liquidated damages of 0.5% of the value of the late Goods per week of delay, up to 5% of that value.",
+   "party": "Supplier",
+   "spans": [
+    "S22"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F17",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Right: Supplier",
+   "detail": "3.2 From 1 January 2027 the Supplier may adjust prices in its sole discretion to reflect changes in raw material costs.",
+   "party": "Supplier",
+   "spans": [
+    "S23"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F18",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Buyer",
+   "detail": "3.3 The Buyer shall pay each invoice within ninety (90) days of the date of the invoice.",
+   "party": "Buyer",
+   "spans": [
+    "S24"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F19",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Buyer",
+   "detail": "4.2 The Buyer shall inspect the Goods within five (5) Business Days of delivery and notify the Supplier of any visible defect.",
+   "party": "Buyer",
+   "spans": [
+    "S26"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F20",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Obligation: Supplier",
+   "detail": "5.1 The Supplier shall have unlimited liability for any defect in the Goods.",
+   "party": "Supplier",
+   "spans": [
+    "S27"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F21",
+   "section": "obligation",
+   "layer": "deterministic",
+   "title": "Right: Both parties",
+   "detail": "7.2 Either party may terminate this Agreement for material breach that is not remedied within thirty (30) days of notice.",
+   "party": "Both parties",
+   "spans": [
+    "S32"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F22",
+   "section": "deadline",
+   "layer": "ai",
+   "title": "Inspection deadline for Buyer",
+   "detail": "Buyer must inspect goods and notify Supplier of visible defects within 5 business days.",
+   "severity": "medium",
+   "reasoning": "Short period; Buyer may lose rights if not diligent.",
+   "party": "Buyer",
+   "spans": [
+    "S26"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F23",
+   "section": "deadline",
+   "layer": "ai",
+   "title": "Order lead time",
+   "detail": "Buyer must place orders at least 8 weeks before delivery date.",
+   "severity": "medium",
+   "reasoning": "Operational constraint; late orders may not be fulfilled.",
+   "party": "Buyer",
+   "spans": [
+    "S20"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F24",
+   "section": "deadline",
+   "layer": "ai",
+   "title": "Payment deadline",
+   "detail": "Buyer must pay within 90 days of invoice date.",
+   "severity": "medium",
+   "reasoning": "Long payment term; Supplier bears credit risk.",
+   "party": "Buyer",
+   "spans": [
+    "S24"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F25",
+   "section": "deadline",
+   "layer": "ai",
+   "title": "Remedy period for breach",
+   "detail": "30 days to remedy material breach after notice before termination.",
+   "severity": "medium",
+   "reasoning": "Standard cure period; both parties protected.",
+   "spans": [
+    "S32"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F26",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Time limit: eight (8) weeks",
+   "detail": "2.1 The Buyer shall place purchase orders at least eight (8) weeks before the requested delivery date.",
+   "spans": [
+    "S20"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F27",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Payment deadline: ninety (90) days",
+   "detail": "3.3 The Buyer shall pay each invoice within ninety (90) days of the date of the invoice.",
+   "spans": [
+    "S24"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F28",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Time limit: four (24) months",
+   "detail": "4.1 The Supplier warrants that the Goods will conform to the specifications in Annex A and be free from defects in materials and workmanship for twenty-four (24) months from delivery.",
+   "spans": [
+    "S25"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F29",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Time limit: five (5) Business Days",
+   "detail": "4.2 The Buyer shall inspect the Goods within five (5) Business Days of delivery and notify the Supplier of any visible defect.",
+   "spans": [
+    "S26"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F30",
+   "section": "deadline",
+   "layer": "deterministic",
+   "title": "Termination notice: thirty (30) days",
+   "detail": "7.2 Either party may terminate this Agreement for material breach that is not remedied within thirty (30) days of notice.",
+   "spans": [
+    "S32"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F31",
+   "section": "renewal_termination",
+   "layer": "ai",
+   "title": "Agreement term and renewal",
+   "detail": "Agreement starts 1 July 2026, initial term 3 years; no automatic renewal stated.",
+   "severity": "medium",
+   "reasoning": "No renewal mechanism; parties must renegotiate after 3 years.",
+   "spans": [
+    "S31"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F32",
+   "section": "renewal_termination",
+   "layer": "ai",
+   "title": "Termination for material breach",
+   "detail": "Either party may terminate for material breach not remedied within 30 days of notice.",
+   "severity": "medium",
+   "reasoning": "Standard right; 30-day cure period.",
+   "spans": [
+    "S32"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F33",
+   "section": "renewal_termination",
+   "layer": "deterministic",
+   "title": "Termination",
+   "detail": "Term and Termination",
+   "spans": [
+    "S30"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F34",
+   "section": "renewal_termination",
+   "layer": "deterministic",
+   "title": "Termination for cause",
+   "detail": "7.2 Either party may terminate this Agreement for material breach that is not remedied within thirty (30) days of notice.",
+   "spans": [
+    "S32"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F35",
+   "section": "payment",
+   "layer": "ai",
+   "title": "Supplier may adjust prices after 2026",
+   "detail": "From 1 January 2027, Supplier may adjust prices in its sole discretion to reflect raw material cost changes.",
+   "severity": "high",
+   "reasoning": "Unilateral right; Buyer exposed to price increases.",
+   "party": "Buyer",
+   "spans": [
+    "S23"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F36",
+   "section": "payment",
+   "layer": "ai",
+   "title": "Price per unit fixed until end 2026",
+   "detail": "EUR 212.00 per unit, fixed until 31 December 2026.",
+   "severity": "low",
+   "reasoning": "Predictable pricing for Buyer; Supplier bears cost risk.",
+   "party": "Supplier",
+   "spans": [
+    "S33"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F37",
+   "section": "payment",
+   "layer": "deterministic",
+   "title": "Clause 3: Payment",
+   "detail": "3.1 The price per unit is EUR 212.00, fixed until 31 December 2026.",
+   "spans": [
+    "S33"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F38",
+   "section": "liability",
+   "layer": "ai",
+   "title": "Supplier's total liability capped at EUR 500,000 per year",
+   "detail": "Supplier's total liability under the Agreement is capped at EUR 500,000 per contract year.",
+   "severity": "high",
+   "reasoning": "Contradicts unlimited liability for defects; cap may limit Buyer's recourse.",
+   "party": "Supplier",
+   "spans": [
+    "S28"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F39",
+   "section": "liability",
+   "layer": "ai",
+   "title": "Unlimited liability for defects vs. liability cap",
+   "detail": "Supplier has unlimited liability for defects but total liability is capped at EUR 500,000 per year.",
+   "severity": "high",
+   "reasoning": "Contradiction; creates uncertainty for both parties.",
+   "party": "Supplier",
+   "spans": [
+    "S27",
+    "S28"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F40",
+   "section": "liability",
+   "layer": "ai",
+   "title": "Liquidated damages for late delivery",
+   "detail": "Supplier pays 0.5% per week of delay, up to 5% of value of late goods.",
+   "severity": "medium",
+   "reasoning": "Predictable penalty; cap may limit Buyer's recourse for major delays.",
+   "party": "Supplier",
+   "spans": [
+    "S22"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F41",
+   "section": "liability",
+   "layer": "deterministic",
+   "title": "Clause 5: Limitation of liability",
+   "detail": "5.1 The Supplier shall have unlimited liability for any defect in the Goods.",
+   "spans": [
+    "S27"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F42",
+   "section": "ip",
+   "layer": "ai",
+   "title": "Supplier assigns all IP in Goods to Buyer",
+   "detail": "Supplier assigns all intellectual property in the Goods, including pre-existing IP used in the Goods, to Buyer.",
+   "severity": "high",
+   "reasoning": "Supplier loses all IP rights, including pre-existing; unusual and risky for Supplier.",
+   "party": "Supplier",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F43",
+   "section": "ip",
+   "layer": "ai",
+   "title": "Assignment of pre-existing IP",
+   "detail": "Supplier assigns all IP in Goods, including pre-existing IP, to Buyer.",
+   "severity": "high",
+   "reasoning": "Unusual; Supplier may lose rights to core technology.",
+   "party": "Supplier",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F44",
+   "section": "ip",
+   "layer": "ai",
+   "title": "Buyer owns tooling it pays for",
+   "detail": "All tooling paid for by Buyer is Buyer's property.",
+   "severity": "low",
+   "reasoning": "Standard in manufacturing; protects Buyer's investment.",
+   "party": "Supplier",
+   "spans": [
+    "S35"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F45",
+   "section": "ip",
+   "layer": "deterministic",
+   "title": "Clause 6: Intellectual property",
+   "detail": "6.2 The Supplier assigns to the Buyer all intellectual property in the Goods, including any pre-existing intellectual property of the Supplier used in the Goods.",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F46",
+   "section": "governing_law",
+   "layer": "ai",
+   "title": "Governing law and jurisdiction",
+   "detail": "Swedish law applies; Swedish courts have jurisdiction.",
+   "severity": "medium",
+   "reasoning": "Important for cross-border disputes; favors Buyer (Swedish company).",
+   "spans": [
+    "S16"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F47",
+   "section": "governing_law",
+   "layer": "deterministic",
+   "title": "Clause 9: Governing law",
+   "detail": "This Agreement shall be governed by the laws of Sweden, and disputes shall be resolved by the courts of Sweden.",
+   "spans": [
+    "S16"
+   ],
+   "requiresHumanReview": false
+  },
+  {
+   "id": "F48",
+   "section": "risk",
+   "layer": "deterministic",
+   "title": "Uncapped liability",
+   "detail": "5.1 The Supplier shall have unlimited liability for any defect in the Goods.",
+   "severity": "high",
+   "reasoning": "The sentence leaves a party’s liability without a financial cap, so exposure is open-ended.",
+   "spans": [
+    "S27"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F49",
+   "section": "risk",
+   "layer": "deterministic",
+   "title": "Assignment of pre-existing IP",
+   "detail": "6.2 The Supplier assigns to the Buyer all intellectual property in the Goods, including any pre-existing intellectual property of the Supplier used in the Goods.",
+   "severity": "high",
+   "reasoning": "Transfers intellectual property that existed before the agreement, not only the results of the work.",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F50",
+   "section": "contradiction",
+   "layer": "deterministic",
+   "title": "Conflict: liability cap",
+   "detail": "“5.1 The Supplier shall have unlimited liability for any defect in the Goods.” against “5.2 The Supplier's total liability under this Agreement shall not exceed EUR 500,000 in…”.",
+   "severity": "high",
+   "reasoning": "Two passages of the same document state different values for the same term; which one applies is unclear.",
+   "contradictionClass": "CONFIRMED_CONFLICT",
+   "rule": "mutually exclusive options asserted together",
+   "spans": [
+    "S27",
+    "S28"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F51",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No confidentiality clause",
+   "detail": "No provision on confidentiality or non-disclosure of information.",
+   "severity": "high",
+   "reasoning": "Risk of misuse or disclosure of sensitive information.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F52",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No limitation of liability for indirect/consequential damages",
+   "detail": "No explicit exclusion of indirect or consequential damages.",
+   "severity": "high",
+   "reasoning": "Supplier may be exposed to broad damages claims.",
+   "party": "Supplier",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F53",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No data protection clause",
+   "detail": "No mention of data protection or GDPR compliance.",
+   "severity": "medium",
+   "reasoning": "Potential exposure if personal data is processed.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F54",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No dispute resolution mechanism beyond courts",
+   "detail": "No mediation or arbitration clause; only courts specified.",
+   "severity": "medium",
+   "reasoning": "Litigation may be costly and slow.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F55",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No detailed delivery schedule or forecast mechanism",
+   "detail": "No provision for rolling forecasts or binding delivery schedules.",
+   "severity": "medium",
+   "reasoning": "May cause planning issues for both parties.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F56",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No provision for changes to specifications",
+   "detail": "No mechanism for Buyer to request changes to Annex A specifications.",
+   "severity": "medium",
+   "reasoning": "Limits flexibility for Buyer if needs change.",
+   "party": "Buyer",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F57",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No insurance requirement",
+   "detail": "No clause requiring Supplier to maintain insurance.",
+   "severity": "medium",
+   "reasoning": "Supplier may not be insured for liabilities.",
+   "party": "Supplier",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F58",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No assignment/subcontracting clause",
+   "detail": "No provision on assignment or subcontracting of rights/obligations.",
+   "severity": "medium",
+   "reasoning": "Unclear if parties can assign or subcontract.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F59",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No notice clause",
+   "detail": "No provision specifying how notices must be given.",
+   "severity": "medium",
+   "reasoning": "May cause disputes over effective notice.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F60",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No product recall procedure",
+   "detail": "No clause on how to handle product recalls.",
+   "severity": "medium",
+   "reasoning": "Unclear process if defects are discovered post-delivery.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F61",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No set-off rights for Buyer",
+   "detail": "No provision allowing Buyer to set off claims against payments.",
+   "severity": "medium",
+   "reasoning": "Buyer may have to pay even if it has valid claims.",
+   "party": "Buyer",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F62",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No survival of key clauses",
+   "detail": "No statement that key clauses (e.g., IP, confidentiality) survive termination.",
+   "severity": "medium",
+   "reasoning": "Unclear if obligations continue after termination.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F63",
+   "section": "missing",
+   "layer": "deterministic",
+   "title": "No confidentiality clause found",
+   "detail": "No clause heading or passage matched the confidentiality patterns expected in a supply agreement.",
+   "severity": "low",
+   "reasoning": "Absence found by pattern search over the whole text; the term may exist under another wording.",
+   "spans": [],
+   "absence": {
+    "searched": "confidential|non-disclosure | \\bconfidential information\\b",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F64",
+   "section": "missing",
+   "layer": "deterministic",
+   "title": "No assignment clause found",
+   "detail": "No clause heading or passage matched the assignment patterns expected in a supply agreement.",
+   "severity": "low",
+   "reasoning": "Absence found by pattern search over the whole text; the term may exist under another wording.",
+   "spans": [],
+   "absence": {
+    "searched": "assign|transfer|subcontract | \\bassign(ment)?\\b",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F65",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No escalation procedure for disputes",
+   "detail": "No stepwise escalation before litigation.",
+   "severity": "low",
+   "reasoning": "Could lead to premature litigation.",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F66",
+   "section": "missing",
+   "layer": "ai",
+   "title": "No audit rights for Buyer",
+   "detail": "No right for Buyer to audit Supplier's compliance.",
+   "severity": "low",
+   "reasoning": "Buyer cannot verify Supplier's performance.",
+   "party": "Buyer",
+   "spans": [],
+   "absence": {
+    "searched": "AI reading of the whole document (not verifiable by quotation)",
+    "textSha256": "8a098b08602f36549f8d10c00a38d07d09fe70048b29b1a38395842aca644496"
+   },
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F67",
+   "section": "unusual",
+   "layer": "ai",
+   "title": "Assignment of pre-existing IP",
+   "detail": "Supplier assigns all pre-existing IP in Goods to Buyer.",
+   "severity": "high",
+   "reasoning": "Rare in supply agreements; Supplier loses core IP.",
+   "party": "Supplier",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F68",
+   "section": "unusual",
+   "layer": "ai",
+   "title": "Exclusive supply obligation for Buyer",
+   "detail": "Buyer must purchase exclusively from Supplier.",
+   "severity": "high",
+   "reasoning": "Restricts Buyer's sourcing flexibility.",
+   "party": "Buyer",
+   "spans": [
+    "S19"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F69",
+   "section": "unusual",
+   "layer": "ai",
+   "title": "Unilateral price adjustment by Supplier",
+   "detail": "Supplier may adjust prices in its sole discretion after 2026.",
+   "severity": "high",
+   "reasoning": "Buyer has no control or cap on price increases.",
+   "party": "Buyer",
+   "spans": [
+    "S23"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F70",
+   "section": "unusual",
+   "layer": "deterministic",
+   "title": "Liquidated damages or penalties",
+   "detail": "2.3 If the Supplier delivers late, the Supplier shall pay liquidated damages of 0.5% of the value of the late Goods per week of delay, up to 5% of that value.",
+   "severity": "medium",
+   "reasoning": "A fixed payment on breach or delay; check the amount, the trigger and whether it is the sole remedy.",
+   "spans": [
+    "S22"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F71",
+   "section": "unusual",
+   "layer": "deterministic",
+   "title": "Long payment period",
+   "detail": "3.3 The Buyer shall pay each invoice within ninety (90) days of the date of the invoice.",
+   "severity": "medium",
+   "reasoning": "Payment within ninety (90) days is longer than the usual 30 days and delays cash flow for the party being paid.",
+   "spans": [
+    "S24"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F72",
+   "section": "unusual",
+   "layer": "deterministic",
+   "title": "“Sole discretion” wording",
+   "detail": "3.2 From 1 January 2027 the Supplier may adjust prices in its sole discretion to reflect changes in raw material costs.",
+   "severity": "low",
+   "reasoning": "A decision left to one party alone, with no objective standard.",
+   "spans": [
+    "S23"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F73",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "How are disputes over price adjustments resolved?",
+   "detail": "No mechanism for Buyer to challenge or audit price increases after 2026.",
+   "severity": "high",
+   "reasoning": "Buyer exposed to arbitrary increases.",
+   "party": "Buyer",
+   "spans": [
+    "S23"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F74",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "What happens if Buyer fails to meet minimum purchase?",
+   "detail": "No stated consequence for Buyer failing to purchase 40,000 units/year.",
+   "severity": "high",
+   "reasoning": "Unclear if breach, penalty, or termination applies.",
+   "party": "Buyer",
+   "spans": [
+    "S18"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F75",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "What is the process for handling non-visible defects?",
+   "detail": "No process for latent defects discovered after 5-day inspection window.",
+   "severity": "medium",
+   "reasoning": "Buyer may lose rights if defect is not visible.",
+   "party": "Buyer",
+   "spans": [
+    "S26"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F76",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "How are changes to specifications handled?",
+   "detail": "No mechanism for Buyer to request changes to Annex A.",
+   "severity": "medium",
+   "reasoning": "Limits Buyer's flexibility.",
+   "party": "Buyer",
+   "spans": [
+    "S37"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F77",
+   "section": "open_question",
+   "layer": "ai",
+   "title": "What happens at end of initial term?",
+   "detail": "No provision for renewal or extension after 3 years.",
+   "severity": "medium",
+   "reasoning": "Unclear if relationship continues or ends.",
+   "spans": [
+    "S31"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F78",
+   "section": "concern",
+   "layer": "ai",
+   "title": "Assignment of all IP, including pre-existing, to Buyer",
+   "detail": "Supplier loses all rights to technology, which is highly unusual and risky.",
+   "severity": "high",
+   "spans": [
+    "S29"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F79",
+   "section": "concern",
+   "layer": "ai",
+   "title": "Contradiction between unlimited liability and liability cap",
+   "detail": "Creates legal uncertainty about Supplier's exposure and Buyer's remedies.",
+   "severity": "high",
+   "spans": [
+    "S27",
+    "S28"
+   ],
+   "requiresHumanReview": true
+  },
+  {
+   "id": "F80",
+   "section": "concern",
+   "layer": "ai",
+   "title": "Unilateral price adjustment by Supplier",
+   "detail": "Buyer exposed to unpredictable price increases after 2026.",
+   "severity": "high",
+   "spans": [
+    "S23"
+   ],
+   "requiresHumanReview": true
+  }
+ ],
+ "finalStatement": {
+  "overall": "This agreement contains many standard supply terms but also several high-risk and unusual provisions, especially for the Supplier. The assignment of all intellectual property, including pre-existing IP, to the Buyer is highly unusual and may be unacceptable for most suppliers. The exclusive supply and minimum purchase obligations are significant commitments for the Buyer. The unilateral price adjustment right for the Supplier after 2026 exposes the Buyer to unpredictable costs. The contradiction between unlimited liability for defects and the annual liability cap creates legal uncertainty. Several important clauses are missing, such as confidentiality, data protection, and a clear process for handling changes or disputes over price. Both parties should seek clarification and negotiate amendments before signing.",
+  "overallSpans": [
+   "S29",
+   "S19",
+   "S23",
+   "S27",
+   "S28"
+  ],
+  "rating": "significant_concerns",
+  "keyConcerns": [
+   "F78",
+   "F79",
+   "F80"
+  ],
+  "recommendedActions": [
+   {
+    "text": "Clarify and amend the IP assignment clause to exclude pre-existing Supplier IP or limit assignment to what is necessary.",
+    "spans": [
+     "S29"
+    ]
+   },
+   {
+    "text": "Resolve the contradiction between unlimited liability for defects and the annual liability cap.",
+    "spans": [
+     "S27",
+     "S28"
+    ]
+   },
+   {
+    "text": "Negotiate a fairer price adjustment mechanism, such as objective indices, caps, or mutual agreement.",
+    "spans": [
+     "S23"
+    ]
+   },
+   {
+    "text": "Add confidentiality and data protection clauses to protect both parties' information and ensure legal compliance.",
+    "spans": []
+   },
+   {
+    "text": "Clarify consequences for Buyer's failure to meet minimum purchase and process for handling non-visible defects.",
+    "spans": [
+     "S18",
+     "S26"
+    ]
+   }
+  ],
+  "confidence": "moderate",
+  "confidenceReason": "All findings are based on explicit, quoted text from the document, and the analysis covers all major and missing clauses. (Capped at moderate: no human or lawyer has reviewed this statement.)",
+  "limitations": [
+   "Not legal advice; not reviewed by a lawyer.",
+   "A preview: no confidential client documents. Nothing is stored; the analysis runs in memory and is discarded.",
+   "AI findings are proposals: their quotations are verified to exist verbatim, but their reading of what the passages mean is not. They need human review.",
+   "Absence findings mean no passage matched; the term may exist under other wording or in another document."
+  ],
+  "layer": "ai"
+ },
+ "seal": {
+  "algorithm": "SHA-256",
+  "canonicalization": "canonical-json/1: object keys sorted by UTF-16 code units, no whitespace, strings and numbers as ECMAScript JSON.stringify (RFC 8785 JCS-compatible for these values), undefined members omitted",
+  "reportSha256": "96848762cb7c70a53ee45a788f837e1b8a4f9103b0f8ad9fd2f3ad0967d31726"
+ }
+}
