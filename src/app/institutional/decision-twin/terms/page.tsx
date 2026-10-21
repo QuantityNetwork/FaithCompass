@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/institutional/decision-twin/terms' },
 };
 
-const TERMS_OF_SALE_VERSION = 'Version 1.0 · 21 October 2026';
+const TERMS_OF_SALE_VERSION = 'Version 1.1 · 21 October 2026';
 
 export default function DecisionTwinTermsPage() {
   const contact = sellerContact(legalContact().general);
@@ -103,9 +103,13 @@ export default function DecisionTwinTermsPage() {
 
         <h2>10. Your data</h2>
         <p>
-          No customer data is accepted until private workspaces are authorized and released. Before you upload any customer data,
-          the processing of personal data will be governed by a separate data processing agreement between you and the
-          seller. See also the <Link className="link" href="/privacy">Privacy Policy</Link>.
+          Private workspaces are available to the named members of your workspace (see section 3). Customer data, including
+          any personal data in the documents you upload, is processed only after you and the seller have signed a data
+          processing agreement under Article 28 GDPR; until it is signed, do not upload customer data. The template, the
+          security description and the list of sub-processors are published under{' '}
+          <Link className="link" href="/institutional/trust">Trust and security</Link>. The seller processes customer data only on
+          your documented instructions and for the purpose of providing the pilot. See also the{' '}
+          <Link className="link" href="/privacy">Privacy Policy</Link>.
         </p>
 
         <h2>11. Governing law</h2>

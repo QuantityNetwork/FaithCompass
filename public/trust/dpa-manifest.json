@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "contentSha256": "63eb7b80c5b45ea6789a8f323abb20c47496d0a7b5dff42ed2d9387ffac062eb",
+  "files": {
+    "docx": {
+      "path": "/trust/abrahammoses-dpa-template-v1.0.docx",
+      "sha256": "935ef39fa113a2be8ed2f421a16d8750386af75ea29e0c201e41266c9ecb1c76"
+    },
+    "pdf": {
+      "path": "/trust/abrahammoses-dpa-template-v1.0.pdf",
+      "sha256": "e87f4f1f465a29db1478a50306421497d35d8a33416ed297dd555c7b3aa0893b"
+    }
+  }
+}

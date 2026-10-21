@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { PageIntro } from '@/components/record/ui';
 import { canPersist } from '@/lib/evidence/store';
 import { OPERATOR, SITE_NAME, legalContact } from '@/lib/site/config';
+import { PRIVACY_EFFECTIVE, PRIVACY_VERSION } from '@/lib/site/privacy-version';
+import { PILOT_CONSENT_TEXT, ROLES } from '@/lib/leads/profile';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -11,8 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
-const POLICY_VERSION = '1.2';
-const POLICY_EFFECTIVE = '21 October 2026';
+const POLICY_VERSION = PRIVACY_VERSION;
+const POLICY_EFFECTIVE = PRIVACY_EFFECTIVE;
 
 export default function PrivacyPage() {
   const contact = legalContact();
@@ -45,6 +47,10 @@ export default function PrivacyPage() {
           <li>
             Questions you search for are processed to produce the results page and are not stored by {SITE_NAME} in any database
             or linked to you.
+          </li>
+          <li>
+            Signed-in Deep Analysis users may, if they wish, tell us their organisation and role and ask to be contacted about a
+            pilot. This is optional, stored with the account and can be removed at any time.
           </li>
           <li>We do not sell or share personal data, and we do not profile visitors.</li>
         </ul>
@@ -116,13 +122,27 @@ export default function PrivacyPage() {
           discarded. Files larger than 3 MB (up to 15 MB) are read in your browser and only their text is sent; the file itself
           does not leave your device. {SITE_NAME} does not store the document, its text or the report in any database; the report exists only in
           your browser until you export it. When you include the AI layer, the document’s text (up to about 300,000 characters)
-          is sent to OpenAI, L.L.C., which processes it on our behalf as a processor to produce the AI findings. Under
+          is sent to OpenAI, which processes it on our behalf as a processor to produce the AI findings. Under
           OpenAI’s API terms, data sent through the API is not used to train its models, and it may be kept in OpenAI’s
           abuse-monitoring logs for up to 30 days. Without the AI layer, the text does not leave {SITE_NAME}. Do not submit
           confidential client documents or special-category personal data. The AI layer is available to signed-in accounts
           with a verified email address; to limit abuse, the server counts AI analyses per account in memory for up to one
           day (not written to disk). Each request is logged as a security event (time, outcome and a one-way hash of your IP
           address, not the text). Lawful basis: performance of the service you request (Article 6(1)(b) GDPR).
+        </p>
+        <h3 id="profile">Professional details on Deep Analysis (optional)</h3>
+        <p>
+          When you are signed in, Deep Analysis asks, optionally, for your organisation and your role (one of:{' '}
+          {ROLES.map((r) => r.label).join(', ')}), and offers an unticked box: “{PILOT_CONSENT_TEXT}” You can skip the
+          question; your analysis runs either way. If you answer, we store your organisation, role, whether you ticked the box,
+          your verified email address, the version of this policy and of the box’s wording, and when you saved them, in one
+          record linked to your account, in Cloud Firestore (Google) in the EU (multi-region Europe). Only you, through your
+          account, and the operator can see it. We use it to understand who uses Deep Analysis and to make the service and our
+          follow-up relevant to your work (lawful basis: legitimate interests, Article 6(1)(f) GDPR) and, only if you ticked
+          the box, to email you about a Decision Room pilot (lawful basis: your consent, Article 6(1)(a) GDPR, which you can
+          withdraw at any time by unticking it or removing your details). It is never sold, shared or used for advertising. You
+          can change or remove the record at any time on the Deep Analysis page; removing it deletes it. It is also deleted when
+          your account is deleted, and we delete records that have not been updated for 24 months.
         </p>
         <h3>The API and MCP server</h3>
         <p>
@@ -132,7 +152,8 @@ export default function PrivacyPage() {
 
         <h2>Accounts</h2>
         <p>
-          Accounts are optional and are used for private evidence workspaces and for Deep Analysis with the AI layer. You can
+          Accounts are optional and are used for private evidence workspaces, for Deep Analysis with the AI layer and for the
+          optional professional details described above. You can
           sign in with Google or register with an email address and a password. Accounts are managed by Firebase
           Authentication (Google LLC) as our processor, which keeps your email address, an account identifier, the sign-in
           method, whether the address is verified and, for Google sign-in, the name and profile picture Google provides.
@@ -145,7 +166,9 @@ export default function PrivacyPage() {
         <h2>Processors and transfers</h2>
         <p>
           The site is served by a cloud hosting provider, which processes requests on our behalf as a processor. Accounts are
-          handled by Firebase Authentication (Google LLC), and the Deep Analysis AI layer by OpenAI, L.L.C., both as processors. Where a
+          handled by Firebase Authentication (Google LLC), workspace records and the optional professional details by Cloud
+          Firestore (Google, stored in the EU), and the Deep Analysis AI layer by OpenAI, all as processors. The full list, with
+          locations, is on the <Link className="link" href="/institutional/trust/subprocessors">sub-processors page</Link>. Where a
           processor is located outside the European Economic Area, transfers are made only with the safeguards the GDPR
           requires, such as an adequacy decision or the European Commission’s standard contractual clauses.
         </p>
@@ -153,7 +176,8 @@ export default function PrivacyPage() {
         <h2>Your rights</h2>
         <p>
           You have the right to access, rectify and erase personal data about you, to restrict or object to its processing, and to
-          data portability. Apart from an account, if you create one, {SITE_NAME} keeps no record linked to you; your
+          data portability. Apart from an account and the optional professional details, if you give them, {SITE_NAME} keeps
+          no record linked to you; your
           saved traces are already on your device, where you can export or delete them. You may complain to the data protection
           authority where you live or work, or where the controller is established.
         </p>

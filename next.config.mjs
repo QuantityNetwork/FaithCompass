@@ -23,6 +23,13 @@ function contentSecurityPolicy(env, { googleSignIn = false } = {}) {
   const firebase = env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
     ? ' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com'
     : '';
+  // Local testing against the Firebase emulators only (NEXT_PUBLIC_FIREBASE_EMULATORS, never set on Vercel).
+  const emulators = (env.NEXT_PUBLIC_FIREBASE_EMULATORS || '')
+    .split(',')
+    .map((h) => h.trim())
+    .filter((h) => /^(localhost|127\.0\.0\.1):\d+$/.test(h))
+    .map((h) => ` http://${h}`)
+    .join('');
   // Google sign-in (workspace pages only): the SDK loads Google's gapi loader and frames the project's auth
   // domain, which relays the pop-up or redirect result back to this page.
   const authDomain = googleSignIn && env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ? googleAuthDomain(env) : '';
@@ -34,7 +41,7 @@ function contentSecurityPolicy(env, { googleSignIn = false } = {}) {
     `style-src 'self' 'unsafe-inline'${toolbar}`,
     `img-src 'self' data: blob:${toolbar}`,
     `font-src 'self' data:${toolbar}`,
-    `connect-src 'self'${firebase}${toolbar}${toolbar ? ' wss://ws-us3.pusher.com' : ''}`,
+    `connect-src 'self'${firebase}${emulators}${toolbar}${toolbar ? ' wss://ws-us3.pusher.com' : ''}`,
     `frame-src 'self'${authFrame}${toolbar}`,
     "object-src 'none'",
     "base-uri 'self'",

@@ -115,6 +115,7 @@ const PAGES = [
   '/institutional/workspace/sign-in',
   PASSPORT_PATH,
   ...['', '/anatomy', '/verify', '/keys', '/revocations', '/verifier', '/policy', '/standards', '/spec'].map((p) => `/institutional/decision-passport${p}`),
+  ...['', '/subprocessors', '/dpa', '/questionnaire'].map((p) => `/institutional/trust${p}`),
 ];
 
 describe('server-rendered content', () => {
@@ -595,7 +596,7 @@ describe('decision room', () => {
   });
 
   it('never shows the owner\u2019s personal name or describes Sagolik as a company', async () => {
-    for (const path of ['/', '/about', '/institutional', '/institutional/decision-twin', '/institutional/decision-twin/terms', '/privacy', '/terms', '/claims', '/status', '/api/v1/status']) {
+    for (const path of ['/', '/about', '/institutional', '/institutional/decision-twin', '/institutional/decision-twin/terms', '/privacy', '/terms', '/claims', '/status', '/api/v1/status', '/institutional/trust', '/institutional/trust/subprocessors', '/institutional/trust/dpa', '/institutional/trust/questionnaire']) {
       const body = await (await fetch(`${base}${path}`)).text();
       expect(body, path).not.toMatch(/Mikael|Andersson|private individual/);
       expect(body, path).not.toMatch(/Sagolik (AB|Ltd|company|Inc)|registered company|VAT number: SE/);
@@ -608,7 +609,9 @@ describe('decision room', () => {
     await p.locator('#pricing').getByRole('link', { name: 'Terms of Sale' }).first().click();
     await p.waitForURL(/\/institutional\/decision-twin\/terms$/);
     const text = (await p.locator('main').textContent())!;
-    expect(text).toContain('Version 1.0 · 21 October 2026 · In force');
+    expect(text).toContain('Version 1.1 · 21 October 2026 · In force');
+    expect(text).toContain('is processed only after you and the seller have signed a data processing agreement under Article 28 GDPR');
+    expect(text).not.toContain('No customer data is accepted until');
     expect(text).toContain('In force for pilot reservations.');
     expect(text).not.toMatch(/not in force|Draft/);
     expect(text).toContain('These terms have not been reviewed by a lawyer.');
@@ -705,6 +708,48 @@ describe('Decision Passport verification portal', () => {
     await p.getByRole('button', { name: 'Issued, test key' }).click();
     await p.getByRole('button', { name: 'Verify bundle' }).click();
     await expect.poll(() => p.locator('.dp-verdict').textContent()).toMatch(/not pinned/);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+});
+
+describe('Trust and security pack', () => {
+  it('states what is not in place, lists the sub-processors and offers the DPA template as Word and PDF', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/trust`);
+    const text = (await p.locator('main').textContent())!;
+    expect(text).toContain('No ISO/IEC 27001 certificate, no SOC 2 report, no external penetration test.');
+    expect(text).toContain('eur3');
+    expect(text).toContain('arn1');
+    expect(text).toContain('Stockholm, Sweden');
+    expect(text).not.toMatch(/\[(30|48)\]/);
+    await p.goto(`${base}/institutional/trust/subprocessors`);
+    for (const name of ['Vercel', 'Google Firebase', 'OpenAI', 'Stripe']) await expect(p.getByRole('heading', { name, exact: true }).count()).resolves.toBe(1);
+    await p.goto(`${base}/institutional/trust/dpa`);
+    await expect(p.locator('.tr-stamp').textContent()).resolves.toBe('Template, subject to legal review and signature');
+    for (const [label, type] of [['Download Word (.docx)', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'], ['Download PDF', 'application/pdf']] as const) {
+      const href = (await p.getByRole('link', { name: label }).getAttribute('href'))!;
+      const res = await fetch(`${base}${href}`);
+      expect(res.status, href).toBe(200);
+      expect(res.headers.get('content-type'), href).toContain(type);
+    }
+    await p.goto(`${base}/institutional/trust/questionnaire`);
+    await expect(p.locator('#pentest').textContent()).resolves.toMatch(/No external penetration test has been carried out/);
+    // Linked from the Institutional section bar and the footer.
+    expect(await p.locator('footer a[href="/institutional/trust"]').count()).toBe(1);
+    expect(errors).toEqual([]);
+    await context.close();
+  });
+
+  it('ends a Deep Analysis report with the Decision Room and pilot next steps, and asks signed-out visitors nothing', async () => {
+    const { context, page: p, errors } = await page();
+    await p.goto(`${base}/institutional/workspace/deep-analysis`, { waitUntil: 'networkidle' });
+    expect(await p.locator('.da-lead').count()).toBe(0);
+    await p.getByRole('button', { name: 'Recorded AI report' }).first().click();
+    const next = p.locator('.da-next');
+    await next.waitFor();
+    expect(await next.getByRole('link', { name: 'The Decision Room' }).getAttribute('href')).toBe('/institutional/decision-room');
+    expect(await next.getByRole('link', { name: 'Pilot terms and pricing' }).getAttribute('href')).toBe('/institutional/decision-twin#pricing');
     expect(errors).toEqual([]);
     await context.close();
   });
