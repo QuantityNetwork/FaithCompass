@@ -9,4 +9,10 @@ DURABLE_PHASE=write "${FIREBASE_BIN:-firebase}" emulators:exec --only firestore 
   "npx vitest run tests/firestore/durable.test.ts"
 DURABLE_PHASE=read "${FIREBASE_BIN:-firebase}" emulators:exec --only firestore --project abrahammoses-a0a26 --import "$DIR/export" \
   "npx vitest run tests/firestore/durable.test.ts"
+# The workspace evidence record (tests/firestore/workspace-durable.test.ts), in its own pair of emulator processes.
+export WORKSPACE_DURABLE_MANIFEST="$DIR/workspace-manifest.json"
+DURABLE_PHASE=write "${FIREBASE_BIN:-firebase}" emulators:exec --only firestore --project abrahammoses-a0a26 --export-on-exit "$DIR/ws-export" \
+  "npx vitest run tests/firestore/workspace-durable.test.ts"
+DURABLE_PHASE=read "${FIREBASE_BIN:-firebase}" emulators:exec --only firestore --project abrahammoses-a0a26 --import "$DIR/ws-export" \
+  "npx vitest run tests/firestore/workspace-durable.test.ts"
 echo "Durable across restart: OK"

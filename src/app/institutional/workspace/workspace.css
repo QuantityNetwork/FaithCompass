@@ -1,0 +1,42 @@
+/* Private evidence workspace. Tokens only (ds.css); scoped under .ws. */
+.ws { --ws-gap: 28px; }
+.ws h2 { font: 500 26px/1.2 var(--serif); color: var(--ink-strong); margin: 0 0 12px; }
+.ws h3 { font: 600 16px/1.3 var(--sans); color: var(--ink-strong); margin: 0 0 8px; }
+.ws-section { border-top: 1px solid var(--line); padding: var(--ws-gap) 0; }
+.ws-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--ws-gap); }
+@media (max-width: 860px) { .ws-grid { grid-template-columns: 1fr; } }
+.ws-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+.ws-form { display: grid; gap: 12px; }
+.ws-form label { display: grid; gap: 6px; font: 600 14px/1.3 var(--sans); color: var(--ink-strong); }
+.ws-form input, .ws-form textarea, .ws-form select {
+  font: 400 15px/1.45 var(--sans); color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line-2); border-radius: 6px; padding: 9px 11px; width: 100%;
+}
+.ws-form textarea { min-height: 84px; resize: vertical; }
+.ws-form input:focus-visible, .ws-form textarea:focus-visible, .ws-form select:focus-visible,
+.ws .button:focus-visible, .ws a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ws-hint { font: 400 13px/1.45 var(--sans); color: var(--muted); margin: 0; }
+.ws-meta { font: 400 13px/1.45 var(--sans); color: var(--ink-2); }
+.ws-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; word-break: break-all; }
+.ws-status { display: inline-block; font: 600 12px/1 var(--sans); letter-spacing: 0.04em; text-transform: uppercase;
+  border: 1px solid var(--line-2); border-radius: 999px; padding: 5px 9px; color: var(--ink-strong); white-space: nowrap; }
+.ws-status--approved { border-color: var(--ink-strong); }
+.ws-status--rejected { color: var(--muted); }
+.ws-msg { border-left: 3px solid var(--ink-strong); background: var(--surface); padding: 10px 14px; margin: 12px 0; font: 400 14px/1.5 var(--sans); color: var(--ink); }
+.ws-msg--error { border-left-color: var(--accent); }
+.ws-table { width: 100%; border-collapse: collapse; font: 400 14px/1.45 var(--sans); }
+.ws-table th { text-align: left; font-weight: 600; color: var(--ink-strong); border-bottom: 1px solid var(--line-2); padding: 8px 10px 8px 0; }
+.ws-table td { border-bottom: 1px solid var(--line); padding: 9px 10px 9px 0; vertical-align: top; color: var(--ink); }
+.ws-scroll { overflow-x: auto; }
+.ws-passage { font: 400 14px/1.55 var(--serif); color: var(--ink); border-left: 2px solid var(--brand-gold); padding-left: 12px; margin: 6px 0; max-height: 180px; overflow: auto; white-space: pre-wrap; }
+.ws-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.ws-cite { display: grid; grid-template-columns: minmax(0, 2fr) 90px minmax(0, 2fr) auto; gap: 8px; align-items: end; }
+@media (max-width: 600px) { .ws-cite { grid-template-columns: 1fr; } }
+/* Primary action: navy on ivory, as the home page's Research button (the legacy .button--solid colours are not
+   defined in this theme). */
+.ws .button--solid { background: var(--ink-strong); border-color: var(--ink-strong); color: var(--bg); }
+.ws .button--solid:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.ws .button:disabled { opacity: 0.55; cursor: not-allowed; }
+.ws a.button { display: inline-block; text-decoration: none; }
+.ws-steps { margin: 0 0 20px; padding-left: 1.4em; display: grid; gap: 6px; font: 400 15px/1.55 var(--sans); color: var(--ink-2); max-width: 62ch; }
+.ws-steps strong { color: var(--ink-strong); font-weight: 600; }

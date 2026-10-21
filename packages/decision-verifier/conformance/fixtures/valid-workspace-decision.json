@@ -1,0 +1,198 @@
+{
+  "bundle": "abrahammoses-decision-passport-bundle",
+  "schema_version": "1.0.0",
+  "redacted": false,
+  "passport_id": "DP1-eyJhIjp7fSwiZCI6ImRlY19zYW1wbGUwMDAwMDAwMDAwMDAwMSIsImsiOiJ3b3Jrc3BhY2UtZGVjaXNpb24iLCJzIjoiYXBwcm92ZWQiLCJ0IjoiMjAyNi0xMC0yMVQwOTowMDowMFoiLCJ0ZW5hbnQiOiJzYW1wbGUtdGVuYW50IiwidiI6IlcxIn0",
+  "artifacts": {
+    "passport": {
+      "id": "DP1-eyJhIjp7fSwiZCI6ImRlY19zYW1wbGUwMDAwMDAwMDAwMDAwMSIsImsiOiJ3b3Jrc3BhY2UtZGVjaXNpb24iLCJzIjoiYXBwcm92ZWQiLCJ0IjoiMjAyNi0xMC0yMVQwOTowMDowMFoiLCJ0ZW5hbnQiOiJzYW1wbGUtdGVuYW50IiwidiI6IlcxIn0",
+      "format": "workspace-decision/1",
+      "title": "Two readers per acquisition",
+      "generated_at": "2026-10-21T09:00:00Z",
+      "tenant": "sample-tenant",
+      "decision": {
+        "id": "dec_sample00000000000001",
+        "title": "Two readers per acquisition",
+        "question": "Does the policy require two readers before a proposal is accepted?",
+        "conclusion": "Yes: section 2 requires two members to have read the cited sources.",
+        "rationale": "Section 2 states the condition directly; section 3 governs retention only.",
+        "evidence": [
+          {
+            "document_id": "doc_sample00000000000001",
+            "passage": 3,
+            "passage_sha256": "e1f1a925a2192b17bced53ee82fdb49f136039488cf1b2b460b782c38a2f5f7c",
+            "quote": "Section 2. A proposal is accepted only when two members have read the cited sources.",
+            "note": "The two-reader condition."
+          }
+        ]
+      },
+      "status": "approved",
+      "proposer": {
+        "id": "uid-proposer",
+        "email": "proposer@example.invalid"
+      },
+      "proposed_at": "2026-10-21T08:05:00Z",
+      "reviewer": {
+        "id": "uid-editor",
+        "email": "editor@example.invalid"
+      },
+      "decided_at": "2026-10-21T09:00:00Z",
+      "decision_note": "Checked against section 2 of the memo.",
+      "review_rule": "Two-person rule: a decision is proposed by one workspace member and approved or rejected by a different member holding the workspace role editor. Self-approval is refused by the server and by the Firestore security rules.",
+      "sources": [
+        {
+          "id": "doc_sample00000000000001",
+          "title": "Synthetic collection policy memo",
+          "filename": "policy-memo.md",
+          "text_sha256": "1f44ecc679b11a261e8cd194bca50f6ac985bfb61bfb577371a6e6f115f2797b",
+          "sha256": "4a926c8941fa0d43e6119531382c9095e7e2b9cd2400bb3dd7d34a09de53e63b"
+        }
+      ],
+      "audit": [
+        {
+          "id": "aud_sample00000000000001",
+          "change": "IMPORTED",
+          "entity": "DOCUMENT:doc_sample00000000000001",
+          "actor": "uid-proposer",
+          "actor_email": "proposer@example.invalid",
+          "at": "2026-10-21T08:00:00Z",
+          "detail": "Imported policy-memo.md."
+        },
+        {
+          "id": "aud_sample00000000000002",
+          "change": "PROPOSED",
+          "entity": "DECISION:dec_sample00000000000001",
+          "actor": "uid-proposer",
+          "actor_email": "proposer@example.invalid",
+          "at": "2026-10-21T08:05:00Z",
+          "detail": "Proposed."
+        },
+        {
+          "id": "aud_sample00000000000003",
+          "change": "APPROVED",
+          "entity": "DECISION:dec_sample00000000000001",
+          "actor": "uid-editor",
+          "actor_email": "editor@example.invalid",
+          "at": "2026-10-21T09:00:00Z",
+          "detail": "Checked against section 2 of the memo."
+        }
+      ],
+      "versions": {
+        "ruleset": "am-workspace-review/1"
+      },
+      "case": {
+        "id": "dec_sample00000000000001",
+        "version": "1",
+        "content_sha256": "b9f0017b2ba48ba1aa425466105bc0dcd71ab593fc2927c02cc46c6b41e39813"
+      },
+      "engine": {
+        "version": "am-workspace-record-1.0.0",
+        "sha256": "8e0d87775778f6e6fd2d6e23266942397773b29ccc26509cf6d6309fd628f808",
+        "source": "src/lib/workspace/record/v1"
+      },
+      "limits": [
+        "The record shows what was imported, cited, proposed and decided, by which accounts and when. It does not show that the conclusion is correct.",
+        "Identities are Firebase Auth accounts of this workspace; the review is internal to the workspace, not an external attestation.",
+        "Without a signature the bundle proves internal consistency only; compare the passport hash with one obtained independently."
+      ]
+    },
+    "report_markdown": "# Decision record: Two readers per acquisition\n\n- Workspace: sample-tenant\n- Status: approved\n- Proposed by: proposer@example.invalid at 2026-10-21T08:05:00Z\n- Decided by: editor@example.invalid at 2026-10-21T09:00:00Z\n- Review rule: Two-person rule: a decision is proposed by one workspace member and approved or rejected by a different member holding the workspace role editor. Self-approval is refused by the server and by the Firestore security rules.\n- Record engine: am-workspace-record-1.0.0, source SHA-256 `8e0d87775778f6e6fd2d6e23266942397773b29ccc26509cf6d6309fd628f808`\n\n## Question\n\nDoes the policy require two readers before a proposal is accepted?\n\n## Conclusion\n\nYes: section 2 requires two members to have read the cited sources.\n\n## Rationale\n\nSection 2 states the condition directly; section 3 governs retention only.\n\n## Evidence\n\n1. doc_sample00000000000001, passage 3 (SHA-256 `e1f1a925a2192b17…`): The two-reader condition.\n   > Section 2. A proposal is accepted only when two members have read the cited sources.\n\n## Sources\n\n- doc_sample00000000000001: Synthetic collection policy memo (policy-memo.md), text SHA-256 `1f44ecc679b11a261e8cd194bca50f6ac985bfb61bfb577371a6e6f115f2797b`\n\n## Decision note\n\nChecked against section 2 of the memo.\n\n## Audit trail\n\n- 2026-10-21T08:00:00Z IMPORTED DOCUMENT:doc_sample00000000000001 by proposer@example.invalid\n- 2026-10-21T08:05:00Z PROPOSED DECISION:dec_sample00000000000001 by proposer@example.invalid\n- 2026-10-21T09:00:00Z APPROVED DECISION:dec_sample00000000000001 by editor@example.invalid\n",
+    "state": {
+      "v": "W1",
+      "k": "workspace-decision",
+      "tenant": "sample-tenant",
+      "d": "dec_sample00000000000001",
+      "s": "approved",
+      "t": "2026-10-21T09:00:00Z",
+      "a": {}
+    },
+    "sources": {
+      "inventory": [
+        {
+          "id": "doc_sample00000000000001",
+          "title": "Synthetic collection policy memo",
+          "filename": "policy-memo.md",
+          "text_sha256": "1f44ecc679b11a261e8cd194bca50f6ac985bfb61bfb577371a6e6f115f2797b",
+          "sha256": "4a926c8941fa0d43e6119531382c9095e7e2b9cd2400bb3dd7d34a09de53e63b"
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc_sample00000000000001",
+          "title": "Synthetic collection policy memo",
+          "filename": "policy-memo.md",
+          "media_type": "text/markdown",
+          "bytes": 286,
+          "file_sha256": "1f44ecc679b11a261e8cd194bca50f6ac985bfb61bfb577371a6e6f115f2797b",
+          "text_sha256": "1f44ecc679b11a261e8cd194bca50f6ac985bfb61bfb577371a6e6f115f2797b",
+          "text": "Synthetic test memo (not a real document).\n\nSection 1. The committee reviews each acquisition proposal against the written collection policy.\n\nSection 2. A proposal is accepted only when two members have read the cited sources.\n\nSection 3. Records of each review are kept for ten years.",
+          "imported_by": "uid-proposer",
+          "imported_by_email": "proposer@example.invalid",
+          "imported_at": "2026-10-21T08:00:00Z"
+        }
+      ]
+    },
+    "release": {
+      "case_id": "dec_sample00000000000001",
+      "case_version": "1",
+      "case_archive_sha256": "b9f0017b2ba48ba1aa425466105bc0dcd71ab593fc2927c02cc46c6b41e39813",
+      "ruleset": "am-workspace-review/1",
+      "engine": {
+        "version": "am-workspace-record-1.0.0",
+        "sha256": "8e0d87775778f6e6fd2d6e23266942397773b29ccc26509cf6d6309fd628f808",
+        "source": "src/lib/workspace/record/v1"
+      }
+    },
+    "review": {
+      "status": "approved",
+      "reviewer": {
+        "id": "uid-editor",
+        "email": "editor@example.invalid"
+      },
+      "attestations": []
+    },
+    "crypto": {
+      "signature": null,
+      "algorithm": null,
+      "keys_url": "/.well-known/abrahammoses-passport-keys.json",
+      "keys": [
+        {
+          "kid": "ed25519-15f5ad068b350fb4",
+          "x": "f26AuRWi1_MYScDXP5AiKDg5WMLL2HP8EQnyBSUBZOE",
+          "status": "active",
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": null
+        },
+        {
+          "kid": "ed25519-5195fbf4afb33a47",
+          "x": "jfzJuOFuNCd7OYuvgNBN9E-thfao7r2n86UDVI2KycA",
+          "status": "retired",
+          "not_before": "2025-01-01T00:00:00Z",
+          "not_after": "2026-06-30T00:00:00Z"
+        },
+        {
+          "kid": "ed25519-11ed04c34d9bf14f",
+          "x": "C61_Olw-sbnR6mKPszkddu8TQDY-ZPhfLHwkQ3Ge0bg",
+          "status": "revoked",
+          "not_before": "2025-06-01T00:00:00Z",
+          "not_after": null,
+          "revoked_at": "2026-09-01T00:00:00Z"
+        }
+      ]
+    }
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalization": "canonical-json/1: object keys sorted by UTF-16 code units, no whitespace, strings and numbers as ECMAScript JSON.stringify (RFC 8785 JCS-compatible for these values), undefined members omitted",
+    "passport_sha256": "35d2f7e6fa78a5c951679e58000669618cd5358c621845aee9c3ddece96800e5",
+    "artifacts": {
+      "passport": "35d2f7e6fa78a5c951679e58000669618cd5358c621845aee9c3ddece96800e5",
+      "report_markdown": "f13920a6c701a9880c0fecbfeef799e19778d38028f6bd570c2f266e4882a890",
+      "state": "fabc96ab9ea16715dbfeea863fb93a496ec6c4a6dde30c3bff5bf8b56b19f0a2",
+      "sources": "d33e275e6c685030f6f2add7019aa6a69e2aa58d3d3246961c8b45ec1b5667d5",
+      "release": "6180b5ff01b4015cba6135dcda447d846b58837210c053f4acf241e1ad15830d",
+      "review": "93e9a23951a3db303c2549398aae418fff36919f70b5afe62c2a1cdd0e87fd3c",
+      "crypto": "a65c9c45e29d26e9d8470dfae7cdf6fb33b0c079ca32d0942600ba4ef6f56668"
+    }
+  }
+}

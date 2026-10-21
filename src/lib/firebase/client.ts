@@ -41,6 +41,45 @@ export async function signInWithEmail(email: string, password: string): Promise<
   return (await signInWithEmailAndPassword(auth, email, password)).user.uid;
 }
 
+const LINK_EMAIL_KEY = 'am.signin.email';
+
+/**
+ * Passwordless sign-in: Firebase sends a one-time link to the address. The link must return to an authorised domain
+ * (Firebase console → Authentication → Settings → Authorised domains).
+ */
+export async function sendEmailLink(email: string, returnUrl: string): Promise<void> {
+  const { auth } = await firebaseClient();
+  const { sendSignInLinkToEmail } = await import('firebase/auth');
+  await sendSignInLinkToEmail(auth, email, { url: returnUrl, handleCodeInApp: true });
+  window.localStorage.setItem(LINK_EMAIL_KEY, email);
+}
+
+/** If the current URL is a sign-in link, complete it. Returns the email the link was sent to (asked for if unknown). */
+export async function completeEmailLink(href: string, askEmail: () => string | null): Promise<{ done: boolean; email?: string }> {
+  const { auth } = await firebaseClient();
+  const { isSignInWithEmailLink, signInWithEmailLink } = await import('firebase/auth');
+  if (!isSignInWithEmailLink(auth, href)) return { done: false };
+  const email = window.localStorage.getItem(LINK_EMAIL_KEY) || askEmail();
+  if (!email) return { done: false };
+  await signInWithEmailLink(auth, email, href);
+  window.localStorage.removeItem(LINK_EMAIL_KEY);
+  return { done: true, email };
+}
+
+/** Calls back with the signed-in user (or null) whenever it changes. Returns an unsubscribe function. */
+export async function watchUser(cb: (u: { uid: string; email: string | null } | null) => void): Promise<() => void> {
+  const { auth } = await firebaseClient();
+  const { onAuthStateChanged } = await import('firebase/auth');
+  return onAuthStateChanged(auth, (u) => cb(u ? { uid: u.uid, email: u.email } : null));
+}
+
+/** A fresh ID token (forced refresh picks up workspace roles assigned after sign-in). */
+export async function freshAuthHeader(force = false): Promise<{ authorization: string } | null> {
+  const { auth } = await firebaseClient();
+  const token = await auth.currentUser?.getIdToken(force);
+  return token ? { authorization: `Bearer ${token}` } : null;
+}
+
 export async function signOutUser(): Promise<void> {
   const { auth } = await firebaseClient();
   const { signOut } = await import('firebase/auth');

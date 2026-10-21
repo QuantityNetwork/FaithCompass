@@ -125,6 +125,25 @@ Output (both verifiers, machine-readable):
   "failed": [], "uncheckable": [] }
 ```
 
+## 5a. Workspace decision records (same schema, record engine `am-workspace-record-1.0.0`)
+
+Decisions made in a private evidence workspace (`/institutional/workspace`, docs/EVIDENCE_WORKFLOW_E2E.md) export as
+bundles of this same schema, so both verifiers check them unchanged:
+
+* `state` = `{v: "W1", k: "workspace-decision", tenant, d: <decision id>, s: <status>, t, a: {}}`; `t` is the time of
+  the last review step (approval/rejection, else proposal), so a re-export of the stored record has the same hash.
+* `passport` (format `workspace-decision/1`) carries the decision, each cited passage with its SHA-256 and text, the
+  proposer and the reviewer (`{id, email}` of the Firebase accounts), the review rule and the audit trail (exports
+  excluded). `sources.documents` are the imported documents with their full normalised text.
+* `release.engine` is the frozen builder `src/lib/workspace/record/v1` (`am-workspace-record-1.0.0`, source hash
+  pinned in `src/lib/decision/engines` and `conformance/engines.json`); `ruleset` is `am-workspace-review/1`.
+* Signed with the passport key when the server has one (production); unsigned on previews.
+* Conformance fixtures: `valid-workspace-decision` (VALID, unsigned) and `tampered-workspace-conclusion` (INVALID),
+  generated deterministically by `scripts/workspace-fixtures.ts` from synthetic data.
+
+`ref:review` compares status and reviewer **by value** (canonical JSON). The TypeScript verifier compared them by
+reference until this was found with the workspace fixture (an object reviewer); the Go verifier already compared by value.
+
 ## 6. Limits (stated honestly)
 
 * **Unsigned bundles prove consistency, not origin.** Someone who edits an unsigned bundle and recomputes every hash

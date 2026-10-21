@@ -10,7 +10,7 @@ function publicProviderStatus() {
   return { configured, active, degraded, reason };
 }
 import { runAnalysis } from '@/lib/evidence/pipeline';
-import { canPersist, getStore, storeFor, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
+import { canPersist, storeFor, NOT_PERSISTED_MESSAGE } from '@/lib/evidence/store';
 import { guardWrite } from '@/lib/security/write-guard';
 import { NoAnalysisAvailableError, ProviderUnavailableError } from '@/lib/evidence/providers/types';
 import { StructuredOutputError } from '@/lib/evidence/schema';
