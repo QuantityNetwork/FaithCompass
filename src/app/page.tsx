@@ -56,6 +56,12 @@ const WAYS_IN = [
     href: '/institutional/decision-room',
     chips: ['Institutional', 'Synthetic'],
   },
+  {
+    who: 'Evidence workspace',
+    text: 'Private workspaces for named members: import documents, propose decisions that cite them, have a second person review each one, and export a record that verifies offline.',
+    href: '/institutional/workspace',
+    chips: ['Institutional', 'Members'],
+  },
 ];
 
 function short(s: string, n: number) {
