@@ -177,7 +177,8 @@ export function verifyBundle(bundle: unknown, opts: VerifyOptions): Report {
     if (!known) unsupported = true;
     add('engine_known', known ? 'pass' : 'fail', known ? `${r.engine.version} matches a pinned release` : `${r.engine.version} ${String(r.engine.sha256).slice(0, 12)}… is not a pinned release`);
   }
-  const revOk = a.review.status === a.passport.status && a.review.reviewer === a.passport.reviewer;
+  // Compared by value (canonical JSON), as the spec and the Go verifier do: a reviewer may be an object, not only a string.
+  const revOk = same(a.review.status, a.passport.status) && same(a.review.reviewer, a.passport.reviewer);
   add('ref:review', revOk ? 'pass' : 'fail', revOk ? `status and reviewer match (${a.review.attestations.length} attestations)` : 'review state differs from the passport');
   (a.review.attestations as unknown[]).forEach((att, i) => {
     if (!isObj(att) || !isObj(att.signature) || !isObj(att.statement)) return add(`attestation:${i}`, 'fail', 'attestation is not signed');

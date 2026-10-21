@@ -110,6 +110,8 @@ const PAGES = [
   '/institutional/decision-twin/terms',
   '/institutional/decision-room',
   '/institutional/decision-room?r=P1,P2&g=6',
+  '/institutional/workspace',
+  '/institutional/workspace/sign-in',
   PASSPORT_PATH,
 ];
 

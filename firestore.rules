@@ -16,8 +16,18 @@ service cloud.firestore {
       return signedIn() ? request.auth.token.get('am_role', 'research_contributor') : 'public_reader';
     }
     function isEditor() { return role() in ['research_editor', 'editorial_admin']; }
+    // Workspace membership: the custom claim `am_tenants` (tenant id -> 'member' | 'editor', set only by the project
+    // owner) or a members document (written only from the console). Clients can set neither.
+    function tenantClaim(t) {
+      return request.auth.token.get('am_tenants', {}).get(t, '');
+    }
+    function memberDoc(t) { return /databases/$(database)/documents/tenants/$(t)/members/$(uid()); }
     function isMember(t) {
-      return signedIn() && exists(/databases/$(database)/documents/tenants/$(t)/members/$(uid()));
+      return signedIn() && (tenantClaim(t) in ['member', 'editor'] || exists(memberDoc(t)));
+    }
+    function isTenantEditor(t) {
+      return signedIn() && (tenantClaim(t) == 'editor'
+        || (exists(memberDoc(t)) && get(memberDoc(t)).data.get('role', 'member') == 'editor'));
     }
     function unchanged(keys) {
       return !request.resource.data.diff(resource.data).affectedKeys().hasAny(keys);
@@ -123,9 +133,87 @@ service cloud.firestore {
         allow read: if isMember(t);
         allow write: if false;
       }
-      // Every other subcollection; `members` is excluded so a member cannot add members or change roles.
+      function ws(sub, id) { return /databases/$(database)/documents/tenants/$(t)/$(sub)/$(id); }
+
+      // Evidence workflow (docs/EVIDENCE_WORKFLOW_E2E.md). Imported documents are immutable; each import is written
+      // with its audit event in one batch.
+      match /documents/{d} {
+        allow read: if isMember(t);
+        allow create: if isMember(t)
+          && request.resource.data.id == d
+          && request.resource.data.tenant == t
+          && request.resource.data.importedBy == uid()
+          && getAfter(ws('audit', request.resource.data.auditId)).data.entityId == d
+          && getAfter(ws('audit', request.resource.data.auditId)).data.changeType == 'IMPORTED';
+        allow update, delete: if false;
+      }
+      // Decisions: proposed by a member as themselves; decided once, by a workspace editor who is not the proposer,
+      // with the audit event in the same batch. Only the decision fields may change.
+      match /decisions/{id} {
+        allow read: if isMember(t);
+        allow create: if isMember(t)
+          && request.resource.data.id == id
+          && request.resource.data.tenant == t
+          && request.resource.data.proposedBy == uid()
+          && request.resource.data.status == 'proposed'
+          && request.resource.data.decidedBy == null
+          && getAfter(ws('audit', request.resource.data.proposalAuditId)).data.entityId == id
+          && getAfter(ws('audit', request.resource.data.proposalAuditId)).data.changeType == 'PROPOSED';
+        allow update: if isTenantEditor(t)
+          && resource.data.status == 'proposed'
+          && resource.data.proposedBy != uid()
+          && request.resource.data.status in ['approved', 'rejected']
+          && request.resource.data.decidedBy == uid()
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['status', 'decidedBy', 'decidedByEmail', 'decidedAt', 'decisionNote', 'decisionAuditId'])
+          && getAfter(ws('audit', request.resource.data.decisionAuditId)).data.entityId == id
+          && getAfter(ws('audit', request.resource.data.decisionAuditId)).data.changeType
+               == (request.resource.data.status == 'approved' ? 'APPROVED' : 'REJECTED');
+        allow delete: if false;
+      }
+      // Workspace audit log: append-only, attributed to the signed-in user, tied to the change it records.
+      match /audit/{a} {
+        allow read: if isMember(t);
+        allow create: if isMember(t)
+          && request.resource.data.id == a
+          && request.resource.data.tenant == t
+          && request.resource.data.actorId == uid()
+          && (
+            (request.resource.data.changeType == 'IMPORTED' && request.resource.data.entityType == 'DOCUMENT'
+              && !exists(ws('documents', request.resource.data.entityId))
+              && getAfter(ws('documents', request.resource.data.entityId)).data.importedBy == uid()
+              && getAfter(ws('documents', request.resource.data.entityId)).data.auditId == a)
+            || (request.resource.data.changeType == 'PROPOSED' && request.resource.data.entityType == 'DECISION'
+              && !exists(ws('decisions', request.resource.data.entityId))
+              && getAfter(ws('decisions', request.resource.data.entityId)).data.proposedBy == uid()
+              && getAfter(ws('decisions', request.resource.data.entityId)).data.proposalAuditId == a)
+            || (request.resource.data.changeType in ['APPROVED', 'REJECTED'] && request.resource.data.entityType == 'DECISION'
+              && isTenantEditor(t)
+              && get(ws('decisions', request.resource.data.entityId)).data.status == 'proposed'
+              && get(ws('decisions', request.resource.data.entityId)).data.proposedBy != uid()
+              && getAfter(ws('decisions', request.resource.data.entityId)).data.decidedBy == uid()
+              && getAfter(ws('decisions', request.resource.data.entityId)).data.decisionAuditId == a)
+            || (request.resource.data.changeType == 'EXPORTED' && request.resource.data.entityType == 'DECISION'
+              && exists(ws('decisions', request.resource.data.entityId))
+              && existsAfter(ws('passports', request.resource.data.passportSha256)))
+          );
+        allow update, delete: if false;
+      }
+      // Exported passport hashes: recorded once, never changed.
+      match /passports/{sha} {
+        allow read: if isMember(t);
+        allow create: if isMember(t)
+          && request.resource.data.sha256 == sha
+          && request.resource.data.tenant == t
+          && request.resource.data.exportedBy == uid()
+          && exists(ws('decisions', request.resource.data.decisionId));
+        allow update, delete: if false;
+      }
+
+      // Every other subcollection; `members` and the evidence-workflow collections above are excluded, so a member
+      // cannot add members, change roles or bypass the workflow rules.
       match /{sub}/{doc=**} {
-        allow read, write: if isMember(t) && sub != 'members';
+        allow read, write: if isMember(t) && !(sub in ['members', 'documents', 'decisions', 'audit', 'passports']);
       }
     }
   }

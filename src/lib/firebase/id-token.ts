@@ -14,6 +14,8 @@ export interface VerifiedFirebaseUser {
   id: string;
   appRole: unknown;
   email: string | null;
+  /** Custom claim `am_tenants` (workspace memberships), set only by the project owner. */
+  tenants: unknown;
 }
 
 type Jwks = { keys: (JsonWebKey & { kid: string })[] };
@@ -61,5 +63,5 @@ export async function verifyFirebaseIdToken(
   if (typeof payload.sub !== 'string' || payload.sub.length === 0 || payload.sub.length > 128) return null;
   const provider = (payload.firebase as { sign_in_provider?: string } | undefined)?.sign_in_provider;
   if (provider === 'anonymous') return null;
-  return { id: payload.sub, appRole: payload.am_role, email: typeof payload.email === 'string' ? payload.email : null };
+  return { id: payload.sub, appRole: payload.am_role, email: typeof payload.email === 'string' ? payload.email : null, tenants: payload.am_tenants };
 }

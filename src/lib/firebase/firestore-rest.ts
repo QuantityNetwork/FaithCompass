@@ -7,6 +7,8 @@
  *
  *   FIREBASE_PROJECT_ID (or NEXT_PUBLIC_FIREBASE_PROJECT_ID)   project id (not secret), e.g. abrahammoses-a0a26
  *   FIRESTORE_EMULATOR_HOST                                    local emulator (tests); never set in deployments
+ *   FIRESTORE_DATABASE_ID                                      optional named database (default "(default)"), e.g. a
+ *                                                              separate database for previews
  *
  * ID tokens are never logged or returned.
  */
@@ -32,7 +34,11 @@ export class FirestoreRequestError extends Error {
 export interface FirestoreConfig {
   projectId: string;
   emulatorHost: string | null;
+  /** Database id; '(default)' when not set. */
+  databaseId?: string;
 }
+
+const DATABASE_ID = /^[a-z][a-z0-9-]{3,62}$/;
 
 export function firebaseProjectId(env: Record<string, string | undefined> = process.env): string | null {
   return env.FIREBASE_PROJECT_ID || env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || null;
@@ -41,7 +47,9 @@ export function firebaseProjectId(env: Record<string, string | undefined> = proc
 export function firestoreConfigFromEnv(env: Record<string, string | undefined> = process.env): FirestoreConfig {
   const projectId = firebaseProjectId(env);
   if (!projectId) throw new FirestoreConfigError(['FIREBASE_PROJECT_ID (or NEXT_PUBLIC_FIREBASE_PROJECT_ID)']);
-  return { projectId, emulatorHost: env.FIRESTORE_EMULATOR_HOST || null };
+  const db = env.FIRESTORE_DATABASE_ID;
+  if (db && db !== '(default)' && !DATABASE_ID.test(db)) throw new FirestoreConfigError(['a valid FIRESTORE_DATABASE_ID']);
+  return { projectId, emulatorHost: env.FIRESTORE_EMULATOR_HOST || null, ...(db && db !== '(default)' ? { databaseId: db } : {}) };
 }
 
 /** True when a Firebase project id is configured. */
@@ -135,7 +143,7 @@ export class FirestoreRest {
   }
 
   get documentsPath(): string {
-    return `projects/${this.config.projectId}/databases/(default)/documents`;
+    return `projects/${this.config.projectId}/databases/${this.config.databaseId ?? '(default)'}/documents`;
   }
 
   private get base(): string {
@@ -192,6 +200,22 @@ export class FirestoreRest {
     if (status === 'FAILED_PRECONDITION' || status === 'ALREADY_EXISTS' || status === 'NOT_FOUND' || status === 'ABORTED') return false;
     if (res.status === 403) throw new FirestoreRequestError(403, 'PERMISSION_DENIED', 'Firestore refused the write under the security rules.');
     return FirestoreRest.fail(res, 'commit');
+  }
+
+  /** Every document of a (sub)collection, e.g. `tenants/t1/documents`, following page tokens (rules apply as for a query). */
+  async list(collectionPath: string, pageSize = 300): Promise<FsDocument[]> {
+    const out: FsDocument[] = [];
+    let token = '';
+    for (let page = 0; page < 50; page++) {
+      const q = `pageSize=${pageSize}${token ? `&pageToken=${encodeURIComponent(token)}` : ''}`;
+      const res = await this.call('GET', `${this.documentsPath}/${collectionPath}?${q}`);
+      if (!res.ok) return FirestoreRest.fail(res, `list ${collectionPath.split('/').pop()}`);
+      const body = (await res.json()) as { documents?: { name: string; fields?: Record<string, FsValue>; updateTime: string }[]; nextPageToken?: string };
+      for (const d of body.documents ?? []) out.push({ name: d.name, fields: decodeFields(d.fields ?? {}), updateTime: d.updateTime });
+      if (!body.nextPageToken) break;
+      token = body.nextPageToken;
+    }
+    return out;
   }
 
   /** Equality / array-contains query on one collection. Ordering is done by the caller (no composite indexes). */

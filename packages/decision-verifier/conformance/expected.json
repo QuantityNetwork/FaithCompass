@@ -119,6 +119,25 @@
         "signature"
       ],
       "uncheckable": []
+    },
+    {
+      "name": "valid-workspace-decision",
+      "description": "Workspace decision record (am-workspace-record-1.0.0), approved by a second person, unsigned",
+      "result": "VALID",
+      "signature": "unsigned",
+      "failed": [],
+      "uncheckable": []
+    },
+    {
+      "name": "tampered-workspace-conclusion",
+      "description": "Workspace decision: conclusion edited after export, hashes not recomputed",
+      "result": "INVALID",
+      "signature": "unsigned",
+      "failed": [
+        "artifact_hash:passport",
+        "passport_hash"
+      ],
+      "uncheckable": []
     }
   ]
 }

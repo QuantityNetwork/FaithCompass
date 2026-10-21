@@ -49,6 +49,7 @@ const DOCS: Array<{ title: string; text: string; links: Array<{ href: string; la
     text: 'Programmatic access to the same records and review states, and the terms and privacy notice that apply.',
     links: [
       { href: '/developers', label: 'REST API and MCP server' },
+      { href: '/institutional/workspace', label: 'Private evidence workspace (members)' },
       { href: '/terms', label: 'Terms of use' },
       { href: '/privacy', label: 'Privacy' },
     ],

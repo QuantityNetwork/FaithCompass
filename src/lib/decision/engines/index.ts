@@ -26,6 +26,13 @@ export const ENGINES: Record<string, EngineEntry> = {
     source: 'src/lib/decision/engines/v1_1',
     sha256: 'cc226a98bf0f096f7e8341401bb1ec8d699e380ab422a90120ee98f516038230',
   },
+  // Not a Decision Twin engine: the frozen builder of workspace decision records (src/lib/workspace/passport.ts).
+  // Pinned like the engines so both offline verifiers recognise workspace passports as a known release.
+  'workspace-1.0.0': {
+    version: 'am-workspace-record-1.0.0',
+    source: 'src/lib/workspace/record/v1',
+    sha256: '8e0d87775778f6e6fd2d6e23266942397773b29ccc26509cf6d6309fd628f808',
+  },
 };
 
 /**

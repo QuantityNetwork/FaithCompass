@@ -35,6 +35,10 @@ describe('Firebase configuration (no admin key)', () => {
   it('needs only the project id, from FIREBASE_PROJECT_ID or NEXT_PUBLIC_FIREBASE_PROJECT_ID', () => {
     expect(firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'abrahammoses-a0a26' })).toEqual({ projectId: 'abrahammoses-a0a26', emulatorHost: null });
     expect(firestoreConfigFromEnv({ NEXT_PUBLIC_FIREBASE_PROJECT_ID: 'abrahammoses-a0a26' }).projectId).toBe('abrahammoses-a0a26');
+    expect(firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'p1', FIRESTORE_DATABASE_ID: 'preview' }).databaseId).toBe('preview');
+    expect(new FirestoreRest(firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'p1', FIRESTORE_DATABASE_ID: 'preview' })).documentsPath).toBe('projects/p1/databases/preview/documents');
+    expect(new FirestoreRest(firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'p1' })).documentsPath).toBe('projects/p1/databases/(default)/documents');
+    expect(() => firestoreConfigFromEnv({ FIREBASE_PROJECT_ID: 'p1', FIRESTORE_DATABASE_ID: '../x' })).toThrow(FirestoreConfigError);
     expect(() => firestoreConfigFromEnv({})).toThrow(FirestoreConfigError);
     expect(firestoreConfigured({})).toBe(false);
   });
